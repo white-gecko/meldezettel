@@ -1,4 +1,4 @@
-# Documentation
+## Documentation
 
 This is the documentation of this program.
 
