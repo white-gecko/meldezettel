@@ -26,3 +26,14 @@
 * bin eher unorganisiert
 * meisten Projekte allein oder zu zweit bearbeitet also wenig Erfahrung im Team
 
+## Lucas Schons
+### Stärken
+* Projekterfahrung
+* Erfahrung mit Webentwicklung mittels PHP/JS/HTML/CSS
+
+### Neutral
+* interessiert an Aufbau und Pflege der Entwicklungsumgebung
+
+### Schwächen
+* schnell ungeduldig
+* oftmals zu leichtfertig im Dokumentieren
