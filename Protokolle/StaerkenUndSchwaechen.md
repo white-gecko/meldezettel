@@ -66,3 +66,17 @@
 ### Schwächen
 * keine Erfahrung mit großen Teams und daraus resultierender Doku (Issues, ...)
 
+
+## Lukas Gehrke
+### Stärken
+* Arbeitserfahrung (6 Monate) auch Teamarbeit
+* Auf Organisation und Strukturierung bedacht
+
+### Neutral
+* Grundkenntnisse in Programmierung
+* hohes Interesse an Arbeit an einer Webanwendung
+
+### Schwächen
+* wenig Erfahrung mit Datenverarbeitung/SQL
+* kaum Kenntnisse in Web-Entwicklung
+
