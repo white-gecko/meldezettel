@@ -38,6 +38,7 @@
 * schnell ungeduldig
 * oftmals zu leichtfertig im Dokumentieren
 
+<<<<<<< HEAD
 ## Franz Ruge
 ### Stärken
 * Gute Vertrautheit von Datenbankverwaltung mit MySQL
@@ -52,3 +53,15 @@
 * Hardwarekenntnisse/
 * Design 
 * Server- und Netzwerkstrukturen
+=======
+## Marc Wahsner
+### Stärken
+* Projekterfahrung
+* gute Python/Java Kenntnisse
+
+### Neutral
+* interesse an Backend- und low-level Programmierung
+
+### Schwächen
+* keine Erfahrung mit großen Teams und daraus resultierender Doku (Issues, ...)
+>>>>>>> 42156842b69268cd0f5610d161e66c39416e4267
