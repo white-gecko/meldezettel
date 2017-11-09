@@ -38,13 +38,13 @@
 * schnell ungeduldig
 * oftmals zu leichtfertig im Dokumentieren
 
-##Marc Wahsner
-###Stärken
-*Projekterfahrung
-*gute Python/Java Kenntnisse
+## Marc Wahsner
+### Stärken
+* Projekterfahrung
+* gute Python/Java Kenntnisse
 
-###Neutral
-*interesse an Backend- und low-level Programmierung
+### Neutral
+* interesse an Backend- und low-level Programmierung
 
-###Schwächen
-*keine Erfahrung mit großen Teams und daraus resultierender Doku (Issues, ...)
+### Schwächen
+* keine Erfahrung mit großen Teams und daraus resultierender Doku (Issues, ...)
