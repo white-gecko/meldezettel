@@ -37,3 +37,18 @@
 ### Schwächen
 * schnell ungeduldig
 * oftmals zu leichtfertig im Dokumentieren
+
+## Franz Ruge
+### Stärken
+* Gute Vertrautheit von Datenbankverwaltung mit MySQL
+* Kenntnisse über RDF und Linked Data
+* gutes Algorithmenverständnis
+* Erfahrung mit Webentwicklung mittels PHP/JS/HTML/CSS
+
+### Neutral
+* interessiert an Algorithmen- und Daten betreffenden Aufgaben 
+
+### Schwächen
+* Hardwarekenntnisse/
+* Design 
+* Server- und Netzwerkstrukturen
