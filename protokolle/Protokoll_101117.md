@@ -2,16 +2,16 @@
 -------------------------------
 
 
-###Fragen
+### **Fragen**
 
 
 ------------------------
-#### welche Treffen m�ssen protokolliert werden?
+#### welche Treffen müssen protokolliert werden?
 > * nur die Freitagstreffen
 
 -------------------------
 #### Welche Rollen sollten verteilt werden/muss jeder eine Rolle haben?
-> * Dokumentationsverantwortlicher f�r Qualit�t der Doku sollte vorhanden sein
+> * Dokumentationsverantwortlicher für Qualität der Doku sollte vorhanden sein
 > * jeder sollte eine Rolle haben
 
 ----------------------------
@@ -25,9 +25,30 @@
 
 --------------------
 ####Hardware Voraussetzungen?
-> * sollte browserf�hig sein
+> * sollte browserfähig sein
 > * SparQL RDF kompatible
 
 -------------------
 
 ---------------
+### Rollenverteilung
+
+> jeder 2 Rollen 1 organisatorische und 1 entwicklungsbezogene
+
+#### Projektleiter
+> Marc Wahsner
+#### Stellvertreter
+> Franz Ruge
+#### Test
+> Lucas Schons
+> * Framework einrichten
+> * Test-Cases überprüfen 
+#### Dokumentation
+> Elena Heier
+> * Überprüfung der Code-Dokumentation
+#### Qualitätssicherung
+> Johannes Pfau
+> * Code-Standard festlegen und einrichten
+> * Einhaltung überwachen
+#### technischer Assisten
+> Anja Sieke
