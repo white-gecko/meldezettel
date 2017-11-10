@@ -80,9 +80,9 @@
 
 ### **Nächstes Meeting**
 
-> 14. November 2017 15 Uhr
+> 14.November 2017 15 Uhr
 
-> 5. Stock am Fahrstuhl
+> 5.Stock am Fahrstuhl
 
 #### Nächsten Meilenstein besprechen
 
