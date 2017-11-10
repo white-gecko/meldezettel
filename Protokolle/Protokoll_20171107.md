@@ -13,7 +13,10 @@
 #### Zu TOP 3:
    1. Sollen wir alle Gruppentreffen protokollieren?
 
-   2. Wie sollem wir die Gruppentreffen protokollieren? - XML? - MarkDown?
+   2. Wie sollen wir die Gruppentreffen protokollieren? 
+   * XML? 
+   * MarkDown? 
+   * Tex?
 
    3. Was soll zum 13.11. auf der Website stehen?
 
