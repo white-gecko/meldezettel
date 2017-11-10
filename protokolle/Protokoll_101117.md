@@ -37,18 +37,25 @@
 
 #### Projektleiter
 > Marc Wahsner
+
 #### Stellvertreter
 > Franz Ruge
+
 #### Test
 > Lucas Schons
 > * Framework einrichten
-> * Test-Cases überprüfen 
+> * Test-Cases überprüfen
+
 #### Dokumentation
 > Elena Heier
 > * Überprüfung der Code-Dokumentation
+
 #### Qualitätssicherung
 > Johannes Pfau
 > * Code-Standard festlegen und einrichten
 > * Einhaltung überwachen
+
 #### technischer Assisten
 > Anja Sieke
+
+-------------
