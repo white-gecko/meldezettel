@@ -21,3 +21,7 @@
    3. Was soll zum 13.11. auf der Website stehen?
 
    4. Wie genau sollen wir die Issues verwenden?
+
+   5. Ist die Rollenverteilung so in Ordnung?
+
+   6. In wie fern ist Hard-/Softwarekompatibilität erforderlich?
