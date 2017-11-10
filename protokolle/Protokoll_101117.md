@@ -24,7 +24,7 @@
 > * sollte allerdings besser beschreiben werden
 
 --------------------
-####Hardware Voraussetzungen?
+#### Hardware Voraussetzungen?
 > * sollte browserfähig sein
 > * SparQL RDF kompatible
 
