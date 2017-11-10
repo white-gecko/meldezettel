@@ -10,11 +10,11 @@
 * TOP 3: Aufstellung von Fragen für Treffen am 10.11.2017
 
 
-### Zu TOP 3:
-* 1. Sollen wir alle Gruppentreffen protokollieren?
+#### Zu TOP 3:
+   1. Sollen wir alle Gruppentreffen protokollieren?
 
-* 2. Wie sollem wir die Gruppentreffen protokollieren? - XML? - MarkDown?
+   2. Wie sollem wir die Gruppentreffen protokollieren? - XML? - MarkDown?
 
-* 3. Was soll zum 13.11. auf der Website stehen?
+   3. Was soll zum 13.11. auf der Website stehen?
 
-* 4. Wie genau sollen wir die Issues verwenden?
+   4. Wie genau sollen wir die Issues verwenden?
