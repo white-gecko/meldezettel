@@ -75,3 +75,15 @@
 > * pull request erstellen wenn das Issue abgearbeitet wurde
 
 ------------ 
+
+-------------
+
+### **Nächstes Meeting**
+
+> 14. November 2017 15 Uhr
+
+#### Nächsten Meilenstein besprechen
+
+#### Rollenverteilung für Recherche
+
+####  
