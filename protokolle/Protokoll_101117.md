@@ -36,13 +36,13 @@
 > jeder 2 Rollen 1 organisatorische und 1 entwicklungsbezogene
 
 #### Projektleiter
-> Marc Wahsner
+> Lucas Schons
 
 #### Stellvertreter
 > Franz Ruge
 
 #### Test
-> Lucas Schons
+> Marc Wahsner
 > * Framework einrichten
 > * Test-Cases überprüfen
 
@@ -57,6 +57,11 @@
 
 #### technischer Assisten
 > Anja Sieke
+
+#### Developer
+> Max Schrodt
+> Lukas Gehrke
+
 
 -------------
 
