@@ -62,7 +62,7 @@
 
 ------------
 
-### Git workflow benutzen
+### **Git workflow benutzen**
 > * Issue zuweisen
 > * neuen Branch erstellen
 > * Issue auf dem neuen Branch bearbeiten
