@@ -80,3 +80,20 @@
 * wenig Erfahrung mit Datenverarbeitung/SQL
 * kaum Kenntnisse in Web-Entwicklung
 
+
+## Johannes Pfau
+### Stärken
+* fundierte Python/Java Kenntnisse
+* gute Lernfähigkeit
+* gutes ästhetisch Empfinden und Kenntnisse in Grafikdesign
+* zeitlich sehr flexibel
+
+### Neutral
+* Interesse an Frontend-Programmierung
+* Interesse an Funktion und Aufbau von Netzwerken
+
+### Schwächen
+* oft sehr müde
+* schnell demotiviert, falls etwas nicht meiner Vorstellung entspricht
+
+
