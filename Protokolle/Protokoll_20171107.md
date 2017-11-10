@@ -16,3 +16,5 @@
 * 2. Wie sollem wir die Gruppentreffen protokollieren? - XML? - MarkDown?
 
 * 3. Was soll zum 13.11. auf der Website stehen?
+
+* 4. Wie genau sollen wir die Issues verwenden?
