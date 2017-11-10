@@ -1,18 +1,17 @@
 **Protokoll 10. November 2017**
 -------------------------------
 
-[TOC]
 
-###**Fragen**
+###Fragen
 
 
 ------------------------
-#### welche Treffen müssen protokolliert werden?
+#### welche Treffen mï¿½ssen protokolliert werden?
 > * nur die Freitagstreffen
 
 -------------------------
 #### Welche Rollen sollten verteilt werden/muss jeder eine Rolle haben?
-> * Dokumentationsverantwortlicher für Qualität der Doku sollte vorhanden sein
+> * Dokumentationsverantwortlicher fï¿½r Qualitï¿½t der Doku sollte vorhanden sein
 > * jeder sollte eine Rolle haben
 
 ----------------------------
@@ -26,7 +25,7 @@
 
 --------------------
 ####Hardware Voraussetzungen?
-> * sollte browserfähig sein
+> * sollte browserfï¿½hig sein
 > * SparQL RDF kompatible
 
 -------------------
