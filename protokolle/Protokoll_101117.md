@@ -31,7 +31,7 @@
 -------------------
 
 ---------------
-### Rollenverteilung
+### **Rollenverteilung**
 
 > jeder 2 Rollen 1 organisatorische und 1 entwicklungsbezogene
 
