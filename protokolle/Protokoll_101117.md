@@ -59,3 +59,13 @@
 > Anja Sieke
 
 -------------
+
+------------
+
+### Git workflow benutzen
+> * Issue zuweisen
+> * neuen Branch erstellen
+> * Issue auf dem neuen Branch bearbeiten
+> * pull request erstellen wenn das Issue abgearbeitet wurde
+
+------------ 
