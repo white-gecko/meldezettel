@@ -7,7 +7,7 @@
 
 ------------------------
 #### welche Treffen müssen protokolliert werden?
-> * nur die Freitagstreffen
+> * alle Treffen
 
 -------------------------
 #### Welche Rollen sollten verteilt werden/muss jeder eine Rolle haben?
