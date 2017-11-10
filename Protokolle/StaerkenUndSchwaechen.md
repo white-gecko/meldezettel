@@ -1,4 +1,4 @@
-# Stärken und Schwächen der Teammitglieder
+﻿# Stärken und Schwächen der Teammitglieder
 
 ## Anja Sieke
 ### Stärken
@@ -96,4 +96,17 @@
 * oft sehr müde
 * schnell demotiviert, falls etwas nicht meiner Vorstellung entspricht
 
+## Elena Heier
+### Stärken
+* Interesse an Design
+* HTML Kentnisse
+* gewillt und interessiert neues zu lernen
+* gute Englischkentnisse
 
+### Neutral
+* Interesse an Datenstrukturen aber auch Design
+* mittelmäßige Programmierfähigkeiten
+
+### Schwächen
+* keine Erfahrung in Softwareentwicklung 
+* erstes Teamprojekt
