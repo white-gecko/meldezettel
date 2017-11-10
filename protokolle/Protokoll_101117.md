@@ -82,8 +82,8 @@
 
 > 14. November 2017 15 Uhr
 
+> 5. Stock am Fahrstuhl
+
 #### Nächsten Meilenstein besprechen
 
 #### Rollenverteilung für Recherche
-
-####  
