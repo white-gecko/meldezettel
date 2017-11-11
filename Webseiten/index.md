@@ -6,4 +6,3 @@ layout: home
 ---
 
 This is your homepage. The documentation is available at `…/docu`.
-# Webseite na17b

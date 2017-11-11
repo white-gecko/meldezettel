@@ -16,9 +16,9 @@
 title: Nachrichtenkommunikation für das THW
 email: projektleiter@na17b.de
 description: > # this means to ignore newlines until "baseurl:"
-	Ziel des Projekts ist es, eine Anwendung zu schreiben, welche es erlaubt, 
-	einen Vierfach-Vordruck abzufassen, anzuzeigen und zu archivieren sowie den 
-	damit verbundenen Workflow zu durchlaufen.
+  Ziel des Projekts ist es, eine Anwendung zu schreiben, welche es erlaubt, 
+  einen Vierfach-Vordruck abzufassen, anzuzeigen und zu archivieren sowie den 
+  damit verbundenen Workflow zu durchlaufen.
 baseurl: "/~na17b/jekyll" # the subpath of your site, e.g. /blog
 url: "http://pcai042.informatik.uni-leipzig.de" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
