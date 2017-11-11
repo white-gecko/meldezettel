@@ -13,12 +13,12 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Your awesome title
-email: your-email@domain.com
+title: Nachrichtenkommunikation für das THW
+email: projektleiter@na17b.de
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+	Ziel des Projekts ist es, eine Anwendung zu schreiben, welche es erlaubt, 
+	einen Vierfach-Vordruck abzufassen, anzuzeigen und zu archivieren sowie den 
+	damit verbundenen Workflow zu durchlaufen.
 baseurl: "/~na17b/jekyll" # the subpath of your site, e.g. /blog
 url: "http://pcai042.informatik.uni-leipzig.de" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
