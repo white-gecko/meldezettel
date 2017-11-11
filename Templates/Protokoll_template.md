@@ -2,6 +2,7 @@
 -------------------
 
 ##**Fragen aus dem letzten Meeting**
+
 ####1. Frage
 > ...
 
@@ -12,6 +13,7 @@
 ---------------
 
 ##**Agenda**
+
 ####1. Punkt
 > ...
 
@@ -22,6 +24,7 @@
 --------------
 
 ##**Nächstes Meeting**
+
 voraussichtliches Datum
 vorraussichtlicher Ort
 
