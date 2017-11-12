@@ -3,31 +3,46 @@ layout: page
 title: Team
 permalink: /team/
 ---
-# **Unser Team**
+#### Unser Team**
 
-## Projektleiter
-* Lucas Schons
+##### Projektleiter
 
-## Stellvertreter
- * Franz Ruge
+Lucas Schons
 
-## Test
-* Marc Wahsner
-  * Framework einrichten
-  * Test-Cases überprüfen
+---
 
-## Dokumentation
-* Elena Heier
-  * Überprüfung der Code-Dokumentation
+##### Stellvertreter
 
-## Qualitätssicherung
-* Johannes Pfau
-  * Code-Standard festlegen und einrichten
-  * Einhaltung überwachen
+Franz Ruge
 
-## Technischer Leiter
-* Anja Sieke
+---
 
-## Developer
-* Max Schrodt
-* Lukas Gehrke
+##### Test
+
+Marc Wahsner
+
+---
+
+##### Dokumentation
+
+Elena Heier
+
+---
+
+##### Qualitätssicherung
+
+Johannes Pfau
+
+---
+
+##### Technischer Leiter
+
+Anja Sieke
+
+---
+
+##### Developer
+
+Max Schrodt
+
+Lukas Gehrke

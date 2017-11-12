@@ -14,15 +14,13 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Nachrichtenkommunikation für das THW
-email: projektleiter@na17b.de
+email: ls80zyse@studserv.uni-leipzig.de
 description: > # this means to ignore newlines until "baseurl:"
   Ziel des Projekts ist es, eine Anwendung zu schreiben, welche es erlaubt, 
   einen Vierfach-Vordruck abzufassen, anzuzeigen und zu archivieren sowie den 
   damit verbundenen Workflow zu durchlaufen.
 baseurl: "/~na17b/jekyll" # the subpath of your site, e.g. /blog
 url: "http://pcai042.informatik.uni-leipzig.de" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
 
 # Build settings
 markdown: kramdown
