@@ -1,89 +1,86 @@
-**Protokoll 10. November 2017**
--------------------------------
+# **Protokoll 10. November 2017**
+
 
 
 ### **Fragen**
 
 
-------------------------
-#### welche Treffen müssen protokolliert werden?
+##### welche Treffen müssen protokolliert werden?
 > * alle Treffen
 
--------------------------
-#### Welche Rollen sollten verteilt werden/muss jeder eine Rolle haben?
+##### Welche Rollen sollten verteilt werden/muss jeder eine Rolle haben?
 > * Dokumentationsverantwortlicher für Qualität der Doku sollte vorhanden sein
 > * jeder sollte eine Rolle haben
 
-----------------------------
-#### Was muss zur Abgabe 1 auf der Website sein?
+
+##### Was muss zur Abgabe 1 auf der Website sein?
 > * siehe Handreichung
 
--------------------
-#### feedback zu den ersten Git-Issues
+##### feedback zu den ersten Git-Issues
 > * soweit okay
 > * sollte allerdings besser beschreiben werden
 
---------------------
-#### Hardware Voraussetzungen?
+
+##### Hardware Voraussetzungen?
 > * sollte browserfähig sein
 > * SparQL RDF kompatible
 
--------------------
+
 
 ---------------
-### **Rollenverteilung**
+
+### **Agenda**
+
+##### Rollenverteilung
 
 > jeder 2 Rollen 1 organisatorische und 1 entwicklungsbezogene
 
-#### Projektleiter
+###### Projektleiter
 > Lucas Schons
 
-#### Stellvertreter
+###### Stellvertreter
 > Franz Ruge
 
-#### Test
+###### Test
 > Marc Wahsner
 > * Framework einrichten
 > * Test-Cases überprüfen
 
-#### Dokumentation
+###### Dokumentation
 > Elena Heier
 > * Überprüfung der Code-Dokumentation
 
-#### Qualitätssicherung
+###### Qualitätssicherung
 > Johannes Pfau
 > * Code-Standard festlegen und einrichten
 > * Einhaltung überwachen
 
-#### technischer Assisten
+###### technischer Assisten
 > Anja Sieke
 
-#### Developer
+###### Developer
 > Max Schrodt
 
 > Lukas Gehrke
 
 
--------------
 
-------------
 
-### **Git workflow benutzen**
+##### Git workflow benutzen
 > * Issue zuweisen
 > * neuen Branch erstellen
 > * Issue auf dem neuen Branch bearbeiten
 > * pull request erstellen wenn das Issue abgearbeitet wurde
 
------------- 
 
 -------------
 
 ### **Nächstes Meeting**
 
-> 14.November 2017 15 Uhr
+* 14.November 2017 15 Uhr
 
-> 5.Stock am Fahrstuhl
+* 5.Stock am Fahrstuhl
 
-#### Nächsten Meilenstein besprechen
+##### Nächsten Meilenstein besprechen
 
-#### Rollenverteilung für Recherche
+##### Rollenverteilung für Recherche
