@@ -3,45 +3,45 @@ layout: page
 title: Team
 permalink: /team/
 ---
-#### Unser Team**
 
-##### Projektleiter
+
+### Projektleiter
 
 Lucas Schons
 
 ---
 
-##### Stellvertreter
+### Stellvertreter
 
 Franz Ruge
 
 ---
 
-##### Test
+### Test
 
 Marc Wahsner
 
 ---
 
-##### Dokumentation
+### Dokumentation
 
 Elena Heier
 
 ---
 
-##### Qualitätssicherung
+### Qualitätssicherung
 
 Johannes Pfau
 
 ---
 
-##### Technischer Leiter
+### Technischer Leiter
 
 Anja Sieke
 
 ---
 
-##### Developer
+### Developer
 
 Max Schrodt
 

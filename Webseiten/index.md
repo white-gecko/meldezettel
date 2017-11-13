@@ -5,4 +5,5 @@
 layout: home
 ---
 
-This is your homepage. The documentation is available at `…/docu`.
+
+
