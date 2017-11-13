@@ -3,7 +3,7 @@
 Ort - P701  
 Protokollführer - Name  
 
-###Anwesenheit:  
+### Anwesenheit:  
 ##### Team  
 > Lucas Schons  
 > Franz Ruge  
@@ -18,8 +18,8 @@ Protokollführer - Name
 > Natanael Arndt  
 > Fabian Niehoff  
 > Hans-Gert Gräbe  
-
-
+  
+  
 ### **Fragen aus dem letzten Meeting**
 
 ##### 1. Frage
