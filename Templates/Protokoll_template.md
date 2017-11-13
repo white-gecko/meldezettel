@@ -1,23 +1,23 @@
 # **Protokoll 10. November 2017**
 
-Ort - P701
-Protokollführer - Name
+Ort - P701  
+Protokollführer - Name  
 
-###Anwesenheit:
-##### Team
-> Lucas Schons
-> Franz Ruge
-> Marc Wahsner
-> Elena Heier
-> Johannes Pfau
-> Anja Sieke
-> Max Schrodt
-> Lukas Gehrke
+###Anwesenheit:  
+##### Team  
+> Lucas Schons  
+> Franz Ruge  
+> Marc Wahsner  
+> Elena Heier  
+> Johannes Pfau  
+> Anja Sieke  
+> Max Schrodt  
+> Lukas Gehrke  
 
-##### Betreuer
-> Natanael Arndt
-> Fabian Niehoff
-> Hans-Gert Gräbe
+##### Betreuer  
+> Natanael Arndt  
+> Fabian Niehoff  
+> Hans-Gert Gräbe  
 
 
 ### **Fragen aus dem letzten Meeting**
