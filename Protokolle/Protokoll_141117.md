@@ -1,7 +1,7 @@
-# **Protokoll 10. November 2017**
+# **Protokoll 14. November 2017**
 
 Ort - P701
-Protokollführer - Name
+Protokollführer - Lukas Gehrke
 
 ### **Anwesenheit**
 ##### Team
