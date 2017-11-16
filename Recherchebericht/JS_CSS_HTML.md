@@ -11,8 +11,7 @@
 ##CSS
 
 * Cascading Style Sheets
-* CSS ist eine sogenannte Stilsprache, mithilfe derer das Aussehen von HTML-Dokumenten in Web-Browsern gestaltet werden kann.
-* Hierbei geht es ua um Schriftarten, Farben, Positionierung, Ränder, Hintergrundbilder.
+* CSS ist eine sogenannte Stilsprache, mithilfe derer das Aussehen von HTML-Dokumenten in Web-Browsern gestaltet werden kann. Durch CSS-Anweisungen können beispielsweise Schriftarten, Farben, Positionierung, Ränder oder Hintergrundbilder angepasst werden.
 
 ##Abgrenzung CSS und HTML
 
@@ -22,9 +21,7 @@
 
 ##JavaScript
 
-* JS ist eine Skriptsprache, die dazu dient, Benutzerinteraktionen mit Webseiten auszuwerten und daraufhin Inhalte anzupassen, nachzuladen oder zu erzeugen.
-* Dadurch sollen die Funktionalitäten von HTML und CSS dynamisch erweitert werden.
-* JavaScript ist eine dynamisch typisierte, objektorientierte, klassenlose Skriptsprache
+* JS ist eine Skriptsprache, die dazu dient, Benutzerinteraktionen mit Webseiten auszuwerten und daraufhin Inhalte anzupassen, nachzuladen oder zu erzeugen. Dadurch sollen die Funktionalitäten von HTML und CSS dynamisch erweitert werden. JavaScript ist eine dynamisch typisierte, objektorientierte, klassenlose Skriptsprache
 * Skriptsprache: Eine Programmiersprache, die vor allem für kleine Programme verwendet wird und sich durch Interpreterausführung und oftmals entfallenden Deklarationszwang auszeichnen.
 
 
