@@ -6,7 +6,8 @@
 > Java ist eine allzweck Programmiersprache, welche Klassen- und Objektorientiert ist 
 > und sich vor allem durch ihre Plattformunabhängigkeit auszeichnet.  
 > Der Quellcode wird hierführ in bytecode kompiliert, der dann auf jeder Java virtual machine (JVM)
-> unabhängig von System oder Architektur zum laufen gebracht werden kann.
+> unabhängig von System oder Architektur zum laufen gebracht werden kann.  
+
 ### JVM<sup>[2](#ref_jvm)</sup>
 > Die Java virtual machine ist für die Ausführung des Bytecodes verantwortlich  
 > und dient damit als Schnittstelle zur Machine und zum Betriebssystem.  
@@ -37,8 +38,8 @@
 
   
     
-<a name="ref_java">1</a>: https://en.wikipedia.org/wiki/Java_(programming_language)
-<a name="ref_jvm">2</a>: https://de.wikipedia.org/wiki/Java_Virtual_Machine
-<a name="ref_mvc1">3</a>: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
-<a name="ref_mvc2">4</a>: https://glossar.hs-augsburg.de/Model-View-Controller-Paradigma
-<a name="ref_maven">5</a>: https://de.wikipedia.org/wiki/Apache_Maven
+<a name="ref_java">1</a>: https://en.wikipedia.org/wiki/Java_(programming_language)  
+<a name="ref_jvm">2</a>: https://de.wikipedia.org/wiki/Java_Virtual_Machine  
+<a name="ref_mvc1">3</a>: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller  
+<a name="ref_mvc2">4</a>: https://glossar.hs-augsburg.de/Model-View-Controller-Paradigma  
+<a name="ref_maven">5</a>: https://de.wikipedia.org/wiki/Apache_Maven  
