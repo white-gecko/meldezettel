@@ -1,6 +1,6 @@
 # **Protokoll 17. November 2017**
 
-Ort - Glaskasten 5. Etage, Start 14:03 Uhr
+Ort - Glaskasten 5. Etage, Start 14:03 Uhr, P 802
 Protokollführer - Lukas Gehrke
 
 ### **Table of Contents**
