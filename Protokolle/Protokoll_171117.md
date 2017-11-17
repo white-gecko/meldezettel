@@ -67,17 +67,32 @@ Protokollführer - Lukas Gehrke
 > 3. Raum
 >  - wir können für unsere Dienstagstreffen den Inf AI - Raumeinquartieren
 >  - für Räume in Zukunft Natanael fragen
+##### 4. Punkt
+> weiter mit 1.
+> Marc stellt Framework vor: Ein F ist Software-Rahmen, der wiederverwendbare Anwendungen zur Verfügung stellt. Dazu Testing Frameworks, diese seien besonders hilfreich beim agilen Software-Development. Beispiel: J-Unit
+> Multi-View (auch Marc): individuelle Sichten für verschiedene Nutzer einer Anwendung. Sinnvoll schon allein für die Implementierung der unterschiedlichen Farben des 4-fach-Vordrucks
+> Franz erklärt nochmal RDF/SPARQL: anderes Datenmodell als Datenbanken mit Tabellen, Speicherung in Tripeln, es entsteht eine Baumstruktur, SPARQL Anfragesprache dazu
+> auch Franz: Deployment: Flowcharts, die Rollenverteilung und Arbeitsschritte in einer Gruppenarbeit strukturieren sollen
+> Digitalisierung: "Umstieg von Papier zu Kupferdraht und Glasfaser"
+> GitFLow (Johannes): drei-Branch-Git-WorkFlow: Master, Feature und individuelle Developer-Branches; Vorteil: Master Branch bleibt stärker unberührt von Daten
+> daran anknüpfend gibt es eine Diskussion im Team, ob der GitFlow-Workflow übernommen werden soll. Es wird beschlossen, GitFlow zu verwenden.
+> Anja stellt Mark Down vor. MD bietet viel Formatierungsvorteil
+> ##### 5. Punkt
+> Die Zusammenführung der Ergebnisse der Recherche sollen laut Marc in einem gemeinsamen TeX-Dokument zusammengeführt werden. Dazu wird es eine Anleitung in Slack geben
+> ##### 6. Punkt
+> Lucas betont nochmal, dass sich beim Arbeiten anhand der Issues orientiert wird. Dabei gebe es die Möglichkeit, Branches direkt aus den Issues heraus zu erstellen (Unter dem Punkt create Merge Request)
+> Trello Board Programmiersprachen wurde eingerichtet um das Thema Programmiersprache voranzubringen.
 --------------
 
 ### **Nächstes Meeting**
 
-* voraussichtliches Datum
-* vorraussichtlicher Ort
+* voraussichtliches Datum: 24.11.2017
+* vorraussichtlicher Ort: P801
 
 ### Zu besprechende Punkte
 
 ##### 1. Punkt
-> evtl. beschreiben
+> Abgabe vom 27.11.2017
 
 ##### 2. Punkt
 
