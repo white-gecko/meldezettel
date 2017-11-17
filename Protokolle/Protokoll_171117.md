@@ -22,7 +22,7 @@ Protokollführer - Lukas Gehrke
 
 ##### Betreuer  
 
-> keine  
+> Fabian  
   
 ### **Fragen aus dem letzten Meeting**
 
@@ -50,7 +50,23 @@ Protokollführer - Lukas Gehrke
 ##### 2. Punkt
 > Allgemeines Arbeitsvorgehen
 > Lucas spricht an, wie der Aufwandsbericht erstellt wird und was die Teammitglieder zur Dokumentation beachten müssen. Time-Tracking und Bewertung sollen zukünfitg in Issues als Kommentare untergebracht werden
-
+##### 3. Punkt
+> Treffen mit dem Tutor Fabian
+> 1. Bewertung der ersten Abgabe
+>  - zu viele Issues, jedoch nicht negativ bewertet
+>  - ein Problem mit Jekyll
+>  - laut Fabian hat Marc Washner nicht commited
+> 2. generelle Fragen zur nächsten Abgabe
+>  - Recherchebericht: nicht einfach nur Überschriften von Wikipedia abschreiben sondern alles selbst ausformulieren
+> - wichtig: Begründung, warum ein bestimmtes Konzept für unser Projekt sinnvoll ist kann mit rein
+> - Zeitnachweis muss abgegeben werden. Mit der xsd-Datei kann die Korrektheit unserer Aufwandsanalyse (.xml) gecheckt werden.
+> - Aspekte/Konzepte: die genaue Interpretation der Topics bleibt uns überlassen
+> - grundsätzliches Ziel ist eine Aufstellung eine Grund-Pools an Programmiersprachen, Konzepten und Modellen als Grundlage für das Lastenheft
+> - Warum RDF/SPARQL - aktueller Status Quo; eigenens Projekt des Lehrenden promoten
+> - Ist-Stand, Zielsetzung nicht sinnvoll für den Recherchebericht
+> 3. Raum
+>  - wir können für unsere Dienstagstreffen den Inf AI - Raumeinquartieren
+>  - für Räume in Zukunft Natanael fragen
 --------------
 
 ### **Nächstes Meeting**
