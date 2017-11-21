@@ -16,6 +16,7 @@ Arbeitsstand (meistens verwirklicht in einem dezidierten Branch) in dem Hauptsta
 
 Um dieses Ziel zu erreichen werden meist folgende Tools im Entwicklungsprozess 
 verwendet:
+
 * Version Control System (z.B. Git)
 * automatisierte Unit-Tests
 * CI-Server (z.B. Travis CI)
@@ -38,6 +39,7 @@ auftauchenden Fehlermeldungen an das Team weitergibt.
 Gitlab CI ist ein open-source Continuous Integration Service von Gitlab. Gitlab-CI ist vollständig in Gitlab integriert,
 was es zu einer naheliegenden CI-Service Wahl für unser Projekt macht.
 Gitlab-CI unterstützt:
+
 * Parallele Build-Prozesse
 * einfache Konfiguration über .gitlab-ci.yml
 * Echtzeit Logging
