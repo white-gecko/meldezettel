@@ -1,7 +1,0 @@
-\select@language {ngerman}
-\contentsline {section}{\numberline {1}Begriffe}{1}
-\contentsline {subsection}{\numberline {1.1}Framework}{1}
-\contentsline {section}{\numberline {2}Aspekte}{1}
-\contentsline {subsection}{\numberline {2.1}Testing Framework}{1}
-\contentsline {section}{\numberline {3}Konzepte}{1}
-\contentsline {subsection}{\numberline {3.1}Multiview}{1}
