@@ -1,0 +1,27 @@
+\subsection{Continuous Integration}
+Der Begriff Continuous Integration (CI) beschreibt eine Softwareentwicklungspraxis,
+in der alle beteiligten Entwickler eines Projektes häufig (ein- bis mehrmals am Tag) ihren aktuellen
+Arbeitsstand (meistens verwirklicht in einem dezidierten Branch) in den Hauptstand
+(Masterbranch) integrieren.
+
+Um dieses Ziel zu erreichen werden meist folgende Tools im Entwicklungsprozess 
+verwendet:
+
+\begin{itemize}
+	\item Version Control System (z.B. Git)
+	\item automatisierte Unit-Tests
+	\item CI-Server (z.B. Travis CI)
+\end{itemize}
+
+Die direkten Vorteile der CI sind zum einen der minimale Integrationsaufwand sowie die fähigkeit, 
+jederzeit eine stabile version veröffentlichen zu können.
+Der minimale Integrationsaufwand ergibt sich durch die Häufigkeit,
+mit der die Entwickler ihren Arbeitsstand integrieren. Durch die
+Bedingung das vor jeder Integration alle automatisierten Testfälle ohne Fehlermeldungen durchlaufen
+werden müssen ergibt sich ein relativ stabiler Hauptstand, der jederzeit als Grundlage für neue Features dienen kann.
+Bugs die nicht durch Unit-Tests erkannt wurden und erst im release auffallen können dank der kompakten Natur kurzer
+Integrationszyklen schnell erkannt und behoben werden.
+Kommunikation ist insofern ein wichtiger Aspekt der CI, als dass jederzeit alle Entwickler den Zustand der Software
+kennen können sollten. Hierbei hilft der Einsatz eine CI-Servers, der beispielsweise jederzeit wenn Code in den Hauptstand
+integriert werden soll, den kompletten Build Prozess nachvollzieht, alle Tests durchlaufen lässt und entsprechend alle
+auftauchenden Fehlermeldungen an das Team weitergibt.
