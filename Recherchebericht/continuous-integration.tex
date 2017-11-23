@@ -10,19 +10,19 @@ verwendet:
 \begin{itemize}
 	\item Version Control System (z.B. Git)
 	\item automatisierte Unit-Tests
-	\item CI-Server (z.B. Travis CI)
+	\item CI-Server (z.B. Github CI)
 \end{itemize}
 
 Die direkten Vorteile der CI sind zum einen der minimale Integrationsaufwand sowie die fähigkeit, 
 jederzeit eine stabile version veröffentlichen zu können.
 Der minimale Integrationsaufwand ergibt sich durch die Häufigkeit,
 mit der die Entwickler ihren Arbeitsstand integrieren. Durch die
-Bedingung das vor jeder Integration alle automatisierten Testfälle ohne Fehlermeldungen durchlaufen
-werden müssen ergibt sich ein relativ stabiler Hauptstand, der jederzeit als Grundlage für neue Features dienen kann.
-Bugs die nicht durch Unit-Tests erkannt wurden und erst im release auffallen können dank der kompakten Natur kurzer
+Bedingung dass vor jeder Integration alle automatisierten Testfälle ohne Fehlermeldungen durchlaufen
+müssen ergibt sich ein relativ stabiler Hauptstand, der jederzeit als Grundlage für neue Features dienen kann.
+Bugs die nicht durch Unit-Tests erkannt wurden und erst im release auffallen, können dank der kompakten Natur kurzer
 Integrationszyklen schnell erkannt und behoben werden.
 Kommunikation ist insofern ein wichtiger Aspekt der CI, als dass jederzeit alle Entwickler den Zustand der Software
-kennen können sollten. Hierbei hilft der Einsatz eine CI-Servers, der beispielsweise jederzeit wenn Code in den Hauptstand
+kennen können sollten. Hierbei hilft der Einsatz eines CI-Servers, der beispielsweise jederzeit wenn Code in den Hauptstand
 integriert werden soll, den kompletten Build Prozess nachvollzieht, alle Tests durchlaufen lässt und entsprechend alle
 auftauchenden Fehlermeldungen an das Team weitergibt.
 \cite{ciwiki}
