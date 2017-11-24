@@ -1,0 +1,36 @@
+\documentclass[a4paper,11pt,oneside, titlepage]{article}
+\usepackage{pgffor}
+\usepackage[a4paper]{geometry} 
+\geometry{a4paper,left=25mm, right=25mm, top=20mm, bottom=30mm} 
+\usepackage[ngerman]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+\title{Recherchebericht}
+\date{}
+
+\begin{document}
+
+\section{Begriffe}
+\input{RDF}
+\input{SPARQL}
+\input{framework}
+\input{modultest}
+\input{Deploy}
+\input{Markdown}
+
+
+
+\section{Aspekte}
+\input{testingframework}
+\input{Jekyll}
+
+\section{Konzepte}
+\input{DigVAAL}
+\input{multiview}
+
+\bibliographystyle{plain}
+\bibliography{quellen}
+
+\end{document}
