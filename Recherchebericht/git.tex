@@ -1,0 +1,18 @@
+\subsection{git}
+Git ist eine freie Software zur verteilten Versionsverwaltung. Die Entwicklung wurde von Linus Torvalds angestoßen. Gegenüber anderen Versionskontrollsystemen unterscheidet es sich allerdings in einigen Aspekten:
+
+\noindent Nicht lineare Entwicklung:
+D.h. jeder Entwickler hat sein eigenes Repository und jedes Feature wird in seinem eigenen Branch entwickelt. "Branching" (Erstellen neuer Entwicklungszweige) und "Merging" (Verschmelzen mind. zweier Entwicklungszweige) sind als integrale Bestandteile der Arbeit mit Git. Des Weiteren werden nativ Tools zur Visualisierung der nicht linearen Geschichte bereit gestellt.
+
+\noindent Kein zentraler Server:
+Jeder Benutzer hat eine lokale Kopie des gesamten Repository und der Versionsgeschichte. Das bietet zum einen Sicherheit (Datensicherung) und zum anderen ist für die meisten Tätigkeiten so kein Netzwerkzugriff erforderlich. Zwischen den lokalen und entfernten Repositories gibt es zwar keinen technischen Unterschied, aber meist gibt es ein offizielles Repository.
+
+\noindent Kryptographische Sicherheit der Projektgeschichte:
+Die Projektgeschichte wird so gespeichert, dass der Hash-Code einzelner Commits immer auf der ganzen Geschichte basiert. Somit ist nachträgliche Manipulation nicht möglich, ohne den Hash-Code automatisch zu ändern.
+
+\noindent Unterstützung vieler Übertragungsprotokolle:
+Die Unterstützung diverser Übertragungsprotokolle wie HTTP, HTTPS, FTP, SSH und rsync bietet dem Nutzer große Freiheit seine Daten zu senden wie er es für richtig hält.
+
+\noindent Säubern des Repositories:
+Auch wenn man Daten/Aktionen aus den Repositories löscht/zurücknimmt, so bleiben sie doch erstmal erhalten und können zu jedem Zeitpunkt wiederhergestellt werden, was Fehler beim entfernen von Dateien/Aktionen sehr schwer macht. Erst wenn man sich nach diesem Schritt sicher ist kann man die Daten explizit und für immer löschen.
+\cite{gitwiki}	
