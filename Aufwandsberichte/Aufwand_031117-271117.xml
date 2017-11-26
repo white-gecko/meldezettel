@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Analyse von="03.11.2017" bis="27.11.2017" gruppe="na17b" createdBy="LS" createdAt="27.11.2017">
+<Analyse von="2017-11-03" bis="2017-11-27" gruppe="na17b" createdBy="LS" createdAt="2017-11-27">
 
 <done who="AS,FR,EH,MW,JP,LG,LS" A="3" S="3" Zeit="1.5">Auftakt Treffen</done>
 <done who="alle" A="3" S="3" Zeit="2">Gruppentreffen am 07.11.2017</done>
@@ -7,8 +7,7 @@
 <done who="LG,FR,MW,EH,JP,LS" A="3" S="3" Zeit="1.5">Gruppentreffen am 14.11.2017</done>
 <done who="alle" A="3" S="3" Zeit="">Gruppentreffen am 17.11.2017</done>
 <done who="alle" A="3" S="3" Zeit="1.5">Gruppentreffen am 24.11.2017</done>
-<done who="MS" A="3" S="3" Zeit="1">Erstelle Protokoll Vorlage</done>
-<done who="JP" A="" S="" Zeit="5">Erstellung CONTRIBUTING.md</done>
+<done who="MS" A="3" S="3" Zeit="1">Erstellung Protokoll Vorlage</done>
 <done who="LG" A="3" S="3" Zeit="1.5">Recherche (CSS, HTML, JavaScript, FGrFK)</done>
 <done who="LS" A="3" S="3" Zeit="3.5">Recherche (Continuous-Integration, Gitlab-CI, Slack)</done>
 <done who="FR" A="4" S="3" Zeit="3">Recherche (RDF, SPARQL, Deployment)</done>
@@ -26,6 +25,5 @@
 <done who="AS" A="" S="" Zeit="1">Erstelle Eintrag 'Anja' für StaerkenUndSchwaechen.md</done>
 <done who="LS" A="3" S="3" Zeit="0.2">Erstelle Eintrag 'Lucas' für StaerkenUndSchwaechen.md</done>
 <done who="AS" A="" S="" Zeit="5">Website Aufsetzten</done>
-<done who="alle" A="3" S="3" Zeit="1">Rollen besetzen</done>
 
 </Analyse>
