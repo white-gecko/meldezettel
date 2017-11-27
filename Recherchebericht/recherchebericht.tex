@@ -1,17 +1,22 @@
 \documentclass[a4paper,11pt,oneside, titlepage]{article}
-\usepackage{pgffor}
 \usepackage[a4paper]{geometry} 
 \geometry{a4paper,left=25mm, right=25mm, top=20mm, bottom=30mm} 
 \usepackage[ngerman]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
 
+\pagestyle{fancy}
 
-\title{Recherchebericht}
+\lhead{Datum der Erstellung: \today}
+\rhead{Verantwortlicher: Marc Wahsner}
+\title{Recherchebericht\\Nachrichtenkommunikation für das THW \\ na17b}
 \date{}
 
 \begin{document}
-
+\maketitle
+\tableofcontents
+\newpage
 \section{Begriffe}
 \input{RDF}
 \input{SPARQL}
@@ -27,7 +32,6 @@
 \input{continuous-integration}
 \input{git}
 
-
 \section{Aspekte}
 \input{gitlab-ci}
 \input{slack}
@@ -36,7 +40,6 @@
 \input{jekyll}
 \input{gitflow}
 \input{gitlab}
-
 
 \section{Konzepte}
 \input{DigVAAL}
