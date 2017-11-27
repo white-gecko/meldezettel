@@ -1,0 +1,12 @@
+# ignore possible tex compiler side-files.
+*.aux
+*.bbl
+*.blg
+*.log
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+*.swp
+
+.vscode/

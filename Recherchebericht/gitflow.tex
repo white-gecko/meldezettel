@@ -1,0 +1,7 @@
+\subsection{gitflow}
+Gitflow ist ein Konzept für einen Arbeitsablauf mit Git. Dabei wird vorallem die Geschichte sehr gut strukturiert und bleib Übersichtlich auch für Aussenstehende.
+
+\noindent Das Konzept basiert auf zwei Hauptverzweigungen, zum einem dem Master-Branch zum anderen dem Develop-Branch, und kleinen Feature- und Release-Branches. Auf den Master-Branch werden dabei nur fertige Releases aus den Release-Branches commited. Der Develop-Branch ist der Zweig für die Entwicklung der einzelnen Releases. In ihn werden die einzelnen Feature-Branches gemerged. Feature Branches sind dabei kleine Zweige, welche für jedes zu implementierende Feature erstellt werden. Sie werden in den Develop-Branch gemerged, wenn das Feature fertig implementiert ist. Ein Release-branch wird immer dann aus Develop eröffnet, wenn ein Release ansteht und genug Features im Develop-branch implementiert sind. In ihm werden keine neuen Features mehr hinzugefügt, sondern nur noch Bug-Fixes oder Dokumentation.
+
+\noindent Dieses Vorgehen bietet vorallem viel Sicherheit und Struktur.
+\cite{gitflow}	
