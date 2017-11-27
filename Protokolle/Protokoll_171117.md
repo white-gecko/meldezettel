@@ -26,12 +26,7 @@ Protokollführer - Lukas Gehrke
   
 ### **Fragen aus dem letzten Meeting**
 
-##### 1. Frage
-> 
-
-##### 2. Frage
-> *
-> * 
+> keine
 
 ---------------
 
@@ -94,7 +89,4 @@ Protokollführer - Lukas Gehrke
 ##### 1. Punkt
 > Abgabe vom 27.11.2017
 
-##### 2. Punkt
-
-##### 3. Punkt
 

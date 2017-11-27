@@ -55,7 +55,7 @@
 > * Code-Standard festlegen und einrichten
 > * Einhaltung überwachen
 
-###### technischer Assisten
+###### technischer Assistent
 > Anja Sieke
 
 ###### Developer
