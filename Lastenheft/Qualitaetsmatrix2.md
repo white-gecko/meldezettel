@@ -1,10 +1,10 @@
 | ISO 25010 Aspekt   |      Bedeutsamkeit  
 |----------|:-------------:|
-| Funktionalität (Functionality)| hoch |
 | Zuverlässigkeit (Reliability)  | hoch |
 | Gebrauchstauglichkeit (Usability) | hoch |
+| Funktionalität (Functionality)| mittel |
 | (IT-)Sicherheit (Security) | mittel |
 | Effizienz (Efficiency) | mittel |
-| Wartbarkeit (Maintainability) | niedrig |			
+| Wartbarkeit (Maintainability) | mittel |			
 | Portabilität (Portability) | niedrig |
 | Kompatibilität (Compatibility) | niedrig |
