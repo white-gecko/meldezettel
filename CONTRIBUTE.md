@@ -113,7 +113,7 @@ Type (check out how to write [Commit Messages](#commit-messages)):
 
 4. Push to GitLab:  
 Now you're all set and ready to push your changes to GitLab. Just type the following:  
-> git push --set-upstream origin [name of your branch]
+> git push 
 
 5. Create a new Merge Request:  
 Now all you need to do is creating a new Merge Request. For that go to the  
@@ -176,7 +176,7 @@ don't necessarily need to be assigned, because moving them on the board-view wil
     * Needs Discussion :    if your Issue needs further discussion, usually only for the backlog
     * ToDo :                things that need to be done in the near future
     * Doing :               things that are worked on right now 
-    * Ready for Review :    stuff that needs review from someone else
+    * Code Review :    stuff that needs review from someone else
 
 &nbsp;&nbsp;&nbsp;&nbsp;  
 
@@ -225,9 +225,21 @@ or one Label from the Action-category.
 
 3. Use the present tense (e.g. "Adds" not "Added").
 
-4. List everything you did and if it is more then one thing keep true to the following  
+4. The Header (first line) should not be longer than 50 characters.
+
+5. List everything you did and if it is more then one thing keep true to the following  
 structure:
 > "Adds text to Blub.txt | Changes line 8-10 of Blub.txt | ... | Fixes typos in Blub.txt"
+
+6. If you made too many changes to put everything in the header, you should use it to write  
+a summary (again not longer than 50 chars) and list everything else in the following lines.
+
+&nbsp;&nbsp;&nbsp;&nbsp;To write multi-line Commit Messages just type:
+> "git commit"  
+> or  
+> 'git commit -m" '
+
+&nbsp;&nbsp;&nbsp;&nbsp;This will open then editor. It will stay open as long as you don't write the closing quotation marks.  
 
 ## <a name="Documentation"></a> Documentation 
 
