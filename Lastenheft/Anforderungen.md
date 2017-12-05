@@ -1,6 +1,6 @@
-##Nicht Funktional:  
+## Nicht Funktional:  
 
-###Verschiedene Accounts mit verschiedenen Rollen:  
+### Verschiedene Accounts mit verschiedenen Rollen:  
 
 Zum Zwecke der besseren Übersicht wäre die Aufteilung in verschiedene Accounts für die Rollen sinnvoll.  
 Dabei kann gewährleistet werden, dass jeder nur das sieht was für ihn relevant ist. Was wiederum die Sicherheit erhöht,  
@@ -11,7 +11,7 @@ Für die Umsetzung stehen verschiedene Möglichkeiten offen:
 3. Die Rollen werden fest bestimmten Geräten zugewiesen.  
 
 
-###Datensicherheit muss gewährleistet sein (VFVD darf nicht zwischendurch verändert werden/Unverfälschlichkeit):  
+### Datensicherheit muss gewährleistet sein (VFVD darf nicht zwischendurch verändert werden/Unverfälschlichkeit):  
 
 Damit eine Archivierung der Vordrucke überhaupt sinnvoll ist, muss sichergestellt werden, dass sie von niemandem  
 nachträglich verändert werden können. Ansonsten verliert das Archiv jegliche juristische Relevanz und damit auch den  
@@ -19,9 +19,9 @@ Sinn weshalb es angelegt wurde.
 
 
 
-##Funktional:  
+## Funktional:  
 
-###Visuelle Unterschiede für verschiedene Rollen:  
+### Visuelle Unterschiede für verschiedene Rollen:  
 
 Die visuelle Representation orientiert sich an der Gestaltung des Vierfachvordrucks. Dabei wird vor Allem die Farbgebung weitergeführt,   
 d.h. jede Ansicht wird thematisch in der Farbe des für sie relevanten Vordruckes gehalten. Jede Rolle bekommt ihre eigene Ansicht.  
@@ -29,7 +29,7 @@ Dies dient vor allem der Übersichtlichkeit und Einfachheit der benutzung, da je
 Die Wahl der Rolle kann dabei über ein Menü am Anfang des Einsatzes ausgewählt werden, bzw. Accounts oder Geräten direkt zugewiesen werden.  
 
 
-###Verschlüsselung  
+### Verschlüsselung  
 
 Die Verschlüsselung muss nach einem standartisierten Verfahren ablaufen, damit juristische Integrität gewährleistet ist. 
 Ansätze wären dabei z.B.:	
