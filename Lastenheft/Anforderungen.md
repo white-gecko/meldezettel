@@ -6,9 +6,9 @@ Zum Zwecke der besseren Übersicht wäre die Aufteilung in verschiedene Accounts
 Dabei kann gewährleistet werden, dass jeder nur das sieht was für ihn relevant ist. Was wiederum die Sicherheit erhöht,  
 denn niemand kann etwas verändern, was er nicht auch verändern soll. Ob nun un beabsichtigt, oder nicht.  
 Für die Umsetzung stehen verschiedene Möglichkeiten offen: 	
-1. Accounts mit Benutzername und Passwort.  
-2. Kein Login, sondern jeder wählt am Anfang lose seine Rolle aus.  
-3. Die Rollen werden fest bestimmten Geräten zugewiesen.  
+* Accounts mit Benutzername und Passwort.  
+* Kein Login, sondern jeder wählt am Anfang lose seine Rolle aus.  
+* Die Rollen werden fest bestimmten Geräten zugewiesen.  
 
 
 ### Datensicherheit muss gewährleistet sein (VFVD darf nicht zwischendurch verändert werden/Unverfälschlichkeit):  
