@@ -49,7 +49,7 @@
 > Diskussion lf (?)
 > Anscheinend war die Übung zu Lastenheft kacke.
 
-> Zum ersten Punkt: es soll hinzugefügt werden, dass der visuelle Repräsentatin möglichst realitätsnah sein soll, das heißt die Farbgebung soll sich möglichst am Original orientieren
+> Zum ersten Punkt: es soll hinzugefügt werden, dass die visuelle Repräsentation möglichst realitätsnah sein soll, das heißt die Farbgebung soll sich möglichst am Original orientieren
 
 
 > Elena: Vorstellung Anfoderungen
@@ -67,10 +67,11 @@
 
 * 08.12.2017
 *  P802
+*  15h
 
 ### Zu besprechende Punkte
 
-> Wie viele funker für Ein- bzw Ausgang zuständig. (Anforderung Zeitgleich Eingang von VVs)
+> Wie viele Funker für Ein- bzw Ausgang zuständig. (Anforderung Zeitgleich Eingang von VVs)
 
 > Wie lang/ausführlich sollen die Anforderungen im Lastenheft ausformuliert werden? 2 Sätze? länger?
 
