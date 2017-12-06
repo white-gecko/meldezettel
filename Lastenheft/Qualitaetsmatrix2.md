@@ -4,7 +4,7 @@
 | Gebrauchstauglichkeit (Usability) | Hoch |
 | Funktionalität (Functional Suitability)| Mittel |
 | (IT-)Sicherheit (Security) | Mittel |
-| Effizienz (Performance Efficiency) | Mittel |
-| Wartbarkeit (Maintainability) | Mittel |			
+| Wartbarkeit (Maintainability) | Mittel |
+| Effizienz (Performance Efficiency | Niedrig |			
 | Portabilität (Portability) | Niedrig |
 | Kompatibilität (Compatibility) | Niedrig |
