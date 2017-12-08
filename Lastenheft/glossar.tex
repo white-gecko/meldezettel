@@ -98,8 +98,12 @@
     klassenlose Skriptsprache.
 
     \subsection{Continuous Integration}
-    Der Begriff Continuous Integration (CI) beschreibt eine Softwareentwicklungspraxis, in der alle beteiligten Entwickler eines Projektes häufig (ein- bis mehrmals am Tag) ihren aktuellen Arbeitsstand (meistens verwirklicht in einem dezidierten Branch) in den Hauptstand (Masterbranch)
-    integrieren. Um dieses Ziel zu erreichen werden meist folgende Tools im Entwicklungsprozess verwendet:
+    Der Begriff Continuous Integration (CI) beschreibt eine Softwareentwicklungspraxis,
+    in der alle beteiligten Entwickler eines Projektes häufig (ein- bis mehrmals am 
+    Tag) ihren aktuellen Arbeitsstand (meistens verwirklicht in einem dezidierten 
+    Branch) in den Hauptstand (Masterbranch)
+    integrieren. Um dieses Ziel zu erreichen werden meist folgende Tools im 
+    Entwicklungsprozess verwendet:
 
         \begin{itemize}
             \item Version Control System (z.B. Git)
@@ -133,21 +137,36 @@
             D.h. jeder Entwickler hat sein eigenes Repository und jedes Feature
             wird in seinem eigenen Branch entwickelt.
             \item "Branching"(Erstellen neuer Entwicklungszweige) und
-            \item "Merging"(Verschmelzen mind. zweier Entwicklungszweige) sind integrale Bestandteile der Arbeit mit Git. Des Weiteren werden nativ Tools zur Visualisierung der nicht linearen Geschichte bereit gestellt.
+            \item "Merging"(Verschmelzen mind. zweier Entwicklungszweige) sind 
+            integrale Bestandteile der Arbeit mit Git. Des Weiteren werden nativ Tools 
+            zur Visualisierung der nicht linearen Geschichte bereit gestellt.
             \item Kein zentraler Server:\\
-            Jeder Benutzer hat eine lokale Kopie des gesamten Repository und der Versionsgeschichte. Das bietet zum einen Sicherheit (Datensicherung) und zum anderen ist für die meisten Tätigkeiten so kein Netzwerkzugriff erforderlich. Zwischen den lokalen und entfernten Repositories gibt es zwar keinen technischen Unterschied, aber meist gibt es ein offizielles Repository.
+            Jeder Benutzer hat eine lokale Kopie des gesamten Repository und der 
+            Versionsgeschichte. Das bietet zum einen Sicherheit (Datensicherung) und 
+            zum anderen ist für die meisten Tätigkeiten so kein Netzwerkzugriff 
+            erforderlich. Zwischen den lokalen und entfernten Repositories gibt es 
+            zwar keinen technischen Unterschied, aber meist gibt es ein offizielles 
+            Repository.
             \item Kryptographische Sicherheit der Projektgeschichte:\\
-            Die Projektgeschichte wird so gespeichert, dass der Hash-Code einzelner Commits immer auf der ganzen Geschichte basiert. Somit ist
-            nachträgliche Manipulation nicht möglich, ohne den Hash-Code automatisch zu ändern.
+            Die Projektgeschichte wird so gespeichert, dass der Hash-Code einzelner 
+            Commits immer auf der ganzen Geschichte basiert. Somit ist
+            nachträgliche Manipulation nicht möglich, ohne den Hash-Code automatisch 
+            zu ändern.
             \item Unterstützung vieler Übertragungsprotokolle:\\
-            Die Unterstützung diverser Übertragungsprotokolle wie HTTP, HTTPS, FTP, SSH und rsync bietet dem Nutzer große Freiheit seine Daten zu
+            Die Unterstützung diverser Übertragungsprotokolle wie HTTP, HTTPS, FTP, 
+            SSH und rsync bietet dem Nutzer große Freiheit seine Daten zu
             senden wie er es für richtig hält.
             \item Säubern des Repositories:\\
             Auch wenn man Daten/Aktionen aus den Repositories löscht/zurück-
-            nimmt, so bleiben sie doch erstmal erhalten und können zu jedem Zeitpunkt wiederhergestellt werden, was Fehler beim entfernen von Dateien/Aktionen sehr schwer macht. Erst wenn man sich nach diesem Schritt sicher ist kann man die Daten explizit und für immer löschen.
+            nimmt, so bleiben sie doch erstmal erhalten und können zu jedem Zeitpunkt 
+            wiederhergestellt werden, was Fehler beim entfernen von Dateien/Aktionen 
+            sehr schwer macht. Erst wenn man sich nach diesem Schritt sicher ist kann 
+            man die Daten explizit und für immer löschen.
         \end{itemize}
     
     \subsection{QuitStore}
-    Software die Git-Versionierung für sogenannte "Named Graphs" (ein Schlüsselkonzept des Semantic Web das bewirkt, dass eine Mengen an RDF Ausdrücken über eine URI identifiziert werden) ermöglicht
+    Software die Git-Versionierung für sogenannte "Named Graphs" (ein Schlüsselkonzept 
+    des Semantic Web das bewirkt, dass eine Menge an RDF Ausdrücken über eine URI 
+    identifiziert werden) ermöglicht
 
 \end{document}
