@@ -6,11 +6,13 @@
 \usepackage[T1]{fontenc}
 \usepackage{fancyhdr}
 \usepackage{hyperref}
+\usepackage[table]{xcolor}
+\renewcommand{\arraystretch}{2}
 
 \pagestyle{fancy}
 
-\lhead{Datum: \today}
-\rhead{Verantwortlicher: }
+\lhead{\today}
+\rhead{Verantwortlicher: Franz Ruge }
 \chead{Gruppe: na17b}
 \title{Lastenheft\\Nachrichtenkommunikation für das THW}
 \author{na17b}
@@ -21,23 +23,35 @@
 \tableofcontents
 \newpage
 
-<<<<<<< Lastenheft/lastenheft.tex
 
-
-\bibliographystyle{plain}
-\bibliography{quellen}
-=======
 \input{Ausgangssituation}
 
+\input{zielsetzungUndProdukteinsatz}
+
 \section{Nichtfunktionale Anforderungen}
+\input{ausfullbarkeit}
+\input{Listenanordnung}
 \input{archivierung}
+\input{gegenseitigeKommunikation}
+\input{Rollen}
+\input{Skalierbarkeit}
 
 \section{Funktionale Anforderungen}
+\input{VisuelleUnterschiede}
 \input{pdfrenderbar}
+\newpage
 \input{rdfspeicherung}
+\input{Verschluesselung}
+\input{Datensicherheit}
+\input{zugriffsbeschrankung}
 
-%\bibliographystyle{plain}
-%\bibliography{quellen}
->>>>>>> Lastenheft/lastenheft.tex
+
+\input{Qualitaetsmatrix}
+
+\input{lieferumfangAbnahmekriterien}
+
+\input{Vorprojekt}
+
+\input{glossar}
 
 \end{document}
