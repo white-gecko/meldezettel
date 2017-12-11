@@ -1,4 +1,4 @@
-# **Protokoll 10. November 2017**
+# **Protokoll 1. Dezember 2017**
 
 Ort - P701  
 Protokollführer - Lucas Schons      
@@ -16,7 +16,7 @@ Ende: 16:45
 > Lucas Schons  
 > Franz Ruge  
 > Marc Wahsner  
-> Elena Heier  
+> Elena Heier
 > Johannes Pfau  
 > Anja Sieke  
 > Max Schrodt  
