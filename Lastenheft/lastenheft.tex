@@ -23,9 +23,15 @@
 
 \begin{document}
 \maketitle
+
+\pagenumbering{gobble}
+
 \tableofcontents
+
+
 \newpage
 
+\pagenumbering{arabic}
 
 \input{Ausgangssituation}
 
@@ -58,6 +64,7 @@
 
 \input{glossar}
 
+\newpage
 \glsaddall
 \printglossaries
 
