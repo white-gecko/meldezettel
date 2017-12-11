@@ -7,6 +7,7 @@
 \usepackage{fancyhdr}
 \usepackage{hyperref}
 \usepackage[table]{xcolor}
+\usepackage[toc,nonumberlist]{glossaries}
 \renewcommand{\arraystretch}{2}
 \renewcommand\thesubsection{}
 
@@ -18,12 +19,19 @@
 \title{Lastenheft\\Nachrichtenkommunikation für das THW}
 \author{na17b}
 \date{}
+\makeglossaries
 
 \begin{document}
 \maketitle
+
+\pagenumbering{gobble}
+
 \tableofcontents
+
+
 \newpage
 
+\pagenumbering{arabic}
 
 \input{Ausgangssituation}
 
@@ -55,5 +63,9 @@
 \input{Vorprojekt}
 
 \input{glossar}
+
+\newpage
+\glsaddall
+\printglossaries
 
 \end{document}
