@@ -55,14 +55,14 @@ Lukas Gehrke
         * Klar strukturiert
         * Performanz okay
         * Coding Standard -> PEP8
-    *  Beschluss: PYTHON
-    *  Beschluss: Englisch fuer Code
-    *  Beschluss: Doku in Englisch (zumindest Intern) -> Nathanael fragen 
-    *  Beschluss: Einrueckung Tabs (4 Leerzeichen) 
-    *  Beschluss: CamelCase - klein angefangen 
-    *  Beschluss: Line length 80 characters
-    *  Beschluss: Schleifenklammern direkt nach Bedingungen, schließende Klammer parallel darunter
-    *  Beschluss: Kommentare ueber Funktionen/betreffenden Teil
+    * Beschluss: PYTHON
+    * Beschluss: Englisch fuer Code
+    * Beschluss: Doku in Englisch (zumindest Intern) -> Nathanael fragen 
+    * Beschluss: Einrueckung Tabs (4 Leerzeichen) 
+    * Beschluss: CamelCase - klein angefangen 
+    * Beschluss: Line length 80 characters
+    * Beschluss: Schleifenklammern direkt nach Bedingungen, schließende Klammer parallel darunter
+    * Beschluss: Kommentare ueber Funktionen/betreffenden Teil
     * Lucas: Vorstellung: Test driven development
 
 * Releaseplan: 
@@ -74,10 +74,10 @@ Lukas Gehrke
 * Projektplan:
     * Vorprojekt  
     * Phasenbeschreibung:
-    *	Recherche
-    *	Ansichtenmodul: statische Sichten, detailed View, rendern dynamische Sichten, Prozessschritt
-    *	Datenbankmodul: Datenverarbeitung
-    *	Optimierungs,Feinschliff: Debugging 
+    * Recherche
+    * Ansichtenmodul: statische Sichten, detailed View, rendern dynamische Sichten, Prozessschritt
+    * Datenbankmodul: Datenverarbeitung
+    * Optimierungs,Feinschliff: Debugging 
 
 --------------
 
