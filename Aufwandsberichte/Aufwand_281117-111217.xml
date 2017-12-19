@@ -3,13 +3,13 @@
 
 <done who="LS,FR,EH,JP,AS,MS,LG" A="3" S="3" Zeit="2">Gruppentreffen am 28.11.2017</done>
 <done who="alle" A="3" S="3" Zeit="1.75">Gruppentreffen am 01.12.2017</done>
-<done who="LS,EH,JP,AS,MS,LG" A="3" S="3" Zeit="1,75">Gruppentreffen am 05.12.2017</done>
+<done who="LS,EH,JP,AS,MS,LG" A="3" S="3" Zeit="1.75">Gruppentreffen am 05.12.2017</done>
 <done who="alle" A="3" S="3" Zeit="1.25">Gruppentreffen am 08.12.2017</done>
 <done who="FR" A="3" S="2" Zeit="1">Erstellung 'Ausgangssituation' und Anforderungen (Archivierung, PDF-Renderbar, RDF-Speicherung)</done>
 <done who="EH" A="3" S="3" Zeit="2">Erstellung Anforderungen (Listenanordnung für 4-Fachvordrucke, Ausfüllbarkeit w. b. Papierformular, Computer zur gegenseitigen Kommunikation konfiguriert, Zugriffsbeschränkung der Nutzer)</done>
 <done who="MS" A="2" S="2" Zeit="0.5">Erstellung 'Zielsetzung und Produkteinsatz'</done>
 <done who="MW" A="3" S="3" Zeit="1">Erstellung 'Lieferumfang und Abnahmekriterien'</done>
-<done who="AH" A="3" S="3" Zeit="2">Erstellung 'Vorprojekt'</done>
+<done who="AS" A="3" S="3" Zeit="2">Erstellung 'Vorprojekt'</done>
 <done who="JP" A="3" S="3" Zeit="2">Erstellung Anforderungen (Datensicherheit, verschiedene Rollen, Skalierbarkeit, Verschlüsselung, visuelle unterscheidung für verschiedene Rollen)</done>
 <done who="LS" A="3" S="3" Zeit="1">Erstellung 'Glossar'</done>
 <done who="LG" A="3" S="3" Zeit="3">Erstellung 'Qualitätsmatrix'</done>
