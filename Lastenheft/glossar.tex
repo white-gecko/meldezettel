@@ -1,183 +1,182 @@
-    \newglossaryentry{rdf} {
-        name = RDF,
-        description = {
-            Kurz für Resource Description Framework, ist ein Datenmodell, 
-            das stark von der üblichen Vorstellung von Daten in Tabellen 
-            abweicht. Alle Daten werden immer in Triples der Form Subjekt,
-            Prädikat, Objekt dargestellt, z.B. ein Subjekt Leipzig ist durch 
-            das Prädikat hatHochschule mit
-            dem Objekt Universität Leipzig verbunden. Durch diese 
-            Schreibweise bildet sich bei Verwendung einer großen Menge von 
-            Triples eine riesige Baumstruktur auf, in der viele Entitäten 
-            durch Relationen miteinander verknüpft sind.
-        }
+\newglossaryentry{rdf} {
+    name = RDF,
+    description = {
+        Kurz für Resource Description Framework. RDF ist ein Datenmodell, 
+        welches alle Daten in Triples der Form Subjekt,
+        Prädikat, Objekt dargestellt. Ein Subjekt Leipzig wäre beispielsweise 
+        durch das Prädikat hatHochschule mit dem Objekt Universität Leipzig 
+        verbunden. Durch diese Schreibweise bildet sich eine Baumstruktur, in 
+        der Entitäten durch Relationen miteinander verknüpft sind
     }
+}
 
-    \newglossaryentry{sparql} {
-        name = SPARQL,
-        description = {
-            Kurz für Semantic Protocol and RDF Query Language, ist wie SQL für 
-            tabellenbasierte Datenbanken, eine Anfragesprache, mit der man gezielt 
-            Informationen aus einem RDF Datenmodell extrahieren kann.
-        }
+\newglossaryentry{sparql} {
+    name = SPARQL,
+    description = {
+        Kurz für Semantic Protocol and RDF Query Language. SPARQL ist eine 
+        Anfragesprache, mit der man Informationen aus einem RDF 
+        Datenmodell extrahieren kann
     }
+}
 
-
-    \newglossaryentry{Framework} {
-        name = Framework,
-        description = {
-            Ein Framework stellt dem Softwareentwickler einen Rahmen mit festen Regeln und 
-            wiederverwendbare Strukturen zur Verfügung. Insbesondere definiert es den 
-            Kontrollfluss der Anwendung und die Schnittstellen der Klassen. Im Gegensatz 
-            zur Arbeit mit Klassenbibliotheken werden nicht bereits vorhandene Klassen und 
-            Funktionen verknüpft und verwendet um den Ansprüchen des Projekts zu genügen, 
-            stattdessen werden selbständig Funktionen und Klassen in einem vorgegebenen 
-            Rahmen implementiert, welche dann vom Framework genutzt werden um 
-            vordefinierte Aufgaben zu erledigen. Woraus sich auch ergibt das Frameworks 
-            stark Anwendungsspezifisch sind.
-        }
+\newglossaryentry{Framework} {
+    name = Framework,
+    description = {
+        Ein Framework stellt dem Softwareentwickler einen Rahmen mit festen 
+        Regeln und wiederverwendbare Strukturen zur Verfügung. Insbesondere 
+        definiert es den Kontrollfluss der Anwendung und die Schnittstellen der 
+        Klassen. Im Gegensatz zur Arbeit mit Klassenbibliotheken werden nicht 
+        bereits vorhandene Klassen und Funktionen verknüpft und verwendet um den 
+        Ansprüchen des Projekts zu genügen, stattdessen werden selbständig 
+        Funktionen und Klassen in einem vorgegebenen Rahmen implementiert, 
+        welche dann vom Framework genutzt werden um vordefinierte Aufgaben zu 
+        erledigen. Woraus sich auch ergibt das Frameworks stark 
+        Anwendungsspezifisch sind
     }
+}
 
-
-    \newglossaryentry{Modultest} {
-        name = Modultest,
-        description = {
-            Modultests sind ein Bestandteil des Softwaretests und beschreiben das 
-            automatische Testen von Softwaremodulen auf deren korrekte Funktionalität. 
-            Hierfür müssen im Vorfeld Testfälle mit möglichst umfassenden 
-            Eingabeparametern und den zu erwartenden Ausgabeparametern definiert werden, 
-            mit welchen das Modul - bspw. unter Verwendung eines Testing Frameworks -
-            auf Funktionalität geprüft wird.    
-        }
+\newglossaryentry{Unit Test} {
+    name = Unit Test,
+    description = {
+        Unit-Tests dienen dazu, diskrete Einheiten des Quellcodes auf ihre 
+        Funktionalität hin zu überprüfen. Hierzu werden im Vorfeld Testfälle mit 
+        möglichst umfassenden Eingabeparametern und den zu erwartenden Output 
+        definiert. Der Test besteht dann daraus, dass der der Output, den 
+        die Einheit aus dem definierten Input produziert, mit dem erwarteten 
+        Output verglichen wird. Testing-Frameworks helfen beim erstellen und 
+        automatisierten Durchführen dieser Tests
     }
+}
 
-
-    \newglossaryentry{Deployment} {
-        name = Deployment,
-        description = {
-            Bezeichnet die Visualisierung und Definition von Schritten und der 
-            Rollenverteilung in einem Prozess. Die aus Deployment resultierenden 
-            Flowcharts stellen eine Reihenfolge von Aktionen/Schritten, sowie die 
-            Interaktion zwischen verschiedenen Personen und Gruppen dar. Der große Vorteil 
-            dieses Modells liegt bei Hervorhebung von Ineffizienz, Dopplung und unnötigen
-            Abläufen.
-        }
+\newglossaryentry{Deployment} {
+    name = Deployment,
+    description = {
+        Bezeichnet den Prozess der Installation und Konfiguration von Software 
+        auf Computern. Dieselbe Software kann mehrmals `deployed' werden, z.B. 
+        wenn eine neue Version der Software herausgegeben wurde
     }
+}
 
-
-    \newglossaryentry{Model-View-Controller} {
-        name = Model-View-Controller,
-        description = {
-            MVC ist ein Muster zur Implementierung von User-Interfaces, welches ein 
-            Programm in 3 Teile zerlegt. Dies soll die interne Repräsentation von 
-            Informationen und deren Verarbeitung von der Art wie diesem dem Nutzer 
-            präsentiert werden trennen. Dies erhöht die Wiederverwendbarkeit
-            von Code und erlaubt die parallele Entwicklung der verschiedenen Teile. Das 
-            Model ist hierbei die zentrale Komponente, welche das Problem beschreibt. Es 
-            managt direkt die Daten und Logik des Programms. Die View-Komponente besteht 
-            aus der Darstellung der Daten z.B. durch Tabellen oder Diagramme und 
-            ermöglicht es verschiedene Views für verschiedene Nutzer zu definieren.
-            Der Controller akzeptiert User-Input der dann in die entsprechenden Befehle 
-            für Model und View umgewandelt wird. Ursprünglich wurde MVC vor allem für die 
-            Entwicklung von Desktop GUIs benutzt, allerdings hat sich das Muster auch 
-            mitlerweile für die Entwicklung von Web- und Mobile- Applikationen bewährt.
-        }
+\newglossaryentry{Model-View-Controller} {
+    name = Model-View-Controller,
+    description = {
+        MVC ist ein Muster zur Implementierung von User-Interfaces, welches 
+        Quellcode in drei unabhängigen Komponenten organisiert. Dies soll die 
+        interne Repräsentation von Informationen und deren Verarbeitung von der 
+        Art wie diesem dem Nutzer präsentiert werden trennen. Dies erhöht die 
+        Wiederverwendbarkeit von Code und erlaubt die parallele Entwicklung der 
+        verschiedenen Teile. Das Model ist hierbei die zentrale Komponente, 
+        welche das Problem beschreibt. Es managt direkt die Daten und Logik des 
+        Programms. Die View-Komponente besteht aus der Darstellung der Daten 
+        z.B. durch Tabellen oder Diagramme und ermöglicht es verschiedene Views 
+        für verschiedene Nutzer zu definieren.
+        Der Controller akzeptiert User-Input der dann in die entsprechenden 
+        Befehle für Model und View umgewandelt wird
     }
+}
 
-
-    \newglossaryentry{Java} {
-        name = Java,
-        description = {
-            Java ist eine allzweck Programmiersprache, welche Klassen- und 
-            Objektorientiert ist und sich vor allem durch ihre Plattformunabhängigkeit 
-            auszeichnet. Der Quellcode wird hierfür in bytecode kompiliert, der dann auf 
-            jeder Java virtual machine unabhängig von System oder Architektur zum laufen 
-            gebracht werden kann.
-        }
+\newglossaryentry{Markdown} {
+    name = Markdown,
+    description = {
+        Markdown ist eine einfache Auszeichnungssprache, und lässt sich u.a. 
+        direkt in HTML übersetzen. Die Ausdrücke sind einfach zu lesen, zu 
+        schreiben und zu bearbeiten. 
+        Verwendet wird Markdown z.B. auf GitHub oder auch für Jekyll
     }
+}
 
-
-    \newglossaryentry{Markdown} {
-        name = Markdown,
-        description = {
-            Markdown ist eine einfache Auszeichnungssprache, und lässt sich unter anderem 
-            direkt in HTML übersetzen. Die Ausdrücke sind einfach zu lesen, zu schreiben 
-            und zu bearbeiten. 
-            Verwendet wird Markdown z.B. auf GitHub oder auch für Jekyll
-        }
+\newglossaryentry{HTML} {
+    name = HTML,
+    description = {
+        HTML steht für Hypertext Markup Language und ist eine Sprachkonvention, 
+        mit der digitale Dokumente für die Interpretation durch Web-Browser 
+        semantisch strukturiert werden. HTML wurde entwickelt, um Informationen 
+        digital austauschen zu können, ohne diese mehrmals umformen und anpassen 
+        zu müssen. Ein HTML-Dokument besteht aus einem Doctype-Tag 
+        (Dokumenttypdeklaration), Head 
+        (Meta Informationen) und Body (der Inhalt)
     }
+}
 
-
-    \newglossaryentry{HTML} {
-        name = HTML,
-        description = {
-            HTML steht für Hypertext Markup Language und ist eine Sprachkonvention, mit 
-            der digitale Dokumente für die Interpretation durch Web-Browser semantisch 
-            strukturiert werden. HTML wurde von Forschern entwickelt, um Informationen 
-            digital austauschen zu können, ohne diese mehrmals umformen und anpassen zu 
-            müssen. Ein HTML-Dokument besteht aus einem Doctype-Tag 
-            (Dokumenttypdeklaration), Head 
-            (Meta Informationen) und Body (der Inhalt).
-        }
+\newglossaryentry{CSS} {
+    name = CSS,
+    description = {
+        CSS steht für Cascading Style Sheets und ist eine Gestaltungssprache, 
+        über die sich die Darstellung von Informationen steuern lässt. Im 
+        Gegensatz zu HTML wird sich dabei nicht auf den Inhalt bezogen, sondern 
+        allein auf das Design
     }
+}
 
-
-    \newglossaryentry{CSS} {
-        name = CSS,
-        description = {
-            CSS steht für Cascading Style Sheets ist eine Gestaltungssprache, über die 
-            sich die Darstellung von Informationen steuern lässt. Im Gegensatz zu HTML 
-            wird sich dabei nicht auf den Inhalt bezogen, sondern allein auf das Aussehen.
-        }
+\newglossaryentry{Skriptsprache} {
+    name = Skriptsprache,
+    description = {
+        Eine Programmiersprache, die sich vor allem durch Interpreterausführung 
+        und oftmals entfallenden Deklarationszwang auszeichnet
     }
+}
 
-
-    \newglossaryentry{Skriptsprache} {
-        name = Skriptsprache,
-        description = {
-            Eine Programmiersprache, die vor allem durch Interpreterausführung und oftmals 
-            entfallenden Deklarationszwang auszeichnen.
-        }
+\newglossaryentry{JavaScript} {
+    name = JavaScript,
+    description = {
+        JavaScript ist eine Skriptsprache, die ursprünglich dazu diente 
+        Benutzerinteraktionen mit Webseiten auszuwerten und daraufhin Inhalte 
+        anzupassen, nachzuladen oder zu erzeugen. Dieser Anwendungsbereich wurde 
+        inzwischen durch unzählige Bibliotheken stark erweitert. JavaScript ist 
+        eine dynamisch typisierte, objektorientierte, klassenlose Skriptsprache
     }
+}
 
+\longnewglossaryentry{Continuous-Integration}
+{
+    name = Continuous Integration
+}
+{
+    Der Begriff Continuous Integration (CI) beschreibt eine 
+    Softwareentwicklungspraxis, in der alle beteiligten Entwickler eines 
+    Projektes häufig (ein- bis mehrmals am Tag) ihren aktuellen
+    Arbeitsstand (meistens verwirklicht in einem dezidierten Branch) in den 
+    Hauptstand (Masterbranch) integrieren.
 
+    Um dieses Ziel zu erreichen werden meist folgende Tools verwendet:
 
-    \newglossaryentry{JavaScript} {
-        name = JavaScript,
-        description = {
-            JavaScript ist eine Skriptsprache, die dazu dient, Benutzerinteraktionen mit 
-            Webseiten auszuwerten und daraufhin Inhalte anzupassen, nachzuladen oder zu 
-            erzeugen. Dadurch sollen die Funktionalitäten von HTML und CSS erweitert 
-            werden. JavaScript ist eine dynamisch typisierte, objektorientierte, 
-            klassenlose Skriptsprache.
-        }
+    \begin{itemize}
+        \item Version Control System (z.B. Git)
+        \item automatisierte Tests (z.B. Unit- oder Integrationtests)
+        \item CI-Server (z.B. Github CI)
+    \end{itemize}
+
+    Die direkten Vorteile der CI sind zum einen der minimale Integrationsaufwand 
+    sowie die fähigkeit, jederzeit eine stabile version veröffentlichen zu 
+    können.
+    Der minimale Integrationsaufwand ergibt sich durch die Häufigkeit,
+    mit der die Entwickler ihren Arbeitsstand integrieren. Durch die
+    Bedingung, dass vor jeder Integration alle automatisierten Testfälle ohne 
+    Fehlermeldungen durchlaufen müssen ergibt sich ein relativ stabiler 
+    Hauptstand, der jederzeit als Grundlage für neue Features dienen kann.
+    Bugs die nicht durch Tests erkannt wurden und erst im release auffallen, 
+    können dank der kompakten Natur kurzer Integrationszyklen schnell erkannt 
+    und behoben werden.
+    Kommunikation ist insofern ein wichtiger Aspekt der CI, als dass jederzeit 
+    alle Entwickler den Zustand der Software kennen können sollten. Hierbei 
+    hilft der Einsatz eines CI-Servers, der beispielsweise jederzeit wenn Code 
+    in den Hauptstand integriert werden soll, den kompletten Build Prozess 
+    nachvollzieht, alle Tests durchlaufen lässt und entsprechend alle
+    auftauchenden Fehlermeldungen an das Team weitergibt
+}
+
+\newglossaryentry{Git} {
+    name = Git,
+    description = {
+        Git ist eine freie Software zur verteilten Versionsverwaltung
     }
+}
 
-
-   \newglossaryentry{Continuous-Integration} {
-       name = Continuous Integration,
-       description = {
-           Der Begriff Continuous Integration (CI) beschreibt eine Softwareentwicklungspraxis,
-           in der alle beteiligten Entwickler eines Projektes häufig (ein- bis mehrmals am
-           Tag) ihren aktuellen Arbeitsstand (meistens verwirklicht in einem dezidierten
-           Branch) in den Hauptstand (Masterbranch)
-           integrieren. 
-       }
-   }
-
-    \newglossaryentry{Git} {
-        name = git,
-        description = {
-            Git ist eine freie Software zur verteilten Versionsverwaltung.
-        }
+\newglossaryentry{QuitStore} {
+    name = QuitStore, 
+    description = {
+        Software die Git-Versionierung für sogenannte `Named Graphs' (ein 
+        Schlüsselkonzept des Semantic Web das bewirkt, dass eine Menge an RDF 
+        Ausdrücken über eine URI identifiziert werden) ermöglicht
     }
-    
-    \newglossaryentry{QuitStore} {
-        name = QuitStore, 
-        description = {
-            Software die Git-Versionierung für sogenannte "Named Graphs" (ein Schlüsselkonzept 
-            des Semantic Web das bewirkt, dass eine Menge an RDF Ausdrücken über eine URI 
-            identifiziert werden) ermöglicht
-        }
-    }
-
+}
