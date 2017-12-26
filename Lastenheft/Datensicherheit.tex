@@ -1,4 +1,4 @@
 \subsection{/LF0400/ Datensicherheit}
-Die Vordrucke werden nach ihrer Bearbeitung und Druchlaufens des weiteren Prozesses natürlich abgespeichert.
+Die Vordrucke werden nach ihrer Erstellung und Druchlaufens des weiteren Prozesses abgespeichert.
 Damit eine Archivierung der Vordrucke überhaupt sinnvoll ist, muss sichergestellt werden, dass sie von niemandem  
-nachträglich verändert werden können. Ansonsten verliert das Archiv jegliche juristische Relevanz und die Möglichkeit nach zu vollziehen wo und warum Fehler aufgetreten sind. Somit also zwei wichtige Aspekte, welche essentielle Beweggründe für das Anlegen des Archivs sind.   
+nachträglich verändert werden können. Ansonsten verliert das Archiv jegliche juristische Relevanz und die Möglichkeit nachzuvollziehen wo und warum Fehler aufgetreten sind. Demnach ist eine Verschlüsselung der gespeicherten Daten notwendig. Diese wird vom QuitStore übernommen, welcher durch die Überschneidung mit Git dessen Versionierung nutzt. Dadurch wird auch die kryptografische Eindeutigkeit gewährleistet, da die Git-History durch auf einander aufbauende Hash-Codes gesichert ist. Das heißt ändert man etwas an zum Beispiel einem Commit, werden auch alle IDs der Commits danach geändert.
