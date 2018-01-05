@@ -1,5 +1,8 @@
 \subsection{/LF0200/ Speicherung im RDF-Format}
-Die vom Verfasser im Vierfachvordruck eingegebenen Informationen, sollen im RDF Datenmodell auf einem lokalen Server abgespeichert werden. Demnach werden die Eingaben, z.B. 'Absender: Nathanael Arndt' wie in `example-1.ttl' vorgegeben in der Form 
-\begin{center}<VierfachvordruckID> thw:absender `Nathanael Arndt'. \end{center}
-in einer .ttl oder .owl Textdatei abgespeichert werden. Auf diese Art werden alle Daten die gesamelt werden innerhalb einer Datei gespeichert. \\
-Die anderen Stationen, die bisher Kopien des Vierfachvordrucks erhalten haben, müssen nun digital auf die Eintragungen des Verfassers zugreifen können. Also müssen gezielte SPARQL-Anfragen implementiert werden, die die Informationen des jeweiligen Viefachvordrucks aus der Datei auslesen und an die Ausgabe übergeben.
+Die vom Verfasser im Vierfachvordruck eingegebenen Informationen, sollen im RDF Datenmodell mithilfe des im QuitStore verfügbaren SPARQL-Endpoints auf einem lokalen Server abgespeichert werden. Demnach werden die Eingaben, z.B. 'Dokument hat Absender: Nathanael Arndt' in folgender Form dargestellt:
+\begin{flushleft}
+\quad \quad \quad Subjekt Vierfachvordruck (repräsentiert durch URI) \\
+\quad \quad \quad Prädikat `hatAbsender' \\
+\quad \quad \quad Objekt `Natanael Arndt' (repräsentiert durch URI oder Name)
+\end{flushleft}
+Die anderen Stationen, die bisher Kopien des Vierfachvordrucks erhalten haben, müssen dann auf die Eintragungen des Verfassers zugreifen können. Dies wird direkt durch den SPARQL-Endpoint ermöglicht, welcher eine Oberfläche für gezielte SPARQL-Anfragen an das Datenmodell bietet.
