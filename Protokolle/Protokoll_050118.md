@@ -1,6 +1,6 @@
-# **Protokoll 19. Dezember 2017**
+# **Protokoll 05. Januar 2018**
 
-Ort - PP801      
+Ort - P801      
 Zeit - 15:00 - 17:00    
 Protokollfuehrer - Johannes Pfau
 
