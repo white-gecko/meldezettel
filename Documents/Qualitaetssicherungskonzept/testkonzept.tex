@@ -1,8 +1,8 @@
 \section{Testkonzept}
-Durch die besondere Verantwortung des THW hat die Zuverlässigkeit der Software einen außerordentlich hohen Stellenwert. Um diese zu gewährleisten muss das umfangreiche Testen der Software automatisiert ablaufen, wobei eine Testcoverage von 100\% angestrebt wird.
+Durch die besondere Verantwortung des THW hat die Zuverlässigkeit der Software einen außerordentlich hohen Stellenwert. Um diese zu gewährleisten muss das umfangreiche Testen der Software automatisiert ablaufen, wobei eine Testcoverage von 100\% angestrebt wird. 
 \subsection{Komponententests}
 Komponententests garantieren die korrekte Funktionalität einzelner, abgrenzbarer Softwarekomponenten. Hierzu werden Testfälle mit möglichst umfassenden Eingabeparametern und den zu erwartenden Ausgabeparametern definiert. Mit diesen wir die Komponente unter Verwendung eines Testing Frameworks automatisiert auf Funktionalität überprüft. Als Testing Framework findet in diesem Projekt das etablierte und in der Python Standard Bibliothek integrierte Python unit testing framework Verwendung.
 \subsection{Integrationstests} 
-Integrationstests gewährleisten das korrekte Zusammenspiel voneinander abhängiger Softwarekomponenten und erfolgen nach dem Bestehen der Komponententests. Hierbei werden vor allem Schnittstellentests durchgeführt, welche überprüfen ob die Kommunikation der einzelnen Komponenten fehlerfrei verläuft. In diesem Projekt wird das Prinzip der Continous Integration angewandt. Hierzu wird das in GitLab integrierte Gitlab CI verwendet.
+Integrationstests gewährleisten das korrekte Zusammenspiel voneinander abhängiger Softwarekomponenten und erfolgen nach dem Bestehen der Komponententests. Hierbei werden vor allem Schnittstellentests durchgeführt, welche überprüfen ob die Kommunikation der einzelnen Komponenten fehlerfrei verläuft.
 \subsection{GUI Tests}
 Durch den hohen Anspruch an die Gebrauchstauglichkeit, sind auch manuelle Tests der Benutzeroberfläche von entscheidender Bedeutung. Diese sollen sowohl Fehler, als auch Unannehmlichkeiten in der Benutzung erkennen.
