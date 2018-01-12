@@ -1,0 +1,77 @@
+\section{Coding Standart}
+Ein einheitlicher Coding-Standard ist sinnvoll, da er eine gute Lesbarkeit des Codes, wenn er eingehalten wird, garantiert. Das ist essentiell nicht nur für die Zusammenarbeit im Team, da nur wenn man den Code der anderen Mitglieder lesen kann und versteht, auch sinnvolle Kommunikation über eventuelle Fehler statt finden kann. Sondern auch für dritte, die sich mit dem Projekt befassen und es unter Umständen auch fortführen wollen.
+
+\subsection{Code Layout}
+\begin{itemize}
+Einrückungen
+\begin{itemize}
+Generell werden für Einrückungen Tabs empfohlen mit der Länge von vier Leerzeichen. Dabei ist gerade bei Python zu beachten, dass Tabs und Leerzeichen nicht gemischt werden dürfen, bei den andern ist jedem freigestellt was er benutzen möchte.
+
+Folgezeilen sollten klar erkennbar sein, wobei aber die "vier Leerzeichen einrücken"-Regel nicht gilt.
+z.B: 
+(1) foo = long_function_name(var_one, var_two,
+                         	 var_three, var_four)
+(2) foo = long_function_name(
+  	  var_one, var_two,
+  	  var_three, var_four)                      
+\end{itemize}
+Zeilenlänge
+\begin{itemize}
+Die maximale Zeilenlänge ist auf 80 Zeichen beschränkt. 
+
+Längere Textabschnitte, wie z.B: Kommentare oder Dokumentarstrings, sind auf 72 Zeichen beschränkt.
+\end{itemize}
+Zeilenumbrüche bei binären Operatoren
+\begin{itemize}
+Zeilenumbrüche sollten immer vor binären Operatoren kommen, da so einfacherer zu erkennen ist, welcher Operator zu welchem Objekt gehört.
+z.B.: income = (gross_wages
+         				 + taxable_interest
+         				 + (dividends - qualified_dividends)
+         				 - ira_deduction
+         				 - student_loan_interest)
+\end{itemize}
+Leerzeilen
+\begin{itemize}
+Top-Level Funktionen und Klassen-Definitionen sollten mit jeweils zwei Leerzeilen umfasst sein.
+
+Einfache Methoden-Definitionen in Klassen sollten mit jeweils einer Leerzeil umgeben werden.
+
+Zusätzliche Leerzeilen können, wenn auch sparsam, genutz werden um die logische Struktur von z.B.: Gruppen von Funktionen oder Sektionen mit ähnlichem/zusammengehörigem Inhalt zu verdeutlichen.
+\end{itemize}
+Kommentare
+\begin{itemize}
+Kommentare sollten immer über dem Objekt, welches sie beschreiben, stehen.
+\end{itemize}
+\end{itemize}
+
+\subsection{Leerzeichen}
+\begin{itemize}
+vermeiden
+\begin{itemize}
+Sie sollten direkt nach öffnenden Klammern oder vor schließenden Klammern vermieden werden.
+z.B.: spam(ham[1], {eggs: 2})
+	  spam( ham[ 1 ], { eggs: 2 } )
+	  
+Sie sollten nicht vor Kommas, Semikolons oder Doppelpunkten stehen (wobei das nicht für alle Doppelpunkte gilt, siehe "Slice-Expressions").
+
+Zwischen "nachfolgenden" Kommas und schließenden Klammern sollten sie vermieden werden.
+
+Auch direkt vor öffnenden Klammern, welche Argumentlisten eröffnen, bzw. Indizes oder Slices beginnen, sollten sie vermieden werden.
+\end{itemize}
+nutzen
+\begin{itemize}
+Sie sollten genutz werden um die folgenden binäre Operatoren zu umgeben: assignment (=), augmented assignment (+=, -= etc.), comparisons (==, <, >, !=, <>, <=, >=, in, not in, is, is not), Booleans (and, or, not), Slicing(:).
+
+Auch sollte der "->"-Operator bei Funktionsannotationen mit jeweils einem Leerzeichen umgeben sein.
+
+Kommentare innerhalb von Methoden oder Funktionen sollen mindestens mit zwei Leerzeichen vom Ausdruck, denn sie beschreiben getrennt sein.
+
+Nach einem Komme, Semikolon, Doppelpunkt sollte ein Leerzeichen folgen.
+\end{itemize}
+\end{itemize}
+
+\subsection{Kommentare}
+Kommentare sollten in englisch gehalten werden und immer aus kompletten Sätzen bestehen. Dabei ist zu beachten, dass sie den Inhalt des Objektes, auf welches sie sich beziehen, so kurz wie möglich aber trotzdem verständlich für alle beschreiben. Bei Blockkommentaren oder allgemein längeren Textabschnitten bietet es sich an Paragraphen zu nutzen um sie besser zu strukturieren.
+
+\subsection{Namenskonventionen}
+Namen sollten den "mixedCase"-Standart nutzen, d.h. bestehen sie aus mehreren Wörtern, dann werden sie zusammen geschrieben, beginnen mit einem Buchstaben und jedes weitere Wort beginnt mit einem Großbuchstaben: z.B.: nameOfFunction. Nur Namen von Klassen beginnen mit einem Großbuchstaben, alle andern klein. Werden Akronyme oder Abkürzungen benutzt, so werden diese immer komplett groß geschrieben: z.B.: errorInTCPServer.
