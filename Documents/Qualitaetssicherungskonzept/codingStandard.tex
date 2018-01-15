@@ -1,13 +1,13 @@
 \section{Coding Standard}
-Ein einheitlicher Coding-Standard ist sinnvoll, da er eine gute Lesbarkeit des Codes, wenn er eingehalten wird, garantiert. Das ist essentiell nicht nur für die Zusammenarbeit im Team, da nur wenn man den Code der anderen Mitglieder lesen kann und versteht, auch sinnvolle Kommunikation über eventuelle Fehler stattfinden kann. Sondern auch für dritte, die sich mit dem Projekt befassen und es unter Umständen auch fortführen wollen.
+Ein einheitlicher Coding-Standard ist sinnvoll, da er eine gute Lesbarkeit des Codes garantiert. Das ist essentiell nicht nur für die Zusammenarbeit im Team, nur wenn man den Code der anderen Mitglieder lesen kann und versteht, kann auch sinnvolle Kommunikation über eventuelle Fehler stattfinden. Dies gilt auch für Dritte, die sich mit dem Projekt befassen und es unter Umständen auch fortführen wollen.
 
 \subsection{Code Layout}
 
 \begin{itemize}
 \item Einrückungen
 \begin{itemize}
-\item Generell werden für Einrückungen Tabs empfohlen mit der Länge von vier Zeichen. Dabei ist gerade bei Python zu beachten, dass Tabs und Leerzeichen nicht gemischt werden dürfen, bei Javascript ist es jedem freigestellt was er benutzen möchte.
-\item Folgezeilen sollten klar erkennbar sein, wobei aber die "vier Leerzeichen einrücken"-Regel nicht gilt.
+\item Generell werden für Einrückungen Tabs mit der Länge von vier Zeichen empfohlen. Dabei ist gerade bei Python zu beachten, dass Tabs und Leerzeichen nicht gemischt werden dürfen, bei Javascript ist es jedem freigestellt was er benutzen möchte.
+\item Folgezeilen sollten klar erkennbar sein, wobei aber die \grqq vier Leerzeichen einrücken\grqq -Regel nicht gilt.
 z.B: \\
 (1)
 \begin{lstlisting}[language=python]
@@ -28,7 +28,7 @@ foo = long_function_name(
 \end{itemize}
 \item Zeilenumbrüche bei binären Operatoren
 \begin{itemize}
-\item Zeilenumbrüche sollten immer vor binären Operatoren kommen, da so einfacherer zu erkennen ist, welcher Operator zu welchem Objekt gehört.
+\item Zeilenumbrüche sollten immer vor binären Operatoren stehen, da so einfacher zu erkennen ist, welcher Operator zu welchem Objekt gehört.
 z.B.: 
 \begin{lstlisting}[language=python]
 income = (gross_wages
@@ -46,7 +46,7 @@ income = (gross_wages
 \end{itemize}
 \item Kommentare
 \begin{itemize}
-\item Kommentare sollten immer über dem Objekt, welches sie beschreiben, stehen.
+\item Kommentare sollten immer über dem Objekt stehen welches sie beschreiben.
 \end{itemize}
 \end{itemize}
 
@@ -60,21 +60,21 @@ z.B.:
 spam(ham[1], {eggs: 2})
 spam( ham[ 1 ], { eggs: 2 } )
 \end{lstlisting}
-\item Sie sollten nicht vor Kommas, Semikolons oder Doppelpunkten stehen (wobei das nicht für alle Doppelpunkte gilt, siehe "Slice-Expressions").
-\item Zwischen "nachfolgenden" Kommas und schließenden Klammern sollten sie vermieden werden.
+\item Sie sollten nicht vor Kommas, Semikolons oder Doppelpunkten stehen (wobei das nicht für alle Doppelpunkte gilt, siehe \grqq Slice-Expressions \grqq).
+\item Zwischen \grqq nachfolgenden \grqq Kommas und schließenden Klammern sollten sie vermieden werden.
 \item Auch direkt vor öffnenden Klammern, welche Argumentlisten eröffnen, bzw. Indizes oder Slices beginnen, sollten sie vermieden werden.
 \end{itemize}
 \item nutzen
 \begin{itemize}
-\item Sie sollten genutz werden um die folgenden binäre Operatoren zu umgeben: assignment (=), augmented assignment (+=, -= etc.), comparisons (==, <, >, !=, <>, <=, >=, in, not in, is, is not), Booleans (and, or, not), Slicing(:).
-\item Auch sollte der "->"-Operator bei Funktionsannotationen mit jeweils einem Leerzeichen umgeben sein.
-\item Kommentare innerhalb von Methoden oder Funktionen sollen mindestens mit zwei Leerzeichen vom Ausdruck, denn sie beschreiben getrennt sein.
+\item Sie sollten genutz werden um die folgenden binäre Operatoren zu umgeben: assignment (=), augmented assignment (+=, -=, etc.), comparisons (==, <, >, !=, <>, <=, >=, in, not in, is, is not), Booleans (and, or, not), Slicing(:).
+\item Auch sollte der \grqq -> \grqq -Operator bei Funktionsannotationen mit jeweils einem Leerzeichen umgeben sein.
+\item Kommentare innerhalb von Methoden oder Funktionen sollen mindestens mit zwei Leerzeichen vom Ausdruck getrennt sein welchen sie beschreiben.
 \item Nach einem Komma, Semikolon, Doppelpunkt sollte ein Leerzeichen folgen.
 \end{itemize}
 \end{itemize}
 
 \subsection{Kommentare}
-Kommentare sollten in englisch gehalten werden und immer aus kompletten Sätzen bestehen. Dabei ist zu beachten, dass sie den Inhalt des Objektes, auf welches sie sich beziehen, so kurz wie möglich aber trotzdem verständlich für alle beschreiben. Bei Blockkommentaren oder allgemein längeren Textabschnitten bietet es sich an Paragraphen zu nutzen um sie besser zu strukturieren.
+Kommentare sollten in Englisch gehalten werden und immer aus kompletten Sätzen bestehen. Dabei ist zu beachten, dass sie den Inhalt des Objektes, auf welches sie sich beziehen, so kurz wie möglich, aber trotzdem verständlich für alle beschreiben. Bei Blockkommentaren oder allgemein längeren Textabschnitten bietet es sich zu besseren Strukturierung an Paragraphen zu nutzen.
 
 \subsection{Namenskonventionen}
-Namen sollten den "mixedCase"-Standart nutzen, d.h. bestehen sie aus mehreren Wörtern, dann werden sie zusammen geschrieben, beginnen mit einem Buchstaben und jedes weitere Wort beginnt mit einem Großbuchstaben: z.B.: nameOfFunction. Nur Namen von Klassen beginnen mit einem Großbuchstaben, alle andern klein. Werden Akronyme oder Abkürzungen benutzt, so werden diese immer komplett groß geschrieben: z.B.: errorInTCPServer.
+Namen sollten den \grqq mixedCase\grqq -Standard nutzen, d.h. bestehen sie aus mehreren Wörtern, dann werden sie zusammen geschrieben, beginnen mit einem Buchstaben und jedes weitere Wort beginnt mit einem Großbuchstaben: z.B.: nameOfFunction. Nur Namen von Klassen beginnen mit einem Großbuchstaben, alle anderen klein. Werden Akronyme oder Abkürzungen benutzt, so werden diese immer komplett groß geschrieben: z.B.: errorInTCPServer.
