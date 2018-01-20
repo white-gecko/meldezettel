@@ -1,0 +1,14 @@
+\section{Datenbankmodul}
+\textbf{Anteil am Projektaufwandsvolumen: 20\%}
+\\ \\
+Es wird ein Script geschrieben, das die Software `QuitStore' in einem
+dedizierten Verzeichnis auf dem Zielcomputer installiert und konfiguriert.
+Außerdem muss eine Bibliothek gefunden werden, die SPARQL Anfragen an die
+Datenbank abstrahieren und formulieren kann.
+Die eingegebenen Daten jedes Dokuments müssen in der Datenbank abgelegt werden.
+Dafür ist es wichtig, jedem Vierfachvordruck eine eigene ID zuzuweisen, an welche detailierte Informationen (z.B Absender, Datum) im RDF-Format gekoppelt werden.
+Diese Daten können über den im Quitstore enthaltenen SPARQL-Endpoint ausgelesen werden, um sie für weitere Auswertungen zu verwenden.
+Mithilfe der Hash Funktionalität, die Git mit sich bringt und von QuitStore
+genutzt wird um gespeicherte Einheiten kryptographisch zu markieren, kann die
+Eindeutigkeit und die Unveränderbarkeit der Dokumente garantiert werden. 
+

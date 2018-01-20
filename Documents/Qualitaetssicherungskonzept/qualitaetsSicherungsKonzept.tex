@@ -1,0 +1,44 @@
+\documentclass[a4paper,11pt,oneside, titlepage]{article}
+\usepackage[a4paper]{geometry} 
+\geometry{a4paper,left=20mm, right=25mm, top=20mm, bottom=30mm} 
+\usepackage[ngerman]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{placeins}
+\usepackage{listings}
+
+\pagestyle{fancy}
+
+\lhead{\today}
+\rhead{Verantwortlicher: Marc Wahsner }
+\chead{Gruppe: na17b}
+\title{Qualitätssicherungskonzept\\Nachrichtenkommunikation für das THW}
+\author{na17b}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+\pagenumbering{gobble}
+
+\tableofcontents
+
+
+\newpage
+
+\pagenumbering{arabic}
+
+\section{Dokumentationskonzept}
+\input{interneDoku}
+\input{quelltextnaheDoku}
+
+\input{codingStandard}
+\input{testkonzept}
+\input{continuousIntegration}
+\end{document}

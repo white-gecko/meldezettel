@@ -1,0 +1,45 @@
+\documentclass[a4paper,11pt,oneside, titlepage]{article}
+\usepackage[a4paper]{geometry} 
+\geometry{a4paper,left=25mm, right=25mm, top=20mm, bottom=30mm} 
+\usepackage[ngerman]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{placeins}
+\renewcommand{\arraystretch}{2}
+
+\pagestyle{fancy}
+
+\lhead{\today}
+\rhead{Verantwortlicher: Franz Ruge }
+\chead{Gruppe: na17b}
+\title{Projektplan\\Nachrichtenkommunikation für das THW}
+\author{na17b}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\pagenumbering{gobble}
+
+\tableofcontents
+
+
+\newpage
+
+\pagenumbering{arabic}
+
+\input{vorbereitungsphase}
+\input{vorprojekt}
+\input{ansichtenmodul}
+\input{datenbankmodul}
+\input{funktionalitaet}
+\input{optimierung}
+\newpage
+\input{extras}
+
+\end{document}

@@ -1,0 +1,8 @@
+\section{Testkonzept}
+Durch die besondere Verantwortung des THW hat die Zuverlässigkeit der Software einen außerordentlich hohen Stellenwert. Um diese zu gewährleisten muss das umfangreiche Testen der Software automatisiert ablaufen, wobei eine Testcoverage von 100\% angestrebt wird. 
+\subsection{Komponententests}
+Komponententests garantieren die korrekte Funktionalität einzelner, abgrenzbarer Softwarekomponenten. Hierzu werden Testfälle mit möglichst umfassenden Eingabeparametern und den zu erwartenden Ausgabeparametern definiert. Mit diesen wird die Komponente unter Verwendung eines Testing Frameworks automatisiert auf Funktionalität überprüft. Als Testing Framework findet in diesem Projekt das etablierte und in der Python Standard Bibliothek integrierte \textit{Python Unit Testing Framework} Verwendung.
+\subsection{Integrationstests} 
+Integrationstests gewährleisten das korrekte Zusammenspiel voneinander abhängiger Softwarekomponenten und erfolgen nach dem Bestehen der Komponententests. Hierbei werden vor allem Schnittstellentests durchgeführt, welche überprüfen ob die Kommunikation der einzelnen Komponenten fehlerfrei verläuft.
+\subsection{GUI Tests}
+Durch den hohen Anspruch an die Gebrauchstauglichkeit sind auch Tests der Benutzeroberfläche von entscheidender Bedeutung. Durch die Nutzung von vue-js zur Frontenderstellung bietet sich auch der Einsatz der \textit{vue-test-utils} an, welche das automatisierte Testen der GUI Funktionalitäten erlauben. Darüber hinaus werden auch manuelle Tests der Benutzeroberfläche durchgeführt, welche Unannehmlichkeiten in der Bedingbarkeit aufdecken sollen.
