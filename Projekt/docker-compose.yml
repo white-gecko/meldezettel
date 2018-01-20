@@ -1,0 +1,20 @@
+version: '2'
+services:
+    development:
+        build:
+            context: ./
+            dockerfile: docker/frontend/Dockerfile
+        image: thw-frontend-dev
+        container_name: thw-frontend-dev
+        restart: always
+        ports:
+            - "8080:8080"
+        volumes:
+            - "./src/frontend:/app"
+        networks:
+            - thw-gui
+
+networks:
+    thw-gui:
+        external:
+            name: thw-gui
