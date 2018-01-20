@@ -18,6 +18,6 @@ Anschließend ist das Frontend unter
 
 zu erreichen.
 
-##
+## Wichtig
 
 Auf gar keinen Fall darf der Ordner src/frontend/node_modules sowie die Datei src/frontend/package-lock.json in das Repository gepusht werden. Diese sind aber bereits in der .gitignore hinterlegt, dass dies nicht aus Versehen passieren kann.
