@@ -10,7 +10,14 @@ import { Header,
   Main,
   Container,
   Menu,
-  MenuItem
+  MenuItem,
+  Table,
+  TableColumn,
+  Button,
+  Form,
+  FormItem,
+  Select,
+  Option
 } from 'element-ui'
 
 Vue.use(Header)
@@ -19,6 +26,13 @@ Vue.use(Main)
 Vue.use(Container)
 Vue.use(Menu)
 Vue.use(MenuItem)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Button)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Select)
+Vue.use(Option)
 
 Vue.config.productionTip = false
 

@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import THWDashboard from '@/components/THWDashboard'
 import THWForm from '@/components/THWForm'
 import Layout from '@/components/Layout'
+import THWRoleSelect from '@/components/THWRoleSelect'
 
 Vue.use(Router)
 
@@ -23,8 +24,12 @@ export default new Router({
           path: 'create',
           name: 'Create',
           component: THWForm
+        },
+        {
+          path: 'role',
+          name: 'Role',
+          component: THWRoleSelect
         }
-      
       ]
     }
   ]
