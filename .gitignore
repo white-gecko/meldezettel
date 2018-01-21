@@ -5,6 +5,10 @@
 *.log
 *.synctex.gz
 *.fls
+*.toc
+*.out
+*.pygtex
+*.pygstyle
 *.fdb_latexmk
 
 *.swp
