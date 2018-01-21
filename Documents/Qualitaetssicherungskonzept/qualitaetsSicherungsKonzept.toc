@@ -1,0 +1,14 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}Dokumentationskonzept}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Interne Dokumentation}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Quelltextnahe strukturierte Dokumentation}{1}{subsection.1.2}
+\contentsline {section}{\numberline {2}Organisatorische Festlegungen/Coding Standard}{1}{section.2}
+\contentsline {subsection}{\numberline {2.1}Code Layout}{1}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Leerzeichen}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Kommentare}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Namenskonventionen}{3}{subsection.2.4}
+\contentsline {section}{\numberline {3}Testkonzept}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Komponententests}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Integrationstests}{4}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}GUI Tests}{4}{subsection.3.3}
+\contentsline {section}{\numberline {4}Continuous Integration}{5}{section.4}
