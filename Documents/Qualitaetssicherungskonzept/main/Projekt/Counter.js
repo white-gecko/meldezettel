@@ -1,3 +1,4 @@
+//Implementation of Button, able to count how often it has been clicked
 export default {
   template: `
     <div>
@@ -6,12 +7,14 @@ export default {
     </div>
   `,
 
+  //return Number of times button has been clicked
   data () {
     return {
       count: 0
     }
   },
 
+  //called whenever button is being clicked, increments count
   methods: {
     increment () {
       this.count++
