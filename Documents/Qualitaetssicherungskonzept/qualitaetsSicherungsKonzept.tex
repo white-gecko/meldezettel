@@ -11,8 +11,18 @@
 \usepackage{color}
 \usepackage{placeins}
 \usepackage{listings}
+\usepackage{dirtree}
+\usepackage{minted}
+\newmintedfile[pyfile]{python}{frame=lines, linenos, fontsize=\small}
+\newmintedfile[jsfile]{javascript}{frame=lines,linenos,fontsize=\small}
 
 \pagestyle{fancy}
+
+\setlength{\parindent}{0pt}%Zero indent after figures etc.
+
+\newcommand{\uline}{\underline{\hspace{10pt}}}%double underscore
+\newcommand{\pythoninit}{\uline init\uline .py }% __init__.py 
+
 
 \lhead{\today}
 \rhead{Verantwortlicher: Marc Wahsner }
@@ -20,6 +30,7 @@
 \title{Qualitätssicherungskonzept\\Nachrichtenkommunikation für das THW}
 \author{na17b}
 \date{}
+
 
 
 \begin{document}
