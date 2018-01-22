@@ -5,6 +5,13 @@ import App from './App'
 import router from './router'
 import 'element-ui/lib/theme-chalk/index.css'
 
+import store from '@/store'
+
+import lang from 'element-ui/lib/locale/lang/de'
+import locale from 'element-ui/lib/locale'
+
+locale.use(lang)
+
 import { Header,
   Aside,
   Main,
@@ -17,7 +24,18 @@ import { Header,
   Form,
   FormItem,
   Select,
-  Option
+  Option,
+  Checkbox,
+  CheckboxGroup,
+  Row,
+  Col,
+  Switch,
+  DatePicker,
+  TimePicker,
+  Input,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu
 } from 'element-ui'
 
 Vue.use(Header)
@@ -33,6 +51,17 @@ Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Switch)
+Vue.use(DatePicker)
+Vue.use(TimePicker)
+Vue.use(Input)
+Vue.use(Dropdown)
+Vue.use(DropdownItem)
+Vue.use(DropdownMenu)
 
 Vue.config.productionTip = false
 
@@ -40,6 +69,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

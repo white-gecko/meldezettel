@@ -1,18 +1,21 @@
 <template>
 <div>
-  <el-form :inline="true" :model="formdata" class="demo-form-inline">
-    <el-form-item label="Rolle">
-      <el-select v-model="formdata.role" placeholder="Bitte Rolle auswählen...">
-        <el-option label="Funker" value="funker"></el-option>
-        <el-option label="Sichter" value="sichter"></el-option>
-        <el-option label="Leiter des Fernmeldebetriebs (LdF)" value="ldf"></el-option>
-      </el-select>
-    </el-form-item>
-  </el-form>
+  <el-dropdown @command="this.setRole">
+    <span class="el-dropdown-link">
+      Rolle auswählen<i class="el-icon-arrow-down el-icon--right"></i>
+    </span>
+    <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item command="Sichter">Sichter</el-dropdown-item>
+      <el-dropdown-item command="Funker">Funker</el-dropdown-item>
+      <el-dropdown-item command="LdF">LdF</el-dropdown-item>
+    </el-dropdown-menu>
+  </el-dropdown>
 </div>
 </template>
 
 <script>
+
+import { mapMutations } from 'vuex'
 
 export default {
 
@@ -24,8 +27,13 @@ export default {
         role: ''
       }
     }
-  }
+  },
 
+  methods: {
+  
+    ...mapMutations(['setRole'])
+  
+  }
 }
 
 </script>
