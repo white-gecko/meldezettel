@@ -4,13 +4,16 @@
 Element-UI
 - Docker sollte installiert sein
 - beim ersten Mal install.sh ausführen
-- danach: um website errichbar zu machen mit Container verbinden
+- danach: um website erreichbar zu machen mit Container verbinden
 und run.sh ausführen (siehe readme, unter 'docker exec')
 - website über localhost:8080 erreichbar
 - website wird nach Änderungen automatisch neu geladen
 - Quelltext für frontend und backend in entsprechenden Unterorder
 von src
-- webpack enthält hier folgende Funktionalitäten, die für das Projekt genutzt werden: babel (transpiler für js), ESLint (überprüft Einhaltung gängiger Coding Conventionen), Testframework bereits integriert, Hot Module Replacement (Teile der website, die geändert wurden, werden automatisch neu geladen, so werden Ressourcen gespart, da nicht alles neu geladen wird)
+- webpack enthält hier folgende Funktionalitäten, die für das Projekt genutzt werden:
+babel (transpiler für js), ESLint (überprüft Einhaltung gängiger Coding Conventionen), Testframework bereits integriert,
+Hot Module Replacement (Teile der website, die geändert wurden, werden automatisch neu geladen,
+so werden Ressourcen gespart, da nicht alles neu geladen wird)
 
 ## Speziell für das Vorprojekt
 
