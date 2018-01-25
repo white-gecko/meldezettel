@@ -10,8 +10,6 @@ import store from '@/store'
 import lang from 'element-ui/lib/locale/lang/de'
 import locale from 'element-ui/lib/locale'
 
-locale.use(lang)
-
 import { Header,
   Aside,
   Main,
@@ -64,6 +62,8 @@ Vue.use(DropdownItem)
 Vue.use(DropdownMenu)
 
 Vue.config.productionTip = false
+
+locale.use(lang)
 
 /* eslint-disable no-new */
 new Vue({

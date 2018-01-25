@@ -18,8 +18,8 @@ if [[ "$answer" != "N" ]] && [[ "$answer" != "n" ]] ; then
     echo "Making entrypoint executable..."
     chmod +x docker/frontend/run.sh 
 
-    docker-compose build development
-    docker-compose up -d development 
+    docker-compose build frontend
+    docker-compose up -d frontend 
 fi
 
 echo "5 minutes until the frontend is intialized, ~250MB package data"

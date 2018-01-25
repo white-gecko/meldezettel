@@ -1,8 +1,8 @@
 FROM node
 
-COPY docker/frontend/run.sh /
+ENV HOME=/usr/local/src
 
-WORKDIR / 
+COPY docker/frontend/run.sh /usr/local/src
+
+WORKDIR /usr/local/src
 EXPOSE 8080
-
-CMD ["./run.sh"]

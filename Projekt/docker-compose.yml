@@ -1,6 +1,6 @@
 version: '2'
 services:
-    development:
+    frontend:
         build:
             context: ./
             dockerfile: docker/frontend/Dockerfile
@@ -10,9 +10,11 @@ services:
         ports:
             - "8080:8080"
         volumes:
-            - "./src/frontend:/app"
+            - "./src/frontend:/usr/local/src/app"
         networks:
             - thw-gui
+        tty: true
+        stdin_open: true
 
 networks:
     thw-gui:

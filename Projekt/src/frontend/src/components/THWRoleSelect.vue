@@ -30,9 +30,9 @@ export default {
   },
 
   methods: {
-  
+
     ...mapMutations(['setRole'])
-  
+
   }
 }
 

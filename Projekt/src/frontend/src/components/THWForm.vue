@@ -1,8 +1,9 @@
 <template>
 <div>
-      <el-form ref="form" :model="form">
-  <el-row :gutter="20" type="flex" justify="center">
-    <el-col :span="14"><div class="grid-content bg-purple">
+  <el-form ref="form" :model="form" style="background:lightblue; padding: 0.5em 0.5em">
+
+    <el-row :gutter="20" type="flex" style="word-spacing: -1em">
+      <el-col :span="14"><div class="grid-content bg-purple">
         <el-form-item>
           <el-checkbox-group v-model="form.type">
             <el-checkbox label="Funk" name="type">
@@ -18,6 +19,7 @@
           </el-checkbox-group>
         </el-form-item>
     </div></el-col>
+
     <el-col :span="10">
       <div class="grid-content bg-purple">
         <el-form-item>
@@ -33,7 +35,8 @@
        </div>
      </el-col>
   </el-row>
-  <el-row :gutter="20">
+
+  <el-row :gutter="20" type="flex">
     <el-col :span="9">
       <div class="grid-content bg-purple">
           <h3 v-if="!form.isEingang">Aufnahmevermerk</h3>
@@ -50,13 +53,13 @@
 
         <el-form-item>
         <div class="is-short">
-          <el-input placeholder="Hdz" v-model="value3">
+          <el-input placeholder="Hdz" v-model="form.value3">
           </el-input>
         </div>
         </el-form-item>
       </div>
      </el-col>
-    
+
     <el-col :span="9">
       <div class="grid-content bg-purple">
           <h3>Beförderungsvermerk</h3>
@@ -73,18 +76,18 @@
 
         <el-form-item>
         <div class="is-short">
-          <el-input placeholder="Hdz" v-model="value3" :disabled="!form.isEingang">
+          <el-input placeholder="Hdz" v-model="form.value3" :disabled="!form.isEingang">
           </el-input>
         </div>
         </el-form-item>
       </div>
     </el-col>
-    
+
     <el-col :span="6">
       <div class="grid-content bg-purple" style="padding-left: 1em; padding-right: 1em">
         <h3>Technisches Betriebsbuch</h3>
         <el-form-item>
-          <el-input placeholder="Nummer" v-model="value3">
+          <el-input placeholder="Nummer" v-model="form.value3">
           </el-input>
         </el-form-item>
         <el-form-item> </el-form-item>
@@ -93,13 +96,95 @@
     </el-col>
   </el-row>
 
-  <el-row>
+  <el-row :gutter="20" type="flex">
     <el-col :span=24>
       <el-form-item>
-        <el-input v-model="value4" placeholder="Rufnahme der Gegenstelle / Spruchkopf"> </el-input>
+        <el-input v-model="form.value4" placeholder="Rufnahme der Gegenstelle / Spruchkopf"> </el-input>
       </el-form-item>
     </el-col>
   </el-row>
+
+    <el-row :gutter="20" type="flex" >
+      <el-col :span="24"><div class="grid-content bg-purple" style="word-spacing: 2em">
+        <el-form-item>
+          <el-checkbox-group v-model="form.type">
+            <el-checkbox label="Funk" name="type">
+            </el-checkbox>
+            <el-checkbox label="Telefon" name="type">
+            </el-checkbox>
+            <el-checkbox label="Telefax" name="type">
+            </el-checkbox>
+            <el-checkbox label="DFÜ" name="type">
+            </el-checkbox>
+            <el-checkbox label="Kurier/Melder" name="type">
+            </el-checkbox>
+          </el-checkbox-group>
+        </el-form-item>
+    </div></el-col>
+  </el-row>
+
+<hr style="height: 1px;color:#003399;background-color:#003399;">
+
+    <el-row :gutter="20" type="flex" >
+      <el-col :span="14">
+        <div class="grid-content bg-purple" style="word-spacing: 0em">
+          <el-form-item>
+            <el-checkbox-group v-model="form.type">
+              <el-checkbox label="DURCHSAGE" name="type">
+              </el-checkbox>
+              <el-checkbox label="Spruch" name="type">
+              </el-checkbox>
+              <el-checkbox label="Sofort" name="type">
+              </el-checkbox>
+              <el-checkbox label="Blitz" name="type">
+              </el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+        </div></el-col>
+
+      <el-col :span="10">
+        <div class="grid-content bg-purple" style="word-spacing: 0em">
+          <el-form-item>
+            <el-checkbox-group v-model="form.type">
+              <el-checkbox label="GESPRÄCHSNOTIZ" name="type">
+              </el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+        </div>
+      </el-col>
+    </el-row>
+
+    <el-row :gutter="20" type="flex">
+      <el-col :span="6">
+          <el-form-item>
+            <el-input placeholder="" v-model="input3">
+              <template slot="prepend">Ruf Nr.</template>
+            </el-input>
+          </el-form-item>
+      </el-col>
+
+      <el-col :span="18">
+          <el-form-item>
+            <el-input placeholder="" v-model="input3">
+              <template slot="prepend">Anschrift</template>
+            </el-input>
+          </el-form-item>
+      </el-col>
+    </el-row>
+
+    <el-row :gutter="20" type="flex">
+      <el-col :span="24">
+          <el-form-item>
+            <el-input
+              type="textarea"
+              :rows="3"
+              placeholder="Inhalt"
+              v-model="textarea">
+            </el-input>
+          </el-form-item>
+      </el-col>
+    </el-row>
+
   </el-form>
 </div>
 </template>
