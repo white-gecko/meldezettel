@@ -32,7 +32,7 @@ in ./src:
 - Globale Daten werden in Store (vuex) abgelegt (siehe ./store)
 - In ./router/index.js wird festgelegt, wann welche Ansicht angezeigt wird
 - Layout.vue: legt das Design der Seite fest (Header, Menüleiste).
-- Hauptbereich: <router-view>, dadurch wird vom Router die passende
+- Hauptbereich: ``` <router-view> ```, dadurch wird vom Router die passende
 Komponente 'injiziert'
 - ./assets enthält Bilder, Videos, ... (aktuell nur THW-Logo)
 - Die Website wird (bis auf wenige begründete Ausnahmen) vor allem mit Elementen aus der Vue-Bibliothek Element-UI gebaut.
