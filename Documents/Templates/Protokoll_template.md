@@ -2,7 +2,7 @@
 
 Ort - P701  
 Protokollführer - Name  
-Beginn:
+Beginn:   
 Ende:
 
 ### **Anwesenheit** 
