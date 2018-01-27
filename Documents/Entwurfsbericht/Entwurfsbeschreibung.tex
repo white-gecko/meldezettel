@@ -1,0 +1,110 @@
+\documentclass[a4paper,11pt,oneside, titlepage]{article}
+\usepackage[a4paper]{geometry} 
+\geometry{a4paper,left=20mm, right=25mm, top=20mm, bottom=30mm} 
+\usepackage[ngerman]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{placeins}
+\usepackage{listings}
+\usepackage{dirtree}
+
+\usepackage{minted}
+
+\usepackage{adjustbox}
+\newsavebox{\mysavebox}
+
+\newmintedfile[pyfile]{python}{frame=lines, linenos, fontsize=\small}
+\newmintedfile[jsfile]{javascript}{frame=lines,linenos,fontsize=\small}
+\DTsetlength{-0.2em}{1em}{0.1em}{1.0pt}{3pt}
+
+\pagestyle{fancy}
+
+\setlength{\parindent}{0pt}%Zero indent after figures etc.
+
+\newcommand{\uline}{\underline{\hspace{10pt}}}%double underscore
+\newcommand{\pythoninit}{\uline init\uline .py }% __init__.py 
+
+\lhead{\today}
+\rhead{Verantwortlicher: Marc Wahsner }
+\chead{Gruppe: na17b}
+\title{Entwurfsbeschreibung\\Nachrichtenkommunikation für das THW}
+\author{na17b}
+\date{}
+
+
+
+\begin{document}
+\maketitle
+
+\pagenumbering{gobble}
+
+\tableofcontents
+
+
+\newpage
+
+\pagenumbering{arabic}
+
+\section{Allgemeines}
+Die Anwendung soll den gegebenen Nachrichtenfluss in einer Notfallzentrale des THW nachbilden.
+\section{Produktübersicht}
+Die Anwendung besitzt auf der linken Seite ein Auswahlmenü, welches aus- und eingeklappt werden kann. Über dieses Menü gelangt man entweder zur Listenanordnung der schon erstellten Vordrucke, zur Erstellung eines neuen Vordrucks oder zur Rollenauswahl. In der Liste der Formulare ist für das jeweilige Dokument das Kürzel des Erstellers, sowie Erstellungsdatum und -zeit und außerdem eine kurze Zusammenfassung des Inhalts zu sehen. Bei der Erstellung des Formulars sind alle Eingabefelder ähnlich dem Original angeordnet. Die Rollenauswahl-Seite besteht aus einem Dropdown -Menü mit den unterschiedlichen besetzbaren Rollen. Bei Auswahl wird der Rollenname in der linken oberen Ecke der Seite im Titel verändert.
+\section{Grundsätzliche Struktur}
+Der Quelltext der Anwendung ist service-orientiert aufgebaut. Hierzu werden Container verwendet welche die jeweiligen Services kapseln. Zwingende Voraussetzung in der Entwicklungsumgebung ist: 
+\begin{itemize}
+	\item Docker
+	\begin{itemize}
+		\item Bevor die Anwendung ausgeführt werden kann müssen auf dem ausführenden Computer (Host) die folgenden Programme installiert sein:
+		\begin{itemize}
+			\item \href{https://www.docker.com/get-docker}{docker}
+			\item \href{https://docs.docker.com/compose/}{docker-compose} 
+		\end{itemize}
+		\item Die Anwendung ist auf zwei Docker-Container verteilt:
+		\begin{itemize}
+			\item Server-
+			Container der das Frontend und Controller-Logik implementiert
+			\item Daten-Container der den RDF-Endpoint implementiert
+		\end{itemize}
+		
+	\end{itemize}	
+\end{itemize}
+\section{Struktur- und Entwurfsprinzipien einzelner Pakete}
+\subsection{Frontend}
+Ausgehend von na17b/Project/src/Frontend.\\
+
+\dirtree{%
+	.1 Frontend - Arbeitsverzeichnis von Webpack.
+	.2 src - Quelltext.
+	.3 \textbf{assets - enthält Bilder, Videos, ... (aktuell nur THW-Logo)}.
+	.3 components - Komponenten (Bauteile), die Oberfläche wird (bis auf wenige begründete Ausnahmen) mit Elementen aus der Vue-Bibliothek Element-UI gebaut.
+	.4 \textbf{Layout.vue: legt das Design der Seite fest (Header, Menüleiste)}.
+	.5 \textbf{<router-view> - Hauptbereich, dadurch wird vom Router die passende Komponente 'injiziert'}.
+	.3 router.
+	.4 \textbf{index.js - legt fest, wann welche Ansicht angezeigt wird}.
+	.3 store - Globale Daten.
+	.3 \textbf{App.vue - ist ein Wrapper, muss nicht geändert werden (Existenz nur aus
+		technischen Gründen)}.
+	.3 \textbf{main.js - Einstiegspunkt, hier sind alle zu importierenden Komponenten
+		definiert, die dann automatisch geladen werden}.
+	}
+\dirtree{%
+	.1 Frontend - Arbeitsverzeichnis von Webpack.
+	.2 dist - Kompilierte und minimierte Webapp.
+	.2 restliche - Konfiguration des Webpack oder node-module, wird in der Regel nicht angefasst.
+}	
+
+
+
+\section{Datenmodell}
+Ist noch nicht Vorhanden
+\section{Glossar}
+\subsection{Docker}
+Die Dockersoftware dient der Isolierung von Anwendungen. In diesem Projekt wird sie genutzt um eine plattformunabhängige Entwicklungsumgebung für die heterogenen System der Teammitglieder bereitzustellen. Hierzu wird die zur Entwicklung benötigte Software in einem Dockercontainer (virtuelles Betriebssystem) virtualisiert.
+\subsection{Wrapper}
+Software welche andere Software umgibt oder einbettet.
+\end{document}
