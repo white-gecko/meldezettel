@@ -76,7 +76,7 @@ Der Quelltext der Anwendung ist service-orientiert aufgebaut. Hierzu werden Cont
 \section{Struktur- und Entwurfsprinzipien einzelner Pakete}
 \subsection{Frontend}
 Ausgehend von na17b/Project/src/Frontend.\\
-
+\begin{minipage}{16cm}
 \dirtree{%
 	.1 Frontend - Arbeitsverzeichnis von Webpack.
 	.2 src - Quelltext.
@@ -91,12 +91,16 @@ Ausgehend von na17b/Project/src/Frontend.\\
 		technischen Gründen)}.
 	.3 \textbf{main.js - Einstiegspunkt, hier sind alle zu importierenden Komponenten
 		definiert, die dann automatisch geladen werden}.
-	}
+}
+\end{minipage}
+
+\begin{minipage}{16cm}
 \dirtree{%
 	.1 Frontend - Arbeitsverzeichnis von Webpack.
 	.2 dist - Kompilierte und minimierte Webapp.
 	.2 restliche - Konfiguration des Webpack oder node-module, wird in der Regel nicht angefasst.
 }	
+\end{minipage}
 
 
 
