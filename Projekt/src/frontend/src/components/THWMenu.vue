@@ -13,11 +13,6 @@
         <i class="el-icon-view"></i>
         <span slot="title">Rollenauswahl</span>
       </el-menu-item>
-      <el-menu-item @click="toggleCollapse" index="collapse" :route="this.$route.path">
-        <i v-if="!isCollapsed" class="el-icon-d-arrow-left"></i>
-        <i v-if="isCollapsed" class="el-icon-d-arrow-right"></i>
-        <span slot="title">Verkleinern</span>
-      </el-menu-item>
     </el-menu>
 </div>
 </template>

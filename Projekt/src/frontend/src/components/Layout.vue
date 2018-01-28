@@ -8,11 +8,9 @@
         <el-aside width="200px">
           <THWMenu/>
         </el-aside>
-        <el-container>
-          <el-main>
-            <router-view/>
-          </el-main>
-        </el-container>
+        <el-main>
+          <router-view/>
+        </el-main>
       </el-container>
     </el-container>
   </div>
