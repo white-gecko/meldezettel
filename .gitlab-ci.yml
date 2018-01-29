@@ -1,12 +1,20 @@
 image: node:6
 
-before_script:
-  - ping -c 1 aksw.org
-
 build_the_project:
+  before_script:
+    - ping -c 1 aksw.org
   script:
     - sh program.sh
     - test -f result.md
+
+validate_time_tracking:
+  image:
+    name: mribeiro/xmllint
+    entrypoint: [""]
+  script:
+    - xmllint --version
+    - sh validate-xml.sh
+
 
 release-job:
   before_script:
