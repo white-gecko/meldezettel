@@ -6,28 +6,10 @@
 \usepackage[T1]{fontenc}
 \usepackage{fancyhdr}
 \usepackage{hyperref}
-\usepackage[table]{xcolor}
-\usepackage{graphicx}
 \usepackage{color}
-\usepackage{placeins}
-\usepackage{listings}
 \usepackage{dirtree}
 
-\usepackage{minted}
-
-\usepackage{adjustbox}
-\newsavebox{\mysavebox}
-
-\newmintedfile[pyfile]{python}{frame=lines, linenos, fontsize=\small}
-\newmintedfile[jsfile]{javascript}{frame=lines,linenos,fontsize=\small}
-\DTsetlength{-0.2em}{1em}{0.1em}{1.0pt}{3pt}
-
 \pagestyle{fancy}
-
-\setlength{\parindent}{0pt}%Zero indent after figures etc.
-
-\newcommand{\uline}{\underline{\hspace{10pt}}}%double underscore
-\newcommand{\pythoninit}{\uline init\uline .py }% __init__.py 
 
 \lhead{\today}
 \rhead{Verantwortlicher: Marc Wahsner }
@@ -35,8 +17,6 @@
 \title{Entwurfsbeschreibung\\Nachrichtenkommunikation für das THW}
 \author{na17b}
 \date{}
-
-
 
 \begin{document}
 \maketitle
@@ -68,7 +48,7 @@ Der Quelltext der Anwendung ist service-orientiert aufgebaut. Hierzu werden Cont
 		\begin{itemize}
 			\item Server-
 			Container der das Frontend und Controller-Logik implementiert
-			\item Daten-Container der den RDF-Endpoint implementiert
+			\item Daten-Container der den SPARQL-Endpoint implementiert
 		\end{itemize}
 		
 	\end{itemize}	
@@ -108,7 +88,7 @@ Ausgehend von na17b/Project/src/Frontend.\\
 Ist noch nicht Vorhanden
 \section{Glossar}
 \subsection{Docker}
-Die Dockersoftware dient der Isolierung von Anwendungen. In diesem Projekt wird sie genutzt um eine plattformunabhängige Entwicklungsumgebung für die heterogenen System der Teammitglieder bereitzustellen. Hierzu wird die zur Entwicklung benötigte Software in einem Dockercontainer (virtuelles Betriebssystem) virtualisiert.
+Die Dockersoftware dient der Isolierung von Anwendungen. In diesem Projekt wird sie genutzt um eine plattformunabhängige Entwicklungsumgebung für die heterogenen Systeme der Teammitglieder bereitzustellen. Hierzu wird die zur Entwicklung benötigte Software in einem Dockercontainer (virtuelles Betriebssystem) virtualisiert.
 \subsection{Wrapper}
 Software welche andere Software umgibt oder einbettet.
 \end{document}
