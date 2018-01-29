@@ -1,0 +1,60 @@
+\ifglsentryexists{Jest}{}%
+{%
+\gls@defglossaryentry{Jest}%
+{%
+name={Jest},%
+sort={Jest},%
+type={main},%
+first={Jest},%
+firstplural={Jests},%
+text={Jest},%
+plural={Jests},%
+description={Von Facebook entwickeltes Testframework für Javascript. Zeichnet sich durch seine Einfachheit in der Benutzung aus.},%
+descriptionplural={Von Facebook entwickeltes Testframework für Javascript. Zeichnet sich durch seine Einfachheit in der Benutzung aus.},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{vue-test-utils}{}%
+{%
+\gls@defglossaryentry{vue-test-utils}%
+{%
+name={vue-test-utils},%
+sort={vue-test-utils},%
+type={main},%
+first={vue-test-utils},%
+firstplural={vue-test-utilss},%
+text={vue-test-utils},%
+plural={vue-test-utilss},%
+description={Sammlung an Funktionen um Vue-Komponenten in Unit-Tests verwenden zu können.},%
+descriptionplural={Sammlung an Funktionen um Vue-Komponenten in Unit-Tests verwenden zu können.},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
