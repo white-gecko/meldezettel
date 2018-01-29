@@ -8,8 +8,9 @@ build_the_project:
     - test -f result.md
 
 validate_time_tracking:
-  image: mribeiro/xmllint
-  entrypoint: [""]
+  image:
+    name: mribeiro/xmllint
+    entrypoint: [""]
   script:
     - xmllint --version
     - sh validate-xml.sh
