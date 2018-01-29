@@ -2,11 +2,11 @@
 \usepackage[a4paper]{geometry} 
 \geometry{a4paper,left=20mm, right=25mm, top=20mm, bottom=30mm} 
 \usepackage[ngerman]{babel}
+\usepackage{hyperref}
 \usepackage[toc]{glossaries}
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{fancyhdr}
-\usepackage{hyperref}
 \usepackage{color}
 \usepackage{dirtree}
 
@@ -59,7 +59,9 @@ Der Quelltext der Anwendung ist serviceorientiert aufgebaut. Hierzu werden Conta
 \section{Struktur- und Entwurfsprinzipien einzelner Pakete}
 
   \subsection*{Frontend}
-Das Frontend ist in Javascript geschrieben und verwendet das Vue.js-Framework. Als Erweiterungen kommen Vuex, sowie vue-router zum Einsatz. Die Verwaltung des Quelltextes sowie das kompilieren geschieht via webpack. Zur Vereinfachung wird auf die Bibliothek von Element-UI zurückgegriffen. Der Quelltext des Frontends befindet sich im Ordner \verb+src/frontend+. In diesem Ordner befinden sich neben einem weiteren Ordner \verb+src+ die von webpack benötigten Dateien und Ordner; diese werden im Folgenden nicht weiter beschrieben und sind weitgehend Standard. Der Ordner \verb+src+ unterteilt sich weiter in folgende Struktur:
+Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-Framework. Als Erweiterungen kommen \gls{Vuex}, sowie \gls{vue-router} zum Einsatz. Die Verwaltung des Quelltextes sowie das kompilieren geschieht via \gls{webpack}. Zur Vereinfachung wird auf die Bibliothek von \gls{Element-UI} zurückgegriffen. Der Quelltext des Frontends befindet sich im Ordner \verb+src/frontend+. In diesem Ordner befinden sich neben einem weiteren Ordner \verb+src+ die von \gls{webpack} benötigten Dateien und Ordner; diese werden im Folgenden nicht weiter beschrieben und sind weitgehend Standard. Der Ordner \verb+src+ unterteilt sich weiter in folgende Struktur:
+
+  \newpage
 
     \dirtree{%
       .1 ./src/frontend/src/.
