@@ -8,6 +8,12 @@ build_the_project:
     - sh program.sh
     - test -f result.md
 
+validate_time_tracking:
+  image: mribeiro/xmllint
+  script:
+    - sh validate-xml.sh
+
+
 release-job:
   before_script:
     - npm install -g markdown-pdf
