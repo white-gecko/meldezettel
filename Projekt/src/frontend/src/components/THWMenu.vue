@@ -27,15 +27,7 @@ export default {
     return {
       isCollapsed: false
     }
-  },
-
-  methods: {
-
-    toggleCollapse: function () {
-      this.isCollapsed = !this.isCollapsed
-    }
   }
-
 }
 
 </script>

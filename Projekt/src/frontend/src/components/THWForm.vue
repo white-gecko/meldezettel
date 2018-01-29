@@ -1,6 +1,9 @@
 <template>
 <div>
   <el-form ref="form" :model="formdata" style="background:lightblue; padding: 0.5em 0.5em">
+  
+    <!-- ============================================================ -->
+    <!-- Top area -->
 
     <el-row :gutter="15" type="flex" style="word-spacing: -1em">
       <el-col :span="14">
@@ -143,6 +146,10 @@
       </el-col>
     </el-row>
 
+    <!-- End of top area -->
+    <!-- ============================================================ -->
+    <!-- Beginning of middle area -->
+
     <hr style="height: 1px;color:#003399;background-color:#003399;">
 
     <el-row :gutter="15" type="flex">
@@ -271,6 +278,10 @@
           </el-form-item>
       </el-col>
     </el-row>
+
+    <!-- End of middle area -->
+    <!-- ============================================================ -->
+    <!-- Beginning of bottom area -->
 
     <hr style="height: 1px;color:#003399;background-color:#003399;">
 

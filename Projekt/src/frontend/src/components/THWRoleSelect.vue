@@ -1,5 +1,6 @@
 <template>
 <div>
+  <!-- Very generic dropdown, will be replaced later -->
   <el-dropdown @command="this.setRole">
     <span class="el-dropdown-link">
       Rolle auswählen<i class="el-icon-arrow-down el-icon--right"></i>
