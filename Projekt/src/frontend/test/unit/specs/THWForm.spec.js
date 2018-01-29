@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from 'vue-test-utils'
+import { mount, createLocalVue } from '@vue/test-utils'
 import THWForm from '@/components/THWForm'
 import Vuex from 'vuex'
 import expect from 'expect'

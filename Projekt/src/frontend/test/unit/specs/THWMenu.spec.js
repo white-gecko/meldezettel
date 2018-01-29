@@ -1,5 +1,5 @@
 import THWMenu from '@/components/THWMenu'
-import { mount } from 'vue-test-utils'
+import { mount } from '@vue/test-utils'
 import expect from 'expect'
 
 describe('THWMenu', () => {

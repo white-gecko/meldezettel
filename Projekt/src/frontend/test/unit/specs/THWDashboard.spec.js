@@ -1,4 +1,4 @@
-import { shallow, createLocalVue } from 'vue-test-utils'
+import { shallow, createLocalVue } from '@vue/test-utils'
 import THWDashboard from '@/components/THWDashboard'
 import expect from 'expect'
 import Vuex from 'vuex'
