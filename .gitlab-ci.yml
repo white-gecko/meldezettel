@@ -10,6 +10,7 @@ build_the_project:
 validate_time_tracking:
   image: mribeiro/xmllint
   script:
+    - xmllint --version
     - sh validate-xml.sh
 
 

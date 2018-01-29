@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 # A simple script to validate an xml file against the Aufwand.xsd 
 # schema defined by Graebe for SWT Praktikum WS 17/18.
 #
