@@ -1,0 +1,39 @@
+<template>
+  <div class="header is-blue has-text-centered">
+      <div style="float: left; padding: 5px;">
+        {{ this.role }}
+      </div>
+      <img src="@/assets/thw-logo.png" height="60" width="60">
+  </div>
+</template>
+
+<script>
+
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'THWHeader',
+
+  computed: {
+    ...mapGetters({
+      role: 'getRole'
+    })
+  }
+}
+</script>
+
+<style>
+.is-blue {
+    background: linear-gradient(#1b62d8, #003399);
+}
+.header {
+    height: 100px;
+    margin-bottom: 20px;
+    color: white;
+    text-align: right;
+    font-size: 50px;
+    vertical-align: center;
+    padding: 0.2em;
+    font-family: Arial
+}
+</style>

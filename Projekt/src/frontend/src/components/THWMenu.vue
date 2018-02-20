@@ -1,0 +1,33 @@
+<template>
+<div>
+   <el-menu default-active="2" class="el-menu-vertical-demo" :router="true" :collapse="isCollapsed">
+      <el-menu-item index="home">
+        <i class="el-icon-menu"></i>
+        <span slot="title">Übersicht</span>
+      </el-menu-item>
+      <el-menu-item index="create">
+        <i class="el-icon-document"></i>
+        <span slot="title">Neues Formular</span>
+      </el-menu-item>
+      <el-menu-item index="role">
+        <i class="el-icon-view"></i>
+        <span slot="title">Rollenauswahl</span>
+      </el-menu-item>
+    </el-menu>
+</div>
+</template>
+
+<script>
+
+export default {
+
+  name: 'THWMenu',
+
+  data: () => {
+    return {
+      isCollapsed: false
+    }
+  }
+}
+
+</script>

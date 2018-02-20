@@ -1,0 +1,114 @@
+\documentclass[a4paper,11pt,oneside, titlepage]{article}
+\usepackage[a4paper]{geometry} 
+\geometry{a4paper,left=20mm, right=25mm, top=20mm, bottom=30mm} 
+\usepackage[ngerman]{babel}
+\usepackage{hyperref}
+\usepackage[toc]{glossaries}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{dirtree}
+
+\pagestyle{fancy}
+\makeglossaries
+
+\lhead{\today}
+\rhead{Verantwortlicher: Marc Wahsner }
+\chead{Gruppe: na17b}
+\title{Entwurfsbeschreibung\\Nachrichtenkommunikation für das THW}
+\author{na17b}
+\date{}
+
+\begin{document}
+\maketitle
+
+\pagenumbering{gobble}
+
+\tableofcontents
+
+
+\newpage
+
+\pagenumbering{arabic}
+
+\section{Allgemeines}
+Die Anwendung soll den gegebenen Nachrichtenfluss in einer Notfallzentrale des THW nachbilden.
+\section{Produktübersicht}
+Im oberen Bereich befindet sich eine Kopfleiste mit THW-Farben und -Logo, welche eine von zunächst drei verfügbaren Rollen anzeigt. Am linken Bildrand befindet sich ein Menü, welches den Wechsel zwischen Übersicht, Maske zur Erstellung eines neuen Formulars, sowie der Rollenauswahl ermöglicht. Die Übersichtsseite vermittelt einen schnellen Überblick über alle hinterlegten Vordrucke, eingeschränkt auf Verfasser, Datum, Uhrzeit und eine gekürzte Version des Inhalts. In der ersten Spalte befindet sich ein Button, über den später der Vordruck zur genaueren Ansicht bzw. Bearbeitung ausgewählt werden können soll. Die Formularmaske bildet den Vierfachvordruck realitätsnah nach. Die Leitrichtung (eingehend oder ausgehend) kann über einen Switch am oberen Rand ausgewählt werden und hat Einfluss auf die verfügbaren Felder. Am unteren Rand befindet sich ein provisorischer 'Abschicken'-Knopf, welcher die eingegebenen Daten zunächst nur temporär abspeichert. Es findet derzeit auch noch keine Überprüfung der Daten hinsichtlich Konsistenz und Vollständigkeit statt. Die Rollenauswahl beschränkt sich im Vorprojekt auf ein simples Dropdown-Menü und dient nur zur technischen Demonstration.
+
+\section{Grundsätzliche Struktur}
+Der Quelltext der Anwendung ist serviceorientiert aufgebaut. Hierzu werden Container verwendet welche die jeweiligen Services kapseln. Zwingende Voraussetzung in der Entwicklungsumgebung ist: 
+\begin{itemize}
+	\item Docker
+	\begin{itemize}
+		\item Bevor die Anwendung ausgeführt werden kann müssen auf dem ausführenden Computer (Host) die folgenden Programme installiert sein:
+		\begin{itemize}
+			\item \href{https://www.docker.com/get-docker}{docker}
+			\item \href{https://docs.docker.com/compose/}{docker-compose} 
+		\end{itemize}
+		\item Die Anwendung ist auf zwei Docker-Container verteilt:
+		\begin{itemize}
+			\item Server-
+			Container der das Frontend und Controller-Logik implementiert
+			\item Daten-Container der den SPARQL-Endpoint implementiert
+		\end{itemize}
+		
+	\end{itemize}	
+\end{itemize}
+\section{Struktur- und Entwurfsprinzipien einzelner Pakete}
+
+  \subsection*{Frontend}
+Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-Framework. Als Erweiterungen kommen \gls{Vuex}, sowie \gls{vue-router} zum Einsatz. Die Verwaltung des Quelltextes sowie das kompilieren geschieht via \gls{webpack}. Zur Vereinfachung wird auf die Bibliothek von \gls{Element-UI} zurückgegriffen. Der Quelltext des Frontends befindet sich im Ordner \verb+src/frontend+. In diesem Ordner befinden sich neben einem weiteren Ordner \verb+src+ die von \gls{webpack} benötigten Dateien und Ordner; diese werden im Folgenden nicht weiter beschrieben und sind weitgehend Standard. Der Ordner \verb+src+ unterteilt sich weiter in folgende Struktur:
+
+  \newpage
+
+    \dirtree{%
+      .1 ./src/frontend/src/.
+        .2 assets/.
+        .2 components/.
+        .2 router/.
+        .2 store/.
+          .3 state.js.
+          .3 getters.js.
+          .3 mutations.js.
+          .3 index.js.
+        .2 App.vue.
+        .2 main.js.
+    }
+
+    \begin{itemize}
+      \item \verb+assets+ Mediendateien (aktuell nur das THW-Logo)
+      \item \verb+components+ Vue-Komponenten
+      \item \verb+router+ Konfiguration von vue-router
+      \item \verb+store+ Konfiguration von Vuex
+        \begin{itemize}
+          \item \verb+state.js+ deklariert globale Zustandsvariablen
+          \item \verb+getters+ stellt Funktionen zum Abrufen der Variablen bereit
+          \item \verb+mutations+ enthält Funktionen zum Bearbeiten des Zustandes
+          \item \verb+index.js+ fügt die obigen Dateien zusammen zu einem globalen Store
+        \end{itemize}
+      \item \verb+App.vue+ Wrapper-Komponente für das Frontend
+      \item \verb+main.js+ Einstiegspunkt für das Programm, enthält alle Importe
+    \end{itemize}
+
+\begin{minipage}{16cm}
+\dirtree{%
+	.1 Frontend - Arbeitsverzeichnis von Webpack.
+	.2 dist - Kompilierte und minimierte Webapp.
+	.2 restliche - Konfiguration des Webpack oder node-module, wird in der Regel nicht angefasst.
+}	
+\end{minipage}
+
+
+
+\section{Datenmodell}
+Nicht vorhanden
+
+
+  \input{glossar}
+
+  \newpage
+
+  \printglossaries
+\end{document}

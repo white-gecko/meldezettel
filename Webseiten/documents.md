@@ -9,3 +9,4 @@ permalink: /documents/
 3. [Projektplan](http://pcai042.informatik.uni-leipzig.de/~na17b/projektplan.pdf)
 4. [Releaseplan](http://pcai042.informatik.uni-leipzig.de/~na17b/releaseplan.pdf)
 5. [Qualitätssicherungskonzept](http://pcai042.informatik.uni-leipzig.de/~na17b/qskonzept.pdf)
+6. [Entwurfsbeschreibung](http://pcai042.informatik.uni-leipzig.de/~na17b/entwurf.pdf)

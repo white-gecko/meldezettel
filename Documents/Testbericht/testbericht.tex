@@ -1,0 +1,84 @@
+\documentclass[a4paper,11pt,oneside, titlepage]{article}
+\usepackage[a4paper]{geometry} 
+\geometry{a4paper,left=25mm, right=25mm, top=20mm, bottom=30mm} 
+\usepackage[ngerman]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[toc]{glossaries} 
+
+\renewcommand{\arraystretch}{2}
+\renewcommand\thesubsection{}
+
+\pagestyle{fancy}
+
+\lhead{\today}
+\rhead{Verantwortliche: Anja Sieke}
+\chead{Gruppe: na17b}
+\title{Testbericht\\Nachrichtenkommunikation für das THW}
+\author{na17b}
+\date{}
+
+\makeglossaries
+
+\begin{document}
+  
+  \maketitle
+
+  \tableofcontents
+
+  \newpage
+
+  \section{Allgemeines}
+  \label{sec:allgemeines}
+
+    Das Vorprojekt führt ausschließlich Komponententests durch, da die Kommunikation
+    zwischen Komponenten nur indirekt über den Store erfolgt. Der Zugriff auf den Store wurde
+    gemocked.
+
+    Als Testframework wird \gls{Jest} zusammen mit \gls{vue-test-utils} verwendet.
+  
+  \section{Tests}
+  \label{sec:tests}
+
+    \subsection{Komponententests}
+    \label{sub:komponententests}
+
+      Die Testspezifikationen befinden sich vom frontend-Verzeichnis aus gesehen in \verb+test/unit/specs+.
+      Dort liegt für jede Komponente eine eigene Datei, welche die geforderten Eigenschaften und Funktionen
+      einer Komponente beschreibt.
+
+      Es genügt, im Ordner frontend den Befehl \verb+npm run unit+ auszuführen; daraufhin werden alle
+      Test-Suites automatisch abgearbeitet. Eine beispielhafte Ausgabe ist in folgender Abbildung zu sehen.
+
+      \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\linewidth]{testsscreenshot}
+        \caption{Ausgabe des Befehls npm run unit}
+        \label{fig:npmtest}
+      \end{figure}
+
+      Die Tests beschränken sich hier zunächst auf das Prüfen von Anwesenheit bestimmter Variablen und html-Elementen.
+      Die Ergebnisse sind in folgender Tabelle aufgelistet.
+
+      \begin{table}[htpb]
+        \centering
+        \label{tab:test}
+        \begin{tabular}{c | c | c}
+          Komponente & Anzahl Tests & Bestanden \\
+          \hline
+          THWForm & 5 & ja \\
+          THWDashboard & 4 & ja \\
+          THWMenu & 3 & ja 
+        \end{tabular}
+        \caption{Testergebnisse der momentanen Frontend-Komponenten}
+      \end{table}
+
+      \newpage
+
+      \input{glossar}
+      \printglossaries
+  
+\end{document}
