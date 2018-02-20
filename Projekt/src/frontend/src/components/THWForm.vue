@@ -517,6 +517,7 @@
     </el-row>
 
     <el-button @click="saveTicket(formdata)">Abschicken</el-button>
+    <el-button @click="formReset()">Zurücksetzen</el-button>
 
   </el-form>
 </div>
@@ -588,6 +589,10 @@ export default {
 
     submit: function () {
       console.log(this.formdata)
+    },
+
+    formReset: function () {
+      Object.assign(this.$data, this.$options.data())
     }
 
   },
