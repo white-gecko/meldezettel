@@ -1,10 +1,10 @@
 image: node:6
 
 stages:
-  - lint
+  - test
 
 eslint:
-  stage: lint
+  stage: test
   script:
     # Install ESLint in this docker container
     - npm install -g eslint
