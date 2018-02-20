@@ -1,15 +1,14 @@
-linting:
-  image: node:6
+image: node:6
 
-  stages:
-    - test
+stages:
+  - lint
 
-  eslint:
-    stage: test
-    script:
-      # Install ESLint in this docker container
-      - npm install -g eslint
-      # Configure ESLint (will read your .eslintrc file)
-      - eslint --init
-      # Run ESLint
-      - eslint <your_js_file>
+eslint:
+  stage: lint
+  script:
+    # Install ESLint in this docker container
+    - npm install -g eslint
+    # Configure ESLint (will read your .eslintrc file)
+    - eslint --init
+    # Run ESLint
+    - eslint <your_js_file>
