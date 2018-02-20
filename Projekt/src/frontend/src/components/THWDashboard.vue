@@ -7,17 +7,17 @@
         <el-button>Öffnen</el-button>
       </template>
     </el-table-column>
-    
+
     <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
     <el-table-column prop="hdzIncomingA" label="Verfasser" width="100">
     </el-table-column>
-    
+
     <el-table-column prop="dateIncomingA" label="Datum" width="100">
     </el-table-column>
-    
+
     <el-table-column prop="timeIncomingA" label="Uhrzeit" width="100">
     </el-table-column>
-    
+
     <el-table-column prop="message" label="Kurzinhalt">
     </el-table-column>
   </el-table>
@@ -43,7 +43,6 @@ export default {
 
       // The times and dates need to be filtered to be displayed correctly
       for (let i = 0; i < data.length; i++) {
-
         // Retrieve all required date strings and convert them to a shorter form (german style)
         let tmpDate = new Date(data[i].dateIncomingA)
         data[i].dateIncomingA = tmpDate.toLocaleDateString()

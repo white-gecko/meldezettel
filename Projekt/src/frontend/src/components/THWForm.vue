@@ -1,7 +1,7 @@
 <template>
 <div>
   <el-form ref="form" :model="formdata" style="background:lightblue; padding: 0.5em 0.5em">
-  
+
     <!-- ============================================================ -->
     <!-- Top area -->
 
@@ -613,7 +613,7 @@ export default {
   border-radius: 4px;
 }
 .bg-purple {
-  /* background: #d3dce6 */;
+  /* background: #d3dce6 */
   background: white;
 }
 .grid-content {
