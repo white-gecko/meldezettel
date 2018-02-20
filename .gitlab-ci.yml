@@ -1,32 +1,15 @@
-image: node:6
+linting:
+  image: node:latest
 
-build_the_project:
-  before_script:
-    - ping -c 1 aksw.org
-  script:
-    - sh program.sh
-    - test -f result.md
+  stages:
+    - lint
 
-validate_time_tracking:
-  image:
-    name: mribeiro/xmllint
-    entrypoint: [""]
-  script:
-    - xmllint --version
-    - sh validate-xml.sh
-
-
-release-job:
-  before_script:
-    - npm install -g markdown-pdf
-  script:
-    - sh program.sh
-    - markdown-pdf result.md
-    - markdown-pdf Webseiten/docu.md
-    - mv Webseiten/docu.pdf docu.pdf
-  artifacts:
-    paths:
-    - result.pdf
-    - docu.pdf
-  only:
-    - tags
+  eslint:
+    stage: lint
+    script:
+      # Install ESLint in this docker container
+      - npm install -g eslint
+      # Configure ESLint (will read your .eslintrc file)
+      - eslint --init
+      # Run ESLint
+      - eslint <your_js_file>
