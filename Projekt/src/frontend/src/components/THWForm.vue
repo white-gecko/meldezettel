@@ -517,6 +517,7 @@
     </el-row>
 
     <el-button @click="saveTicket(formdata)">Abschicken</el-button>
+    <el-button @click="formReset()">Zurücksetzen</el-button>
 
   </el-form>
 </div>
@@ -582,12 +583,40 @@ export default {
     }
   },
 
+  created () {
+    document.addEventListener('focusin', this.focusIn)
+    document.addEventListener('focusout', this.focusOut)
+  },
+
+  beforeDestroy () {
+    document.removeEventListener('focusin', this.focusIn)
+    document.removeEventListener('focusout', this.focusOut)
+  },
+
   methods: {
 
     ...mapMutations(['saveTicket']),
 
     submit: function () {
       console.log(this.formdata)
+    },
+
+    formReset: function () {
+      Object.assign(this.$data, this.$options.data())
+    },
+
+    focusIn (event) {
+      const el = event.target
+      if (el.type === 'text' || el.type === 'textarea') {
+        el.classList.add('highlighted')
+      }
+    },
+
+    focusOut (event) {
+      const el = event.target
+      if (el.type === 'text' || el.type === 'textarea') {
+        el.classList.remove('highlighted')
+      }
     }
 
   },
@@ -650,5 +679,9 @@ export default {
 .is-short {
   width: 80%;
   padding-left: 2em;
+}
+
+.highlighted {
+  background-color: #b7ffa3;
 }
 </style>
