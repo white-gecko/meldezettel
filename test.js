@@ -1,4 +1,4 @@
 export default {
-  role: 'd',
+  roe: 'd',
   ticketlist: []
 }
