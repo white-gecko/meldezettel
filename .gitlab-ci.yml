@@ -16,7 +16,7 @@ linting:
     - npm install
     #Run linting from locally installed eslint, for all .js files in current folder (frontend)
     - ./node_modules/.bin/eslint .
-    - npm run test
+    - npm run unit
 
 validate_time_tracking:
   image:
