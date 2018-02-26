@@ -1,27 +1,39 @@
 image: node:6
 
-stages:
-  - lint
-
-eslint:
-  stage: lint
+build_the_project:
+  before_script:
+    - ping -c 1 aksw.org
   script:
-    # Install ESLint in this docker container
-    - npm install eslint
+    - sh program.sh
+    - test -f result.md
 
-    # Install vue-plugin 
+linting:
 
-    # Requires eslint-config-standard
+  script:
+    - cd /Projekt/src/frontend
+    - npm install
+    - eslint .
 
-    # Requires eslint-plugin-import, eslint-plugin-node, eslint-plugin-promise, eslint-plugin-standard
-    - npm install eslint-plugin-import
-    - npm install eslint-plugin-node
-    - npm install eslint-plugin-promise
-    - npm install eslint-plugin-standard
+validate_time_tracking:
+  image:
+    name: mribeiro/xmllint
+    entrypoint: [""]
+  script:
+    - xmllint --version
+    - sh validate-xml.sh
 
-    - npm install eslint-config-standard
+release-job:
+  before_script:
+    - npm install -g markdown-pdf
+  script:
+    - sh program.sh
+    - markdown-pdf result.md
+    - markdown-pdf Webseiten/docu.md
+    - mv Webseiten/docu.pdf docu.pdf
+  artifacts:
+    paths:
+    - result.pdf
+    - docu.pdf
+  only:
+    - tags
 
-    - npm install eslint-plugin-vue
-
-    # Run ESLint
-    - ./node_modules/.bin/eslint .
