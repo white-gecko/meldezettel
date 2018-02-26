@@ -10,9 +10,9 @@ build_the_project:
 linting:
 
   script:
-    - cd ./Projekt/src/frontend
+    - cd /Projekt/src/frontend
     - npm install
-    - eslint .
+    - ./node_modules/.bin/eslint .
 
 validate_time_tracking:
   image:
