@@ -5,23 +5,23 @@ stages:
 
 eslint:
     stage: lint
-  script:
-  # Install ESLint in this docker container
-  - npm install eslint
-
-  # Install vue-plugin 
-
-    # Requires eslint-config-standard
-
-      # Requires eslint-plugin-import, eslint-plugin-node, eslint-plugin-promise, eslint-plugin-standard
-      - npm install eslint-plugin-import
-      - npm install eslint-plugin-node
-      - npm install eslint-plugin-promise
-      - npm install eslint-plugin-standard
-
-    - npm install eslint-config-standard
-
-  - npm install eslint-plugin-vue
-
-  # Run ESLint
-  - ./node_modules/.bin/eslint .
+    script:
+        # Install ESLint in this docker container
+        - npm install eslint
+        
+        # Install vue-plugin 
+        
+        # Requires eslint-config-standard
+        
+        # Requires eslint-plugin-import, eslint-plugin-node, eslint-plugin-promise, eslint-plugin-standard
+        - npm install eslint-plugin-import
+        - npm install eslint-plugin-node
+        - npm install eslint-plugin-promise
+        - npm install eslint-plugin-standard
+        
+        - npm install eslint-config-standard
+        
+        - npm install eslint-plugin-vue
+        
+        # Run ESLint
+        - ./node_modules/.bin/eslint .
