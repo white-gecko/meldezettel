@@ -8,14 +8,18 @@ build_the_project:
     - test -f result.md
 
 #Linting job
-linting:
+#linting:
+#Job for Linting and Testing
+linting_and_testing:
   script:
     #Navigate to frontend folder, with package.json and .eslintrc.yml
     - cd ./Projekt/src/frontend
     #Installing all dependencies from package.json
     - npm install
     #Run linting from locally installed eslint, for all .js files in current folder (frontend)
-    - ./node_modules/.bin/eslint .
+    #- ./node_modules/.bin/eslint .
+    #
+    - npm run lint
     - npm run unit
 
 validate_time_tracking:
