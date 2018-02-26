@@ -3,10 +3,9 @@ import { mount } from '@vue/test-utils'
 import expect from 'expect'
 
 describe('THWMenu', () => {
+  let wrapper
 
-  let wrapper;
-
-  beforeEach( () => {
+  beforeEach(() => {
     wrapper = mount(THWMenu)
   })
 
