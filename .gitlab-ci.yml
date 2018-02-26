@@ -5,9 +5,8 @@ stages:
 
 eslint:
   stage: lint
-  before_script:
-    - nodejs --version
   script:
+    - nodejs --version
     # Install ESLint in this docker container
     - npm install -g ajv
     - npm install -g eslint
