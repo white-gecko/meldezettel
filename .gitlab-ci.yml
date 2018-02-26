@@ -7,6 +7,8 @@ eslint:
   stage: lint
   script:
     # Install ESLint in this docker container
+    
     - npm install eslint
+    - npm i eslint-plugin-vue@latest
     # Run ESLint
     - ./node_modules/.bin/eslint .
