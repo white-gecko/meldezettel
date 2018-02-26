@@ -9,6 +9,6 @@ eslint:
     # Install ESLint in this docker container
     
     - npm install eslint
-    - npm i eslint-plugin-vue@latest
+    - npm i eslint-plugin-vue
     # Run ESLint
     - ./node_modules/.bin/eslint .
