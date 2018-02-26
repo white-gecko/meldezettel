@@ -5,7 +5,7 @@ stages:
 
 eslint:
   stage: lint
-  before-script:
+  before_script:
     - nodejs --version
   script:
     # Install ESLint in this docker container
