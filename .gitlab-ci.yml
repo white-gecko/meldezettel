@@ -9,4 +9,4 @@ eslint:
     # Install ESLint in this docker container
     - npm install eslint
     # Run ESLint
-    - ./node_modules/.bin/eslint /
+    - ./node_modules/.bin/eslint /Projekt
