@@ -8,7 +8,7 @@ let quitStoreAdapter = {
             params: {query: sparqlQuery},
             headers: {Accept: "application/sparql-results+json"},
         })
-        .then(response => console.log("Get-Response data: " + response.data.results.bindings))
+        .then(response => console.log(response.data.results.bindings))
     },
     sendData: function(sparqlQuery) {
         axios.request({
