@@ -11,7 +11,7 @@ linting:
   script:
     - cd ./Projekt/src/frontend
     - npm install
-    - ./node_modules/.bin/eslint ./Projekt/src/frontend/src/
+    - ./node_modules/.bin/eslint .
 
 validate_time_tracking:
   image:
