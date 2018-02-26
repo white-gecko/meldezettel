@@ -1,2 +1,3 @@
-var a;                  // explizite Deklaration einer globalen Variable
-a = 1;                    // Definition einer Variable
+function add(a, b){
+    return (a+b);
+}
