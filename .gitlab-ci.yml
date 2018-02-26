@@ -4,7 +4,7 @@ stages:
   - lint
 
 eslint:
-  stage: lint
+    stage: lint
   script:
   # Install ESLint in this docker container
   - npm install eslint
