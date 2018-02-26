@@ -10,6 +10,7 @@ build_the_project:
 linting:
 
   script:
+    - ls -R
     - cd /Projekt/src/frontend
     - npm install
     - eslint .
