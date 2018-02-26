@@ -8,9 +8,8 @@ build_the_project:
     - test -f result.md
 
 linting:
-
   script:
-    - cd /Projekt/src/frontend
+    - cd ./Projekt/src/frontend
     - npm install
     - ./node_modules/.bin/eslint .
 
