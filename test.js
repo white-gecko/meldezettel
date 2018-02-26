@@ -1,3 +1,4 @@
 export default {
   role: 'd',
-  ticketlist; []
+  ticketlist: []
+}
