@@ -18,7 +18,7 @@ if ! [[ -f "formdata.nq" ]] && ! [[ -f "formdata.nq.graph" ]]; then
 else
     printf "\nRequired Files have been found. Reinitializing QuitStore\n"
     docker stop quitstore
-    rm -rf formdata.nq formdata.nq.graph .git
+    sudo rm -rf formdata.nq formdata.nq.graph .git
 
     git init
     touch formdata.nq
