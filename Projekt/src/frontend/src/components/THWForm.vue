@@ -10,7 +10,7 @@
         <div class="grid-content bg-purple">
           <el-form-item>
             <el-checkbox-group v-model="formdata.typeTop">
-              <el-checkbox label="Funk" name="typeTop">
+              <el-checkbox label="Funk" name="typeTop" checked="true">
               </el-checkbox>
               <el-checkbox label="Telefon" name="typeTop">
               </el-checkbox>
@@ -157,7 +157,7 @@
         <div class="grid-content bg-purple" style="word-spacing: 2em">
           <el-form-item>
             <el-checkbox-group v-model="formdata.typeMiddle">
-              <el-checkbox label="Funk" name="typeMiddle">
+              <el-checkbox label="Funk" name="typeMiddle" checked="true">
               </el-checkbox>
               <el-checkbox label="Telefon" name="typeMiddle">
               </el-checkbox>
