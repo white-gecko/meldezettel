@@ -5,7 +5,7 @@ export default function formdataToSparql(formdata){
 
 	
 	// default prefixes + graph prefixes
-	query =  '@prefix : <http://www.na17b.org/thw/> .';
+	let query =  '@prefix : <http://www.na17b.org/thw/> .';
 	query += '@prefix owl: <http://www.w3.org/2002/07/owl#> .';
 	query += '@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .';
 	query += '@prefix thw: <http://www.na17b.org/thw/> .';
@@ -35,7 +35,7 @@ export default function formdataToSparql(formdata){
 
 		query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {';
 	
-		uri    = 'thw:resource/'+formdata.documentID;
+		let uri    = 'thw:resource/'+formdata.documentID;
 	}
 		
 		query += uri + 'rdf:type thw:document;';
