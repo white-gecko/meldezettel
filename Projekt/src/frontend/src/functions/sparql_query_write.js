@@ -14,6 +14,8 @@ export default function formdataToSparql(formdata){
 	query += '@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .';
 	query += '@base <http://www.na17b.org/thw/> .';
 	
+	let uri='';
+	
 	// Wrapper for inserting a new document to quitStore
 	if(formdata.documentID<100000){
 
@@ -35,7 +37,7 @@ export default function formdataToSparql(formdata){
 
 		query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {';
 	
-		let uri    = 'thw:resource/'+formdata.documentID;
+		uri    = 'thw:resource/'+formdata.documentID;
 	}
 		
 		query += uri + 'rdf:type thw:document;';
