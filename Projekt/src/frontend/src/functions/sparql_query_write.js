@@ -117,7 +117,7 @@ export default function formdataToSparql(formdata){
 		query += 'WHERE{ GRAPH <http://www.na17b.org/thw/> {';
 		query += 'thw:resource/activeAIC thw:currentCount ?oldcount.';
 	// assign ?oldcount+1 to ?count
-		query += 'BIND((?oldcount-1) AS ?count)';
+		query += 'BIND((?oldcount+1) AS ?count)';
 	}
 
 		query += '} }';
