@@ -1,8 +1,14 @@
 #!/usr/bin/bash
-cd $PWD/src/quitstore/
 printf "Setup Quitstore\n"
 printf "Requires git and docker to work\n"
 
+# create dir for quitstore if not already existent
+if [ -d "$PWD/src/quitstore" ]; then
+    cd $PWD/src/quitstore/
+else
+    mkdir $PWD/src/quitstore
+    cd $PWD/src/quitstore/
+fi
 
 if ! [[ -f "formdata.nq" ]] && ! [[ -f "formdata.nq.graph" ]]; then
     printf "\nRequired files could not been found. Initializing QuitStore from scratch\n\n"

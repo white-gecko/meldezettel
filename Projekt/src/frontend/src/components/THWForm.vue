@@ -516,7 +516,7 @@
       </el-col>
     </el-row>
 
-    <el-button @click="saveTicket(formdata)">Abschicken</el-button>
+    <el-button @click="addFormData(formdata)">Abschicken</el-button>
     <el-button @click="formReset()">Zurücksetzen</el-button>
 
   </el-form>
@@ -525,7 +525,7 @@
 
 <script>
 
-import { mapMutations } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 
 export default {
 
@@ -596,6 +596,7 @@ export default {
   methods: {
 
     ...mapMutations(['saveTicket']),
+    ...mapActions(['addFormData']),
 
     submit: function () {
       console.log(this.formdata)
