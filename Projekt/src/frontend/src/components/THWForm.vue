@@ -524,40 +524,38 @@
 </template>
 
 <script>
-
-import { mapMutations, mapActions } from 'vuex'
+import { mapMutations, mapActions } from "vuex";
 
 export default {
-
-  name: 'THWForm',
+  name: "THWForm",
 
   data: () => {
     return {
       formdata: {
-	documentID: 0,
+        documentID: 0,
 
         typeTop: [],
         typeMiddle: [],
-	typeCall: [],
+        typeCall: [],
         priority: [],
         selectStation: [],
 
-        advisorA: '',
-        advisorB: '',
-        advisorC: '',
-        advisorD: '',
-        advisorE: '',
+        advisorA: "",
+        advisorB: "",
+        advisorC: "",
+        advisorD: "",
+        advisorE: "",
         advisorAchecked: false,
         advisorBchecked: false,
         advisorCchecked: false,
         advisorDchecked: false,
         advisorEchecked: false,
 
-        verbA: '',
-        verbB: '',
-        verbC: '',
-        verbD: '',
-        verbE: '',
+        verbA: "",
+        verbB: "",
+        verbC: "",
+        verbD: "",
+        verbE: "",
         verbAchecked: false,
         verbBchecked: false,
         verbCchecked: false,
@@ -566,83 +564,77 @@ export default {
 
         gNote: false,
         isAusgang: false,
-        dateIncomingA: '',
-        timeIncomingA: '',
-        hdzIncomingA: '',
-        dateIncomingB: '',
-        timeIncomingB: '',
-        hdzIncomingB: '',
-        numberTB: '',
-        nameR: '',
-        phone: '',
-        adress: '',
-        message: '',
-        createTime: '',
-        signature: '',
-        signatureB: '',
-        signatureTime: '',
-        position: '',
-	sender: '',
-     	annotations: ''
+        dateIncomingA: "",
+        timeIncomingA: "",
+        hdzIncomingA: "",
+        dateIncomingB: "",
+        timeIncomingB: "",
+        hdzIncomingB: "",
+        numberTB: "",
+        nameR: "",
+        phone: "",
+        adress: "",
+        message: "",
+        createTime: "",
+        signature: "",
+        signatureB: "",
+        signatureTime: "",
+        position: "",
+        sender: "",
+        annotations: ""
       }
-    }
+    };
   },
 
-  created () {
-    document.addEventListener('focusin', this.focusIn)
-    document.addEventListener('focusout', this.focusOut)
+  created() {
+    document.addEventListener("focusin", this.focusIn);
+    document.addEventListener("focusout", this.focusOut);
   },
 
-  beforeDestroy () {
-    document.removeEventListener('focusin', this.focusIn)
-    document.removeEventListener('focusout', this.focusOut)
+  beforeDestroy() {
+    document.removeEventListener("focusin", this.focusIn);
+    document.removeEventListener("focusout", this.focusOut);
   },
 
   methods: {
+    ...mapMutations(["saveTicket"]),
+    ...mapActions(["addFormData"]),
 
-    ...mapMutations(['saveTicket']),
-    ...mapActions(['addFormData']),
-
-    submit: function () {
+    submit: function() {
       console.log(this.formdata)
     },
 
-    formReset: function () {
-      Object.assign(this.$data, this.$options.data())
+    formReset: function() {
+      Object.assign(this.$data, this.$options.data());
     },
 
-    focusIn (event) {
-      const el = event.target
+    focusIn(event) {
+      const el = event.target;
       if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.add('highlighted')
+        el.classList.add("highlighted");
       }
     },
 
-    focusOut (event) {
-      const el = event.target
+    focusOut(event) {
+      const el = event.target;
       if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.remove('highlighted')
+        el.classList.remove("highlighted");
       }
     }
-
   },
 
   computed: {
-
-    annahmeHeader: function () {
+    annahmeHeader: function() {
       return this.formdata.isAusgang ? 'Annahme' : 'Aufnahme'
     }
-
   }
-
-}
-
+};
 </script>
 
 <style>
 .el-row {
   margin-bottom: 15px;
-  margin-top: 15px
+  margin-top: 15px;
 }
 .el-col {
   border-radius: 4px;
