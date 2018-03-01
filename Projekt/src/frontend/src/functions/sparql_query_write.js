@@ -32,7 +32,8 @@ sendData : function(formdata){
 	}
 
 	// Wrapper for updating a document in quitStore
- 	// updating via deleting all data and adding new data to same URI 
+ 	// updating via deleting all data related to the URI 
+ 	//and adding new data to same URI 
 	else{
 
 		query += 'DELETE DATA { GRAPH <http://www.na17b.org/thw/> {'
