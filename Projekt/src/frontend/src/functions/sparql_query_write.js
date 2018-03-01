@@ -109,7 +109,7 @@ export default function formdataToSparql(formdata){
 			query += 'thw:annotations "'+ 	formdata.annotations +'".';
 	
 	// handling the manual autoincrement	
-	if(formdata.documentID==0){
+	if(formdata.documentID<100000){
 
 		query += 'thw:resource/activeAIC thw:currentCount ?count.} }';
 
