@@ -534,11 +534,11 @@ export default {
   data: () => {
     return {
       formdata: {
-	documentID: 0,
+        documentID: 0,
 
         typeTop: [],
         typeMiddle: [],
-	typeCall: [],
+        typeCall: [],
         priority: [],
         selectStation: [],
 
@@ -582,8 +582,8 @@ export default {
         signatureB: '',
         signatureTime: '',
         position: '',
-	sender: '',
-     	annotations: ''
+        sender: '',
+        annotations: ''
       }
     }
   },
