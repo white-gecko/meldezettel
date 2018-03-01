@@ -5,7 +5,7 @@ export default{
 // function which creates a SPARQL query based on given formdata object
 
 
-sendData : function(formdata){
+formdataToInsertQuery : function(formdata){
 
 	
 	// default prefixes + graph prefixes
@@ -133,7 +133,7 @@ sendData : function(formdata){
 }
 ,
 
-getData : function(){
+allDocumentsQuery : function(){
 	
 
 	// default prefixes + graph prefixes
