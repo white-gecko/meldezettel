@@ -534,6 +534,8 @@ export default {
   data: () => {
     return {
       formdata: {
+	documentID: 0,
+
         typeTop: [],
         typeMiddle: [],
 	typeCall: [],
