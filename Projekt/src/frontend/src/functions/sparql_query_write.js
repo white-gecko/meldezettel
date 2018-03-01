@@ -1,13 +1,11 @@
 export default{
-    sendData : formdataToSparql(formdata),
-    getData : sparqlRead()
-}
+
 
 
 // function which creates a SPARQL query based on given formdata object
 
 
-function formdataToSparql(formdata){
+sendData : function formdataToSparql(formdata){
 
 	
 	// default prefixes + graph prefixes
@@ -132,9 +130,9 @@ function formdataToSparql(formdata){
 
     return query
 }
+,
 
-
-function sparqlRead(){
+getData : function sparqlRead(){
 	
 
 	// default prefixes + graph prefixes
@@ -151,4 +149,6 @@ function sparqlRead(){
 	query += 'WHERE {?document rdf:type thw:document.} }'
 
 	return query
+}
+
 }
