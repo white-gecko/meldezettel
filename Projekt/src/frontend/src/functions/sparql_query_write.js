@@ -5,14 +5,14 @@ export default function formdataToSparql(formdata){
 
 	
 	// default prefixes + graph prefixes
-	let query =  '@prefix : <http://www.na17b.org/thw/> .';
-	query += '@prefix owl: <http://www.w3.org/2002/07/owl#> .';
-	query += '@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .';
-	query += '@prefix thw: <http://www.na17b.org/thw/> .';
-	query += '@prefix xml: <http://www.w3.org/XML/1998/namespace> .';
-	query += '@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .';
-	query += '@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .';
-	query += '@base <http://www.na17b.org/thw/> .';
+	let query =  'PREFIX : <http://www.na17b.org/thw/> ';
+	query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#> ';
+	query += 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ';
+	query += 'PREFIX thw: <http://www.na17b.org/thw/> ';
+	query += 'PREFIX xml: <http://www.w3.org/XML/1998/namespace> ';
+	query += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> ';
+	query += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> ';
+	query += 'PREFIX <http://www.na17b.org/thw/> ';
 	
 	let uri='';
 	
