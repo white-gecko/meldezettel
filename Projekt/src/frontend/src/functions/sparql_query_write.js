@@ -5,7 +5,7 @@ export default{
 // function which creates a SPARQL query based on given formdata object
 
 
-sendData : function formdataToSparql(formdata){
+sendData : function(formdata){
 
 	
 	// default prefixes + graph prefixes
@@ -132,7 +132,7 @@ sendData : function formdataToSparql(formdata){
 }
 ,
 
-getData : function sparqlRead(){
+getData : function(){
 	
 
 	// default prefixes + graph prefixes
