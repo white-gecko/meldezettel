@@ -6,7 +6,7 @@ export default function sparqlRead(){
 	
 
 	// default prefixes + graph prefixes
-    query =  '@prefix : <http://www.na17b.org/thw/> .';
+    let query =  '@prefix : <http://www.na17b.org/thw/> .';
 	query += '@prefix owl: <http://www.w3.org/2002/07/owl#> .';
 	query += '@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .';
 	query += '@prefix thw: <http://www.na17b.org/thw/> .';
