@@ -14,7 +14,8 @@ export default function sparqlRead(){
 	query += '@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .';
 	query += '@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .';
 	query += '@base <http://www.na17b.org/thw/> .';
-
+	
+	// selects all triples that are related to a document
 	query += 'SELECT * {GRAPH <http://www.na17b.org/thw/> {?document ?p ?o}';
 	query += 'WHERE {?document rdf:type thw:document.} }';
 

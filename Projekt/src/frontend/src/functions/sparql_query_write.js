@@ -1,11 +1,11 @@
-// function which creates a SPARQL query based on a given formdata object
+// function which creates a SPARQL query based on given formdata object
 
 
 export default function formdataToSparql(formdata){
 
 	
 	// default prefixes + graph prefixes
-    query =  '@prefix : <http://www.na17b.org/thw/> .';
+	query =  '@prefix : <http://www.na17b.org/thw/> .';
 	query += '@prefix owl: <http://www.w3.org/2002/07/owl#> .';
 	query += '@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .';
 	query += '@prefix thw: <http://www.na17b.org/thw/> .';
@@ -15,7 +15,7 @@ export default function formdataToSparql(formdata){
 	query += '@base <http://www.na17b.org/thw/> .';
 	
 	// Wrapper for inserting a new document to quitStore
-	if(formdata.documentID==0){
+	if(formdata.documentID<100000){
 
 		// activeAIC = manual autoincrement => overwritten by this
 		query += 'DELETE DATA { GRAPH <http://www.na17b.org/thw/> {';
@@ -27,6 +27,7 @@ export default function formdataToSparql(formdata){
 	}
 
 	// Wrapper for updating a document in quitStore
+ 	// updating via deleting all data and adding new data to same URI 
 	else{
 
 		query += 'DELETE DATA { GRAPH <http://www.na17b.org/thw/> {';
@@ -38,7 +39,8 @@ export default function formdataToSparql(formdata){
 	}
 		
 		query += uri + 'rdf:type thw:document;';
-																			   
+		
+		// top area on document																   
 			query += 'thw:topPhone "'+ 		formdata.typeTop[1] +'";';
 			query += 'thw:topFax "'+ 		formdata.typeTop[2] +'";';
 			query += 'thw:topDFU "'+ 		formdata.typeTop[3] +'";';
@@ -47,7 +49,8 @@ export default function formdataToSparql(formdata){
 			query += 'thw:primaryDate "'+ 	formdata.dateIncomingA +'";';
 			query += 'thw:primaryTime "'+ 	formdata.timeIncomingA +'";';
 			query += 'thw:primaryHdZ "'+ 	formdata.hdzIncomingA +'";';
-
+		
+		// toggle on "Ausgehend" => 2 date,time,hdz inputs
 		if(formdata.isAusgang){
 			query += 'thw:secondaryDate "'+ formdata.dateIncomingB +'";';
 			query += 'thw:secondaryTime "'+ formdata.timeIncomingB +'";';
@@ -56,6 +59,7 @@ export default function formdataToSparql(formdata){
 
 			query += 'thw:numberTB "'+ 		formdata.numberTB +'";';
 			query += 'thw:receiverName "'+ 	formdata.nameR +'";';
+		// middle area on document
 			query += 'thw:midRadio "'+ 		formdata.typeMiddle[0] +'";';
 			query += 'thw:midPhone "'+ 		formdata.typeMiddle[1] +'";';
 			query += 'thw:midFax "'+ 		formdata.typeMiddle[2] +'";';
@@ -73,6 +77,7 @@ export default function formdataToSparql(formdata){
 			query += 'thw:identification "'+ formdata.signature +'";';
 			query += 'thw:role "'+ 			formdata.position +'";';
 			query += 'thw:sender "'+ 		formdata.sender +'";';
+		// bottom area on document			
 			query += 'thw:docketTime "'+ 	formdata.signatureTime +'";';
 			query += 'thw:docketIdentification "'+ formdata.signatureB +'";';
 			query += 'thw:docketLeader "'+ 	formdata.selectStation[0] +'";';
@@ -107,9 +112,11 @@ export default function formdataToSparql(formdata){
 	if(formdata.documentID==0){
 
 		query += 'thw:resource/activeAIC thw:currentCount ?count.} }';
-		
+
+	// receive highest used URI suffix from autoincrement element
 		query += 'WHERE{ GRAPH <http://www.na17b.org/thw/> {';
 		query += 'thw:resource/activeAIC thw:currentCount ?oldcount.';
+	// assign ?oldcount+1 to ?count
 		query += 'BIND((?oldcount-1) AS ?count)';
 	}
 
