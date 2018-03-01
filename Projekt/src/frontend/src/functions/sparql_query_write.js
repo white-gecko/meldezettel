@@ -1,7 +1,13 @@
+export default{
+    sendData : formdataToSparql(formdata),
+    getData : sparqlRead()
+}
+
+
 // function which creates a SPARQL query based on given formdata object
 
 
-export default function formdataToSparql(formdata){
+function formdataToSparql(formdata){
 
 	
 	// default prefixes + graph prefixes
@@ -12,7 +18,6 @@ export default function formdataToSparql(formdata){
 	query += 'PREFIX xml: <http://www.w3.org/XML/1998/namespace> ';
 	query += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> ';
 	query += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> ';
-	query += 'PREFIX <http://www.na17b.org/thw/> ';
 	
 	let uri='';
 	
@@ -126,4 +131,24 @@ export default function formdataToSparql(formdata){
 	
 
     return query;
+}
+
+
+function sparqlRead(){
+	
+
+	// default prefixes + graph prefixes
+    let query =  'PREFIX : <http://www.na17b.org/thw/> ';
+	query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#> ';
+	query += 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ';
+	query += 'PREFIX thw: <http://www.na17b.org/thw/> .';
+	query += 'PREFIX xml: <http://www.w3.org/XML/1998/namespace> ';
+	query += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> ';
+	query += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> ';
+	
+	// selects all triples that are related to a document
+	query += 'SELECT * {GRAPH <http://www.na17b.org/thw/> {?document ?p ?o}';
+	query += 'WHERE {?document rdf:type thw:document.} }';
+
+	return query;
 }
