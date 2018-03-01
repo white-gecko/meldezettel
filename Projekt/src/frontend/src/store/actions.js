@@ -12,5 +12,7 @@ export const addFormData = (context, formData) => {
   }
   `
   // console.log(insertQuery)
-  quitstore.sendData(exQuery).then(context.commit('saveTicket', formData))
+  return new Promise((resolve, reject) => {
+    quitstore.sendData(exQuery).then(context.commit('saveTicket', formData))
+  })
 }

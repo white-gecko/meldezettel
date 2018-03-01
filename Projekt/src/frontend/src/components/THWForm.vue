@@ -598,7 +598,11 @@ export default {
 
   methods: {
     ...mapMutations(["saveTicket"]),
-    ...mapActions(["addFormData"]),
+    // ...mapActions(["addFormData"]),
+
+    addFormData: function() {
+      this.$store.dispatch('addFormData').then(this.$router.push('home'))
+    },
 
     submit: function() {
       console.log(this.formdata)
