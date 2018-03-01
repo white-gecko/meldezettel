@@ -1,15 +1,7 @@
 import { quitstore } from '../api/QuitStoreAdapter'
+import sparqlHelper from '../helper/SparqlHelper'
 
-export const addFormData = (context, newTicket) => {
-  /* @TODO remove testing insert query */
-  let secs = Date.now() / 1000
-  let newTicketInsertQuery =
-  `
-  INSERT DATA {
-      GRAPH <http://instructions.org/> {
-          <http://www.w3.org/2006/vcard/ns#> <http://www.w3.org/2006/vcard/ns#fn> 'Lucas Schons` + secs + `'
-      }
-  }
-`
-  quitstore.sendData(newTicketInsertQuery).then(context.commit('saveTicket', newTicket))
+export const addFormData = (context, formData) => {
+  let insertQuery = sparqlHelper.formDataInsertQuery(formData)
+  quitstore.sendData(insertQuery).then(context.commit('saveTicket', formData))
 }
