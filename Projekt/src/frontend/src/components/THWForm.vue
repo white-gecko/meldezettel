@@ -92,7 +92,7 @@
       <el-col :span="7">
           <div class="grid-content">
             <el-form-item>
-              <el-date-picker v-model="formdata.dateIncomingA" type="date" placeholder="Datum auswählen">
+              <el-date-picker v-model="formdata.dateIncomingB" type="date" placeholder="Datum auswählen">
               </el-date-picker>
             </el-form-item>
           </div>
@@ -101,7 +101,7 @@
       <el-col :span="7">
           <div class="grid-content">
             <el-form-item>
-              <el-time-picker v-model="formdata.timeIncomingA" placeholder="Uhrzeit auswählen">
+              <el-time-picker v-model="formdata.timeIncomingB" placeholder="Uhrzeit auswählen">
               </el-time-picker>
             </el-form-item>
           </div>
@@ -110,7 +110,7 @@
       <el-col :span="6">
         <div class="grid-content">
           <el-form-item>
-            <el-input v-model="formdata.hdzIncomingA">
+            <el-input v-model="formdata.hdzIncomingB">
               <template slot="prepend">
                 <span>Hdz</span>
               </template>
@@ -223,7 +223,7 @@
 
       <el-col :span="18">
           <el-form-item>
-            <el-input placeholder="" v-model="formdata.address">
+            <el-input placeholder="" v-model="formdata.adress">
               <template slot="prepend">Anschrift</template>
             </el-input>
           </el-form-item>
@@ -332,7 +332,7 @@
     <el-col :span= 8>
       <el-form-item>
         <div class="grid-content bg-purple labelbox has-margin">
-          <span>Verb stellen</span>
+          <span>Verb. stellen</span>
         </div>
       </el-form-item>
     </el-col>
@@ -507,7 +507,7 @@
     <el-row>
       <el-col :span="24">
         <el-form-item>
-          <el-input>
+          <el-input v-model="formdata.annotations">
             <template slot="prepend">
               <span>Vermerke</span>
             </template>
@@ -534,8 +534,11 @@ export default {
   data: () => {
     return {
       formdata: {
+	documentID: 0,
+
         typeTop: [],
         typeMiddle: [],
+	typeCall: [],
         priority: [],
         selectStation: [],
 
@@ -572,13 +575,15 @@ export default {
         numberTB: '',
         nameR: '',
         phone: '',
-        address: '',
+        adress: '',
         message: '',
         createTime: '',
         signature: '',
         signatureB: '',
         signatureTime: '',
-        position: ''
+        position: '',
+	sender: '',
+     	annotations: ''
       }
     }
   },
