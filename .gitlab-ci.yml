@@ -18,7 +18,7 @@ validate_time_tracking:
 jslinting:
   stage: jslinting
   script:
-    #Navigate to frontend folder, with package.json and .eslintrc.yml
+    #Navigate to frontend folder .eslintrc.yml and other config-files
     - cd ./Projekt/src/frontend
     
     # Installing eslint and dependencies
@@ -28,7 +28,7 @@ jslinting:
 testing:
   stage: testing
   script:
-     #Navigate to frontend folder, with package.json and .eslintrc.yml
+     #Navigate to frontend folder
     - cd ./Projekt/src/frontend
     
     # Installing jest, vue-test-utils and dependencies
