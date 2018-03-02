@@ -527,6 +527,13 @@
 
 import { mapMutations } from 'vuex'
 
+// helper function
+var __formReset = function (context, formdata) {
+  for (let entry in formdata) {
+    context.$data.formdata[entry] = formdata[entry]
+  }
+}
+
 export default {
 
   name: 'THWForm',
@@ -534,7 +541,7 @@ export default {
   data: () => {
     return {
       formdata: {
-        typeTop: [],
+        typeTop: ['Funk', 'Telefon'],
         typeMiddle: [],
         priority: [],
         selectStation: [],
@@ -570,7 +577,7 @@ export default {
         timeIncomingB: '',
         hdzIncomingB: '',
         numberTB: '',
-        nameR: '',
+        nameR: 'abc',
         phone: '',
         address: '',
         message: '',
@@ -586,6 +593,20 @@ export default {
   created () {
     document.addEventListener('focusin', this.focusIn)
     document.addEventListener('focusout', this.focusOut)
+
+    var formID = Number(this.$route.query.id)
+    if (typeof formID === 'number' && formID % 1 === 0) {
+      // load formData of document id 1
+
+      this.default = {formdata: {
+        message: 'This is a placeholder and will later query the Quitstore to retrieve document id <' + formID + '>'
+      }}
+    } else {
+      // load default formData
+      this.default = this.$options.data()
+    }
+
+    __formReset(this, this.default.formdata)
   },
 
   beforeDestroy () {
@@ -602,7 +623,7 @@ export default {
     },
 
     formReset: function () {
-      Object.assign(this.$data, this.$options.data())
+      Object.assign(this.$data, this.default)
     },
 
     focusIn (event) {
@@ -628,9 +649,7 @@ export default {
     }
 
   }
-
 }
-
 </script>
 
 <style>
