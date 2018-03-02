@@ -4,7 +4,7 @@
     <!-- Spalte mit Button zum Laden des Tickets in die Bearbeitungsmaske (TODO)-->
     <el-table-column width="150">
       <template slot-scope="scope">
-        <el-button>Öffnen</el-button>
+        <router-link v-bind:to="{path:'create', query:{id: scope.$index }}" tag="el-button">Öffnen</router-link>
       </template>
     </el-table-column>
 

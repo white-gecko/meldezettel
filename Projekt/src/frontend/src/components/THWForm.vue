@@ -525,7 +525,7 @@
 
 <script>
 
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 
 export default {
 
@@ -593,8 +593,10 @@ export default {
     // check if parsed id is integer
     if (typeof formID === 'number' && formID % 1 === 0) {
       // load formData of specified document id
-      this.default = this.$options.data()
-      this.default.formdata.message = 'This is a placeholder and will later query the Quitstore to retrieve document id <' + formID + '>'
+      // this.default = this.$options.data()
+      // this.default.formdata.message = 'This is a placeholder and will later query the Quitstore to retrieve document id <' + formID + '>'
+      console.log(this.ticketlist[formID])
+      this.default = {formdata: JSON.parse(JSON.stringify(this.ticketlist[formID]))}
     } else {
       // load default formData
       this.default = this.$options.data()
@@ -638,6 +640,9 @@ export default {
   },
 
   computed: {
+    ...mapGetters({
+      ticketlist: 'getAllTickets'
+    }),
 
     annahmeHeader: function () {
       return this.formdata.isAusgang ? 'Annahme' : 'Aufnahme'
