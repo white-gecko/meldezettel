@@ -10,6 +10,9 @@ linting_and_testing:
     - npm install eslint
         -npm install eslint-config-standard
             -npm install eslint-plugin-import
+            -npm install eslint-plugin-node
+            -npm install eslint-plugin-promise
+            -npm install eslint-plugin-standard
     - npm run lint
     #- npm run unit
     
