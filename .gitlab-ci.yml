@@ -11,7 +11,7 @@ linting_and_testing:
     #- npm install eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-vue babel-eslint
     #- npm run lint
     # Installing jest, vue-test-utils and dependencies
-    - npm install jest vue-jest
+    - npm install vue jest vue-jest vue-template-compiler
     - npm run unit
     
     #Alternatively run linting from locally installed eslint, for all .js files in current folder (frontend)
