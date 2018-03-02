@@ -1,19 +1,10 @@
-image: node:6
+stages:
+  - xmlinting
+  - jslinting_and_testing
 
-jslinting:
-  script:
-    #Navigate to frontend folder, with package.json and .eslintrc.yml
-    - cd ./Projekt/src/frontend
-    
-    # Installing eslint and dependencies
-    - npm install eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-vue babel-eslint
-    - npm run lint
-    
-    # Installing jest, vue-test-utils and dependencies
-    - npm install jest jest-serializer-vue vue-jest vue-template-compiler babel-jest vue @vue/test-utils babel-preset-stage-2 babel-plugin-dynamic-import-node vuex
-    - npm run unit
-    
+
 validate_time_tracking:
+  stage: xmlinting
   image:
     name: mribeiro/xmllint
     entrypoint: [""]
@@ -21,3 +12,18 @@ validate_time_tracking:
     - xmllint --version
     - sh validate-xml.sh
   
+
+jslinting_and_testing:
+  stage: jslinting_and_testing
+  image: 
+    name: node:6
+  script:
+    #Navigate to frontend folder, with package.json and .eslintrc.yml
+    - cd ./Projekt/src/frontend
+    
+    # Installing eslint and dependencies
+    - npm install eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-vue babel-eslint
+    - npm run lint
+       # Installing jest, vue-test-utils and dependencies
+    - npm install jest jest-serializer-vue vue-jest vue-template-compiler babel-jest vue @vue/test-utils babel-preset-stage-2 babel-plugin-dynamic-import-node vuex
+    - npm run unit
