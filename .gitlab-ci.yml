@@ -27,7 +27,7 @@ jslinting:
     
 testing:
   stage: testing
-  script
+  script:
      #Navigate to frontend folder, with package.json and .eslintrc.yml
     - cd ./Projekt/src/frontend
     
