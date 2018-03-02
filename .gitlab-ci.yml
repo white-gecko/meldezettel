@@ -7,9 +7,12 @@ linting_and_testing:
     - cd ./Projekt/src/frontend
     #Installing all dependencies from package.json
     #- npm install
-    - npm install eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-vue babel-eslint
-    - npm run lint
-    #- npm run unit
+    # Installing eslint and dependencies
+    #- npm install eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-vue babel-eslint
+    #- npm run lint
+    # Installing jest, vue-test-utils and dependencies
+    - npm install jest vue-jest
+    - npm run unit
     
     #Alternatively run linting from locally installed eslint, for all .js files in current folder (frontend)
     #- ./node_modules/.bin/eslint .
