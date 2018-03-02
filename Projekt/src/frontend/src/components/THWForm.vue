@@ -527,13 +527,6 @@
 
 import { mapMutations } from 'vuex'
 
-// helper function
-var __formReset = function (context, formdata) {
-  for (let entry in formdata) {
-    context.$data.formdata[entry] = formdata[entry]
-  }
-}
-
 export default {
 
   name: 'THWForm',
@@ -594,19 +587,20 @@ export default {
     document.addEventListener('focusin', this.focusIn)
     document.addEventListener('focusout', this.focusOut)
 
+    // parse document id from GET query
     var formID = Number(this.$route.query.id)
-    if (typeof formID === 'number' && formID % 1 === 0) {
-      // load formData of document id 1
 
-      this.default = {formdata: {
-        message: 'This is a placeholder and will later query the Quitstore to retrieve document id <' + formID + '>'
-      }}
+    // check if parsed id is integer
+    if (typeof formID === 'number' && formID % 1 === 0) {
+      // load formData of specified document id
+      this.default = this.$options.data()
+      this.default.formdata.message = 'This is a placeholder and will later query the Quitstore to retrieve document id <' + formID + '>'
     } else {
       // load default formData
       this.default = this.$options.data()
     }
 
-    __formReset(this, this.default.formdata)
+    this.formReset()
   },
 
   beforeDestroy () {
@@ -623,7 +617,8 @@ export default {
     },
 
     formReset: function () {
-      Object.assign(this.$data, this.default)
+      // Deep copy to avoid overwriting
+      this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata))
     },
 
     focusIn (event) {
