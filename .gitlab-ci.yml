@@ -1,12 +1,5 @@
 image: node:6
 
-build_the_project:
-  before_script:
-    - ping -c 1 aksw.org
-  script:
-    - sh program.sh
-    - test -f result.md
-
 #Job for Linting and Testing
 linting_and_testing:
   script:
@@ -14,7 +7,9 @@ linting_and_testing:
     - cd ./Projekt/src/frontend
     #Installing all dependencies from package.json
     #- npm install
-    - npm install eslint eslint-config-standard
+    - npm install eslint
+        -npm install eslint-config-standard
+            -npm install eslint-plugin-import
     - npm run lint
     #- npm run unit
     
