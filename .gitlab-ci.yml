@@ -1,6 +1,10 @@
-image: node:6
+stages:
+  - xmlinting
+  - jslinting
+  - testing
 
 validate_time_tracking:
+  stage: xmlinting
   image:
     name: mribeiro/xmllint
     entrypoint: [""]
@@ -10,6 +14,8 @@ validate_time_tracking:
   
 
 jslinting:
+  stage: jslinting
+  image: node:6
   script:
     #Navigate to frontend folder, with package.json and .eslintrc.yml
     - cd ./Projekt/src/frontend
@@ -19,7 +25,9 @@ jslinting:
     - npm run lint
     
 testing:
-  script:
+  image: node:6
+  stage: testing
+  script
      #Navigate to frontend folder, with package.json and .eslintrc.yml
     - cd ./Projekt/src/frontend
     
