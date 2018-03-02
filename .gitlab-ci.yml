@@ -3,4 +3,5 @@ linting_and_testing:
   image:
     name: codeclimate/codeclimate-eslint
   script:
-    npm run lint
+  - cd ./Projekt/src/frontend
+  - npm run lint
