@@ -13,7 +13,7 @@ linting_and_testing:
             -npm install eslint-plugin-node
             -npm install eslint-plugin-promise
             -npm install eslint-plugin-standard
-        - npm install esliunt-plugin-vue
+        - npm install eslint-plugin-vue
     - npm run lint
     #- npm run unit
     
