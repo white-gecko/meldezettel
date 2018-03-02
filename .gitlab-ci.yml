@@ -1,22 +1,6 @@
-stages:
-  - xmlinting
-  - jslinting
-  - testing
-
-validate_time_tracking:
-  stage: xmlinting
-  image:
-    name: mribeiro/xmllint
-    entrypoint: [""]
-  script:
-    - xmllint --version
-    - sh validate-xml.sh
-  
+image: node:6
 
 jslinting:
-  stage: jslinting
-  image: 
-    name: node:6
   script:
     #Navigate to frontend folder, with package.json and .eslintrc.yml
     - cd ./Projekt/src/frontend
@@ -26,9 +10,6 @@ jslinting:
     - npm run lint
     
 testing:
-  stage: testing
-  image: 
-    name: node:6
   script:
      #Navigate to frontend folder, with package.json and .eslintrc.yml
     - cd ./Projekt/src/frontend
@@ -37,3 +18,11 @@ testing:
     - npm install jest jest-serializer-vue vue-jest vue-template-compiler babel-jest vue @vue/test-utils babel-preset-stage-2 babel-plugin-dynamic-import-node vuex
     - npm run unit
     
+validate_time_tracking:
+  image:
+    name: mribeiro/xmllint
+    entrypoint: [""]
+  script:
+    - xmllint --version
+    - sh validate-xml.sh
+  
