@@ -21,10 +21,9 @@ export default {
       query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {'
       // ?count=?oldcount+1
       uri = '(URI(CONCAT("thw:resource/",str(?count),">")))'
-    }
+    } else {
     // Wrapper for updating a document in quitStore
     // updating via deleting all data and adding new data to same URI
-    else {
       query += 'DELETE DATA { GRAPH <http://www.na17b.org/thw/> {'
       query += 'thw:resource/' + formdata.documentID + ' ?x ?y } }'
 

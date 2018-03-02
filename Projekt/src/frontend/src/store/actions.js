@@ -1,8 +1,9 @@
 import { quitstore } from '../api/QuitStoreAdapter'
-import sparqlHelper from '../helper/SparqlHelper'
+// import sparqlHelper from '../helper/SparqlHelper'
+import sparqlHelper from '../functions/sparql_query_write'
 
 export const addFormData = (context, formData) => {
-  // let insertQuery = sparqlHelper.formDataInsertQuery(formData)
+  let insertQuery = sparqlHelper.sendData(formData)
   let exQuery = `
   INSERT DATA {
     GRAPH <http://example.org/> {
@@ -11,8 +12,8 @@ export const addFormData = (context, formData) => {
     }
   }
   `
-  // console.log(insertQuery)
+  console.log(insertQuery)
   return new Promise((resolve, reject) => {
-    quitstore.sendData(exQuery).then(context.commit('saveTicket', formData))
+    quitstore.sendData(insertQuery).then(context.commit('saveTicket', formData))
   })
 }
