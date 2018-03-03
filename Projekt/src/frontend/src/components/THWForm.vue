@@ -526,6 +526,7 @@
 <script>
 
 import { mapMutations, mapGetters } from 'vuex'
+import store from '../store/state.js'
 
 export default {
 
@@ -534,7 +535,7 @@ export default {
   data: () => {
     return {
       formdata: {
-        typeTop: ['Funk', 'Telefon'],
+        typeTop: [],
         typeMiddle: [],
         priority: [],
         selectStation: [],
@@ -570,7 +571,7 @@ export default {
         timeIncomingB: '',
         hdzIncomingB: '',
         numberTB: '',
-        nameR: 'abc',
+        nameR: '',
         phone: '',
         address: '',
         message: '',
@@ -583,21 +584,33 @@ export default {
     }
   },
 
+  // fetches data to be loaded into the form depending on the query
+  // https://router.vuejs.org/en/advanced/navigation-guards.html
+  beforeRouteEnter (to, from, next) {
+    var id = to.query.id
+
+    // check if an id query was supplied
+    if (id === undefined) {
+      next(vm => {
+        // no id => load default values
+        vm.setDefaultData(vm.$options.data())
+      })
+    // load existing document if id is valid
+    // this is currently a placeholder and will later query the quitstore
+    } else if (store.ticketlist[id] !== undefined) {
+      next(vm => {
+        vm.setDefaultData({formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))})
+      })
+    // abort navigation if document does not exist
+    } else {
+      alert('document not found')
+      next(false)
+    }
+  },
+
   created () {
     document.addEventListener('focusin', this.focusIn)
     document.addEventListener('focusout', this.focusOut)
-
-    var formID = this.$route.query.id
-
-    if (formID === undefined) {
-      // load default formData
-      this.default = this.$options.data()
-    } else {
-      // load formData of specified document id
-      this.default = {formdata: JSON.parse(JSON.stringify(this.ticketlist[formID]))}
-    }
-
-    this.formReset()
   },
 
   beforeDestroy () {
@@ -616,6 +629,11 @@ export default {
     formReset: function () {
       // Deep copy to avoid overwriting
       this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata))
+    },
+
+    setDefaultData: function (value) {
+      this.default = value
+      this.formReset()
     },
 
     focusIn (event) {
