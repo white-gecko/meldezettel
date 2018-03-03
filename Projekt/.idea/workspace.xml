@@ -24,17 +24,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="THWForm.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="THWForm.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/frontend/src/components/THWForm.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
-              <caret line="546" column="21" lean-forward="true" selection-start-line="546" selection-start-column="21" selection-end-line="546" selection-end-column="21" />
+              <caret line="546" column="21" lean-forward="false" selection-start-line="546" selection-start-column="21" selection-end-line="546" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sparql_queries.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/frontend/src/sparql_help/sparql_queries.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>doc</find>
+      <find>formdata</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>doc</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/frontend/src/sparql_help/sparql_queries.js" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -101,6 +127,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Projekt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projekt" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sparql_help" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -138,12 +172,12 @@
       <option name="presentableId" value="Default" />
       <updated>1519937873401</updated>
       <workItem from="1519937879352" duration="556000" />
-      <workItem from="1519940965565" duration="284000" />
+      <workItem from="1519940965565" duration="1805000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="840000" />
+    <option name="totallyTimeSpent" value="2361000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="44" width="1303" height="780" extended-state="6" />
@@ -206,7 +240,15 @@
     <entry file="file://$PROJECT_DIR$/src/frontend/src/components/THWForm.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="546" column="21" lean-forward="true" selection-start-line="546" selection-start-column="21" selection-end-line="546" selection-end-column="21" />
+          <caret line="546" column="21" lean-forward="false" selection-start-line="546" selection-start-column="21" selection-end-line="546" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/frontend/src/sparql_help/sparql_queries.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
           <folding />
         </state>
       </provider>
