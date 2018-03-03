@@ -601,7 +601,9 @@ export default {
     // ...mapActions(["addFormData"]),
 
     addFormData: function() {
-      this.$store.dispatch('addFormData',this.formdata).then(this.$router.push('home'))
+      this.$store.dispatch('addFormData',this.formdata)
+      .then(this.$router.push('home'))
+      .catch(console.log("OOOPS"))
     },
 
     submit: function() {

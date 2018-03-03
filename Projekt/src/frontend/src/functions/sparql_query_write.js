@@ -1,6 +1,6 @@
 export default {
   // function which creates a SPARQL query based on given formdata object
-  sendData: function (formdata) {
+  formdataToInsertQuery: function (formdata) {
     // default prefixes + graph prefixes
     let query = 'PREFIX : <http://www.na17b.org/thw/> '
     query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#> '
@@ -12,18 +12,20 @@ export default {
 
     let uri = ''
 
-    // Wrapper for inserting a new document to quitStore
+    // Wrapper for inserting a new dokument to quitStore
     if (formdata.documentID < 100000) {
       // activeAIC = manual autoincrement => overwritten by this
       query += 'DELETE DATA { GRAPH <http://www.na17b.org/thw/> {'
       query += 'thw:resource/activeAIC thw:currentCount ?oldcount } }'
-
       query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {'
       // ?count=?oldcount+1
       uri = '(URI(CONCAT("thw:resource/",str(?count),">")))'
-    } else {
-    // Wrapper for updating a document in quitStore
-    // updating via deleting all data and adding new data to same URI
+    }
+    // Wrapper for updating a dokument in quitStore
+    // updating via deleting all data related to the URI
+    //and adding new data to same URI
+    else {
+
       query += 'DELETE DATA { GRAPH <http://www.na17b.org/thw/> {'
       query += 'thw:resource/' + formdata.documentID + ' ?x ?y } }'
 
@@ -32,9 +34,9 @@ export default {
       uri = 'thw:resource/' + formdata.documentID
     }
 
-    query += uri + 'rdf:type thw:document;'
+    query += uri + 'rdf:type thw:dokument;'
 
-    // top area on document
+    // top area on dokument
     query += 'thw:topPhone "' + formdata.typeTop[1] + '";'
     query += 'thw:topFax "' + formdata.typeTop[2] + '";'
     query += 'thw:topDFU "' + formdata.typeTop[3] + '";'
@@ -53,7 +55,7 @@ export default {
 
     query += 'thw:numberTB "' + formdata.numberTB + '";'
     query += 'thw:receiverName "' + formdata.nameR + '";'
-    // middle area on document
+    // middle area on dokument
     query += 'thw:midRadio "' + formdata.typeMiddle[0] + '";'
     query += 'thw:midPhone "' + formdata.typeMiddle[1] + '";'
     query += 'thw:midFax "' + formdata.typeMiddle[2] + '";'
@@ -71,7 +73,7 @@ export default {
     query += 'thw:identification "' + formdata.signature + '";'
     query += 'thw:role "' + formdata.position + '";'
     query += 'thw:sender "' + formdata.sender + '";'
-    // bottom area on document
+    // bottom area on dokument
     query += 'thw:docketTime "' + formdata.signatureTime + '";'
     query += 'thw:docketIdentification "' + formdata.signatureB + '";'
     query += 'thw:docketLeader "' + formdata.selectStation[0] + '";'
@@ -114,9 +116,10 @@ export default {
     }
 
     query += '} }'
+
     return query
   },
-  getData: function () {
+  allDocumentsQuery: function () {
     // default prefixes + graph prefixes
     let query = 'PREFIX : <http://www.na17b.org/thw/> '
     query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#> '
@@ -126,9 +129,9 @@ export default {
     query += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> '
     query += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> '
 
-    // selects all triples that are related to a document
-    query += 'SELECT * {GRAPH <http://www.na17b.org/thw/> {?document ?p ?o}'
-    query += 'WHERE {?document rdf:type thw:document.} }'
+    // selects all triples that are related to a dokument
+    query += 'SELECT * {GRAPH <http://www.na17b.org/thw/> {?dokument ?p ?o}'
+    query += 'WHERE {?dokument rdf:type thw:dokument.} }'
 
     return query
   }

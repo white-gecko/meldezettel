@@ -10,7 +10,7 @@ else
     cd $PWD/src/quitstore/
 fi
 
-if ! [[ -f "formdata.nq" ]] && ! [[ -f "formdata.nq.graph" ]]; then
+if ! [[ -f "formdata.nq" ]] && ! [[ -f "formdata.nq.graph" ]] && ! [[ -f unassigned.nq ]] ; then
     printf "\nRequired files could not been found. Initializing QuitStore from scratch\n\n"
 
     git init
@@ -24,7 +24,7 @@ if ! [[ -f "formdata.nq" ]] && ! [[ -f "formdata.nq.graph" ]]; then
 else
     printf "\nRequired Files have been found. Reinitializing QuitStore\n"
     docker stop quitstore
-    sudo rm -rf formdata.nq formdata.nq.graph .git
+    sudo rm -rf formdata.nq formdata.nq.graph unassigned.nq .git
 
     git init
     touch formdata.nq
