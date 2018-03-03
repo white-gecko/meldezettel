@@ -24,6 +24,7 @@ jslinting_and_testing:
     # Installing eslint and dependencies
     - npm install eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-vue babel-eslint
     - npm run lint
-       # Installing jest, vue-test-utils and dependencies
+    
+    # Installing jest, vue-test-utils and dependencies
     - npm install jest jest-serializer-vue vue-jest vue-template-compiler babel-jest vue @vue/test-utils babel-preset-stage-2 babel-plugin-dynamic-import-node vuex
     - npm run unit
