@@ -525,7 +525,7 @@
 
 <script>
 
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 import store from '../store/state.js'
 
 export default {
@@ -584,12 +584,11 @@ export default {
     }
   },
 
-  // fetches data to be loaded into the form depending on the query
+  // fetches data to be loaded into the form depending on the params
   // https://router.vuejs.org/en/advanced/navigation-guards.html
   beforeRouteEnter (to, from, next) {
-    var id = to.query.id
-
-    // check if an id query was supplied
+    var id = to.params.id
+    // check if an id param was supplied
     if (id === undefined) {
       next(vm => {
         // no id => load default values
@@ -601,6 +600,26 @@ export default {
       next(vm => {
         vm.setDefaultData({formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))})
       })
+    // abort navigation if document does not exist
+    } else {
+      alert('document not found')
+      next(false)
+    }
+  },
+
+  beforeRouteUpdate (to, from, next) {
+    console.log('test')
+    var id = to.params.id
+
+    // check if an id param was supplied
+    if (id === undefined) {
+      this.setDefaultData(this.$options.data())
+      next()
+    // load existing document if id is valid
+    // this is currently a placeholder and will later query the quitstore
+    } else if (store.ticketlist[id] !== undefined) {
+      this.setDefaultData({formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))})
+      next()
     // abort navigation if document does not exist
     } else {
       alert('document not found')
@@ -653,10 +672,6 @@ export default {
   },
 
   computed: {
-    ...mapGetters({
-      ticketlist: 'getAllTickets'
-    }),
-
     annahmeHeader: function () {
       return this.formdata.isAusgang ? 'Annahme' : 'Aufnahme'
     }
