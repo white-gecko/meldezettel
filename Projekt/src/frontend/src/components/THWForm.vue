@@ -516,7 +516,7 @@
       </el-col>
     </el-row>
 
-    <el-button @click="saveTicket(formdata)">Abschicken</el-button>
+    <el-button @click="submit()">Abschicken</el-button>
     <el-button @click="formReset()">Zurücksetzen</el-button>
 
   </el-form>
@@ -525,7 +525,6 @@
 
 <script>
 
-import { mapMutations } from 'vuex'
 import store from '../store/state.js'
 
 export default {
@@ -639,10 +638,8 @@ export default {
 
   methods: {
 
-    ...mapMutations(['saveTicket']),
-
     submit: function () {
-      console.log(this.formdata)
+      store.ticketlist.push(JSON.parse(JSON.stringify(this.$data.formdata)))
     },
 
     formReset: function () {
