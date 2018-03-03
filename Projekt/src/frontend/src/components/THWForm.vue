@@ -565,7 +565,7 @@ export default {
         isAusgang: false,
         dateIncomingA: '',
         timeIncomingA: '',
-        hdzIncomingA: '<autoFill>',
+        hdzIncomingA: 'autoFill',
         dateIncomingB: '',
         timeIncomingB: '',
         hdzIncomingB: '',
@@ -575,10 +575,13 @@ export default {
         address: '',
         message: '',
         createTime: '',
-        signature: '<autoFill>',
+        signature: 'autoFill',
         signatureB: '',
         signatureTime: '',
-        position: '<autoFill>'
+        position: 'autoFill',
+        sender: '',
+        annotations: ''
+
       }
     }
   },
