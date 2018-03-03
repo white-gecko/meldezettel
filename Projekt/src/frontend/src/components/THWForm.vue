@@ -583,8 +583,8 @@ export default {
     }
   },
 
-  // fetches data to be loaded into the form depending on the params
   // https://router.vuejs.org/en/advanced/navigation-guards.html
+  // fetches data to be loaded into the form depending on the params
   beforeRouteEnter (to, from, next) {
     var id = to.params.id
     // check if an id param was supplied
@@ -594,7 +594,6 @@ export default {
         vm.setDefaultData(vm.$options.data())
       })
     // load existing document if id is valid
-    // this is currently a placeholder and will later query the quitstore
     } else if (store.ticketlist[id] !== undefined) {
       next(vm => {
         vm.setDefaultData({formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))})
@@ -606,20 +605,15 @@ export default {
     }
   },
 
+  // same functionality as in beforeRouteEnter
   beforeRouteUpdate (to, from, next) {
-    console.log('test')
     var id = to.params.id
-
-    // check if an id param was supplied
     if (id === undefined) {
       this.setDefaultData(this.$options.data())
       next()
-    // load existing document if id is valid
-    // this is currently a placeholder and will later query the quitstore
     } else if (store.ticketlist[id] !== undefined) {
       this.setDefaultData({formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))})
       next()
-    // abort navigation if document does not exist
     } else {
       alert('document not found')
       next(false)
@@ -643,7 +637,6 @@ export default {
     },
 
     formReset: function () {
-      // Deep copy to avoid overwriting
       this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata))
     },
 
