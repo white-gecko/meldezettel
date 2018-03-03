@@ -587,19 +587,14 @@ export default {
     document.addEventListener('focusin', this.focusIn)
     document.addEventListener('focusout', this.focusOut)
 
-    // parse document id from GET query
-    var formID = Number(this.$route.query.id)
+    var formID = this.$route.query.id
 
-    // check if parsed id is integer
-    if (typeof formID === 'number' && formID % 1 === 0) {
-      // load formData of specified document id
-      // this.default = this.$options.data()
-      // this.default.formdata.message = 'This is a placeholder and will later query the Quitstore to retrieve document id <' + formID + '>'
-      console.log(this.ticketlist[formID])
-      this.default = {formdata: JSON.parse(JSON.stringify(this.ticketlist[formID]))}
-    } else {
+    if (formID === undefined) {
       // load default formData
       this.default = this.$options.data()
+    } else {
+      // load formData of specified document id
+      this.default = {formdata: JSON.parse(JSON.stringify(this.ticketlist[formID]))}
     }
 
     this.formReset()
