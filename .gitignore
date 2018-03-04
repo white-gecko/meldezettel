@@ -15,9 +15,6 @@
 
 .vscode/
 
-#ignore dolphin config-file
-.directory
-
 # Jekyll related
 _site
 .sass-cache
