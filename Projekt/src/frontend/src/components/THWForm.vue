@@ -215,7 +215,7 @@
     <el-row :gutter="15" type="flex">
       <el-col :span="6">
           <el-form-item>
-            <el-input placeholder="" v-model="formdata.phone">
+            <el-input placeholder="" v-model="formdata.phone" tabindex="1">
               <template slot="prepend">Ruf Nr.</template>
             </el-input>
           </el-form-item>
@@ -223,7 +223,7 @@
 
       <el-col :span="18">
           <el-form-item>
-            <el-input placeholder="" v-model="formdata.address">
+            <el-input placeholder="" v-model="formdata.address" tabindex="2">
               <template slot="prepend">Anschrift</template>
             </el-input>
           </el-form-item>
@@ -238,7 +238,8 @@
               :rows="3"
               placeholder="Inhalt"
               :autosize="{ minRows: 5, maxRows: 13 }"
-              v-model="formdata.message">
+              v-model="formdata.message"
+              tabindex="3">
             </el-input>
           </el-form-item>
       </el-col>
@@ -262,7 +263,7 @@
 
       <el-col :span="8">
           <el-form-item>
-            <el-input placeholder="" v-model="formdata.position">
+            <el-input placeholder="" v-model="formdata.position" tabindex="4">
               <template slot="prepend">Funktion</template>
             </el-input>
           </el-form-item>
@@ -272,7 +273,7 @@
     <el-row :gutter="15" type="flex">
       <el-col :span="24">
           <el-form-item>
-            <el-input placeholder="Einheit/Einrichtung/Stelle" v-model="formdata.sender">
+            <el-input placeholder="Einheit/Einrichtung/Stelle" v-model="formdata.sender" tabindex="5">
               <template slot="prepend">Absender</template>
             </el-input>
           </el-form-item>
