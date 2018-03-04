@@ -1,6 +1,5 @@
 import { quitstore } from '../api/QuitStoreAdapter'
-// import sparqlHelper from '../helper/SparqlHelper'
-import sparqlHelper from '../functions/sparql_query_write'
+import sparqlHelper from '../sparql_help/sparql_queries'
 
 export const addFormData = (context, formData) => {
   let insertQuery = sparqlHelper.formdataToInsertQuery(formData)
@@ -12,11 +11,7 @@ export const addFormData = (context, formData) => {
   //   }
   // }
   // `
-  console.log(insertQuery)
-  return new Promise((resolve, reject) => {
-    resolve(quitstore.sendData(insertQuery)
-      .then(() => {
-        context.commit('saveTicket', formData)
-      }))
-  })
+  return quitstore.sendData(insertQuery)
+    .then(() => console.log('yay'))
+  //  .then(context.commit('saveTicket', formData))
 }

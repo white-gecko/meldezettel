@@ -1,142 +1,131 @@
-export default{
+export default {
+  // function which creates a SPARQL query based on given doc object
 
+  formdataToInsertQuery: function (doc) {
+    // default prefixes + graph prefixes
+    let query = 'PREFIX : <http://www.na17b.org/thw/> '
+    query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#> '
+    query += 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> '
+    query += 'PREFIX thw: <http://www.na17b.org/thw/> '
+    query += 'PREFIX xml: <http://www.w3.org/XML/1998/namespace> '
+    query += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> '
+    query += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> '
 
+    let uri = ''
 
-// function which creates a SPARQL query based on given doc object
+    // Wrapper for inserting a new document to quitStore
+    if (doc.documentID < 100000) {
 
+      // activeAIC = manual autoincrement => overwritten by this
+      query += 'DELETE DATA { GRAPH <http://www.na17b.org/thw/> {'
+      query += 'thw:resource/activeAIC thw:currentCount ?oldcount } }'
 
-formdataToInsertQuery : function(doc){
+      query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {'
+      // ?count=?oldcount+1
+      uri = '(URI(CONCAT("thw:resource/",str(?count),">")))'
+    }
 
+    // Wrapper for updating a document in quitStore
+    // updating via deleting all data related to the URI
+    //and adding new data to same URI
+    else {
+      query += 'DELETE DATA { GRAPH <http://www.na17b.org/thw/> {'
+      query += 'thw:resource/' + doc.documentID + ' ?x ?y } }'
 
-	// default prefixes + graph prefixes
-	let query    = 'PREFIX : <http://www.na17b.org/thw/> '
-	query       += 'PREFIX owl: <http://www.w3.org/2002/07/owl#> '
-	query       += 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> '
-	query       += 'PREFIX thw: <http://www.na17b.org/thw/> '
-	query       += 'PREFIX xml: <http://www.w3.org/XML/1998/namespace> '
-	query       += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> '
-	query       += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> '
+      query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {'
 
-	let uri=''
+      uri = 'thw:resource/' + doc.documentID
+    }
 
-	// Wrapper for inserting a new document to quitStore
-	if(doc.documentID<100000){
+    query += uri + 'rdf:type thw:document;'
 
-		// activeAIC = manual autoincrement => overwritten by this
-		query += 'DELETE DATA { GRAPH <http://www.na17b.org/thw/> {'
-		query += 'thw:resource/activeAIC thw:currentCount ?oldcount } }'
+    // top area on document
+    query += 'thw:topPhone "' + doc.typeTop[1] + '";'
+    query += 'thw:topFax "' + doc.typeTop[2] + '";'
+    query += 'thw:topDFU "' + doc.typeTop[3] + '";'
+    query += 'thw:topCourier "' + doc.typeTop[4] + '";'
+    query += 'thw:outgoing "' + doc.isAusgang + '";'
+    query += 'thw:primaryDate "' + doc.dateIncomingA + '";'
+    query += 'thw:primaryTime "' + doc.timeIncomingA + '";'
+    query += 'thw:primaryHdZ "' + doc.hdzIncomingA + '";'
 
-		query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {'
-		// ?count=?oldcount+1
-		uri    = '(URI(CONCAT("thw:resource/",str(?count),">")))'
-	}
+    // toggle on "Ausgehend" => 2 date,time,hdz inputs
+    if (doc.isAusgang) {
+      query += 'thw:secondaryDate "' + doc.dateIncomingB + '";'
+      query += 'thw:secondaryTime "' + doc.timeIncomingB + '";'
+      query += 'thw:secondaryHdZ "' + doc.hdzIncomingB + '";'
+    }
 
-	// Wrapper for updating a document in quitStore
- 	// updating via deleting all data related to the URI
- 	//and adding new data to same URI
-	else{
-	  query += 'DELETE DATA { GRAPH <http://www.na17b.org/thw/> {'
-		query += 'thw:resource/'+doc.documentID+' ?x ?y } }'
+    query += 'thw:numberTB "' + doc.numberTB + '";'
+    query += 'thw:receiverName "' + doc.nameR + '";'
+    // middle area on document
+    query += 'thw:midRadio "' + doc.typeMiddle[0] + '";'
+    query += 'thw:midPhone "' + doc.typeMiddle[1] + '";'
+    query += 'thw:midFax "' + doc.typeMiddle[2] + '";'
+    query += 'thw:midDFU "' + doc.typeMiddle[3] + '";'
+    query += 'thw:midCourier "' + doc.typeMiddle[4] + '";'
+    query += 'thw:announcement "' + doc.typeCall[0] + '";'
+    query += 'thw:message "' + doc.typeCall[1] + '";'
+    query += 'thw:instant "' + doc.priority[0] + '";'
+    query += 'thw:flash "' + doc.priority[1] + '";'
+    query += 'thw:talkNote "' + doc.gNote + '";'
+    query += 'thw:callNumber "' + doc.phone + '";'
+    query += 'thw:adress "' + doc.adress + '";'
+    query += 'thw:content "' + doc.message + '";'
+    query += 'thw:createTime "' + doc.createTime + '";'
+    query += 'thw:identification "' + doc.signature + '";'
+    query += 'thw:role "' + doc.position + '";'
+    query += 'thw:sender "' + doc.sender + '";'
+    // bottom area on document
+    query += 'thw:docketTime "' + doc.signatureTime + '";'
+    query += 'thw:docketIdentification "' + doc.signatureB + '";'
+    query += 'thw:docketLeader "' + doc.selectStation[0] + '";'
+    query += 'thw:docketS1 "' + doc.selectStation[1] + '";'
+    query += 'thw:docketS2 "' + doc.selectStation[2] + '";'
+    query += 'thw:docketS3 "' + doc.selectStation[3] + '";'
+    query += 'thw:docketS4 "' + doc.selectStation[4] + '";'
+    query += 'thw:docketS6 "' + doc.selectStation[5] + '";'
+    query += 'thw:advisorTickA "' + doc.advisorAchecked + '";'
+    query += 'thw:advisorA "' + doc.advisorA + '";'
+    query += 'thw:advisorTickB "' + doc.advisorBchecked + '";'
+    query += 'thw:advisorB "' + doc.advisorB + '";'
+    query += 'thw:advisorTickC "' + doc.advisorCchecked + '";'
+    query += 'thw:advisorC "' + doc.advisorC + '";'
+    query += 'thw:advisorTickD "' + doc.advisorDchecked + '";'
+    query += 'thw:advisorD "' + doc.advisorD + '";'
+    query += 'thw:advisorTickE "' + doc.advisorEchecked + '";'
+    query += 'thw:advisorE "' + doc.advisorE + '";'
+    query += 'thw:connectionTickA "' + doc.verbAchecked + '";'
+    query += 'thw:connectionA "' + doc.verbA + '";'
+    query += 'thw:connectionTickB "' + doc.verbBchecked + '";'
+    query += 'thw:connectionB "' + doc.verbB + '";'
+    query += 'thw:connectionTickC "' + doc.verbCchecked + '";'
+    query += 'thw:connectionC "' + doc.verbC + '";'
+    query += 'thw:connectionTickD "' + doc.verbDchecked + '";'
+    query += 'thw:connectionD "' + doc.verbD + '";'
+    query += 'thw:connectionTickE "' + doc.verbEchecked + '";'
+    query += 'thw:connectionE "' + doc.verbE + '";'
+    query += 'thw:annotations "' + doc.annotations + '".'
 
-		query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {'
+    // handling the manual autoincrement
+    if (doc.documentID < 100000) {
+      query += 'thw:resource/activeAIC thw:currentCount ?count.} }'
 
-		uri    = 'thw:resource/'+doc.documentID
-	}
+      // receive highest used URI suffix from autoincrement element
+      query += 'WHERE{ GRAPH <http://www.na17b.org/thw/> {'
+      query += 'thw:resource/activeAIC thw:currentCount ?oldcount.'
+      // assign ?oldcount+1 to ?count
+      query += 'BIND((?oldcount+1) AS ?count)'
+    }
 
-		query += uri + 'rdf:type thw:document;'
-
-		// top area on document
-			query += 'thw:topPhone "'             +	doc.typeTop[1] +'";'
-      query += 'thw:topFax "'               +	doc.typeTop[2] +'";'
-      query += 'thw:topDFU "'               + doc.typeTop[3] +'";'
-			query += 'thw:topCourier "'           +	doc.typeTop[4] +'";'
-			query += 'thw:outgoing "'             +	doc.isAusgang +'";'
-			query += 'thw:primaryDate "'          +	doc.dateIncomingA +'";'
-			query += 'thw:primaryTime "'          +	doc.timeIncomingA +'";'
-			query += 'thw:primaryHdZ "'           +	doc.hdzIncomingA +'";'
-
-		// toggle on "Ausgehend" => 2 date,time,hdz inputs
-		if(doc.isAusgang){
-			query += 'thw:secondaryDate "'        + doc.dateIncomingB +'";'
-			query += 'thw:secondaryTime "'        + doc.timeIncomingB +'";'
-			query += 'thw:secondaryHdZ "'         + doc.hdzIncomingB +'";'
-		}
-
-			query += 'thw:numberTB "'             +	doc.numberTB +'";'
-			query += 'thw:receiverName "'         +	doc.nameR +'";'
-		// middle area on document
-			query += 'thw:midRadio "'             + doc.typeMiddle[0] +'";'
-			query += 'thw:midPhone "'             +	doc.typeMiddle[1] +'";'
-			query += 'thw:midFax "'               +	doc.typeMiddle[2] +'";'
-			query += 'thw:midDFU "'               + doc.typeMiddle[3] +'";'
-			query += 'thw:midCourier "'           + doc.typeMiddle[4] +'";'
-			query += 'thw:announcement "'         + doc.typeCall[0] +'";'
-			query += 'thw:message "'              + doc.typeCall[1] +'";'
-			query += 'thw:instant "'              + doc.priority[0] +'";'
-			query += 'thw:flash "'                +	doc.priority[1] +'";'
-			query += 'thw:talkNote "'             +	doc.gNote +'";'
-			query += 'thw:callNumber "'           + doc.phone +'";'
-			query += 'thw:adress "'               + doc.adress +'";'
-			query += 'thw:content "'              + doc.message +'";'
-			query += 'thw:createTime "'           + doc.createTime +'";'
-			query += 'thw:identification "'       + doc.signature +'";'
-			query += 'thw:role "'                 +	doc.position +'";'
-			query += 'thw:sender "'               +	doc.sender +'";'
-		// bottom area on document
-			query += 'thw:docketTime "'           +	doc.signatureTime +'";'
-			query += 'thw:docketIdentification "' + doc.signatureB +'";'
-			query += 'thw:docketLeader "'         + doc.selectStation[0] +'";'
-			query += 'thw:docketS1 "'             + doc.selectStation[1] +'";'
-			query += 'thw:docketS2 "'             + doc.selectStation[2] +'";'
-			query += 'thw:docketS3 "'             + doc.selectStation[3] +'";'
-			query += 'thw:docketS4 "'             +	doc.selectStation[4] +'";'
-			query += 'thw:docketS6 "'             + doc.selectStation[5] +'";'
-			query += 'thw:advisorTickA "'         +	doc.advisorAchecked +'";'
-			query += 'thw:advisorA "'             +	doc.advisorA +'";'
-			query += 'thw:advisorTickB "'         +	doc.advisorBchecked +'";'
-			query += 'thw:advisorB "'             +	doc.advisorB +'";'
-			query += 'thw:advisorTickC "'         + doc.advisorCchecked +'";'
-			query += 'thw:advisorC "'             +	doc.advisorC +'";'
-			query += 'thw:advisorTickD "'         + doc.advisorDchecked +'";'
-			query += 'thw:advisorD "'             +	doc.advisorD +'";'
-			query += 'thw:advisorTickE "'         +	doc.advisorEchecked +'";'
-			query += 'thw:advisorE "'             +	doc.advisorE +'";'
-			query += 'thw:connectionTickA "'      + doc.verbAchecked +'";'
-			query += 'thw:connectionA "'          +	doc.verbA +'";'
-			query += 'thw:connectionTickB "'      + doc.verbBchecked +'";'
-			query += 'thw:connectionB "'          +	doc.verbB +'";'
-			query += 'thw:connectionTickC "'      + doc.verbCchecked +'";'
-			query += 'thw:connectionC "'          + doc.verbC +'";'
-			query += 'thw:connectionTickD "'      + doc.verbDchecked +'";'
-			query += 'thw:connectionD "'          + doc.verbD +'";'
-			query += 'thw:connectionTickE "'      + doc.verbEchecked +'";'
-			query += 'thw:connectionE "'          +	doc.verbE +'";'
-			query += 'thw:annotations "'          +	doc.annotations +'".'
-
-	// handling the manual autoincrement
-	if(doc.documentID<100000){
-
-		query += 'thw:resource/activeAIC thw:currentCount ?count.} }'
-
-	// receive highest used URI suffix from autoincrement element
-		query += 'WHERE{ GRAPH <http://www.na17b.org/thw/> {'
-		query += 'thw:resource/activeAIC thw:currentCount ?oldcount.'
-	// assign ?oldcount+1 to ?count
-		query += 'BIND((?oldcount+1) AS ?count)'
-	}
-
-		query += '} }'
-
+    query += '} }'
 
     return query
-}
-,
+  },
 
-allDocumentsQuery : function(){
-
-
+  allDocumentsQuery: function () {
     // default prefixes + graph prefixes
-    let query =  'PREFIX id: <http://www.na17b.org/thw/resource/> '
+    let query = 'PREFIX id: <http://www.na17b.org/thw/resource/> '
     query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#> '
     query += 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>'
     query += 'PREFIX thw: <http://www.na17b.org/thw/>'
@@ -227,6 +216,5 @@ allDocumentsQuery : function(){
     query += 'thw:annotations ?annotations.'
     query += '}'
     return query
-}
-
+  }
 }

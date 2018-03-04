@@ -564,24 +564,24 @@ export default {
 
         gNote: false,
         isAusgang: false,
-        dateIncomingA: '',
-        timeIncomingA: '',
-        hdzIncomingA: '',
-        dateIncomingB: '',
-        timeIncomingB: '',
-        hdzIncomingB: '',
-        numberTB: '',
-        nameR: '',
-        phone: '',
-        adress: '',
-        message: '',
-        createTime: '',
-        signature: '',
-        signatureB: '',
-        signatureTime: '',
-        position: '',
-        sender: '',
-        annotations: ''
+        dateIncomingA: "",
+        timeIncomingA: "",
+        hdzIncomingA: "",
+        dateIncomingB: "",
+        timeIncomingB: "",
+        hdzIncomingB: "",
+        numberTB: "",
+        nameR: "",
+        phone: "",
+        adress: "",
+        message: "",
+        createTime: "",
+        signature: "",
+        signatureB: "",
+        signatureTime: "",
+        position: "",
+        sender: "",
+        annotations: ""
       }
     };
   },
@@ -598,16 +598,16 @@ export default {
 
   methods: {
     ...mapMutations(["saveTicket"]),
-    // ...mapActions(["addFormData"]),
 
     addFormData: function() {
-      this.$store.dispatch('addFormData',this.formdata)
-      .then(this.$router.push('home'))
-      .catch(console.log("OOOPS"))
+      this.$store
+        .dispatch("addFormData", this.formdata)
+        .then(() => this.$router.push("home"))
+        .catch((error) => alert(error))
     },
 
     submit: function() {
-      console.log(this.formdata)
+      console.log(this.formdata);
     },
 
     formReset: function() {
@@ -616,14 +616,14 @@ export default {
 
     focusIn(event) {
       const el = event.target;
-      if (el.type === 'text' || el.type === 'textarea') {
+      if (el.type === "text" || el.type === "textarea") {
         el.classList.add("highlighted");
       }
     },
 
     focusOut(event) {
       const el = event.target;
-      if (el.type === 'text' || el.type === 'textarea') {
+      if (el.type === "text" || el.type === "textarea") {
         el.classList.remove("highlighted");
       }
     }
@@ -631,7 +631,7 @@ export default {
 
   computed: {
     annahmeHeader: function() {
-      return this.formdata.isAusgang ? 'Annahme' : 'Aufnahme'
+      return this.formdata.isAusgang ? "Annahme" : "Aufnahme";
     }
   }
 };

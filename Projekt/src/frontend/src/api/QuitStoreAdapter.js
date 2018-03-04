@@ -1,9 +1,14 @@
 import axios from 'axios'
 
 export const quitstore = {
-  url: 'http://127.0.0.1:8080/sparql',
+  url: 'http://127.0.0.1',
+  path: '/sparql',
+  portMap: {
+    docker: ':8080',
+    native: ':5000'
+  },
   getData: function (sparqlQuery) {
-    return axios.get(this.url, {
+    return axios.get(this.url + this.portMap.native + this.path, {
       params: { query: sparqlQuery },
       headers: { Accept: 'application/sparql-results+json' }
     })
@@ -11,7 +16,7 @@ export const quitstore = {
   sendData: function (sparqlQuery) {
     return axios.request({
       method: 'post',
-      url: this.url,
+      url: this.url + this.portMap.native + this.path,
       data: 'query=' + sparqlQuery
     })
   }

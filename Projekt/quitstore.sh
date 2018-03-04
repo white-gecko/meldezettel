@@ -19,7 +19,7 @@ if ! [[ -f "formdata.nq" ]] && ! [[ -f "formdata.nq.graph" ]] && ! [[ -f unassig
     printf "<http://www.na17b.org/thw/>" > formdata.nq.graph
     git add -A
     git commit -m "init repository"
-    docker run --name quitstore -d --rm -p 8080:80 -v $PWD:/data aksw/quitstore
+    docker run --name quitstore -d --rm -p 5000:80 -v $PWD:/data aksw/quitstore
 
 else
     printf "\nRequired Files have been found. Reinitializing QuitStore\n"
@@ -32,7 +32,7 @@ else
     printf "<http://www.na17b.org/thw/>" > formdata.nq.graph
     git add -A
     git commit -m "init repository"
-    docker run --name quitstore -d --rm -p 8080:80 -v $PWD:/data aksw/quitstore
+    docker run --name quitstore -d --rm -p 5000:80 -v $PWD:/data aksw/quitstore
 fi
 # Do initial insert
 cd '../../'
