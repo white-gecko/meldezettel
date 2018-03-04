@@ -517,7 +517,7 @@
       </el-col>
     </el-row>
 
-    <el-button @click="saveTicket(formdata); notifySuccess('Abgeschickt')" tabindex="6">Abschicken</el-button>
+    <el-button @click="submit(); notifySuccess('Abgeschickt')" tabindex="6">Abschicken</el-button>
     <el-button @click="formReset(); notifySuccess('Formular zurückgesetzt')">Zurücksetzen</el-button>
 
   </el-form>
@@ -526,6 +526,7 @@
 
 <script>
 
+import store from '../store/state.js'
 import { Notification } from 'element-ui'
 import { mapMutations } from 'vuex'
 
@@ -587,9 +588,47 @@ export default {
     }
   },
 
+  // https://router.vuejs.org/en/advanced/navigation-guards.html
+  // fetches data to be loaded into the form depending on the params
+  beforeRouteEnter (to, from, next) {
+    var id = to.params.id
+    // check if an id param was supplied
+    if (id === undefined) {
+      next(vm => {
+        // no id => load default values
+        vm.setDefaultData(vm.$options.data())
+      })
+    // load existing document if id is valid
+    } else if (store.ticketlist[id] !== undefined) {
+      next(vm => {
+        vm.setDefaultData({formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))})
+      })
+    // abort navigation if document does not exist
+    } else {
+      alert('document not found')
+      next(false)
+    }
+  },
+
+  // same functionality as in beforeRouteEnter
+  beforeRouteUpdate (to, from, next) {
+    var id = to.params.id
+    if (id === undefined) {
+      this.setDefaultData(this.$options.data())
+      next()
+    } else if (store.ticketlist[id] !== undefined) {
+      this.setDefaultData({formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))})
+      next()
+    } else {
+      alert('document not found')
+      next(false)
+    }
+  },
+
   created () {
     document.addEventListener('focusin', this.focusIn)
     document.addEventListener('focusout', this.focusOut)
+    console.log(this)
   },
 
   beforeDestroy () {
@@ -608,11 +647,16 @@ export default {
     },
 
     submit: function () {
-      console.log(this.formdata)
+      store.ticketlist.push(JSON.parse(JSON.stringify(this.$data.formdata)))
     },
 
     formReset: function () {
-      Object.assign(this.$data, this.$options.data())
+      this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata))
+    },
+
+    setDefaultData: function (value) {
+      this.default = value
+      this.formReset()
     },
 
     focusIn (event) {
