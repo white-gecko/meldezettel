@@ -1,6 +1,6 @@
 /*
 import /Projekt/src/frontend/src/examples/module.js
-@ already substitutes for /Projekt/src/frontend/src/ and fileending are not necessary
+@ already substitutes for /Projekt/src/frontend/src/ and fileendings are not necessary
 */
 import module from '@/examples/module'
 
