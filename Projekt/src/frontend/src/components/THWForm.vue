@@ -623,6 +623,7 @@ export default {
   created () {
     document.addEventListener('focusin', this.focusIn)
     document.addEventListener('focusout', this.focusOut)
+    console.log(this)
   },
 
   beforeDestroy () {
@@ -633,7 +634,13 @@ export default {
   methods: {
 
     submit: function () {
-      store.ticketlist.push(JSON.parse(JSON.stringify(this.$data.formdata)))
+      var id = this.$route.params.id
+
+      if (id === undefined) {
+        store.ticketlist.push(JSON.parse(JSON.stringify(this.$data.formdata)))
+      } else {
+        store.ticketlist[id] = JSON.parse(JSON.stringify(this.$data.formdata))
+      }
     },
 
     formReset: function () {
