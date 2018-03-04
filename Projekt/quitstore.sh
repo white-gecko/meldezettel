@@ -35,4 +35,4 @@ else
     docker run --name quitstore -d --rm -p 5000:80 -v $PWD:/data aksw/quitstore
 fi
 
-printf "\nQuitStore can now be accessed at localhost:8080"
+printf "\nQuitStore can now be accessed at localhost:5000"
