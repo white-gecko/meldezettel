@@ -40,26 +40,22 @@ export default{
     }
     if (doc.typeTop.includes('Telefon')) {
         query += 'thw:topPhone "true";'
-    }
-    else {
+    } else {
         query += 'thw:topPhone "false";'
     }
     if (doc.typeTop.includes('Telefax')) {
         query += 'thw:topFax "true";'
-    }
-    else {
+    } else {
         query += 'thw:topFax "false";'
     }
     if (doc.typeTop.includes('DFÜ')) {
         query += 'thw:topDFU "true";'
-    }
-    else {
+    } else {
         query += 'thw:topDFU "false";'
     }
     if (doc.typeTop.includes('Kurier/Melder')) {
         query += 'thw:topCourier "true";'
-    }
-    else {
+    } else {
         query += 'thw:topCourier "false";'
     }
     query += 'thw:outgoing "' +	doc.isAusgang + '";'
@@ -78,58 +74,49 @@ export default{
     // middle area on document
     if (doc.typeMiddle.includes('Funk')) {
         query += 'thw:midRadio "true";'
-    }
-    else {
+    } else {
         query += 'thw:midRadio "false";'
     }
     if (doc.typeMiddle.includes('Telefon')) {
         query += 'thw:midPhone "true";'
-    }
-    else {
+    } else {
         query += 'thw:midPhone "false";'
     }
     if (doc.typeMiddle.includes('Telefax')) {
         query += 'thw:midFax "true";'
-    }
-    else {
+    } else {
         query += 'thw:midFax "false";'
     }
     if (doc.typeMiddle.includes('DFÜ')) {
         query += 'thw:midDFU "true";'
-    }
-    else {
+    } else {
         query += 'thw:midDFU "false";'
     }
     if (doc.typeMiddle.includes('Kurier/Melder')) {
         query += 'thw:midCourier "true";'
-    }
-    else {
+    } else {
         query += 'thw:midCourier "false";'
     }
 
     if (doc.typeCall.includes('DURCHSAGE')) {
         query += 'thw:announcement "true";'
-    }
-    else {
+    } else {
         query += 'thw:announcement "false";'
     }
     if (doc.typeCall.includes('Spruch')) {
         query += 'thw:message "true";'
-    }
-    else {
+    } else {
         query += 'thw:message "false";'
     }
 
     if (doc.priority.includes('Sofort')) {
         query += 'thw:instant "true";'
-    }
-    else {
+    } else {
         query += 'thw:instant "false";'
     }
     if (doc.priority.includes('Blitz')) {
         query += 'thw:flash' + '"true";'
-    }
-    else {
+    } else {
         query += 'thw:flash "false";'
     }
     query += 'thw:talkNote "' +	doc.gNote + '";'
@@ -144,39 +131,33 @@ export default{
     query += 'thw:docketTime "' + doc.signatureTime + '";'
     if (doc.selectStation.includes('Leiter')) {
         query += 'thw:docketLeader "true";'
-    }
-    else {
+    } else {
         query += 'thw:docketLeader "false";'
     }
     if (doc.selectStation.includes('S1')) {
         query += 'thw:docketS1 "true";'
-    }
-    else {
+    } else {
         query += 'thw:docketS1 "false";'
     }
     if (doc.selectStation.includes('S2')) {
         query += 'thw:docketS2 "true";'
-    }
-    else {
+    } else {
         query += 'thw:docketS2 "false";'
     }
     if (doc.selectStation.includes('S3')) {
         query += 'thw:docketS3 "true";'
-    }
-    else {
+    } else {
         query += 'thw:docketS3 "false";'
     }
     if (doc.selectStation.includes('S4')) {
         query += 'thw:docketS4 "true";'
-    }
-    else {
+    } else {
         query += 'thw:docketS4 "false";'
     }
     
     if (doc.selectStation.includes('S6')) {
         query += 'thw:docketS6 "true";'
-    }
-    else {
+    } else {
         query += 'thw:docketS6 "false";'
     }
     query += 'thw:docketIdentification "' + doc.signatureB + '";'
