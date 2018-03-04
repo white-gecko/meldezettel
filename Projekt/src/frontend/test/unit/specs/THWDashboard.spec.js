@@ -8,11 +8,10 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('THWDashboard', () => {
-
   let wrapper
 
   beforeEach(() => {
-    wrapper = shallow(THWDashboard, { store } )
+    wrapper = shallow(THWDashboard, { store })
   })
 
   it('displays the author', () => {
@@ -30,5 +29,4 @@ describe('THWDashboard', () => {
   it('displays the content of a ticket', () => {
     expect(wrapper.html()).toContain('prop="message"')
   })
-
 })

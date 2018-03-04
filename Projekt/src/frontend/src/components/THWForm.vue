@@ -516,7 +516,7 @@
       </el-col>
     </el-row>
 
-    <el-button @click="addFormData(formdata)">Abschicken</el-button>
+    <el-button @click="saveTicket(formdata)">Abschicken</el-button>
     <el-button @click="formReset()">Zurücksetzen</el-button>
 
   </el-form>
