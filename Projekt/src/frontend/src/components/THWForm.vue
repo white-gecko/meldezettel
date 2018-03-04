@@ -517,8 +517,8 @@
       </el-col>
     </el-row>
 
-    <el-button @click="saveTicket(formdata)" tabindex="6">Abschicken</el-button>
-    <el-button @click="formReset()">Zurücksetzen</el-button>
+    <el-button @click="saveTicket(formdata); notifySuccess('Abgeschickt')" tabindex="6">Abschicken</el-button>
+    <el-button @click="formReset(); notifySuccess('Formular zurückgesetzt')">Zurücksetzen</el-button>
 
   </el-form>
 </div>
@@ -527,6 +527,7 @@
 <script>
 
 import { mapMutations } from 'vuex'
+import { Notification } from 'element-ui'
 
 export default {
 
@@ -621,8 +622,17 @@ export default {
       if (el.type === 'text' || el.type === 'textarea') {
         el.classList.remove('highlighted')
       }
-    }
+    },
 
+    notifySuccess (message) {
+      Notification({
+        title: message,
+        duration: 1200,
+        type: 'success',
+        offset: 120,
+        showClose: false
+      })
+    }
   },
 
   computed: {
