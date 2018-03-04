@@ -8,7 +8,7 @@ import { mount } from '@vue/test-utils'
  * import /Projekt/src/frontend/src/examples/counter.js
  * @ already substitutes for /Projekt/src/frontend/src/ and fileendings are not necessary
 */
-import Counter from '@/examples/counter.js'
+import Counter from '@/test-examples/counter.js'
 
 /*
  * describing test for Counter:

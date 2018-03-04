@@ -2,7 +2,7 @@
 import /Projekt/src/frontend/src/examples/module.js
 @ already substitutes for /Projekt/src/frontend/src/ and fileendings are not necessary
 */
-import module from '@/examples/module'
+import module from '@/test-examples/module'
 
 /*
 testing a function by:
