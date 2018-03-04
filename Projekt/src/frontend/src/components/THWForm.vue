@@ -92,7 +92,7 @@
       <el-col :span="7">
           <div class="grid-content">
             <el-form-item>
-              <el-date-picker v-model="formdata.dateIncomingA" type="date" placeholder="Datum auswählen">
+              <el-date-picker v-model="formdata.dateIncomingB" type="date" placeholder="Datum auswählen">
               </el-date-picker>
             </el-form-item>
           </div>
@@ -101,7 +101,7 @@
       <el-col :span="7">
           <div class="grid-content">
             <el-form-item>
-              <el-time-picker v-model="formdata.timeIncomingA" placeholder="Uhrzeit auswählen">
+              <el-time-picker v-model="formdata.timeIncomingB" placeholder="Uhrzeit auswählen">
               </el-time-picker>
             </el-form-item>
           </div>
@@ -110,7 +110,7 @@
       <el-col :span="6">
         <div class="grid-content">
           <el-form-item>
-            <el-input v-model="formdata.hdzIncomingA">
+            <el-input v-model="formdata.hdzIncomingB">
               <template slot="prepend">
                 <span>Hdz</span>
               </template>
@@ -333,7 +333,7 @@
     <el-col :span= 8>
       <el-form-item>
         <div class="grid-content bg-purple labelbox has-margin">
-          <span>Verb stellen</span>
+          <span>Verb. stellen</span>
         </div>
       </el-form-item>
     </el-col>
@@ -508,7 +508,7 @@
     <el-row>
       <el-col :span="24">
         <el-form-item>
-          <el-input>
+          <el-input v-model="formdata.annotations">
             <template slot="prepend">
               <span>Vermerke</span>
             </template>
@@ -526,12 +526,11 @@
 
 <script>
 
-import { mapMutations } from 'vuex'
 import { Notification } from 'element-ui'
+import { mapMutations, mapActions } from "vuex";
 
 export default {
-
-  name: 'THWForm',
+  name: "THWForm",
 
   data: () => {
     return {
@@ -541,22 +540,22 @@ export default {
         priority: [],
         selectStation: [],
 
-        advisorA: '',
-        advisorB: '',
-        advisorC: '',
-        advisorD: '',
-        advisorE: '',
+        advisorA: "",
+        advisorB: "",
+        advisorC: "",
+        advisorD: "",
+        advisorE: "",
         advisorAchecked: false,
         advisorBchecked: false,
         advisorCchecked: false,
         advisorDchecked: false,
         advisorEchecked: false,
 
-        verbA: '',
-        verbB: '',
-        verbC: '',
-        verbD: '',
-        verbE: '',
+        verbA: "",
+        verbB: "",
+        verbC: "",
+        verbD: "",
+        verbE: "",
         verbAchecked: false,
         verbBchecked: false,
         verbCchecked: false,
@@ -585,42 +584,48 @@ export default {
         annotations: ''
 
       }
-    }
+    };
   },
 
-  created () {
-    document.addEventListener('focusin', this.focusIn)
-    document.addEventListener('focusout', this.focusOut)
+  created() {
+    document.addEventListener("focusin", this.focusIn);
+    document.addEventListener("focusout", this.focusOut);
   },
 
-  beforeDestroy () {
-    document.removeEventListener('focusin', this.focusIn)
-    document.removeEventListener('focusout', this.focusOut)
+  beforeDestroy() {
+    document.removeEventListener("focusin", this.focusIn);
+    document.removeEventListener("focusout", this.focusOut);
   },
 
   methods: {
+    ...mapMutations(["saveTicket"]),
 
-    ...mapMutations(['saveTicket']),
-
-    submit: function () {
-      console.log(this.formdata)
+    addFormData: function() {
+      this.$store
+        .dispatch("addFormData", this.formdata)
+        .then(() => this.$router.push("home"))
+        .catch((error) => alert(error))
     },
 
-    formReset: function () {
-      Object.assign(this.$data, this.$options.data())
+    submit: function() {
+      console.log(this.formdata);
     },
 
-    focusIn (event) {
-      const el = event.target
-      if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.add('highlighted')
+    formReset: function() {
+      Object.assign(this.$data, this.$options.data());
+    },
+
+    focusIn(event) {
+      const el = event.target;
+      if (el.type === "text" || el.type === "textarea") {
+        el.classList.add("highlighted");
       }
     },
 
-    focusOut (event) {
-      const el = event.target
-      if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.remove('highlighted')
+    focusOut(event) {
+      const el = event.target;
+      if (el.type === "text" || el.type === "textarea") {
+        el.classList.remove("highlighted");
       }
     },
 
@@ -636,21 +641,17 @@ export default {
   },
 
   computed: {
-
-    annahmeHeader: function () {
-      return this.formdata.isAusgang ? 'Annahme' : 'Aufnahme'
+    annahmeHeader: function() {
+      return this.formdata.isAusgang ? "Annahme" : "Aufnahme";
     }
-
   }
-
-}
-
+};
 </script>
 
 <style>
 .el-row {
   margin-bottom: 15px;
-  margin-top: 15px
+  margin-top: 15px;
 }
 .el-col {
   border-radius: 4px;
