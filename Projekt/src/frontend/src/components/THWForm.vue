@@ -517,8 +517,8 @@
       </el-col>
     </el-row>
 
-    <el-button @click="submit()" tabindex="6">Abschicken</el-button>
-    <el-button @click="formReset()">Zurücksetzen</el-button>
+    <el-button @click="submit(); notifySuccess('Abgeschickt')" tabindex="6">Abschicken</el-button>
+    <el-button @click="formReset(); notifySuccess('Formular zurückgesetzt')">Zurücksetzen</el-button>
 
   </el-form>
 </div>
@@ -527,6 +527,7 @@
 <script>
 
 import store from '../store/state.js'
+import { Notification } from 'element-ui'
 
 export default {
 
@@ -535,8 +536,8 @@ export default {
   data: () => {
     return {
       formdata: {
-        typeTop: [],
-        typeMiddle: [],
+        typeTop: ['Funk'],
+        typeMiddle: ['Funk'],
         priority: [],
         selectStation: [],
 
@@ -579,7 +580,10 @@ export default {
         signature: '',
         signatureB: '',
         signatureTime: '',
-        position: ''
+        position: '',
+        sender: '',
+        annotations: ''
+
       }
     }
   },
@@ -658,8 +662,17 @@ export default {
       if (el.type === 'text' || el.type === 'textarea') {
         el.classList.remove('highlighted')
       }
-    }
+    },
 
+    notifySuccess (message) {
+      Notification({
+        title: message,
+        duration: 1200,
+        type: 'success',
+        offset: 120,
+        showClose: false
+      })
+    }
   },
 
   computed: {
