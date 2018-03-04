@@ -1,7 +1,7 @@
 export default{
 // function which creates a SPARQL query based on given doc object
 
-  formdataToInsertQuery: function(doc) {
+  formdataToInsertQuery: function (doc) {
 
     // default prefixes + graph prefixes
     let query = 'PREFIX id: <http://www.na17b.org/thw/resource/> '
@@ -12,8 +12,8 @@ export default{
     query += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> '
     query += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> '
 
-    //creating a random number as ID for each document
-    //we are aware that this is a bad solution, we will tend to that later
+    // creating a random number as ID for each document
+    // we are aware that this is a bad solution, we will tend to that later
     let rid = Math.floor((Math.random() * 900000) + 100000)
 
     query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {'
@@ -34,35 +34,25 @@ export default{
 
     // top area on document
     if (doc.typeTop.includes('Funk')) {
-        query += 'thw:topRadio "true";'
-    }
+        query += 'thw:topRadio "true";'}
     else {
-        query += 'thw:topRadio "false";'
-    }
+        query += 'thw:topRadio "false";'}
     if (doc.typeTop.includes('Telefon')) {
-        query += 'thw:topPhone "true";'
-    }
+        query += 'thw:topPhone "true";'}
     else {
-        query += 'thw:topPhone "false";'
-    }
+        query += 'thw:topPhone "false";'}
     if (doc.typeTop.includes('Telefax')) {
-        query += 'thw:topFax "true";'
-    }
+        query += 'thw:topFax "true";'}
     else {
-        query += 'thw:topFax "false";'
-    }
+        query += 'thw:topFax "false";'}
     if (doc.typeTop.includes('DFÜ')) {
-        query += 'thw:topDFU "true";'
-    }
+        query += 'thw:topDFU "true";'}
     else {
-        query += 'thw:topDFU "false";'
-    }
+        query += 'thw:topDFU "false";'}
     if (doc.typeTop.includes('Kurier/Melder')) {
-        query += 'thw:topCourier "true";'
-    }
+        query += 'thw:topCourier "true";'}
     else {
-        query += 'thw:topCourier "false";'
-    }
+        query += 'thw:topCourier "false";'}
     query += 'thw:outgoing "' +	doc.isAusgang + '";'
     query += 'thw:primaryDate "' + doc.dateIncomingA + '";'
     query += 'thw:primaryTime "' + doc.timeIncomingA + '";'
@@ -71,68 +61,49 @@ export default{
     if (doc.isAusgang){
         query += 'thw:secondaryDate "' + doc.dateIncomingB + '";'
         query += 'thw:secondaryTime "' + doc.timeIncomingB + '";'
-        query += 'thw:secondaryHdZ "' + doc.hdzIncomingB + '";'
-    }
+        query += 'thw:secondaryHdZ "' + doc.hdzIncomingB + '";'}
 
     query += 'thw:numberTB "' +	doc.numberTB + '";'
     query += 'thw:receiverName "' +	doc.nameR + '";'
     // middle area on document
     if (doc.typeMiddle.includes('Funk')) {
-        query += 'thw:midRadio "true";'
-    }
+        query += 'thw:midRadio "true";'}
     else {
-        query += 'thw:midRadio "false";'
-    }
+        query += 'thw:midRadio "false";'}
     if (doc.typeMiddle.includes('Telefon')) {
-        query += 'thw:midPhone "true";'
-    }
+        query += 'thw:midPhone "true";'}
     else {
-        query += 'thw:midPhone "false";'
-    }
+        query += 'thw:midPhone "false";'}
     if (doc.typeMiddle.includes('Telefax')) {
-        query += 'thw:midFax "true";'
-    }
+        query += 'thw:midFax "true";'}
     else {
-        query += 'thw:midFax "false";'
-    }
+        query += 'thw:midFax "false";'}
     if (doc.typeMiddle.includes('DFÜ')) {
-        query += 'thw:midDFU "true";'
-    }
+        query += 'thw:midDFU "true";'}
     else {
-        query += 'thw:midDFU "false";'
-    }
+        query += 'thw:midDFU "false";'}
     if (doc.typeMiddle.includes('Kurier/Melder')) {
-        query += 'thw:midCourier "true";'
-    }
+        query += 'thw:midCourier "true";'}
     else {
-        query += 'thw:midCourier "false";'
-    }
+        query += 'thw:midCourier "false";'}
 
     if (doc.typeCall.includes('DURCHSAGE')) {
-        query += 'thw:announcement "true";'
-    }
+        query += 'thw:announcement "true";'}
     else {
-        query += 'thw:announcement "false";'
-    }
+        query += 'thw:announcement "false";'}
     if (doc.typeCall.includes('Spruch')) {
-        query += 'thw:message "true";'
-    }
+        query += 'thw:message "true";'}
     else {
-        query += 'thw:message "false";'
-    }
+        query += 'thw:message "false";'}
 
     if (doc.priority.includes('Sofort')) {
-        query += 'thw:instant "true";'
-    }
+        query += 'thw:instant "true";'}
     else {
-        query += 'thw:instant "false";'
-    }
+        query += 'thw:instant "false";'}
     if (doc.priority.includes('Blitz')) {
-        query += 'thw:flash' + '"true";'
-    }
+        query += 'thw:flash' + '"true";'}
     else {
-        query += 'thw:flash "false";'
-    }
+        query += 'thw:flash "false";'}
     query += 'thw:talkNote "' +	doc.gNote + '";'
     query += 'thw:callNumber "' + doc.phone + '";'
     query += 'thw:adress "' + doc.adress + '";'
@@ -144,42 +115,30 @@ export default{
     // bottom area on document
     query += 'thw:docketTime "' + doc.signatureTime + '";'
     if (doc.selectStation.includes('Leiter')) {
-        query += 'thw:docketLeader "true";'
-    }
+        query += 'thw:docketLeader "true";'}
     else {
-        query += 'thw:docketLeader "false";'
-    }
+        query += 'thw:docketLeader "false";'}
     if (doc.selectStation.includes('S1')) {
-        query += 'thw:docketS1 "true";'
-    }
+        query += 'thw:docketS1 "true";'}
     else {
-        query += 'thw:docketS1 "false";'
-    }
+        query += 'thw:docketS1 "false";'}
     if (doc.selectStation.includes('S2')) {
-        query += 'thw:docketS2 "true";'
-    }
+        query += 'thw:docketS2 "true";'}
     else {
-        query += 'thw:docketS2 "false";'
-    }
+        query += 'thw:docketS2 "false";'}
     if (doc.selectStation.includes('S3')) {
-        query += 'thw:docketS3 "true";'
-    }
+        query += 'thw:docketS3 "true";'}
     else {
-        query += 'thw:docketS3 "false";'
-    }
+        query += 'thw:docketS3 "false";'}
     if (doc.selectStation.includes('S4')) {
-        query += 'thw:docketS4 "true";'
-    }
+        query += 'thw:docketS4 "true";'}
     else {
-        query += 'thw:docketS4 "false";'
-    }
+        query += 'thw:docketS4 "false";'}
     
     if (doc.selectStation.includes('S6')) {
-        query += 'thw:docketS6 "true";'
-    }
+        query += 'thw:docketS6 "true";'}
     else {
-        query += 'thw:docketS6 "false";'
-    }
+        query += 'thw:docketS6 "false";'}
     query += 'thw:docketIdentification "' + doc.signatureB + '";'
     query += 'thw:advisorTickA "' +	doc.advisorAchecked + '";'
     query += 'thw:advisorA "' +	doc.advisorA + '";'
@@ -208,7 +167,6 @@ export default{
   ,
 
   allDocumentsQuery: function () {
-
     // default prefixes + graph prefixes
     let query = 'PREFIX id: <http://www.na17b.org/thw/resource/> '
     query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#> '
