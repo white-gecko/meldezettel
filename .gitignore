@@ -11,6 +11,9 @@
 *.pygstyle
 *.fdb_latexmk
 
+#ignore possible dolphin setting files
+*.directory
+
 *.swp
 
 .vscode/
