@@ -15,6 +15,7 @@
 
 .vscode/
 
+#ignore dolphin config-file
 .directory
 
 # Jekyll related
