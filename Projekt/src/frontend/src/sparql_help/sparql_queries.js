@@ -2,7 +2,6 @@ export default{
 // function which creates a SPARQL query based on given doc object
 
   formdataToInsertQuery: function (doc) {
-
     // default prefixes + graph prefixes
     let query = 'PREFIX id: <http://www.na17b.org/thw/resource/> '
     query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#> '
@@ -48,7 +47,7 @@ export default{
     } else {
       query += 'thw:topFax "false";'
     }
-    if (doc.typeTop.includes('DFÜ')) {
+    if (doc.typeTop.includes('DFÜ')) { 
       query += 'thw:topDFU "true";'
     } else {
       query += 'thw:topDFU "false";'
@@ -154,7 +153,7 @@ export default{
     } else {
       query += 'thw:docketS4 "false";'
     }
-    
+
     if (doc.selectStation.includes('S6')) {
       query += 'thw:docketS6 "true";'
     } else {
@@ -184,7 +183,7 @@ export default{
     query += 'thw:annotations "' + doc.annotations + '".'
     query += 'thw:resource/activeAIC thw:currentCount "' + rid + '" .} }'
     return query
-  } ,
+  },
   allDocumentsQuery: function () {
     // default prefixes + graph prefixes
     let query = 'PREFIX id: <http://www.na17b.org/thw/resource/> '
