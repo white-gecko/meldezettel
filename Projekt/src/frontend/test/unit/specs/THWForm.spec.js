@@ -7,13 +7,11 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('THWForm', () => {
-
   let wrapper
   let store
   let mutations
 
   beforeEach(() => {
-  
     mutations = {
       saveTicket: jest.fn()
     }
@@ -24,7 +22,6 @@ describe('THWForm', () => {
     })
 
     wrapper = mount(THWForm, { store, localVue })
-  
   })
 
   it('binds to hdzIncomingA', () => {
@@ -47,5 +44,4 @@ describe('THWForm', () => {
     wrapper.find('el-button').trigger('click')
     expect(mutations.saveTicket).toHaveBeenCalled()
   })
-
 })
