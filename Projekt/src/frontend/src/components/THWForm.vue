@@ -535,8 +535,8 @@ export default {
   data: () => {
     return {
       formdata: {
-        typeTop: [],
-        typeMiddle: [],
+        typeTop: ['Funk'],
+        typeMiddle: ['Funk'],
         priority: [],
         selectStation: [],
 
@@ -579,7 +579,10 @@ export default {
         signature: '',
         signatureB: '',
         signatureTime: '',
-        position: ''
+        position: '',
+        sender: '',
+        annotations: ''
+
       }
     }
   },
