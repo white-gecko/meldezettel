@@ -22,3 +22,6 @@ _site
 vendor/
 *~
 .bundle/
+
+# ignore dir that hosts quitstore
+Projekt/src/quitstore
