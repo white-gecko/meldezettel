@@ -47,7 +47,7 @@ export default{
     } else {
       query += 'thw:topFax "false";'
     }
-    if (doc.typeTop.includes('DFÜ')) { 
+    if (doc.typeTop.includes('DFÜ')) {
       query += 'thw:topDFU "true";'
     } else {
       query += 'thw:topDFU "false";'
@@ -62,7 +62,7 @@ export default{
     query += 'thw:primaryTime "' + doc.timeIncomingA + '";'
     query += 'thw:primaryHdZ "' + doc.hdzIncomingA + '";'
     // toggle on "Ausgehend" => 2 date,time,hdz inputs
-    if (doc.isAusgang){
+    if (doc.isAusgang) {
       query += 'thw:secondaryDate "' + doc.dateIncomingB + '";'
       query += 'thw:secondaryTime "' + doc.timeIncomingB + '";'
       query += 'thw:secondaryHdZ "' + doc.hdzIncomingB + '";'
