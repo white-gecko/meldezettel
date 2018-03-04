@@ -1,0 +1,319 @@
+PREFIX : <http://www.na17b.org/thw/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX thw: <http://www.na17b.org/thw/> 
+PREFIX xml: <http://www.w3.org/XML/1998/namespace> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+
+
+INSERT DATA {
+    GRAPH <http://www.na17b.org/thw/> {
+
+<http://www.na17b.org/thw/> rdf:type owl:Ontology .
+
+
+thw:adress rdf:type owl:DatatypeProperty ;
+           rdfs:domain thw:document ;
+           rdfs:range xsd:string .
+
+
+thw:advisorA rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:string .
+
+
+thw:advisorB rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:string .
+
+
+thw:advisorC rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:string .
+
+
+thw:advisorD rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:string .
+
+
+thw:advisorE rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:string .
+
+
+thw:advisorTickA rdf:type owl:DatatypeProperty ;
+                 rdfs:domain thw:document ;
+                 rdfs:range xsd:boolean .
+
+
+thw:advisorTickB rdf:type owl:DatatypeProperty ;
+                 rdfs:domain thw:document ;
+                 rdfs:range xsd:boolean .
+
+
+thw:advisorTickC rdf:type owl:DatatypeProperty ;
+                 rdfs:domain thw:document ;
+                 rdfs:range xsd:boolean .
+
+
+thw:advisorTickD rdf:type owl:DatatypeProperty ;
+                 rdfs:domain thw:document ;
+                 rdfs:range xsd:boolean .
+
+
+thw:advisorTickE rdf:type owl:DatatypeProperty ;
+                 rdfs:domain thw:document ;
+                 rdfs:range xsd:boolean .
+
+
+thw:annotations rdf:type owl:DatatypeProperty ;
+                rdfs:domain thw:document ;
+                rdfs:range xsd:string .
+
+
+thw:announcement rdf:type owl:DatatypeProperty ;
+                 rdfs:domain thw:document ;
+                 rdfs:range xsd:boolean .
+
+
+thw:callNumber rdf:type owl:DatatypeProperty ;
+               rdfs:domain thw:document ;
+               rdfs:range xsd:string .
+
+
+thw:connectionA rdf:type owl:DatatypeProperty ;
+                rdfs:domain thw:document ;
+                rdfs:range xsd:string .
+
+
+thw:connectionB rdf:type owl:DatatypeProperty ;
+                rdfs:domain thw:document ;
+                rdfs:range xsd:string .
+
+
+thw:connectionC rdf:type owl:DatatypeProperty ;
+                rdfs:domain thw:document ;
+                rdfs:range xsd:string .
+
+
+thw:connectionD rdf:type owl:DatatypeProperty ;
+                rdfs:domain thw:document ;
+                rdfs:range xsd:string .
+
+
+thw:connectionE rdf:type owl:DatatypeProperty ;
+                rdfs:domain thw:document ;
+                rdfs:range xsd:string .
+
+
+thw:connectionTickA rdf:type owl:DatatypeProperty ;
+                    rdfs:domain thw:document ;
+                    rdfs:range xsd:boolean .
+
+
+thw:connectionTickB rdf:type owl:DatatypeProperty ;
+                    rdfs:domain thw:document ;
+                    rdfs:range xsd:boolean .
+
+
+thw:connectionTickC rdf:type owl:DatatypeProperty ;
+                    rdfs:domain thw:document ;
+                    rdfs:range xsd:boolean .
+
+
+thw:connectionTickD rdf:type owl:DatatypeProperty ;
+                    rdfs:domain thw:document ;
+                    rdfs:range xsd:boolean .
+
+
+thw:connectionTickE rdf:type owl:DatatypeProperty ;
+                    rdfs:domain thw:document ;
+                    rdfs:range xsd:boolean .
+
+
+thw:content rdf:type owl:DatatypeProperty ;
+            rdfs:domain thw:document ;
+            rdfs:range xsd:string .
+
+
+thw:createTime rdf:type owl:DatatypeProperty ;
+               rdfs:domain thw:document ;
+               rdfs:range xsd:string .
+
+
+thw:currentCount rdf:type owl:DatatypeProperty ;
+                 rdfs:domain thw:autoincCounter ;
+                 rdfs:range xsd:int .
+
+
+thw:docketIdentification rdf:type owl:DatatypeProperty ;
+                         rdfs:domain thw:document ;
+                         rdfs:range xsd:string .
+
+
+thw:docketLeader rdf:type owl:DatatypeProperty ;
+                 rdfs:domain thw:document ;
+                 rdfs:range xsd:boolean .
+
+
+thw:docketS1 rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:boolean .
+
+
+thw:docketS2 rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:boolean .
+
+
+thw:docketS3 rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:boolean .
+
+
+thw:docketS4 rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:boolean .
+
+
+thw:docketS6 rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:boolean .
+
+
+thw:docketTime rdf:type owl:DatatypeProperty ;
+               rdfs:domain thw:document ;
+               rdfs:range xsd:string .
+
+
+thw:flash rdf:type owl:DatatypeProperty ;
+          rdfs:domain thw:document ;
+          rdfs:range xsd:boolean .
+
+
+thw:identification rdf:type owl:DatatypeProperty ;
+                   rdfs:domain thw:document ;
+                   rdfs:range xsd:string .
+
+
+thw:instant rdf:type owl:DatatypeProperty ;
+            rdfs:domain thw:document ;
+            rdfs:range xsd:boolean .
+
+
+thw:message rdf:type owl:DatatypeProperty ;
+            rdfs:domain thw:document ;
+            rdfs:range xsd:boolean .
+
+
+thw:midCourier rdf:type owl:DatatypeProperty ;
+               rdfs:domain thw:document ;
+               rdfs:range xsd:boolean .
+
+
+thw:midDFU rdf:type owl:DatatypeProperty ;
+           rdfs:domain thw:document ;
+           rdfs:range xsd:boolean .
+
+
+thw:midFax rdf:type owl:DatatypeProperty ;
+           rdfs:domain thw:document ;
+           rdfs:range xsd:boolean .
+
+
+thw:midPhone rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:boolean .
+
+
+thw:midRadio rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:boolean .
+
+
+thw:numberTB rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:string .
+
+
+thw:outgoing rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:boolean .
+
+
+thw:primaryDate rdf:type owl:DatatypeProperty ;
+                rdfs:domain thw:document ;
+                rdfs:range xsd:dateTime .
+
+
+thw:primaryHdZ rdf:type owl:DatatypeProperty ;
+               rdfs:domain thw:document ;
+               rdfs:range xsd:string .
+
+
+thw:receiverName rdf:type owl:DatatypeProperty ;
+                 rdfs:domain thw:document ;
+                 rdfs:range xsd:string .
+
+
+thw:role rdf:type owl:DatatypeProperty ;
+         rdfs:domain thw:document ;
+         rdfs:range xsd:string .
+
+
+thw:secondaryDate rdf:type owl:DatatypeProperty ;
+                  rdfs:domain thw:document ;
+                  rdfs:range xsd:dateTime .
+
+
+thw:secondaryHdZ rdf:type owl:DatatypeProperty ;
+                 rdfs:domain thw:document ;
+                 rdfs:range xsd:string .
+
+
+thw:sender rdf:type owl:DatatypeProperty ;
+           rdfs:domain thw:document ;
+           rdfs:range xsd:string .
+
+
+thw:talkNote rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:boolean .
+
+
+thw:topCourier rdf:type owl:DatatypeProperty ;
+               rdfs:domain thw:document ;
+               rdfs:range xsd:boolean .
+
+
+thw:topDFU rdf:type owl:DatatypeProperty .
+
+
+thw:topFax rdf:type owl:DatatypeProperty ;
+           rdfs:domain thw:document ;
+           rdfs:range xsd:boolean .
+
+
+thw:topPhone rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:boolean .
+
+
+thw:topRadio rdf:type owl:DatatypeProperty ;
+             rdfs:domain thw:document ;
+             rdfs:range xsd:boolean .
+
+
+
+thw:autoincCounter rdf:type owl:Class .
+
+thw:document rdf:type owl:Class .
+
+<http://www.na17b.org/thw/resource/activeAIC> rdf:type thw:autoincCounter ;
+                                              thw:currentCount "100000"^^xsd:int .
+
+    }
+}
