@@ -526,7 +526,6 @@
 
 <script>
 
-
 import store from '../store/state.js'
 import { Notification } from 'element-ui'
 import { mapMutations } from 'vuex'
@@ -648,7 +647,7 @@ export default {
     },
 
     submit: function () {
-        store.ticketlist.push(JSON.parse(JSON.stringify(this.$data.formdata)))
+      store.ticketlist.push(JSON.parse(JSON.stringify(this.$data.formdata)))
     },
 
     formReset: function () {
