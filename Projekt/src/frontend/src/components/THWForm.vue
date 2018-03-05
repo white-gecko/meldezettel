@@ -541,7 +541,6 @@ export default {
         typeCall: [],
         priority: [],
         selectStation: [],
-        typeCall: [],
 
         advisorA: '',
         advisorB: '',
