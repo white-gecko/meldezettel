@@ -109,7 +109,7 @@ Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-
 
 
 \section{Datenmodell}
-Als Datenmodell wird \gls{RDF} verwendet. Die Eingaben aus der UI werden über eine \gls{SPARQL}-Schnittstelle im \gls{Quitstore} gespeichert und ausgelesen. Jeder Datei wird dabei eine ID zur Identifizierung zugeordnet. Der Quitstore stellt die Daten auf Anfrage als \gls{JSON}-Dateien zur Verfügung.
+Als Datenmodell wird \gls{RDF} verwendet. Die Eingaben aus der UI werden über eine \gls{SPARQL}-Schnittstelle im \gls{Quitstore} in Tripel-Form gespeichert und ausgelesen. Der Quitstore wird über \verb+Projekt/quitstore.sh+ lokal gestartet. Jeder Datei wird eine ID zur Identifizierung zugeordnet. Der Quitstore stellt die Daten auf Anfrage als \gls{JSON}-response zur Verfügung.
 
 
   \input{glossar}
