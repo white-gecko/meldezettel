@@ -1,4 +1,6 @@
 \BOOKMARK [1][-]{section.1}{Allgemeines}{}% 1
 \BOOKMARK [1][-]{section.2}{Tests}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Komponententests}{section.2}% 3
-\BOOKMARK [1][-]{section*.2}{Glossar}{}% 4
+\BOOKMARK [2][-]{subsection.2.2}{GUI-Tests}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Continous Integration}{}% 5
+\BOOKMARK [1][-]{section*.2}{Glossar}{}% 6
