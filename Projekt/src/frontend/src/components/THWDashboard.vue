@@ -34,7 +34,7 @@ export default {
 
   docs: {},
 
-  beforeRouteEnter(to, from, next) {
+  beforeRouteEnter (to, from, next) {
     let query = sparql.allDocumentsQuery()
     var callback = function (response) {
       next(vm => vm.setDocs(response))
@@ -42,7 +42,7 @@ export default {
     quitstore.getData(query).then(callback)
   },
 
-  beforeRouteUpdate(to, from, next) {
+  beforeRouteUpdate (to, from, next) {
     let query = sparql.allDocumentsQuery()
     var callback = function (response) {
       this.setDocs(response)
@@ -72,30 +72,28 @@ export default {
 
     ...mapMutations({
       setTicketlist: 'setTicketlist'
-  })
-,
+    }),
 
+    tabledata: function () {
+      let data = JSON.parse(JSON.stringify(this.ticketlist))
 
-tabledata: function () {
-  let data = JSON.parse(JSON.stringify(this.ticketlist))
+      // The times and dates need to be filtered to be displayed correctly
+      for (let i = 0; i < data.length; i++) {
+      // Retrieve all required date strings and convert them to a shorter form (german style)
+        let tmpDate = new Date(data[i].dateIncomingA)
+        data[i].dateIncomingA = tmpDate.toLocaleDateString()
 
-  // The times and dates need to be filtered to be displayed correctly
-  for (let i = 0; i < data.length; i++) {
-    // Retrieve all required date strings and convert them to a shorter form (german style)
-    let tmpDate = new Date(data[i].dateIncomingA)
-    data[i].dateIncomingA = tmpDate.toLocaleDateString()
+        tmpDate = new Date(data[i].timeIncomingA)
+        data[i].timeIncomingA = tmpDate.toLocaleTimeString()
 
-    tmpDate = new Date(data[i].timeIncomingA)
-    data[i].timeIncomingA = tmpDate.toLocaleTimeString()
+        // If the message is longer than a threshold, shorten it and add dots to indicate
+        if (data[i].message.length > 80) {
+          data[i].message = data[i].message.slice(0, 77) + '...'
+        }
+      }
 
-    // If the message is longer than a threshold, shorten it and add dots to indicate
-    if (data[i].message.length > 80) {
-      data[i].message = data[i].message.slice(0, 77) + '...'
+      return data
     }
-  }
-
-  return data
-}
   }
 }
 
