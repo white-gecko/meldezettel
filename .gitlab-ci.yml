@@ -27,6 +27,5 @@ jslinting_and_testing:
     - npm run lint
     
     # Installing jest, vue-test-utils and dependencies
-    - npm install jest jest-serializer-vue vue-jest vue-template-compiler babel-jest vue @vue/test-utils babel-preset-stage-2 babel-plugin-dynamic-import-node vuex
-    - npm install axios element-ui vue-server-renderer
+    - npm install jest jest-serializer-vue vue-jest vue-template-compiler babel-jest vue @vue/test-utils babel-preset-stage-2 babel-plugin-dynamic-import-node vuex axios element-ui vue-server-renderer
     - npm run unit
