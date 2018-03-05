@@ -1,7 +1,7 @@
 export default{
   /** function which creates a SPARQL query based on given doc object
-   * @param = formdata object that got edited or created in THWForm.vue 
-   * @return = SPARQL query that inserts data of formdata object into 
+   * @param = formdata object that got edited or created in THWForm.vue
+   * @return = SPARQL query that inserts data of formdata object into
    *           QuitStore
    */
   formdataToInsertQuery: function (doc) {
@@ -184,7 +184,7 @@ export default{
     query += 'id:activeAIC thw:currentCount "' + rid + '" .} }'
     return query
   },
-  /** functions that creates SPARQL select query to retrieve all 
+  /** functions that creates SPARQL select query to retrieve all
    *  document data from QuitStore
    *  @return = Select query
    */
@@ -211,7 +211,7 @@ export default{
     query += 'thw:primaryDate ?primaryDate;'
     query += 'thw:primaryTime ?primaryTime;'
     query += 'thw:primaryHdZ ?primaryHdZ;'
-    /* Some attributes left out due to HTTP packet 
+    /* Some attributes left out due to HTTP packet
        size restrictions, will be fixed later
     query += 'thw:secondaryDate ?secondaryDate;'
     query += 'thw:secondaryTime ?secondaryTime;'
