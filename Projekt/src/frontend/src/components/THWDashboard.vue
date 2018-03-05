@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tabledata" style="width: 100%" max-height="500">
+  <el-table :data="td" style="width: 100%" max-height="500">
 
     <el-table-column width="150">
       <template slot-scope="scope">
@@ -21,25 +21,65 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { quitstore } from '../api/QuitStoreAdapter.js'
+import { handleResponse } from '../sparql_help/response_to_formdata.js'
+import sparql from '../sparql_help/sparql_queries.js'
+
+import store from '../store/state.js'
 
 export default {
 
   name: 'THWDashboard',
 
-  computed: {
+  docs: {},
 
+  beforeRouteEnter (to, from, next) {
+    let query = sparql.allDocumentsQuery()
+    var callback = function (response) {
+      next(vm => vm.setDocs(response))
+    }
+    quitstore.getData(query).then(callback)
+  },
+
+  beforeRouteUpdate (to, from, next) {
+    let query = sparql.allDocumentsQuery()
+    var callback = function (response) {
+      this.setDocs(response)
+      next()
+    }
+    quitstore.getData(query).then(callback)
+  },
+
+  data () {
+    return {
+      td: [{}]
+    }
+  },
+
+  methods: {
+    setDocs (d) {
+      let formdatas = handleResponse(d.data)
+      this.$data.td = formdatas
+      store.ticketlist = formdatas
+    }
+  },
+
+  computed: {
     ...mapGetters({
       ticketlist: 'getAllTickets'
     }),
 
+    ...mapMutations({
+      setTicketlist: 'setTicketlist'
+    }),
+
     tabledata: function () {
-      // Deep copy to avoid overwriting
       let data = JSON.parse(JSON.stringify(this.ticketlist))
 
       // The times and dates need to be filtered to be displayed correctly
       for (let i = 0; i < data.length; i++) {
-        // Retrieve all required date strings and convert them to a shorter form (german style)
+      // Retrieve all required date strings and convert them to a shorter form (german style)
         let tmpDate = new Date(data[i].dateIncomingA)
         data[i].dateIncomingA = tmpDate.toLocaleDateString()
 
@@ -54,7 +94,6 @@ export default {
 
       return data
     }
-
   }
 }
 
