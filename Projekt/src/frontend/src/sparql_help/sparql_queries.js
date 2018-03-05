@@ -1,6 +1,9 @@
 export default{
-// function which creates a SPARQL query based on given doc object
-
+  /** function which creates a SPARQL query based on given doc object
+   * @param = formdata object that got edited or created in THWForm.vue 
+   * @return = SPARQL query that inserts data of formdata object into 
+   *           QuitStore
+   */
   formdataToInsertQuery: function (doc) {
     // default prefixes + graph prefixes
     let query = 'PREFIX id: <http://www.na17b.org/thw/resource/>\n'
@@ -181,6 +184,10 @@ export default{
     query += 'id:activeAIC thw:currentCount "' + rid + '" .} }'
     return query
   },
+  /** functions that creates SPARQL select query to retrieve all 
+   *  document data from QuitStore
+   *  @return = Select query
+   */
   allDocumentsQuery: function () {
     // default prefixes + graph prefixes
     let query = 'PREFIX id: <http://www.na17b.org/thw/resource/>\n'
