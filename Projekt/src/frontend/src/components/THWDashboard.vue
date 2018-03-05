@@ -17,15 +17,10 @@
     <el-table-column prop="message" label="Kurzinhalt"></el-table-column>
 
   </el-table>
-  <!--
-  <li v-for='doc in documents'>
-    { doc.dateIncomingA } - { doc.timeIncomingA } - { doc.hdzIncomingA } - { doc.message }
-  </li>-->
 </template>
 
 <script>
 
-/*eslint-disable*/
 import { mapGetters, mapMutations } from 'vuex'
 import { quitstore } from '../api/QuitStoreAdapter.js'
 import { handleResponse } from '../sparql_help/response_to_formdata.js'
@@ -64,13 +59,9 @@ export default {
 
   methods: {
     setDocs (d) {
-      console.log('----')
-      //console.log()
-
       let formdatas = handleResponse(d.data)
       this.$data.td = formdatas
       store.ticketlist = formdatas
-      console.log(this.$data.td)
     }
   },
 
@@ -86,14 +77,6 @@ export default {
 
 
 tabledata: function () {
-  //let query = sparql.allDocumentsQuery()
-
-  //let response = quitstore.getData(query)
-  //console.log(response)
-  //console.log(response._v)
-  // this.setTicketlist(handleResponse(response._v.data))
-
-  // Deep copy to avoid overwriting
   let data = JSON.parse(JSON.stringify(this.ticketlist))
 
   // The times and dates need to be filtered to be displayed correctly
@@ -113,28 +96,6 @@ tabledata: function () {
 
   return data
 }
-,
-
-/*
-data:{
-  documents:[
-    {
-      dateIncomingA: '123',
-      timeIncomingA: '456',
-      hdzIncomingA: '678',
-      message: 'test'
-    },
-    {
-      dateIncomingA: '123',
-      timeIncomingA: '456',
-      hdzIncomingA: '678',
-      message: 'test2'
-    }]
-}*/
-
-
-
-
   }
 }
 
