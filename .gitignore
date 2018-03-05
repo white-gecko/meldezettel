@@ -10,6 +10,11 @@
 *.pygtex
 *.pygstyle
 *.fdb_latexmk
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
 
 #ignore possible dolphin setting files
 *.directory

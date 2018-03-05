@@ -15,7 +15,7 @@
 \pagestyle{fancy}
 
 \lhead{\today}
-\rhead{Verantwortliche: Anja Sieke}
+\rhead{Verantwortliche: Sieke, Gehrke, Heier}
 \chead{Gruppe: na17b}
 \title{Testbericht\\Nachrichtenkommunikation für das THW}
 \author{na17b}
@@ -33,6 +33,8 @@
 
   \section{Allgemeines}
   \label{sec:allgemeines}
+	
+	Die Tests für dieses Softwareprojekt sind eng an das Qualitätssicherungskonzept geknüpft und sollen das Funktionieren des Codes gewährleisten.
 
     Das Vorprojekt führt ausschließlich Komponententests durch, da die Kommunikation
     zwischen Komponenten nur indirekt über den Store erfolgt. Der Zugriff auf den Store wurde
@@ -75,8 +77,18 @@
         \end{tabular}
         \caption{Testergebnisse der momentanen Frontend-Komponenten}
       \end{table}
+  
+  \newpage
 
-      \newpage
+ \section{Continous Integration}
+ \label{sub:continous integration}
+  
+  Zum zweiten Release wurde Continous Integration eingeführt, um das Einhalten der Vorgaben aus dem Dokumentationskonzept und Coding Standards automatisiert zu testen. Dazu wird \gls{GitLab CI} verwendet.
+  
+  	\subsection{yml}
+  	\label{yml}
+  	 Die \verb+gitlab-ci.yml+ beinhaltet XML-Linting sowie JavaScript-Linting und -Testing.
+  	 Für JavaScript wurden die Tests möglichst Performance-orientiert geschrieben. Es werden zunächst alle Dependencies installiert und danach das Linting bzw. die Unit-Tests durchgeführt.
 
       \input{glossar}
       \printglossaries

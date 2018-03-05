@@ -12,9 +12,10 @@
 
 \pagestyle{fancy}
 \makeglossaries
+\include{glossar}
 
 \lhead{\today}
-\rhead{Verantwortlicher: Marc Wahsner }
+\rhead{Verantwortlicher: Lukas Gehrke }
 \chead{Gruppe: na17b}
 \title{Entwurfsbeschreibung\\Nachrichtenkommunikation für das THW}
 \author{na17b}
@@ -35,7 +36,7 @@
 \section{Allgemeines}
 Die Anwendung soll den gegebenen Nachrichtenfluss in einer Notfallzentrale des THW nachbilden.
 \section{Produktübersicht}
-Im oberen Bereich befindet sich eine Kopfleiste mit THW-Farben und -Logo, welche eine von zunächst drei verfügbaren Rollen anzeigt. Am linken Bildrand befindet sich ein Menü, welches den Wechsel zwischen Übersicht, Maske zur Erstellung eines neuen Formulars, sowie der Rollenauswahl ermöglicht. Die Übersichtsseite vermittelt einen schnellen Überblick über alle hinterlegten Vordrucke, eingeschränkt auf Verfasser, Datum, Uhrzeit und eine gekürzte Version des Inhalts. In der ersten Spalte befindet sich ein Button, über den später der Vordruck zur genaueren Ansicht bzw. Bearbeitung ausgewählt werden können soll. Die Formularmaske bildet den Vierfachvordruck realitätsnah nach. Die Leitrichtung (eingehend oder ausgehend) kann über einen Switch am oberen Rand ausgewählt werden und hat Einfluss auf die verfügbaren Felder. Am unteren Rand befindet sich ein provisorischer 'Abschicken'-Knopf, welcher die eingegebenen Daten zunächst nur temporär abspeichert. Es findet derzeit auch noch keine Überprüfung der Daten hinsichtlich Konsistenz und Vollständigkeit statt. Die Rollenauswahl beschränkt sich im Vorprojekt auf ein simples Dropdown-Menü und dient nur zur technischen Demonstration.
+Im oberen Bereich befindet sich eine Kopfleiste in THW-Farben, welche eine von zunächst drei verfügbaren Rollen anzeigt. Am linken Bildrand befindet sich ein Menü, welches den Wechsel zwischen Übersicht, Maske zur Erstellung eines neuen Formulars, sowie der Rollenauswahl ermöglicht. Die Übersichtsseite vermittelt einen schnellen Überblick über alle hinterlegten Vordrucke, eingeschränkt auf Verfasser, Datum, Uhrzeit und eine gekürzte Version des Inhalts. In der ersten Spalte befindet sich ein Button, über den später der Vordruck zur genaueren Ansicht bzw. Bearbeitung ausgewählt werden können soll. Die Formularmaske bildet den Vierfachvordruck realitätsnah nach. Die Leitrichtung (eingehend oder ausgehend) kann über einen Switch am oberen Rand ausgewählt werden und hat Einfluss auf die verfügbaren Felder. Am unteren Rand befindet sich ein provisorischer 'Abschicken'-Knopf, welcher die eingegebenen Daten zunächst nur temporär abspeichert. Es findet derzeit auch noch keine Überprüfung der Daten hinsichtlich Konsistenz und Vollständigkeit statt. Die Rollenauswahl beschränkt sich im Vorprojekt auf ein simples Dropdown-Menü und dient nur zur technischen Demonstration.
 
 \section{Grundsätzliche Struktur}
 Der Quelltext der Anwendung ist serviceorientiert aufgebaut. Hierzu werden Container verwendet welche die jeweiligen Services kapseln. Zwingende Voraussetzung in der Entwicklungsumgebung ist: 
@@ -65,10 +66,13 @@ Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-
 
     \dirtree{%
       .1 ./src/frontend/src/.
+        .2 api/.
         .2 assets/.
         .2 components/.
         .2 router/.
+        .2 sparql\_help/.
         .2 store/.
+        .2 test-examples/.
           .3 state.js.
           .3 getters.js.
           .3 mutations.js.
@@ -78,10 +82,13 @@ Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-
     }
 
     \begin{itemize}
+      \item \verb+assets+ Quistore-Adapter
       \item \verb+assets+ Mediendateien (aktuell nur das THW-Logo)
       \item \verb+components+ Vue-Komponenten
       \item \verb+router+ Konfiguration von vue-router
+      \item \verb+sparql_help+ SPARQL Umwandler
       \item \verb+store+ Konfiguration von Vuex
+      \item \verb+test-examples+ Beispieltests
         \begin{itemize}
           \item \verb+state.js+ deklariert globale Zustandsvariablen
           \item \verb+getters+ stellt Funktionen zum Abrufen der Variablen bereit
@@ -103,10 +110,7 @@ Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-
 
 
 \section{Datenmodell}
-Nicht vorhanden
-
-
-  \input{glossar}
+Als Datenmodell wird \gls{RDF} verwendet. Die Eingaben aus der UI werden über eine \gls{SPARQL}-Schnittstelle im \gls{Quitstore} in Tripel-Form gespeichert und ausgelesen. Der Quitstore wird über \verb+Projekt/quitstore.sh+ lokal gestartet. Jeder Datei wird eine ID zur Identifizierung zugeordnet. Der Quitstore stellt die Daten auf Anfrage als \gls{JSON}-response zur Verfügung.
 
   \newpage
 

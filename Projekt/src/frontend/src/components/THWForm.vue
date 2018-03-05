@@ -538,6 +538,7 @@ export default {
       formdata: {
         typeTop: ['Funk'],
         typeMiddle: ['Funk'],
+        typeCall: [],
         priority: [],
         selectStation: [],
         typeCall: [],

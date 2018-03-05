@@ -58,3 +58,33 @@ parent={},%
 %
 }%
 }%
+\ifglsentryexists{GitLab CI}{}%
+{%
+\gls@defglossaryentry{GitLab CI}%
+{%
+name={GitLab CI},%
+sort={GitLab CI},%
+type={main},%
+first={GitLab CI},%
+firstplural={GitLab CIs},%
+text={GitLab CI},%
+plural={GitLab CIs},%
+description={GitLab CI ist die in GitLab eingebaute Continous Integration, die sich mit Hilfe der gitlab-ci.yml Datei konfigurieren lässt.},%
+descriptionplural={GitLab CI ist die in GitLab eingebaute Continous Integration, die sich mit Hilfe der gitlab-ci.yml Datei konfigurieren lässt.},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
