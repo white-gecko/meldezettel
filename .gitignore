@@ -11,6 +11,9 @@
 *.pygstyle
 *.fdb_latexmk
 
+#ignore possible dolphin setting files
+*.directory
+
 *.swp
 
 .vscode/
@@ -22,3 +25,6 @@ _site
 vendor/
 *~
 .bundle/
+
+# ignore dir that hosts quitstore
+Projekt/src/quitstore

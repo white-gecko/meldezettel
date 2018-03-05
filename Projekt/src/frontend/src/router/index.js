@@ -21,7 +21,7 @@ export default new Router({
           component: THWDashboard
         },
         {
-          path: 'create',
+          path: 'create/:id?',
           name: 'Create',
           component: THWForm
         },

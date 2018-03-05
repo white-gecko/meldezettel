@@ -1,32 +1,12 @@
 \section{Testkonzept}
 Durch die besondere Verantwortung des THW hat die Zuverlässigkeit der Software einen außerordentlich hohen Stellenwert. Um diese zu gewährleisten muss das umfangreiche Testen der Software automatisiert ablaufen, wobei eine Testcoverage von 100\% angestrebt wird.
 \subsection{Komponententests}
-Als Testing Framework findet in diesem Projekt das etablierte und in der Python Standard Bibliothek integrierte \href{https://docs.python.org/3/library/unittest.html}{Python Unit Testing Framework} Verwendung. Komponententests sind nach folgenden Konventionen zu erstellen. Für jede Klasse existiert eine Testklasse und für jede Funktion eine Testfunktion. Bei der Namensgebung wird dem Funktions- bzw. Klassennamen ein test bzw Test vorangestellt. Beispiel:
-\pyfile{./main/Projekt/MittringEmulator.py}
-\pyfile{./main/TestProjekt/TestMittringEmulator.py}
-Die Ordnerstruktur ist wie folgt anzulegen:
-\dirtree{%
-.1 main.
-.2 Projekt.
-.3 \pythoninit .
-.3 Quellcode.py.
-.2 TestsProjekt.
-.3 \pythoninit .
-.3 TestQuellcode.py.
-} Wobei die beiden \pythoninit Dateien leer sind und lediglich zur Identifikation der Ordner als Python Paket dienen.
-\subsection{Integrationstests} 
-Integrationstests gewährleisten das korrekte Zusammenspiel voneinander abhängiger Softwarekomponenten und erfolgen nach dem Bestehen der Komponententests. Hierbei werden vor allem Schnittstellentests durchgeführt, welche überprüfen ob die Kommunikation der einzelnen Komponenten fehlerfrei verläuft.
+Als Testing Framework findet in diesem Projekt \href{https://facebook.github.io/jest/docs/en/getting-started.htmll}{Jest} Verwendung. Komponententests sind nach folgenden Konventionen zu erstellen: Für jede Datei existiert eine Testdateei und für jede Funktion mindestens eine Testfunktion. Bei der Namensgebung wird im Dateinamen vor der Dateiendung ein .test eingeschoben. So erhält die Datei \textit{exampleModule.js} ihre Testdatei \textit{exampleModule.test.js}. Testdateien befinden sich im gleichen Ordner wie zu testende Dateien.
+\jsfile{../../Projekt/src/frontend/src/examples/module.js}
+\jsfile{../../Projekt/src/frontend/src/examples/module.test.js}
 \subsection{GUI Tests}
-Durch die Nutzung von vue-js zur Frontenderstellung bietet sich auch der Einsatz der \href{https://vue-test-utils.vuejs.org/en/}{vue-test-utils} an, welche das automatisierte Testen der GUI Funktionalitäten erlauben. Für jede Komponente wird eine Testdatei erstellt, wobei die Namensgebung den Komponententests gleicht. Beispiel:
-\jsfile{./main/Projekt/Counter.js}
-\jsfile{./main/TestProjekt/TestCounter.js}
+Durch die Nutzung von vue-js zur Frontenderstellung bietet sich auch der Einsatz der \href{https://vue-test-utils.vuejs.org/en/}{vue-test-utils} an, welche das automatisierte Testen der GUI Funktionalitäten erlauben. Für jede Komponente wird eine Testdatei im selben Ordner erstellt. Bei der Namensgebung wird im Dateinamen vor der Dateiendung ein .spec eingeschoben. So erhält die Datei \textit{counter.js} ihre Testdatei \textit{counter.spec.js}.
+\jsfile{../../Projekt/src/frontend/src/examples/counter.js}
+\jsfile{../../Projekt/src/frontend/src/examples/counter.spec.js}
 
-Die Ordnerstruktur ist wie folgt anzulegen:
-\dirtree{%
-	.1 main.
-	.2 Projekt.
-	.3 Quellcode.js.
-	.2 TestsProjekt.
-	.3 TestQuellcode.js.
-}
 Darüber hinaus werden auch manuelle Tests der Benutzeroberfläche durchgeführt, welche Unannehmlichkeiten in der Bedingbarkeit aufdecken sollen.
