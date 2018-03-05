@@ -223,7 +223,7 @@
 
       <el-col :span='18'>
           <el-form-item>
-            <el-input placeholder='' v-model='formdata.address' tabindex='2'>
+            <el-input placeholder='' v-model='formdata.adress' tabindex='2'>
               <template slot='prepend'>Anschrift</template>
             </el-input>
           </el-form-item>
@@ -517,7 +517,7 @@
       </el-col>
     </el-row>
 
-    <el-button @click="submit(); notifySuccess('Abgeschickt')" tabindex="6">Abschicken</el-button>
+    <el-button @click="addFormData(); notifySuccess('Abgeschickt')" tabindex="6">Abschicken</el-button>
     <el-button @click="formReset(); notifySuccess('Formular zurückgesetzt')">Zurücksetzen</el-button>
 
   </el-form>
@@ -528,7 +528,7 @@
 
 import store from '../store/state.js'
 import { Notification } from 'element-ui'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'THWForm',
@@ -540,6 +540,7 @@ export default {
         typeMiddle: ['Funk'],
         priority: [],
         selectStation: [],
+        typeCall: [],
 
         advisorA: '',
         advisorB: '',
@@ -574,7 +575,7 @@ export default {
         numberTB: '',
         nameR: '',
         phone: '',
-        address: '',
+        adress: '',
         message: '',
         createTime: '',
         signature: '',
@@ -638,8 +639,10 @@ export default {
 
   methods: {
     ...mapMutations(['saveTicket']),
+    ...mapActions(['addFormData']),
 
     addFormData: function () {
+      console.log('test123')
       this.$store
         .dispatch('addFormData', this.formdata)
         .then(() => this.$router.push('home'))
