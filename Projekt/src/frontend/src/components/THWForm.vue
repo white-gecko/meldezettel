@@ -223,7 +223,7 @@
 
       <el-col :span='18'>
           <el-form-item>
-            <el-input placeholder='' v-model='formdata.address' tabindex='2'>
+            <el-input placeholder='' v-model='formdata.adress' tabindex='2'>
               <template slot='prepend'>Anschrift</template>
             </el-input>
           </el-form-item>
@@ -538,6 +538,7 @@ export default {
       formdata: {
         typeTop: ['Funk'],
         typeMiddle: ['Funk'],
+        typeCall: [],
         priority: [],
         selectStation: [],
 
@@ -574,7 +575,7 @@ export default {
         numberTB: '',
         nameR: '',
         phone: '',
-        address: '',
+        adress: '',
         message: '',
         createTime: '',
         signature: '',
