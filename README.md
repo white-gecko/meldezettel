@@ -1,7 +1,5 @@
 # Digitaler Vierfachvordruck für das THW
-## Einrichten der Entwicklungsumgebung
-
-## Docker
+## Einrichten der Entwicklungsumgebung - Docker
 
 Das Projekt setzt voraus, dass Docker installiert ist. Installationsanleitung auf der [Dockerseite](https://docs.docker.com/engine/installation/).
 
@@ -31,16 +29,16 @@ Anschließend ist das Frontend unter
 
 zu erreichen.
 
-## npm
+## Einrichten der Entwicklungsumgebung - npm
 
-Installieren der für die Anwendung notwendigen Packages
+Um die für die Anwendung notwendigen Packages zu installieren, muss der frontend Ordner _Projekt/src/frontend_ betreten werden .
 
 ```bash
 cd Projekt/src/frontend
 npm install
 ```
 
-Ausführen
+Danach kann das Frontend ausgeführt werden
 
 ```bash
 npm run dev
