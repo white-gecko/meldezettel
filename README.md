@@ -22,6 +22,7 @@ docker exec -it thw-frontend-dev ./run.sh
 
 Beim ersten Ausführen werden die benötigten Javascript-Module automatisch heruntergeladen (etwa 250MB). 
 Dies geschieht im Hintergrund und kann ein paar Minuten dauern.
+Zusätzlich muss der Quitstore gestartet werden (siehe Abschnitt 'Quitstore')
 
 Anschließend ist das Frontend unter
 
