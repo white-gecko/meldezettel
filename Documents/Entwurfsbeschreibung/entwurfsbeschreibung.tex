@@ -72,29 +72,29 @@ Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-
         .2 router/.
         .2 sparql\_help/.
         .2 store/.
-        .2 test-examples/.
           .3 state.js.
           .3 getters.js.
           .3 mutations.js.
           .3 index.js.
+        .2 test-examples/.
         .2 App.vue.
         .2 main.js.
     }
 
     \begin{itemize}
-      \item \verb+assets+ Quistore-Adapter
+      \item \verb+api+ Quistore-Adapter
       \item \verb+assets+ Mediendateien (aktuell nur das THW-Logo)
       \item \verb+components+ Vue-Komponenten
       \item \verb+router+ Konfiguration von vue-router
       \item \verb+sparql_help+ SPARQL Umwandler
       \item \verb+store+ Konfiguration von Vuex
-      \item \verb+test-examples+ Beispieltests
         \begin{itemize}
           \item \verb+state.js+ deklariert globale Zustandsvariablen
           \item \verb+getters+ stellt Funktionen zum Abrufen der Variablen bereit
           \item \verb+mutations+ enthält Funktionen zum Bearbeiten des Zustandes
           \item \verb+index.js+ fügt die obigen Dateien zusammen zu einem globalen Store
         \end{itemize}
+      \item \verb+test-examples+ Beispieltests
       \item \verb+App.vue+ Wrapper-Komponente für das Frontend
       \item \verb+main.js+ Einstiegspunkt für das Programm, enthält alle Importe
     \end{itemize}
