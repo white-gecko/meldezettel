@@ -72,6 +72,7 @@ Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-
         .2 router/.
         .2 sparql\_help/.
         .2 store/.
+          .3 actions.js.
           .3 state.js.
           .3 getters.js.
           .3 mutations.js.
@@ -89,6 +90,7 @@ Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-
       \item \verb+sparql_help+ SPARQL Umwandler
       \item \verb+store+ Konfiguration von Vuex
         \begin{itemize}
+          \item \verb+actions.js+ formuliert ein Post Request an Quitstore
           \item \verb+state.js+ deklariert globale Zustandsvariablen
           \item \verb+getters+ stellt Funktionen zum Abrufen der Variablen bereit
           \item \verb+mutations+ enthält Funktionen zum Bearbeiten des Zustandes
