@@ -1,21 +1,24 @@
 export default{
-// function which creates a SPARQL query based on given doc object
-
+  /** function which creates a SPARQL query based on given doc object
+   * @param = formdata object that got edited or created in THWForm.vue
+   * @return = SPARQL query that inserts data of formdata object into
+   *           QuitStore
+   */
   formdataToInsertQuery: function (doc) {
     // default prefixes + graph prefixes
-    let query = 'PREFIX id: <http://www.na17b.org/thw/resource/> '
-    query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#> '
-    query += 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> '
-    query += 'PREFIX thw: <http://www.na17b.org/thw/> '
-    query += 'PREFIX xml: <http://www.w3.org/XML/1998/namespace> '
-    query += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> '
-    query += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> '
+    let query = 'PREFIX id: <http://www.na17b.org/thw/resource/>\n'
+    query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#>\n'
+    query += 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n'
+    query += 'PREFIX thw: <http://www.na17b.org/thw/>\n'
+    query += 'PREFIX xml: <http://www.w3.org/XML/1998/namespace>\n'
+    query += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n'
+    query += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n'
 
     // creating a random number as ID for each document
     // we are aware that this is a bad solution, we will tend to that later
     let rid = Math.floor((Math.random() * 900000) + 100000)
-
-    query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {'
+    // base for sparql insert queries
+    query += 'INSERT DATA {\n GRAPH <http://www.na17b.org/thw/> {\n'
     let uri = 'id:' + rid
 
     // Wrapper for updating a document in quitStore
@@ -29,7 +32,7 @@ export default{
         query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {'
         uri    = 'thw:resource/'+doc.documentID
     } */
-    query += uri + 'rdf:type thw:document;'
+    query += uri + ' rdf:type thw:document;'
 
     // top area on document
     if (doc.typeTop.includes('Funk')) {
@@ -61,12 +64,9 @@ export default{
     query += 'thw:primaryDate "' + doc.dateIncomingA + '";'
     query += 'thw:primaryTime "' + doc.timeIncomingA + '";'
     query += 'thw:primaryHdZ "' + doc.hdzIncomingA + '";'
-    // toggle on "Ausgehend" => 2 date,time,hdz inputs
-    if (doc.isAusgang) {
-      query += 'thw:secondaryDate "' + doc.dateIncomingB + '";'
-      query += 'thw:secondaryTime "' + doc.timeIncomingB + '";'
-      query += 'thw:secondaryHdZ "' + doc.hdzIncomingB + '";'
-    }
+    query += 'thw:secondaryDate "' + doc.dateIncomingB + '";'
+    query += 'thw:secondaryTime "' + doc.timeIncomingB + '";'
+    query += 'thw:secondaryHdZ "' + doc.hdzIncomingB + '";'
 
     query += 'thw:numberTB "' + doc.numberTB + '";'
     query += 'thw:receiverName "' + doc.nameR + '";'
@@ -181,37 +181,27 @@ export default{
     query += 'thw:connectionTickE "' + doc.verbEchecked + '";'
     query += 'thw:connectionE "' + doc.verbE + '";'
     query += 'thw:annotations "' + doc.annotations + '".'
-    query += 'thw:resource/activeAIC thw:currentCount "' + rid + '" .} }'
+    query += 'id:activeAIC thw:currentCount "' + rid + '" .} }'
     return query
   },
+  /** functions that creates SPARQL select query to retrieve all
+   *  document data from QuitStore
+   *  @return = Select query
+   */
   allDocumentsQuery: function () {
     // default prefixes + graph prefixes
-    let query = 'PREFIX id: <http://www.na17b.org/thw/resource/> '
-    query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#> '
-    query += 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>'
-    query += 'PREFIX thw: <http://www.na17b.org/thw/>'
-    query += 'PREFIX xml: <http://www.w3.org/XML/1998/namespace>'
-    query += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>'
-    query += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>'
-    query += 'BASE <http://www.na17b.org/thw/>'
+    let query = 'PREFIX id: <http://www.na17b.org/thw/resource/>\n'
+    query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#>\n'
+    query += 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n'
+    query += 'PREFIX thw: <http://www.na17b.org/thw/>\n'
+    query += 'PREFIX xml: <http://www.w3.org/XML/1998/namespace>\n'
+    query += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n'
+    query += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n'
 
     // selecting all document data in table form from QuitStore
-    query += 'SELECT ?uri ?topRadio ?topPhone ?topFax ?topDFU ?topCourier '
-    query += '?outgoing ?primaryDate ?primaryTime ?primaryHdZ '
-    query += '?secondaryDate ?secondaryTime ?secondaryHdZ ?numberTB '
-    query += '?receiverName ?midRadio ?midPhone ?midFax ?midDFU '
-    query += '?midCourier ?announcement ?message ?instant ?flash ?talkNote '
-    query += '?callNumber ?adress ?content ?createTime '
-    query += '?identification ?role ?sender ?docketTime ?docketIdentification '
-    query += '?docketLeader ?docketS1 ?docketS2 '
-    query += '?docketS3 ?docketS4 ?docketS6 ?advisorTickA ?advisorA '
-    query += '?advisorTickB ?advisorB ?advisorTickC ?advisorC '
-    query += '?advisorTickD ?advisorD ?advisorTickE ?advisorE ?connectionTickA'
-    query += ' ?connectionA ?connectionTickB ?connectionB '
-    query += '?connectionTickC ?connectionC ?connectionTickD ?connectionD '
-    query += '?connectionTickE ?connectionE ?annotations '
-    query += 'FROM <http://www.na17b.org/thw/>'
-    query += 'WHERE{ ?uri rdf:type thw:document;'
+    query += 'SELECT *'
+    query += '\n FROM <http://www.na17b.org/thw/>\n'
+    query += 'WHERE{\n ?uri rdf:type thw:document;'
     query += 'thw:topRadio ?topRadio;'
     query += 'thw:topPhone ?topPhone;'
     query += 'thw:topFax ?topFax;'
@@ -221,11 +211,12 @@ export default{
     query += 'thw:primaryDate ?primaryDate;'
     query += 'thw:primaryTime ?primaryTime;'
     query += 'thw:primaryHdZ ?primaryHdZ;'
-
+    /* Some attributes left out due to HTTP packet
+       size restrictions, will be fixed later
     query += 'thw:secondaryDate ?secondaryDate;'
     query += 'thw:secondaryTime ?secondaryTime;'
     query += 'thw:secondaryHdZ ?secondaryHdZ;'
-
+    */
     query += 'thw:numberTB ?numberTB;'
     query += 'thw:receiverName ?receiverName;'
 
@@ -250,12 +241,15 @@ export default{
     query += 'thw:docketIdentification ?docketIdentification;'
     query += 'thw:docketLeader ?docketLeader;'
     query += 'thw:docketS1 ?docketS1;'
+    /*
     query += 'thw:docketS2 ?docketS2;'
     query += 'thw:docketS3 ?docketS3;'
     query += 'thw:docketS4 ?docketS4;'
     query += 'thw:docketS6 ?docketS6;'
+    */
     query += 'thw:advisorTickA ?advisorTickA;'
     query += 'thw:advisorA ?advisorA;'
+    /*
     query += 'thw:advisorTickB ?advisorTickB;'
     query += 'thw:advisorB ?advisorB;'
     query += 'thw:advisorTickC ?advisorTickC;'
@@ -264,8 +258,10 @@ export default{
     query += 'thw:advisorD ?advisorD;'
     query += 'thw:advisorTickE ?advisorTickE;'
     query += 'thw:advisorE ?advisorE;'
+    */
     query += 'thw:connectionTickA ?connectionTickA;'
     query += 'thw:connectionA ?connectionA;'
+    /*
     query += 'thw:connectionTickB ?connectionTickB;'
     query += 'thw:connectionB ?connectionB;'
     query += 'thw:connectionTickC ?connectionTickC;'
@@ -274,6 +270,7 @@ export default{
     query += 'thw:connectionD ?connectionD;'
     query += 'thw:connectionTickE ?connectionTickE;'
     query += 'thw:connectionE ?connectionE;'
+    */
     query += 'thw:annotations ?annotations.'
     query += '}'
     return query

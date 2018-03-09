@@ -517,7 +517,7 @@
       </el-col>
     </el-row>
 
-    <el-button @click="submit(); notifySuccess('Abgeschickt')" tabindex="6">Abschicken</el-button>
+    <el-button @click="addFormData(); notifySuccess('Abgeschickt')" tabindex="6">Abschicken</el-button>
     <el-button @click="formReset(); notifySuccess('Formular zurückgesetzt')">Zurücksetzen</el-button>
 
   </el-form>
@@ -528,7 +528,7 @@
 
 import store from '../store/state.js'
 import { Notification } from 'element-ui'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'THWForm',
@@ -639,8 +639,10 @@ export default {
 
   methods: {
     ...mapMutations(['saveTicket']),
+    ...mapActions(['addFormData']),
 
     addFormData: function () {
+      console.log('test123')
       this.$store
         .dispatch('addFormData', this.formdata)
         .then(() => this.$router.push('home'))

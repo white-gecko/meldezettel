@@ -1,5 +1,5 @@
 # Digitaler Vierfachvordruck für das THW
-## Einrichten der Entwicklungsumgebung
+## Einrichten der Entwicklungsumgebung - Docker
 
 Das Projekt setzt voraus, dass Docker installiert ist. Installationsanleitung auf der [Dockerseite](https://docs.docker.com/engine/installation/).
 
@@ -22,10 +22,48 @@ docker exec -it thw-frontend-dev ./run.sh
 
 Beim ersten Ausführen werden die benötigten Javascript-Module automatisch heruntergeladen (etwa 250MB). 
 Dies geschieht im Hintergrund und kann ein paar Minuten dauern.
+Zusätzlich muss der Quitstore gestartet werden (siehe Abschnitt 'Quitstore')
 
 Anschließend ist das Frontend unter
 
 [http://localhost:8080](http://localhost:8080)
+
+zu erreichen.
+
+## Einrichten der Entwicklungsumgebung - npm
+
+Um die für die Anwendung notwendigen Packages zu installieren, muss der frontend Ordner _Projekt/src/frontend_ betreten werden .
+
+```bash
+cd Projekt/src/frontend
+npm install
+```
+
+Danach kann das Frontend ausgeführt werden
+
+```bash
+npm run dev
+```
+
+Anschließend ist das Frontend unter
+
+[http://localhost:8080](http://localhost:8080)
+
+zu erreichen.
+
+## Quistore
+
+Der Quitstore wird lokal gestartet
+
+```bash
+cd Projekt
+chmod +x quitstore.sh
+./quitstore.sh
+```
+
+Anschließend ist der Quitstore unter
+
+[http://localhost:5000](http://localhost:5000)
 
 zu erreichen.
 
