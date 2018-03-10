@@ -21,12 +21,9 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
 import { quitstore } from '../api/QuitStoreAdapter.js'
 import { handleResponse } from '../sparql_help/response_to_formdata.js'
 import sparql from '../sparql_help/sparql_queries.js'
-
-// import store from '../store/state.js'
 
 export default {
 
@@ -34,7 +31,7 @@ export default {
 
   beforeRouteEnter (to, from, next) {
     let query = sparql.allDocumentsQuery()
-    
+
     quitstore.getData(query)
       .then((response) => {
         next(vm => {
@@ -75,12 +72,6 @@ export default {
     setData (data) {
       this.$data.tabledata = data
     }
-  },
-
-  computed: {
-    ...mapGetters({
-      ticketlist: 'getAllTickets'
-    })
   }
 }
 
