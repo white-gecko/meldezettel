@@ -34,6 +34,7 @@ export default {
 
   beforeRouteEnter (to, from, next) {
     let query = sparql.allDocumentsQuery()
+    
     quitstore.getData(query)
       .then((response) => {
         next(vm => {
@@ -49,8 +50,8 @@ export default {
   },
 
   beforeRouteUpdate (to, from, next) {
-    console.log('update')
     let query = sparql.allDocumentsQuery()
+
     quitstore.getData(query)
       .then((response) => {
         let data = handleResponse(response.data)
