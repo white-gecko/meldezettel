@@ -3,7 +3,11 @@
 <template>
   <div>
     <!-- use element-UI elements to design the component -->
-
+    <el-input
+      placeholder="Please input"
+      v-model="input1"
+      :disabled="true">
+    </el-input>
   </div>
 </template>
 
