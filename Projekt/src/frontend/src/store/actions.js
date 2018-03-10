@@ -13,3 +13,7 @@ export const addFormData = (context, formData) => {
 
   return quitstore.sendData(insertQuery)
 }
+
+export const setTicketlist = (context, newList) => {
+  context.state.ticketlist = newList
+}
