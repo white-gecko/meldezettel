@@ -48,6 +48,7 @@ export default {
   data: () => {
     return {
       userData: {
+        role: '',
         name: '',
         position: '',
         signature: ''
@@ -61,7 +62,7 @@ export default {
 <style>
 
 .landingPage-item {
-
+  margin-bottom: 20px;
 }
 
 </style>

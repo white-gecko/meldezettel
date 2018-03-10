@@ -9,3 +9,7 @@ export const saveTicket = (state, newTicket) => {
 export const setTicketlist = (state, newList) => {
   state.ticketlist = newList
 }
+
+export const setUserData = (state, userData) => {
+  state.userData = userData
+}
