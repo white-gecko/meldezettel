@@ -1,4 +1,5 @@
 export default {
   role: 'Sichter',
-  ticketlist: []
+  ticketlist: [],
+  userdata: {}
 }
