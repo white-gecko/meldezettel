@@ -10,11 +10,11 @@
     <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
     <el-table-column prop="hdzIncomingA" label="Verfasser" width="100"></el-table-column>
 
-    <el-table-column prop="dateIncomingA" label="Datum" width="100"></el-table-column>
+    <el-table-column :formatter="formatDate" prop="dateIncomingA" label="Datum" width="100"></el-table-column>
 
-    <el-table-column prop="timeIncomingA" label="Uhrzeit" width="100"></el-table-column>
+    <el-table-column :formatter="formatTime" prop="timeIncomingA" label="Uhrzeit" width="100"></el-table-column>
 
-    <el-table-column prop="message" label="Kurzinhalt"></el-table-column>
+    <el-table-column :formatter="formatContent" prop="message" label="Kurzinhalt"></el-table-column>
 
   </el-table>
 </template>
@@ -71,6 +71,15 @@ export default {
   methods: {
     setData (data) {
       this.$data.tabledata = data
+    },
+    formatDate (row, column, cellValue) {
+      return (new Date(cellValue)).toLocaleDateString()
+    },
+    formatTime (row, column, cellValue) {
+      return (new Date(cellValue)).toLocaleTimeString()
+    },
+    formatContent (row, column, cellValue) {
+      return String(cellValue).length > 80 ? cellValue.substring(0, 77) + '...' : cellValue
     }
   }
 }
