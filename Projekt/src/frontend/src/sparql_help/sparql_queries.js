@@ -274,5 +274,36 @@ export default{
     query += 'thw:annotations ?annotations.'
     query += '}'
     return query
+  },
+
+  toInsertQuery: function (doc) {
+    let query = 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n'
+    query += 'PREFIX thw: <http://www.na17b.org/thw/>\n'
+    query += 'PREFIX id: <http://www.na17b.org/thw/resource/>\n'
+
+    // creating a random number as ID for each document
+    // we are aware that this is a bad solution, we will tend to that later
+    let rid = Math.floor((Math.random() * 900000) + 100000)
+    // base for sparql insert queries
+    query += 'INSERT DATA {\n GRAPH thw: {\n'
+    let uri = 'id:' + rid
+
+    query += uri + ' rdf:type thw:document;'
+
+    for (let key in doc) {
+      let value = doc[key]
+
+      query += 'thw:' + key + ' '
+      if (typeof value === 'string') {
+        query += '"' + value + '"'
+      } else {
+        query += value
+      }
+      query += ';'
+    }
+
+    query += '.}}'
+
+    return query
   }
 }
