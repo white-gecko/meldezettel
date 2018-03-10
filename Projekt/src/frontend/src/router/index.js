@@ -14,7 +14,7 @@ export default new Router({
     {
       path: '/',
       component: Layout,
-      redirect: 'home',
+      redirect: 'start',
       children: [
         {
           path: 'start',
