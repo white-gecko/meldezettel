@@ -9,18 +9,16 @@
       <el-col :span='14'>
         <div class='grid-content bg-purple'>
           <el-form-item>
-            <el-checkbox-group v-model='formdata.typeTop'>
-              <el-checkbox label='Funk' name='typeTop'>
-              </el-checkbox>
-              <el-checkbox label='Telefon' name='typeTop'>
-              </el-checkbox>
-              <el-checkbox label='Telefax' name='typeTop'>
-              </el-checkbox>
-              <el-checkbox label='DFÜ' name='typeTop'>
-              </el-checkbox>
-              <el-checkbox label='Kurier/Melder' name='typeTop'>
-              </el-checkbox>
-            </el-checkbox-group>
+            <el-checkbox label='Funk' v-model="formdata.topRadio">
+            </el-checkbox>
+            <el-checkbox label='Telefon' v-model="formdata.topPhone">
+            </el-checkbox>
+            <el-checkbox label='Telefax' v-model="formdata.topFax">
+            </el-checkbox>
+            <el-checkbox label='DFÜ' v-model="formdata.topDFU">
+            </el-checkbox>
+            <el-checkbox label='Kurier/Melder' v-model="formdata.topCourier">
+            </el-checkbox>
           </el-form-item>
         </div>
       </el-col>
@@ -156,18 +154,16 @@
       <el-col :span='24'>
         <div class='grid-content bg-purple' style='word-spacing: 2em'>
           <el-form-item>
-            <el-checkbox-group v-model='formdata.typeMiddle'>
-              <el-checkbox label='Funk' name='typeMiddle'>
-              </el-checkbox>
-              <el-checkbox label='Telefon' name='typeMiddle'>
-              </el-checkbox>
-              <el-checkbox label='Telefax' name='typeMiddle'>
-              </el-checkbox>
-              <el-checkbox label='DFÜ' name='typeMiddle'>
-              </el-checkbox>
-              <el-checkbox label='Kurier/Melder' name='typeMiddle'>
-              </el-checkbox>
-            </el-checkbox-group>
+            <el-checkbox label='Funk' v-model="formdata.midRadio">
+            </el-checkbox>
+            <el-checkbox label='Telefon' v-model="formdata.midPhone">
+            </el-checkbox>
+            <el-checkbox label='Telefax' v-model="formdata.midFax">
+            </el-checkbox>
+            <el-checkbox label='DFÜ' v-model="formdata.midDFU">
+            </el-checkbox>
+            <el-checkbox label='Kurier/Melder' v-model="formdata.midCourier">
+            </el-checkbox>
           </el-form-item>
         </div>
       </el-col>
@@ -177,12 +173,10 @@
       <el-col :span='9'>
         <div class='grid-content bg-purple' style='word-spacing: 0em'>
           <el-form-item>
-            <el-checkbox-group v-model='formdata.typeCall'>
-              <el-checkbox label='DURCHSAGE' name='typeCall'>
-              </el-checkbox>
-              <el-checkbox label='Spruch' name='typeCall'>
-              </el-checkbox>
-            </el-checkbox-group>
+            <el-checkbox label='DURCHSAGE' v-model="formdata.callAnnouncement">
+            </el-checkbox>
+            <el-checkbox label='Spruch' v-model="formdata.callMessage">
+            </el-checkbox>
           </el-form-item>
         </div>
       </el-col>
@@ -190,12 +184,10 @@
       <el-col :span='9'>
         <div class='grid-content bg-purple' style='word-spacing: 0em'>
           <el-form-item>
-            <el-checkbox-group v-model='formdata.priority'>
-              <el-checkbox label='Sofort' name='priority'>
+              <el-checkbox label='Sofort' v-model="formdata.priorityInstant">
               </el-checkbox>
-              <el-checkbox label='Blitz' name='priority'>
+              <el-checkbox label='Blitz' v-model="formdata.priorityFlash">
               </el-checkbox>
-            </el-checkbox-group>
           </el-form-item>
         </div>
       </el-col>
@@ -344,9 +336,7 @@
     <el-col :span=4>
       <div class='grid-content bg-purple has-margin'>
         <el-form-item>
-          <el-checkbox-group v-model='formdata.selectStation'>
-            <el-checkbox label='Leiter'> </el-checkbox>
-          </el-checkbox-group>
+          <el-checkbox label='Leiter' v-model="formdata.stationLeader"> </el-checkbox>
         </el-form-item>
       </div>
     </el-col>
@@ -355,41 +345,31 @@
 
         <div class='grid-content bg-purple has-margin'>
           <el-form-item>
-            <el-checkbox-group v-model='formdata.selectStation'>
-              <el-checkbox label='S1'> </el-checkbox>
-            </el-checkbox-group>
+            <el-checkbox label='S1' v-model="formdata.stationS1"> </el-checkbox>
           </el-form-item>
         </div>
 
         <div class='grid-content bg-purple has-margin'>
           <el-form-item>
-            <el-checkbox-group v-model='formdata.selectStation'>
-              <el-checkbox label='S2'> </el-checkbox>
-            </el-checkbox-group>
+            <el-checkbox label='S2' v-model="formdata.stationS2"> </el-checkbox>
           </el-form-item>
         </div>
 
         <div class='grid-content bg-purple has-margin'>
           <el-form-item>
-            <el-checkbox-group v-model='formdata.selectStation'>
-              <el-checkbox label='S3'> </el-checkbox>
-            </el-checkbox-group>
+            <el-checkbox label='S3' v-model="formdata.stationS3"> </el-checkbox>
           </el-form-item>
         </div>
 
         <div class='grid-content bg-purple has-margin'>
           <el-form-item>
-            <el-checkbox-group v-model='formdata.selectStation'>
-              <el-checkbox label='S4'> </el-checkbox>
-            </el-checkbox-group>
+            <el-checkbox label='S4' v-model="formdata.stationS4"> </el-checkbox>
           </el-form-item>
         </div>
 
         <div class='grid-content bg-purple has-margin'>
           <el-form-item>
-            <el-checkbox-group v-model='formdata.selectStation'>
-              <el-checkbox label='S6'> </el-checkbox>
-            </el-checkbox-group>
+            <el-checkbox label='S6' v-model="formdata.stationS6"> </el-checkbox>
           </el-form-item>
         </div>
 
@@ -536,11 +516,30 @@ export default {
   data: () => {
     return {
       formdata: {
-        typeTop: ['Funk'],
-        typeMiddle: ['Funk'],
-        typeCall: [],
-        priority: [],
-        selectStation: [],
+        topRadio: true,
+        topPhone: false,
+        topFax: false,
+        topDFU: false,
+        topCourier: false,
+
+        midRadio: true,
+        midPhone: false,
+        midFax: false,
+        midDFU: false,
+        midCourier: false,
+
+        callAnnouncement: false,
+        callMessage: false,
+
+        priorityInstant: false,
+        priorityFlash: false,
+
+        stationLeader: false,
+        stationS1: false,
+        stationS2: false,
+        stationS3: false,
+        stationS4: false,
+        stationS6: false,
 
         advisorA: '',
         advisorB: '',
@@ -642,7 +641,7 @@ export default {
     ...mapActions(['addFormData']),
 
     addFormData: function () {
-      console.log('test123')
+      console.log(this.$data.formdata)
       this.$store
         .dispatch('addFormData', this.formdata)
         .then(() => this.$router.push('home'))
