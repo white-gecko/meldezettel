@@ -16,31 +16,34 @@ import { mapMutations } from 'vuex';
     <!-- use element-UI elements to design the component -->
     <el-input
       placeholder="Name"
-      v-model="formdata.name"
+      v-model='userData.name'
       style="margin-bottom: 20px"
       :disabled="false">
     </el-input>
 
     <el-input
       placeholder="Handzeichen"
-      v-model="formdata.signature"
+      v-model="userData.signature"
       style="margin-bottom: 20px"
       :disabled="false">
     </el-input>
 
     <el-input
       placeholder="Funktion"
-      v-model="formdata.position"
+      v-model="userData.position"
       style="margin-bottom: 20px"
       :disabled="false">
     </el-input>
 
-  <el-button @click="this.setUserData">Bestätigen</el-button>
+  <el-button @click="this.setUserData(); notifySuccess('Gespeichert')">Bestätigen</el-button>
   </div>
 </template>
 
 <script>
 
+// eslint-disable-next-line
+import store from '../store/state.js'
+import { Notification } from 'element-ui'
 import { mapMutations } from 'vuex'
 // define data function to return stored data
 // define method to store data inside store/state.js
@@ -50,7 +53,7 @@ export default {
 
   data: () => {
     return {
-      formdata: {
+      userData: {
         role: '',
         name: '',
         position: '',
@@ -61,9 +64,22 @@ export default {
 
   methods: {
 
+    ...mapMutations(['setRole']),
     ...mapMutations(['setUserData']),
 
-    ...mapMutations(['setRole'])
+    commitUserData: () => {
+      store.commit('setUserData', this.userData)
+    },
+
+    notifySuccess (message) {
+      Notification({
+        title: message,
+        duration: 1200,
+        type: 'success',
+        offset: 120,
+        showClose: false
+      })
+    }
 
   }
 }
