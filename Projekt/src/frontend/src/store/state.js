@@ -1,5 +1,9 @@
 export default {
   role: 'Sichter',
   ticketlist: [],
-  user: {}
+  user: {
+    name: '',
+    position: '',
+    signature: ''
+  }
 }

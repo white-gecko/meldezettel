@@ -1,19 +1,19 @@
 <!-- this component will be our landing page -->
-import { mapMutations } from 'vuex';
 <!-- landing page will demand Rolle, Name, Funktion, Hdz -->
 <template>
-  <div>
-    <el-dropdown @command="this.setRole" style="margin-bottom: 20px">
-      <span class="el-dropdown-link">
-        Rolle auswählen<i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="Sichter">Sichter</el-dropdown-item>
-        <el-dropdown-item command="Funker">Funker</el-dropdown-item>
-        <el-dropdown-item command="LdF">LdF</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-    <!-- use element-UI elements to design the component -->
+<div>
+  <el-dropdown @command="this.setRole" style="margin-bottom: 20px">
+    <span class="el-dropdown-link">
+      Rolle auswählen<i class="el-icon-arrow-down el-icon--right"></i>
+    </span>
+    <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item command="Sichter">Sichter</el-dropdown-item>
+      <el-dropdown-item command="Funker">Funker</el-dropdown-item>
+      <el-dropdown-item command="LdF">LdF</el-dropdown-item>
+    </el-dropdown-menu>
+  </el-dropdown>
+  <!-- use element-UI elements to design the component -->
+  <div :model='userData'>
     <el-input
       placeholder="Name"
       v-model='userData.name'
@@ -35,8 +35,9 @@ import { mapMutations } from 'vuex';
       :disabled="false">
     </el-input>
 
-    <el-button @click="setUser(); notifySuccess('Gespeichert')">Bestätigen</el-button>
+    <el-button @click="setUser">Bestätigen</el-button>
   </div>
+</div>
 </template>
 
 <script>
@@ -63,10 +64,20 @@ export default {
   methods: {
 
     ...mapMutations(['setRole']),
+    ...mapMutations(['setUser']),
 
     // define method to store data inside store/state.js
+    /*
     setUser: () => {
-      this.$store.commit('setUser', this.userData)
+      this.$store
+        .commit('setUser', this.userData)
+        .then(() => this.$router.push('home'))
+    },
+    */
+
+    // just for testing redirect home functionality
+    directHome: () => {
+      this.$router.push('home')
     },
 
     notifySuccess (message) {
