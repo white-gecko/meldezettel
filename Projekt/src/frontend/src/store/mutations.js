@@ -10,6 +10,6 @@ export const setTicketlist = (state, newList) => {
   state.ticketlist = newList
 }
 
-export const setUserData = (state, userData) => {
-  state.userData = userData
+export const setUser = (state, userData) => {
+  state.user = userData
 }

@@ -35,18 +35,17 @@ import { mapMutations } from 'vuex';
       :disabled="false">
     </el-input>
 
-  <el-button @click="this.setUserData(); notifySuccess('Gespeichert')">Bestätigen</el-button>
+    <el-button @click="setUser(); notifySuccess('Gespeichert')">Bestätigen</el-button>
   </div>
 </template>
 
 <script>
 
 // eslint-disable-next-line
-import store from '../store/state.js'
+// import store from '../store/state.js'
 import { Notification } from 'element-ui'
 import { mapMutations } from 'vuex'
 // define data function to return stored data
-// define method to store data inside store/state.js
 export default {
 
   name: 'THWLandingPage',
@@ -54,7 +53,6 @@ export default {
   data: () => {
     return {
       userData: {
-        role: '',
         name: '',
         position: '',
         signature: ''
@@ -65,10 +63,10 @@ export default {
   methods: {
 
     ...mapMutations(['setRole']),
-    ...mapMutations(['setUserData']),
 
-    commitUserData: () => {
-      store.commit('setUserData', this.userData)
+    // define method to store data inside store/state.js
+    setUser: () => {
+      this.$store.commit('setUser', this.userData)
     },
 
     notifySuccess (message) {
@@ -85,11 +83,3 @@ export default {
 }
 
 </script>
-
-<style>
-
-.landingPage-item {
-  margin-bottom: 20px;
-}
-
-</style>
