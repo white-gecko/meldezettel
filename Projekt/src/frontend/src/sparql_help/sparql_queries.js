@@ -7,12 +7,9 @@ export default{
   formdataToInsertQuery: function (doc) {
     // default prefixes + graph prefixes
     let query = 'PREFIX id: <http://www.na17b.org/thw/resource/>\n'
-    query += 'PREFIX owl: <http://www.w3.org/2002/07/owl#>\n'
     query += 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n'
     query += 'PREFIX thw: <http://www.na17b.org/thw/>\n'
-    query += 'PREFIX xml: <http://www.w3.org/XML/1998/namespace>\n'
     query += 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n'
-    query += 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n'
 
     // creating a random number as ID for each document
     // we are aware that this is a bad solution, we will tend to that later
@@ -30,10 +27,26 @@ export default{
         query += 'DELETE DATA { GRAPH <http://www.na17b.org/thw/> {'
         query += 'thw:resource/'+doc.documentID+' ?x ?y } }'
         query += 'INSERT DATA { GRAPH <http://www.na17b.org/thw/> {'
-        uri    = 'thw:resource/'+doc.documentID
+        uri    = 'id:'+doc.documentID
     } */
-    query += uri + ' rdf:type thw:document;'
+    query += uri + ' rdf:type thw:document'
+    let key
 
+    for (key in doc) {
+      let value = doc[key]
+
+      query += ';thw:' + key + ' '
+      if (typeof value === 'string') {
+        query += '"' + value + '"^^xsd:string'
+      } else if (typeof value === 'object') {
+        let date = new Date(value)
+        query += date.getTime()
+      } else {
+        query += value
+      }
+    }
+    query += '.}}'
+    /*
     // top area on document
     if (doc.typeTop.includes('Funk')) {
       query += 'thw:topRadio "true";'
@@ -182,9 +195,11 @@ export default{
     query += 'thw:connectionE "' + doc.verbE + '";'
     query += 'thw:annotations "' + doc.annotations + '".'
     query += 'id:activeAIC thw:currentCount "' + rid + '" .} }'
+    */
+    console.log(query)
     return query
   },
-  /** functions that creates SPARQL select query to retrieve all
+  /** function that creates SPARQL select query to retrieve all
    *  document data from QuitStore
    *  @return = Select query
    */
@@ -225,27 +240,27 @@ export default{
     query += 'thw:midFax ?midFax;'
     query += 'thw:midDFU ?midDFU;'
     query += 'thw:midCourier ?midCourier;'
-    query += 'thw:announcement ?announcement;'
-    query += 'thw:message ?message;'
-    query += 'thw:instant ?instant;'
-    query += 'thw:flash ?flash;'
+    query += 'thw:callAnnouncement ?callAnnouncement;'
+    query += 'thw:callMessage ?callMessage;'
+    query += 'thw:priorityInstant ?priorityInstant;'
+    query += 'thw:priorityFlash ?priorityFlash;'
     query += 'thw:talkNote ?talkNote;'
     query += 'thw:callNumber ?callNumber;'
     query += 'thw:adress ?adress;'
     query += 'thw:content ?content;'
     query += 'thw:createTime ?createTime;'
     query += 'thw:identification ?identification;'
-    query += 'thw:role ?role;'
+    query += 'thw:position ?position;'
     query += 'thw:sender ?sender;'
     query += 'thw:docketTime ?docketTime;'
     query += 'thw:docketIdentification ?docketIdentification;'
-    query += 'thw:docketLeader ?docketLeader;'
-    query += 'thw:docketS1 ?docketS1;'
+    query += 'thw:stationLeader ?stationLeader;'
+    query += 'thw:stationS1 ?stationS1;'
     /*
-    query += 'thw:docketS2 ?docketS2;'
-    query += 'thw:docketS3 ?docketS3;'
-    query += 'thw:docketS4 ?docketS4;'
-    query += 'thw:docketS6 ?docketS6;'
+    query += 'thw:stationS2 ?stationS2;'
+    query += 'thw:stationS3 ?stationS3;'
+    query += 'thw:stationS4 ?stationS4;'
+    query += 'thw:stationS6 ?stationS6;'
     */
     query += 'thw:advisorTickA ?advisorTickA;'
     query += 'thw:advisorA ?advisorA;'

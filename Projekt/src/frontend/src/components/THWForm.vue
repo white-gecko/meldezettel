@@ -27,7 +27,7 @@
         <div class='grid-content bg-purple'>
           <el-form-item>
             <el-switch
-              v-model='formdata.isAusgang'
+              v-model='formdata.outgoing'
               active-color='#13ce66'
               inactive-color='#1b62d8'
               active-text='Ausgehend'
@@ -50,7 +50,7 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-date-picker v-model='formdata.dateIncomingA' type='date' placeholder='Datum auswählen' format='dd.MM.yyyy'>
+              <el-date-picker v-model='formdata.primaryDate' type='date' placeholder='Datum auswählen' format='dd.MM.yyyy'>
               </el-date-picker>
             </el-form-item>
           </div>
@@ -59,7 +59,7 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-time-picker v-model='formdata.timeIncomingA' placeholder='Uhrzeit auswählen'>
+              <el-time-picker v-model='formdata.primaryTime' placeholder='Uhrzeit auswählen' format='HH:mm'>
               </el-time-picker>
             </el-form-item>
           </div>
@@ -68,7 +68,7 @@
       <el-col :span='6'>
         <div class='grid-content'>
           <el-form-item>
-            <el-input v-model='formdata.hdzIncomingA'>
+            <el-input v-model='formdata.primaryHdZ'>
               <template slot='prepend'>
                 <span>Hdz</span>
               </template>
@@ -78,7 +78,7 @@
       </el-col>
     </el-row>
 
-    <el-row :gutter='15' type='flex' v-if='this.formdata.isAusgang'>
+    <el-row :gutter='15' type='flex' v-if='this.formdata.outgoing'>
       <el-col :span='4'>
         <div class='grid-content labelbox bg-purple'>
           <el-form-item>
@@ -90,7 +90,7 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-date-picker v-model='formdata.dateIncomingB' type='date' placeholder='Datum auswählen'>
+              <el-date-picker v-model='formdata.secondaryDate' type='date' placeholder='Datum auswählen' format='dd.MM.yyyy'>
               </el-date-picker>
             </el-form-item>
           </div>
@@ -99,7 +99,7 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-time-picker v-model='formdata.timeIncomingB' placeholder='Uhrzeit auswählen'>
+              <el-time-picker v-model='formdata.secondaryTime' placeholder='Uhrzeit auswählen' format='HH:mm'>
               </el-time-picker>
             </el-form-item>
           </div>
@@ -108,7 +108,7 @@
       <el-col :span='6'>
         <div class='grid-content'>
           <el-form-item>
-            <el-input v-model='formdata.hdzIncomingB'>
+            <el-input v-model='formdata.secondaryHdZ'>
               <template slot='prepend'>
                 <span>Hdz</span>
               </template>
@@ -135,7 +135,7 @@
     <el-row :gutter='15' type='flex'>
       <el-col :span=24>
         <el-form-item>
-          <el-input v-model='formdata.nameR'>
+          <el-input v-model='formdata.receiverName'>
             <template slot='prepend'>
               <span>Gegenstelle</span>
             </template>
@@ -195,7 +195,7 @@
       <el-col :span='6'>
         <div class='grid-content bg-purple' style='word-spacing: 0em'>
           <el-form-item>
-            <el-checkbox-group v-model='formdata.gNote'>
+            <el-checkbox-group v-model='formdata.talkNote'>
               <el-checkbox label='GESPRÄCHSNOTIZ' name='type4'>
               </el-checkbox>
             </el-checkbox-group>
@@ -207,7 +207,7 @@
     <el-row :gutter='15' type='flex'>
       <el-col :span='6'>
           <el-form-item>
-            <el-input placeholder='' v-model='formdata.phone' tabindex='1'>
+            <el-input placeholder='' v-model='formdata.callNumber' tabindex='1'>
               <template slot='prepend'>Ruf Nr.</template>
             </el-input>
           </el-form-item>
@@ -215,7 +215,7 @@
 
       <el-col :span='18'>
           <el-form-item>
-            <el-input placeholder='' v-model='formdata.adress' tabindex='2'>
+            <el-input placeholder='' v-model='formdata.address' tabindex='2'>
               <template slot='prepend'>Anschrift</template>
             </el-input>
           </el-form-item>
@@ -230,7 +230,7 @@
               :rows='3'
               placeholder='Inhalt'
               :autosize='{ minRows: 5, maxRows: 13 }'
-              v-model='formdata.message'
+              v-model='formdata.content'
               tabindex='3'>
             </el-input>
           </el-form-item>
@@ -240,14 +240,14 @@
     <el-row :gutter='15' type='flex'>
       <el-col :span='8'>
           <el-form-item label='' style='padding-left: 2px;'>
-            <el-time-picker v-model='formdata.createTime' placeholder='Abfassungszeit'>
+            <el-time-picker v-model='formdata.createTime' placeholder='Abfassungszeit' format='HH:mm'>
             </el-time-picker>
           </el-form-item>
       </el-col>
 
       <el-col :span='8'>
           <el-form-item>
-            <el-input placeholder='' v-model='formdata.signature'>
+            <el-input placeholder='' v-model='formdata.identification'>
               <template slot='prepend'>Zeichen</template>
             </el-input>
           </el-form-item>
@@ -288,7 +288,7 @@
       </el-col>
       <el-col :span='7'>
           <el-form-item label='' style='padding-left: 2px;'>
-            <el-time-picker v-model='formdata.signatureTime' placeholder='Uhrzeit'>
+            <el-time-picker v-model='formdata.docketTime' placeholder='Uhrzeit' format='HH:mm'>
               <template slot='prefix'>Zeichen</template>
             </el-time-picker>
           </el-form-item>
@@ -296,7 +296,7 @@
 
       <el-col :span='10'>
           <el-form-item>
-            <el-input placeholder='' v-model='formdata.signatureB'>
+            <el-input placeholder='' v-model='formdata.docketIdentification'>
               <template slot='prepend'>Zeichen</template>
             </el-input>
           </el-form-item>
@@ -381,7 +381,7 @@
         <el-form-item>
           <el-input v-model='formdata.advisorA' type='text'>
             <template slot='prepend'>
-              <input type='checkbox' v-model='formdata.advisorAchecked'>
+              <input type='checkbox' v-model='formdata.advisorTickA'>
             </template>
           </el-input>
         </el-form-item>
@@ -391,7 +391,7 @@
         <el-form-item>
           <el-input v-model='formdata.advisorB' type='text'>
             <template slot='prepend'>
-              <input type='checkbox' v-model='formdata.advisorBchecked'>
+              <input type='checkbox' v-model='formdata.advisorTickB'>
             </template>
           </el-input>
         </el-form-item>
@@ -401,7 +401,7 @@
         <el-form-item>
           <el-input v-model='formdata.advisorC' type='text'>
             <template slot='prepend'>
-              <input type='checkbox' v-model='formdata.advisorCchecked'>
+              <input type='checkbox' v-model='formdata.advisorTickC'>
             </template>
           </el-input>
         </el-form-item>
@@ -411,7 +411,7 @@
         <el-form-item>
           <el-input v-model='formdata.advisorD' type='text'>
             <template slot='prepend'>
-              <input type='checkbox' v-model='formdata.advisorDchecked'>
+              <input type='checkbox' v-model='formdata.advisorTickD'>
             </template>
           </el-input>
         </el-form-item>
@@ -421,7 +421,7 @@
         <el-form-item>
           <el-input v-model='formdata.advisorE' type='text'>
             <template slot='prepend'>
-              <input type='checkbox' v-model='formdata.advisorEchecked'>
+              <input type='checkbox' v-model='formdata.advisorTickE'>
             </template>
           </el-input>
         </el-form-item>
@@ -433,9 +433,9 @@
 
       <div class='has-margin grid-content'>
         <el-form-item>
-          <el-input v-model='formdata.verbA' type='text'>
+          <el-input v-model='formdata.connectionA' type='text'>
             <template slot='prepend'>
-              <input type='checkbox' v-model='formdata.verbAchecked'>
+              <input type='checkbox' v-model='formdata.connectionTickA'>
             </template>
           </el-input>
         </el-form-item>
@@ -443,9 +443,9 @@
 
       <div class='has-margin grid-content'>
         <el-form-item>
-          <el-input v-model='formdata.verbB' type='text'>
+          <el-input v-model='formdata.connectionB' type='text'>
             <template slot='prepend'>
-              <input type='checkbox' v-model='formdata.verbBchecked'>
+              <input type='checkbox' v-model='formdata.connectionTickB'>
             </template>
           </el-input>
         </el-form-item>
@@ -453,9 +453,9 @@
 
       <div class='has-margin grid-content'>
         <el-form-item>
-          <el-input v-model='formdata.verbC' type='text'>
+          <el-input v-model='formdata.connectionC' type='text'>
             <template slot='prepend'>
-              <input type='checkbox' v-model='formdata.verbCchecked'>
+              <input type='checkbox' v-model='formdata.connectionTickC'>
             </template>
           </el-input>
         </el-form-item>
@@ -463,9 +463,9 @@
 
       <div class='has-margin grid-content'>
         <el-form-item>
-          <el-input v-model='formdata.verbD' type='text'>
+          <el-input v-model='formdata.connectionD' type='text'>
             <template slot='prepend'>
-              <input type='checkbox' v-model='formdata.verbDchecked'>
+              <input type='checkbox' v-model='formdata.connectionTickD'>
             </template>
           </el-input>
         </el-form-item>
@@ -473,9 +473,9 @@
 
       <div class='has-margin grid-content'>
         <el-form-item>
-          <el-input v-model='formdata.verbE' type='text'>
+          <el-input v-model='formdata.connectionE' type='text'>
             <template slot='prepend'>
-              <input type='checkbox' v-model='formdata.verbEchecked'>
+              <input type='checkbox' v-model='formdata.connectionTickE'>
             </template>
           </el-input>
         </el-form-item>
@@ -521,6 +521,16 @@ export default {
         topFax: false,
         topDFU: false,
         topCourier: false,
+        numberTB: '',
+        outgoing: false,
+        receiverName: '',
+
+        primaryDate: '',
+        primaryTime: '',
+        primaryHdZ: '',
+        secondaryDate: '',
+        secondaryTime: '',
+        secondaryHdZ: '',
 
         midRadio: true,
         midPhone: false,
@@ -534,6 +544,18 @@ export default {
         priorityInstant: false,
         priorityFlash: false,
 
+        address: '',
+        callNumber: '',
+        talkNote: false,
+        content: '',
+        sender: '',
+        createTime: '',
+        identification: '',
+        position: '',
+
+        docketIdentification: '',
+        docketTime: '',
+
         stationLeader: false,
         stationS1: false,
         stationS2: false,
@@ -546,42 +568,23 @@ export default {
         advisorC: '',
         advisorD: '',
         advisorE: '',
-        advisorAchecked: false,
-        advisorBchecked: false,
-        advisorCchecked: false,
-        advisorDchecked: false,
-        advisorEchecked: false,
+        advisorTickA: false,
+        advisorTickB: false,
+        advisorTickC: false,
+        advisorTickD: false,
+        advisorTickE: false,
 
-        verbA: '',
-        verbB: '',
-        verbC: '',
-        verbD: '',
-        verbE: '',
-        verbAchecked: false,
-        verbBchecked: false,
-        verbCchecked: false,
-        verbDchecked: false,
-        verbEchecked: false,
+        connectionA: '',
+        connectionB: '',
+        connectionC: '',
+        connectionD: '',
+        connectionE: '',
+        connectionTickA: false,
+        connectionTickB: false,
+        connectionTickC: false,
+        connectionTickD: false,
+        connectionTickE: false,
 
-        gNote: false,
-        isAusgang: false,
-        dateIncomingA: '',
-        timeIncomingA: '',
-        hdzIncomingA: '',
-        dateIncomingB: '',
-        timeIncomingB: '',
-        hdzIncomingB: '',
-        numberTB: '',
-        nameR: '',
-        phone: '',
-        adress: '',
-        message: '',
-        createTime: '',
-        signature: '',
-        signatureB: '',
-        signatureTime: '',
-        position: '',
-        sender: '',
         annotations: ''
 
       }
