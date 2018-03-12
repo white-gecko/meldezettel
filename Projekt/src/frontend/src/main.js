@@ -25,7 +25,8 @@ import { Header,
   Option,
   Checkbox,
   CheckboxGroup,
-  CheckboxButton,
+  RadioGroup,
+  RadioButton,
   Row,
   Col,
   Switch,
@@ -52,7 +53,8 @@ Vue.use(Select)
 Vue.use(Option)
 Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
-Vue.use(CheckboxButton)
+Vue.use(RadioGroup)
+Vue.use(RadioButton)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Switch)

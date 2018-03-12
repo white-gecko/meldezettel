@@ -5,11 +5,14 @@
   checkbox-group for role and simple input fields -->
   <div :model='userData'>
 
-    <el-checkbox-group v-model="userData.role" size="medium" style="margin-bottom: 20px">
-      <el-checkbox-button v-for="roleOption in roles" :label="roleOption" :key="roleOption">
+    <el-radio-group v-model="userData.role" size="medium" style="margin-bottom: 20px">
+      <el-radio-button
+        v-for="roleOption in roles"
+        :label="roleOption"
+        :key="roleOption">
         {{ roleOption }}
-      </el-checkbox-button>
-    </el-checkbox-group>
+      </el-radio-button>
+    </el-radio-group>
 
     <el-input
       placeholder="Name"
@@ -50,12 +53,13 @@ export default {
   data: () => {
     return {
       userData: {
-        role: '',
+        role: [],
         sender: '',
         position: '',
         signature: ''
       },
-      roles: roleOptions
+      roles: roleOptions,
+      default: 'false'
     }
   },
 
@@ -86,7 +90,6 @@ export default {
         showClose: false
       })
     }
-
   }
 }
 
