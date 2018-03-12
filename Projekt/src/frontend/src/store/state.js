@@ -2,7 +2,8 @@ export default {
   role: 'Sichter',
   ticketlist: [],
   user: {
-    name: '',
+    role: '',
+    sender: '',
     position: '',
     signature: ''
   }

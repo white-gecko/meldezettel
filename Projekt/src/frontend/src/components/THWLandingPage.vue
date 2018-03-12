@@ -1,22 +1,19 @@
 <!-- this component will be our landing page -->
 <!-- landing page will demand Rolle, Name, Funktion, Hdz -->
 <template>
-<div>
-  <el-dropdown @command="this.setRole" style="margin-bottom: 20px">
-    <span class="el-dropdown-link">
-      Rolle auswählen<i class="el-icon-arrow-down el-icon--right"></i>
-    </span>
-    <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item command="Sichter">Sichter</el-dropdown-item>
-      <el-dropdown-item command="Funker">Funker</el-dropdown-item>
-      <el-dropdown-item command="LdF">LdF</el-dropdown-item>
-    </el-dropdown-menu>
-  </el-dropdown>
-  <!-- use element-UI elements to design the component -->
+  <!-- use element-UI elements to design the component
+  checkbox-group for role and simple input fields -->
   <div :model='userData'>
+
+    <el-checkbox-group v-model="userData.role" size="medium" style="margin-bottom: 20px">
+      <el-checkbox-button v-for="roleOption in roles" :label="roleOption" :key="roleOption">
+        {{ roleOption }}
+      </el-checkbox-button>
+    </el-checkbox-group>
+
     <el-input
       placeholder="Name"
-      v-model='userData.name'
+      v-model="userData.sender"
       style="margin-bottom: 20px"
       :disabled="false">
     </el-input>
@@ -37,16 +34,15 @@
 
     <el-button @click="setUser">Bestätigen</el-button>
   </div>
-</div>
 </template>
 
 <script>
 
-// eslint-disable-next-line
-// import store from '../store/state.js'
 import { Notification } from 'element-ui'
 import { mapMutations } from 'vuex'
 // define data function to return stored data
+const roleOptions = ['Sichter', 'LdF', 'Funker', 'Sachbearbeiter']
+
 export default {
 
   name: 'THWLandingPage',
@@ -54,10 +50,12 @@ export default {
   data: () => {
     return {
       userData: {
-        name: '',
+        role: '',
+        sender: '',
         position: '',
         signature: ''
-      }
+      },
+      roles: roleOptions
     }
   },
 
@@ -65,7 +63,6 @@ export default {
 
     ...mapMutations(['setRole']),
     ...mapMutations(['setUser']),
-
     // define method to store data inside store/state.js
     /*
     setUser: () => {

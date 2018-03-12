@@ -11,7 +11,8 @@ export const setTicketlist = (state, newList) => {
 }
 
 export const setUser = (state, userData) => {
-  state.user.name = userData.name
+  state.user.sender = userData.sender
+  state.user.role = userData.role
   state.user.position = userData.position
   state.user.signature = userData.signature
 }
