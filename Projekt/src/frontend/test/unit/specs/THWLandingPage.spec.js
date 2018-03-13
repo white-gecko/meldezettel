@@ -13,7 +13,7 @@ describe('THWLandingPage', () => {
 
   beforeEach(() => {
     mutations = {
-      submitForm: jest.fn()
+      setUser: jest.fn()
     }
 
     store = new Vuex.Store({
@@ -23,12 +23,12 @@ describe('THWLandingPage', () => {
 
     wrapper = mount(THWLandingPage, { store, localVue })
   })
-  
+
   it('binds to role', () => {
-    expect(wrapper.vm.userDate.role).toBe('')
+    expect(wrapper.vm.userData.role).toBe('')
   })
 
   it('binds to name', () => {
-    expect(wrapper.vm.userDate.name).toBe('')
+    expect(wrapper.vm.userData.sender).toBe('')
   })
 })
