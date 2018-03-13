@@ -6,10 +6,10 @@
   :rules="rules"
   ref="userData"
   class="demo-userData"
-  style='background: linear-gradient(#1b62d8, #003399); padding: 0.5em 0.5em; font-family: helvetica; width: 500px'>
+  style='background: #DCDFE6; padding: 0.5em 0.5em; font-family: helvetica; width: 500px'>
 
-  <div>
-    <h2 style="color:white">Daten eingeben</h2>
+  <div style="margin-bottom: 20px">
+    <span style="color:#606266">Rolle auswählen und Daten eingeben</span>
   </div>
 
   <el-form-item prop="role">
