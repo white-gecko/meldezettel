@@ -3,18 +3,38 @@
 
     <el-table-column width="150">
       <template slot-scope="scope">
-        <router-link v-bind:to="{name:'Create', params:{id: scope.$index }}" tag="el-button">Öffnen</router-link>
+        <router-link v-bind:to="{
+          name:'Create',
+          params:{id: scope.$index }
+          }"
+          tag="el-button">Öffnen
+        </router-link>
       </template>
     </el-table-column>
 
     <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
-    <el-table-column prop="hdzIncomingA" label="Verfasser" width="100"></el-table-column>
+    <el-table-column
+      prop="hdzIncomingA"
+      label="Verfasser"
+      width="100">
+    </el-table-column>
 
-    <el-table-column prop="dateIncomingA" label="Datum" width="100"></el-table-column>
+    <el-table-column
+      prop="dateIncomingA"
+      label="Datum"
+      width="100">
+    </el-table-column>
 
-    <el-table-column prop="timeIncomingA" label="Uhrzeit" width="100"></el-table-column>
+    <el-table-column
+      prop="timeIncomingA"
+      label="Uhrzeit"
+      width="100">
+    </el-table-column>
 
-    <el-table-column prop="message" label="Kurzinhalt"></el-table-column>
+    <el-table-column
+      prop="message"
+      label="Kurzinhalt">
+    </el-table-column>
 
   </el-table>
 </template>
