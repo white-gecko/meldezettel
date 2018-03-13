@@ -13,23 +13,16 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'start',
-      component: THWLandingPage
+      component: THWLandingPage,
+      name: 'Start'
     },
     {
       path: '/home',
       component: Layout,
       redirect: 'home',
       children: [
-        /*
         {
-          path: 'start',
-          name: 'Start',
-          component: THWLandingPage
-        },
-        */
-        {
-          path: 'home',
+          path: '/',
           name: 'Home',
           component: THWDashboard
         },

@@ -5,15 +5,14 @@
   :model="userData"
   :rules="rules"
   ref="userData"
-  label-width="120px"
   class="demo-userData"
-  style='background:lightblue; padding: 0.5em 0.5em; font-family: helvetica'>
+  style='background: linear-gradient(#1b62d8, #003399); padding: 0.5em 0.5em; font-family: helvetica; width: 500px'>
 
   <div>
     <h2 style="color:white">Daten eingeben</h2>
   </div>
 
-  <el-form-item label="Rolle" prop="role">
+  <el-form-item prop="role">
     <el-radio-group v-model="userData.role" size="medium">
       <el-radio-button
         v-for="roleOption in roles"
@@ -24,20 +23,32 @@
     </el-radio-group>
   </el-form-item>
 
-  <el-form-item label="Name" prop="sender">
-    <el-input v-model="userData.sender"></el-input>
+  <el-form-item prop="sender">
+    <el-input v-model="userData.sender">
+      <template slot='prepend'>
+        <span>Name</span>
+      </template>
+    </el-input>
   </el-form-item>
 
-  <el-form-item label="Zeichen" prop="signature">
-    <el-input v-model="userData.signature"></el-input>
+  <el-form-item prop="signature">
+    <el-input v-model="userData.signature">
+      <template slot='prepend'>
+        <span>Handzeichen</span>
+      </template>
+    </el-input>
   </el-form-item>
 
-  <el-form-item label="Funktion" prop="position">
-    <el-input v-model="userData.position"></el-input>
+  <el-form-item prop="position">
+    <el-input v-model="userData.position">
+      <template slot='prepend'>
+        <span>Funktion</span>
+      </template>
+    </el-input>
   </el-form-item>
 
   <el-form-item>
-    <el-button type="primary" @click="submitForm('userData')">Speichern</el-button>
+    <el-button @click="submitForm('userData')">Speichern</el-button>
     <el-button @click="resetForm('userData')">Felder leeren</el-button>
   </el-form-item>
 
@@ -77,7 +88,7 @@ export default {
         ],
         signature: [
           { required: true,
-            message: 'Bitte ein Zeichen eingeben',
+            message: 'Bitte Zeichen eingeben',
             trigger: 'blur' },
           { min: 2,
             max: 3,
@@ -115,7 +126,6 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$store.commit('setUser', this.userData)
-          this.notifySuccess('Speichern erfolgreich')
           this.$router.push('home')
         } else {
           return false
