@@ -6,5 +6,6 @@ export default {
     sender: '',
     position: '',
     signature: ''
-  }
+  },
+  showLandingPage: true
 }
