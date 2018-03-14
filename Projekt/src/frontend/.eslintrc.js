@@ -25,7 +25,7 @@ module.exports = {
     'generator-star-spacing': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    // maximum line length is 80, tabWidth is 4, ignoreUrls is true
-    "max-len": [2, {"code": 120, "tabWidth": 4, "ignoreUrls": true, "ignoreComments":true}]
+    // maximum line length is 80, tabWidth is 4, ignoreUrls is true, ignoreComments is true
+    "max-len": [2, {"code": 80, "tabWidth": 4, "ignoreUrls": true, "ignoreComments":true}]
   }
 }

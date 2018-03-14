@@ -1,6 +1,8 @@
 <template>
 <div>
-  <el-form ref='form' :model='formdata' style='background:lightblue; padding: 0.5em 0.5em'>
+  <el-form
+    ref='form' :model='formdata'
+    style='background:lightblue; padding: 0.5em 0.5em'>
 
     <!-- ============================================================ -->
     <!-- Top area -->
