@@ -8,11 +8,11 @@
   class="demo-userData"
   style='background: #DCDFE6; padding: 0.5em 0.5em; font-family: helvetica; width: 500px'>
 
-  <div style="margin-bottom: 20px">
+  <div style="margin-bottom: 30px">
     <span style="color:#606266">Rolle auswählen und Daten eingeben</span>
   </div>
 
-  <el-form-item prop="role">
+  <el-form-item prop="role" style="margin-bottom: 30px">
     <el-radio-group v-model="userData.role" size="medium">
       <el-radio-button
         v-for="roleOption in roles"
@@ -23,7 +23,7 @@
     </el-radio-group>
   </el-form-item>
 
-  <el-form-item prop="sender">
+  <el-form-item prop="sender" style="margin-bottom: 30px">
     <el-input v-model="userData.sender">
       <template slot='prepend'>
         <span>Name</span>
@@ -31,7 +31,7 @@
     </el-input>
   </el-form-item>
 
-  <el-form-item prop="signature">
+  <el-form-item prop="signature" style="margin-bottom: 30px">
     <el-input v-model="userData.signature">
       <template slot='prepend'>
         <span>Handzeichen</span>
@@ -39,7 +39,7 @@
     </el-input>
   </el-form-item>
 
-  <el-form-item prop="position">
+  <el-form-item prop="position" style="margin-bottom: 30px">
     <el-input v-model="userData.position">
       <template slot='prepend'>
         <span>Funktion</span>
@@ -56,10 +56,10 @@
 
 </template>
 
-import { Notification } from 'element-ui'
-import { mapMutations } from 'vuex'
-
 <script>
+
+import { Notification } from 'element-ui'
+// import { mapMutations } from 'vuex'
 
 const roleOptions = ['Sichter', 'LdF', 'Funker', 'Sachbearbeiter']
 
@@ -126,6 +126,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$store.commit('setUser', this.userData)
+          this.notifySuccess('Eingaben erfolgreich gespeichert')
           this.$store.commit('setShowLandingPage')
         } else {
           return false

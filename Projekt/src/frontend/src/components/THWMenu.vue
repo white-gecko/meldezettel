@@ -11,7 +11,7 @@
       </el-menu-item>
       <el-menu-item index="role" :route="{name:'Role'}">
         <i class="el-icon-view"></i>
-        <span slot="title">Rollenauswahl</span>
+        <span slot="title">Nutzerdaten ändern</span>
       </el-menu-item>
     </el-menu>
 </div>
