@@ -126,7 +126,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$store.commit('setUser', this.userData)
-          this.$router.push('home')
+          this.$store.commit('setShowLandingPage')
         } else {
           return false
         }
