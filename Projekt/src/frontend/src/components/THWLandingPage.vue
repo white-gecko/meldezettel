@@ -6,7 +6,7 @@
   :rules="rules"
   ref="userData"
   class="demo-userData"
-  style='background: #DCDFE6; padding: 0.5em 0.5em; font-family: helvetica; width: 500px'>
+  style='background: #DCDFE6; padding: 0.5em 0.5em; font-family: helvetica; width: 500px; margin: auto'>
 
   <div style="margin-bottom: 30px">
     <span style="color:#606266">Rolle auswählen und Daten eingeben</span>
@@ -40,7 +40,7 @@
   </el-form-item>
 
   <el-form-item prop="position" style="margin-bottom: 30px">
-    <el-input v-model="userData.position">
+    <el-input v-model="userData.position" v-if="userData.role == 'Sachbearbeiter'">
       <template slot='prepend'>
         <span>Funktion</span>
       </template>
@@ -68,7 +68,7 @@ export default {
   data () {
     return {
       userData: {
-        role: '',
+        role: 'Sachbearbeiter',
         sender: '',
         position: '',
         signature: ''
