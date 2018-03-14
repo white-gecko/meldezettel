@@ -24,8 +24,8 @@ describe('THWLandingPage', () => {
     wrapper = mount(THWLandingPage, { store, localVue })
   })
 
-  it('binds to role', () => {
-    expect(wrapper.vm.userData.role).toBe('')
+  it('binds to Hdz', () => {
+    expect(wrapper.vm.userData.signature).toBe('')
   })
 
   it('binds to name', () => {
