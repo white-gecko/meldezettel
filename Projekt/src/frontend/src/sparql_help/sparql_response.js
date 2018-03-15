@@ -1,0 +1,95 @@
+const thw = 'http://www.na17b.org/thw/'
+const xsd = 'http://www.w3.org/2001/XMLSchema#'
+
+/**
+ * Converts a string to a boolean
+ * @param {*String} string String to be converted
+ */
+const strToBool = function (string) {
+  switch (string.toLowerCase()) {
+    case 'false': case 'no': case '0': case '': return false
+    default: return true
+  }
+}
+
+/**
+ * Returns the data with the correct type from a sparql response literal
+ * @param {*Object} obj Object containing the literal
+ * @param {*String} prefix Prefix to be omitted from the datatype (default is http://www.w3.org/2001/XMLSchema#)
+ */
+const parseLiteral = function (obj, prefix) {
+  prefix = prefix || xsd
+
+  let type = obj['type']
+  if (type !== 'literal' && type !== 'typed-literal') {
+    console.error('object is not a literal')
+    return
+  }
+
+  let datatypeRaw = obj['datatype']
+  let value = obj['value']
+
+  if (datatypeRaw !== undefined) {
+    let datatype = obj['datatype'].replace(prefix, '')
+
+    switch (datatype) {
+      case 'boolean': return strToBool(value)
+      case 'integer': return parseInt(value)
+      case 'decimal': return parseFloat(value)
+      case 'string': return value
+      default:
+        console.error('unsupported datatype')
+    }
+  } else {
+    return value
+  }
+}
+
+/**
+ * Omits a prefix from a sparql response uri
+ * @param {*Object} obj Object containing the uri
+ * @param {*String} prefix Prefix to be omitted
+ */
+const parseUri = function (obj, prefix) {
+  let type = obj['type']
+  if (type !== 'uri') {
+    console.error('object is not a uri')
+    return
+  }
+
+  return obj['value'].replace(prefix, '')
+}
+
+/**
+ * parses a sparql response containing only literals
+ * returns the modified bindings of the response
+ * @param {*Object} obj sparql response
+ */
+export const parseLiteralResponse = function (obj) {
+  let bindings = obj.results.bindings
+  for (let binding of bindings) {
+    for (let key in binding) {
+      binding[key] = parseLiteral(binding[key])
+    }
+  }
+  return bindings
+}
+
+/**
+ * parses a sparql response containing literals and uris
+ * returns the modified bindings of the response
+ * @param {*Object} obj sparql response
+ */
+export const parseResponse = function (obj) {
+  let bindings = obj.results.bindings
+  for (let binding of bindings) {
+    for (let key in binding) {
+      if (binding[key]['type'] === 'uri') {
+        binding[key] = parseUri(binding[key], thw)
+      } else {
+        binding[key] = parseLiteral(binding[key])
+      }
+    }
+  }
+  return bindings
+}
