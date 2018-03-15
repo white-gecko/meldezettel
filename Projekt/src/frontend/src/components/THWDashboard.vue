@@ -22,11 +22,10 @@
 <script>
 
 import { quitstore } from '../api/QuitStoreAdapter.js'
-import { parseLiteralResponse } from '../sparql_help/sparql_response.js'
+import { parseResponse } from '../sparql_help/sparql_response.js'
 import sparql from '../sparql_help/sparql_queries.js'
 
 export default {
-
   name: 'THWDashboard',
 
   beforeRouteEnter (to, from, next) {
@@ -35,7 +34,7 @@ export default {
     quitstore.getData(query)
       .then((response) => {
         next(vm => {
-          let data = parseLiteralResponse(response.data)
+          let data = parseResponse(response.data)
           vm.setData(data)
           vm.$store.dispatch('setTicketlist', data)
         })
