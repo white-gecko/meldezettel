@@ -83,7 +83,7 @@ export default {
             trigger: 'blur' },
           { min: 3,
             max: 30,
-            message: 'Der Name sollte aus 2-30 Zeichen bestehen',
+            message: 'Der Name sollte aus 3-30 Zeichen bestehen',
             trigger: 'blur' }
         ],
         signature: [
