@@ -324,18 +324,29 @@ export default{
 
   dashboardQuery: function () {
     return `
-    PREFIX thw: <http://www.na17b.org/thw/>
-    PREFIX id: <http://www.na17b.org/thw/resource/>
-    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    
-    SELECT ?id ?content ?primaryDate ?primaryTime ?primaryHdZ FROM thw: WHERE {
-    ?uri rdf:type thw:document; thw:content ?content;
-    thw:primaryDate ?primaryDate;
-    thw:primaryTime ?primaryTime;
-    thw:primaryHdZ ?primaryHdZ;
-    BIND(STRAFTER(STR(?uri), STR(id:)) as ?id)
-    }
+      PREFIX thw: <http://www.na17b.org/thw/>
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+      prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      
+      SELECT ?id ?content ?primaryDate ?primaryTime ?primaryHdZ FROM thw: WHERE {
+        ?uri rdf:type thw:document;
+          thw:content ?content;
+          thw:primaryDate ?primaryDate;
+          thw:primaryTime ?primaryTime;
+          thw:primaryHdZ ?primaryHdZ;
+          BIND(STRAFTER(STR(?uri), STR(id:)) as ?id)
+      }
+    `
+  },
+
+  formQuery: function (id) {
+    return `
+      PREFIX thw: <http://www.na17b.org/thw/>
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+
+      SELECT ?p ?o FROM thw: WHERE{
+        id:` + id + ` ?p ?o
+      }
     `
   }
-
 }
