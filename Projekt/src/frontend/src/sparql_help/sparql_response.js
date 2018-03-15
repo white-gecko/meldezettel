@@ -5,6 +5,7 @@ const xsd = 'http://www.w3.org/2001/XMLSchema#'
 /**
  * Converts a string to a boolean
  * @param {*String} string String to be converted
+ * @return returns boolean value according to given string
  */
 const strToBool = function (string) {
   switch (string.toLowerCase()) {
@@ -14,9 +15,10 @@ const strToBool = function (string) {
 }
 
 /**
- * Returns the data with the correct type from a sparql response literal
+ * Parses a sparql response literal
  * @param {*Object} obj Object containing the literal
  * @param {*String} prefix Prefix to be omitted from the datatype (default is http://www.w3.org/2001/XMLSchema#)
+ * @return Returns the data with the correct type from a sparql response literal
  */
 const parseLiteral = function (obj, prefix) {
   prefix = prefix || xsd
@@ -50,6 +52,7 @@ const parseLiteral = function (obj, prefix) {
  * Omits the longest matching prefix from a sparql response uri
  * @param {*Object} obj Object containing the uri
  * @param {*String} prefix List of prefixes to be omitted
+ * @return returns the uri without prefix
  */
 const parseUri = function (obj, prefixes) {
   let type = obj['type']
@@ -71,8 +74,8 @@ const parseUri = function (obj, prefixes) {
 
 /**
  * parses a sparql response containing literals and uris
- * returns the modified bindings of the response
  * @param {*Object} obj sparql response
+ * @return returns the modified bindings of the response
  */
 export const parseResponse = function (obj) {
   let bindings = obj.results.bindings
