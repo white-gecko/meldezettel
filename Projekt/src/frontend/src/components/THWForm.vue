@@ -1,6 +1,8 @@
 <template>
 <div>
-  <el-form ref='form' :model='formdata' style='background:lightblue; padding: 0.5em 0.5em'>
+  <el-form
+    ref='form' :model='formdata'
+    style='background:lightblue; padding: 0.5em 0.5em'>
 
     <!-- ============================================================ -->
     <!-- Top area -->
@@ -52,7 +54,11 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-date-picker v-model='formdata.dateIncomingA' type='date' placeholder='Datum auswählen' format='dd.MM.yyyy'>
+              <el-date-picker
+                v-model='formdata.dateIncomingA'
+                type='date'
+                placeholder='Datum auswählen'
+                format='dd.MM.yyyy'>
               </el-date-picker>
             </el-form-item>
           </div>
@@ -61,7 +67,9 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-time-picker v-model='formdata.timeIncomingA' placeholder='Uhrzeit auswählen'>
+              <el-time-picker
+                v-model='formdata.timeIncomingA'
+                placeholder='Uhrzeit auswählen'>
               </el-time-picker>
             </el-form-item>
           </div>
@@ -92,7 +100,10 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-date-picker v-model='formdata.dateIncomingB' type='date' placeholder='Datum auswählen'>
+              <el-date-picker
+                v-model='formdata.dateIncomingB'
+                type='date'
+                placeholder='Datum auswählen'>
               </el-date-picker>
             </el-form-item>
           </div>
@@ -101,7 +112,9 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-time-picker v-model='formdata.timeIncomingB' placeholder='Uhrzeit auswählen'>
+              <el-time-picker
+                v-model='formdata.timeIncomingB'
+                placeholder='Uhrzeit auswählen'>
               </el-time-picker>
             </el-form-item>
           </div>
@@ -248,7 +261,9 @@
     <el-row :gutter='15' type='flex'>
       <el-col :span='8'>
           <el-form-item label='' style='padding-left: 2px;'>
-            <el-time-picker v-model='formdata.createTime' placeholder='Abfassungszeit'>
+            <el-time-picker
+              v-model='formdata.createTime'
+              placeholder='Abfassungszeit'>
             </el-time-picker>
           </el-form-item>
       </el-col>
@@ -273,7 +288,10 @@
     <el-row :gutter='15' type='flex'>
       <el-col :span='24'>
           <el-form-item>
-            <el-input placeholder='Einheit/Einrichtung/Stelle' v-model='formdata.sender' tabindex='5'>
+            <el-input
+              placeholder='Einheit/Einrichtung/Stelle'
+              v-model='formdata.sender'
+              tabindex='5'>
               <template slot='prepend'>Absender</template>
             </el-input>
           </el-form-item>
@@ -296,7 +314,9 @@
       </el-col>
       <el-col :span='7'>
           <el-form-item label='' style='padding-left: 2px;'>
-            <el-time-picker v-model='formdata.signatureTime' placeholder='Uhrzeit'>
+            <el-time-picker
+              v-model='formdata.signatureTime'
+              placeholder='Uhrzeit'>
               <template slot='prefix'>Zeichen</template>
             </el-time-picker>
           </el-form-item>
@@ -517,8 +537,14 @@
       </el-col>
     </el-row>
 
-    <el-button @click="addFormData(); notifySuccess('Abgeschickt')" tabindex="6">Abschicken</el-button>
-    <el-button @click="formReset(); notifySuccess('Formular zurückgesetzt')">Zurücksetzen</el-button>
+    <el-button
+      @click="addFormData(); notifySuccess('Abgeschickt')"
+      tabindex="6">Abschicken
+    </el-button>
+    <el-button
+      @click="formReset(); notifySuccess('Formular zurückgesetzt')"
+      >Zurücksetzen
+    </el-button>
 
   </el-form>
 </div>
@@ -602,7 +628,9 @@ export default {
     // load existing document if id is valid
     } else if (store.ticketlist[id] !== undefined) {
       next(vm => {
-        vm.setDefaultData({formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))})
+        vm.setDefaultData({
+          formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))
+        })
       })
     // abort navigation if document does not exist
     } else {
@@ -618,7 +646,9 @@ export default {
       this.setDefaultData(this.$options.data())
       next()
     } else if (store.ticketlist[id] !== undefined) {
-      this.setDefaultData({formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))})
+      this.setDefaultData({
+        formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))
+      })
       next()
     } else {
       alert('document not found')
