@@ -593,6 +593,7 @@ export default {
     }
   },
 
+  // load formdata before entering
   beforeRouteEnter (to, from, next) {
     var id = to.params.id
 
@@ -601,27 +602,31 @@ export default {
         // no id => load default values
         vm.setDefaultData(vm.$options.data())
       })
-    // load existing document if id is valid
     } else {
       let query = sparql.formQuery(id)
 
+      // query quitstore for the requested id
       quitstore.getData(query)
         .then((response) => {
           response = parseResponse(response.data)
           if (response.length > 0) {
+            // response length > 0 -> load document
             next(vm => {
               let data = {}
+              // data is in the form [{p: 'predicateName', o: 'predicateValue'},...] -> convert to {'predicateName': predicateValue, ...}
               for (let predicate of response) {
                 data[predicate.p] = predicate.o
               }
               vm.setDefaultData({'formdata': data})
             })
           } else {
+            // response length == 0 -> no triples for the document id can be found
             alert('document not found')
             next(false)
           }
         })
         .catch((error) => {
+          // something went wrong
           alert('Error trying to load document')
           console.error(error)
         })
