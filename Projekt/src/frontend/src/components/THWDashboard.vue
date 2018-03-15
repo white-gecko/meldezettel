@@ -45,23 +45,10 @@ export default {
       })
   },
 
-  /*
   beforeRouteUpdate (to, from, next) {
-    let query = sparql.allDocumentsQuery()
-
-    quitstore.getData(query)
-      .then((response) => {
-        let data = handleResponse(response.data)
-        this.setData(data)
-        this.$store.dispatch('setTicketlist', data)
-        next()
-      })
-      .catch((error) => {
-        alert(error)
-        next()
-      })
+    next(false)
   },
-  */
+
   data () {
     return {
       tabledata: [{}]

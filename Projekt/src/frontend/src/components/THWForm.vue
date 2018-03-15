@@ -633,22 +633,9 @@ export default {
     }
   },
 
-  /*
-  // same functionality as in beforeRouteEnter
   beforeRouteUpdate (to, from, next) {
-    var id = to.params.id
-    if (id === undefined) {
-      this.setDefaultData(this.$options.data())
-      next()
-    } else if (store.ticketlist[id] !== undefined) {
-      this.setDefaultData({formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))})
-      next()
-    } else {
-      alert('document not found')
-      next(false)
-    }
+    next(false)
   },
-  */
 
   created () {
     document.addEventListener('focusin', this.focusIn)
