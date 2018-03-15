@@ -506,9 +506,11 @@
 
 <script>
 
-import store from '../store/state.js'
 import { Notification } from 'element-ui'
 import { mapMutations, mapActions } from 'vuex'
+import { quitstore } from '../api/QuitStoreAdapter.js'
+import { parseResponse } from '../sparql_help/sparql_response.js'
+import sparql from '../sparql_help/sparql_queries.js'
 
 export default {
   name: 'THWForm',
@@ -591,28 +593,42 @@ export default {
     }
   },
 
-  // https://router.vuejs.org/en/advanced/navigation-guards.html
-  // fetches data to be loaded into the form depending on the params
   beforeRouteEnter (to, from, next) {
     var id = to.params.id
-    // check if an id param was supplied
+
     if (id === undefined) {
       next(vm => {
         // no id => load default values
         vm.setDefaultData(vm.$options.data())
       })
     // load existing document if id is valid
-    } else if (store.ticketlist[id] !== undefined) {
-      next(vm => {
-        vm.setDefaultData({formdata: JSON.parse(JSON.stringify(store.ticketlist[id]))})
-      })
-    // abort navigation if document does not exist
     } else {
-      alert('document not found')
-      next(false)
+      let query = sparql.formQuery(id)
+
+      quitstore.getData(query)
+        .then((response) => {
+          response = parseResponse(response.data)
+          if (response.length > 0) {
+            next(vm => {
+              let data = {}
+              for (let predicate of response) {
+                data[predicate.p] = predicate.o
+              }
+              vm.setDefaultData({'formdata': data})
+            })
+          } else {
+            alert('document not found')
+            next(false)
+          }
+        })
+        .catch((error) => {
+          alert('Error trying to load document')
+          console.error(error)
+        })
     }
   },
 
+  /*
   // same functionality as in beforeRouteEnter
   beforeRouteUpdate (to, from, next) {
     var id = to.params.id
@@ -627,6 +643,7 @@ export default {
       next(false)
     }
   },
+  */
 
   created () {
     document.addEventListener('focusin', this.focusIn)
@@ -649,10 +666,6 @@ export default {
         .dispatch('addFormData', this.formdata)
         .then(() => this.$router.push('home'))
         .catch((error) => alert(error))
-    },
-
-    submit: function () {
-      store.ticketlist.push(JSON.parse(JSON.stringify(this.$data.formdata)))
     },
 
     formReset: function () {
