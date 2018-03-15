@@ -1,4 +1,5 @@
 const thw = 'http://www.na17b.org/thw/'
+const id = 'http://www.na17b.org/thw/resource/'
 const xsd = 'http://www.w3.org/2001/XMLSchema#'
 
 /**
@@ -46,33 +47,26 @@ const parseLiteral = function (obj, prefix) {
 }
 
 /**
- * Omits a prefix from a sparql response uri
+ * Omits the longest matching prefix from a sparql response uri
  * @param {*Object} obj Object containing the uri
- * @param {*String} prefix Prefix to be omitted
+ * @param {*String} prefix List of prefixes to be omitted
  */
-const parseUri = function (obj, prefix) {
+const parseUri = function (obj, prefixes) {
   let type = obj['type']
   if (type !== 'uri') {
     console.error('object is not a uri')
     return
   }
 
-  return obj['value'].replace(prefix, '')
-}
-
-/**
- * parses a sparql response containing only literals
- * returns the modified bindings of the response
- * @param {*Object} obj sparql response
- */
-export const parseLiteralResponse = function (obj) {
-  let bindings = obj.results.bindings
-  for (let binding of bindings) {
-    for (let key in binding) {
-      binding[key] = parseLiteral(binding[key])
+  let value = obj['value']
+  let longestMatch = ''
+  for (let prefix of prefixes) {
+    if (value.indexOf(prefix) !== -1 && longestMatch.length < prefix.length) {
+      longestMatch = prefix
     }
   }
-  return bindings
+
+  return value.replace(longestMatch, '')
 }
 
 /**
@@ -85,7 +79,7 @@ export const parseResponse = function (obj) {
   for (let binding of bindings) {
     for (let key in binding) {
       if (binding[key]['type'] === 'uri') {
-        binding[key] = parseUri(binding[key], thw)
+        binding[key] = parseUri(binding[key], [thw, id])
       } else {
         binding[key] = parseLiteral(binding[key])
       }
