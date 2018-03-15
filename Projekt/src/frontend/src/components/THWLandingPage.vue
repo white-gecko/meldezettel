@@ -96,7 +96,7 @@ export default {
             trigger: 'blur' }
         ],
         position: [
-          { required: true,
+          { required: (this.role === 'Sachbearbeiter'),
             message: 'Bitte die Funktion eingeben',
             trigger: 'blur' },
           { min: 2,
