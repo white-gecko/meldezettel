@@ -51,12 +51,11 @@ export default{
       prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       
       SELECT ?id ?content ?primaryDate ?primaryTime ?primaryHdZ FROM thw: WHERE {
-        ?uri rdf:type   thw:document;
+        ?id rdf:type   thw:document;
                         thw:content ?content;
                         thw:primaryDate ?primaryDate;
                         thw:primaryTime ?primaryTime;
                         thw:primaryHdZ ?primaryHdZ;
-                        BIND(STRAFTER(STR(?uri), STR(id:)) as ?id)
       }
     `
   },
