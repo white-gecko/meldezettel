@@ -642,7 +642,7 @@ export default {
     ...mapActions(['addFormData']),
 
     addFormData: function () {
-      console.log('test123')
+      console.log(JSON.stringify(this.formdata))
       this.$store
         .dispatch('addFormData', this.formdata)
         .then(() => this.$router.push('home'))
