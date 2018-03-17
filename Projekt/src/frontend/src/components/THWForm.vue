@@ -252,7 +252,7 @@
                 hasMarginLeftRightB
                 hasMarginTopBottomB">
 
-                  <!-- element: input-complex ("Teschnisches Betriebsbuch") -->
+                  <!-- element: input-complex ("Technisches Betriebsbuch") -->
                   <div class="
                       innerWrapper
 i                     hasPaddingLeftRightC
@@ -261,7 +261,7 @@ i                     hasPaddingLeftRightC
                       hasMarginTopBottomC">
                     <el-container>
                       <el-header style="height: 55px">
-                        Teschnisches Betriebsbuch
+                        Technisches Betriebsbuch
                       </el-header>
                       <el-main class="flexContainerB">
                         <!-- nr.-input -->
@@ -620,8 +620,8 @@ i                     hasPaddingLeftRightC
               hasMarginLeftRightA
               hasMarginTopBottomA"
              style="
-              border-bottom-left-radius: 10px;
-              border-bottom-right-radius: 10px;">
+              border-bottom-left-radius: 20px;
+              border-bottom-right-radius: 20px;">
           <el-row>
             <el-col :span="16">
 
@@ -1104,6 +1104,7 @@ export default {
 
     addFormData: function () {
       console.log(this.$data.formdata)
+      console.log(JSON.stringify(this.$data.formdata))
       this.$store
         .dispatch('addFormData', this.formdata)
         .then(() => this.$router.push('home'))
