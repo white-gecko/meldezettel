@@ -1,3 +1,4 @@
+documentID: 0,
 <template>
   <div>
     <el-form ref="form" :model="formdata" style="
@@ -77,11 +78,11 @@
                             hasMarginLeftRightC
                             hasMarginTopBottomC">
                         <el-container>
-                          <el-header style="height: 30px;">Eingehend</el-header>
-                          <el-footer>
+                          <el-header style="height: 10px;">Eingehend</el-header>
+                          <el-main>
                             <el-container>
                               <el-header class="hasPaddingLeftRightB"
-                                style="
+                                         style="
                                   height: 20px;
                                   font-size: var(--bodySize);
                                   color: var(--secondaryTextColor)">
@@ -124,7 +125,7 @@
 
                               </el-main>
                             </el-container>
-                          </el-footer>
+                          </el-main>
                         </el-container>
                       </div>
 
@@ -139,12 +140,12 @@
                             hasMarginLeftRightC
                             hasMarginTopBottomC">
                         <el-container>
-                          <el-header style="height: 30px;">Ausgehend</el-header>
-                          <el-footer>
+                          <el-header style="height: 10px;">Ausgehend</el-header>
+                          <el-main>
                             <el-col :span="12">
                               <el-container>
                                 <el-header class="hasPaddingLeftRightB"
-                                  style="
+                                           style="
                                     height: 20px;
                                     font-size: var(--bodySize);
                                     color: var(--secondaryTextColor);">
@@ -190,7 +191,7 @@
                             <el-col :span="12">
                               <el-container>
                                 <el-header class="hasPaddingLeftRightB"
-                                  style="
+                                           style="
                                     height: 20px;
                                     font-size: var(--bodySize);
                                     color: var(--secondaryTextColor);">
@@ -233,7 +234,7 @@
                                 </el-main>
                               </el-container>
                             </el-col>
-                          </el-footer>
+                          </el-main>
                         </el-container>
                       </div>
 
@@ -288,7 +289,8 @@ i                     hasPaddingLeftRightC
                         </el-form-item>
                         <!-- checkbox "Ausgehend" -->
                         <el-form-item class="flexChildA
-                          hasPaddingLeftRightB">
+                          hasPaddingLeftRightB"
+                                      style="padding-bottom: 20px">
                           <el-checkbox @change="checkOut();"
                                        v-model="other.tempAusgehend"
                                        id="out"
@@ -420,14 +422,14 @@ i                     hasPaddingLeftRightC
                       hasMarginLeftRightC
                       hasMarginTopBottomC">
                     <el-form-item class="flexContainerA">
-                        <el-checkbox class="flexChildA"
-                                     label="Sofort"
-                                     v-model="formdata.priorityInstant"
-                                     name="priority"></el-checkbox>
-                        <el-checkbox class="flexChildA"
-                                     label="Blitz"
-                                     v-model="formdata.priorityFlash"
-                                     name="priority"></el-checkbox>
+                      <el-checkbox class="flexChildA"
+                                   label="Sofort"
+                                   v-model="formdata.priorityInstant"
+                                   name="priority"></el-checkbox>
+                      <el-checkbox class="flexChildA"
+                                   label="Blitz"
+                                   v-model="formdata.priorityFlash"
+                                   name="priority"></el-checkbox>
                     </el-form-item>
                   </div>
 
@@ -680,9 +682,9 @@ i                     hasPaddingLeftRightC
                         <el-main class="flexContainerA">
                           <!-- BOTTOM-part LEFT checkbox "Leiter"  -->
                           <el-form-item class="flexChildA">
-                              <el-checkbox label="Leiter"
-                                           v-model="formdata.stationLeader">
-                              </el-checkbox>
+                            <el-checkbox label="Leiter"
+                                         v-model="formdata.stationLeader">
+                            </el-checkbox>
                           </el-form-item>
                           <!-- BOTTOM-part LEFT checkbox "S1/S2/..." -->
                           <div class="
@@ -699,19 +701,19 @@ i                     hasPaddingLeftRightC
                               </el-checkbox>
                             </el-form-item>
                             <el-form-item class="flexChildA">
-                                <el-checkbox label="S3"
-                                             v-model="formdata.stationS3">
-                                </el-checkbox>
+                              <el-checkbox label="S3"
+                                           v-model="formdata.stationS3">
+                              </el-checkbox>
                             </el-form-item>
                             <el-form-item class="flexChildA">
-                                <el-checkbox label="S4"
-                                             v-model="formdata.stationS4">
-                                </el-checkbox>
+                              <el-checkbox label="S4"
+                                           v-model="formdata.stationS4">
+                              </el-checkbox>
                             </el-form-item>
                             <el-form-item class="flexChildA">
-                                <el-checkbox label="S6"
-                                             v-model="formdata.stationS6">
-                                </el-checkbox>
+                              <el-checkbox label="S6"
+                                           v-model="formdata.stationS6">
+                              </el-checkbox>
                             </el-form-item>
                           </div>
                         </el-main>
