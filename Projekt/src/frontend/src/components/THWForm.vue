@@ -1,6 +1,8 @@
 <template>
 <div>
-  <el-form ref='form' :model='formdata' style='background:lightblue; padding: 0.5em 0.5em'>
+  <el-form
+    ref='form' :model='formdata'
+    style='background:lightblue; padding: 0.5em 0.5em'>
 
     <!-- ============================================================ -->
     <!-- Top area -->
@@ -265,7 +267,10 @@
     <el-row :gutter='15' type='flex'>
       <el-col :span='24'>
           <el-form-item>
-            <el-input placeholder='Einheit/Einrichtung/Stelle' v-model='formdata.sender' tabindex='5'>
+            <el-input
+              placeholder='Einheit/Einrichtung/Stelle'
+              v-model='formdata.sender'
+              tabindex='5'>
               <template slot='prepend'>Absender</template>
             </el-input>
           </el-form-item>
@@ -497,8 +502,14 @@
       </el-col>
     </el-row>
 
-    <el-button @click="addFormData(); notifySuccess('Abgeschickt')" tabindex="6">Abschicken</el-button>
-    <el-button @click="formReset(); notifySuccess('Formular zurückgesetzt')">Zurücksetzen</el-button>
+    <el-button
+      @click="addFormData(); notifySuccess('Abgeschickt')"
+      tabindex="6">Abschicken
+    </el-button>
+    <el-button
+      @click="formReset(); notifySuccess('Formular zurückgesetzt')"
+      >Zurücksetzen
+    </el-button>
 
   </el-form>
 </div>

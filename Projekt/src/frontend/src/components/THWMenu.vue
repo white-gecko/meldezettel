@@ -1,6 +1,8 @@
 <template>
 <div>
-   <el-menu default-active="home" class="el-menu-vertical-demo" :router="true" :collapse="isCollapsed">
+   <el-menu
+    default-active="home"
+    class="el-menu-vertical-demo" :router="true" :collapse="isCollapsed">
       <el-menu-item index="home" :route="{name:'Home'}">
         <i class="el-icon-menu"></i>
         <span slot="title">Übersicht</span>
