@@ -4,7 +4,7 @@
       <el-header height="90px">
         <THWHeader/>
       </el-header>
-      <el-container style="padding-right: 150px; padding-left: 150px">
+      <el-container style="padding-right: 150px;">
         <el-aside width="220px">
           <THWMenu/>
         </el-aside>
