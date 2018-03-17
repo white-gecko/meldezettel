@@ -1,9 +1,62 @@
 <template>
-  <div class="header is-blue has-text-centered">
-      <div style="float: left; padding: 5px;">
-        {{ this.role }}
-      </div>
-     <!-- <img src="@/assets/thw-logo.png" height="60" width="60">-->
+  <div class="header">
+    <!-- <el-row>
+      <el-col :span="3">
+        <el-row>
+          <div class="wrapperTHWHeA" style="width: 120px;">
+            <div class="wrapperTHWHeB"
+                 style="padding-top: 0; height: 60px; width: 60px;">
+             <img src="@/assets/PlaceholderMainIcon.png"
+                   height="60"
+                   width="60">
+            </div>
+          </div>
+        </el-row>
+      </el-col>
+
+      <el-col :span="12">
+        <el-row>
+          <div style="height: 20px;">
+
+          </div>
+        </el-row>
+      </el-col>
+
+      <el-col :span="9">
+        <el-row>
+          <el-col :span="7.5">
+            <div class="wrapperTHWHeA" style="width: 120px;">
+              <div class="wrapperTHWHeB"
+                   style="padding-top: 0; height: 60px; width: 60px;">
+                <img src="@/assets/PlaceholderSichterIcon.png"
+                     height="60"
+                     width="60">
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <div class="wrapperTHWHeA">
+              <div class="wrapperTHWHeB">
+                <div class="wrapperTHWHeC">
+                  {{ this.role }}
+                </div>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <div class="wrapperTHWHeA">
+              <div class="wrapperTHWHeB">
+                <div class="wrapperTHWHeC">
+                  Zeichen
+                </div>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+      </el-col>
+
+    </el-row> -->
+    <!-- <img src="@/assets/thw-logo.png" height="60" width="60">-->
   </div>
 </template>
 
@@ -23,17 +76,57 @@ export default {
 </script>
 
 <style>
-.is-blue {
-    background: linear-gradient(#1b62d8, #003399);
-}
-.header {
-    height: 100px;
-    margin-bottom: 20px;
-    color: white;
-    text-align: right;
-    font-size: 50px;
-    vertical-align: center;
-    padding: 0.2em;
-    font-family: Arial
-}
+  .header {
+    background-color: var(--mainColor);
+    height: 60px;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--regularTextColor);
+    border-radius: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+  }
+
+  .wrapperTHWHeA {
+    background-color: var(--darkNeutralColor);
+    height: 60px;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--regularTextColor);
+    border-radius: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .wrapperTHWHeB {
+    background-color: var(--middleNeutralColor);
+    height: 50px;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--regularTextColor);
+    border-radius: 50px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+  }
+
+  .wrapperTHWHeC {
+    background-color: var(--lightNeutralColor);
+    height: 40px;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    font-weight: bold;
+    color: var(--regularTextColor);
+
+    border-radius: 5px;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
 </style>

@@ -5,7 +5,3 @@ export const setRole = (state, newRole) => {
 export const saveTicket = (state, newTicket) => {
   state.ticketlist.push(newTicket)
 }
-
-export const setTicketlist = (state, newList) => {
-  state.ticketlist = newList
-}
