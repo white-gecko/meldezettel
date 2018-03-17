@@ -52,7 +52,11 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-date-picker v-model='formdata.primaryDate' type='date' placeholder='Datum auswählen' format='dd.MM.yyyy'>
+              <el-date-picker
+                v-model='formdata.primaryDate'
+                type='date'
+                placeholder='Datum auswählen'
+                format='dd.MM.yyyy'>
               </el-date-picker>
             </el-form-item>
           </div>
@@ -61,7 +65,10 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-time-picker v-model='formdata.primaryTime' placeholder='Uhrzeit auswählen' format='HH:mm'>
+              <el-time-picker
+                v-model='formdata.primaryTime'
+                placeholder='Uhrzeit auswählen'
+                format='HH:mm'>
               </el-time-picker>
             </el-form-item>
           </div>
@@ -92,7 +99,11 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-date-picker v-model='formdata.secondaryDate' type='date' placeholder='Datum auswählen' format='dd.MM.yyyy'>
+              <el-date-picker
+                v-model='formdata.secondaryDate'
+                type='date'
+                placeholder='Datum auswählen'
+                format='dd.MM.yyyy'>
               </el-date-picker>
             </el-form-item>
           </div>
@@ -101,7 +112,10 @@
       <el-col :span='7'>
           <div class='grid-content'>
             <el-form-item>
-              <el-time-picker v-model='formdata.secondaryTime' placeholder='Uhrzeit auswählen' format='HH:mm'>
+              <el-time-picker
+                v-model='formdata.secondaryTime'
+                placeholder='Uhrzeit auswählen'
+                format='HH:mm'>
               </el-time-picker>
             </el-form-item>
           </div>
@@ -242,7 +256,10 @@
     <el-row :gutter='15' type='flex'>
       <el-col :span='8'>
           <el-form-item label='' style='padding-left: 2px;'>
-            <el-time-picker v-model='formdata.createTime' placeholder='Abfassungszeit' format='HH:mm'>
+            <el-time-picker
+              v-model='formdata.createTime'
+              placeholder='Abfassungszeit'
+              format='HH:mm'>
             </el-time-picker>
           </el-form-item>
       </el-col>
@@ -293,7 +310,10 @@
       </el-col>
       <el-col :span='7'>
           <el-form-item label='' style='padding-left: 2px;'>
-            <el-time-picker v-model='formdata.docketTime' placeholder='Uhrzeit' format='HH:mm'>
+            <el-time-picker
+              v-model='formdata.docketTime'
+              placeholder='Uhrzeit'
+              format='HH:mm'>
               <template slot='prefix'>Zeichen</template>
             </el-time-picker>
           </el-form-item>
@@ -341,7 +361,10 @@
     <el-col :span=4>
       <div class='grid-content bg-purple has-margin'>
         <el-form-item>
-          <el-checkbox label='Leiter' v-model="formdata.stationLeader"> </el-checkbox>
+          <el-checkbox
+            label='Leiter'
+            v-model="formdata.stationLeader">
+          </el-checkbox>
         </el-form-item>
       </div>
     </el-col>
