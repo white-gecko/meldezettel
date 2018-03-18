@@ -3,39 +3,33 @@
 
     <el-table-column width="150">
       <template slot-scope="scope">
-        <router-link
-          v-bind:to="{
-            name:'Create', params:{id: tabledata[scope.$index]['id']}
-          }"
-          tag="el-button">Öffnen</router-link>
+        <router-link v-bind:to="{
+          name:'Create',
+          params:{id: tabledata[scope.$index]['id'] }}"
+                     tag="el-button">
+          Öffnen
+        </router-link>
       </template>
     </el-table-column>
 
     <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
-    <el-table-column
-      prop="primaryHdZ"
-      label="Verfasser"
-      width="100">
-    </el-table-column>
+    <el-table-column prop="primaryHdZ"
+                     label="Verfasser"
+                     width="100"></el-table-column>
 
-    <el-table-column
-      :formatter="formatDate"
-      prop="primaryDate"
-      label="Datum"
-      width="100">
-    </el-table-column>
+    <el-table-column :formatter="formatDate"
+                     prop="primaryDate"
+                     label="Datum"
+                     width="100"></el-table-column>
 
-    <el-table-column
-      :formatter="formatTime"
-      prop="primaryTime" label="Uhrzeit"
-      width="100">
-    </el-table-column>
+    <el-table-column :formatter="formatTime"
+                     prop="primaryTime"
+                     label="Uhrzeit"
+                     width="100"></el-table-column>
 
-    <el-table-column
-      :formatter="formatContent"
-      prop="content"
-      label="Kurzinhalt">
-    </el-table-column>
+    <el-table-column :formatter="formatContent"
+                     prop="content"
+                     label="Kurzinhalt"></el-table-column>
 
   </el-table>
 </template>
@@ -87,10 +81,8 @@ export default {
       return (new Date(cellValue)).toLocaleTimeString()
     },
     formatContent (row, column, cellValue) {
-      if (String(cellValue).length > 80) {
-        return cellValue.substring(0, 77)
-      }
-      return cellValue
+      return String(cellValue).length > 80
+        ? cellValue.substring(0, 77) + '...' : cellValue
     }
   }
 }

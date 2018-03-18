@@ -99,323 +99,206 @@ export const handleResponse = function (response) {
 */
 const translations = Object.freeze({
   // top area
-  topRadio: {
-    type: typeEnum.boolean,
+  topRadio: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeTop',
-    value: 'Funk'
-
-  },
-  topPhone: {
-    type: typeEnum.boolean,
+    value: 'Funk'},
+  topPhone: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeTop',
-    value: 'Telefon'
-  },
-  topFax: {
-    type: typeEnum.boolean,
+    value: 'Telefon'},
+  topFax: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeTop',
-    value: 'Telefax'
-  },
-  topDFU: {
-    type: typeEnum.boolean,
+    value: 'Telefax'},
+  topDFU: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeTop',
-    value: 'DFÜ'
-
-  },
+    value: 'DFÜ'},
   topCourier: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeTop',
-    value: 'Kurier/Melder'
-  },
+    value: 'Kurier/Melder'},
 
-  outgoing: {
-    type: typeEnum.boolean,
+  outgoing: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'isAusgang'
-  },
-  primaryHdZ: {
-    type: typeEnum.string,
+    key: 'isAusgang'},
+  primaryHdZ: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'hdzIncomingA'
-  },
-  primaryTime: {
-    type: typeEnum.string,
+    key: 'hdzIncomingA'},
+  primaryTime: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'timeIncomingA'
-  },
-  primaryDate: {
-    type: typeEnum.string,
+    key: 'timeIncomingA'},
+  primaryDate: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'dateIncomingA'
-  },
+    key: 'dateIncomingA'},
 
-  secondaryHdZ: {
-    type: typeEnum.string,
+  secondaryHdZ: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'hdzIncomingB'
-  },
-  secondaryTime: {
-    type: typeEnum.string,
+    key: 'hdzIncomingB'},
+  secondaryTime: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'timeIncomingB'
-  },
-  secondaryDate: {
-    type: typeEnum.string,
+    key: 'timeIncomingB'},
+  secondaryDate: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'dateIncomingB'
-  },
+    key: 'dateIncomingB'},
 
-  numberTB: {
-    type: typeEnum.string,
-    action: actionEnum.copy
-  },
-  receiverName: {
-    type: typeEnum.string,
+  numberTB: {type: typeEnum.string,
+    action: actionEnum.copy},
+  receiverName: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'nameR'
-  },
+    key: 'nameR'},
 
   // middle area
-  midRadio: {
-    type: typeEnum.boolean,
+  midRadio: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeMiddle',
     value: 'Funk'},
-  midPhone: {
-    type: typeEnum.boolean,
+  midPhone: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeMiddle',
     value: 'Telefon'},
-  midFax: {
-    type: typeEnum.boolean,
+  midFax: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeMiddle',
     value: 'Telefax'},
-  midDFU: {
-    type: typeEnum.boolean,
+  midDFU: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeMiddle',
     value: 'DFÜ'},
-  midCourier: {
-    type: typeEnum.boolean,
+  midCourier: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeMiddle',
     value: 'Kurier/Melder'},
 
-  announcement: {
-    type: typeEnum.boolean,
+  announcement: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeCall',
-    value: 'DURCHSAGE'
-  },
-  message: {
-    type: typeEnum.boolean,
+    value: 'DURCHSAGE'},
+  message: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'typeCall',
-    value: 'Spruch'
-  },
-  instant: {
-    type: typeEnum.boolean,
+    value: 'Spruch'},
+  instant: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'priority',
-    value: 'Sofort'
-  },
-  flash: {
-    type: typeEnum.boolean,
+    value: 'Sofort'},
+  flash: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'priority',
-    value: 'Blitz'
-  },
-  talkNote: {
-    type: typeEnum.boolean,
+    value: 'Blitz'},
+  talkNote: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'gNote'
-  },
-  callNumber: {
-    type: typeEnum.string,
+    key: 'gNote'},
+  callNumber: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'phone'
-  },
+    key: 'phone'},
 
-  adress: {
-    type: typeEnum.string,
-    action: actionEnum.copy
-  },
-  content: {
-    type: typeEnum.string,
+  adress: {type: typeEnum.string,
+    action: actionEnum.copy},
+  content: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'message'
-  },
-  createTime: {
-    type: typeEnum.string,
-    action: actionEnum.copy
-  },
-  identification: {
-    type: typeEnum.string,
+    key: 'message'},
+  createTime: {type: typeEnum.string,
+    action: actionEnum.copy},
+  identification: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'signature'
-  },
-  role: {
-    type: typeEnum.string,
+    key: 'signature'},
+  role: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'position'
-  },
-  sender: {
-    type: typeEnum.string,
-    action: actionEnum.copy
-  },
+    key: 'position'},
+  sender: {type: typeEnum.string,
+    action: actionEnum.copy},
 
   // bottom area
-  docketTime: {
-    type: typeEnum.string,
+  docketTime: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'signatureTime'
-  },
+    key: 'signatureTime'},
 
-  docketIdentification: {
-    type: typeEnum.string,
+  docketIdentification: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'signatureB'
-  },
-  docketLeader: {
-    type: typeEnum.boolean,
+    key: 'signatureB'},
+  docketLeader: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'selectStation',
-    value: 'Leiter'
-  },
-  docketS1: {
-    type: typeEnum.boolean,
+    value: 'Leiter'},
+  docketS1: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'selectStation',
-    value: 'S1'
-  },
-  docketS2: {
-    type: typeEnum.boolean,
+    value: 'S1'},
+  docketS2: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'selectStation',
-    value: 'S2'
-  },
-  docketS3: {
-    type: typeEnum.boolean,
+    value: 'S2'},
+  docketS3: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'selectStation',
-    value: 'S3'
-  },
-  docketS4: {
-    type: typeEnum.boolean,
+    value: 'S3'},
+  docketS4: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'selectStation',
-    value: 'S4'
-  },
-  docketS6: {
-    type: typeEnum.boolean,
+    value: 'S4'},
+  docketS6: {type: typeEnum.boolean,
     action: actionEnum.arrayInsertConditional,
     key: 'selectStation',
-    value: 'S6'
-  },
+    value: 'S6'},
 
-  advisorA: {
-    type: typeEnum.string,
-    action: actionEnum.copy
-  },
-  advisorB: {
-    type: typeEnum.string,
-    action: actionEnum.copy
-  },
-  advisorC: {
-    type: typeEnum.string,
-    action: actionEnum.copy
-  },
-  advisorD: {
-    type: typeEnum.string,
-    action: actionEnum.copy
-  },
-  advisorE: {
-    type: typeEnum.string,
-    action: actionEnum.copy
-  },
-  advisorTickA: {
-    type: typeEnum.boolean,
+  advisorA: {type: typeEnum.string,
+    action: actionEnum.copy},
+  advisorB: {type: typeEnum.string,
+    action: actionEnum.copy},
+  advisorC: {type: typeEnum.string,
+    action: actionEnum.copy},
+  advisorD: {type: typeEnum.string,
+    action: actionEnum.copy},
+  advisorE: {type: typeEnum.string,
+    action: actionEnum.copy},
+  advisorTickA: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'advisorAchecked'
-  },
-  advisorTickB: {
-    type: typeEnum.boolean,
+    key: 'advisorAchecked'},
+  advisorTickB: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'advisorBchecked'
-  },
-  advisorTickC: {
-    type: typeEnum.boolean,
+    key: 'advisorBchecked'},
+  advisorTickC: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'advisorCchecked'
-  },
-  advisorTickD: {
-    type: typeEnum.boolean,
+    key: 'advisorCchecked'},
+  advisorTickD: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'advisorDchecked'
-  },
-  advisorTickE: {
-    type: typeEnum.boolean,
+    key: 'advisorDchecked'},
+  advisorTickE: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'advisorEchecked'
-  },
+    key: 'advisorEchecked'},
 
-  connectionA: {
-    type: typeEnum.string,
+  connectionA: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'verbA'
-  },
-  connectionB: {
-    type: typeEnum.string,
+    key: 'verbA'},
+  connectionB: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'verbB'
-  },
-  connectionC: {
-    type: typeEnum.string,
+    key: 'verbB'},
+  connectionC: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'verbC'
-  },
-  connectionD: {
-    type: typeEnum.string,
+    key: 'verbC'},
+  connectionD: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'verbD'
-  },
-  connectionE: {
-    type: typeEnum.string,
+    key: 'verbD'},
+  connectionE: {type: typeEnum.string,
     action: actionEnum.copy,
-    key: 'verbE'
-  },
-  connectionTickA: {
-    type: typeEnum.boolean,
+    key: 'verbE'},
+  connectionTickA: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'verbAchecked'
-  },
-  connectionTickB: {
-    type: typeEnum.boolean,
+    key: 'verbAchecked'},
+  connectionTickB: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'verbBchecked'
-  },
-  connectionTickC: {
-    type: typeEnum.boolean,
+    key: 'verbBchecked'},
+  connectionTickC: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'verbCchecked'
-  },
-  connectionTickD: {
-    type: typeEnum.boolean,
+    key: 'verbCchecked'},
+  connectionTickD: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'verbDchecked'
-  },
-  connectionTickE: {
-    type: typeEnum.boolean,
+    key: 'verbDchecked'},
+  connectionTickE: {type: typeEnum.boolean,
     action: actionEnum.copy,
-    key: 'verbEchecked'
-  },
+    key: 'verbEchecked'},
 
-  annotations: {
-    type: typeEnum.string,
-    action: actionEnum.copy
-  }
+  annotations: {type: typeEnum.string, action: actionEnum.copy}
 })
