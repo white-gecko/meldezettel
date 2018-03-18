@@ -1069,7 +1069,6 @@ export default {
               for (let predicate of response) {
                 data[predicate.p] = predicate.o
               }
-              console.log(JSON.stringify(data))
               vm.setDefaultData({'formdata': data})
             })
           } else {
@@ -1106,8 +1105,6 @@ export default {
     ...mapActions(['addFormData']),
 
     addFormData: function () {
-      console.log(this.$data.formdata)
-      console.log(JSON.stringify(this.$data.formdata))
       this.$store
         .dispatch('addFormData', this.formdata)
         .then(() => this.$router.push('home'))
