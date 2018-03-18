@@ -1069,6 +1069,7 @@ export default {
               for (let predicate of response) {
                 data[predicate.p] = predicate.o
               }
+              console.log(JSON.stringify(data))
               vm.setDefaultData({'formdata': data})
             })
           } else {
