@@ -39,7 +39,7 @@
   </el-form-item>
 
   <el-form-item prop="position" style="margin-bottom: 30px">
-    <el-input 
+    <el-input
       v-model="userData.position"
       v-if="userData.role == 'Sachbearbeiter'">
       <template slot='prepend'>
