@@ -1,4 +1,11 @@
 export default {
   role: 'Sichter',
-  ticketlist: []
+  ticketlist: [],
+  user: {
+    role: '',
+    sender: '',
+    position: '',
+    signature: ''
+  },
+  showLandingPage: true
 }
