@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 /**
  * The quitstore object implements methods that allow for
  * communication with the QuitStore SPARQL endpoint via http.
