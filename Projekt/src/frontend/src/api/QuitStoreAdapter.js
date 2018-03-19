@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-/*eslint-disable*/
 var result = {}
 
 /**
