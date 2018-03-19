@@ -1,8 +1,5 @@
 import axios from 'axios'
 
-/*eslint-disable*/
-var result = {}
-
 /**
  * The quitstore object implements methods that allow for
  * communication with the QuitStore SPARQL endpoint via http.
@@ -33,9 +30,4 @@ export const quitstore = {
       data: 'query=' + sparqlQuery
     })
   }
-}
-
-function sleepFor( sleepDuration ){
-  var now = new Date().getTime()
-  while(new Date().getTime() < now + sleepDuration){ /* do nothing */ }
 }

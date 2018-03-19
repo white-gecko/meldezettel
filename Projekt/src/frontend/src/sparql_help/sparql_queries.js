@@ -78,6 +78,7 @@ export default{
 
       SELECT ?p ?o FROM thw: WHERE{
         id:` + id + ` ?p ?o
+        FILTER(?p != rdf:type)
       }
     `
   }
