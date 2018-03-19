@@ -6,13 +6,13 @@ test ('Dashboard query function works',() =>{
       PREFIX thw: <http://www.na17b.org/thw/>
       PREFIX id: <http://www.na17b.org/thw/resource/>
       prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-      
-      SELECT 
-        ?id 
-        ?content 
-        ?primaryDate 
-        ?primaryTime 
-        ?primaryHdZ FROM thw: 
+
+      SELECT
+        ?id
+        ?content
+        ?primaryDate
+        ?primaryTime
+        ?primaryHdZ FROM thw:
         WHERE {
           ?id rdf:type  thw:document;
                         thw:content ?content;
@@ -24,7 +24,7 @@ test ('Dashboard query function works',() =>{
 })
 
 test ('FormQuery function works',() => {
-    
+
   let id=123456
   expect(sparql.formQuery(id)).toBe(`
       PREFIX thw: <http://www.na17b.org/thw/>
@@ -34,7 +34,8 @@ test ('FormQuery function works',() => {
         id:123456 ?p ?o
         FILTER(?p != rdf:type)
       }
-  `)
+    `
+  )
 })
 
 test ('InsertQuery function works',() => {

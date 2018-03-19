@@ -49,13 +49,13 @@ export default{
       PREFIX thw: <http://www.na17b.org/thw/>
       PREFIX id: <http://www.na17b.org/thw/resource/>
       prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-      
-      SELECT 
-        ?id 
-        ?content 
-        ?primaryDate 
-        ?primaryTime 
-        ?primaryHdZ FROM thw: 
+
+      SELECT
+        ?id
+        ?content
+        ?primaryDate
+        ?primaryTime
+        ?primaryHdZ FROM thw:
         WHERE {
           ?id rdf:type  thw:document;
                         thw:content ?content;
