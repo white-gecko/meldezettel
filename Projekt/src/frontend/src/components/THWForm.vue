@@ -1105,8 +1105,6 @@ export default {
     ...mapActions(['addFormData']),
 
     addFormData: function () {
-      console.log(this.$data.formdata)
-      console.log(JSON.stringify(this.$data.formdata))
       this.$store
         .dispatch('addFormData', this.formdata)
         .then(() => this.$router.push('home'))

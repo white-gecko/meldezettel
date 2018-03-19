@@ -75,10 +75,12 @@ export default {
       this.$data.tabledata = data
     },
     formatDate (row, column, cellValue) {
-      return (new Date(cellValue)).toLocaleDateString()
+      // return (new Date(cellValue)).toLocaleDateString()
+      return cellValue
     },
     formatTime (row, column, cellValue) {
-      return (new Date(cellValue)).toLocaleTimeString()
+      // return (new Date(cellValue)).toLocaleTimeString()
+      return cellValue
     },
     formatContent (row, column, cellValue) {
       return String(cellValue).length > 80
