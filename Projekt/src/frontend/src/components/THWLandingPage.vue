@@ -25,7 +25,7 @@
   <el-form-item prop="position" style="margin-bottom: 20px">
     <el-radio-group
       v-model="userData.positions"
-      v-if="userData.role == 'Sachbearbeiter'"
+      v-if="userData.role == 'SGL'"
       size="medium">
       <el-radio-button
         v-for="positionOption in positions"
@@ -66,7 +66,8 @@
 import { Notification } from 'element-ui'
 // import { mapMutations } from 'vuex'
 
-const roleOptions = ['Sichter', 'LdF', 'Funker', 'Sachbearbeiter']
+const roleOptions =
+['Sichter', 'LdF', 'Fernmelder', 'SGL', 'Fachberater', 'Verbindungsstelle']
 const positionOptions = ['S1', 'S2', 'S3', 'S4', 'S6']
 
 export default {
@@ -74,7 +75,7 @@ export default {
   data () {
     return {
       userData: {
-        role: 'Sachbearbeiter',
+        role: 'SGL',
         sender: '',
         position: '',
         signature: ''
@@ -104,12 +105,8 @@ export default {
             trigger: 'blur' }
         ],
         position: [
-          { required: (this.role === 'Sachbearbeiter'),
+          { required: (this.role === 'SGL'),
             message: 'Bitte die Funktion eingeben',
-            trigger: 'blur' },
-          { min: 2,
-            max: 3,
-            message: 'Die Funktion sollte aus 2-3 Zeichen bestehen',
             trigger: 'blur' }
         ],
         role: [
