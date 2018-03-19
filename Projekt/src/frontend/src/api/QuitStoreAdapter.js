@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-var result = {}
 
 /**
  * The quitstore object implements methods that allow for
@@ -32,9 +31,4 @@ export const quitstore = {
       data: 'query=' + sparqlQuery
     })
   }
-}
-
-function sleepFor( sleepDuration ){
-  var now = new Date().getTime()
-  while(new Date().getTime() < now + sleepDuration){ /* do nothing */ }
 }
