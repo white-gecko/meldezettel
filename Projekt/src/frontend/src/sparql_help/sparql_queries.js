@@ -17,7 +17,7 @@ export default{
     // we are aware that this is a bad solution, we will tend to that later
     let rid = Math.floor((Math.random() * 900000) + 100000)
     // base for sparql insert queries
-    query += 'INSERT DATA {\n GRAPH <http://www.na17b.org/thw/> {\n'
+    query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
     let uri = 'id:' + rid
 
     query += uri + ' rdf:type thw:document'
