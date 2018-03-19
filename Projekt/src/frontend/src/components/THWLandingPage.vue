@@ -40,7 +40,7 @@
 
   <el-form-item prop="position" style="margin-bottom: 30px">
     <el-input 
-      v-model="userData.position" 
+      v-model="userData.position"
       v-if="userData.role == 'Sachbearbeiter'">
       <template slot='prepend'>
         <span>Funktion</span>
@@ -142,9 +142,9 @@ export default {
 </script>
 <style>
     .demo-userData{
-        background-color: #DCDFE6; 
-        padding: 0.5em 0.5em; 
-        font-family: helvetica; 
-        width: 500px; margin: auto';
+        background-color: #DCDFE6;
+        padding: 0.5em 0.5em;
+        font-family: helvetica;
+        width: 500px; margin: auto;
     }
 </style>
