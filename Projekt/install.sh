@@ -19,10 +19,19 @@ if [[ "$answer" != "N" ]] && [[ "$answer" != "n" ]] ; then
     chmod +x docker/frontend/run.sh 
 
     docker-compose build frontend
-    docker-compose up -d frontend 
 fi
 
-echo "5 minutes until the frontend is intialized, ~250MB package data"
-echo "$ du -sh src/frontend/node_modules"
-echo "The frontend can be reached at http://localhost:8080"
+echo "Autostart container at boot? (Y/n) "
+read answer
+if [[ "$answer" != "N" ]] && [[ "$answer" != "n" ]] ; then
+    docker-compose up -d frontend 
+else
+  echo "You can start the container using for example:"
+  echo "docker run -p 8080:80 thw-frontend-dev"
+fi
+
+echo "The frontend will be initialized when first run,"
+echo "~250MB package data need to be downloaded."
+echo "You can then reach it at:"
+echo "   http://localhost:8080"
 echo "Have fun!"
