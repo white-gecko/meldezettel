@@ -7,6 +7,7 @@
 \usepackage{fancyhdr}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{verbatim}
 \usepackage[toc]{glossaries} 
 
 \renewcommand{\arraystretch}{2}
@@ -14,8 +15,9 @@
 
 \pagestyle{fancy}
 
-\lhead{\today \qquad \qquad Gruppe: na17b}
-\rhead{Verantwortliche: Sieke, Gehrke, Heier, Wahsner}
+\lhead{\today}
+\chead{Gruppe: na17b}
+\rhead{Verantwortlicher: Marc Wahsner}
 \title{Testbericht\\Nachrichtenkommunikation für das THW}
 \author{na17b}
 \date{}
@@ -32,8 +34,7 @@
 \newpage
 
 \section{Allgemeines}
-Die Tests für dieses Softwareprojekt sind eng an das Qualitätssicherungskonzept geknüpft und sollen das Funktionieren des Codes gewährleisten. Das Vorprojekt führt ausschließlich Komponententests durch, da die Kommunikation zwischen Komponenten nur indirekt über den Store erfolgt. Der Zugriff auf den Store wurde
-gemocked. Als Testframework wird \gls{Jest} zusammen mit \gls{vue-test-utils} verwendet.
+Die Tests für dieses Softwareprojekt sind eng an das Qualitätssicherungskonzept geknüpft und sollen das Funktionieren des Codes gewährleisten. Das Vorprojekt führt ausschließlich Komponententests durch, da die Kommunikation zwischen Komponenten nur indirekt über den Store erfolgt. Der Zugriff auf den Store wurde gemocked. Als Testframework wird \gls{Jest} zusammen mit \gls{vue-test-utils} verwendet.
 \section{Tests}
 \subsection{Komponententests}
 Komponententests befinden sich jeweils im gleichen Ordner wie die zu testende Komponente.
@@ -43,11 +44,11 @@ Dort liegt für jede Komponente eine eigene Datei, welche die geforderten Eigens
 einer Komponente beschreibt. Es genügt, im Ordner frontend den Befehl \verb+npm run unit+ auszuführen; daraufhin werden alle Test-Suites automatisch abgearbeitet. Eine beispielhafte Ausgabe ist in folgender Abbildung zu sehen.
 \begin{figure}[htpb]
 \centering
-\includegraphics[width=0.8\linewidth]{testsscreenshot}
+\includegraphics[width=0.8\linewidth]{test}
 \caption{Ausgabe des Befehls npm run unit}
 \label{fig:npmtest}
 \end{figure}
-Die Tests beschränken sich hier zunächst auf das Prüfen von Anwesenheit bestimmter Variablen und html-Elementen.
+Die Tests umfassen das Prüfen von Anwesenheit bestimmter Variablen und html-Elemente, sowie die Rückgabewerte einiger Funktionen und das Parsen von sparql-Rückgaben.
 Die Ergebnisse sind in folgender Tabelle aufgelistet.
 \begin{table}[htpb]
 \centering
@@ -55,17 +56,19 @@ Die Ergebnisse sind in folgender Tabelle aufgelistet.
 \begin{tabular}{c | c | c}
 Komponente & Anzahl Tests & Bestanden \\
 \hline
-THWForm & 5 & ja \\
 THWDashboard & 4 & ja \\
-THWMenu & 3 & ja 
+THWMenu & 3 & ja \\
+THWLandingPage & 2 & ja\\
+sparql\_response & 1 & ja\\
+sparql\_queries & 3 & ja\\
 \end{tabular}
 \caption{Testergebnisse der momentanen Frontend-Komponenten}
 \end{table}
+Die Tests für THWForm werden derzeit nicht ausgeführt, weil es zu Komplikationen mit Jest kam, welche noch nicht behoben werden konnten.
 \section{Continous Integration}
 \label{sub:continous integration}
 Zum zweiten Release wurde Continous Integration eingeführt, um das Einhalten der Vorgaben aus dem Dokumentationskonzept und Coding Standards automatisiert zu testen. Dazu wird GitLab CI \gls{GitLab-CI} verwendet. Die \verb+gitlab-ci.yml+ beinhaltet XML-Linting sowie JavaScript-Linting und -Testing. Um den Prozess zu beschleunigen wird auf \verb|npm install| verzichtet, stattdessen werden nur für die Tests benötigte Pakete und deren Abhängigkeiten installiert. Anschließend erfolgen linting (\verb|npm run lint|) und testing (\verb|npm run unit|).
 
 \newpage
 \printglossaries
-
 \end{document}
