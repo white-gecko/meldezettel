@@ -11,7 +11,7 @@
     <span style="color:#606266">Rolle auswählen und Daten eingeben</span>
   </div>
 
-  <el-form-item prop="role" style="margin-bottom: 30px">
+  <el-form-item prop="role" style="margin-bottom: 20px">
     <el-radio-group v-model="userData.role" size="medium">
       <el-radio-button
         v-for="roleOption in roles"
@@ -22,7 +22,21 @@
     </el-radio-group>
   </el-form-item>
 
-  <el-form-item prop="sender" style="margin-bottom: 30px">
+  <el-form-item prop="position" style="margin-bottom: 20px">
+    <el-radio-group
+      v-model="userData.positions"
+      v-if="userData.role == 'Sachbearbeiter'"
+      size="medium">
+      <el-radio-button
+        v-for="positionOption in positions"
+        :label="positionOption"
+        :key="positionOption">
+        {{ positionOption }}
+      </el-radio-button>
+    </el-radio-group>
+  </el-form-item>
+
+  <el-form-item prop="sender" style="margin-bottom: 20px">
     <el-input v-model="userData.sender">
       <template slot='prepend'>
         <span>Name</span>
@@ -30,7 +44,7 @@
     </el-input>
   </el-form-item>
 
-  <el-form-item prop="signature" style="margin-bottom: 30px">
+  <el-form-item prop="signature" style="margin-bottom: 20px">
     <el-input v-model="userData.signature">
       <template slot='prepend'>
         <span>Handzeichen</span>
@@ -38,17 +52,7 @@
     </el-input>
   </el-form-item>
 
-  <el-form-item prop="position" style="margin-bottom: 30px">
-    <el-input
-      v-model="userData.position"
-      v-if="userData.role == 'Sachbearbeiter'">
-      <template slot='prepend'>
-        <span>Funktion</span>
-      </template>
-    </el-input>
-  </el-form-item>
-
-  <el-form-item>
+  <el-form-item style="margintop: 100px">
     <el-button @click="submitForm('userData')">Speichern</el-button>
     <el-button @click="resetForm('userData')">Felder leeren</el-button>
   </el-form-item>
@@ -63,6 +67,7 @@ import { Notification } from 'element-ui'
 // import { mapMutations } from 'vuex'
 
 const roleOptions = ['Sichter', 'LdF', 'Funker', 'Sachbearbeiter']
+const positionOptions = ['S1', 'S2', 'S3', 'S4', 'S6']
 
 export default {
   name: 'THWLandingPage',
@@ -76,6 +81,8 @@ export default {
       },
 
       roles: roleOptions,
+
+      positions: positionOptions,
 
       rules: {
         sender: [
@@ -145,6 +152,11 @@ export default {
         background-color: #DCDFE6;
         padding: 0.5em 0.5em;
         font-family: helvetica;
-        width: 500px; margin: auto;
+        width: 62%; margin: auto;
+    }
+    .demo-div{
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
     }
 </style>
