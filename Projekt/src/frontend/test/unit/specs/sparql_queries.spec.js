@@ -1,10 +1,6 @@
 import sparql from '@/sparql_help/sparql_queries.js'
 
-test ('SPARQL query functions work',() =>{
-
-  let id=123456
-  let date=new Date(40)
-  let obj={one:'text',two:false,three:333,four:date}
+test ('Dashboard query function works',() =>{
 
   expect(sparql.dashboardQuery()).toBe(`
       PREFIX thw: <http://www.na17b.org/thw/>
@@ -25,7 +21,11 @@ test ('SPARQL query functions work',() =>{
                         thw:primaryHdZ ?primaryHdZ;
       }
     `)
+})
 
+test ('FormQuery function works',() => {
+    
+  let id=123456
   expect(sparql.formQuery(id)).toBe(`
       PREFIX thw: <http://www.na17b.org/thw/>
       PREFIX id: <http://www.na17b.org/thw/resource/>
@@ -34,7 +34,13 @@ test ('SPARQL query functions work',() =>{
         id:123456 ?p ?o
         FILTER(?p != rdf:type)
       }
-    `)
+  `)
+})
+
+test ('InsertQuery function works',() => {
+
+  let date=new Date(40)
+  let obj={one:'text',two:false,three:333,four:date}
 
   expect(sparql.formdataToInsertQuery(obj)).toMatch(
     /INSERT DATA {GRAPH <http:\/\/www.na17b.org\/thw\/> {id:[0-9]{6} rdf:type thw:document;thw:one "text";thw:two false;thw:three 333;thw:four 40.}}/
