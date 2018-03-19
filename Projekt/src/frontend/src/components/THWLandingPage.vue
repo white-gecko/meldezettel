@@ -24,8 +24,8 @@
 
   <el-form-item prop="position" style="margin-bottom: 20px">
     <el-radio-group
-      v-model="userData.positions"
-      v-if="userData.role == 'SGL'"
+      v-model="userData.position"
+      v-if="userData.role === 'SGL'"
       size="medium">
       <el-radio-button
         v-for="positionOption in positions"
@@ -76,8 +76,8 @@ export default {
     return {
       userData: {
         role: 'SGL',
-        sender: '',
         position: '',
+        sender: '',
         signature: ''
       },
 
@@ -106,8 +106,8 @@ export default {
         ],
         position: [
           { required: (this.role === 'SGL'),
-            message: 'Bitte die Funktion eingeben',
-            trigger: 'blur' }
+            message: 'Bitte die Funktion auswählen',
+            trigger: 'change' }
         ],
         role: [
           { required: true,
