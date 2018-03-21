@@ -11,16 +11,41 @@
     <span style="color:#606266">Rolle auswählen und Daten eingeben</span>
   </div>
 
-  <div>
+  <el-form-item>
   <select v-model="userData.operation">
     <option disabled value="">Einsatz auswählen</option>
-    <option v-for="item in operations" :value="item" :key="item.name">
-      {{item.name}}
+    <option v-for="item in operations" :value="item" :key="item.operationName">
+      {{item.operationName}}
     </option>
   </select>
 
-  </div>
-  <br>
+  <el-button @click="addingOperation = !addingOperation" style="margin-bottom: 20px">
+    Einsatz erstellen
+  </el-button>
+
+    <el-form-item v-if="addingOperation">
+      <el-form-item style="margin-bottom: 20px">
+        <el-input v-model="newOperation.operationName">
+          <template slot='prepend'>
+            <span>Einsatzname</span>
+          </template>
+        </el-input>
+      </el-form-item>
+
+      <el-form-item style="margin-bottom: 20px">
+        <el-input v-model="newOperation.operationAdress">
+          <template slot='prepend'>
+            <span>Anschrift</span>
+          </template>
+        </el-input>
+      </el-form-item>
+
+      <el-form-item style="margintop: 100px">
+        <el-button @click="submitOperation(newOperation)">Speichern</el-button>
+      </el-form-item>
+    </el-form-item>
+
+  </el-form-item>
 
   <el-form-item prop="role" style="margin-bottom: 20px">
     <el-radio-group v-model="userData.role" size="medium">
@@ -64,7 +89,7 @@
   </el-form-item>
 
   <el-form-item style="margintop: 100px">
-    <el-button @click="submitForm('userData')">Speichern</el-button>
+    <el-button @click="submitForm('userData')">Eingaben speichern</el-button>
     <el-button @click="resetForm('userData')">Felder leeren</el-button>
   </el-form-item>
 
@@ -93,11 +118,14 @@ export default {
         signature: ''
       },
 
-      operations: [
-        {name: 'Frederike', anschrift: 'EL THW Tübingen'},
-        {name: 'Angela', anschrift: 'EL THW Uckermark'},
-        {name: 'Horst', anschrift: 'EL THW Oberfranken'}
-      ],
+      operations: [],
+
+      addingOperation: false,
+
+      newOperation: {
+        operationName: '',
+        operationAdress: ''
+      },
 
       roles: roleOptions,
 
@@ -158,6 +186,10 @@ export default {
     },
     resetForm (formName) {
       this.$refs[formName].resetFields()
+    },
+    submitOperation (newOperation) {
+      this.operations.push(newOperation)
+      this.addOperation = false
     }
   }
 }
