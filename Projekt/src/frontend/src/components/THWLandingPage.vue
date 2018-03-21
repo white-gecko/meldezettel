@@ -81,6 +81,8 @@ export default {
         signature: ''
       },
 
+      operations: [],
+
       roles: roleOptions,
 
       positions: positionOptions,
