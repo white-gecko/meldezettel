@@ -11,20 +11,16 @@
     <span style="color:#606266">Rolle auswählen und Daten eingeben</span>
   </div>
 
-  <el-form-item>
-    <el-dropdown>
-      <el-button type="primary">
-        Dropdown List<i class="el-icon-arrow-down el-icon--right"></i>
-      </el-button>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>Action 1</el-dropdown-item>
-        <el-dropdown-item>Action 2</el-dropdown-item>
-        <el-dropdown-item>Action 3</el-dropdown-item>
-        <el-dropdown-item>Action 4</el-dropdown-item>
-        <el-dropdown-item>Action 5</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-  </el-form-item>
+  <div>
+  <select v-model="userData.operation">
+    <option disabled value="">Einsatz auswählen</option>
+    <option v-for="item in operations" :value="item" :key="item.name">
+      {{item.name}}
+    </option>
+  </select>
+
+  </div>
+  <br>
 
   <el-form-item prop="role" style="margin-bottom: 20px">
     <el-radio-group v-model="userData.role" size="medium">
@@ -90,13 +86,18 @@ export default {
   data () {
     return {
       userData: {
+        operation: '',
         role: 'SGL',
         position: '',
         sender: '',
         signature: ''
       },
 
-      operations: [],
+      operations: [
+        {name: 'Frederike', anschrift: 'EL THW Tübingen'},
+        {name: 'Angela', anschrift: 'EL THW Uckermark'},
+        {name: 'Horst', anschrift: 'EL THW Oberfranken'}
+      ],
 
       roles: roleOptions,
 
