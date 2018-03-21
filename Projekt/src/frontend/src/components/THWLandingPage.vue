@@ -11,6 +11,21 @@
     <span style="color:#606266">Rolle auswählen und Daten eingeben</span>
   </div>
 
+  <el-form-item>
+    <el-dropdown>
+      <span class="el-dropdown-link">
+        Dropdown List<i class="el-icon-arrow-down el-icon--right"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item>Action 1</el-dropdown-item>
+        <el-dropdown-item>Action 2</el-dropdown-item>
+        <el-dropdown-item>Action 3</el-dropdown-item>
+        <el-dropdown-item disabled>Action 4</el-dropdown-item>
+        <el-dropdown-item divided>Action 5</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+  </el-form-item>
+
   <el-form-item prop="role" style="margin-bottom: 20px">
     <el-radio-group v-model="userData.role" size="medium">
       <el-radio-button
@@ -158,4 +173,11 @@ export default {
         margin-right: auto;
         width: 70%;
     }
+    .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
 </style>
