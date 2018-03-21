@@ -17,7 +17,7 @@ export default{
     // we are aware that this is a bad solution, we will tend to that later
     let rid = Math.floor((Math.random() * 900000) + 100000)
     // base for sparql insert queries
-    query += 'INSERT DATA {\n GRAPH <http://www.na17b.org/thw/> {\n'
+    query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
     let uri = 'id:' + rid
 
     query += uri + ' rdf:type thw:document'
@@ -49,13 +49,13 @@ export default{
       PREFIX thw: <http://www.na17b.org/thw/>
       PREFIX id: <http://www.na17b.org/thw/resource/>
       prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-      
-      SELECT 
-        ?id 
-        ?content 
-        ?primaryDate 
-        ?primaryTime 
-        ?primaryHdZ FROM thw: 
+
+      SELECT
+        ?id
+        ?content
+        ?primaryDate
+        ?primaryTime
+        ?primaryHdZ FROM thw:
         WHERE {
           ?id rdf:type  thw:document;
                         thw:content ?content;
