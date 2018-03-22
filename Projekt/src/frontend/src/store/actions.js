@@ -17,3 +17,9 @@ export const addFormData = (context, formData) => {
 export const setTicketlist = (context, newList) => {
   context.state.ticketlist = newList
 }
+
+export const handleOperation = (context, newOperation) => {
+  let insertQuery = Sparql.operationToInsertQuery(newOperation)
+
+  return quitstore.sendData(insertQuery)
+}
