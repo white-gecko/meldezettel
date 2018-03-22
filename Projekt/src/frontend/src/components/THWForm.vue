@@ -1,14 +1,13 @@
-documentID: 0,
 <template>
   <div>
     <el-form ref="form" :model="formdata" style="
-      border-top: var(--regularTextColor);
-      border-top-style: solid;
-      border-top-width: 30px;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+      border-top: var(--regularTextColor)
+      border-top-style: solid
+      border-top-width: 30px
+      border-bottom-left-radius: 20px
+      border-bottom-right-radius: 20px
+      border-top-left-radius: 10px
+      border-top-right-radius: 10px
       padding-bottom: 20px">
       <el-row>
         <el-col :span="24">
@@ -78,13 +77,13 @@ documentID: 0,
                             hasMarginLeftRightC
                             hasMarginTopBottomC">
                         <el-container>
-                          <el-header style="height: 10px;">Eingehend</el-header>
+                          <el-header style="height: 10px">Eingehend</el-header>
                           <el-main>
                             <el-container>
                               <el-header class="hasPaddingLeftRightB"
                                          style="
-                                  height: 20px;
-                                  font-size: var(--bodySize);
+                                  height: 20px
+                                  font-size: var(--bodySize)
                                   color: var(--secondaryTextColor)">
                                 Aufnahmevermerk
                               </el-header>
@@ -140,15 +139,15 @@ documentID: 0,
                             hasMarginLeftRightC
                             hasMarginTopBottomC">
                         <el-container>
-                          <el-header style="height: 10px;">Ausgehend</el-header>
+                          <el-header style="height: 10px">Ausgehend</el-header>
                           <el-main>
                             <el-col :span="12">
                               <el-container>
                                 <el-header class="hasPaddingLeftRightB"
                                            style="
-                                    height: 20px;
-                                    font-size: var(--bodySize);
-                                    color: var(--secondaryTextColor);">
+                                    height: 20px
+                                    font-size: var(--bodySize)
+                                    color: var(--secondaryTextColor)">
                                   Annahmevermerk
                                 </el-header>
                                 <el-main class="flexContainerB">
@@ -192,9 +191,9 @@ documentID: 0,
                               <el-container>
                                 <el-header class="hasPaddingLeftRightB"
                                            style="
-                                    height: 20px;
-                                    font-size: var(--bodySize);
-                                    color: var(--secondaryTextColor);">
+                                    height: 20px
+                                    font-size: var(--bodySize)
+                                    color: var(--secondaryTextColor)">
                                   Beförderungsvermerk
                                 </el-header>
                                 <el-main class="flexContainerB">
@@ -279,7 +278,7 @@ i                     hasPaddingLeftRightC
                         <el-form-item class="flexChildA
                           hasPaddingLeftRightB"
                                       style="margin-bottom: 44px">
-                          <el-checkbox @change="checkIn();"
+                          <el-checkbox @change="checkIn()"
                                        v-model="other.tempEingehend"
                                        id="in"
                                        label="Eingehend"
@@ -291,7 +290,7 @@ i                     hasPaddingLeftRightC
                         <el-form-item class="flexChildA
                           hasPaddingLeftRightB"
                                       style="padding-bottom: 20px">
-                          <el-checkbox @change="checkOut();"
+                          <el-checkbox @change="checkOut()"
                                        v-model="other.tempAusgehend"
                                        id="out"
                                        label="Ausgehend"
@@ -622,8 +621,8 @@ i                     hasPaddingLeftRightC
               hasMarginLeftRightA
               hasMarginTopBottomA"
              style="
-              border-bottom-left-radius: 20px;
-              border-bottom-right-radius: 20px;">
+              border-bottom-left-radius: 20px
+              border-bottom-right-radius: 20px">
           <el-row>
             <el-col :span="16">
 
@@ -644,7 +643,7 @@ i                     hasPaddingLeftRightC
                         hasMarginLeftRightC
                         hasMarginTopBottomC">
                     <el-container>
-                      <el-header style="height: 20px;">Quittung</el-header>
+                      <el-header style="height: 20px">Quittung</el-header>
                       <el-main class="flexContainerA">
                         <!-- time-input  -->
                         <el-form-item class="flexChildA" >
@@ -676,7 +675,7 @@ i                     hasPaddingLeftRightC
                           hasMarginTopBottomC"
                          style="padding-bottom: 17.5px">
                       <el-container>
-                        <el-header style="height: 20px;">
+                        <el-header style="height: 20px">
                           TEL/EL/EAL/UEAL
                         </el-header>
                         <el-main class="flexContainerA">
@@ -732,7 +731,7 @@ i                     hasPaddingLeftRightC
                           hasMarginTopBottomC">
                       <el-container class="flexContainerA">
                         <el-header class="flexChildA"
-                                   style="height: 20px;">
+                                   style="height: 20px">
                           Fachberater
                         </el-header>
                         <el-main class="
@@ -794,7 +793,7 @@ i                     hasPaddingLeftRightC
                           hasMarginTopBottomC">
                       <el-container class="flexContainerA">
                         <el-header class="flexChildA"
-                                   style="height: 20px;">
+                                   style="height: 20px">
                           Verb. stellen
                         </el-header>
                         <el-main class="
@@ -875,7 +874,7 @@ i                     hasPaddingLeftRightC
                           hasMarginTopBottomC"
                          style="padding-bottom: 15px">
                       <el-container>
-                        <el-header style="height: 20px;">Vermerke</el-header>
+                        <el-header style="height: 20px">Vermerke</el-header>
                         <el-main>
                           <el-form-item>
                             <el-input
@@ -902,7 +901,7 @@ i                     hasPaddingLeftRightC
                             hasMarginLeftRightC
                             hasMarginTopBottomC">
                         <el-button @click="
-                                    addFormData();
+                                    addFormData()
                                     notifySuccess('Abgeschickt')"
                                    tabindex="6">
                           Abschicken
@@ -920,7 +919,7 @@ i                     hasPaddingLeftRightC
                             hasMarginLeftRightC
                             hasMarginTopBottomC">
                         <el-button @click="
-                                    formReset();
+                                    formReset()
                                     notifySuccess('Formular zurückgesetzt')">
                           Zurücksetzen
                         </el-button>
@@ -941,15 +940,15 @@ i                     hasPaddingLeftRightC
 </template>
 
 <script>
-import { Notification } from "element-ui";
-import { mapMutations, mapActions } from "vuex";
-import { quitstore } from "../api/QuitStoreAdapter.js";
-import { parseResponse } from "../sparql_help/sparql_response.js";
-import sparql from "../sparql_help/sparql_queries.js";
-import ElHeader from "element-ui/packages/header/src/main";
-import ElRow from "element-ui/packages/row/src/row";
-import ElContainer from "element-ui/packages/container/src/main";
-import ElMain from "element-ui/packages/main/src/main";
+import { Notification } from 'element-ui'
+import { mapMutations, mapActions } from 'vuex'
+import { quitstore } from '../api/QuitStoreAdapter.js'
+import { parseResponse } from '../sparql_help/sparql_response.js'
+import sparql from '../sparql_help/sparql_queries.js'
+import ElHeader from 'element-ui/packages/header/src/main'
+import ElRow from 'element-ui/packages/row/src/row'
+import ElContainer from 'element-ui/packages/container/src/main'
+import ElMain from 'element-ui/packages/main/src/main'
 
 export default {
   components: {
@@ -958,7 +957,7 @@ export default {
     ElRow,
     ElHeader
   },
-  name: "THWForm",
+  name: 'THWForm',
 
   data: () => {
     return {
@@ -968,19 +967,19 @@ export default {
         topFax: false,
         topDFU: false,
         topCourier: false,
-        numberTB: "",
+        numberTB: '',
         outgoing: false,
-        receiverName: "",
+        receiverName: '',
 
-        primaryDate: "",
-        primaryTime: "",
-        primaryHdZ: "",
-        secondaryDate: "",
-        secondaryTime: "",
-        secondaryHdZ: "",
-        tertiaryDate: "",
-        tertiaryTime: "",
-        tertiaryHdZ: "",
+        primaryDate: '',
+        primaryTime: '',
+        primaryHdZ: '',
+        secondaryDate: '',
+        secondaryTime: '',
+        secondaryHdZ: '',
+        tertiaryDate: '',
+        tertiaryTime: '',
+        tertiaryHdZ: '',
         midRadio: true,
         midPhone: false,
         midFax: false,
@@ -993,17 +992,17 @@ export default {
         priorityInstant: false,
         priorityFlash: false,
 
-        address: "",
-        callNumber: "",
+        address: '',
+        callNumber: '',
         talkNote: false,
-        content: "",
-        sender: "",
-        createTime: "",
-        identification: "",
-        position: "",
+        content: '',
+        sender: '',
+        createTime: '',
+        identification: '',
+        position: '',
 
-        docketIdentification: "",
-        docketTime: "",
+        docketIdentification: '',
+        docketTime: '',
 
         stationLeader: false,
         stationS1: false,
@@ -1012,152 +1011,152 @@ export default {
         stationS4: false,
         stationS6: false,
 
-        advisorA: "",
-        advisorB: "",
-        advisorC: "",
-        advisorD: "",
-        advisorE: "",
+        advisorA: '',
+        advisorB: '',
+        advisorC: '',
+        advisorD: '',
+        advisorE: '',
         advisorTickA: false,
         advisorTickB: false,
         advisorTickC: false,
         advisorTickD: false,
         advisorTickE: false,
 
-        connectionA: "",
-        connectionB: "",
-        connectionC: "",
-        connectionD: "",
-        connectionE: "",
+        connectionA: '',
+        connectionB: '',
+        connectionC: '',
+        connectionD: '',
+        connectionE: '',
         connectionTickA: false,
         connectionTickB: false,
         connectionTickC: false,
         connectionTickD: false,
         connectionTickE: false,
 
-        annotations: ""
+        annotations: ''
       },
 
       other: {
         tempEingehend: true,
         tempAusgehend: false
       }
-    };
+    }
   },
 
   // load formdata before entering
-  beforeRouteEnter(to, from, next) {
-    var id = to.params.id;
+  beforeRouteEnter (to, from, next) {
+    var id = to.params.id
 
     if (id === undefined) {
       next(vm => {
         // no id => load default values
-        vm.setDefaultData(vm.$options.data());
-      });
+        vm.setDefaultData(vm.$options.data())
+      })
     } else {
-      let query = sparql.formQuery(id);
+      let query = sparql.formQuery(id)
 
       // query quitstore for the requested id
       quitstore
         .getData(query)
         .then(response => {
-          response = parseResponse(response.data);
+          response = parseResponse(response.data)
           if (response.length > 0) {
             // response length > 0 -> load document
             next(vm => {
-              let data = {};
+              let data = {}
               // data is in the form [{p: 'predicateName', o: 'predicateValue'},...] -> convert to {'predicateName': predicateValue, ...}
               for (let predicate of response) {
-                data[predicate.p] = predicate.o;
+                data[predicate.p] = predicate.o
               }
-              vm.setDefaultData({ formdata: data });
-            });
+              vm.setDefaultData({ formdata: data })
+            })
           } else {
             // response length == 0 -> no triples for the document id can be found
-            alert("document not found");
-            next(false);
+            alert('document not found')
+            next(false)
           }
         })
         .catch(error => {
           // something went wrong
-          alert("Error trying to load document");
-          console.error(error);
-        });
+          alert('Error trying to load document')
+          console.error(error)
+        })
     }
   },
 
-  beforeRouteUpdate(to, from, next) {
-    next(false);
+  beforeRouteUpdate (to, from, next) {
+    next(false)
   },
 
-  created() {
-    document.addEventListener("focusin", this.focusIn);
-    document.addEventListener("focusout", this.focusOut);
+  created () {
+    document.addEventListener('focusin', this.focusIn)
+    document.addEventListener('focusout', this.focusOut)
   },
 
-  beforeDestroy() {
-    document.removeEventListener("focusin", this.focusIn);
-    document.removeEventListener("focusout", this.focusOut);
+  beforeDestroy () {
+    document.removeEventListener('focusin', this.focusIn)
+    document.removeEventListener('focusout', this.focusOut)
   },
 
   methods: {
-    ...mapMutations(["saveTicket"]),
-    ...mapActions(["addFormData"]),
+    ...mapMutations(['saveTicket']),
+    ...mapActions(['addFormData']),
 
-    addFormData: function() {
+    addFormData: function () {
       this.$store
-        .dispatch("addFormData", this.formdata)
-        .then(() => this.$router.push("home"))
-        .catch(error => alert(error));
+        .dispatch('addFormData', this.formdata)
+        .then(() => this.$router.push('home'))
+        .catch(error => alert(error))
     },
 
-    formReset: function() {
-      this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata));
+    formReset: function () {
+      this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata))
     },
 
-    setDefaultData: function(value) {
-      this.default = value;
-      this.formReset();
+    setDefaultData: function (value) {
+      this.default = value
+      this.formReset()
     },
 
-    focusIn(event) {
-      const el = event.target;
-      if (el.type === "text" || el.type === "textarea") {
-        el.classList.add("highlighted");
+    focusIn (event) {
+      const el = event.target
+      if (el.type === 'text' || el.type === 'textarea') {
+        el.classList.add('highlighted')
       }
     },
 
-    focusOut(event) {
-      const el = event.target;
-      if (el.type === "text" || el.type === "textarea") {
-        el.classList.remove("highlighted");
+    focusOut (event) {
+      const el = event.target
+      if (el.type === 'text' || el.type === 'textarea') {
+        el.classList.remove('highlighted')
       }
     },
 
-    notifySuccess(message) {
+    notifySuccess (message) {
       Notification({
         title: message,
         duration: 1200,
-        type: "success",
+        type: 'success',
         offset: 120,
         showClose: false
-      });
+      })
     },
 
-    checkIn() {
+    checkIn () {
       if (this.other.tempEingehend) {
-        this.other.tempAusgehend = false;
-        this.formdata.outgoing = false;
+        this.other.tempAusgehend = false
+        this.formdata.outgoing = false
       }
     },
 
-    checkOut() {
+    checkOut () {
       if (this.other.tempAusgehend) {
-        this.other.tempEingehend = false;
-        this.formdata.outgoing = true;
+        this.other.tempEingehend = false
+        this.formdata.outgoing = true
       }
     }
   }
-};
+}
 </script>
 
 <style>
