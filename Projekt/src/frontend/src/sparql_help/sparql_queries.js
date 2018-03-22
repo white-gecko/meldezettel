@@ -36,10 +36,10 @@ export default{
       }
     }
     query += '.}}'
-  
+
     return query
   },
-  
+
   /**
    * Creates a query to query for dashboard specific data
    * @return query string to query for dashboard specific data
@@ -81,31 +81,26 @@ export default{
         FILTER(?p != rdf:type)
       }
     `
+  },
+  operationToInsertQuery: function (operation) {
+    // default prefixes
+    let query = `
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX thw: <http://www.na17b.org/thw/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    `
+    // generate id
+    let rid = operation.operationName
+    // base for sparql insert queries
+    query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
+    let uri = 'id:' + rid
+    query += uri + ' rdf:type thw:einsatz'
+
+    query += ';thw:einsatzName' + '"' + operation.operationName + '"'
+    query += ';thw:einsatzAdresse' + '"' + operation.operationAdress + '"'
+    query += '.}}'
+
+    return query
   }
-}
-
-operationToInsertQuery: function (operation) {
-  // default prefixes
-  let query = `
-    PREFIX id: <http://www.na17b.org/thw/resource/>
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    PREFIX thw: <http://www.na17b.org/thw/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-  `
-  // generate id
-  let rid = operation.operationName
-  // base for sparql insert queries
-  query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
-  let uri ='id:' + rid
-  query += uri + ' rdf:type thw:document'
-
-  for (let key in operation) {
-    let value = operation[key]
-
-    query += ';thw:' + key + ' ' + '"' + value + '"'
-  }
-  query += '.}}'
-
-  return query
-}
 }
