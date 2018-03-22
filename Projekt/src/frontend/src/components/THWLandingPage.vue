@@ -19,7 +19,9 @@
     </option>
   </select>
 
-  <el-button @click="addingOperation = !addingOperation" style="margin-bottom: 20px">
+  <el-button
+    @click="addingOperation = !addingOperation"
+    style="margin-bottom: 20px">
     Einsatz erstellen
   </el-button>
 
@@ -100,11 +102,12 @@
 <script>
 
 import { Notification } from 'element-ui'
-// import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 
 const roleOptions =
 ['Sichter', 'LdF', 'Fernmelder', 'SGL', 'Fachberater', 'Verbindungsstelle']
 const positionOptions = ['S1', 'S2', 'S3', 'S4', 'S6']
+let operationList = []
 
 export default {
   name: 'THWLandingPage',
@@ -118,8 +121,6 @@ export default {
         signature: ''
       },
 
-      operations: [],
-
       addingOperation: false,
 
       newOperation: {
@@ -128,6 +129,8 @@ export default {
       },
 
       roles: roleOptions,
+
+      operations: operationList,
 
       positions: positionOptions,
 
@@ -164,6 +167,9 @@ export default {
     }
   },
   methods: {
+
+    ...mapActions(['handleOperation']),
+
     notifySuccess (message) {
       Notification({
         title: message,
@@ -188,8 +194,9 @@ export default {
       this.$refs[formName].resetFields()
     },
     submitOperation (newOperation) {
+      this.$store.dispatch('handleOperation', this.newOperation)
       this.operations.push(newOperation)
-      this.addOperation = false
+      this.addingOperation = false
     }
   }
 }
