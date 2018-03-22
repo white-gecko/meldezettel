@@ -19,7 +19,8 @@ documentID: 0,
                 hasPaddingLeftRightA
                 hasPaddingTopBottomA
                 hasMarginLeftRightA
-                hasMarginTopBottomA">
+                hasMarginTopBottomFormA
+                hasBorderSettingsFormA">
             <el-row>
               <el-col :span="16">
 
@@ -29,7 +30,8 @@ documentID: 0,
                       hasPaddingLeftRightB
                       hasPaddingTopBottomB
                       hasMarginLeftRightB
-                      hasMarginTopBottomB">
+                      hasMarginTopBottomFormB
+                      hasBorderSettingsFormB">
                   <el-row>
 
                     <!-- element: checkbox-group (message-type) -->
@@ -39,27 +41,28 @@ documentID: 0,
                           hasPaddingTopBottomC
                           hasMarginLeftRightC
                           hasMarginTopBottomC
-                          flexContainerA">
+                          flexContainerFormA
+                          hasBorderSettingsFormC">
                       <el-form-item class="
                                       flexContainerA
-                                      flexChildA">
-                        <el-checkbox class="flexChildA"
+                                      flexChildFormA">
+                        <el-checkbox class="flexChildFormA"
                                      label='Funk'
                                      v-model="formdata.topRadio">
                         </el-checkbox>
-                        <el-checkbox class="flexChildA"
+                        <el-checkbox class="flexChildFormA"
                                      label='Telefon'
                                      v-model="formdata.topPhone">
                         </el-checkbox>
-                        <el-checkbox class="flexChildA"
+                        <el-checkbox class="flexChildFormA"
                                      label='Telefax'
                                      v-model="formdata.topFax">
                         </el-checkbox>
-                        <el-checkbox class="flexChildA"
+                        <el-checkbox class="flexChildFormA"
                                      label='DFÜ'
                                      v-model="formdata.topDFU">
                         </el-checkbox>
-                        <el-checkbox class="flexChildA"
+                        <el-checkbox class="flexChildFormA"
                                      label='Kurier/Melder'
                                      v-model="formdata.topCourier">
                         </el-checkbox>
@@ -76,23 +79,24 @@ documentID: 0,
                             hasPaddingLeftRightC
                             hasPaddingTopBottomC
                             hasMarginLeftRightC
-                            hasMarginTopBottomC">
+                            hasMarginTopBottomFormC
+                            hasBorderSettingsFormC">
                         <el-container>
                           <el-header style="height: 10px;">Eingehend</el-header>
                           <el-main>
                             <el-container>
-                              <el-header class="hasPaddingLeftRightB"
+                              <el-header class="hasPaddingLeftRightFormB"
                                          style="
                                   height: 20px;
                                   font-size: var(--bodySize);
                                   color: var(--secondaryTextColor)">
                                 Aufnahmevermerk
                               </el-header>
-                              <el-main class="flexContainerB">
+                              <el-main class="flexContainerFormB">
                                 <!-- date-input  -->
                                 <el-form-item class="
                                   flexChildA
-                                  hasPaddingLeftRightB">
+                                  hasPaddingLeftRightFormB">
                                   <el-input :disabled="other.tempAusgehend"
                                             v-model="formdata.primaryDate">
                                     <div slot="prepend" style="width: 42px">
@@ -103,7 +107,7 @@ documentID: 0,
                                 <!-- time-input  -->
                                 <el-form-item class="
                                                 flexChildA
-                                                hasPaddingLeftRightB">
+                                                hasPaddingLeftRightFormB">
                                   <el-input :disabled="other.tempAusgehend"
                                             v-model="formdata.primaryTime">
                                     <div slot="prepend" style="width: 42px">
@@ -114,7 +118,7 @@ documentID: 0,
                                 <!-- Hdz-input  -->
                                 <el-form-item class="
                                                 flexChildA
-                                                hasPaddingLeftRightB">
+                                                hasPaddingLeftRightFormB">
                                   <el-input :disabled="other.tempAusgehend"
                                             v-model="formdata.primaryHdZ">
                                     <div slot="prepend" style="width: 42px">
@@ -138,24 +142,25 @@ documentID: 0,
                             hasPaddingLeftRightC
                             hasPaddingTopBottomC
                             hasMarginLeftRightC
-                            hasMarginTopBottomC">
+                            hasMarginTopBottomFormC
+                            hasBorderSettingsFormC">
                         <el-container>
                           <el-header style="height: 10px;">Ausgehend</el-header>
                           <el-main>
                             <el-col :span="12">
                               <el-container>
-                                <el-header class="hasPaddingLeftRightB"
+                                <el-header class="hasPaddingLeftRightFormB"
                                            style="
                                     height: 20px;
                                     font-size: var(--bodySize);
                                     color: var(--secondaryTextColor);">
                                   Annahmevermerk
                                 </el-header>
-                                <el-main class="flexContainerB">
+                                <el-main class="flexContainerFormB">
                                   <!-- date-input  -->
                                   <el-form-item class="
                                                   flexChildA
-                                                  hasPaddingLeftRightB">
+                                                  hasPaddingLeftRightFormB">
                                     <el-input :disabled="other.tempEingehend"
                                               v-model="formdata.secondaryDate">
                                       <div slot="prepend" style="width: 42px">
@@ -166,7 +171,7 @@ documentID: 0,
                                   <!-- time-input  -->
                                   <el-form-item class="
                                                   flexChildA
-                                                  hasPaddingLeftRightB">
+                                                  hasPaddingLeftRightFormB">
                                     <el-input :disabled="other.tempEingehend"
                                               v-model="formdata.secondaryTime">
                                       <div slot="prepend" style="width: 42px">
@@ -177,7 +182,7 @@ documentID: 0,
                                   <!-- Hdz-input  -->
                                   <el-form-item class="
                                                   flexChildA
-                                                   hasPaddingLeftRightB">
+                                                   hasPaddingLeftRightFormB">
                                     <el-input :disabled="other.tempEingehend"
                                               v-model="formdata.secondaryHdZ">
                                       <div slot="prepend" style="width: 42px">
@@ -190,18 +195,18 @@ documentID: 0,
                             </el-col>
                             <el-col :span="12">
                               <el-container>
-                                <el-header class="hasPaddingLeftRightB"
+                                <el-header class="hasPaddingLeftRightFormB"
                                            style="
                                     height: 20px;
                                     font-size: var(--bodySize);
                                     color: var(--secondaryTextColor);">
                                   Beförderungsvermerk
                                 </el-header>
-                                <el-main class="flexContainerB">
+                                <el-main class="flexContainerFormB">
                                   <!-- date-input  -->
                                   <el-form-item class="
                                                   flexChildA
-                                                  hasPaddingLeftRightB">
+                                                  hasPaddingLeftRightFormB">
                                     <el-input :disabled="other.tempEingehend"
                                               v-model="formdata.tertiaryDate">
                                       <div slot="prepend" style="width: 42px">
@@ -212,7 +217,7 @@ documentID: 0,
                                   <!-- time-input  -->
                                   <el-form-item class="
                                                   flexChildA
-                                                  hasPaddingLeftRightB">
+                                                  hasPaddingLeftRightFormB">
                                     <el-input :disabled="other.tempEingehend"
                                               v-model="formdata.tertiaryTime">
                                       <div slot="prepend" style="width: 42px">
@@ -223,7 +228,7 @@ documentID: 0,
                                   <!-- Hdz-input  -->
                                   <el-form-item class="
                                                   flexChildA
-                                                  hasPaddingLeftRightB">
+                                                  hasPaddingLeftRightFormB">
                                     <el-input :disabled="other.tempEingehend"
                                               v-model="formdata.tertiaryHdZ">
                                       <div slot="prepend" style="width: 42px">
@@ -251,7 +256,8 @@ documentID: 0,
                 hasPaddingLeftRightB
                 hasPaddingTopBottomB
                 hasMarginLeftRightB
-                hasMarginTopBottomB">
+                hasMarginTopBottomFormB
+                hasBorderSettingsFormB">
 
                   <!-- element: input-complex ("Technisches Betriebsbuch") -->
                   <div class="
@@ -259,15 +265,16 @@ documentID: 0,
 i                     hasPaddingLeftRightC
                       hasPaddingTopBottomC
                       hasMarginLeftRightC
-                      hasMarginTopBottomC">
+                      hasMarginTopBottomFormC
+                      hasBorderSettingsFormC">
                     <el-container>
                       <el-header style="height: 55px">
                         Technisches Betriebsbuch
                       </el-header>
-                      <el-main class="flexContainerB">
+                      <el-main class="flexContainerFormB">
                         <!-- nr.-input -->
                         <el-form-item class="flexChildA
-                          hasPaddingLeftRightB"
+                          hasPaddingLeftRightFormB"
                                       style="margin-bottom: 15px">
                           <el-input v-model="formdata.numberTB">
                             <template slot="prepend">
@@ -277,7 +284,7 @@ i                     hasPaddingLeftRightC
                         </el-form-item>
                         <!-- checkbox "Eingehend" -->
                         <el-form-item class="flexChildA
-                          hasPaddingLeftRightB"
+                          hasPaddingLeftRightFormB"
                                       style="margin-bottom: 44px">
                           <el-checkbox @change="checkIn();"
                                        v-model="other.tempEingehend"
@@ -289,7 +296,7 @@ i                     hasPaddingLeftRightC
                         </el-form-item>
                         <!-- checkbox "Ausgehend" -->
                         <el-form-item class="flexChildA
-                          hasPaddingLeftRightB"
+                          hasPaddingLeftRightFormB"
                                       style="padding-bottom: 20px">
                           <el-checkbox @change="checkOut();"
                                        v-model="other.tempAusgehend"
@@ -315,7 +322,8 @@ i                     hasPaddingLeftRightC
               hasPaddingLeftRightB
               hasPaddingTopBottomB
               hasMarginLeftRightB
-              hasMarginTopBottomB">
+              hasMarginTopBottomFormB
+              hasBorderSettingsFormB">
 
                 <!-- element: input-complex
                 ("Rufnahme Gegenstelle/Spruchkopf") -->
@@ -324,7 +332,8 @@ i                     hasPaddingLeftRightC
                       hasPaddingLeftRightC
                       hasPaddingTopBottomC
                       hasMarginLeftRightC
-                      hasMarginTopBottomC">
+                      hasMarginTopBottomFormC
+                      hasBorderSettingsFormC">
                   <!-- "Rufnahme/..."-input -->
                   <el-form-item>
                     <el-input v-model="formdata.receiverName">
@@ -350,7 +359,8 @@ i                     hasPaddingLeftRightC
           hasPaddingLeftRightA
           hasPaddingTopBottomA
           hasMarginLeftRightA
-          hasMarginTopBottomA">
+          hasMarginTopBottomFormA
+          hasBorderSettingsFormA">
           <el-row>
 
             <!-- subsection: top-->
@@ -359,7 +369,8 @@ i                     hasPaddingLeftRightC
                 hasPaddingLeftRightB
                 hasPaddingTopBottomB
                 hasMarginLeftRightB
-                hasMarginTopBottomB">
+                hasMarginTopBottomFormB
+                hasBorderSettingsFormB">
               <el-row>
 
                 <!-- element: checkboxgroup (message-type) -->
@@ -368,21 +379,22 @@ i                     hasPaddingLeftRightC
                       hasPaddingLeftRightC
                       hasPaddingTopBottomC
                       hasMarginLeftRightC
-                      hasMarginTopBottomC">
-                  <el-form-item class="flexContainerA">
-                    <el-checkbox class="flexChildA"
+                      hasMarginTopBottomFormC
+                      hasBorderSettingsFormC">
+                  <el-form-item class="flexContainerFormA">
+                    <el-checkbox class="flexChildFormA"
                                  label='Funk'
                                  v-model="formdata.midRadio"></el-checkbox>
-                    <el-checkbox class="flexChildA"
+                    <el-checkbox class="flexChildFormA"
                                  label='Telefon'
                                  v-model="formdata.midPhone"></el-checkbox>
-                    <el-checkbox class="flexChildA"
+                    <el-checkbox class="flexChildFormA"
                                  label='Telefax'
                                  v-model="formdata.midFax"></el-checkbox>
-                    <el-checkbox class="flexChildA"
+                    <el-checkbox class="flexChildFormA"
                                  label='DFÜ'
                                  v-model="formdata.midDFU"></el-checkbox>
-                    <el-checkbox class="flexChildA"
+                    <el-checkbox class="flexChildFormA"
                                  label='Kurier/Melder'
                                  v-model="formdata.midCourier"></el-checkbox>
                   </el-form-item>
@@ -398,13 +410,14 @@ i                     hasPaddingLeftRightC
                       hasPaddingLeftRightC
                       hasPaddingTopBottomC
                       hasMarginLeftRightC
-                      hasMarginTopBottomC">
-                    <el-form-item class="flexContainerA">
-                      <el-checkbox class="flexChildA"
+                      hasMarginTopBottomFormC
+                      hasBorderSettingsFormC">
+                    <el-form-item class="flexContainerFormA">
+                      <el-checkbox class="flexChildFormA"
                                    label="DURCHSAGE"
                                    v-model="formdata.callAnnouncement"
                                    name="typeCall"></el-checkbox>
-                      <el-checkbox class="flexChildA"
+                      <el-checkbox class="flexChildFormA"
                                    label="Spruch"
                                    v-model="formdata.callMessage"
                                    name="typeCall"></el-checkbox>
@@ -420,13 +433,14 @@ i                     hasPaddingLeftRightC
                       hasPaddingLeftRightC
                       hasPaddingTopBottomC
                       hasMarginLeftRightC
-                      hasMarginTopBottomC">
-                    <el-form-item class="flexContainerA">
-                      <el-checkbox class="flexChildA"
+                      hasMarginTopBottomFormC
+                      hasBorderSettingsFormC">
+                    <el-form-item class="flexContainerFormA">
+                      <el-checkbox class="flexChildFormA"
                                    label="Sofort"
                                    v-model="formdata.priorityInstant"
                                    name="priority"></el-checkbox>
-                      <el-checkbox class="flexChildA"
+                      <el-checkbox class="flexChildFormA"
                                    label="Blitz"
                                    v-model="formdata.priorityFlash"
                                    name="priority"></el-checkbox>
@@ -444,7 +458,8 @@ i                     hasPaddingLeftRightC
                       hasPaddingLeftRightC
                       hasPaddingTopBottomC
                       hasMarginLeftRightC
-                      hasMarginTopBottomC">
+                      hasMarginTopBottomFormC
+                      hasBorderSettingsFormC">
                     <el-form-item>
                       <el-input v-model='formdata.callNumber' tabindex="1">
                         <template slot="prepend">Ruf Nr.</template>
@@ -461,7 +476,8 @@ i                     hasPaddingLeftRightC
                       hasPaddingLeftRightC
                       hasPaddingTopBottomC
                       hasMarginLeftRightC
-                      hasMarginTopBottomC">
+                      hasMarginTopBottomFormC
+                      hasBorderSettingsFormC">
                     <el-form-item>
                       <el-input v-model='formdata.address' tabindex="2">
                         <template slot="prepend">Anschrift</template>
@@ -478,7 +494,8 @@ i                     hasPaddingLeftRightC
                       hasPaddingLeftRightC
                       hasPaddingTopBottomC
                       hasMarginLeftRightC
-                      hasMarginTopBottomC">
+                      hasMarginTopBottomFormC
+                      hasBorderSettingsFormC">
                     <el-form-item>
                       <el-checkbox label="GESPRÄCHSNOTIZ"
                                    v-model='formdata.talkNote'
@@ -499,7 +516,8 @@ i                     hasPaddingLeftRightC
                 hasPaddingLeftRightB
                 hasPaddingTopBottomB
                 hasMarginLeftRightB
-                hasMarginTopBottomB">
+                hasMarginTopBottomFormB
+                hasBorderSettingsFormB">
               <el-row>
 
                 <!-- element: input-complex ("Inhalt") -->
@@ -508,7 +526,8 @@ i                     hasPaddingLeftRightC
                       hasPaddingLeftRightC
                       hasPaddingTopBottomC
                       hasMarginLeftRightC
-                      hasMarginTopBottomC">
+                      hasMarginTopBottomFormC
+                      hasBorderSettingsFormC">
                   <el-form-item>
                     <el-input
                       type="textarea"
@@ -533,7 +552,8 @@ i                     hasPaddingLeftRightC
                 hasPaddingLeftRightB
                 hasPaddingTopBottomB
                 hasMarginLeftRightB
-                hasMarginTopBottomB">
+                hasMarginTopBottomFormB
+                hasBorderSettingsFormB">
               <el-row>
 
                 <!-- element: input-complex ("Absender") -->
@@ -542,7 +562,8 @@ i                     hasPaddingLeftRightC
                       hasPaddingLeftRightC
                       hasPaddingTopBottomC
                       hasMarginLeftRightC
-                      hasMarginTopBottomC">
+                      hasMarginTopBottomFormC
+                      hasBorderSettingsFormC">
                   <el-form-item>
                     <el-input placeholder="Einheit/Einrichtung/Stelle"
                               v-model="formdata.sender"
@@ -562,7 +583,8 @@ i                     hasPaddingLeftRightC
                         hasPaddingLeftRightC
                         hasPaddingTopBottomC
                         hasMarginLeftRightC
-                        hasMarginTopBottomC">
+                        hasMarginTopBottomFormC
+                        hasBorderSettingsFormC">
                     <el-form-item>
                       <el-input v-model="formdata.createTime">
                         <template slot="prepend">Abfassungszeit</template>
@@ -579,7 +601,8 @@ i                     hasPaddingLeftRightC
                         hasPaddingLeftRightC
                         hasPaddingTopBottomC
                         hasMarginLeftRightC
-                        hasMarginTopBottomC">
+                        hasMarginTopBottomFormC
+                        hasBorderSettingsFormC">
                     <el-form-item>
                       <el-input v-model="formdata.identification">
                         <template slot="prepend">Zeichen</template>
@@ -596,7 +619,8 @@ i                     hasPaddingLeftRightC
                         hasPaddingLeftRightC
                         hasPaddingTopBottomC
                         hasMarginLeftRightC
-                        hasMarginTopBottomC">
+                        hasMarginTopBottomFormC
+                        hasBorderSettingsFormC">
                     <el-form-item>
                       <el-input v-model="formdata.position" tabindex="4">
                         <template slot="prepend">Funktion</template>
@@ -620,7 +644,8 @@ i                     hasPaddingLeftRightC
               hasPaddingLeftRightA
               hasPaddingTopBottomA
               hasMarginLeftRightA
-              hasMarginTopBottomA"
+              hasMarginTopBottomFormA
+              hasBorderSettingsFormA"
              style="
               border-bottom-left-radius: 20px;
               border-bottom-right-radius: 20px;">
@@ -633,7 +658,8 @@ i                     hasPaddingLeftRightC
                     hasPaddingLeftRightB
                     hasPaddingTopBottomB
                     hasMarginLeftRightB
-                    hasMarginTopBottomB">
+                    hasMarginTopBottomFormB
+                    hasBorderSettingsFormB">
                 <el-row>
 
                   <!-- element: input-complex ("Quittung") -->
@@ -642,19 +668,20 @@ i                     hasPaddingLeftRightC
                         hasPaddingLeftRightC
                         hasPaddingTopBottomC
                         hasMarginLeftRightC
-                        hasMarginTopBottomC">
+                        hasMarginTopBottomFormC
+                        hasBorderSettingsFormC">
                     <el-container>
                       <el-header style="height: 20px;">Quittung</el-header>
-                      <el-main class="flexContainerA">
+                      <el-main class="flexContainerFormA">
                         <!-- time-input  -->
-                        <el-form-item class="flexChildA" >
+                        <el-form-item class="flexChildFormA" >
                           <el-input v-model='formdata.docketTime'
                                     placeholder="Uhrzeit auswählen">
                             <template slot="prepend">Zeit</template>
                           </el-input>
                         </el-form-item>
                         <!-- "Zeichen"-input  -->
-                        <el-form-item class="flexChildA">
+                        <el-form-item class="flexChildFormA">
                           <el-input v-model='formdata.docketIdentification'>
                             <template slot="prepend">Zeichen</template>
                           </el-input>
@@ -673,15 +700,16 @@ i                     hasPaddingLeftRightC
                           hasPaddingLeftRightC
                           hasPaddingTopBottomC
                           hasMarginLeftRightC
-                          hasMarginTopBottomC"
+                          hasMarginTopBottomFormC
+                          hasBorderSettingsFormC"
                          style="padding-bottom: 17.5px">
                       <el-container>
                         <el-header style="height: 20px;">
                           TEL/EL/EAL/UEAL
                         </el-header>
-                        <el-main class="flexContainerA">
+                        <el-main class="flexContainerFormA">
                           <!-- BOTTOM-part LEFT checkbox "Leiter"  -->
-                          <el-form-item class="flexChildA">
+                          <el-form-item class="flexChildFormA">
                             <el-checkbox label="Leiter"
                                          v-model="formdata.stationLeader">
                             </el-checkbox>
@@ -689,28 +717,28 @@ i                     hasPaddingLeftRightC
                           <!-- BOTTOM-part LEFT checkbox "S1/S2/..." -->
                           <div class="
                                 flexChildA
-                                flexContainerB">
-                            <el-form-item class="flexChildA">
+                                flexContainerFormB">
+                            <el-form-item class="flexChildFormA">
                               <el-checkbox label="S1"
                                            v-model="formdata.stationS1">
                               </el-checkbox>
                             </el-form-item>
-                            <el-form-item class="flexChildA">
+                            <el-form-item class="flexChildFormA">
                               <el-checkbox label="S2"
                                            v-model="formdata.stationS2">
                               </el-checkbox>
                             </el-form-item>
-                            <el-form-item class="flexChildA">
+                            <el-form-item class="flexChildFormA">
                               <el-checkbox label="S3"
                                            v-model="formdata.stationS3">
                               </el-checkbox>
                             </el-form-item>
-                            <el-form-item class="flexChildA">
+                            <el-form-item class="flexChildFormA">
                               <el-checkbox label="S4"
                                            v-model="formdata.stationS4">
                               </el-checkbox>
                             </el-form-item>
-                            <el-form-item class="flexChildA">
+                            <el-form-item class="flexChildFormA">
                               <el-checkbox label="S6"
                                            v-model="formdata.stationS6">
                               </el-checkbox>
@@ -729,16 +757,17 @@ i                     hasPaddingLeftRightC
                           hasPaddingLeftRightC
                           hasPaddingTopBottomC
                           hasMarginLeftRightC
-                          hasMarginTopBottomC">
-                      <el-container class="flexContainerA">
-                        <el-header class="flexChildA"
+                          hasMarginTopBottomFormC
+                          hasBorderSettingsFormC">
+                      <el-container class="flexContainerFormA">
+                        <el-header class="flexChildFormA"
                                    style="height: 20px;">
                           Fachberater
                         </el-header>
                         <el-main class="
                                   flexChildA
-                                  flexContainerB">
-                          <el-form-item class="flexChildA">
+                                  flexContainerFormB">
+                          <el-form-item class="flexChildFormA">
                             <el-input v-model="formdata.advisorA" type="text">
                               <template slot="prepend">
                                 <input type="checkbox"
@@ -746,7 +775,7 @@ i                     hasPaddingLeftRightC
                               </template>
                             </el-input>
                           </el-form-item>
-                          <el-form-item class="flexChildA">
+                          <el-form-item class="flexChildFormA">
                             <el-input v-model="formdata.advisorB" type="text">
                               <template slot="prepend">
                                 <input type="checkbox"
@@ -754,7 +783,7 @@ i                     hasPaddingLeftRightC
                               </template>
                             </el-input>
                           </el-form-item>
-                          <el-form-item class="flexChildA">
+                          <el-form-item class="flexChildFormA">
                             <el-input v-model="formdata.advisorC" type="text">
                               <template slot="prepend">
                                 <input type="checkbox"
@@ -762,7 +791,7 @@ i                     hasPaddingLeftRightC
                               </template>
                             </el-input>
                           </el-form-item>
-                          <el-form-item class="flexChildA">
+                          <el-form-item class="flexChildFormA">
                             <el-input v-model="formdata.advisorD" type="text">
                               <template slot="prepend">
                                 <input type="checkbox"
@@ -770,7 +799,7 @@ i                     hasPaddingLeftRightC
                               </template>
                             </el-input>
                           </el-form-item>
-                          <el-form-item class="flexChildA">
+                          <el-form-item class="flexChildFormA">
                             <el-input v-model="formdata.advisorE" type="text">
                               <template slot="prepend">
                                 <input type="checkbox"
@@ -791,16 +820,17 @@ i                     hasPaddingLeftRightC
                           hasPaddingLeftRightC
                           hasPaddingTopBottomC
                           hasMarginLeftRightC
-                          hasMarginTopBottomC">
-                      <el-container class="flexContainerA">
-                        <el-header class="flexChildA"
+                          hasMarginTopBottomFormC
+                          hasBorderSettingsFormC">
+                      <el-container class="flexContainerFormA">
+                        <el-header class="flexChildFormA"
                                    style="height: 20px;">
                           Verb. stellen
                         </el-header>
                         <el-main class="
                                   flexChildA
-                                  flexContainerB">
-                          <el-form-item class="flexChildA">
+                                  flexContainerFormB">
+                          <el-form-item class="flexChildFormA">
                             <el-input v-model='formdata.connectionA'
                                       type="text">
                               <template slot="prepend">
@@ -809,7 +839,7 @@ i                     hasPaddingLeftRightC
                               </template>
                             </el-input>
                           </el-form-item>
-                          <el-form-item class="flexChildA">
+                          <el-form-item class="flexChildFormA">
                             <el-input v-model='formdata.connectionB'
                                       type="text">
                               <template slot="prepend">
@@ -818,7 +848,7 @@ i                     hasPaddingLeftRightC
                               </template>
                             </el-input>
                           </el-form-item>
-                          <el-form-item class="flexChildA">
+                          <el-form-item class="flexChildFormA">
                             <el-input v-model='formdata.connectionC'
                                       type="text">
                               <template slot="prepend">
@@ -827,7 +857,7 @@ i                     hasPaddingLeftRightC
                               </template>
                             </el-input>
                           </el-form-item>
-                          <el-form-item class="flexChildA">
+                          <el-form-item class="flexChildFormA">
                             <el-input v-model='formdata.connectionD'
                                       type="text">
                               <template slot="prepend">
@@ -836,7 +866,7 @@ i                     hasPaddingLeftRightC
                               </template>
                             </el-input>
                           </el-form-item>
-                          <el-form-item class="flexChildA">
+                          <el-form-item class="flexChildFormA">
                             <el-input v-model='formdata.connectionE'
                                       type="text">
                               <template slot="prepend">
@@ -862,7 +892,8 @@ i                     hasPaddingLeftRightC
                     hasPaddingLeftRightB
                     hasPaddingTopBottomB
                     hasMarginLeftRightB
-                    hasMarginTopBottomB">
+                    hasMarginTopBottomFormB
+                    hasBorderSettingsFormB">
                 <el-row>
                   <el-row>
 
@@ -872,7 +903,8 @@ i                     hasPaddingLeftRightC
                           hasPaddingLeftRightC
                           hasPaddingTopBottomC
                           hasMarginLeftRightC
-                          hasMarginTopBottomC"
+                          hasMarginTopBottomFormC
+                          hasBorderSettingsFormC"
                          style="padding-bottom: 15px">
                       <el-container>
                         <el-header style="height: 20px;">Vermerke</el-header>
@@ -900,7 +932,8 @@ i                     hasPaddingLeftRightC
                             hasPaddingLeftRightC
                             hasPaddingTopBottomC
                             hasMarginLeftRightC
-                            hasMarginTopBottomC">
+                            hasMarginTopBottomFormC
+                            hasBorderSettingsFormC">
                         <el-button @click="
                                     addFormData();
                                     notifySuccess('Abgeschickt')"
@@ -918,7 +951,8 @@ i                     hasPaddingLeftRightC
                             hasPaddingLeftRightC
                             hasPaddingTopBottomC
                             hasMarginLeftRightC
-                            hasMarginTopBottomC">
+                            hasMarginTopBottomFormC
+                            hasBorderSettingsFormC">
                         <el-button @click="
                                     formReset();
                                     notifySuccess('Formular zurückgesetzt')">
@@ -1172,54 +1206,54 @@ export default {
   space:
     different settings for spacing
    */
-  .hasMarginLeftRightA {
+  .hasMarginLeftRightFormA {
     margin-left: 25px;
     margin-right: 25px;
   }
-  .hasMarginLeftRightB {
+  .hasMarginLeftRightFormB {
     margin-left: 0px;
     margin-right: 0px;
   }
-  .hasMarginLeftRightC {
+  .hasMarginLeftRightFormC {
     margin-left: 5px;
     margin-right: 5px;
   }
 
-  .hasMarginTopBottomA {
+  .hasMarginTopBottomFormA {
     margin-top: 0px;
     margin-bottom: 0px;
   }
-  .hasMarginTopBottomB {
+  .hasMarginTopBottomFormB {
     margin-top: 0px;
     margin-bottom: 0px;
   }
-  .hasMarginTopBottomC {
+  .hasMarginTopBottomFormC {
     margin-top: 0px;
     margin-bottom: 10px;
   }
 
-  .hasPaddingLeftRightA {
+  .hasPaddingLeftRightFormA {
     padding-left: 20px;
     padding-right: 20px;
   }
-  .hasPaddingLeftRightB {
+  .hasPaddingLeftRightFormB {
     padding-left: 10px;
     padding-right: 10px;
   }
-  .hasPaddingLeftRightC {
+  .hasPaddingLeftRightFormC {
     padding-left: 10px;
     padding-right: 20px;
   }
 
-  .hasPaddingTopBottomA {
+  .hasPaddingTopBottomFormA {
     padding-top: 0px;
     padding-bottom: 0px;
   }
-  .hasPaddingTopBottomB {
+  .hasPaddingTopBottomFormB {
     padding-top: 0px;
     padding-bottom: 0.5px;
   }
-  .hasPaddingTopBottomC {
+  .hasPaddingTopBottomFormC {
     padding-top: 5px;
     padding-bottom: 5px;
   }
@@ -1231,28 +1265,49 @@ export default {
   /*border-settings:
     different border styles
   */
-  .hasBorderBotA{
+  .hasBorderBotFormA {
     border-bottom: var(--formBlueColor);
     border-bottom-style: solid;
     border-bottom-width: 10px;
+  }
+  .hasBorderSettingsFormA {
+    border-bottom: var(--placeholderTextColor);
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    border-radius: 0px;
+  }
+  .hasBorderSettingsFormB {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .hasBorderSettingsFormC {
+    border-left: var(--formBlueColor);
+    border-left-style: solid;
+    border-left-width: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 
   /*
   flex-settings:
     different settings for the flex attribute
   */
-  .flexContainerA {
+  .flexContainerFormA {
     display: flex;
     justify-content: space-evenly;
     align-items: stretch;
   }
-  .flexContainerB {
+  .flexContainerFormB {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: stretch;
   }
-  .flexChildA {
+  .flexChildFormA {
     flex-grow: 1;
   }
 
@@ -1262,17 +1317,5 @@ export default {
   */
   .el-form {
     background: var(--formBlueColor);
-  }
-  .Notification {
-    font-family: var(--mainFont);
-    color: var(--regularTextColor);
-  }
-
-  /*temp*/
-  .testSquare {
-    background-color: yellow;
-    height: 100px;
-    margin-left: 10px;
-    margin-right: 10px
   }
 </style>
