@@ -7,15 +7,31 @@
 
     <div class="
           THWlogoWrapper
+          flexContainerHeaderB">
+      <div class="
+          logo
           hasShadowHeaderB
           flexContainerHeaderA
-          flexChildHeaderB">
-      <img src="@/assets/thw-logo.png"
-           height="70"
-           width="70">
-    </div>
+          flexChildHeaderB"
+           style="border-radius: 0px 0px 0px 5px;">
+        <img src="@/assets/thw-logo.png"
+             height="70"
+             width="70">
+      </div>
 
-    <div class="fillerWrapper"></div>
+      <div class="
+            headerWrapper
+            hasShadowHeaderB"
+           style="
+            margin-left: 0%;
+            border-radius: 0px 0px 5px 0px;
+            padding-left: 10%;
+            padding-right: 10%;
+            margin-left: 0%;
+            margin-right: 0%;">
+        Technisches Hilfswerk
+      </div>
+    </div>
 
     <div class="
           headerWrapper
@@ -31,7 +47,25 @@
 
     <div class="
           roleLogoWrapper
-          hasShadowHeaderB">
+          flexContainerHeaderB">
+      <div class="
+          logo
+          hasShadowHeaderB"
+           style="border-radius: 0px 0px 0px 5px;">
+      </div>
+
+      <div class="
+            headerWrapper
+            hasShadowHeaderB"
+           style="
+            margin-right: 0%;
+            border-radius: 0px 0px 5px 0px;
+            padding-left: 10%;
+            padding-right: 10%;
+            margin-left: 0%;
+            margin-right: 0%;">
+        {{this.computedRole}}
+      </div>
     </div>
 
   </div>
@@ -91,37 +125,28 @@ export default {
     border-bottom-style: solid;
     border-bottom-width: 10px;
     border-radius: 0px 0px 5px 5px;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
     padding-top: 10px;
     margin-left: 1%;
-    margin-right: 1%
+    margin-right: 1%;
+    white-space: nowrap;
   }
-  .THWlogoWrapper {
+  .logo {
     background-color: var(--darkNeutralColor);
     min-height: 70px;
     min-width: 80px;
     border-bottom: var(--mainColor);
     border-bottom-style: solid;
     border-bottom-width: 10px;
-    border-radius: 0px 0px 5px 5px;
+  }
+  .THWlogoWrapper {
     margin-left: 10%;
-    margin-right: 1%;
+    margin-right: 18%;
   }
   .roleLogoWrapper {
-    background-color: var(--semiLightNeutralColor);
-    min-height: 60px;
-    min-width: 70px;
-    border-bottom: var(--mainColor);
-    border-bottom-style: solid;
-    border-bottom-width: 10px;
-    border-radius: 0px 0px 5px 5px;
     margin-left: 1%;
     margin-right: 10%;
-  }
-  .fillerWrapper {
-    background-color: var(--semiLightNeutralColor);
-    width: 14%;
   }
 
   /*
@@ -132,6 +157,10 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+  }
+  .flexContainerHeaderB{
+    display: flex;
+    flex-direction: row;
   }
   .flexChildHeaderA{
   }
