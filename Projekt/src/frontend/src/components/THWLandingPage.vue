@@ -12,40 +12,44 @@
   </div>
 
   <el-form-item>
-  <select v-model="userData.operation">
-    <option disabled value="">Einsatz auswählen</option>
-    <option v-for="item in operations" :value="item" :key="item.operationName">
-      {{item.operationName}}
-    </option>
-  </select>
 
-  <el-button
-    @click="addingOperation = !addingOperation"
-    style="margin-bottom: 20px">
-    Einsatz erstellen
-  </el-button>
+    <select v-model="userData.operation">
+      <option disabled value="">Einsatz auswählen</option>
+      <option
+        v-for="item in operations"
+        :value="item"
+        :key="item.operationName">
+        {{item.operationName}}
+      </option>
+    </select>
 
-    <el-form-item v-if="addingOperation">
-      <el-form-item style="margin-bottom: 20px">
-        <el-input v-model="newOperation.operationName">
-          <template slot='prepend'>
-            <span>Einsatzname</span>
-          </template>
-        </el-input>
+    <el-button
+      @click="addingOperation = !addingOperation"
+      style="margin-bottom: 20px">
+      Einsatz erstellen
+    </el-button>
+
+      <el-form-item v-if="addingOperation">
+        <el-form-item style="margin-bottom: 20px">
+          <el-input v-model="newOperation.operationName">
+            <template slot='prepend'>
+              <span>Einsatzname</span>
+            </template>
+          </el-input>
+        </el-form-item>
+
+        <el-form-item style="margin-bottom: 20px">
+          <el-input v-model="newOperation.operationAdress">
+            <template slot='prepend'>
+              <span>Anschrift</span>
+            </template>
+          </el-input>
+        </el-form-item>
+
+        <el-form-item style="margintop: 100px">
+          <el-button @click="submitOperation()">Speichern</el-button>
+        </el-form-item>
       </el-form-item>
-
-      <el-form-item style="margin-bottom: 20px">
-        <el-input v-model="newOperation.operationAdress">
-          <template slot='prepend'>
-            <span>Anschrift</span>
-          </template>
-        </el-input>
-      </el-form-item>
-
-      <el-form-item style="margintop: 100px">
-        <el-button @click="submitOperation(newOperation)">Speichern</el-button>
-      </el-form-item>
-    </el-form-item>
 
   </el-form-item>
 
@@ -91,7 +95,7 @@
   </el-form-item>
 
   <el-form-item style="margintop: 100px">
-    <el-button @click="submitForm('userData')">Eingaben speichern</el-button>
+    <el-button @click="submitUser('userData')">Eingaben speichern</el-button>
     <el-button @click="resetForm('userData')">Felder leeren</el-button>
   </el-form-item>
 
@@ -107,7 +111,6 @@ import { mapActions } from 'vuex'
 const roleOptions =
 ['Sichter', 'LdF', 'Fernmelder', 'SGL', 'Fachberater', 'Verbindungsstelle']
 const positionOptions = ['S1', 'S2', 'S3', 'S4', 'S6']
-let operationList = []
 
 export default {
   name: 'THWLandingPage',
@@ -128,9 +131,9 @@ export default {
         operationAdress: ''
       },
 
-      roles: roleOptions,
+      operations: [],
 
-      operations: operationList,
+      roles: roleOptions,
 
       positions: positionOptions,
 
@@ -179,8 +182,8 @@ export default {
         showClose: false
       })
     },
-    submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
+    submitUser (userName) {
+      this.$refs[userName].validate((valid) => {
         if (valid) {
           this.$store.commit('setUser', this.userData)
           this.notifySuccess('Eingaben erfolgreich gespeichert')
@@ -193,9 +196,14 @@ export default {
     resetForm (formName) {
       this.$refs[formName].resetFields()
     },
-    submitOperation (newOperation) {
-      this.$store.dispatch('handleOperation', this.newOperation)
-      this.operations.push(newOperation)
+    submitOperation () {
+      // this.$store.dispatch('handleOperation', this.newOperation)
+      this.operations.push({
+        operationName: this.newOperation.operationName,
+        operationAdress: this.newOperation.operationAdress
+      })
+      this.newOperation.operationName = ''
+      this.newOperation.operationAdress = ''
       this.addingOperation = false
     }
   }
