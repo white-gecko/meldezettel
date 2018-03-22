@@ -941,24 +941,24 @@ i                     hasPaddingLeftRightC
 </template>
 
 <script>
-import { Notification } from 'element-ui'
-import { mapMutations, mapActions } from 'vuex'
-import { quitstore } from '../api/QuitStoreAdapter.js'
-import { parseResponse } from '../sparql_help/sparql_response.js'
-import sparql from '../sparql_help/sparql_queries.js'
-import ElHeader from 'element-ui/packages/header/src/main'
-import ElRow from 'element-ui/packages/row/src/row'
-import ElContainer from 'element-ui/packages/container/src/main'
-import ElMain from 'element-ui/packages/main/src/main'
+import { Notification } from "element-ui";
+import { mapMutations, mapActions } from "vuex";
+import { quitstore } from "../api/QuitStoreAdapter.js";
+import { parseResponse } from "../sparql_help/sparql_response.js";
+import sparql from "../sparql_help/sparql_queries.js";
+import ElHeader from "element-ui/packages/header/src/main";
+import ElRow from "element-ui/packages/row/src/row";
+import ElContainer from "element-ui/packages/container/src/main";
+import ElMain from "element-ui/packages/main/src/main";
 
 export default {
-
   components: {
     ElMain,
     ElContainer,
     ElRow,
-    ElHeader},
-  name: 'THWForm',
+    ElHeader
+  },
+  name: "THWForm",
 
   data: () => {
     return {
@@ -968,19 +968,19 @@ export default {
         topFax: false,
         topDFU: false,
         topCourier: false,
-        numberTB: '',
+        numberTB: "",
         outgoing: false,
-        receiverName: '',
+        receiverName: "",
 
-        primaryDate: '',
-        primaryTime: '',
-        primaryHdZ: '',
-        secondaryDate: '',
-        secondaryTime: '',
-        secondaryHdZ: '',
-        tertiaryDate: '',
-        tertiaryTime: '',
-        tertiaryHdZ: '',
+        primaryDate: "",
+        primaryTime: "",
+        primaryHdZ: "",
+        secondaryDate: "",
+        secondaryTime: "",
+        secondaryHdZ: "",
+        tertiaryDate: "",
+        tertiaryTime: "",
+        tertiaryHdZ: "",
         midRadio: true,
         midPhone: false,
         midFax: false,
@@ -993,17 +993,17 @@ export default {
         priorityInstant: false,
         priorityFlash: false,
 
-        address: '',
-        callNumber: '',
+        address: "",
+        callNumber: "",
         talkNote: false,
-        content: '',
-        sender: '',
-        createTime: '',
-        identification: '',
-        position: '',
+        content: "",
+        sender: "",
+        createTime: "",
+        identification: "",
+        position: "",
 
-        docketIdentification: '',
-        docketTime: '',
+        docketIdentification: "",
+        docketTime: "",
 
         stationLeader: false,
         stationS1: false,
@@ -1012,267 +1012,264 @@ export default {
         stationS4: false,
         stationS6: false,
 
-        advisorA: '',
-        advisorB: '',
-        advisorC: '',
-        advisorD: '',
-        advisorE: '',
+        advisorA: "",
+        advisorB: "",
+        advisorC: "",
+        advisorD: "",
+        advisorE: "",
         advisorTickA: false,
         advisorTickB: false,
         advisorTickC: false,
         advisorTickD: false,
         advisorTickE: false,
 
-        connectionA: '',
-        connectionB: '',
-        connectionC: '',
-        connectionD: '',
-        connectionE: '',
+        connectionA: "",
+        connectionB: "",
+        connectionC: "",
+        connectionD: "",
+        connectionE: "",
         connectionTickA: false,
         connectionTickB: false,
         connectionTickC: false,
         connectionTickD: false,
         connectionTickE: false,
 
-        annotations: ''
-
+        annotations: ""
       },
 
       other: {
         tempEingehend: true,
         tempAusgehend: false
       }
-    }
+    };
   },
 
   // load formdata before entering
-  beforeRouteEnter (to, from, next) {
-    var id = to.params.id
+  beforeRouteEnter(to, from, next) {
+    var id = to.params.id;
 
     if (id === undefined) {
       next(vm => {
         // no id => load default values
-        vm.setDefaultData(vm.$options.data())
-      })
+        vm.setDefaultData(vm.$options.data());
+      });
     } else {
-      let query = sparql.formQuery(id)
+      let query = sparql.formQuery(id);
 
       // query quitstore for the requested id
-      quitstore.getData(query)
-        .then((response) => {
-          response = parseResponse(response.data)
+      quitstore
+        .getData(query)
+        .then(response => {
+          response = parseResponse(response.data);
           if (response.length > 0) {
             // response length > 0 -> load document
             next(vm => {
-              let data = {}
+              let data = {};
               // data is in the form [{p: 'predicateName', o: 'predicateValue'},...] -> convert to {'predicateName': predicateValue, ...}
               for (let predicate of response) {
-                data[predicate.p] = predicate.o
+                data[predicate.p] = predicate.o;
               }
-              vm.setDefaultData({'formdata': data})
-            })
+              vm.setDefaultData({ formdata: data });
+            });
           } else {
             // response length == 0 -> no triples for the document id can be found
-            alert('document not found')
-            next(false)
+            alert("document not found");
+            next(false);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           // something went wrong
-          alert('Error trying to load document')
-          console.error(error)
-        })
+          alert("Error trying to load document");
+          console.error(error);
+        });
     }
   },
 
-  beforeRouteUpdate (to, from, next) {
-    next(false)
+  beforeRouteUpdate(to, from, next) {
+    next(false);
   },
 
-  created () {
-    document.addEventListener('focusin', this.focusIn)
-    document.addEventListener('focusout', this.focusOut)
+  created() {
+    document.addEventListener("focusin", this.focusIn);
+    document.addEventListener("focusout", this.focusOut);
   },
 
-  beforeDestroy () {
-    document.removeEventListener('focusin', this.focusIn)
-    document.removeEventListener('focusout', this.focusOut)
+  beforeDestroy() {
+    document.removeEventListener("focusin", this.focusIn);
+    document.removeEventListener("focusout", this.focusOut);
   },
 
   methods: {
+    ...mapMutations(["saveTicket"]),
+    ...mapActions(["addFormData"]),
 
-    ...mapMutations(['saveTicket']),
-    ...mapActions(['addFormData']),
-
-    addFormData: function () {
+    addFormData: function() {
       this.$store
-        .dispatch('addFormData', this.formdata)
-        .then(() => this.$router.push('home'))
-        .catch((error) => alert(error))
+        .dispatch("addFormData", this.formdata)
+        .then(() => this.$router.push("home"))
+        .catch(error => alert(error));
     },
 
-    formReset: function () {
-      this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata))
+    formReset: function() {
+      this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata));
     },
 
-    setDefaultData: function (value) {
-      this.default = value
-      this.formReset()
+    setDefaultData: function(value) {
+      this.default = value;
+      this.formReset();
     },
 
-    focusIn (event) {
-      const el = event.target
-      if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.add('highlighted')
+    focusIn(event) {
+      const el = event.target;
+      if (el.type === "text" || el.type === "textarea") {
+        el.classList.add("highlighted");
       }
     },
 
-    focusOut (event) {
-      const el = event.target
-      if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.remove('highlighted')
+    focusOut(event) {
+      const el = event.target;
+      if (el.type === "text" || el.type === "textarea") {
+        el.classList.remove("highlighted");
       }
     },
 
-    notifySuccess (message) {
+    notifySuccess(message) {
       Notification({
         title: message,
         duration: 1200,
-        type: 'success',
+        type: "success",
         offset: 120,
         showClose: false
-      })
+      });
     },
 
-    checkIn () {
+    checkIn() {
       if (this.other.tempEingehend) {
-        this.other.tempAusgehend = false
-        this.formdata.outgoing = false
+        this.other.tempAusgehend = false;
+        this.formdata.outgoing = false;
       }
     },
 
-    checkOut () {
+    checkOut() {
       if (this.other.tempAusgehend) {
-        this.other.tempEingehend = false
-        this.formdata.outgoing = true
+        this.other.tempEingehend = false;
+        this.formdata.outgoing = true;
       }
     }
   }
-
-}
-
+};
 </script>
 
 <style>
-  :root {
-    /*main colors*/
-  }
+:root {
+  /*main colors*/
+}
 
-  /*
+/*
   space:
     different settings for spacing
    */
-  .hasMarginLeftRightA {
-    margin-left: 25px;
-    margin-right: 25px;
-  }
-  .hasMarginLeftRightB {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-  .hasMarginLeftRightC {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
+.hasMarginLeftRightA {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+.hasMarginLeftRightB {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.hasMarginLeftRightC {
+  margin-left: 5px;
+  margin-right: 5px;
+}
 
-  .hasMarginTopBottomA {
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-  .hasMarginTopBottomB {
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-  .hasMarginTopBottomC {
-    margin-top: 0px;
-    margin-bottom: 10px;
-  }
+.hasMarginTopBottomA {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.hasMarginTopBottomB {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.hasMarginTopBottomC {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
 
-  .hasPaddingLeftRightA {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .hasPaddingLeftRightB {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .hasPaddingLeftRightC {
-    padding-left: 10px;
-    padding-right: 20px;
-  }
+.hasPaddingLeftRightA {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.hasPaddingLeftRightB {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.hasPaddingLeftRightC {
+  padding-left: 10px;
+  padding-right: 20px;
+}
 
-  .hasPaddingTopBottomA {
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-  .hasPaddingTopBottomB {
-    padding-top: 0px;
-    padding-bottom: 0.5px;
-  }
-  .hasPaddingTopBottomC {
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-  .hasPaddingTopBottomTEMP1 {
-    padding-top: 20px;
-    padding-bottom: 24px;
-  }
+.hasPaddingTopBottomA {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.hasPaddingTopBottomB {
+  padding-top: 0px;
+  padding-bottom: 0.5px;
+}
+.hasPaddingTopBottomC {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.hasPaddingTopBottomTEMP1 {
+  padding-top: 20px;
+  padding-bottom: 24px;
+}
 
-  /*border-settings:
+/*border-settings:
     different border styles
   */
-  .hasBorderBotA{
-    border-bottom: var(--formBlueColor);
-    border-bottom-style: solid;
-    border-bottom-width: 10px;
-  }
+.hasBorderBotA {
+  border-bottom: var(--formBlueColor);
+  border-bottom-style: solid;
+  border-bottom-width: 10px;
+}
 
-  /*
+/*
   flex-settings:
     different settings for the flex attribute
   */
-  .flexContainerA {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: stretch;
-  }
-  .flexContainerB {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: stretch;
-  }
-  .flexChildA {
-    flex-grow: 1;
-  }
+.flexContainerA {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+.flexContainerB {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+.flexChildA {
+  flex-grow: 1;
+}
 
-  /*
+/*
   el-components:
     specific settings for el-components, that differ from the default ones
   */
-  .el-form {
-    background: var(--formBlueColor);
-  }
-  .Notification {
-    font-family: var(--mainFont);
-    color: var(--regularTextColor);
-  }
+.el-form {
+  background: var(--formBlueColor);
+}
+.Notification {
+  font-family: var(--mainFont);
+  color: var(--regularTextColor);
+}
 
-  /*temp*/
-  .testSquare {
-    background-color: yellow;
-    height: 100px;
-    margin-left: 10px;
-    margin-right: 10px
-  }
+/*temp*/
+.testSquare {
+  background-color: yellow;
+  height: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 </style>
