@@ -169,6 +169,12 @@ export default {
       }
     }
   },
+
+  beforeRouteEnter (to, from, where) {
+    var id = to.params.id
+    let operationsQuery = sparql.operationsQuery()
+  },
+
   methods: {
 
     ...mapActions(['handleOperation']),

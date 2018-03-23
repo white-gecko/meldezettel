@@ -102,5 +102,16 @@ export default{
     query += '.}}'
 
     return query
+  },
+  operationsQuery: function () {
+    // I am taking over the query of 'formquery' without id filtering
+    return `
+      PREFIX thw: <http://www.na17b.org/thw/>
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+
+      SELECT ?p ?o FROM thw: 
+        FILTER(?p != rdf:type)
+      }
+    `
   }
 }
