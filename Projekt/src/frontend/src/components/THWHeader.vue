@@ -8,13 +8,13 @@
     <div class="
           THWlogoWrapper
           flexContainerHeaderB">
+
       <div class="
-          logo
+          logoHeader
           hasShadowHeaderB
           flexContainerHeaderA
-          flexChildHeaderB"
-           style="border-radius: 0px 0px 0px 5px;">
-        <img src="@/assets/thw-logo.png"
+          flexChildHeaderB">
+        <img src="@/assets/thwLogo.png"
              height="70"
              width="70">
       </div>
@@ -24,13 +24,13 @@
             hasShadowHeaderB"
            style="
             margin-left: 0%;
-            border-radius: 0px 0px 5px 0px;
             padding-left: 10%;
             padding-right: 10%;
             margin-left: 0%;
             margin-right: 0%;">
         Technisches Hilfswerk
       </div>
+
     </div>
 
     <div class="
@@ -49,9 +49,8 @@
           roleLogoWrapper
           flexContainerHeaderB">
       <div class="
-          logo
-          hasShadowHeaderB"
-           style="border-radius: 0px 0px 0px 5px;">
+          logoHeader
+          hasShadowHeaderB">
       </div>
 
       <div class="
@@ -59,13 +58,13 @@
             hasShadowHeaderB"
            style="
             margin-right: 0%;
-            border-radius: 0px 0px 5px 0px;
             padding-left: 10%;
             padding-right: 10%;
             margin-left: 0%;
             margin-right: 0%;">
         {{this.computedRole}}
       </div>
+
     </div>
 
   </div>
@@ -117,6 +116,7 @@ export default {
     color: var(--regularTextColor);
     overflow: visible;
     padding-top: 0%;
+    position: fixed;
   }
   .headerWrapper {
     height: 40px;
@@ -124,7 +124,6 @@ export default {
     border-bottom: var(--mainColor);
     border-bottom-style: solid;
     border-bottom-width: 10px;
-    border-radius: 0px 0px 5px 5px;
     padding-left: 2%;
     padding-right: 2%;
     padding-top: 10px;
@@ -132,7 +131,7 @@ export default {
     margin-right: 1%;
     white-space: nowrap;
   }
-  .logo {
+  .logoHeader {
     background-color: var(--darkNeutralColor);
     min-height: 70px;
     min-width: 80px;
@@ -161,8 +160,6 @@ export default {
   .flexContainerHeaderB{
     display: flex;
     flex-direction: row;
-  }
-  .flexChildHeaderA{
   }
 
   /*

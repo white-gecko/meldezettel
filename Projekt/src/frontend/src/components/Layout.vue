@@ -1,18 +1,18 @@
 <template>
-  <div>
-    <div >
+  <div class="flexContainerLayoutA">
+    <div style="z-index: 2">
       <THWHeader/>
     </div>
-    <div>
-      <el-container style="margin-top: 5%">
-        <el-aside width="220px">
-          <!-- <THWMenu/> -->
-        </el-aside>
-        <el-main>
-          <!-- <router-view/> -->
-        </el-main>
-      </el-container>
+
+    <div class="
+          flexContainerLayoutB"
+         style="z-index: 1">
+        <THWMenu/>
+        <router-view style="
+                      margin-left: 30px;
+                      margin-top: 150px"/>
     </div>
+
   </div>
 </template>
 
@@ -76,6 +76,19 @@ export default {
     --regularTextColor: #606266;
     --secondaryTextColor: #909399;
     --placeholderTextColor: #C0C4CC;
+  }
+
+  /*
+  flex-settings:
+  different settings for the flex attribute
+   */
+  .flexContainerLayoutA {
+    display: flex;
+    flex-direction: column;
+  }
+  .flexContainerLayoutB {
+    display: flex;
+    flex-direction: row;
   }
 
   /*
