@@ -82,7 +82,7 @@ export default{
       }
     `
   },
-  operationToInsertQuery: function (operation) {
+  operationToInsertQuery: function (newOperation) {
     // default prefixes
     let query = `
       PREFIX id: <http://www.na17b.org/thw/resource/>
@@ -91,14 +91,14 @@ export default{
       PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     `
     // generate id
-    let rid = operation.operationName
+    let rid = newOperation.operationName
     // base for sparql insert queries
     query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
     let uri = 'id:' + rid
     query += uri + ' rdf:type thw:einsatz'
 
-    query += ';thw:einsatzName' + '"' + operation.operationName + '"'
-    query += ';thw:einsatzAdresse' + '"' + operation.operationAdress + '"'
+    query += ';thw:einsatzName' + '"' + newOperation.operationName + '"'
+    query += ';thw:einsatzAdresse' + '"' + newOperation.operationAdress + '"'
     query += '.}}'
 
     return query

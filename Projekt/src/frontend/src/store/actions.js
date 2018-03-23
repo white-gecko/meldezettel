@@ -18,8 +18,11 @@ export const setTicketlist = (context, newList) => {
   context.state.ticketlist = newList
 }
 
+/**
+ * @param context - vuex store context
+ * @param {object} newOperation - current new operation to be stored */
 export const handleOperation = (context, newOperation) => {
-  let insertQuery = Sparql.operationToInsertQuery(newOperation)
+  let operationInsertQuery = Sparql.operationToInsertQuery(newOperation)
 
-  return quitstore.sendData(insertQuery)
+  return quitstore.sendData(operationInsertQuery)
 }
