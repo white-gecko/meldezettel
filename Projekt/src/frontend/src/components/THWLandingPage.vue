@@ -81,12 +81,12 @@
   <el-form-item prop="sender" style="margin-bottom: 20px">
     <el-input v-model="userData.sender">
       <template slot='prepend'>
-        <span>Name</span>
+        <span>Absender</span>
       </template>
     </el-input>
   </el-form-item>
 
-  <el-form-item prop="signature" style="margin-bottom: 20px">
+  <el-form-item prop="identification" style="margin-bottom: 20px">
     <el-input v-model="userData.identification">
       <template slot='prepend'>
         <span>Handzeichen</span>
@@ -147,13 +147,13 @@ export default {
             message: 'Der Name sollte aus 3-30 Zeichen bestehen',
             trigger: 'blur' }
         ],
-        signature: [
+        identification: [
           { required: true,
-            message: 'Bitte Zeichen eingeben',
+            message: 'Bitte Handzeichen eingeben',
             trigger: 'blur' },
           { min: 2,
             max: 3,
-            message: 'Das Zeichen sollte aus 2-3 Zeichen bestehen',
+            message: 'Das Handzeichen sollte aus 2-3 Zeichen bestehen',
             trigger: 'blur' }
         ],
         position: [
@@ -202,6 +202,7 @@ export default {
         operationName: this.newOperation.operationName,
         operationAdress: this.newOperation.operationAdress
       })
+      this.notifySuccess('Einsatz angelegt')
       this.newOperation.operationName = ''
       this.newOperation.operationAdress = ''
       this.addingOperation = false
