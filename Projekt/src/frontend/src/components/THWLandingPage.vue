@@ -87,7 +87,7 @@
   </el-form-item>
 
   <el-form-item prop="signature" style="margin-bottom: 20px">
-    <el-input v-model="userData.signature">
+    <el-input v-model="userData.identification">
       <template slot='prepend'>
         <span>Handzeichen</span>
       </template>
@@ -121,7 +121,7 @@ export default {
         role: 'SGL',
         position: '',
         sender: '',
-        signature: ''
+        identification: ''
       },
 
       addingOperation: false,

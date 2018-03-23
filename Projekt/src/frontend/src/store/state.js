@@ -2,10 +2,11 @@ export default {
   role: 'Sichter',
   ticketlist: [],
   user: {
+    operation: {},
     role: '',
     sender: '',
     position: '',
-    signature: ''
+    identification: ''
   },
   showLandingPage: true
 }
