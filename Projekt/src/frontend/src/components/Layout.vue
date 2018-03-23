@@ -10,7 +10,7 @@
         <THWMenu/>
         <router-view style="
                       margin-left: 30px;
-                      margin-top: 150px"/>
+                      margin-top: 150px"/> 
     </div>
 
   </div>

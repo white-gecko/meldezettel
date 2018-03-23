@@ -1,40 +1,4 @@
 <template>
-  <el-table :data="tabledata" style="width: 100%" max-height="500">
-
-    <el-table-column width="150">
-      <template slot-scope="scope">
-        <router-link v-bind:to="{
-          name:'Create',
-          params:{id: tabledata[scope.$index]['id'] }}"
-                     tag="el-button">
-          Öffnen
-        </router-link>
-      </template>
-    </el-table-column>
-
-    <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
-    <el-table-column prop="primaryHdZ"
-                     label="Verfasser"
-                     width="100"></el-table-column>
-
-    <el-table-column :formatter="formatDate"
-                     prop="primaryDate"
-                     label="Datum"
-                     width="100"></el-table-column>
-
-    <el-table-column :formatter="formatTime"
-                     prop="primaryTime"
-                     label="Uhrzeit"
-                     width="100"></el-table-column>
-
-    <el-table-column :formatter="formatContent"
-                     prop="content"
-                     label="Kurzinhalt"></el-table-column>
-
-  </el-table>
-</template>
-
-<template>
   <div>
     <el-form :model='filter'>
       <el-collapse>
@@ -89,44 +53,45 @@
         </el-collapse-item>
       </el-collapse>
     </el-form>
-    <el-table :data="td" style="width: 100%" max-height="500">
+  <el-table :data="td" style="width: 100%" max-height="500">
 
-      <el-table-column width="70">
-        <template slot-scope="scope">
-          <router-link v-bind:to="{name:'Create', params:{id: scope.$index }}"
-                       tag="el-button">
-            <i class="el-icon-zoom-in"></i>
-          </router-link>
-        </template>
-      </el-table-column>
+    <el-table-column width="70">
+      <template slot-scope="scope">
+        <router-link v-bind:to="{name:'Create', params:{id: scope.$index }}"
+                     tag="el-button">
+          <i class="el-icon-zoom-in"></i>
+        </router-link>
+      </template>
+    </el-table-column>
 
-      <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
-      <el-table-column label="Status" width="100"></el-table-column>
+    <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
+    <el-table-column label="Status"
+                     width="100"></el-table-column>
 
-      <el-table-column prop="numberTB"
-                       label="TB Nummer"
-                       width="130"></el-table-column>
+    <el-table-column prop="numberTB"
+                     label="TB Nummer"
+                     width="130"></el-table-column>
 
-      <el-table-column prop="hdzIncomingA"
-                       label="Verfasser"
-                       width="100"></el-table-column>
+    <el-table-column prop="hdzIncomingA"
+                     label="Verfasser"
+                     width="100"></el-table-column>
 
-      <el-table-column prop="signature"
-                       label="Sichter"
-                       width="100"></el-table-column>
+    <el-table-column prop="signature"
+                     label="Sichter"
+                     width="100"></el-table-column>
 
-      <el-table-column prop="dateIncomingA"
-                       label="Datum"
-                       width="100"></el-table-column>
+    <el-table-column prop="dateIncomingA"
+                     label="Datum"
+                     width="100"></el-table-column>
 
-      <el-table-column prop="timeIncomingA"
-                       label="Uhrzeit"
-                       width="100"></el-table-column>
+    <el-table-column prop="timeIncomingA"
+                     label="Uhrzeit"
+                     width="100"></el-table-column>
 
-      <el-table-column prop="message"
-                       label="Kurzinhalt"></el-table-column>
+    <el-table-column prop="message"
+                     label="Kurzinhalt"></el-table-column>
 
-    </el-table>
+  </el-table>
   </div>
 </template>
 
@@ -136,6 +101,7 @@ import { mapGetters, mapMutations } from 'vuex'
 import { quitstore } from '../api/QuitStoreAdapter.js'
 import { handleResponse } from '../sparql_help/response_to_formdata.js'
 import sparql from '../sparql_help/sparql_queries.js'
+
 import store from '../store/state.js'
 
 export default {
@@ -198,7 +164,7 @@ export default {
 
       // The times and dates need to be filtered to be displayed correctly
       for (let i = 0; i < data.length; i++) {
-        // Retrieve all required date strings and convert them to a shorter form (german style)
+      // Retrieve all required date strings and convert them to a shorter form (german style)
         let tmpDate = new Date(data[i].dateIncomingA)
         data[i].dateIncomingA = tmpDate.toLocaleDateString()
 
@@ -219,10 +185,9 @@ export default {
 </script>
 
 <style>
-  .el-row {
+  .el-row{
     margin-bottom: 20px;
   }
-
   .el-checkbox-button{
     margin-right: 5px;
     margin-left: 5px;
