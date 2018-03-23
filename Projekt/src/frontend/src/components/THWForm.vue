@@ -1,14 +1,13 @@
-documentID: 0,
 <template>
   <div>
     <el-form ref="form" :model="formdata" style="
-      border-top: var(--regularTextColor);
-      border-top-style: solid;
-      border-top-width: 30px;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+      border-top: var(--regularTextColor)
+      border-top-style: solid
+      border-top-width: 30px
+      border-bottom-left-radius: 20px
+      border-bottom-right-radius: 20px
+      border-top-left-radius: 10px
+      border-top-right-radius: 10px
       padding-bottom: 20px">
       <el-row>
         <el-col :span="24">
@@ -78,13 +77,13 @@ documentID: 0,
                             hasMarginLeftRightC
                             hasMarginTopBottomC">
                         <el-container>
-                          <el-header style="height: 10px;">Eingehend</el-header>
+                          <el-header style="height: 10px">Eingehend</el-header>
                           <el-main>
                             <el-container>
                               <el-header class="hasPaddingLeftRightB"
                                          style="
-                                  height: 20px;
-                                  font-size: var(--bodySize);
+                                  height: 20px
+                                  font-size: var(--bodySize)
                                   color: var(--secondaryTextColor)">
                                 Aufnahmevermerk
                               </el-header>
@@ -140,15 +139,15 @@ documentID: 0,
                             hasMarginLeftRightC
                             hasMarginTopBottomC">
                         <el-container>
-                          <el-header style="height: 10px;">Ausgehend</el-header>
+                          <el-header style="height: 10px">Ausgehend</el-header>
                           <el-main>
                             <el-col :span="12">
                               <el-container>
                                 <el-header class="hasPaddingLeftRightB"
                                            style="
-                                    height: 20px;
-                                    font-size: var(--bodySize);
-                                    color: var(--secondaryTextColor);">
+                                    height: 20px
+                                    font-size: var(--bodySize)
+                                    color: var(--secondaryTextColor)">
                                   Annahmevermerk
                                 </el-header>
                                 <el-main class="flexContainerB">
@@ -192,9 +191,9 @@ documentID: 0,
                               <el-container>
                                 <el-header class="hasPaddingLeftRightB"
                                            style="
-                                    height: 20px;
-                                    font-size: var(--bodySize);
-                                    color: var(--secondaryTextColor);">
+                                    height: 20px
+                                    font-size: var(--bodySize)
+                                    color: var(--secondaryTextColor)">
                                   Beförderungsvermerk
                                 </el-header>
                                 <el-main class="flexContainerB">
@@ -279,7 +278,7 @@ i                     hasPaddingLeftRightC
                         <el-form-item class="flexChildA
                           hasPaddingLeftRightB"
                                       style="margin-bottom: 44px">
-                          <el-checkbox @change="checkIn();"
+                          <el-checkbox @change="checkIn()"
                                        v-model="other.tempEingehend"
                                        id="in"
                                        label="Eingehend"
@@ -291,7 +290,7 @@ i                     hasPaddingLeftRightC
                         <el-form-item class="flexChildA
                           hasPaddingLeftRightB"
                                       style="padding-bottom: 20px">
-                          <el-checkbox @change="checkOut();"
+                          <el-checkbox @change="checkOut()"
                                        v-model="other.tempAusgehend"
                                        id="out"
                                        label="Ausgehend"
@@ -622,8 +621,8 @@ i                     hasPaddingLeftRightC
               hasMarginLeftRightA
               hasMarginTopBottomA"
              style="
-              border-bottom-left-radius: 20px;
-              border-bottom-right-radius: 20px;">
+              border-bottom-left-radius: 20px
+              border-bottom-right-radius: 20px">
           <el-row>
             <el-col :span="16">
 
@@ -644,7 +643,7 @@ i                     hasPaddingLeftRightC
                         hasMarginLeftRightC
                         hasMarginTopBottomC">
                     <el-container>
-                      <el-header style="height: 20px;">Quittung</el-header>
+                      <el-header style="height: 20px">Quittung</el-header>
                       <el-main class="flexContainerA">
                         <!-- time-input  -->
                         <el-form-item class="flexChildA" >
@@ -676,7 +675,7 @@ i                     hasPaddingLeftRightC
                           hasMarginTopBottomC"
                          style="padding-bottom: 17.5px">
                       <el-container>
-                        <el-header style="height: 20px;">
+                        <el-header style="height: 20px">
                           TEL/EL/EAL/UEAL
                         </el-header>
                         <el-main class="flexContainerA">
@@ -732,7 +731,7 @@ i                     hasPaddingLeftRightC
                           hasMarginTopBottomC">
                       <el-container class="flexContainerA">
                         <el-header class="flexChildA"
-                                   style="height: 20px;">
+                                   style="height: 20px">
                           Fachberater
                         </el-header>
                         <el-main class="
@@ -794,7 +793,7 @@ i                     hasPaddingLeftRightC
                           hasMarginTopBottomC">
                       <el-container class="flexContainerA">
                         <el-header class="flexChildA"
-                                   style="height: 20px;">
+                                   style="height: 20px">
                           Verb. stellen
                         </el-header>
                         <el-main class="
@@ -875,7 +874,7 @@ i                     hasPaddingLeftRightC
                           hasMarginTopBottomC"
                          style="padding-bottom: 15px">
                       <el-container>
-                        <el-header style="height: 20px;">Vermerke</el-header>
+                        <el-header style="height: 20px">Vermerke</el-header>
                         <el-main>
                           <el-form-item>
                             <el-input
@@ -902,7 +901,7 @@ i                     hasPaddingLeftRightC
                             hasMarginLeftRightC
                             hasMarginTopBottomC">
                         <el-button @click="
-                                    addFormData();
+                                    addFormData()
                                     notifySuccess('Abgeschickt')"
                                    tabindex="6">
                           Abschicken
@@ -920,7 +919,7 @@ i                     hasPaddingLeftRightC
                             hasMarginLeftRightC
                             hasMarginTopBottomC">
                         <el-button @click="
-                                    formReset();
+                                    formReset()
                                     notifySuccess('Formular zurückgesetzt')">
                           Zurücksetzen
                         </el-button>
@@ -952,12 +951,12 @@ import ElContainer from 'element-ui/packages/container/src/main'
 import ElMain from 'element-ui/packages/main/src/main'
 
 export default {
-
   components: {
     ElMain,
     ElContainer,
     ElRow,
-    ElHeader},
+    ElHeader
+  },
   name: 'THWForm',
 
   data: () => {
@@ -1035,7 +1034,6 @@ export default {
         connectionTickE: false,
 
         annotations: ''
-
       },
 
       other: {
@@ -1058,8 +1056,9 @@ export default {
       let query = sparql.formQuery(id)
 
       // query quitstore for the requested id
-      quitstore.getData(query)
-        .then((response) => {
+      quitstore
+        .getData(query)
+        .then(response => {
           response = parseResponse(response.data)
           if (response.length > 0) {
             // response length > 0 -> load document
@@ -1069,7 +1068,7 @@ export default {
               for (let predicate of response) {
                 data[predicate.p] = predicate.o
               }
-              vm.setDefaultData({'formdata': data})
+              vm.setDefaultData({ formdata: data })
             })
           } else {
             // response length == 0 -> no triples for the document id can be found
@@ -1077,7 +1076,7 @@ export default {
             next(false)
           }
         })
-        .catch((error) => {
+        .catch(error => {
           // something went wrong
           alert('Error trying to load document')
           console.error(error)
@@ -1100,7 +1099,6 @@ export default {
   },
 
   methods: {
-
     ...mapMutations(['saveTicket']),
     ...mapActions(['addFormData']),
 
@@ -1108,7 +1106,7 @@ export default {
       this.$store
         .dispatch('addFormData', this.formdata)
         .then(() => this.$router.push('home'))
-        .catch((error) => alert(error))
+        .catch(error => alert(error))
     },
 
     formReset: function () {
@@ -1158,121 +1156,119 @@ export default {
       }
     }
   }
-
 }
-
 </script>
 
 <style>
-  :root {
-    /*main colors*/
-  }
+:root {
+  /*main colors*/
+}
 
-  /*
+/*
   space:
     different settings for spacing
    */
-  .hasMarginLeftRightA {
-    margin-left: 25px;
-    margin-right: 25px;
-  }
-  .hasMarginLeftRightB {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-  .hasMarginLeftRightC {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
+.hasMarginLeftRightA {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+.hasMarginLeftRightB {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.hasMarginLeftRightC {
+  margin-left: 5px;
+  margin-right: 5px;
+}
 
-  .hasMarginTopBottomA {
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-  .hasMarginTopBottomB {
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-  .hasMarginTopBottomC {
-    margin-top: 0px;
-    margin-bottom: 10px;
-  }
+.hasMarginTopBottomA {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.hasMarginTopBottomB {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.hasMarginTopBottomC {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
 
-  .hasPaddingLeftRightA {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .hasPaddingLeftRightB {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .hasPaddingLeftRightC {
-    padding-left: 10px;
-    padding-right: 20px;
-  }
+.hasPaddingLeftRightA {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.hasPaddingLeftRightB {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.hasPaddingLeftRightC {
+  padding-left: 10px;
+  padding-right: 20px;
+}
 
-  .hasPaddingTopBottomA {
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-  .hasPaddingTopBottomB {
-    padding-top: 0px;
-    padding-bottom: 0.5px;
-  }
-  .hasPaddingTopBottomC {
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-  .hasPaddingTopBottomTEMP1 {
-    padding-top: 20px;
-    padding-bottom: 24px;
-  }
+.hasPaddingTopBottomA {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.hasPaddingTopBottomB {
+  padding-top: 0px;
+  padding-bottom: 0.5px;
+}
+.hasPaddingTopBottomC {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.hasPaddingTopBottomTEMP1 {
+  padding-top: 20px;
+  padding-bottom: 24px;
+}
 
-  /*border-settings:
+/*border-settings:
     different border styles
   */
-  .hasBorderBotA{
-    border-bottom: var(--formBlueColor);
-    border-bottom-style: solid;
-    border-bottom-width: 10px;
-  }
+.hasBorderBotA {
+  border-bottom: var(--formBlueColor);
+  border-bottom-style: solid;
+  border-bottom-width: 10px;
+}
 
-  /*
+/*
   flex-settings:
     different settings for the flex attribute
   */
-  .flexContainerA {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: stretch;
-  }
-  .flexContainerB {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: stretch;
-  }
-  .flexChildA {
-    flex-grow: 1;
-  }
+.flexContainerA {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+.flexContainerB {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+.flexChildA {
+  flex-grow: 1;
+}
 
-  /*
+/*
   el-components:
     specific settings for el-components, that differ from the default ones
   */
-  .el-form {
-    background: var(--formBlueColor);
-  }
-  .Notification {
-    font-family: var(--mainFont);
-    color: var(--regularTextColor);
-  }
+.el-form {
+  background: var(--formBlueColor);
+}
+.Notification {
+  font-family: var(--mainFont);
+  color: var(--regularTextColor);
+}
 
-  /*temp*/
-  .testSquare {
-    background-color: yellow;
-    height: 100px;
-    margin-left: 10px;
-    margin-right: 10px
-  }
+/*temp*/
+.testSquare {
+  background-color: yellow;
+  height: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 </style>
