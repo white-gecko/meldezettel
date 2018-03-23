@@ -12,7 +12,7 @@
   </div>
 
   <el-form-item>
-
+<!--
     <select v-model="userData.operation">
       <option disabled value="">Einsatz auswählen</option>
       <option
@@ -22,6 +22,20 @@
         {{item.operationName}}
       </option>
     </select>
+-->
+    <el-table
+      v-model="userData.operation"
+      :data="operations"
+      v-if="(operations != null)">
+      <el-table-column
+        prop="operationName"
+        label="Einsatz-Name">
+      </el-table-column>
+      <el-table-column
+        prop="operationAdress"
+        label="Einsatz-Adresse">
+      </el-table-column>
+    </el-table>
 
     <el-button
       @click="addingOperation = !addingOperation"
@@ -107,6 +121,9 @@
 
 import { Notification } from 'element-ui'
 import { mapActions } from 'vuex'
+import sparql from '../sparql_help/sparql_queries.js'
+import { quitstore } from '../api/QuitStoreAdapter.js'
+import { parseResponse } from '../sparql_help/sparql_response.js'
 
 const roleOptions =
 ['Sichter', 'LdF', 'Fernmelder', 'SGL', 'Fachberater', 'Verbindungsstelle']
@@ -170,9 +187,24 @@ export default {
     }
   },
 
-  beforeRouteEnter (to, from, where) {
-    var id = to.params.id
+  beforeRouteEnter (to, from, next) {
+    // var id = to.params.id
     let operationsQuery = sparql.operationsQuery()
+    quitstore.getData(operationsQuery)
+      .then((response) => {
+        response = parseResponse(response.data)
+        next(vm => {
+          let data = {}
+          for (let predicate of response) {
+            data[predicate.p] = predicate.o
+          }
+          vm.setOperations({'storedOperations': data})
+        })
+      })
+  },
+
+  beforeRouteUpdate (to, from, next) {
+    next(false)
   },
 
   methods: {
@@ -201,6 +233,9 @@ export default {
     },
     resetForm (formName) {
       this.$refs[formName].resetFields()
+    },
+    setOperations (storedOperations) {
+      this.operations.push(storedOperations)
     },
     submitOperation () {
       this.$store.dispatch('handleOperation', this.newOperation)

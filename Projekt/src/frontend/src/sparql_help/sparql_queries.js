@@ -95,10 +95,10 @@ export default{
     // base for sparql insert queries
     query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
     let uri = 'id:' + rid
-    query += uri + ' rdf:type thw:einsatz'
+    query += uri + ' rdf:type thw:operation'
 
-    query += ';thw:einsatzName' + '"' + newOperation.operationName + '"'
-    query += ';thw:einsatzAdresse' + '"' + newOperation.operationAdress + '"'
+    query += ';thw:operationName ' + '"' + newOperation.operationName + '"'
+    query += ';thw:operationAdress ' + '"' + newOperation.operationAdress + '"'
     query += '.}}'
 
     return query
@@ -107,11 +107,9 @@ export default{
     // I am taking over the query of 'formquery' without id filtering
     return `
       PREFIX thw: <http://www.na17b.org/thw/>
-      PREFIX id: <http://www.na17b.org/thw/resource/>
 
-      SELECT ?p ?o FROM thw: 
-        FILTER(?p != rdf:type)
-      }
+      SELECT ?p ?o FROM thw: WHERE{ ?s rdf:type thw:operation;
+        ?p ?o FILTER(?p != rdf:type) }
     `
   }
 }
