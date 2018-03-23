@@ -197,7 +197,7 @@ export default {
       this.$refs[formName].resetFields()
     },
     submitOperation () {
-      // this.$store.dispatch('handleOperation', this.newOperation)
+      this.$store.dispatch('handleOperation', this.newOperation)
       this.operations.push({
         operationName: this.newOperation.operationName,
         operationAdress: this.newOperation.operationAdress
