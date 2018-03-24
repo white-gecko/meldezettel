@@ -12,30 +12,11 @@
   </div>
 
   <el-form-item>
-<!--
-    <select v-model="userData.operation">
-      <option disabled value="">Einsatz auswählen</option>
-      <option
-        v-for="item in operations"
-        :value="item"
-        :key="item.operationName">
-        {{item.operationName}}
-      </option>
-    </select>
--->
-    <el-table
-      v-model="userData.operation"
-      :data="operations"
-      v-if="(operations != null)">
-      <el-table-column
-        prop="operationName"
-        label="Einsatz-Name">
-      </el-table-column>
-      <el-table-column
-        prop="operationAdress"
-        label="Einsatz-Adresse">
-      </el-table-column>
-    </el-table>
+    <el-button
+      @click="choosingOperation = !choosingOperation"
+      style="margin-bottom: 20px">
+      Einsatz auswählen
+    </el-button>
 
     <el-button
       @click="addingOperation = !addingOperation"
@@ -43,29 +24,45 @@
       Einsatz erstellen
     </el-button>
 
-      <el-form-item v-if="addingOperation">
-        <el-form-item style="margin-bottom: 20px">
-          <el-input v-model="newOperation.operationName">
-            <template slot='prepend'>
-              <span>Einsatzname</span>
-            </template>
-          </el-input>
-        </el-form-item>
+    <el-form-item>
+      <el-table
+        v-model="userData.operation"
+        :data="operations"
+        v-if="choosingOperation && !addingOperation">
+        <el-table-column
+          prop="operationName"
+          label="Einsatz-Name">
+        </el-table-column>
+        <el-table-column
+          prop="operationAdress"
+          label="Einsatz-Adresse">
+        </el-table-column>
+      </el-table>
+    </el-form-item>
 
-        <el-form-item style="margin-bottom: 20px">
-          <el-input v-model="newOperation.operationAdress">
-            <template slot='prepend'>
-              <span>Anschrift</span>
-            </template>
-          </el-input>
-        </el-form-item>
-
-        <el-form-item style="margintop: 100px">
-          <el-button @click="submitOperation()">Speichern</el-button>
-        </el-form-item>
+    <el-form-item v-if="addingOperation && !choosingOperation">
+      <el-form-item style="margin-bottom: 20px">
+        <el-input v-model="newOperation.operationName">
+          <template slot='prepend'>
+            <span>Einsatzname</span>
+          </template>
+        </el-input>
       </el-form-item>
 
-  </el-form-item>
+      <el-form-item style="margin-bottom: 20px">
+        <el-input v-model="newOperation.operationAdress">
+          <template slot='prepend'>
+            <span>Anschrift</span>
+          </template>
+        </el-input>
+      </el-form-item>
+
+      <el-form-item style="margintop: 100px">
+        <el-button @click="submitOperation()">Speichern</el-button>
+      </el-form-item>
+    </el-form-item>
+
+</el-form-item>
 
   <el-form-item prop="role" style="margin-bottom: 20px">
     <el-radio-group v-model="userData.role" size="medium">
@@ -142,6 +139,8 @@ export default {
       },
 
       addingOperation: false,
+
+      choosingOperation: false,
 
       newOperation: {
         operationName: '',
