@@ -99,7 +99,10 @@ export default{
 
     query += ';thw:operationName ' + '"' + newOperation.operationName + '"'
     query += ';thw:operationAdress ' + '"' + newOperation.operationAdress + '"'
-    query += ';thw:operationStaffType ' + '"' + newOperation.operationStaffType + '"'
+    query += ';thw:operationStaffType ' +
+      '"' +
+      newOperation.operationStaffType +
+      '"'
     query += '.}}'
 
     return query

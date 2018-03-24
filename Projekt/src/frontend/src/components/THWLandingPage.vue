@@ -28,7 +28,8 @@
       <el-table
         v-model="userData.operation"
         :data="operations"
-        v-if="choosingOperation && !addingOperation">
+        v-if="choosingOperation"
+        size="small">
         <el-table-column
           prop="operationName"
           label="Einsatz-Name">
@@ -44,7 +45,7 @@
       </el-table>
     </el-form-item>
 
-    <el-form-item v-if="addingOperation && !choosingOperation">
+    <el-form-item v-if="addingOperation">
       <el-form-item style="margin-bottom: 20px">
         <el-input v-model="newOperation.operationName">
           <template slot='prepend'>
