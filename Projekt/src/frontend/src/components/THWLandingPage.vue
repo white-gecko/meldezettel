@@ -37,6 +37,10 @@
           prop="operationAdress"
           label="Einsatz-Adresse">
         </el-table-column>
+        <el-table-column
+          prop="operationStaffType"
+          label="Art des Stabes">
+        </el-table-column>
       </el-table>
     </el-form-item>
 
@@ -53,6 +57,14 @@
         <el-input v-model="newOperation.operationAdress">
           <template slot='prepend'>
             <span>Anschrift</span>
+          </template>
+        </el-input>
+      </el-form-item>
+
+      <el-form-item style="margin-bottom: 20px">
+        <el-input v-model="newOperation.operationStaffType">
+          <template slot='prepend'>
+            <span>Art des Stabes</span>
           </template>
         </el-input>
       </el-form-item>
@@ -144,7 +156,8 @@ export default {
 
       newOperation: {
         operationName: '',
-        operationAdress: ''
+        operationAdress: '',
+        operationStaffType: ''
       },
 
       operations: [],
@@ -240,11 +253,13 @@ export default {
       this.$store.dispatch('handleOperation', this.newOperation)
       this.operations.push({
         operationName: this.newOperation.operationName,
-        operationAdress: this.newOperation.operationAdress
+        operationAdress: this.newOperation.operationAdress,
+        operationStaffType: this.newOperation.operationStaffType
       })
       this.notifySuccess('Einsatz angelegt')
       this.newOperation.operationName = ''
       this.newOperation.operationAdress = ''
+      this.newOperation.operationStaffType = ''
       this.addingOperation = false
     }
   }
