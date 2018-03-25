@@ -13,6 +13,7 @@ import locale from 'element-ui/lib/locale'
 import { Header,
   Aside,
   Main,
+  Footer,
   Container,
   Menu,
   MenuItem,
@@ -25,6 +26,8 @@ import { Header,
   Option,
   Checkbox,
   CheckboxGroup,
+  RadioGroup,
+  RadioButton,
   Row,
   Col,
   Switch,
@@ -42,6 +45,7 @@ import { Header,
 Vue.use(Header)
 Vue.use(Aside)
 Vue.use(Main)
+Vue.use(Footer)
 Vue.use(Container)
 Vue.use(Menu)
 Vue.use(MenuItem)
@@ -54,6 +58,8 @@ Vue.use(Select)
 Vue.use(Option)
 Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
+Vue.use(RadioGroup)
+Vue.use(RadioButton)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Switch)

@@ -1,13 +1,26 @@
 <template>
   <div id="app">
-    <router-view/>
+   <router-view v-if="!showLandingPage" />
+   <THWLandingPage v-if="showLandingPage" />
   </div>
 </template>
 
 <script>
 
+import THWLandingPage from '@/components/THWLandingPage'
+
 export default {
-  name: 'App'
+  name: 'App',
+
+  components: {
+    THWLandingPage
+  },
+
+  computed: {
+    showLandingPage () {
+      return this.$store.state.showLandingPage
+    }
+  }
 }
 </script>
 

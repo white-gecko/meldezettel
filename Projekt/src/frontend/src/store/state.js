@@ -9,5 +9,12 @@ export default {
     onSituationMap: false,
     printable: false,
     archived: false
-  }
+  },
+  user: {
+    role: '',
+    sender: '',
+    position: '',
+    signature: ''
+  },
+  showLandingPage: true
 }
