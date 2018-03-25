@@ -25,10 +25,16 @@ describe('THWLandingPage', () => {
   })
 
   it('binds to Hdz', () => {
-    expect(wrapper.vm.userData.signature).toBe('')
+    expect(wrapper.vm.userData.position).toBe('')
   })
 
   it('binds to name', () => {
     expect(wrapper.vm.userData.sender).toBe('')
+  })
+  it('binds to Hdz', () => {
+    expect(wrapper.vm.userData.position).toBe('')
+  })
+  it('binds to operation', () => {
+    expect(wrapper.vm.userData.operation).toEqual({})
   })
 })
