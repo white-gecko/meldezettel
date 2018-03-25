@@ -13,13 +13,15 @@
 
   <el-form-item>
     <el-button
-      @click="choosingOperation = !choosingOperation"
+      @click="choosingOperation = !choosingOperation;
+        addingOperation = false"
       style="margin-bottom: 20px">
       Einsatz auswählen
     </el-button>
 
     <el-button
-      @click="addingOperation = !addingOperation"
+      @click="addingOperation = !addingOperation;
+        choosingOperation = false"
       style="margin-bottom: 20px">
       Einsatz erstellen
     </el-button>
@@ -28,6 +30,8 @@
       <el-table
         v-model="userData.operation"
         :data="operations"
+        border
+        @current-change="handleCurrentChange"
         v-if="choosingOperation"
         size="small">
         <el-table-column
@@ -41,6 +45,19 @@
         <el-table-column
           prop="operationStaffType"
           label="Art des Stabes">
+        </el-table-column>
+        <el-table-column
+          fixed="right"
+          label="Optionen"
+          width="120">
+          <template slot-scope="scope">
+            <el-button
+              type="text"
+              @click="userData.operation = operation[operationID]"
+              size="small">
+              Wählen
+            </el-button>
+          </template>
         </el-table-column>
       </el-table>
     </el-form-item>
@@ -144,7 +161,8 @@ export default {
   data () {
     return {
       userData: {
-        operation: '',
+        operation: {
+        },
         role: 'SGL',
         position: '',
         sender: '',
@@ -155,10 +173,15 @@ export default {
 
       choosingOperation: false,
 
+      currentRowObject: {},
+
+      operationID: 0,
+
       newOperation: {
         operationName: '',
         operationAdress: '',
-        operationStaffType: ''
+        operationStaffType: '',
+        operationID: 0
       },
 
       operations: [],
@@ -224,14 +247,10 @@ export default {
 
     ...mapActions(['handleOperation']),
 
-    notifySuccess (message) {
-      Notification({
-        title: message,
-        duration: 1200,
-        type: 'success',
-        offset: 120,
-        showClose: false
-      })
+    setOperations (storedOperations) {
+      this.default = storedOperations
+      this.$data.userData.operation =
+        JSON.parse(JSON.stringify(this.default.userData))
     },
     submitUser (userName) {
       this.$refs[userName].validate((valid) => {
@@ -247,21 +266,33 @@ export default {
     resetForm (formName) {
       this.$refs[formName].resetFields()
     },
-    setOperations (storedOperations) {
-      this.operations.push(storedOperations)
+    handleCurrentChange (val) {
+      this.currentRowObject = val
+      this.userData.operation = this.currentRowObject
     },
     submitOperation () {
       this.$store.dispatch('handleOperation', this.newOperation)
       this.operations.push({
         operationName: this.newOperation.operationName,
         operationAdress: this.newOperation.operationAdress,
-        operationStaffType: this.newOperation.operationStaffType
+        operationStaffType: this.newOperation.operationStaffType,
+        operationID: this.operationID
       })
       this.notifySuccess('Einsatz angelegt')
       this.newOperation.operationName = ''
       this.newOperation.operationAdress = ''
       this.newOperation.operationStaffType = ''
       this.addingOperation = false
+      this.operationID += 1
+    },
+    notifySuccess (message) {
+      Notification({
+        title: message,
+        duration: 1200,
+        type: 'success',
+        offset: 120,
+        showClose: false
+      })
     }
   }
 }
