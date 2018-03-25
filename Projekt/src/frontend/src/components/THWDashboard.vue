@@ -35,7 +35,7 @@
           </el-row>
           <el-row>
             <el-col :span='2'>
-              <el-button>Anwenden</el-button>
+              <el-button @click="changeFilters(); notifySuccess('Filter angewandt')">Anwenden</el-button>
             </el-col>
           </el-row>
         </el-collapse-item>
@@ -120,6 +120,21 @@ export default {
       let formdatas = handleResponse(d.data)
       this.$data.td = formdatas
       store.ticketlist = formdatas
+    },
+    changeFilters: function () {
+      this.$store
+        .dispatch('setFilters', this.filters)
+        .then(() => this.$router.push('home'))
+        .catch((error) => alert(error))
+    },
+    notifySuccess (message) {
+      Notification({
+        title: message,
+        duration: 1200,
+        type: 'success',
+        offset: 120,
+        showClose: false
+      })
     }
   },
 
