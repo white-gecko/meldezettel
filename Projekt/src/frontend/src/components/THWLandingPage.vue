@@ -31,7 +31,7 @@
         v-model="userData.operation"
         :data="operations"
         border
-        @current-change="handleCurrentChange"
+        @current-change="selectOperation"
         v-if="choosingOperation"
         size="small">
         <el-table-column
@@ -168,15 +168,12 @@ export default {
         sender: '',
         identification: ''
       },
-
+      // booleans for the operation options to be shown or hidden
       addingOperation: false,
-
       choosingOperation: false,
-
+      // object for operation selection in table
       currentRowObject: {},
-
-      operationID: 0,
-
+      // new Operation object that binds to operation input
       newOperation: {
         operationName: '',
         operationAdress: '',
@@ -184,12 +181,12 @@ export default {
         operationID: 0
       },
 
+      // objects for operations, roles and positions
       operations: [],
-
       roles: roleOptions,
-
       positions: positionOptions,
 
+      // rules to validate input
       rules: {
         sender: [
           { required: true,
@@ -252,6 +249,7 @@ export default {
       this.$data.userData.operation =
         JSON.parse(JSON.stringify(this.default.userData))
     },
+    // this method stores userData in store/state.js (vuex)
     submitUser (userName) {
       this.$refs[userName].validate((valid) => {
         if (valid) {
@@ -263,15 +261,20 @@ export default {
         }
       })
     },
+    // resets inputs
     resetForm (formName) {
       this.$refs[formName].resetFields()
     },
-    handleCurrentChange (val) {
-      this.currentRowObject = val
+    // handle selection of operation in operations table
+    selectOperation (selectedOperation) {
+      this.currentRowObject = selectedOperation
       this.userData.operation = this.currentRowObject
     },
+    // handle saving of a new operation
     submitOperation () {
+      // Quitstore post via sparql_queries.js and QuitStoreAdapter.js
       this.$store.dispatch('handleOperation', this.newOperation)
+      // add operation to operations array for table
       this.operations.push({
         operationName: this.newOperation.operationName,
         operationAdress: this.newOperation.operationAdress,
