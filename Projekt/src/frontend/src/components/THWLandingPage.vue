@@ -53,7 +53,6 @@
           <template slot-scope="scope">
             <el-button
               type="text"
-              @click="userData.operation = operation[operationID]"
               size="small">
               Wählen
             </el-button>
@@ -243,13 +242,16 @@ export default {
   methods: {
 
     ...mapActions(['handleOperation']),
-
+    // TODO: load stored operations into LandingPage
     setOperations (storedOperations) {
       this.default = storedOperations
+      this.formReset()
+    },
+    formReset () {
       this.$data.userData.operation =
         JSON.parse(JSON.stringify(this.default.userData))
     },
-    // this method stores userData in store/state.js (vuex)
+    // stores userData in store/state.js (vuex)
     submitUser (userName) {
       this.$refs[userName].validate((valid) => {
         if (valid) {
@@ -269,6 +271,7 @@ export default {
     selectOperation (selectedOperation) {
       this.currentRowObject = selectedOperation
       this.userData.operation = this.currentRowObject
+      this.notifySuccess('Einsatz ausgewählt.')
     },
     // handle saving of a new operation
     submitOperation () {
