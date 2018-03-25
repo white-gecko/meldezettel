@@ -1,97 +1,56 @@
 <template>
-  <div>
-    <el-form :model='filter'>
-      <el-collapse>
-        <el-collapse-item title='Filter'>
-          <el-row>
-            <el-col :span='2'>
-              Suchen:
-            </el-col>
-            <el-col :span='20'>
-              <el-input style='width:600px' v-model='filter.search'></el-input>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span='2'>
-              Einsatz:
-            </el-col>
-            <el-col :span='20'>
-              <el-select label='Einsatz'
-                         v-model='filter.mission'
-                         style='width:600px'>
-                <el-option value='all'>
-                  Alle
-                </el-option>
-              </el-select>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span='2'>Status:</el-col>
-            <el-col :span='20'>
-              <el-checkbox-button v-model='filter.created'>
-                <span style="color:cadetblue;">&#9632; </span> verfasst
-              </el-checkbox-button>
-              <el-checkbox-button v-model='filter.inspected'>
-                <span style="color:lawngreen;">&#9632; </span> gesichtet
-              </el-checkbox-button>
-              <el-checkbox-button v-model='filter.onSituationMap'>
-                <span style="color:indianred;">&#9632; </span> auf Lagekarte
-              </el-checkbox-button>
-              <el-checkbox-button v-model='filter.printable'>
-                <span style="color:yellow;">&#9632; </span> zu drucken
-              </el-checkbox-button>
-              <el-checkbox-button v-model='filter.archived'>
-                <span style="color:dimgrey;">&#9632; </span> archiviert
-              </el-checkbox-button>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span='2'>
-              <el-button>Anwenden</el-button>
-            </el-col>
-          </el-row>
-        </el-collapse-item>
-      </el-collapse>
-    </el-form>
-  <el-table :data="td" style="width: 100%" max-height="500">
+  <div class="flexContainerDashboardB">
 
-    <el-table-column width="70">
-      <template slot-scope="scope">
-        <router-link v-bind:to="{name:'Create', params:{id: scope.$index }}"
-                     tag="el-button">
-          <i class="el-icon-zoom-in"></i>
-        </router-link>
-      </template>
-    </el-table-column>
+    <div class="
+        dashboard
+        hasShadowDashboardA">
+      <el-table :data="td" style="width: 100%" max-height="500">
 
-    <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
-    <el-table-column label="Status"
-                     width="100"></el-table-column>
+        <el-table-column width="70">
+          <template slot-scope="scope">
+            <router-link v-bind:to="{name:'Create', params:{id: scope.$index }}"
+                         tag="el-button">
+              <i class="el-icon-zoom-in"></i>
+            </router-link>
+          </template>
+        </el-table-column>
 
-    <el-table-column prop="numberTB"
-                     label="TB Nummer"
-                     width="130"></el-table-column>
+        <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
+        <el-table-column label="Status"
+                         width="100"></el-table-column>
 
-    <el-table-column prop="hdzIncomingA"
-                     label="Verfasser"
-                     width="100"></el-table-column>
+        <el-table-column prop="numberTB"
+                         label="TB Nummer"
+                         width="130"></el-table-column>
 
-    <el-table-column prop="signature"
-                     label="Sichter"
-                     width="100"></el-table-column>
+        <el-table-column prop="hdzIncomingA"
+                         label="Verfasser"
+                         width="100"></el-table-column>
 
-    <el-table-column prop="dateIncomingA"
-                     label="Datum"
-                     width="100"></el-table-column>
+        <el-table-column prop="signature"
+                         label="Sichter"
+                         width="100"></el-table-column>
 
-    <el-table-column prop="timeIncomingA"
-                     label="Uhrzeit"
-                     width="100"></el-table-column>
+        <el-table-column prop="dateIncomingA"
+                         label="Datum"
+                         width="100"></el-table-column>
 
-    <el-table-column prop="message"
-                     label="Kurzinhalt"></el-table-column>
+        <el-table-column prop="timeIncomingA"
+                         label="Uhrzeit"
+                         width="100"></el-table-column>
 
-  </el-table>
+        <el-table-column prop="message"
+                         label="Kurzinhalt"></el-table-column>
+
+      </el-table>
+    </div>
+
+    <div class="
+        sideMenuDashboard
+        hasShadowDashboardA">
+
+    </div>
+
   </div>
 </template>
 
@@ -185,11 +144,53 @@ export default {
 </script>
 
 <style>
-  .el-row{
-    margin-bottom: 20px;
+  .dashboard {
+    background-color: var(--semiLightNeutralColor);
+    width: 80%;
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+    padding-top: 50px;
+    padding-bottom: 20px;
   }
-  .el-checkbox-button{
-    margin-right: 5px;
-    margin-left: 5px;
+  .sideMenuDashboard {
+    background-color: var(--semiLightNeutralColor);
+    width: 20%;
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-left: 40px;
+  }
+
+  /*
+  shadow-settings:
+  different shadow settings
+   */
+  .hasShadowDashboardA {
+    box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
+  }
+  .hasShadowDashboardB {
+    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
+  }
+
+  /*
+  flex-settings:
+    different settings for the flex attribute
+  */
+  .flexContainerDashboardA {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .flexContainerDashboardB {
+    display: flex;
+    flex-direction: row;
+  }
+  .flexChildDashboardA {
+    align-self: center;
   }
 </style>

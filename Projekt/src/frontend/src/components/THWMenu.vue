@@ -1,6 +1,7 @@
 <template>
   <div class="
         menu
+        hasShadowMenuA
         flexContainerMenuA">
 
     <div class="
@@ -72,27 +73,24 @@ export default {
 
 <style>
   .menu {
-    background-color: rgba(220, 223, 230, 0.5);
+    background-color: var(--semiLightNeutralColor);
     overflow: visible;
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
-    border-right: var(--darkNeutralColor);
-    border-right-style: solid;
-    border-right-width: 10px;
-    width: 19%;
-    padding-top: 150px;
+    padding-top: 50px;
   }
 
   .menu-item {
     position: relative;
-    left: 20px;
+    left: 10px;
     background-color: var(--semiLightNeutralColor);
     overflow: visible;
     height: 60px;
     width: 82.9%;
     min-width: 240px;
     font-family: var(--mainFont);
+    font-size: var(--titleSize);
     color: var(--primaryTextColor);
     border-right: var(--formBlueColor);
     border-right-style: solid;

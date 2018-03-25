@@ -50,7 +50,11 @@
           flexContainerHeaderB">
       <div class="
           logoHeader
-          hasShadowHeaderB">
+          hasShadowHeaderB
+          flexContainerHeaderA">
+        <img :src="selectIcon"
+             height="70"
+             width="70">
       </div>
 
       <div class="
@@ -62,7 +66,7 @@
             padding-right: 10%;
             margin-left: 0%;
             margin-right: 0%;">
-        {{this.computedRole}}
+        {{this.role}}
       </div>
 
     </div>
@@ -77,28 +81,34 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'THWHeader',
-
   computed: {
     ...mapGetters({
       role: 'getRole'
     }),
 
-    computedRole: function () {
-      if (this.role === 'Sichter') {
-        return 'Sichter'
+    selectIcon: function () {
+      /* if (this.role === 'Sichter') {
+        return require('@/assets/sichterIcon.png')
       } else if (this.role === 'LdF') {
-        return 'LdF'
+        return require('@/assets/LdFIcon.png')
       } else if (this.role === 'Fernmelder') {
-        return 'Fernmelder'
+        return require('@/assets/fernmelderIcon.png')
       } else if (this.role === 'SGL') {
-        return 'SGL'
+        return require('@/assets/SGLIcon.png')
       } else if (this.role === 'Fachberater') {
-        return 'Fachberater'
+        return require('@/assets/fachberaterIcon.png')
       } else if (this.role === 'Verbindungsstelle') {
-        return 'Verbindungsstelle'
+        return require('@/assets/verbindungsstelleIcon.png')
       } else {
-        return 'undefined Role'
-      }
+        return require('@/assets/placeholderIcon.png')
+      } */
+      return require('@/assets/sichterIcon.png')
+      // return require('@/assets/LdFIcon.png')
+      // return require('@/assets/fernmelderIcon.png')
+      // return require('@/assets/SGLIcon.png')
+      // return require('@/assets/fachberaterIcon.png')
+      // return require('@/assets/verbindungsstelleIcon.png')
+      // return require('@/assets/placeholderIcon.png')
     }
 
   }

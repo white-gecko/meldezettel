@@ -1,976 +1,41 @@
 documentID: 0,
 <template>
-  <div>
-    <el-form ref="form" :model="formdata" style="
-      border-top: var(--regularTextColor);
-      border-top-style: solid;
-      border-top-width: 30px;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      padding-bottom: 20px">
-      <el-row>
-        <el-col :span="24">
-
-          <!-- section: top -->
-          <div class="
-                outerWrapper
-                hasPaddingLeftRightA
-                hasPaddingTopBottomA
-                hasMarginLeftRightA
-                hasMarginTopBottomFormA
-                hasBorderSettingsFormA">
-            <el-row>
-              <el-col :span="16">
-
-                <!-- subsection: top/left -->
-                <div class="
-                      middleWrapper
-                      hasPaddingLeftRightB
-                      hasPaddingTopBottomB
-                      hasMarginLeftRightB
-                      hasMarginTopBottomFormB
-                      hasBorderSettingsFormB">
-                  <el-row>
-
-                    <!-- element: checkbox-group (message-type) -->
-                    <div class="
-                          innerWrapper
-                          hasPaddingLeftRightC
-                          hasPaddingTopBottomC
-                          hasMarginLeftRightC
-                          hasMarginTopBottomC
-                          flexContainerFormA
-                          hasBorderSettingsFormC">
-                      <el-form-item class="
-                                      flexContainerA
-                                      flexChildFormA">
-                        <el-checkbox class="flexChildFormA"
-                                     label='Funk'
-                                     v-model="formdata.topRadio">
-                        </el-checkbox>
-                        <el-checkbox class="flexChildFormA"
-                                     label='Telefon'
-                                     v-model="formdata.topPhone">
-                        </el-checkbox>
-                        <el-checkbox class="flexChildFormA"
-                                     label='Telefax'
-                                     v-model="formdata.topFax">
-                        </el-checkbox>
-                        <el-checkbox class="flexChildFormA"
-                                     label='DFÜ'
-                                     v-model="formdata.topDFU">
-                        </el-checkbox>
-                        <el-checkbox class="flexChildFormA"
-                                     label='Kurier/Melder'
-                                     v-model="formdata.topCourier">
-                        </el-checkbox>
-                      </el-form-item>
-                    </div>
-
-                  </el-row>
-                  <el-row>
-                    <el-col :span="9">
-
-                      <!-- element: input-complex ("Eingehend") -->
-                      <div class="
-                            innerWrapper
-                            hasPaddingLeftRightC
-                            hasPaddingTopBottomC
-                            hasMarginLeftRightC
-                            hasMarginTopBottomFormC
-                            hasBorderSettingsFormC">
-                        <el-container>
-                          <el-header style="height: 10px;">Eingehend</el-header>
-                          <el-main>
-                            <el-container>
-                              <el-header class="hasPaddingLeftRightFormB"
-                                         style="
-                                  height: 20px;
-                                  font-size: var(--bodySize);
-                                  color: var(--secondaryTextColor)">
-                                Aufnahmevermerk
-                              </el-header>
-                              <el-main class="flexContainerFormB">
-                                <!-- date-input  -->
-                                <el-form-item class="
-                                  flexChildA
-                                  hasPaddingLeftRightFormB">
-                                  <el-input :disabled="other.tempAusgehend"
-                                            v-model="formdata.primaryDate">
-                                    <div slot="prepend" style="width: 42px">
-                                      <span>Datum</span>
-                                    </div>
-                                  </el-input>
-                                </el-form-item>
-                                <!-- time-input  -->
-                                <el-form-item class="
-                                                flexChildA
-                                                hasPaddingLeftRightFormB">
-                                  <el-input :disabled="other.tempAusgehend"
-                                            v-model="formdata.primaryTime">
-                                    <div slot="prepend" style="width: 42px">
-                                      <span>Zeit</span>
-                                    </div>
-                                  </el-input>
-                                </el-form-item>
-                                <!-- Hdz-input  -->
-                                <el-form-item class="
-                                                flexChildA
-                                                hasPaddingLeftRightFormB">
-                                  <el-input :disabled="other.tempAusgehend"
-                                            v-model="formdata.primaryHdZ">
-                                    <div slot="prepend" style="width: 42px">
-                                      <span>Hdz</span>
-                                    </div>
-                                  </el-input>
-                                </el-form-item>
-
-                              </el-main>
-                            </el-container>
-                          </el-main>
-                        </el-container>
-                      </div>
-
-                    </el-col>
-                    <el-col :span="15">
-
-                      <!-- element: input-complex ("Ausgehend") -->
-                      <div class="
-                            innerWrapper
-                            hasPaddingLeftRightC
-                            hasPaddingTopBottomC
-                            hasMarginLeftRightC
-                            hasMarginTopBottomFormC
-                            hasBorderSettingsFormC">
-                        <el-container>
-                          <el-header style="height: 10px;">Ausgehend</el-header>
-                          <el-main>
-                            <el-col :span="12">
-                              <el-container>
-                                <el-header class="hasPaddingLeftRightFormB"
-                                           style="
-                                    height: 20px;
-                                    font-size: var(--bodySize);
-                                    color: var(--secondaryTextColor);">
-                                  Annahmevermerk
-                                </el-header>
-                                <el-main class="flexContainerFormB">
-                                  <!-- date-input  -->
-                                  <el-form-item class="
-                                                  flexChildA
-                                                  hasPaddingLeftRightFormB">
-                                    <el-input :disabled="other.tempEingehend"
-                                              v-model="formdata.secondaryDate">
-                                      <div slot="prepend" style="width: 42px">
-                                        <span>Datum</span>
-                                      </div>
-                                    </el-input>
-                                  </el-form-item>
-                                  <!-- time-input  -->
-                                  <el-form-item class="
-                                                  flexChildA
-                                                  hasPaddingLeftRightFormB">
-                                    <el-input :disabled="other.tempEingehend"
-                                              v-model="formdata.secondaryTime">
-                                      <div slot="prepend" style="width: 42px">
-                                        <span>Zeit</span>
-                                      </div>
-                                    </el-input>
-                                  </el-form-item>
-                                  <!-- Hdz-input  -->
-                                  <el-form-item class="
-                                                  flexChildA
-                                                   hasPaddingLeftRightFormB">
-                                    <el-input :disabled="other.tempEingehend"
-                                              v-model="formdata.secondaryHdZ">
-                                      <div slot="prepend" style="width: 42px">
-                                        <span>Hdz</span>
-                                      </div>
-                                    </el-input>
-                                  </el-form-item>
-                                </el-main>
-                              </el-container>
-                            </el-col>
-                            <el-col :span="12">
-                              <el-container>
-                                <el-header class="hasPaddingLeftRightFormB"
-                                           style="
-                                    height: 20px;
-                                    font-size: var(--bodySize);
-                                    color: var(--secondaryTextColor);">
-                                  Beförderungsvermerk
-                                </el-header>
-                                <el-main class="flexContainerFormB">
-                                  <!-- date-input  -->
-                                  <el-form-item class="
-                                                  flexChildA
-                                                  hasPaddingLeftRightFormB">
-                                    <el-input :disabled="other.tempEingehend"
-                                              v-model="formdata.tertiaryDate">
-                                      <div slot="prepend" style="width: 42px">
-                                        <span>Datum</span>
-                                      </div>
-                                    </el-input>
-                                  </el-form-item>
-                                  <!-- time-input  -->
-                                  <el-form-item class="
-                                                  flexChildA
-                                                  hasPaddingLeftRightFormB">
-                                    <el-input :disabled="other.tempEingehend"
-                                              v-model="formdata.tertiaryTime">
-                                      <div slot="prepend" style="width: 42px">
-                                        <span>Zeit</span>
-                                      </div>
-                                    </el-input>
-                                  </el-form-item>
-                                  <!-- Hdz-input  -->
-                                  <el-form-item class="
-                                                  flexChildA
-                                                  hasPaddingLeftRightFormB">
-                                    <el-input :disabled="other.tempEingehend"
-                                              v-model="formdata.tertiaryHdZ">
-                                      <div slot="prepend" style="width: 42px">
-                                        <span>Hdz</span>
-                                      </div>
-                                    </el-input>
-                                  </el-form-item>
-                                </el-main>
-                              </el-container>
-                            </el-col>
-                          </el-main>
-                        </el-container>
-                      </div>
-
-                    </el-col>
-                  </el-row>
-                </div>
-
-              </el-col>
-              <el-col :span="8">
-
-                <!-- subsection: top/right-->
-                <div class="
-                middleWrapper
-                hasPaddingLeftRightB
-                hasPaddingTopBottomB
-                hasMarginLeftRightB
-                hasMarginTopBottomFormB
-                hasBorderSettingsFormB">
-
-                  <!-- element: input-complex ("Technisches Betriebsbuch") -->
-                  <div class="
-                      innerWrapper
-i                     hasPaddingLeftRightC
-                      hasPaddingTopBottomC
-                      hasMarginLeftRightC
-                      hasMarginTopBottomFormC
-                      hasBorderSettingsFormC">
-                    <el-container>
-                      <el-header style="height: 55px">
-                        Technisches Betriebsbuch
-                      </el-header>
-                      <el-main class="flexContainerFormB">
-                        <!-- nr.-input -->
-                        <el-form-item class="flexChildA
-                          hasPaddingLeftRightFormB"
-                                      style="margin-bottom: 15px">
-                          <el-input v-model="formdata.numberTB">
-                            <template slot="prepend">
-                              <span>Nr.</span>
-                            </template>
-                          </el-input>
-                        </el-form-item>
-                        <!-- checkbox "Eingehend" -->
-                        <el-form-item class="flexChildA
-                          hasPaddingLeftRightFormB"
-                                      style="margin-bottom: 44px">
-                          <el-checkbox @change="checkIn();"
-                                       v-model="other.tempEingehend"
-                                       id="in"
-                                       label="Eingehend"
-                                       name="typeTop"
-                                       border>
-                          </el-checkbox>
-                        </el-form-item>
-                        <!-- checkbox "Ausgehend" -->
-                        <el-form-item class="flexChildA
-                          hasPaddingLeftRightFormB"
-                                      style="padding-bottom: 20px">
-                          <el-checkbox @change="checkOut();"
-                                       v-model="other.tempAusgehend"
-                                       id="out"
-                                       label="Ausgehend"
-                                       name="typeTop"
-                                       border>
-                          </el-checkbox>
-                        </el-form-item>
-                      </el-main>
-                    </el-container>
-                  </div>
-
-                </div>
-
-              </el-col>
-            </el-row>
-            <el-row>
-
-              <!-- subsection: bot/center-->
-              <div class="
-              middleWrapper
-              hasPaddingLeftRightB
-              hasPaddingTopBottomB
-              hasMarginLeftRightB
-              hasMarginTopBottomFormB
-              hasBorderSettingsFormB">
-
-                <!-- element: input-complex
-                ("Rufnahme Gegenstelle/Spruchkopf") -->
-                <div class="
-                      innerWrapper
-                      hasPaddingLeftRightC
-                      hasPaddingTopBottomC
-                      hasMarginLeftRightC
-                      hasMarginTopBottomFormC
-                      hasBorderSettingsFormC">
-                  <!-- "Rufnahme/..."-input -->
-                  <el-form-item>
-                    <el-input v-model="formdata.receiverName">
-                      <template slot="prepend">
-                        <span>Rufnahme der Gegenstelle/Spruchkopf</span>
-                      </template>
-                    </el-input>
-                  </el-form-item>
-                </div>
-
-              </div>
-
-            </el-row>
-          </div>
-
-        </el-col>
-      </el-row>
-      <el-row>
-
-        <!-- section: mid -->
-        <div class="
-          outerWrapper
-          hasPaddingLeftRightA
-          hasPaddingTopBottomA
-          hasMarginLeftRightA
-          hasMarginTopBottomFormA
-          hasBorderSettingsFormA">
-          <el-row>
-
-            <!-- subsection: top-->
-            <div class="
-                middleWrapper
-                hasPaddingLeftRightB
-                hasPaddingTopBottomB
-                hasMarginLeftRightB
-                hasMarginTopBottomFormB
-                hasBorderSettingsFormB">
-              <el-row>
-
-                <!-- element: checkboxgroup (message-type) -->
-                <div class="
-                      innerWrapper
-                      hasPaddingLeftRightC
-                      hasPaddingTopBottomC
-                      hasMarginLeftRightC
-                      hasMarginTopBottomFormC
-                      hasBorderSettingsFormC">
-                  <el-form-item class="flexContainerFormA">
-                    <el-checkbox class="flexChildFormA"
-                                 label='Funk'
-                                 v-model="formdata.midRadio"></el-checkbox>
-                    <el-checkbox class="flexChildFormA"
-                                 label='Telefon'
-                                 v-model="formdata.midPhone"></el-checkbox>
-                    <el-checkbox class="flexChildFormA"
-                                 label='Telefax'
-                                 v-model="formdata.midFax"></el-checkbox>
-                    <el-checkbox class="flexChildFormA"
-                                 label='DFÜ'
-                                 v-model="formdata.midDFU"></el-checkbox>
-                    <el-checkbox class="flexChildFormA"
-                                 label='Kurier/Melder'
-                                 v-model="formdata.midCourier"></el-checkbox>
-                  </el-form-item>
-                </div>
-
-              </el-row>
-              <el-row>
-                <el-col :span="12">
-
-                  <!-- element: checkbox-group ("Durchsage/Spruch") -->
-                  <div class="
-                      innerWrapper
-                      hasPaddingLeftRightC
-                      hasPaddingTopBottomC
-                      hasMarginLeftRightC
-                      hasMarginTopBottomFormC
-                      hasBorderSettingsFormC">
-                    <el-form-item class="flexContainerFormA">
-                      <el-checkbox class="flexChildFormA"
-                                   label="DURCHSAGE"
-                                   v-model="formdata.callAnnouncement"
-                                   name="typeCall"></el-checkbox>
-                      <el-checkbox class="flexChildFormA"
-                                   label="Spruch"
-                                   v-model="formdata.callMessage"
-                                   name="typeCall"></el-checkbox>
-                    </el-form-item>
-                  </div>
-
-                </el-col>
-                <el-col :span="12">
-
-                  <!-- element: checkbox-group ("Sofort/Blitz") -->
-                  <div class="
-                      innerWrapper
-                      hasPaddingLeftRightC
-                      hasPaddingTopBottomC
-                      hasMarginLeftRightC
-                      hasMarginTopBottomFormC
-                      hasBorderSettingsFormC">
-                    <el-form-item class="flexContainerFormA">
-                      <el-checkbox class="flexChildFormA"
-                                   label="Sofort"
-                                   v-model="formdata.priorityInstant"
-                                   name="priority"></el-checkbox>
-                      <el-checkbox class="flexChildFormA"
-                                   label="Blitz"
-                                   v-model="formdata.priorityFlash"
-                                   name="priority"></el-checkbox>
-                    </el-form-item>
-                  </div>
-
-                </el-col>
-              </el-row>
-              <el-row>
-                <el-col :span="4">
-
-                  <!-- element: input-complex ("Rufnr.") -->
-                  <div class="
-                      innerWrapper
-                      hasPaddingLeftRightC
-                      hasPaddingTopBottomC
-                      hasMarginLeftRightC
-                      hasMarginTopBottomFormC
-                      hasBorderSettingsFormC">
-                    <el-form-item>
-                      <el-input v-model='formdata.callNumber' tabindex="1">
-                        <template slot="prepend">Ruf Nr.</template>
-                      </el-input>
-                    </el-form-item>
-                  </div>
-
-                </el-col>
-                <el-col :span="16">
-
-                  <!-- element: input-complex ("Anschrift") -->
-                  <div class="
-                      innerWrapper
-                      hasPaddingLeftRightC
-                      hasPaddingTopBottomC
-                      hasMarginLeftRightC
-                      hasMarginTopBottomFormC
-                      hasBorderSettingsFormC">
-                    <el-form-item>
-                      <el-input v-model='formdata.address' tabindex="2">
-                        <template slot="prepend">Anschrift</template>
-                      </el-input>
-                    </el-form-item>
-                  </div>
-
-                </el-col>
-                <el-col :span="4">
-
-                  <!-- element: input-complex ("Gesprächsnotiz") -->
-                  <div class="
-                      innerWrapper
-                      hasPaddingLeftRightC
-                      hasPaddingTopBottomC
-                      hasMarginLeftRightC
-                      hasMarginTopBottomFormC
-                      hasBorderSettingsFormC">
-                    <el-form-item>
-                      <el-checkbox label="GESPRÄCHSNOTIZ"
-                                   v-model='formdata.talkNote'
-                                   name="type4"></el-checkbox>
-                    </el-form-item>
-                  </div>
-
-                </el-col>
-              </el-row>
-            </div>
-
-          </el-row>
-          <el-row>
-
-            <!-- subsection: middle-->
-            <div class="
-                middleWrapper
-                hasPaddingLeftRightB
-                hasPaddingTopBottomB
-                hasMarginLeftRightB
-                hasMarginTopBottomFormB
-                hasBorderSettingsFormB">
-              <el-row>
-
-                <!-- element: input-complex ("Inhalt") -->
-                <div class="
-                      innerWrapper
-                      hasPaddingLeftRightC
-                      hasPaddingTopBottomC
-                      hasMarginLeftRightC
-                      hasMarginTopBottomFormC
-                      hasBorderSettingsFormC">
-                  <el-form-item>
-                    <el-input
-                      type="textarea"
-                      :rows="3"
-                      placeholder="Inhalt"
-                      :autosize="{ minRows: 5, maxRows: 13 }"
-                      v-model='formdata.content'
-                      tabindex="3">
-                    </el-input>
-                  </el-form-item>
-                </div>
-
-              </el-row>
-            </div>
-
-          </el-row>
-          <el-row>
-
-            <!-- subsection: bot-->
-            <div class="
-                middleWrapper
-                hasPaddingLeftRightB
-                hasPaddingTopBottomB
-                hasMarginLeftRightB
-                hasMarginTopBottomFormB
-                hasBorderSettingsFormB">
-              <el-row>
-
-                <!-- element: input-complex ("Absender") -->
-                <div class="
-                      innerWrapper
-                      hasPaddingLeftRightC
-                      hasPaddingTopBottomC
-                      hasMarginLeftRightC
-                      hasMarginTopBottomFormC
-                      hasBorderSettingsFormC">
-                  <el-form-item>
-                    <el-input placeholder="Einheit/Einrichtung/Stelle"
-                              v-model="formdata.sender"
-                              tabindex="5">
-                      <template slot="prepend">Absender</template>
-                    </el-input>
-                  </el-form-item>
-                </div>
-
-              </el-row>
-              <el-row>
-                <el-col :span="8">
-
-                  <!-- element: input-complex ("Abfassungszeit") -->
-                  <div class="
-                        innerWrapper
-                        hasPaddingLeftRightC
-                        hasPaddingTopBottomC
-                        hasMarginLeftRightC
-                        hasMarginTopBottomFormC
-                        hasBorderSettingsFormC">
-                    <el-form-item>
-                      <el-input v-model="formdata.createTime">
-                        <template slot="prepend">Abfassungszeit</template>
-                      </el-input>
-                    </el-form-item>
-                  </div>
-
-                </el-col>
-                <el-col :span="8">
-
-                  <!-- element: input-complex ("Zeichen") -->
-                  <div class="
-                        innerWrapper
-                        hasPaddingLeftRightC
-                        hasPaddingTopBottomC
-                        hasMarginLeftRightC
-                        hasMarginTopBottomFormC
-                        hasBorderSettingsFormC">
-                    <el-form-item>
-                      <el-input v-model="formdata.identification">
-                        <template slot="prepend">Zeichen</template>
-                      </el-input>
-                    </el-form-item>
-                  </div>
-
-                </el-col>
-                <el-col :span="8">
-
-                  <!-- element: input-complex ("Funktion") -->
-                  <div class="
-                        innerWrapper
-                        hasPaddingLeftRightC
-                        hasPaddingTopBottomC
-                        hasMarginLeftRightC
-                        hasMarginTopBottomFormC
-                        hasBorderSettingsFormC">
-                    <el-form-item>
-                      <el-input v-model="formdata.position" tabindex="4">
-                        <template slot="prepend">Funktion</template>
-                      </el-input>
-                    </el-form-item>
-                  </div>
-
-                </el-col>
-              </el-row>
-            </div>
-
-          </el-row>
-        </div>
-
-      </el-row>
-      <el-row>
-
-        <!-- section: bot -->
+  <div class="flexContainerFormA">
+    <!-- main-form -->
+    <div class="
+          formWrapper
+          hasShadowFormA">
+      <el-form class="
+              form
+              flexContainerFormB"
+               ref="form"
+               :model="formdata">
         <div class="
               outerWrapper
-              hasPaddingLeftRightA
-              hasPaddingTopBottomA
-              hasMarginLeftRightA
-              hasMarginTopBottomFormA
-              hasBorderSettingsFormA"
-             style="
-              border-bottom-left-radius: 20px;
-              border-bottom-right-radius: 20px;">
-          <el-row>
-            <el-col :span="16">
-
-              <!-- subsection: left-->
-              <div class="
-                    middleWrapper
-                    hasPaddingLeftRightB
-                    hasPaddingTopBottomB
-                    hasMarginLeftRightB
-                    hasMarginTopBottomFormB
-                    hasBorderSettingsFormB">
-                <el-row>
-
-                  <!-- element: input-complex ("Quittung") -->
-                  <div class="
-                        innerWrapper
-                        hasPaddingLeftRightC
-                        hasPaddingTopBottomC
-                        hasMarginLeftRightC
-                        hasMarginTopBottomFormC
-                        hasBorderSettingsFormC">
-                    <el-container>
-                      <el-header style="height: 20px;">Quittung</el-header>
-                      <el-main class="flexContainerFormA">
-                        <!-- time-input  -->
-                        <el-form-item class="flexChildFormA" >
-                          <el-input v-model='formdata.docketTime'
-                                    placeholder="Uhrzeit auswählen">
-                            <template slot="prepend">Zeit</template>
-                          </el-input>
-                        </el-form-item>
-                        <!-- "Zeichen"-input  -->
-                        <el-form-item class="flexChildFormA">
-                          <el-input v-model='formdata.docketIdentification'>
-                            <template slot="prepend">Zeichen</template>
-                          </el-input>
-                        </el-form-item>
-                      </el-main>
-                    </el-container>
-                  </div>
-
-                </el-row>
-                <el-row>
-                  <el-col :span="8">
-
-                    <!-- element: input-complex ("TEL/EL/...") -->
-                    <div class="
-                          innerWrapper
-                          hasPaddingLeftRightC
-                          hasPaddingTopBottomC
-                          hasMarginLeftRightC
-                          hasMarginTopBottomFormC
-                          hasBorderSettingsFormC"
-                         style="padding-bottom: 17.5px">
-                      <el-container>
-                        <el-header style="height: 20px;">
-                          TEL/EL/EAL/UEAL
-                        </el-header>
-                        <el-main class="flexContainerFormA">
-                          <!-- BOTTOM-part LEFT checkbox "Leiter"  -->
-                          <el-form-item class="flexChildFormA">
-                            <el-checkbox label="Leiter"
-                                         v-model="formdata.stationLeader">
-                            </el-checkbox>
-                          </el-form-item>
-                          <!-- BOTTOM-part LEFT checkbox "S1/S2/..." -->
-                          <div class="
-                                flexChildA
-                                flexContainerFormB">
-                            <el-form-item class="flexChildFormA">
-                              <el-checkbox label="S1"
-                                           v-model="formdata.stationS1">
-                              </el-checkbox>
-                            </el-form-item>
-                            <el-form-item class="flexChildFormA">
-                              <el-checkbox label="S2"
-                                           v-model="formdata.stationS2">
-                              </el-checkbox>
-                            </el-form-item>
-                            <el-form-item class="flexChildFormA">
-                              <el-checkbox label="S3"
-                                           v-model="formdata.stationS3">
-                              </el-checkbox>
-                            </el-form-item>
-                            <el-form-item class="flexChildFormA">
-                              <el-checkbox label="S4"
-                                           v-model="formdata.stationS4">
-                              </el-checkbox>
-                            </el-form-item>
-                            <el-form-item class="flexChildFormA">
-                              <el-checkbox label="S6"
-                                           v-model="formdata.stationS6">
-                              </el-checkbox>
-                            </el-form-item>
-                          </div>
-                        </el-main>
-                      </el-container>
-                    </div>
-
-                  </el-col>
-                  <el-col :span="8">
-
-                    <!-- element: input-complex ("Fachberater") -->
-                    <div class="
-                          innerWrapper
-                          hasPaddingLeftRightC
-                          hasPaddingTopBottomC
-                          hasMarginLeftRightC
-                          hasMarginTopBottomFormC
-                          hasBorderSettingsFormC">
-                      <el-container class="flexContainerFormA">
-                        <el-header class="flexChildFormA"
-                                   style="height: 20px;">
-                          Fachberater
-                        </el-header>
-                        <el-main class="
-                                  flexChildA
-                                  flexContainerFormB">
-                          <el-form-item class="flexChildFormA">
-                            <el-input v-model="formdata.advisorA" type="text">
-                              <template slot="prepend">
-                                <input type="checkbox"
-                                       v-model='formdata.advisorTickA'>
-                              </template>
-                            </el-input>
-                          </el-form-item>
-                          <el-form-item class="flexChildFormA">
-                            <el-input v-model="formdata.advisorB" type="text">
-                              <template slot="prepend">
-                                <input type="checkbox"
-                                       v-model='formdata.advisorTickB'>
-                              </template>
-                            </el-input>
-                          </el-form-item>
-                          <el-form-item class="flexChildFormA">
-                            <el-input v-model="formdata.advisorC" type="text">
-                              <template slot="prepend">
-                                <input type="checkbox"
-                                       v-model='formdata.advisorTickC'>
-                              </template>
-                            </el-input>
-                          </el-form-item>
-                          <el-form-item class="flexChildFormA">
-                            <el-input v-model="formdata.advisorD" type="text">
-                              <template slot="prepend">
-                                <input type="checkbox"
-                                       v-model='formdata.advisorTickD'>
-                              </template>
-                            </el-input>
-                          </el-form-item>
-                          <el-form-item class="flexChildFormA">
-                            <el-input v-model="formdata.advisorE" type="text">
-                              <template slot="prepend">
-                                <input type="checkbox"
-                                       v-model='formdata.advisorTickE'>
-                              </template>
-                            </el-input>
-                          </el-form-item>
-                        </el-main>
-                      </el-container>
-                    </div>
-
-                  </el-col>
-                  <el-col :span="8">
-
-                    <!-- element: input-complex ("Verb. stellen") -->
-                    <div class="
-                          innerWrapper
-                          hasPaddingLeftRightC
-                          hasPaddingTopBottomC
-                          hasMarginLeftRightC
-                          hasMarginTopBottomFormC
-                          hasBorderSettingsFormC">
-                      <el-container class="flexContainerFormA">
-                        <el-header class="flexChildFormA"
-                                   style="height: 20px;">
-                          Verb. stellen
-                        </el-header>
-                        <el-main class="
-                                  flexChildA
-                                  flexContainerFormB">
-                          <el-form-item class="flexChildFormA">
-                            <el-input v-model='formdata.connectionA'
-                                      type="text">
-                              <template slot="prepend">
-                                <input type="checkbox"
-                                       v-model='formdata.connectionTickA'>
-                              </template>
-                            </el-input>
-                          </el-form-item>
-                          <el-form-item class="flexChildFormA">
-                            <el-input v-model='formdata.connectionB'
-                                      type="text">
-                              <template slot="prepend">
-                                <input type="checkbox"
-                                       v-model='formdata.connectionTickB'>
-                              </template>
-                            </el-input>
-                          </el-form-item>
-                          <el-form-item class="flexChildFormA">
-                            <el-input v-model='formdata.connectionC'
-                                      type="text">
-                              <template slot="prepend">
-                                <input type="checkbox"
-                                       v-model='formdata.connectionTickC'>
-                              </template>
-                            </el-input>
-                          </el-form-item>
-                          <el-form-item class="flexChildFormA">
-                            <el-input v-model='formdata.connectionD'
-                                      type="text">
-                              <template slot="prepend">
-                                <input type="checkbox"
-                                       v-model='formdata.connectionTickD'>
-                              </template>
-                            </el-input>
-                          </el-form-item>
-                          <el-form-item class="flexChildFormA">
-                            <el-input v-model='formdata.connectionE'
-                                      type="text">
-                              <template slot="prepend">
-                                <input type="checkbox"
-                                       v-model='formdata.connectionTickE'>
-                              </template>
-                            </el-input>
-                          </el-form-item>
-                        </el-main>
-                      </el-container>
-                    </div>
-
-                  </el-col>
-                </el-row>
-              </div>
-
-            </el-col>
-            <el-col :span="8">
-
-              <!-- subsection: right-->
-              <div class="
-                    middleWrapper
-                    hasPaddingLeftRightB
-                    hasPaddingTopBottomB
-                    hasMarginLeftRightB
-                    hasMarginTopBottomFormB
-                    hasBorderSettingsFormB">
-                <el-row>
-                  <el-row>
-
-                    <!-- element: input-complex ("Vermerke") -->
-                    <div class="
-                          innerWrapper
-                          hasPaddingLeftRightC
-                          hasPaddingTopBottomC
-                          hasMarginLeftRightC
-                          hasMarginTopBottomFormC
-                          hasBorderSettingsFormC"
-                         style="padding-bottom: 15px">
-                      <el-container>
-                        <el-header style="height: 20px;">Vermerke</el-header>
-                        <el-main>
-                          <el-form-item>
-                            <el-input
-                              type="textarea"
-                              :rows="3"
-                              :autosize="{ minRows: 12, maxRows: 12 }"
-                              v-model='formdata.annotations'
-                              tabindex="3">
-                            </el-input>
-                          </el-form-item>
-                        </el-main>
-                      </el-container>
-                    </div>
-
-                  </el-row>
-                  <el-row>
-                    <el-col :span="12">
-
-                      <!-- element: button ("Abschicken") -->
-                      <div class="
-                            innerWrapper
-                            hasPaddingLeftRightC
-                            hasPaddingTopBottomC
-                            hasMarginLeftRightC
-                            hasMarginTopBottomFormC
-                            hasBorderSettingsFormC">
-                        <el-button @click="
-                                    addFormData();
-                                    notifySuccess('Abgeschickt')"
-                                   tabindex="6">
-                          Abschicken
-                        </el-button>
-                      </div>
-
-                    </el-col>
-                    <el-col :span="12">
-
-                      <!-- element: button ("Zurücksetzen") -->
-                      <div class="
-                            innerWrapper
-                            hasPaddingLeftRightC
-                            hasPaddingTopBottomC
-                            hasMarginLeftRightC
-                            hasMarginTopBottomFormC
-                            hasBorderSettingsFormC">
-                        <el-button @click="
-                                    formReset();
-                                    notifySuccess('Formular zurückgesetzt')">
-                          Zurücksetzen
-                        </el-button>
-                      </div>
-
-                    </el-col>
-                  </el-row>
-                </el-row>
-              </div>
-
-            </el-col>
-          </el-row>
+              hasMarginFormA
+              hasPaddingFormA">
+          <div class="testSquare"></div>
         </div>
+        <div class="
+              outerWrapper
+              hasMarginFormA
+              hasPaddingFormA">
+          <div class="testSquare"></div>
+        </div>
+        <div class="
+              outerWrapper
+              hasMarginFormA
+              hasPaddingFormA">
+          <div class="testSquare"></div>
+        </div>
+      </el-form>
+    </div>
+    <!-- side-menu -->
+    <div class="
+          sideMenuForm
+          hasShadowFormA">
 
-      </el-row>
-    </el-form>
+    </div>
   </div>
 </template>
 
@@ -1198,98 +263,91 @@ export default {
 </script>
 
 <style>
-  :root {
-    /*main colors*/
+  .form {
+    background-color: var(--formBlueColor);
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+  }
+  .formWrapper {
+    background-color: var(--semiLightNeutralColor);
+    width: 80%;
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+    padding-top: 50px;
+    padding-bottom: 20px;
+  }
+  .sideMenuForm {
+    background-color: var(--semiLightNeutralColor);
+    width: 20%;
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-left: 40px;
   }
 
   /*
   space:
     different settings for spacing
    */
-  .hasMarginLeftRightFormA {
-    margin-left: 25px;
-    margin-right: 25px;
-  }
-  .hasMarginLeftRightFormB {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-  .hasMarginLeftRightFormC {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
-  .hasMarginTopBottomFormA {
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-  .hasMarginTopBottomFormB {
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-  .hasMarginTopBottomFormC {
+  .hasMarginFormA {
+    margin-left: 20px;
+    margin-right: 20px;
     margin-top: 0px;
     margin-bottom: 10px;
   }
-
-  .hasPaddingLeftRightFormA {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .hasPaddingLeftRightFormB {
+  .hasPaddingFormA {
     padding-left: 10px;
     padding-right: 10px;
-  }
-  .hasPaddingLeftRightFormC {
-    padding-left: 10px;
-    padding-right: 20px;
-  }
-
-  .hasPaddingTopBottomFormA {
     padding-top: 0px;
     padding-bottom: 0px;
   }
-  .hasPaddingTopBottomFormB {
+
+  .hasMarginFormB {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  .hasPaddingFormB {
+    padding-left: 10px;
+    padding-right: 10px;
     padding-top: 0px;
-    padding-bottom: 0.5px;
+    padding-bottom: 0px;
   }
-  .hasPaddingTopBottomFormC {
-    padding-top: 5px;
-    padding-bottom: 5px;
+
+  .hasMarginFormC {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 10px;
   }
-  .hasPaddingTopBottomTEMP1 {
-    padding-top: 20px;
-    padding-bottom: 24px;
+  .hasPaddingFormC {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 
   /*border-settings:
     different border styles
   */
-  .hasBorderBotFormA {
-    border-bottom: var(--formBlueColor);
-    border-bottom-style: solid;
-    border-bottom-width: 10px;
+
+  /*
+ shadow-settings:
+ different shadow settings
+  */
+  .hasShadowFormA {
+    box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
   }
-  .hasBorderSettingsFormA {
-    border-bottom: var(--placeholderTextColor);
-    border-bottom-style: solid;
-    border-bottom-width: 10px;
-    border-radius: 0px;
-  }
-  .hasBorderSettingsFormB {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-  .hasBorderSettingsFormC {
-    border-left: var(--formBlueColor);
-    border-left-style: solid;
-    border-left-width: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+  .hasShadowFormB {
+    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
   }
 
   /*
@@ -1298,24 +356,16 @@ export default {
   */
   .flexContainerFormA {
     display: flex;
-    justify-content: space-evenly;
-    align-items: stretch;
+    flex-direction: row;
   }
   .flexContainerFormB {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: stretch;
-  }
-  .flexChildFormA {
-    flex-grow: 1;
   }
 
-  /*
-  el-components:
-    specific settings for el-components, that differ from the default ones
-  */
-  .el-form {
-    background: var(--formBlueColor);
+  .testSquare{
+    background-color: yellow;
+    width: 100px;
+    height: 50px;
   }
 </style>
