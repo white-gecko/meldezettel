@@ -61,13 +61,18 @@ chmod +x quitstore.sh
 ./quitstore.sh
 ```
 
+oder:
+
+```bash
+cd Projekt/src/frontend
+npm run quit
+```
+
 Anschließend ist der Quitstore unter
 
 [http://localhost:5000](http://localhost:5000)
 
 zu erreichen.
-
-**NOTE: Das Setup-Script wird nun automatisch ausgeführt, wenn npm run dev ausgeführt wird**
 
 ## Wichtig
 
