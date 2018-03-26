@@ -67,6 +67,8 @@ Anschließend ist der Quitstore unter
 
 zu erreichen.
 
+**NOTE: Das Setup-Script wird nun automatisch ausgeführt, wenn npm run dev ausgeführt wird**
+
 ## Wichtig
 
 Auf gar keinen Fall darf der Ordner src/frontend/node_modules in das Repository gepusht werden. Dieser ist aber bereits in der .gitignore hinterlegt,
