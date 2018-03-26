@@ -44,26 +44,56 @@ export default{
    * Creates a query to query for dashboard specific data
    * @return query string to query for dashboard specific data
    */
-  dashboardQuery: function () {
-    return `
+  dashboardQuery: function (filter) {
+    let query = `
       PREFIX thw: <http://www.na17b.org/thw/>
       PREFIX id: <http://www.na17b.org/thw/resource/>
       prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
       SELECT
         ?id
+        ?numberTB
+        ?identification
         ?content
         ?primaryDate
         ?primaryTime
-        ?primaryHdZ FROM thw:
+        ?primaryHdZ
+        ?receiverName 
+        FROM thw:
         WHERE {
           ?id rdf:type  thw:document;
+                        thw:receiverName ?receiverName;
                         thw:content ?content;
                         thw:primaryDate ?primaryDate;
                         thw:primaryTime ?primaryTime;
                         thw:primaryHdZ ?primaryHdZ;
+                        thw:numberTB ?numberTB;
+                        thw:identification ?identification.
+      FILTER(`
+    let check = false
+    let trimmed = trim(filter.search)
+    if (trimmed != '') {
+      query += `(
+                regex(?content, "`+ trimmed +`") ||
+                regex(?numberTB, "` + trimmed + `") ||
+                regex(?receiverName, "` + trimmed + `" ||
+                ?primaryHdZ = "` + trimmed + `" ||
+                ?identification = "` + trimmed + `"
+                )
+      `
+      check = true
+    }
+    if (filter.operation != 'Alle') {
+      if (check) {
+        query +=`&&
+        `
       }
-    `
+      query += `regex(?operation, "` + filter.operation + `")`
+      check = true
+    }
+    query += ')}'
+
+    return query
   },
 
   /**

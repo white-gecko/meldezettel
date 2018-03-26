@@ -78,6 +78,10 @@
                      label="Uhrzeit"
                      width="100"></el-table-column>
 
+    <el-table-column prop="receiverName"
+                     label="Uhrzeit"
+                     width="100"></el-table-column>
+
     <el-table-column :formatter="formatContent"
                      prop="content"
                      label="Kurzinhalt"></el-table-column>
@@ -91,12 +95,15 @@
 import { quitstore } from '../api/QuitStoreAdapter.js'
 import { parseResponse } from '../sparql_help/sparql_response.js'
 import sparql from '../sparql_help/sparql_queries.js'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'THWDashboard',
 
   beforeRouteEnter (to, from, next) {
-    let query = sparql.dashboardQuery()
+    let filt = mapGetters.getFilters()
+    this.$data.filter=filt
+    let query = sparql.dashboardQuery(filt)
 
     quitstore.getData(query)
       .then((response) => {
@@ -154,6 +161,12 @@ export default {
       return String(cellValue).length > 80
         ? cellValue.substring(0, 77) + '...' : cellValue
     }
+  },
+
+  computed: {
+    ...mapGetters([
+      'getFilters'
+    ])
   }
 }
 
@@ -167,7 +180,6 @@ export default {
     }
   }
   .el-checkbox-button{
-    margin-right: 5px;
-    margin-left: 5px;
+    margin-right: 10px;
   }
 </style>

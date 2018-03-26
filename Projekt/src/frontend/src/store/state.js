@@ -3,12 +3,12 @@ export default {
   ticketlist: [],
   filter: {
     search: '',
-    mission: 'Alle',
+    operation: 'Alle',
     created: true,
-    inspected: false,
-    onSituationMap: false,
-    printable: false,
-    archived: false
+    inspected: true,
+    onSituationMap: true,
+    printable: true,
+    archived: true
   },
   user: {
     role: '',
