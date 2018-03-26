@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "npm run quit;webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "quit": "exec ../../quitstore.sh",
+    "quit": "cd .. && cd .. && ./quitstore.sh",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --verbose",
     "e2e": "node test/e2e/runner.js",
