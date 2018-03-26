@@ -1,4 +1,7 @@
-\documentclass[a5paper,6pt]{article}
+import os
+
+VV =
+VV = r"""\documentclass[a5paper,6pt]{article}
 \usepackage[a5paper]{geometry} 
 \usepackage[ngerman]{babel}
 %\usepackage[latin1]{inputenc}
@@ -9,12 +12,9 @@
 \usepackage{verbatim}
 \usepackage{graphicx}
 \usepackage{colortbl}
-\usepackage{xcolor}
 \usepackage{rotating}
 \usepackage{tabularx}
 \usepackage{lipsum}
-\usepackage{colortbl}
-\usepackage{svg}
 \setlength{\tabcolsep}{0.25em}
 
 \def \ew{0.27}
@@ -37,25 +37,13 @@
 	\end{tabularx}
 	\vspace{-0.5pt}
 }
-\setlength{\tabcolsep}{0em}
-\def \nbox#1{
-	\begin{tabularx}{42.9pt}{|X|}
-		\hline
-		#1 \\
-		\hline
-	\end{tabularx}
-}
-\setlength{\tabcolsep}{0.25em}
-
 \begin{document}
-\texttt{
-%\small 
-\footnotesize
+\small 
 \textbf{}\\
 \begin{minipage}{\textwidth}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 	\hline
-	 \multicolumn{9}{|l|}{\quad \uncheckedbox Funk \hspace{\ehs} \uncheckedbox Telefon \hspace{\ehs} \uncheckedbox Telefax \hspace{\ehs}  \uncheckedbox DFÜ \hspace{\ehs}  \uncheckedbox Kurier/Melder} \\
+	\multicolumn{9}{|l|}{\quad \uncheckedbox Funk \hspace{\ehs} \uncheckedbox Telefon \hspace{\ehs} \uncheckedbox Telefax \hspace{\ehs}  \uncheckedbox DFÜ \hspace{\ehs}  \uncheckedbox Kurier/Melder}   \\
 	\hline
 	\multicolumn{3}{|c|}{\textbf{Eingang}} & \multicolumn{6}{c|}{\textbf{Ausgang}}\\
 	\hline
@@ -66,15 +54,15 @@
 	\textsubscript{1}\duh  & \textsubscript{2}\duh &\textsubscript{3}\duh \\
 	\hline
 \end{tabular}
-\hspace{-9.5pt} 
-\renewcommand{\arraystretch}{1.215}
+\hspace{-9.5pt}
+\renewcommand{\arraystretch}{1.228}
 \begin{tabular}{l|}
 	\hline
 	\textbf{Technisches}\\
 	\textbf{Betriebsbuch}\\
-	 Nr.\nbox{5} \\
-	\hspace{10.65pt} \uncheckedbox Eingang\\
-	\textsubscript{4} \hspace{3.4pt} \uncheckedbox Ausgang \vspace{-0.1pt}\\
+	\quad Nr. \nr \\
+	\hspace{11.3pt} \uncheckedbox Eingang\\
+	\textsubscript{4} \hspace{4pt} \uncheckedbox Ausgang 	\vspace{0pt}\\
 	\hline
 \end{tabular}
 \vspace{-1pt}
@@ -98,12 +86,11 @@
 \end{minipage}
 \begin{minipage}{\textwidth}
 \begin{minipage}{0.2\textwidth}
-\renewcommand{\arraystretch}{1}
+\renewcommand{\arraystretch}{2}
 \begin{tabularx}{\textwidth}{|X|}
 \textsubscript{9} Anschrift\\
 \hline
-\hspace{7.8pt}Ruf Nr.\\
-\hspace{7.8pt}Placeholder
+\hspace{7.8pt}Ruf Nr.
 \end{tabularx}
 \end{minipage}
 \begin{minipage}{0.5755\textwidth}
@@ -114,7 +101,8 @@ df
 \centering	GESPRÄCHS- \tabularnewline
 \centering	NOTIZ \tabularnewline
 \hline
-\textsubscript{10} \hspace{20pt} \uncheckedbox 
+\centering \uncheckedbox \tabularnewline
+\textsubscript{10}
 \end{tabularx}
 \end{minipage}
 \vspace{-1.5pt}
@@ -148,18 +136,18 @@ df
 		\multicolumn{2}{|l|}{\textsubscript{13} \hspace{80pt} Einheit/Einrichtung/Stelle} & \textsubscript{14}Zeichen \hspace{40pt} Funktion \\
 		\hline
 	\end{tabularx}
-	\vspace{-1.5pt}
+	\vspace{-2.5pt}
 \end{minipage}
-\begin{minipage}{0.5956\textwidth}
-\begin{tabularx}{\textwidth}{|X|p{180pt}|}
-	Quittung & Quittungstext\\
+\begin{minipage}{\textwidth}
+\begin{tabularx}{0.5956\textwidth}{|X|X|}
+	Quittung & Quittunstext\\
 	\hline
-	\multicolumn{1}{|X}{\textsubscript{15}} &  Uhrzeit \hspace{40pt} Zeichen\\
+	\multicolumn{1}{|X}{\textsubscript{15}} & \multicolumn{1}{X|}{ Uhrzeit \hspace{40pt} Zeichen}\\
 	\hline
 	\multicolumn{2}{|X|}{
-		\begin{tabularx}{\textwidth}{X X X X}
-			\multicolumn{2}{p{90pt}}{\rule{0pt}{1em}TEL/EL/EAL/UEAL} & Fachberater & Verb.stellen\\
-			\rule{0pt}{1em}\uncheckedbox Leiter& \uncheckedbox \tbox{S1} & \uncheckedbox \tbox{}& \uncheckedbox \tbox{}\\
+		\begin{tabularx}{0.5956\textwidth}{X X X X}
+			\multicolumn{2}{p{90pt}}{TEL/EL/EAL/UEAL} & Fachberater & Verb.stellen\\
+			\uncheckedbox Leiter& \uncheckedbox \tbox{S1} & \uncheckedbox \tbox{}& \uncheckedbox \tbox{}\\
 			& \uncheckedbox \tbox{S2} & \uncheckedbox \tbox{} & \uncheckedbox \tbox{}\\
 			& \uncheckedbox \tbox{S3} & \uncheckedbox \tbox{} & \uncheckedbox \tbox{}\\
 			& \uncheckedbox \tbox{S4} & \uncheckedbox \tbox{} & \uncheckedbox \tbox{}\\
@@ -169,21 +157,23 @@ df
 	}\\
 	\hline
 \end{tabularx}
-\end{minipage}
-\put(0,0){\begin{minipage}{0.3956\textwidth}
-	\begin{tabularx}{\textwidth}{X|}
-			\textsubscript{17}Vermerke\\
-			TTTTTTTTTTTTTTTTTTTTTT\\
-			MMMMMMMMMMMMMMMMMMMMMM\\
-			\\
-			\\
-			\\
-			\\
-			\\
-			\\
+\hspace{-6.4pt}
+	\begin{minipage}{0.3963\textwidth}
+		\begin{tabularx}{\textwidth}{X|}
+			\textsubscript{17}Vermerke \\
 			\hline
+		\end{tabularx}\\
+		\renewcommand{\arraystretch}{7.65}
+		\begin{tabularx}{\textwidth}{X|}
+			 \\
+			\hline	
 		\end{tabularx}
 	\end{minipage}
-}
-}
-\end{document}
+
+\end{minipage}
+\end{document}"""
+
+file = open("VVtest.tex","w")
+file.write(VV)
+file.close()
+os.system("pdflatex VVtest.tex")
