@@ -7,9 +7,20 @@
   ref="userData"
   class="demo-userData">
 
-  <div style="margin-bottom: 30px">
-    <span style="color:#606266">Rolle auswählen und Daten eingeben</span>
-  </div>
+  <el-form-item
+    style="margin-bottom: 30px">
+    <el-button style="color:#606266">
+      Rolle auswählen und Daten eingeben
+    </el-button>
+  </el-form-item>
+
+  <el-form-item
+    style="margin-bottom: 30px"
+    v-if="userData.operation.operationName != ''">
+    <el-button style="color:#606266">
+      Ausgewählter Einsatz: {{ userData.operation.operationName }}
+    </el-button>
+  </el-form-item>
 
   <el-form-item>
     <el-button
@@ -28,7 +39,6 @@
 
     <el-form-item>
       <el-table
-        v-model="userData.operation"
         :data="operations"
         border
         @current-change="selectOperation"
@@ -147,9 +157,9 @@
 
 import { Notification } from 'element-ui'
 import { mapActions } from 'vuex'
-import sparql from '../sparql_help/sparql_queries.js'
 import { quitstore } from '../api/QuitStoreAdapter.js'
 import { parseResponse } from '../sparql_help/sparql_response.js'
+import sparql from '../sparql_help/sparql_queries.js'
 
 const roleOptions =
 ['Sichter', 'LdF', 'Fernmelder', 'SGL', 'Fachberater', 'Verbindungsstelle']
@@ -161,6 +171,10 @@ export default {
     return {
       userData: {
         operation: {
+          operationName: '',
+          operationAdress: '',
+          operationStaffType: '',
+          operationID: 0
         },
         role: 'SGL',
         position: '',
@@ -181,7 +195,7 @@ export default {
       },
 
       // objects for operations, roles and positions
-      operations: [],
+      operations: [{}],
       roles: roleOptions,
       positions: positionOptions,
 
@@ -219,37 +233,37 @@ export default {
     }
   },
 
-  beforeRouteEnter (to, from, next) {
-    // var id = to.params.id
+  mounted () {
     let operationsQuery = sparql.operationsQuery()
+
     quitstore.getData(operationsQuery)
       .then((response) => {
-        response = parseResponse(response.data)
-        next(vm => {
-          let data = {}
-          for (let predicate of response) {
-            data[predicate.p] = predicate.o
-          }
-          vm.setOperations({'storedOperations': data})
-        })
+        let data = parseResponse(response.data)
+        this.setStoredOperations(data)
+        // vm.setStoredOperations({'storedOperations': data})
       })
-  },
-
-  beforeRouteUpdate (to, from, next) {
-    next(false)
+      .catch((error) => {
+        alert(error)
+      })
   },
 
   methods: {
 
     ...mapActions(['handleOperation']),
     // TODO: load stored operations into LandingPage
-    setOperations (storedOperations) {
+    /*
+    setStoredOperations (storedOperations) {
       this.default = storedOperations
-      this.formReset()
+      this.setOperations()
     },
-    formReset () {
-      this.$data.userData.operation =
+    setOperations () {
+      this.$data.userData.operations =
         JSON.parse(JSON.stringify(this.default.userData))
+    },
+    */
+    setStoredOperations (storedOperations) {
+      this.$data.operations.pop()
+      this.$data.operations = storedOperations
     },
     // stores userData in store/state.js (vuex)
     submitUser (userName) {
@@ -272,6 +286,7 @@ export default {
       this.currentRowObject = selectedOperation
       this.userData.operation = this.currentRowObject
       this.notifySuccess('Einsatz ausgewählt.')
+      this.choosingOperation = false
     },
     // handle saving of a new operation
     submitOperation () {

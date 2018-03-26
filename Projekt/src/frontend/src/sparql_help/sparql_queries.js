@@ -108,12 +108,23 @@ export default{
     return query
   },
   operationsQuery: function () {
-    // I am taking over the query of 'formquery' without id filtering
+    // Similar to dashboardQuery
     return `
       PREFIX thw: <http://www.na17b.org/thw/>
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+      prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-      SELECT ?p ?o FROM thw: WHERE{ ?s rdf:type thw:operation;
-        ?p ?o FILTER(?p != rdf:type) }
+    SELECT
+      ?operationName
+      ?operationAdress
+      ?operationStaffType
+    FROM thw:
+    WHERE {
+        ?id rdf:type thw:operation;
+        thw:operationName ?operationName;
+        thw:operationAdress ?operationAdress;
+        thw:operationStaffType ?operationStaffType
+    .}
     `
   }
 }
