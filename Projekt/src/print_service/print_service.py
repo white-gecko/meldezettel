@@ -1,5 +1,4 @@
-import os
-import json
+import os, io, json
 
 def trimString(str, lineLength):
   if len(str)>lineLength:
@@ -8,14 +7,27 @@ def trimString(str, lineLength):
     return str;
 
 
-def adjustString(str, lines, lineLength):
+def adjustString(str, maxLines, lineLength):
   length = len(str)
-  totalLength = lineLength * lines
   
-  if length>totalLength:
-    return str[:totalLength]+"\\\\";
+  n = lineLength
+  usedLines = 0
+  while n < length:
+    while str[n]!=' ':
+      n -=1
+    n += lineLength
+    usedLines += 1
+  
+  if usedLines < maxLines:
+    maxLength = n
   else:
-    return str + "\\\\" * (lines - (length / lineLength));
+    maxLength = n - lineLength
+  
+  
+  if length>maxLength:
+    return str[:maxLength]+"\\\\";
+  else:
+    return str + "\\\\" * (maxLines - usedLines);
 
 
 def renderPDF():
@@ -92,8 +104,8 @@ def renderPDF():
   for [str,lineLength] in strings:
     VV += "\\def \\" + str + "{" + trimString(d[str],lineLength) + "} "
   
-  for [str,lines,lineLength] in multiLineStrings:
-    VV += "\\def \\" + str + "{" + adjustString(d[str],lines,lineLength) + "} "
+  for [str,maxLines,lineLength] in multiLineStrings:
+    VV += "\\def \\" + str + "{" + adjustString(d[str],maxLines,lineLength) + "} "
   
   
   for str in booleans:
@@ -134,13 +146,15 @@ def renderPDF():
   else:
     VV += "\\def \\stationSSix{\\uncheckedbox}"
   
+  with io.open("variables.tex", mode="a", encoding="UTF8") as fd:
+    fd.write(VV)
   
-  file = open("variables.tex","w")
-  file.write(VV)
-  file.close()
+  #file = open("variables.tex","w")
+  #file.write(VV)
+  #file.close()
+  
+  
   os.system("pdflatex VVtest.tex")
-  #print(d["annotations"])
-  #print(d.annotations)
   return;
 
 
