@@ -1,13 +1,13 @@
 <template>
   <div>
     <el-form ref="form" :model="formdata" style="
-      border-top: var(--regularTextColor)
-      border-top-style: solid
-      border-top-width: 30px
-      border-bottom-left-radius: 20px
-      border-bottom-right-radius: 20px
-      border-top-left-radius: 10px
-      border-top-right-radius: 10px
+      border-top: var(--regularTextColor);
+      border-top-style: solid;
+      border-top-width: 30px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
       padding-bottom: 20px">
       <el-row>
         <el-col :span="24">
@@ -82,8 +82,8 @@
                             <el-container>
                               <el-header class="hasPaddingLeftRightB"
                                          style="
-                                  height: 20px
-                                  font-size: var(--bodySize)
+                                  height: 20px;
+                                  font-size: var(--bodySize);
                                   color: var(--secondaryTextColor)">
                                 Aufnahmevermerk
                               </el-header>
@@ -145,8 +145,8 @@
                               <el-container>
                                 <el-header class="hasPaddingLeftRightB"
                                            style="
-                                    height: 20px
-                                    font-size: var(--bodySize)
+                                    height: 20px;
+                                    font-size: var(--bodySize);
                                     color: var(--secondaryTextColor)">
                                   Annahmevermerk
                                 </el-header>
@@ -191,8 +191,8 @@
                               <el-container>
                                 <el-header class="hasPaddingLeftRightB"
                                            style="
-                                    height: 20px
-                                    font-size: var(--bodySize)
+                                    height: 20px;
+                                    font-size: var(--bodySize);
                                     color: var(--secondaryTextColor)">
                                   Beförderungsvermerk
                                 </el-header>
@@ -621,7 +621,7 @@ i                     hasPaddingLeftRightC
               hasMarginLeftRightA
               hasMarginTopBottomA"
              style="
-              border-bottom-left-radius: 20px
+              border-bottom-left-radius: 20px;
               border-bottom-right-radius: 20px">
           <el-row>
             <el-col :span="16">
