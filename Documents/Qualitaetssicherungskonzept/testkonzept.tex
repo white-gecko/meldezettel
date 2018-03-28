@@ -1,12 +1,17 @@
 \section{Testkonzept}
 Durch die besondere Verantwortung des THW hat die Zuverlässigkeit der Software einen außerordentlich hohen Stellenwert. Um diese zu gewährleisten muss das umfangreiche Testen der Software automatisiert ablaufen, wobei eine Testcoverage von 100\% angestrebt wird.
 \subsection{Komponententests}
-Als Testing Framework findet in diesem Projekt \href{https://facebook.github.io/jest/docs/en/getting-started.htmll}{Jest} Verwendung. Komponententests sind nach folgenden Konventionen zu erstellen: Für jede Datei existiert eine Testdateei und für jede Funktion mindestens eine Testfunktion. Bei der Namensgebung wird im Dateinamen vor der Dateiendung ein .test eingeschoben. So erhält die Datei \textit{exampleModule.js} ihre Testdatei \textit{exampleModule.test.js}. Testdateien befinden sich im gleichen Ordner wie zu testende Dateien.
-\jsfile{../../Projekt/src/frontend/src/examples/module.js}
-\jsfile{../../Projekt/src/frontend/src/examples/module.test.js}
+\paragraph{Python}
+Als Testing Framework findet in diesem Projekt das etablierte und in der Python Standard Bibliothek integrierte \href{https://docs.python.org/3/library/unittest.html}{Python Unit Testing Framework} Verwendung. Komponententests sind nach folgenden Konventionen zu erstellen. Für jede Klasse existiert eine Testklasse und für jede Funktion eine Testfunktion. Bei der Namensgebung wird im Dateinamen vor der Dateiendung ein .test eingeschoben. So erhält die Datei \textit{MittringEmulator.py} ihre Testdatei \textit{MittringEmulator.test.py}. Testdateien befinden sich im gleichen Ordner wie zu testende Dateien. Beispiel:
+\pyfile{../../Projekt/src/frontend/src/test-examples/MittringEmulator.py}
+\pyfile{../../Projekt/src/frontend/src/test-examples/MittringEmulator.test.py}
+\paragraph{JavaScript}
+Als JavaScript Testing Framework findet in diesem Projekt \href{https://facebook.github.io/jest/docs/en/getting-started.htmll}{Jest} Verwendung. Komponententests sind nach folgenden Konventionen zu erstellen: Für jede Datei existiert eine Testdateei und für jede Funktion mindestens eine Testfunktion. Bei der Namensgebung wird im Dateinamen vor der Dateiendung ein .test eingeschoben. So erhält die Datei \textit{exampleModule.js} ihre Testdatei \textit{exampleModule.test.js}. Testdateien befinden sich im gleichen Ordner wie zu testende Dateien.
+\jsfile{../../Projekt/src/frontend/src/test-examples/module.js}
+\jsfile{../../Projekt/src/frontend/src/test-examples/module.test.js}
 \subsection{GUI Tests}
 Durch die Nutzung von vue-js zur Frontenderstellung bietet sich auch der Einsatz der \href{https://vue-test-utils.vuejs.org/en/}{vue-test-utils} an, welche das automatisierte Testen der GUI Funktionalitäten erlauben. Für jede Komponente wird eine Testdatei im selben Ordner erstellt. Bei der Namensgebung wird im Dateinamen vor der Dateiendung ein .spec eingeschoben. So erhält die Datei \textit{counter.js} ihre Testdatei \textit{counter.spec.js}.
-\jsfile{../../Projekt/src/frontend/src/examples/counter.js}
-\jsfile{../../Projekt/src/frontend/src/examples/counter.spec.js}
+\jsfile{../../Projekt/src/frontend/src/test-examples/counter.js}
+\jsfile{../../Projekt/src/frontend/src/test-examples/counter.spec.js}
 
 Darüber hinaus werden auch manuelle Tests der Benutzeroberfläche durchgeführt, welche Unannehmlichkeiten in der Bedingbarkeit aufdecken sollen.
