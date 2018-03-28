@@ -1,4 +1,3 @@
-documentID: 0,
 <template>
   <div class="flexContainerFormA">
     <!--main-form-->
@@ -824,12 +823,12 @@ import ElContainer from 'element-ui/packages/container/src/main'
 import ElMain from 'element-ui/packages/main/src/main'
 
 export default {
-
   components: {
     ElMain,
     ElContainer,
     ElRow,
-    ElHeader},
+    ElHeader
+  },
   name: 'THWForm',
 
   data: () => {
@@ -907,7 +906,6 @@ export default {
         connectionTickE: false,
 
         annotations: ''
-
       },
 
       other: {
@@ -930,8 +928,9 @@ export default {
       let query = sparql.formQuery(id)
 
       // query quitstore for the requested id
-      quitstore.getData(query)
-        .then((response) => {
+      quitstore
+        .getData(query)
+        .then(response => {
           response = parseResponse(response.data)
           if (response.length > 0) {
             // response length > 0 -> load document
@@ -941,7 +940,7 @@ export default {
               for (let predicate of response) {
                 data[predicate.p] = predicate.o
               }
-              vm.setDefaultData({'formdata': data})
+              vm.setDefaultData({ formdata: data })
             })
           } else {
             // response length == 0 -> no triples for the document id can be found
@@ -949,7 +948,7 @@ export default {
             next(false)
           }
         })
-        .catch((error) => {
+        .catch(error => {
           // something went wrong
           alert('Error trying to load document')
           console.error(error)
@@ -972,7 +971,6 @@ export default {
   },
 
   methods: {
-
     ...mapMutations(['saveTicket']),
     ...mapActions(['addFormData']),
 
@@ -980,7 +978,7 @@ export default {
       this.$store
         .dispatch('addFormData', this.formdata)
         .then(() => this.$router.push('home'))
-        .catch((error) => alert(error))
+        .catch(error => alert(error))
     },
 
     formReset: function () {
@@ -1030,9 +1028,7 @@ export default {
       }
     }
   }
-
 }
-
 </script>
 
 <style>
@@ -1136,7 +1132,7 @@ export default {
     padding-bottom: 0px;
   }
 
-  /*border-settings:
+/*border-settings:
     different border styles
   */
 
@@ -1151,7 +1147,7 @@ export default {
     box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
   }
 
-  /*
+/*
   flex-settings:
     different settings for the flex attribute
   */
