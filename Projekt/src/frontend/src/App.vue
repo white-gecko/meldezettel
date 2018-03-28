@@ -18,7 +18,7 @@ export default {
 
   computed: {
     showLandingPage () {
-      return false // this.$store.state.showLandingPage
+      return this.$store.state.showLandingPage
     }
   }
 }
