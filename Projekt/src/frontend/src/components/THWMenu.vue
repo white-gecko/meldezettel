@@ -8,6 +8,7 @@
           menu-item
           hasShadowMenuB
           flexContainerMenuB"
+         index="home"
          @click="goTo('Home')">
       <div class="
             logoMenu
@@ -29,6 +30,7 @@
           menu-item
           hasShadowMenuB
           flexContainerMenuB"
+         index="create"
          @click="goTo('Create')">
       <div class="
             logoMenu
@@ -50,6 +52,7 @@
           menu-item
           hasShadowMenuB
           flexContainerMenuB"
+         index="role"
          @click="goTo('Role')">
       <div class="
             logoMenu

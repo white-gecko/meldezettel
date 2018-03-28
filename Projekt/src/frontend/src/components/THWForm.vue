@@ -74,23 +74,133 @@ documentID: 0,
                     hasMarginFormC
                     hasPaddingFormC
                     flexContainerFormB">
-                  <label>Eingehend</label>
-                  <label>Aufnahmevermerk</label>
-                  <div class="flexContainerFormA">
+                  <label class="headerFormA">Eingehend</label>
+                  <label class="headerFormB">Aufnahmevermerk</label>
+                  <div class="
+                        inputWrapper
+                        flexContainerFormA">
                     <label class="inputLabel"
-                           for="dateIncomingTop">
+                           for="primaryDate">
                       Datum
                     </label>
-                    <input id="dateIncomingTop"/>
+                    <input id="primaryDate"
+                           class="inputWithLabel"
+                           :disabled="other.tempAusgehend"
+                           v-model="formdata.primaryDate"/>
+                  </div>
+                  <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                    <label class="inputLabel"
+                           for="primaryTime">
+                      Zeit
+                    </label>
+                    <input id="primaryTime"
+                           class="inputWithLabel"
+                           :disabled="other.tempAusgehend"
+                           v-model="formdata.primaryTime"/>
+                  </div>
+                  <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                    <label class="inputLabel"
+                           for="primaryHdZ">
+                      Hdz
+                    </label>
+                    <input id="primaryHdZ"
+                           class="inputWithLabel"
+                           :disabled="other.tempAusgehend"
+                           v-model="formdata.primaryHdZ"/>
                   </div>
                 </div>
 
-                <!--TC-->
+                <!--input-complex ("Ausgehend")-->
                 <div class="
                     innerWrapper
                     hasMarginFormC
-                    hasPaddingFormC">
-                  <div class="testSquare"></div>
+                    hasPaddingFormC
+                    flexContainerFormB">
+                  <label class="headerFormA">Eingehend</label>
+                  <div class="flexContainerFormA">
+                    <div class="flexContainerFormB">
+                      <label class="headerFormB">Annahmevermerk</label>
+                      <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                        <label class="inputLabel"
+                               for="secondaryDate">
+                          Datum
+                        </label>
+                        <input id="secondaryDate"
+                               class="inputWithLabel"
+                               :disabled="other.tempEingehend"
+                               v-model="formdata.secondaryDate"/>
+                      </div>
+                      <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                        <label class="inputLabel"
+                               for="secondaryTime">
+                          Zeit
+                        </label>
+                        <input id="secondaryTime"
+                               class="inputWithLabel"
+                               :disabled="other.tempEingehend"
+                               v-model="formdata.secondaryTime"/>
+                      </div>
+                      <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                        <label class="inputLabel"
+                               for="secondaryHdZ">
+                          Hdz
+                        </label>
+                        <input id="secondaryHdZ"
+                               class="inputWithLabel"
+                               :disabled="other.tempEingehend"
+                               v-model="formdata.primaryHdZ"/>
+                      </div>
+                    </div>
+                    <div class="flexContainerFormB">
+                      <label class="headerFormB">Beförderungsvermerk</label>
+                      <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                        <label class="inputLabel"
+                               for="tertiaryDate">
+                          Datum
+                        </label>
+                        <input id="tertiaryDate"
+                               class="inputWithLabel"
+                               :disabled="other.tempEingehend"
+                               v-model="formdata.tertiaryDate"/>
+                      </div>
+                      <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                        <label class="inputLabel"
+                               for="tertiaryTime">
+                          Zeit
+                        </label>
+                        <input id="tertiaryTime"
+                               class="inputWithLabel"
+                               :disabled="other.tempEingehend"
+                               v-model="formdata.tertiaryTime"/>
+                      </div>
+                      <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                        <label class="inputLabel"
+                               for="tertiaryHdZ">
+                          Hdz
+                        </label>
+                        <input id="tertiaryHdZ"
+                               class="inputWithLabel"
+                               :disabled="other.tempEingehend"
+                               v-model="formdata.tertiaryHdZ"/>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
               </div>
@@ -101,23 +211,40 @@ documentID: 0,
             <div class="
                   middleWrapper
                   hasMarginFormB
-                  hasPaddingFormB
-                  flexContainerFormB">
+                  hasPaddingFormB">
 
-              <!--TD-->
+              <!--input-complex ("Technisches Betriebsbuch")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
-                    hasPaddingFormC">
-                <div class="testSquare"></div>
-              </div>
-
-              <!--TE-->
-              <div class="
-                    innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
-                <div class="testSquare"></div>
+                    hasPaddingFormC
+                    flexContainerFormB">
+                <label class="headerFormA">Technisches Betriebsbuch</label>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <label class="inputLabel"
+                         for="numberTB">
+                    Nr.
+                  </label>
+                  <input id="numberTB"
+                         class="inputWithLabel"
+                         v-model="formdata.numberTB"/>
+                </div>
+                <label>
+                  <input id="checkboxEingehendTop"
+                         @change="checkIn();"
+                         type="checkbox"
+                         v-model="other.tempEingehend"/>
+                  Eingehend
+                </label>
+                <label>
+                  <input id="checkboxAusgehendTop"
+                         @change="checkOut();"
+                         type="checkbox"
+                         v-model="other.tempAusgehend"/>
+                  Ausgehend
+                </label>
               </div>
 
             </div>
@@ -130,12 +257,22 @@ documentID: 0,
                 hasMarginFormB
                 hasPaddingFormB">
 
-            <!--TF-->
+            <!--input-complex ("Rufnahme Gegenstelle/Spruchkopf") -->
             <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-              <div class="testSquare"></div>
+              <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                <label class="inputLabel"
+                       for="receiverName">
+                  Rufnahme der Gegenstelle/Spruchkopf
+                </label>
+                <input id="receiverName"
+                       class="inputWithLabel"
+                       v-model="formdata.receiverName"/>
+              </div>
             </div>
 
           </div>
@@ -156,58 +293,140 @@ documentID: 0,
                 hasPaddingFormB
                 flexContainerFormB">
 
-            <!--MA-->
+            <!--checkboxgroup (message-type)-->
             <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-              <div class="testSquare"></div>
+              <el-form-item class="flexContainerFormA">
+                <label>
+                  <input id="radioMid"
+                         type="checkbox"
+                         v-model="formdata.midRadio"/>
+                  Funk
+                </label>
+                <label>
+                  <input id="phoneMid"
+                         type="checkbox"
+                         v-model="formdata.midPhone"/>
+                  Telefon
+                </label>
+                <label>
+                  <input id="faxMid"
+                         type="checkbox"
+                         v-model="formdata.midFax"/>
+                  Telefax
+                </label>
+                <label>
+                  <input id="DFUMid"
+                         type="checkbox"
+                         v-model="formdata.midDFU"/>
+                  DFÜ
+                </label>
+                <label>
+                  <input id="courierMid"
+                         type="checkbox"
+                         v-model="formdata.midCourier"/>
+                  Kurier/Melder
+                </label>
+              </el-form-item>
             </div>
 
             <div class="flexContainerFormA">
 
-              <!--MB-->
+              <!--checkbox-group ("Durchsage/Spruch")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-                <div class="testSquare"></div>
+                <el-form-item class="flexContainerFormA">
+                  <label>
+                    <input id="callAnnouncement"
+                           type="checkbox"
+                           v-model="formdata.callAnnouncement"/>
+                    DURCHSAGE
+                  </label>
+                  <label>
+                    <input id="callMessage"
+                           type="checkbox"
+                           v-model="formdata.callMessage"/>
+                    Spruch
+                  </label>
+                </el-form-item>
               </div>
 
-              <!--MC-->
+              <!--checkbox-group ("Sofort/Blitz")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-                <div class="testSquare"></div>
+                <el-form-item class="flexContainerFormA">
+                  <label>
+                    <input id="priorityInstant"
+                           type="checkbox"
+                           v-model="formdata.priorityInstant"/>
+                    Sofort
+                  </label>
+                  <label>
+                    <input id="priorityFlash"
+                           type="checkbox"
+                           v-model="formdata.priorityFlash"/>
+                    Blitz
+                  </label>
+                </el-form-item>
               </div>
 
             </div>
 
             <div class="flexContainerFormA">
 
-              <!--MD-->
+              <!--input-complex ("Rufnr.")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-                <div class="testSquare"></div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <label class="inputLabel"
+                         for="callNumber">
+                    Ruf Nr.
+                  </label>
+                  <input id="callNumber"
+                         class="inputWithLabel"
+                         v-model="formdata.callNumber"/>
+                </div>
               </div>
 
-              <!--ME-->
+              <!--input-complex ("Anschrift")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-                <div class="testSquare"></div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <label class="inputLabel"
+                         for="address">
+                    Anschrift
+                  </label>
+                  <input id="address"
+                         class="inputWithLabel"
+                         v-model="formdata.address"/>
+                </div>
               </div>
 
-              <!--MF-->
+              <!--input-complex ("Gesprächsnotiz")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-                <div class="testSquare"></div>
+                <label>
+                  <input id="talkNote"
+                         type="checkbox"
+                         v-model="formdata.talkNote"/>
+                  GESPRÄCHSNOTIZ
+                </label>
               </div>
 
             </div>
@@ -220,12 +439,21 @@ documentID: 0,
                 hasMarginFormB
                 hasPaddingFormB">
 
-            <!--MG-->
+            <!--input-complex ("Inhalt")-->
             <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-              <div class="testSquare"></div>
+              <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                <textarea id="content"
+                          rows="5"
+                          cols="10"
+                          placeholder="Inhalt"
+                          class="inputWithLabel"
+                          v-model="formdata.content"/>
+              </div>
             </div>
 
           </div>
@@ -236,38 +464,79 @@ documentID: 0,
                 hasMarginFormB
                 hasPaddingFormB">
 
-            <!--MH-->
+            <!--input-complex ("Absender")-->
             <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-              <div class="testSquare"></div>
+              <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                <label class="inputLabel"
+                       for="sender">
+                  Absender
+                </label>
+                <input id="sender"
+                       placeholder="Einheit/Einrichtung/Stelle"
+                       class="inputWithLabel"
+                       v-model="formdata.sender"/>
+              </div>
             </div>
 
             <div class="flexContainerFormA">
 
-              <!--MI-->
+              <!--input-complex ("Abfassungszeit")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-                <div class="testSquare"></div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <label class="inputLabel"
+                         for="createTime">
+                    Abfassungszeit
+                  </label>
+                  <input id="createTime"
+                         class="inputWithLabel"
+                         v-model="formdata.createTime"/>
+                </div>
               </div>
 
-              <!--MJ-->
+              <!--input-complex ("Zeichen")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-                <div class="testSquare"></div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <label class="inputLabel"
+                         for="identification">
+                    Zeichen
+                  </label>
+                  <input id="identification"
+                         class="inputWithLabel"
+                         v-model="formdata.identification"/>
+                </div>
               </div>
 
-              <!--MK-->
+              <!--input-complex ("Funktion")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-                <div class="testSquare"></div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <label class="inputLabel"
+                         for="position">
+                    Funktion
+                  </label>
+                  <input id="position"
+                         class="inputWithLabel"
+                         v-model="formdata.position"/>
+                </div>
               </div>
 
             </div>
@@ -290,38 +559,205 @@ documentID: 0,
                 hasPaddingFormB
                 flexContainerFormB">
 
-            <!--BA-->
+            <!--input-complex ("Quittung")-->
             <div class="
                     innerWrapper
                     hasMarginFormC
                     hasPaddingFormC">
-              <div class="testSquare"></div>
+              <label class="headerFormA">Quittung</label>
+              <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                <label class="inputLabel"
+                       for="docketTime">
+                  Zeit
+                </label>
+                <input id="docketTime"
+                       class="inputWithLabel"
+                       v-model="formdata.docketTime"/>
+              </div>
+              <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                <label class="inputLabel"
+                       for="position">
+                  Zeichen
+                </label>
+                <input id="docketIdentification"
+                       class="inputWithLabel"
+                       v-model="formdata.docketIdentification"/>
+              </div>
             </div>
 
             <div class="flexContainerFormA">
 
-              <!--BB-->
+              <!--input-complex ("TEL/EL/...")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
-                    hasPaddingFormC">
-                <div class="testSquare"></div>
+                    hasPaddingFormC
+                    flexContainerFormB">
+                <label class="headerFormA">TEL/EL/EAL/UEAL</label>
+                <div class="flexContainerFormA">
+                  <div class="flexContainerFormB">
+                    <label>
+                      <input id="stationLeader"
+                             type="checkbox"
+                             v-model="formdata.stationLeader"/>
+                      Leiter
+                    </label>
+                  </div>
+                  <div class="flexContainerFormB">
+                    <label>
+                      <input id="stationS1"
+                             type="checkbox"
+                             v-model="formdata.stationS1"/>
+                      S1
+                    </label>
+                    <label>
+                      <input id="stationS2"
+                             type="checkbox"
+                             v-model="formdata.stationS2"/>
+                      S2
+                    </label>
+                    <label>
+                      <input id="stationS3"
+                             type="checkbox"
+                             v-model="formdata.stationS3"/>
+                      S3
+                    </label>
+                    <label>
+                      <input id="stationS4"
+                             type="checkbox"
+                             v-model="formdata.stationS4"/>
+                      S4
+                    </label>
+                    <label>
+                      <input id="stationS6"
+                             type="checkbox"
+                             v-model="formdata.stationS6"/>
+                      S5
+                    </label>
+                  </div>
+                </div>
               </div>
 
-              <!--BC-->
+              <!--input-complex ("Fachberater")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
-                    hasPaddingFormC">
-                <div class="testSquare"></div>
+                    hasPaddingFormC
+                    flexContainerFormB">
+                <label class="headerFormA">Fachberater</label>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <input id="advisorTickA"
+                         type="checkbox"
+                         v-model="formdata.advisorTickA"/>
+                  <input id="advisorA"
+                         class="inputWithLabel"
+                         v-model="formdata.advisorA"/>
+                </div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <input id="advisorTickB"
+                         type="checkbox"
+                         v-model="formdata.advisorTickB"/>
+                  <input id="advisorB"
+                         class="inputWithLabel"
+                         v-model="formdata.advisorB"/>
+                </div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <input id="advisorTickC"
+                         type="checkbox"
+                         v-model="formdata.advisorTickC"/>
+                  <input id="advisorC"
+                         class="inputWithLabel"
+                         v-model="formdata.advisorC"/>
+                </div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <input id="advisorTickD"
+                         type="checkbox"
+                         v-model="formdata.advisorTickD"/>
+                  <input id="advisorD"
+                         class="inputWithLabel"
+                         v-model="formdata.advisorD"/>
+                </div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <input id="advisorTickE"
+                         type="checkbox"
+                         v-model="formdata.advisorTickE"/>
+                  <input id="advisorE"
+                         class="inputWithLabel"
+                         v-model="formdata.advisorE"/>
+                </div>
               </div>
 
-              <!--BD-->
+              <!--input-complex ("Verb. stellen")-->
               <div class="
                     innerWrapper
                     hasMarginFormC
-                    hasPaddingFormC">
-                <div class="testSquare"></div>
+                    hasPaddingFormC
+                    flexContainerFormB">
+                <label class="headerFormA">Verb. stellen</label>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <input id="connectionTickA"
+                         type="checkbox"
+                         v-model="formdata.connectionTickA"/>
+                  <input id="connectionA"
+                         class="inputWithLabel"
+                         v-model="formdata.connectionA"/>
+                </div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <input id="connectionTickB"
+                         type="checkbox"
+                         v-model="formdata.connectionTickB"/>
+                  <input id="connectionB"
+                         class="inputWithLabel"
+                         v-model="formdata.connectionB"/>
+                </div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <input id="connectionTickC"
+                         type="checkbox"
+                         v-model="formdata.connectionTickC"/>
+                  <input id="connectionC"
+                         class="inputWithLabel"
+                         v-model="formdata.connectionC"/>
+                </div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <input id="connectionTickD"
+                         type="checkbox"
+                         v-model="formdata.connectionTickD"/>
+                  <input id="connectionD"
+                         class="inputWithLabel"
+                         v-model="formdata.connectionD"/>
+                </div>
+                <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                  <input id="connectionTickE"
+                         type="checkbox"
+                         v-model="formdata.connectionTickE"/>
+                  <input id="connectionE"
+                         class="inputWithLabel"
+                         v-model="formdata.connectionE"/>
+                </div>
               </div>
 
             </div>
@@ -335,12 +771,18 @@ documentID: 0,
                 hasPaddingFormB
                 flexContainerFormB">
 
-            <!--BE-->
+            <!--input-complex ("Vermerke")-->
             <div class="
                     innerWrapper
                     hasMarginFormC
-                    hasPaddingFormC">
-              <div class="testSquare"></div>
+                    hasPaddingFormC
+                    flexContainerFormB">
+              <label class="headerFormA">Vermerke</label>
+              <textarea id="annotations"
+                        rows="5"
+                        cols="10"
+                        class="inputWithLabel"
+                        v-model="formdata.annotations"/>
             </div>
 
           </div>
@@ -353,8 +795,19 @@ documentID: 0,
     <!-- side-menu -->
     <div class="
           sideMenuForm
-          hasShadowFormA">
-
+          hasShadowFormA
+          flexContainerFormB">
+      <el-button @click="
+                  addFormData();
+                  notifySuccess('Abgeschickt')"
+                 tabindex="6">
+        Abschicken
+      </el-button>
+      <el-button @click="
+                  formReset();
+                  notifySuccess('Formular zurückgesetzt')">
+        Zurücksetzen
+      </el-button>
     </div>
   </div>
 </template>
@@ -611,9 +1064,33 @@ export default {
     padding-bottom: 20px;
     margin-left: 40px;
   }
+  .inputWrapper {
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+    height: 40px
+  }
   .inputLabel {
     background-color: var(--darkNeutralColor);
-    padding-top: 4px;
+    min-width: 60px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .inputWithLabel {
+    border: var(--darkNeutralColor);
+    border-style: solid;
+    max-width: 60px;
+    padding-left: 10px;
+  }
+  .headerFormA {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+  }
+  .headerFormB {
+    padding-bottom: 10px;
+    padding-left: 20px;
   }
 
   /*
