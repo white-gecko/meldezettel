@@ -115,6 +115,7 @@ export default {
   .innerWrapper {
     background-color: var(--lightNeutralColor);
     font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
   }
 

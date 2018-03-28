@@ -46,6 +46,24 @@
             min-width: 150px;">Neues Formular</div>
     </div>
 
+    <div class="
+          menu-item
+          hasShadowMenuB
+          flexContainerMenuB"
+         @click="goTo('Role')">
+      <div class="
+            logoMenu
+            hasShadowMenuA
+            flexChildMenuA">
+      </div>
+      <div class="flexChildMenuA"
+           style="
+            text-align: right;
+            margin-left: 5%;
+            margin-right: 5%;
+            min-width: 150px;">Nutzerdaten</div>
+    </div>
+
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 documentID: 0,
 <template>
   <div class="flexContainerFormA">
-    <!-- main-form -->
+    <!--main-form-->
     <div class="
           formWrapper
           hasShadowFormA">
@@ -10,26 +10,346 @@ documentID: 0,
               flexContainerFormB"
                ref="form"
                :model="formdata">
+
+        <!--top-section-->
         <div class="
               outerWrapper
               hasMarginFormA
-              hasPaddingFormA">
-          <div class="testSquare"></div>
+              hasPaddingFormA
+              flexContainerFormB">
+
+          <div class="flexContainerFormA">
+
+            <!--sectionTABC-->
+            <div class="
+                  middleWrapper
+                  hasMarginFormB
+                  hasPaddingFormB
+                  flexContainerFormB">
+
+              <!--checkbox-group (message-type)-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <el-form-item class="flexContainerFormA">
+                  <label>
+                    <input id="radioTop"
+                           type="checkbox"
+                           v-model="formdata.topRadio"/>
+                    Funk
+                  </label>
+                  <label>
+                    <input id="phoneTop"
+                           type="checkbox"
+                           v-model="formdata.topPhone"/>
+                    Telefon
+                  </label>
+                  <label>
+                    <input id="faxTop"
+                           type="checkbox"
+                           v-model="formdata.topFax"/>
+                    Telefax
+                  </label>
+                  <label>
+                    <input id="DFUTop"
+                           type="checkbox"
+                           v-model="formdata.topDFU"/>
+                    DFÜ
+                  </label>
+                  <label>
+                    <input id="courierTop"
+                           type="checkbox"
+                           v-model="formdata.topCourier"/>
+                    Kurier/Melder
+                  </label>
+                </el-form-item>
+              </div>
+
+              <div class="flexContainerFormA">
+
+                <!--input-complex ("Eingehend")-->
+                <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC
+                    flexContainerFormB">
+                  <label>Eingehend</label>
+                  <label>Aufnahmevermerk</label>
+                  <div class="flexContainerFormA">
+                    <label class="inputLabel"
+                           for="dateIncomingTop">
+                      Datum
+                    </label>
+                    <input id="dateIncomingTop"/>
+                  </div>
+                </div>
+
+                <!--TC-->
+                <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                  <div class="testSquare"></div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!--sectionTDE-->
+            <div class="
+                  middleWrapper
+                  hasMarginFormB
+                  hasPaddingFormB
+                  flexContainerFormB">
+
+              <!--TD-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+              <!--TE-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!--sectionTF-->
+          <div class="
+                middleWrapper
+                hasMarginFormB
+                hasPaddingFormB">
+
+            <!--TF-->
+            <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+              <div class="testSquare"></div>
+            </div>
+
+          </div>
+
         </div>
+
+        <!--mid-section-->
         <div class="
               outerWrapper
               hasMarginFormA
-              hasPaddingFormA">
-          <div class="testSquare"></div>
+              hasPaddingFormA
+              flexContainerFormB">
+
+          <!--sectionMABCDEF-->
+          <div class="
+                middleWrapper
+                hasMarginFormB
+                hasPaddingFormB
+                flexContainerFormB">
+
+            <!--MA-->
+            <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+              <div class="testSquare"></div>
+            </div>
+
+            <div class="flexContainerFormA">
+
+              <!--MB-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+              <!--MC-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+            </div>
+
+            <div class="flexContainerFormA">
+
+              <!--MD-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+              <!--ME-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+              <!--MF-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!--sectionMG-->
+          <div class="
+                middleWrapper
+                hasMarginFormB
+                hasPaddingFormB">
+
+            <!--MG-->
+            <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+              <div class="testSquare"></div>
+            </div>
+
+          </div>
+
+          <!--sectionMHIJK-->
+          <div class="
+                middleWrapper
+                hasMarginFormB
+                hasPaddingFormB">
+
+            <!--MH-->
+            <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+              <div class="testSquare"></div>
+            </div>
+
+            <div class="flexContainerFormA">
+
+              <!--MI-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+              <!--MJ-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+              <!--MK-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
+
+        <!--bot-section-->
         <div class="
               outerWrapper
               hasMarginFormA
-              hasPaddingFormA">
-          <div class="testSquare"></div>
+              hasPaddingFormA
+              flexContainerFormA">
+
+          <!--sectionBABCD-->
+          <div class="
+                middleWrapper
+                hasMarginFormB
+                hasPaddingFormB
+                flexContainerFormB">
+
+            <!--BA-->
+            <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+              <div class="testSquare"></div>
+            </div>
+
+            <div class="flexContainerFormA">
+
+              <!--BB-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+              <!--BC-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+              <!--BD-->
+              <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+                <div class="testSquare"></div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!--sectionBEFG-->
+          <div class="
+                middleWrapper
+                hasMarginFormB
+                hasPaddingFormB
+                flexContainerFormB">
+
+            <!--BE-->
+            <div class="
+                    innerWrapper
+                    hasMarginFormC
+                    hasPaddingFormC">
+              <div class="testSquare"></div>
+            </div>
+
+          </div>
+
         </div>
+
       </el-form>
     </div>
+
     <!-- side-menu -->
     <div class="
           sideMenuForm
@@ -291,20 +611,24 @@ export default {
     padding-bottom: 20px;
     margin-left: 40px;
   }
+  .inputLabel {
+    background-color: var(--darkNeutralColor);
+    padding-top: 4px;
+  }
 
   /*
   space:
     different settings for spacing
    */
   .hasMarginFormA {
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
   .hasPaddingFormA {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
   }
@@ -312,20 +636,20 @@ export default {
   .hasMarginFormB {
     margin-left: 10px;
     margin-right: 10px;
-    margin-top: 0px;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
   .hasPaddingFormB {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
   }
 
   .hasMarginFormC {
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
   .hasPaddingFormC {
@@ -367,5 +691,6 @@ export default {
     background-color: yellow;
     width: 100px;
     height: 50px;
+    margin: 10px;
   }
 </style>
