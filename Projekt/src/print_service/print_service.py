@@ -1,4 +1,4 @@
-import os, io, json
+import os, io, json, re
 
 def trimString(str, lineLength):
   if len(str)>lineLength:
@@ -29,6 +29,21 @@ def adjustString(str, maxLines, lineLength):
   else:
     return str + "\\\\" * (maxLines - usedLines);
 
+def removeUnwantedCharacters(s):
+  #str = re.sub('[//]','',str)
+  #str = re.sub('[\\]','',str)
+  s = re.sub(u'[^A-Za-z0-9 {}$&#_%.!? \xfc \xf6 \xe4 \xdf \xc4 \xd6 \xdc \xdf]','',s)
+  return s
+
+def replaceLatexCharacters(str):
+  str = str.replace("{","\\{")
+  str = str.replace("}","\\}")
+  str = str.replace("$","\\$")
+  str = str.replace("&","\\&")
+  str = str.replace("#","\\#")
+  str = str.replace("_","\\_")
+  str = str.replace("%","\\%")
+  return str;
 
 def renderPDF():
   with open('form.json') as json_data:
@@ -102,12 +117,19 @@ def renderPDF():
   VV = ""
 
   for [str,lineLength] in strings:
-    VV += "\\def \\" + str + "{" + trimString(d[str],lineLength) + "} "
+    s = d[str]
+    s = removeUnwantedCharacters(s)
+    s = trimString(s, lineLength)
+    s = replaceLatexCharacters(s)
+    VV += "\\def \\" + str + "{" + s + "} "
   
   for [str,maxLines,lineLength] in multiLineStrings:
-    VV += "\\def \\" + str + "{" + adjustString(d[str],maxLines,lineLength) + "} "
-  
-  
+    s = d[str]
+    s = removeUnwantedCharacters(s)
+    s = adjustString(s,maxLines,lineLength)
+    s = replaceLatexCharacters(s)
+    VV += "\\def \\" + str + "{" + s + "} "
+    
   for str in booleans:
     if d[str]:
       VV += "\\def \\" + str + "{\\checkedbox}"
@@ -146,7 +168,7 @@ def renderPDF():
   else:
     VV += "\\def \\stationSSix{\\uncheckedbox}"
   
-  with io.open("variables.tex", mode="a", encoding="UTF8") as fd:
+  with io.open("variables.tex", mode="w", encoding="UTF8") as fd:
     fd.write(VV)
   
   #file = open("variables.tex","w")
