@@ -1,7 +1,7 @@
 export default {
+  // tab-order config
   tabOrder: {
     base: {
-      // top message-type checkbox-group
       topRadio: -1,
       topPhone: -1,
       topFax: -1,
@@ -91,7 +91,37 @@ export default {
       // send button
       buttonSend: -1,
       // reset button
-      buttonReset: -1,
+      buttonReset: -1
+    },
+    s0: {
+      midRadio: -1,
+      midPhone: -1,
+      midFax: -1,
+      midDFU: -1,
+      midCourier: -1,
+      // announcement/message checkbox-group
+      callAnnouncement: -1,
+      callMessage: -1,
+      // instant/flash checkbox-group
+      priorityInstant: -1,
+      priorityFlash: -1,
+      // call number input
+      callNumber: -1,
+      // address input
+      address: -1,
+      // conversation-note checkbox
+      conversationNote: -1,
+      // content input
+      content: -1,
+      // sender input
+      sender: -1,
+      // time-create input
+      timeCreate: -1,
+      // identification input
+      identification: -1,
+      // position input
+      position: -1
+
     },
     s1: {},
     s2: {},
@@ -105,6 +135,7 @@ export default {
     s10: {},
     s11: {},
     s12: {},
-    s13: {}
+    s13: {},
+    s14: {}
   }
 }
