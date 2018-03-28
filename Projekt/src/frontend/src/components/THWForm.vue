@@ -1032,9 +1032,9 @@ export default {
   },
 
   computed: {
-    tabIndexConf: () => {
+    tabIndexConf: function () {
       let baseConf = config.tabOrder.base
-      let state = this.data.formdata.ticketState
+      let state = this.formdata.ticketState
       let stateConf = config.tabOrder[state]
       // create state-specific tabindex config
       return Object.assign(baseConf, stateConf)
