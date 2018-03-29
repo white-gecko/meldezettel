@@ -1,3 +1,5 @@
+/** This config is used to define the behaviour of the THWForm component
+ * according to its state. Content and arrangement might change */
 export default {
   // tab-order config
   tabOrder: {

@@ -1032,6 +1032,8 @@ export default {
   },
 
   computed: {
+    /** Property sets the tabindex value for input element in the form
+     * @returns Object */
     tabIndexConf: function () {
       let baseConf = config.tabOrder.base
       let state = this.formdata.ticketState
