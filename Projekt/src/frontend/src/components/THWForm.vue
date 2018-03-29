@@ -940,7 +940,7 @@ i                     hasPaddingLeftRightC
 </template>
 
 <script>
-import { Notification } from 'element-ui'
+import { MessageBox, Notification } from 'element-ui'
 import { mapMutations, mapActions } from 'vuex'
 import { quitstore } from '../api/QuitStoreAdapter.js'
 import { parseResponse } from '../sparql_help/sparql_response.js'
@@ -1088,6 +1088,22 @@ export default {
     next(false)
   },
 
+  beforeRouteLeave (to, from, next) {
+    if (from.params.id === undefined) {
+      this.dialog(
+        '',
+        'Soll das Formular als Entwurf gespeichert werden?',
+        () => {
+          this.setDraft(this.$data.formdata)
+          console.log(this.$store)
+          next()
+        },
+        () => next())
+    } else {
+      next()
+    }
+  },
+
   created () {
     document.addEventListener('focusin', this.focusIn)
     document.addEventListener('focusout', this.focusOut)
@@ -1099,7 +1115,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['saveTicket']),
+    ...mapMutations(['saveTicket', 'setDraft']),
     ...mapActions(['addFormData']),
 
     addFormData: function () {
@@ -1130,6 +1146,20 @@ export default {
       if (el.type === 'text' || el.type === 'textarea') {
         el.classList.remove('highlighted')
       }
+    },
+
+    dialog: function (title, msg, callbackYes, callbackNo) {
+      MessageBox({
+        title: title,
+        message: msg,
+        confirmButtonText: 'Ja',
+        showCancelButton: true,
+        cancelButtonText: 'Nein',
+        showClose: false,
+        closeOnPressEscape: false,
+        closeOnClickModal: false,
+        modal: true
+      }).then(callbackYes).catch(callbackNo)
     },
 
     notifySuccess (message) {
