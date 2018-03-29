@@ -20,7 +20,8 @@ pythontesting:
   image:
     name: python:2.7
   script:
-    - python *.test.py
+    - cd ./Projekt/src/print_service
+    - python print_service.test.py -v
 
 jslinting_and_testing:
   stage: jslinting_and_testing
