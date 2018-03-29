@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import THWDashboard from '@/components/THWDashboard'
 import THWForm from '@/components/THWForm'
 import Layout from '@/components/Layout'
-import THWRoleSelect from '@/components/THWRoleSelect'
+import THWLandingPage from '@/components/THWLandingPage'
 
 Vue.use(Router)
 
@@ -16,7 +16,7 @@ export default new Router({
       redirect: 'home',
       children: [
         {
-          path: 'home',
+          path: '/home',
           name: 'Home',
           component: THWDashboard
         },
@@ -28,7 +28,7 @@ export default new Router({
         {
           path: 'role',
           name: 'Role',
-          component: THWRoleSelect
+          component: THWLandingPage
         }
       ]
     }

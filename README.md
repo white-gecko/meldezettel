@@ -12,15 +12,15 @@ chmod +x install.sh
 ```
 Das Skript erzeugt das Netzwerk und das Docker-Image für das Frontend.
 
-Der Container, in dem das Frontend läuft, befindet sich zwar ab sofort im Autostart, führt aber zunächst keinen Befehl aus und verbraucht
-dementsprechend auch keine Ressourcen (bis auf ein paar MB RAM). Zum Starten des Frontend-Servers liegt ein Skript innerhalb des Containers bereit.
-Dieses kann wie folgt ausgeführt werden:
+Der Container, in dem das Frontend läuft, befindet sich ab sofort im Autostart. Das Frontend ist automatisch erreichbar.
+
+Alternativ besteht bei der Installion die Möglichkeit keinen Autostart zu wählen, dann muss allerdings der Port manuell zugewiesen werden, z.B.:
 
 ```bash
-docker exec -it thw-frontend-dev ./run.sh
+docker run -p 8080:80 thw-frontend-dev
 ```
 
-Beim ersten Ausführen werden die benötigten Javascript-Module automatisch heruntergeladen (etwa 250MB). 
+Beim installieren werden die benötigten Javascript-Module automatisch heruntergeladen (etwa 250MB). 
 Dies geschieht im Hintergrund und kann ein paar Minuten dauern.
 Zusätzlich muss der Quitstore gestartet werden (siehe Abschnitt 'Quitstore')
 
@@ -59,6 +59,13 @@ Der Quitstore wird lokal gestartet
 cd Projekt
 chmod +x quitstore.sh
 ./quitstore.sh
+```
+
+oder:
+
+```bash
+cd Projekt/src/frontend
+npm run quit
 ```
 
 Anschließend ist der Quitstore unter
