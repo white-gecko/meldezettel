@@ -21,9 +21,9 @@ pythonlinting_and_testing:
     name: python:2.7
   script:
     - cd ./Projekt/src/print_service
-    - pip install pep8
-    - pep8 printService.py
-    - pep8 printService.test.py
+    - pip install pycodestyle
+    - pycodestyle printService.py
+    - pycodestyle printService.test.py
     - python printService.test.py -v
     
 jslinting_and_testing:
