@@ -25,7 +25,7 @@ else
         printf "<http://www.na17b.org/thw/>" > formdata.nq.graph
         git add -A
         git commit -m "init repository"
-        docker run --name quitstore -d --rm -p 5000:80 -v $PWD:/data aksw/quitstore
+        docker run --name quitstore -d --rm -p 5000:80 -v $PWD:/data aksw/quitstore:latest
         printf "\nQuitStore can now be accessed at localhost:5000\n"
     else
         printf "\nRequired Files have been found.\n"
@@ -38,7 +38,7 @@ else
             printf "<http://www.na17b.org/thw/>" > formdata.nq.graph
             git add -A
             git commit -m "init repository"
-            docker run --name quitstore -d --rm -p 5000:80 -v $PWD:/data aksw/quitstore
+            docker run --name quitstore -d --rm -p 5000:80 -v $PWD:/data aksw/quitstore:latest
             printf "\nQuitStore can now be accessed at localhost:5000\n"
         else
             printf "\nRestarting Container, leaving everything as is.\n"
