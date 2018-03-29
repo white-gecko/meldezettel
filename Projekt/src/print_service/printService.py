@@ -1,33 +1,44 @@
-import os, io, json, re
+import os, io, json, re, sys
 
-def trimString(str, lineLength):
-  if len(str)>lineLength:
-    return str[:lineLength];
+def insertChar(string, position, char):
+  return string[:position] + char + string[position:]
+
+def trimString(string, lineLength):
+  if len(string)>lineLength:
+    return string[:lineLength];
   else:
-    return str;
+    return string;
 
-
-def adjustString(str, maxLines, lineLength):
-  length = len(str)
+def adjustString(string, maxLines, lineLength):
+  length = len(string)
   
-  n = lineLength
-  usedLines = 0
-  while n < length:
-    while str[n]!=' ':
-      n -=1
-    n += lineLength
+  firstPos = 0
+  pos = lineLength
+  usedLines = 1
+  
+  while (pos < length and usedLines < maxLines):
+    print('pos ', pos,'  length ',length,'  usedLines ',usedLines,'  maxLines ',maxLines)
+    while (string[pos]!=' ' and string[pos]!='-' and pos!=firstPos):
+      #print('string[pos]  ',pos, string[pos])
+      pos -=1
+      
+    if (pos == firstPos):
+      pos+=lineLength
+      string = insertChar(string,pos-1,'-')
+      length += 1
+    
+    print('string ',pos, string)
     usedLines += 1
+    firstPos = pos
+    pos += lineLength
   
-  if usedLines < maxLines:
-    maxLength = n
-  else:
-    maxLength = n - lineLength
-  
+  maxLength = pos
   
   if length>maxLength:
-    return str[:maxLength]+"\\\\";
+    return string[:maxLength]+"\\\\";
+  #elif (length=maxLength) and string
   else:
-    return str + "\\\\" * (maxLines - usedLines);
+    return string + "\\\\" * (maxLines - usedLines + 1);
 
 def removeUnwantedCharacters(s):
   #str = re.sub('[//]','',str)
@@ -45,8 +56,9 @@ def replaceLatexCharacters(str):
   str = str.replace("%","\\%")
   return str;
 
-def renderPDF():
-  with open('form.json') as json_data:
+def renderPDF(jsonFile):
+  #with open('form.json') as json_data:
+  with open(jsonFile) as json_data:
     d = json.load(json_data)
   
   booleans = [
@@ -171,14 +183,11 @@ def renderPDF():
   with io.open("variables.tex", mode="w", encoding="UTF8") as fd:
     fd.write(VV)
   
-  #file = open("variables.tex","w")
-  #file.write(VV)
-  #file.close()
-  
-  
   os.system("pdflatex VVtest.tex")
   return;
 
 
 if __name__ == "__main__":
-  renderPDF()
+  #renderPDF(sys.argv[1])
+  print(adjustString('Das ist besser',8,5))
+  print(adjustString('Wort zweie',2,4))
