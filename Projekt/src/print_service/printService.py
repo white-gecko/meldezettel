@@ -43,10 +43,10 @@ def adjustString(string, maxLines, lineLength):
             # Catches corner case where word is longer than linelength
             # By inserting hyphen at last position of line
             # therefore breaking word without attention to hyphenation
-            if (pos == firstPos):
-                pos += lineLength
-                string = insertChar(string, pos-1, '-')
-                length += 1
+        if (pos == firstPos):
+            pos += lineLength
+            string = insertChar(string, pos-1, '-')
+            length += 1
 
         usedLines += 1
         firstPos = pos
