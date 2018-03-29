@@ -21,7 +21,7 @@ pythontesting:
     name: python:2.7
   script:
     - cd ./Projekt/src/print_service
-    - python print_service.test.py -v
+    - python printService.test.py -v
 
 jslinting_and_testing:
   stage: jslinting_and_testing
