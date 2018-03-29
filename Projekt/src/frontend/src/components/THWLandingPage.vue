@@ -37,12 +37,11 @@
       Einsatz erstellen
     </el-button>
 
-    <el-form-item>
+    <el-form-item v-if="choosingOperation">
       <el-table
         :data="operations"
         border
         @current-change="selectOperation"
-        v-if="choosingOperation"
         size="small">
         <el-table-column
           prop="operationName"
@@ -56,6 +55,7 @@
           prop="operationStaffType"
           label="Art des Stabes">
         </el-table-column>
+        <!--
         <el-table-column
           fixed="right"
           label="Optionen"
@@ -68,6 +68,7 @@
             </el-button>
           </template>
         </el-table-column>
+        -->
       </el-table>
     </el-form-item>
 
@@ -96,7 +97,7 @@
         </el-input>
       </el-form-item>
 
-      <el-form-item style="margintop: 100px">
+      <el-form-item>
         <el-button @click="submitOperation()">Speichern</el-button>
       </el-form-item>
     </el-form-item>
@@ -323,7 +324,7 @@ export default {
         background-color: #DCDFE6;
         padding: 0.5em 0.5em;
         font-family: helvetica;
-        width: 62%; margin: auto;
+        width: 68%; margin: auto;
     }
     .demo-div{
         margin-left: auto;
