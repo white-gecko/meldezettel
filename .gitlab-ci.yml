@@ -1,7 +1,8 @@
 stages:
   - xmlinting
-  - jslinting_and_testing
   - pythontesting
+  - jslinting_and_testing
+  
 
 validate_time_tracking:
   stage: xmlinting
