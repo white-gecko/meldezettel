@@ -1,6 +1,6 @@
 stages:
   - xmlinting
-  - pythontesting
+  - pythonlinting_and_testing
   - jslinting_and_testing
   
 
@@ -15,14 +15,17 @@ validate_time_tracking:
   only:
     - master
 
-pythontesting:
-  stage: pythontesting
+pythonlinting_and_testing:
+  stage: pythonlinting_and_testing
   image:
     name: python:2.7
   script:
     - cd ./Projekt/src/print_service
+    - pip install pep8
+    - pep8 printService.py
+    - pep8 printService.test.py
     - python printService.test.py -v
-
+    
 jslinting_and_testing:
   stage: jslinting_and_testing
   image: 
