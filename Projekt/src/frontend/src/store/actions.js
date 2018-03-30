@@ -17,3 +17,7 @@ export const addFormData = (context, formData) => {
 export const setTicketlist = (context, newList) => {
   context.state.ticketlist = newList
 }
+
+export const setFilters = (context, newFilter) => {
+  context.state.filters = newFilter
+}

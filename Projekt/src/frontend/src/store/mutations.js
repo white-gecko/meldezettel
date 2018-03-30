@@ -3,10 +3,7 @@ export const setTicketlist = (state, newList) => {
 }
 
 export const setUser = (state, userData) => {
-  state.user.role = userData.role
-  state.user.sender = userData.sender
-  state.user.position = userData.position
-  state.user.signature = userData.signature
+  state.user = userData
 }
 
 export const setShowLandingPage = (state) => {

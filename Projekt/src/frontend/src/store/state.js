@@ -4,11 +4,20 @@ export default {
   filter: {
     search: '',
     operation: 'Alle',
-    created: true,
-    inspected: true,
-    onSituationMap: true,
-    printable: true,
-    archived: true
+    s1: true,
+    s2: true,
+    s3: true,
+    s4: true,
+    s5: true,
+    s6: true,
+    s7: true,
+    s8: true,
+    s9: true,
+    s11: true,
+    s12: true,
+    s13: true,
+    s14: true,
+    s15: true
   },
   user: {
     role: '',

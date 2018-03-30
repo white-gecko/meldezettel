@@ -13,12 +13,16 @@ export default{
       PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     `
 
-    // creating a random number as ID for each document
-    // we are aware that this is a bad solution, we will tend to that later
-    let rid = Math.floor((Math.random() * 900000) + 100000)
+    let uri = ''
+    if (doc.documentID !== '') {
+      uri = 'id:' + doc.documentID
+    } else {
+      uri = 'id:' + doc.signature + Date.now()
+    }
+    delete doc.documentID
+
     // base for sparql insert queries
     query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
-    let uri = 'id:' + rid
 
     query += uri + ' rdf:type thw:document'
 
@@ -46,59 +50,191 @@ export default{
    */
   dashboardQuery: function (filter) {
     let query = `
-      PREFIX thw: <http://www.na17b.org/thw/>
-      PREFIX id: <http://www.na17b.org/thw/resource/>
-      prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX thw: <http://www.na17b.org/thw/>
+PREFIX id: <http://www.na17b.org/thw/resource/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT
+  ?id
+  ?state
+  ?numberTB
+  ?identification
+  ?content
+  ?primaryDate
+  ?primaryTime
+  ?primaryHdZ
+  ?receiverName 
+FROM thw:
+WHERE {
+  ?id rdf:type  thw:document;
+      thw:state ?state;
+      thw:receiverName ?receiverName;
+      thw:content ?content;
+      thw:primaryDate ?primaryDate;
+      thw:primaryTime ?primaryTime;
+      thw:primaryHdZ ?primaryHdZ;
+      thw:numberTB ?numberTB;
+      thw:identification ?identification`
 
-      SELECT
-        ?id
-        ?numberTB
-        ?identification
-        ?content
-        ?primaryDate
-        ?primaryTime
-        ?primaryHdZ
-        ?receiverName 
-        FROM thw:
-        WHERE {
-          ?id rdf:type  thw:document;
-                        thw:receiverName ?receiverName;
-                        thw:content ?content;
-                        thw:primaryDate ?primaryDate;
-                        thw:primaryTime ?primaryTime;
-                        thw:primaryHdZ ?primaryHdZ;
-                        thw:numberTB ?numberTB;
-                        thw:identification ?identification.
-      FILTER(`
+    if (filter.operation !== 'Alle') {
+      query += `;
+      thw:operation ?operation.
+  ?operation thw:operationName "` + filter.operation + `"`
+    }
+    query += '.'
+
+    let search = ''
+    let trimmed = filter.search.trim()
+    if (trimmed !== '') {
+      search += `
+    regex(?content, "` + trimmed + `") ||
+    regex(?numberTB, "` + trimmed + `") ||
+    regex(?receiverName, "` + trimmed + `") ||
+    ?primaryHdZ = "` + trimmed + `" ||
+    ?identification = "` + trimmed + `"`
+    }
+
     let check = false
-    let trimmed = trim(filter.search)
-    if (trimmed != '') {
-      query += `(
-                regex(?content, "`+ trimmed +`") ||
-                regex(?numberTB, "` + trimmed + `") ||
-                regex(?receiverName, "` + trimmed + `" ||
-                ?primaryHdZ = "` + trimmed + `" ||
-                ?identification = "` + trimmed + `"
-                )
-      `
+    let states = ''
+    if (filter.s1) {
+      states += `
+    ?state = 1`
       check = true
     }
-    if (filter.operation != 'Alle') {
+    if (filter.s2) {
       if (check) {
-        query +=`&&
-        `
+        states += ` ||`
       }
-      query += `regex(?operation, "` + filter.operation + `")`
+      states += `
+    ?state = 2`
       check = true
     }
-    query += ')}'
+    if (filter.s3) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 3`
+      check = true
+    }
+    if (filter.s4) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 4`
+      check = true
+    }
+    if (filter.s5) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 5`
+      check = true
+    }
+    if (filter.s6) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 6`
+      check = true
+    }
+    if (filter.s7) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 7`
+      check = true
+    }
+    if (filter.s8) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 8`
+      check = true
+    }
+    if (filter.s9) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 9`
+      check = true
+    }
+    if (filter.s11) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 11`
+      check = true
+    }
+    if (filter.s12) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 12`
+      check = true
+    }
+    if (filter.s13) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 13`
+      check = true
+    }
+    if (filter.s14) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 14`
+      check = true
+    }
+    if (filter.s15) {
+      if (check) {
+        states += ` ||`
+      }
+      states += `
+    ?state = 15`
+    }
+
+    let queryFilter = ''
+    if (search !== '' && states !== '') {
+      search = `
+    (` + search + `
+    )`
+      states = `
+    (` + states + `
+    )`
+      queryFilter = `
+  FILTER(` + search + `
+    &&` + states + `
+  )`
+    } else if (states !== '') {
+      queryFilter = `
+  FILTER(` + states + `
+  )`
+    } else if (search !== '') {
+      queryFilter = `
+  FILTER(` + search + `
+  )`
+    }
+
+    query += queryFilter + '}'
+    console.log(query)
 
     return query
   },
 
   /**
    * Creates a query to retrieve a specified document
-   * @param {*String} id Id to be queried for
+   * @param {*String} id = Id to be queried for
    * @return query string to retrieve all triples of a given document id
    */
   formQuery: function (id) {
@@ -106,7 +242,7 @@ export default{
       PREFIX thw: <http://www.na17b.org/thw/>
       PREFIX id: <http://www.na17b.org/thw/resource/>
 
-      SELECT ?p ?o FROM thw: WHERE{
+      SELECT ?id ?p ?o FROM thw: WHERE{
         id:` + id + ` ?p ?o
         FILTER(?p != rdf:type)
       }

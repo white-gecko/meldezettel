@@ -962,6 +962,9 @@ export default {
   data: () => {
     return {
       formdata: {
+        documentID: '',
+        state: 1,
+
         topRadio: true,
         topPhone: false,
         topFax: false,
@@ -1067,6 +1070,7 @@ export default {
               // data is in the form [{p: 'predicateName', o: 'predicateValue'},...] -> convert to {'predicateName': predicateValue, ...}
               for (let predicate of response) {
                 data[predicate.p] = predicate.o
+                data.documentID = predicate.id
               }
               vm.setDefaultData({ formdata: data })
             })
