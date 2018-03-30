@@ -7,26 +7,20 @@
 <el-form
   :model="userData"
   :rules="rules"
-  ref="userData"
-  class="
-    formWrapper
-    hasShadowFormA
-    form
-    flexContainerFormB">
+  ref="userData">
 
-  <el-form-item
-    style="margin-bottom: 30px">
-    <el-button style="color:#606266">
+  <el-form-item>
+    <h3 style="color:#606266">
       Rolle auswählen und Daten eingeben
-    </el-button>
+    </h3>
   </el-form-item>
 
   <el-form-item
     style="margin-bottom: 30px"
     v-if="userData.operation.operationName != ''">
-    <el-button style="color:#606266">
+    <h3 style="color:#606266">
       Ausgewählter Einsatz: {{ userData.operation.operationName }}
-    </el-button>
+    </h3>
   </el-form-item>
 
   <el-form-item>
@@ -80,15 +74,16 @@
       </el-form-item>
     </el-form-item>
 
-    <el-form-item v-if="addingOperation">
-      <div>
-        <label style="color:#606266">
+    <div v-if="addingOperation">
+      <div style="margin-bottom: 20px">
+        <label
+          style="color:#606266">
           Einsatzname
         </label>
         <input v-model="newOperation.operationName"/>
       </div>
 
-      <div>
+      <div style="margin-bottom: 20px">
         <label style="color:#606266">
           Einsatzadresse
         </label>
@@ -127,9 +122,9 @@
       </el-form-item>
 -->
       <el-form-item>
-        <el-button @click="submitOperation()">Speichern</el-button>
+        <el-button @click="submitOperation()">Einsatz speichern</el-button>
       </el-form-item>
-    </el-form-item>
+    </div>
 
   <el-form-item prop="role" style="margin-bottom: 20px">
     <el-radio-group v-model="userData.role" size="medium">
@@ -156,19 +151,19 @@
     </el-radio-group>
   </el-form-item>
 
-  <div style="margin-bottom: 20px">
-    <label style="color:#606266">
-      Absender
-    </label>
-    <input v-model="userData.sender"/>
-  </div>
-
     <div style="margin-bottom: 20px">
-    <label style="color:#606266">
-      Handzeichen
-    </label>
-    <input v-model="userData.identification"/>
-  </div>
+      <label style="color:#606266">
+        Absender
+      </label>
+      <input v-model="userData.sender"/>
+    </div>
+
+      <div style="margin-bottom: 20px">
+      <label style="color:#606266">
+        Handzeichen
+      </label>
+      <input v-model="userData.identification"/>
+    </div>
 <!--
   <el-form-item prop="sender" style="margin-bottom: 20px">
     <el-input v-model="userData.sender">
@@ -343,7 +338,7 @@ export default {
         operationStaffType: this.newOperation.operationStaffType,
         operationID: this.operationID
       })
-      this.notifySuccess('Einsatz angelegt')
+      this.notifySuccess('Einsatz gespeichert')
       this.newOperation.operationName = ''
       this.newOperation.operationAdress = ''
       this.newOperation.operationStaffType = ''
@@ -426,140 +421,5 @@ export default {
   }
   .hasShadowFormA {
     box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
-  }
-  /* import of all styling of THWForm.vue from here on*/
-  form {
-    background-color: var(--formBlueColor);
-    overflow: visible;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--primaryTextColor);
-  }
-  .formWrapper {
-    background-color: var(--semiLightNeutralColor);
-    width: 80%;
-    overflow: visible;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--primaryTextColor);
-    padding-top: 50px;
-    padding-bottom: 20px;
-  }
-  .sideMenuForm {
-    background-color: var(--semiLightNeutralColor);
-    width: 20%;
-    overflow: visible;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--primaryTextColor);
-    padding-top: 50px;
-    padding-bottom: 20px;
-    margin-left: 40px;
-  }
-  .inputWrapper {
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 10px;
-    height: 40px
-  }
-  .inputLabel {
-    background-color: var(--darkNeutralColor);
-    min-width: 60px;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-  .inputWithLabel {
-    border: var(--darkNeutralColor);
-    border-style: solid;
-    max-width: 60px;
-    padding-left: 10px;
-  }
-  .headerFormA {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-  }
-  .headerFormB {
-    padding-bottom: 10px;
-    padding-left: 20px;
-  }
-
-  /*
-  space:
-    different settings for spacing
-   */
-  .hasMarginFormA {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .hasPaddingFormA {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
-  .hasMarginFormB {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .hasPaddingFormB {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
-  .hasMarginFormC {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .hasPaddingFormC {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
-/*border-settings:
-    different border styles
-  */
-
-  /*
- shadow-settings:
- different shadow settings
-  */
-  .hasShadowFormA {
-    box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
-  }
-  .hasShadowFormB {
-    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
-  }
-
-/*
-  flex-settings:
-    different settings for the flex attribute
-  */
-  .flexContainerFormA {
-    display: flex;
-    flex-direction: row;
-  }
-  .flexContainerFormB {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .testSquare{
-    background-color: yellow;
-    width: 100px;
-    height: 50px;
-    margin: 10px;
   }
 </style>
