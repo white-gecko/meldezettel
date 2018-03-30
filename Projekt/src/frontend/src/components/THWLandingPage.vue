@@ -1,11 +1,18 @@
 <!-- this component will be our landing page -->
 <!-- landing page will demand Rolle, Name, Hdz, Funktion -->
 <template>
+
+<div class="demo-userData">
+<!-- formWrapper hasShadowFormA form flexContainerFormB-->
 <el-form
   :model="userData"
   :rules="rules"
   ref="userData"
-  class="demo-userData">
+  class="
+    formWrapper
+    hasShadowFormA
+    form
+    flexContainerFormB">
 
   <el-form-item
     style="margin-bottom: 30px">
@@ -69,10 +76,32 @@
           </template>
         </el-table-column>
         -->
-      </el-table>
+        </el-table>
+      </el-form-item>
     </el-form-item>
 
     <el-form-item v-if="addingOperation">
+      <div>
+        <label style="color:#606266">
+          Einsatzname
+        </label>
+        <input v-model="newOperation.operationName"/>
+      </div>
+
+      <div>
+        <label style="color:#606266">
+          Einsatzadresse
+        </label>
+        <input v-model="newOperation.operationAdress"/>
+      </div>
+
+      <div style="margin-bottom: 20px">
+        <label style="color:#606266">
+          Art des Stabes
+        </label>
+        <input v-model="newOperation.operationStaffType"/>
+      </div>
+<!--
       <el-form-item style="margin-bottom: 20px">
         <el-input v-model="newOperation.operationName">
           <template slot='prepend'>
@@ -96,13 +125,11 @@
           </template>
         </el-input>
       </el-form-item>
-
+-->
       <el-form-item>
         <el-button @click="submitOperation()">Speichern</el-button>
       </el-form-item>
     </el-form-item>
-
-</el-form-item>
 
   <el-form-item prop="role" style="margin-bottom: 20px">
     <el-radio-group v-model="userData.role" size="medium">
@@ -129,6 +156,20 @@
     </el-radio-group>
   </el-form-item>
 
+  <div style="margin-bottom: 20px">
+    <label style="color:#606266">
+      Absender
+    </label>
+    <input v-model="userData.sender"/>
+  </div>
+
+    <div style="margin-bottom: 20px">
+    <label style="color:#606266">
+      Handzeichen
+    </label>
+    <input v-model="userData.identification"/>
+  </div>
+<!--
   <el-form-item prop="sender" style="margin-bottom: 20px">
     <el-input v-model="userData.sender">
       <template slot='prepend'>
@@ -144,13 +185,15 @@
       </template>
     </el-input>
   </el-form-item>
-
+-->
   <el-form-item style="margintop: 100px">
     <el-button @click="submitUser('userData')">Eingaben speichern</el-button>
     <el-button @click="resetForm('userData')">Felder leeren</el-button>
   </el-form-item>
 
 </el-form>
+
+</div>
 
 </template>
 
@@ -340,4 +383,183 @@ export default {
     .el-icon-arrow-down {
       font-size: 12px;
     }
+    .inputWrapper {
+      padding-bottom: 10px;
+      padding-left: 20px;
+      padding-right: 10px;
+      height: 40px
+    }
+    .flexContainerFormA {
+      display: flex;
+      flex-direction: row;
+    }
+    .inputWithLabel {
+      border: var(--darkNeutralColor);
+      border-style: solid;
+      max-width: 60px;
+      padding-left: 10px;
+    }
+    .form {
+    background-color: var(--formBlueColor);
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+  }
+  .formWrapper {
+    background-color: var(--semiLightNeutralColor);
+    width: 80%;
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+    padding-top: 50px;
+    padding-bottom: 20px;
+  }
+  .flexContainerFormA {
+    display: flex;
+    flex-direction: row;
+  }
+  .flexContainerFormB {
+    display: flex;
+    flex-direction: column;
+  }
+  .hasShadowFormA {
+    box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
+  }
+  /* import of all styling of THWForm.vue from here on*/
+  form {
+    background-color: var(--formBlueColor);
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+  }
+  .formWrapper {
+    background-color: var(--semiLightNeutralColor);
+    width: 80%;
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+    padding-top: 50px;
+    padding-bottom: 20px;
+  }
+  .sideMenuForm {
+    background-color: var(--semiLightNeutralColor);
+    width: 20%;
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-left: 40px;
+  }
+  .inputWrapper {
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+    height: 40px
+  }
+  .inputLabel {
+    background-color: var(--darkNeutralColor);
+    min-width: 60px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .inputWithLabel {
+    border: var(--darkNeutralColor);
+    border-style: solid;
+    max-width: 60px;
+    padding-left: 10px;
+  }
+  .headerFormA {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+  }
+  .headerFormB {
+    padding-bottom: 10px;
+    padding-left: 20px;
+  }
+
+  /*
+  space:
+    different settings for spacing
+   */
+  .hasMarginFormA {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .hasPaddingFormA {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .hasMarginFormB {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .hasPaddingFormB {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .hasMarginFormC {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .hasPaddingFormC {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+/*border-settings:
+    different border styles
+  */
+
+  /*
+ shadow-settings:
+ different shadow settings
+  */
+  .hasShadowFormA {
+    box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
+  }
+  .hasShadowFormB {
+    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
+  }
+
+/*
+  flex-settings:
+    different settings for the flex attribute
+  */
+  .flexContainerFormA {
+    display: flex;
+    flex-direction: row;
+  }
+  .flexContainerFormB {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testSquare{
+    background-color: yellow;
+    width: 100px;
+    height: 50px;
+    margin: 10px;
+  }
 </style>
