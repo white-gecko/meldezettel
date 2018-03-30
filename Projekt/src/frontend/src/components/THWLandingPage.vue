@@ -2,7 +2,7 @@
 <!-- landing page will demand Rolle, Name, Hdz, Funktion -->
 <template>
 
-<div class="demo-userData">
+<div class="userData">
 <!-- formWrapper hasShadowFormA form flexContainerFormB-->
 <el-form
   :model="userData"
@@ -358,68 +358,10 @@ export default {
 }
 </script>
 <style>
-    .demo-userData{
+    .userData{
         background-color: #DCDFE6;
         padding: 0.5em 0.5em;
         font-family: helvetica;
         width: 68%; margin: auto;
     }
-    .demo-div{
-        margin-left: auto;
-        margin-right: auto;
-        width: 70%;
-    }
-    .el-dropdown {
-      vertical-align: top;
-    }
-    .el-dropdown + .el-dropdown {
-      margin-left: 15px;
-    }
-    .el-icon-arrow-down {
-      font-size: 12px;
-    }
-    .inputWrapper {
-      padding-bottom: 10px;
-      padding-left: 20px;
-      padding-right: 10px;
-      height: 40px
-    }
-    .flexContainerFormA {
-      display: flex;
-      flex-direction: row;
-    }
-    .inputWithLabel {
-      border: var(--darkNeutralColor);
-      border-style: solid;
-      max-width: 60px;
-      padding-left: 10px;
-    }
-    .form {
-    background-color: var(--formBlueColor);
-    overflow: visible;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--primaryTextColor);
-  }
-  .formWrapper {
-    background-color: var(--semiLightNeutralColor);
-    width: 80%;
-    overflow: visible;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--primaryTextColor);
-    padding-top: 50px;
-    padding-bottom: 20px;
-  }
-  .flexContainerFormA {
-    display: flex;
-    flex-direction: row;
-  }
-  .flexContainerFormB {
-    display: flex;
-    flex-direction: column;
-  }
-  .hasShadowFormA {
-    box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
-  }
 </style>
