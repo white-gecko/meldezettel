@@ -1,6 +1,7 @@
 import { quitstore } from '../api/QuitStoreAdapter'
 import queryHelper from '../sparql_help/sparql_queries'
-import {parseResponse} from '../sparql_help/sparql_response'
+import { parseResponse } from '../sparql_help/sparql_response'
+
 /**
  * Action used to perform an async POST request to the QuitStore
  * containing the current form data
@@ -13,10 +14,12 @@ export const addFormData = (context, formData) => {
   return quitstore.sendData(insertQuery)
 }
 
-// export const setTicketlist = (context, newList) => {
-//   context.state.ticketlist = newList
-// }
-
+/**
+ *
+ * @param context
+ * @param formData
+ * @returns {*|Promise}
+ */
 export const saveNewFormAction = (context, formData) => {
   let insertQuery = queryHelper.formdataToInsertQuery(formData)
 
@@ -31,13 +34,18 @@ export const updateTicketListAction = (context) => {
   let getAllDataQuery = queryHelper.dashboardQuery()
   quitstore.getData(getAllDataQuery)
     .then(response => {
-      console.log(response)
       let responseData = parseResponse(response)
       context.commit('setTicketList', responseData)
     })
     .catch(error => console.log(error))
 }
 
+/**
+ *
+ * @param context
+ * @param id
+ * @returns {Promise<any>}
+ */
 export const loadFormDataAction = (context, id) => {
   return new Promise((resolve, reject) => {
     let getFormDataQuery = queryHelper.formQuery(id)
@@ -59,4 +67,8 @@ export const loadFormDataAction = (context, id) => {
       }
     })
   })
+}
+
+export const updateFormDataAction = (context, formData) => {
+  /* @TODO implement action once delete query is available */
 }

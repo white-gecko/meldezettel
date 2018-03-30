@@ -43,12 +43,6 @@ export default {
       vm.$store.dispatch('updateTicketListAction')
         .catch(error => alert(error))
     })
-    // vm.$store.dispatch('updateTicketListAction')
-    //   .then(next => next())
-    //   .catch((error) => {
-    //     alert(error)
-    //     next()
-    //   })
   },
 
   beforeRouteUpdate (to, from, next) {

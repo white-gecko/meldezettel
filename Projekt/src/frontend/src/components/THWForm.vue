@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
   <div>
     <el-form ref="form" :model="formdata" style="
@@ -1081,13 +1080,6 @@ export default {
   methods: {
     ...mapMutations(['saveTicket']),
     ...mapActions(['addFormData']),
-
-    // addFormData: function () {
-    //   this.$store
-    //     .dispatch('addFormData', this.formdata)
-    //     .then(() => this.$router.push('home'))
-    //     .catch(error => alert(error))
-    // },
 
     saveNewForm: function () {
       this.$store
