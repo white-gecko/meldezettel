@@ -941,7 +941,7 @@ i                     hasPaddingLeftRightC
 
 <script>
 import { MessageBox, Notification } from 'element-ui'
-import { mapMutations, mapActions } from 'vuex'
+import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { quitstore } from '../api/QuitStoreAdapter.js'
 import { parseResponse } from '../sparql_help/sparql_response.js'
 import sparql from '../sparql_help/sparql_queries.js'
@@ -1043,80 +1043,91 @@ export default {
     }
   },
 
-  // load formdata before entering
   beforeRouteEnter (to, from, next) {
-    var id = to.params.id
-
-    if (id === undefined) {
-      next(vm => {
-        // no id => load default values
-        vm.setDefaultData(vm.$options.data())
-      })
-    } else {
-      let query = sparql.formQuery(id)
-
-      // query quitstore for the requested id
-      quitstore
-        .getData(query)
-        .then(response => {
-          response = parseResponse(response.data)
-          if (response.length > 0) {
-            // response length > 0 -> load document
-            next(vm => {
-              let data = {}
-              // data is in the form [{p: 'predicateName', o: 'predicateValue'},...] -> convert to {'predicateName': predicateValue, ...}
-              for (let predicate of response) {
-                data[predicate.p] = predicate.o
-              }
-              vm.setDefaultData({ formdata: data })
-            })
-          } else {
-            // response length == 0 -> no triples for the document id can be found
-            alert('document not found')
-            next(false)
-          }
-        })
-        .catch(error => {
-          // something went wrong
-          alert('Error trying to load document')
-          console.error(error)
-        })
-    }
+    next(vm => vm.loadDocument(to.params.id))
   },
 
   beforeRouteUpdate (to, from, next) {
-    next(false)
+    this.askSaveDraft(from.params.id, () => {
+      this.loadDocument(to.params.id)
+      next()
+    })
   },
 
   beforeRouteLeave (to, from, next) {
-    if (from.params.id === undefined) {
-      this.dialog(
-        '',
-        'Soll das Formular als Entwurf gespeichert werden?',
-        () => {
-          this.setDraft(this.$data.formdata)
-          console.log(this.$store)
-          next()
-        },
-        () => next())
-    } else {
-      next()
-    }
-  },
-
-  created () {
-    document.addEventListener('focusin', this.focusIn)
-    document.addEventListener('focusout', this.focusOut)
-  },
-
-  beforeDestroy () {
-    document.removeEventListener('focusin', this.focusIn)
-    document.removeEventListener('focusout', this.focusOut)
+    this.askSaveDraft(from.params.id, () => next())
   },
 
   methods: {
     ...mapMutations(['saveTicket', 'setDraft']),
     ...mapActions(['addFormData']),
+    ...mapGetters(['getDraft']),
+
+    loadDefault: function () {
+      this.setDefaultData(this.$options.data().formdata)
+    },
+
+    loadDraft: function () {
+      let draft = this.getDraft() || this.$options.data().formdata
+      this.setDefaultData(draft)
+    },
+
+    loadID: function (id) {
+      let query = sparql.formQuery(id)
+      // query quitstore for the requested id
+      quitstore.getData(query)
+        .then(response => {
+          response = parseResponse(response.data)
+          if (response.length > 0) {
+            // response length > 0 -> load document
+            let data = {}
+            // data is in the form [{p: 'predicateName', o: 'predicateValue'},...] -> convert to {'predicateName': predicateValue, ...}
+            for (let predicate of response) {
+              data[predicate.p] = predicate.o
+            }
+            this.setDefaultData(data)
+          } else {
+            // response length == 0 -> no triples for the document id can be found
+            this.messageBoxError(
+              '',
+              'Dokument wurde nicht gefunden',
+              () => this.$router.push({name: 'Home'}))
+          }
+        })
+        .catch(error => {
+          // something went wrong
+          console.error(error)
+          this.messageBoxError(
+            '',
+            'Fehler beim laden des Dokuments',
+            () => this.$router.push({name: 'Home'}))
+        })
+    },
+
+    loadDocument: function (id) {
+      if (id === undefined) this.loadDefault()
+      else if (id === 'draft') this.loadDraft()
+      else this.loadID(id)
+    },
+
+    askSaveDraft: async function (id, callback) {
+      callback = callback || (() => {})
+
+      if (id === undefined) {
+        this.dialog(
+          '',
+          'Soll das Formular als Entwurf gespeichert werden?',
+          () => {
+            this.setDraft(this.$data.formdata)
+            callback()
+          },
+          () => {
+            callback()
+          })
+      } else {
+        callback()
+      }
+    },
 
     addFormData: function () {
       this.$store
@@ -1126,7 +1137,7 @@ export default {
     },
 
     formReset: function () {
-      this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata))
+      this.$data.formdata = JSON.parse(JSON.stringify(this.default))
     },
 
     setDefaultData: function (value) {
@@ -1134,24 +1145,13 @@ export default {
       this.formReset()
     },
 
-    focusIn (event) {
-      const el = event.target
-      if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.add('highlighted')
-      }
-    },
+    dialog: function (title, message, callbackYes, callbackNo) {
+      callbackYes = callbackYes || (() => {})
+      callbackNo = callbackNo || (() => {})
 
-    focusOut (event) {
-      const el = event.target
-      if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.remove('highlighted')
-      }
-    },
-
-    dialog: function (title, msg, callbackYes, callbackNo) {
       MessageBox({
         title: title,
-        message: msg,
+        message: message,
         confirmButtonText: 'Ja',
         showCancelButton: true,
         cancelButtonText: 'Nein',
@@ -1162,11 +1162,37 @@ export default {
       }).then(callbackYes).catch(callbackNo)
     },
 
+    messageBoxError: function (title, message, callback) {
+      callback = callback || (() => {})
+
+      MessageBox({
+        title: title,
+        message: message,
+        type: 'error',
+        confirmButtonText: 'Ok',
+        showClose: false,
+        closeOnPressEscape: false,
+        closeOnClickModal: false,
+        modal: true
+      }).then(callback)
+    },
+
     notifySuccess (message) {
       Notification({
         title: message,
         duration: 1200,
         type: 'success',
+        offset: 120,
+        showClose: false
+      })
+    },
+
+    notifyError (title, message) {
+      Notification({
+        title: title,
+        message: message,
+        duration: 1200,
+        type: 'error',
         offset: 120,
         showClose: false
       })
@@ -1301,4 +1327,8 @@ export default {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.body {
+    margin: 0;
+  }
 </style>
