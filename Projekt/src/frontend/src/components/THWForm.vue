@@ -797,7 +797,7 @@
           hasShadowFormA
           flexContainerFormB">
       <el-button @click="
-                  addFormData();
+                  saveNewForm();
                   notifySuccess('Abgeschickt')"
                  tabindex="6">
         Abschicken

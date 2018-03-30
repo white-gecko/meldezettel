@@ -1,11 +1,10 @@
 <template>
-  <el-table :data="ticketList" style="width: 100%" max-height="500">
   <div class="flexContainerDashboardB">
 
     <div class="
         dashboard
         hasShadowDashboardA">
-      <el-table :data="tabledata" style="width: 100%" max-height="500">
+      <el-table :data="ticketList" style="width: 100%" max-height="500">
 
         <el-table-column width="150">
           <template slot-scope="scope">
