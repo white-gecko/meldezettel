@@ -1,11 +1,11 @@
 <template>
-  <el-table :data="tabledata" style="width: 100%" max-height="500">
+  <el-table :data="ticketList" style="width: 100%" max-height="500">
 
     <el-table-column width="150">
       <template slot-scope="scope">
         <router-link v-bind:to="{
           name:'Create',
-          params:{id: tabledata[scope.$index]['id'] }}"
+          params:{id: ticketList[scope.$index]['id'] }}"
                      tag="el-button">
           Öffnen
         </router-link>
@@ -35,45 +35,33 @@
 </template>
 
 <script>
-
-import { quitstore } from '../api/QuitStoreAdapter.js'
-import { parseResponse } from '../sparql_help/sparql_response.js'
-import sparql from '../sparql_help/sparql_queries.js'
-
 export default {
   name: 'THWDashboard',
 
   beforeRouteEnter (to, from, next) {
-    let query = sparql.dashboardQuery()
-
-    quitstore.getData(query)
-      .then((response) => {
-        next(vm => {
-          let data = parseResponse(response.data)
-          vm.setData(data)
-          vm.$store.dispatch('setTicketlist', data)
-        })
-      })
-      .catch((error) => {
-        alert(error)
-        next()
-      })
+    next(vm => {
+      vm.$store.dispatch('updateTicketListAction')
+        .catch(error => alert(error))
+    })
+    // vm.$store.dispatch('updateTicketListAction')
+    //   .then(next => next())
+    //   .catch((error) => {
+    //     alert(error)
+    //     next()
+    //   })
   },
 
   beforeRouteUpdate (to, from, next) {
     next(false)
   },
 
-  data () {
-    return {
-      tabledata: [{}]
+  computed: {
+    ticketList () {
+      return this.$store.state.ticketlist
     }
   },
 
   methods: {
-    setData (data) {
-      this.$data.tabledata = data
-    },
     formatDate (row, column, cellValue) {
       // return (new Date(cellValue)).toLocaleDateString()
       return cellValue
@@ -88,5 +76,4 @@ export default {
     }
   }
 }
-
 </script>
