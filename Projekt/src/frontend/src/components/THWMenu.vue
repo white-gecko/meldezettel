@@ -15,6 +15,12 @@
         <i class="el-icon-view"></i>
         <span slot="title">Nutzerdaten ändern</span>
       </el-menu-item>
+      <el-menu-item
+        index="draft"
+        :route="{name: 'Create', params: {id: 'draft'}}">
+        <i class="el-icon-edit"></i>
+        <span slot="title">Entwurf öffnen</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
