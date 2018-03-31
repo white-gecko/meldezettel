@@ -104,7 +104,7 @@ export default {
 
   methods: {
     goTo: function (path, params) {
-      this.$router.push({name: path})
+      this.$router.push({name: path, params: params})
     }
   }
 }
