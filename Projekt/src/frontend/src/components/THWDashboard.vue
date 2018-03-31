@@ -216,15 +216,14 @@ export default {
         incoming or outgoing
      */
     formatDisplay: function (data) {
-      let formatted  = []
-      for(let i=0; i<data.length; i++){
+      let formatted = []
+      for (let i = 0; i < data.length; i++) {
         let row = data[i]
-        if(data[i].outgoing){
+        if (data[i].outgoing) {
           row.creator = data[i].identification
           row.date = data[i].tertiaryDate
           row.time = data[i].tertiaryTime
-        }
-        else{
+        } else {
           row.creator = data[i].primaryHdZ
           row.date = data[i].primaryDate
           row.time = data[i].primaryTime
