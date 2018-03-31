@@ -91,7 +91,7 @@ export default{
       PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     `
     // generate id
-    let rid = newOperation.operationName
+    let rid = newOperation.operationName + Date.now()
     // base for sparql insert queries
     query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
     let uri = 'id:' + rid
