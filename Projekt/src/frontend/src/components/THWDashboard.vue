@@ -110,7 +110,7 @@
                      label="TB Nummer"
                      width="130"></el-table-column>
 
-    <el-table-column prop="primaryHdZ"
+    <el-table-column prop="creator"
                      label="Verfasser"
                      width="100"></el-table-column>
 
@@ -118,12 +118,12 @@
                      label="Sichter" width="100"></el-table-column>
 
     <el-table-column :formatter="formatDate"
-                     prop="primaryDate"
+                     prop="date"
                      label="Datum"
                      width="100"></el-table-column>
 
     <el-table-column :formatter="formatTime"
-                     prop="primaryTime"
+                     prop="time"
                      label="Uhrzeit"
                      width="100"></el-table-column>
 
@@ -157,6 +157,7 @@ export default {
       .then((response) => {
         next(vm => {
           let data = parseResponse(response.data)
+          data = vm.formatDisplay(data)
           vm.setData(data)
           vm.$store.dispatch('setTicketlist', data)
           vm.setFilter(filterStore)
@@ -184,27 +185,53 @@ export default {
   },
 
   methods: {
+    /*  function that changes filters in vuex store, then calls
+        a function that updates dashboard
+    */
     changeFilters: function () {
-      console.log('-1')
       this.$store
         .dispatch('setFilters', this.filters)
         .then(() => this.useFilters())
         .catch((error) => alert(error))
     },
+    /*  function that updates the displayed documents on dashboard
+        after filters got changed,
+        works similar to beforeRouteEnter
+    */
     useFilters: function () {
-      console.log('0')
       let filterStore = this.$store.getters.getFilters
       let query = sparql.dashboardQuery(filterStore)
-      console.log('1')
       quitstore.getData(query)
         .then((response) => {
-          console.log('2')
           let data = parseResponse(response.data)
+          data = this.formatDisplay(data)
           this.setData(data)
           this.$store.dispatch('setTicketlist', data)
           this.setFilter(filterStore)
           this.notifySuccess('Filter angewandt')
         })
+    },
+    /*  This function sets values for creator, date and time to
+        match the correct fields depending on if the document is
+        incoming or outgoing
+     */
+    formatDisplay: function (data) {
+      let formatted  = []
+      for(let i=0; i<data.length; i++){
+        let row = data[i]
+        if(data[i].outgoing){
+          row.creator = data[i].identification
+          row.date = data[i].tertiaryDate
+          row.time = data[i].tertiaryTime
+        }
+        else{
+          row.creator = data[i].primaryHdZ
+          row.date = data[i].primaryDate
+          row.time = data[i].primaryTime
+        }
+        formatted.push(row)
+      }
+      return formatted
     },
     notifySuccess (message) {
       Notification({
@@ -221,6 +248,7 @@ export default {
     setData (data) {
       this.$data.tabledata = data
     },
+    //  formatter that returns the fitting icons for all different states
     formatState (row, column, cellValue) {
       switch (cellValue) {
         case 1:

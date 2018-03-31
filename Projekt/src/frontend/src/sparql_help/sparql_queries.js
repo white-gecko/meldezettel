@@ -55,6 +55,7 @@ PREFIX id: <http://www.na17b.org/thw/resource/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 SELECT
   ?id
+  ?outgoing
   ?state
   ?numberTB
   ?identification
@@ -62,16 +63,21 @@ SELECT
   ?primaryDate
   ?primaryTime
   ?primaryHdZ
+  ?tertiaryDate
+  ?tertiaryTime
   ?receiverName 
 FROM thw:
 WHERE {
   ?id rdf:type  thw:document;
+      thw:outgoing ?outgoing;
       thw:state ?state;
       thw:receiverName ?receiverName;
       thw:content ?content;
       thw:primaryDate ?primaryDate;
       thw:primaryTime ?primaryTime;
       thw:primaryHdZ ?primaryHdZ;
+      thw:tertiaryDate ?tertiaryDate;
+      thw:tertiaryTime ?tertiaryTime;
       thw:numberTB ?numberTB;
       thw:identification ?identification;
       thw:docketIdentification ?docketIdentification`
