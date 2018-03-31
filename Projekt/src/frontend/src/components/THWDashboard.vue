@@ -114,7 +114,7 @@
                      label="Verfasser"
                      width="100"></el-table-column>
 
-    <el-table-column prop="identification"
+    <el-table-column prop="docketIdentification"
                      label="Sichter" width="100"></el-table-column>
 
     <el-table-column :formatter="formatDate"
@@ -219,7 +219,7 @@ export default {
       let formatted = []
       for (let i = 0; i < data.length; i++) {
         let row = data[i]
-        if (data[i].outgoing) {
+        if (data[i].state < 10) {
           row.creator = data[i].identification
           row.date = data[i].tertiaryDate
           row.time = data[i].tertiaryTime
