@@ -79,8 +79,7 @@
           <el-row>
             <el-col :span='2'>
               <el-button
-                @click="changeFilters()
-                        notifySuccess('Filter angewandt')">
+                @click="changeFilters()">
                 Anwenden
               </el-button>
             </el-col>
@@ -186,10 +185,26 @@ export default {
 
   methods: {
     changeFilters: function () {
+      console.log('-1')
       this.$store
         .dispatch('setFilters', this.filters)
-        .then(() => this.$router.push('home'))
+        .then(() => this.useFilters())
         .catch((error) => alert(error))
+    },
+    useFilters: function () {
+      console.log('0')
+      let filterStore = this.$store.getters.getFilters
+      let query = sparql.dashboardQuery(filterStore)
+      console.log('1')
+      quitstore.getData(query)
+        .then((response) => {
+          console.log('2')
+          let data = parseResponse(response.data)
+          this.setData(data)
+          this.$store.dispatch('setTicketlist', data)
+          this.setFilter(filterStore)
+          this.notifySuccess('Filter angewandt')
+        })
     },
     notifySuccess (message) {
       Notification({

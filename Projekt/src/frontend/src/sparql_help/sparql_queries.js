@@ -73,7 +73,8 @@ WHERE {
       thw:primaryTime ?primaryTime;
       thw:primaryHdZ ?primaryHdZ;
       thw:numberTB ?numberTB;
-      thw:identification ?identification`
+      thw:identification ?identification;
+      thw:docketIdentification ?docketIdentification`
 
     if (filter.operation !== 'Alle') {
       query += `;
