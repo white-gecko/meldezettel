@@ -78,7 +78,7 @@ const parseUri = function (obj, prefixes) {
  * @return returns the modified bindings of the response
  */
 export const parseResponse = function (obj) {
-  let bindings = obj.results.bindings
+  let bindings = obj.data.results.bindings
   for (let binding of bindings) {
     for (let key in binding) {
       if (binding[key]['type'] === 'uri') {

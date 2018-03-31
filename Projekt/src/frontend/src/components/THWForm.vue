@@ -797,7 +797,7 @@
           hasShadowFormA
           flexContainerFormB">
       <el-button @click="
-                  addFormData();
+                  saveNewForm();
                   notifySuccess('Abgeschickt')"
                  tabindex="6">
         Abschicken
@@ -814,9 +814,6 @@
 <script>
 import { MessageBox, Notification } from 'element-ui'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
-import { quitstore } from '../api/QuitStoreAdapter.js'
-import { parseResponse } from '../sparql_help/sparql_response.js'
-import sparql from '../sparql_help/sparql_queries.js'
 import ElHeader from 'element-ui/packages/header/src/main'
 import ElRow from 'element-ui/packages/row/src/row'
 import ElContainer from 'element-ui/packages/container/src/main'
@@ -920,19 +917,30 @@ export default {
   },
 
   beforeRouteUpdate (to, from, next) {
-    this.askSaveDraft(from.params.id, () => {
+    if (from.params.id === undefined) {
+      this.askSaveDraft()
+        .then(() => {
+          this.loadDocument(to.params.id)
+          next()
+        })
+    } else {
       this.loadDocument(to.params.id)
       next()
-    })
+    }
   },
 
   beforeRouteLeave (to, from, next) {
-    this.askSaveDraft(from.params.id, () => next())
+    if (from.params.id === undefined) {
+      this.askSaveDraft()
+        .then(() => next())
+    } else {
+      next()
+    }
   },
 
   methods: {
-    ...mapMutations(['saveTicket', 'setDraft']),
-    ...mapActions(['addFormData']),
+    ...mapMutations(['setDraft']),
+    ...mapActions(['saveNewFormAction', 'loadFormDataAction']),
     ...mapGetters(['getDraft']),
 
     loadDefault: function () {
@@ -945,34 +953,11 @@ export default {
     },
 
     loadID: function (id) {
-      let query = sparql.formQuery(id)
-      // query quitstore for the requested id
-      quitstore.getData(query)
-        .then(response => {
-          response = parseResponse(response.data)
-          if (response.length > 0) {
-            // response length > 0 -> load document
-            let data = {}
-            // data is in the form [{p: 'predicateName', o: 'predicateValue'},...] -> convert to {'predicateName': predicateValue, ...}
-            for (let predicate of response) {
-              data[predicate.p] = predicate.o
-            }
-            this.setDefaultData(data)
-          } else {
-            // response length == 0 -> no triples for the document id can be found
-            this.messageBoxError(
-              '',
-              'Dokument wurde nicht gefunden',
-              () => this.$router.push({name: 'Home'}))
-          }
-        })
-        .catch(error => {
-          // something went wrong
-          console.error(error)
-          this.messageBoxError(
-            '',
-            'Fehler beim laden des Dokuments',
-            () => this.$router.push({name: 'Home'}))
+      this.loadFormDataAction(id)
+        .then((formdata) => this.setDefaultData(formdata))
+        .catch((error) => {
+          this.messageBoxError('', error.message)
+            .then(this.$router.push({name: 'Home'}))
         })
     },
 
@@ -982,28 +967,23 @@ export default {
       else this.loadID(id)
     },
 
-    askSaveDraft: async function (id, callback) {
-      callback = callback || (() => {})
-
-      if (id === undefined) {
+    askSaveDraft: function () {
+      return new Promise((resolve, reject) => {
         this.dialog(
           '',
-          'Soll das Formular als Entwurf gespeichert werden?',
-          () => {
+          'Soll das Formular als Entwurf gespeichert werden?')
+          .then(() => {
             this.setDraft(this.$data.formdata)
-            callback()
-          },
-          () => {
-            callback()
+            return resolve()
           })
-      } else {
-        callback()
-      }
+          .catch(() => {
+            return resolve()
+          })
+      })
     },
 
-    addFormData: function () {
-      this.$store
-        .dispatch('addFormData', this.formdata)
+    saveNewForm: function () {
+      this.saveNewFormAction(this.formdata)
         .then(() => this.$router.push('home'))
         .catch(error => alert(error))
     },
@@ -1017,11 +997,8 @@ export default {
       this.formReset()
     },
 
-    dialog: function (title, message, callbackYes, callbackNo) {
-      callbackYes = callbackYes || (() => {})
-      callbackNo = callbackNo || (() => {})
-
-      MessageBox({
+    dialog: function (title, message) {
+      return MessageBox({
         title: title,
         message: message,
         confirmButtonText: 'Ja',
@@ -1031,13 +1008,11 @@ export default {
         closeOnPressEscape: false,
         closeOnClickModal: false,
         modal: true
-      }).then(callbackYes).catch(callbackNo)
+      })
     },
 
-    messageBoxError: function (title, message, callback) {
-      callback = callback || (() => {})
-
-      MessageBox({
+    messageBoxError: function (title, message) {
+      return MessageBox({
         title: title,
         message: message,
         type: 'error',
@@ -1046,7 +1021,7 @@ export default {
         closeOnPressEscape: false,
         closeOnClickModal: false,
         modal: true
-      }).then(callback)
+      })
     },
 
     notifySuccess (message) {
