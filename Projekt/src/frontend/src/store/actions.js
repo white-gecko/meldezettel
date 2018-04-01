@@ -82,14 +82,11 @@ export const updateFormDataAction = (context, formData) => {
 
       .then(oldFormData => {
         let formdata = oldFormData.formdata
-        console.log(formdata)
         let deleteOldDataQuery = queryHelper.formdataToDeleteQuery(formdata)
-        console.log(deleteOldDataQuery)
         quitstore.sendData(deleteOldDataQuery)
 
           .then(() => {
             let insertNewDataQuery = queryHelper.formdataToInsertQuery(formData)
-            console.log('INQD: ' + insertNewDataQuery)
             quitstore.sendData(insertNewDataQuery)
 
               .then(() => {

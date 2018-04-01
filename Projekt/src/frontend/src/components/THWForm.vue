@@ -807,7 +807,7 @@
                   notifySuccess('Formular zurückgesetzt')">
         Zurücksetzen
       </el-button>
-      <el-button @click="updateForm">
+      <el-button @click="updateForm()">
         Update
       </el-button>
     </div>
