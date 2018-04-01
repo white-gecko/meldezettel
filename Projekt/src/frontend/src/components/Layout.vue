@@ -121,6 +121,7 @@ export default {
     font-family: var(--mainFont);
     font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
+    position: relative;
     flex-grow: 1;
   }
 

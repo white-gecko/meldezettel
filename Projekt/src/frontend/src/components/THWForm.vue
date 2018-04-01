@@ -32,6 +32,7 @@
               <div class="
                     innerWrapper
                     checkboxgroupMTTop">
+                <div class="overlay" v-show="true"></div>
                 <div class="flexContainerFormC">
                   <label>
                     <input id="radioTop"
@@ -73,6 +74,7 @@
                     innerWrapper
                     inputIncoming
                     flexContainerFormB">
+                  <div class="overlay" v-show="true"></div>
                   <label class="headerFormA">Eingehend</label>
                   <label class="headerFormB">Aufnahmevermerk</label>
                   <div class="
@@ -124,6 +126,7 @@
                     innerWrapper
                     inputOutgoing
                     flexContainerFormB">
+                  <div class="overlay" v-show="true"></div>
                   <label class="headerFormA">Ausgehend</label>
                   <div class="flexContainerFormA">
                     <div class="flexContainerFormB">
@@ -234,6 +237,7 @@
                     innerWrapper
                     inputTB
                     flexContainerFormB">
+                <div class="overlay" v-show="true"></div>
                 <label class="headerFormA">Technisches Betriebsbuch</label>
                 <div class="
                         inputWrapper
@@ -279,6 +283,7 @@
             <div class="
                     innerWrapper
                     inputRGS">
+              <div class="overlay" v-show="true"></div>
               <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -317,6 +322,7 @@
             <div class="
                     innerWrapper
                     checkboxgroupMTMid">
+              <div class="overlay" v-show="true"></div>
               <div class="flexContainerFormC">
                 <label>
                   <input id="radioMid"
@@ -357,6 +363,7 @@
               <div class="
                     innerWrapper
                     checkboxgroupDS">
+                <div class="overlay" v-show="true"></div>
                 <div class="flexContainerFormC">
                   <label>
                     <input id="callAnnouncement"
@@ -377,6 +384,7 @@
               <div class="
                     innerWrapper
                     checkboxgroupSB">
+                <div class="overlay" v-show="true"></div>
                 <div class="flexContainerFormC">
                   <label>
                     <input id="priorityInstant"
@@ -401,6 +409,7 @@
               <div class="
                     innerWrapper
                     inputRufnr">
+                <div class="overlay" v-show="true"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -420,6 +429,7 @@
               <div class="
                     innerWrapper
                     inputAnschrift">
+                <div class="overlay" v-show="true"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -439,6 +449,8 @@
               <div class="
                     innerWrapper
                     inputGESP">
+                <div class="overlay"
+                     v-show="true"></div>
                 <label>
                   <input id="talkNote"
                          type="checkbox"
@@ -461,6 +473,7 @@
             <div class="
                     innerWrapper
                     inputInhalt">
+              <div class="overlay" v-show="true"></div>
               <div class="
                         inputWrapper
                         flexContainerFormA"
@@ -487,6 +500,7 @@
             <div class="
                     innerWrapper
                     inputAbsender">
+              <div class="overlay" v-show="true"></div>
               <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -509,6 +523,7 @@
               <div class="
                     innerWrapper
                     inputAbZeit">
+                <div class="overlay" v-show="true"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -528,6 +543,7 @@
               <div class="
                     innerWrapper
                     inputZeichen">
+                <div class="overlay" v-show="true"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -547,6 +563,7 @@
               <div class="
                     innerWrapper
                     inputFunktion">
+                <div class="overlay" v-show="true"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -587,6 +604,7 @@
                     innerWrapper
                     inputQuittung
                     flexContainerFormB">
+              <div class="overlay" v-show="true"></div>
               <label class="headerFormA">Quittung</label>
               <div class="
                         inputWrapper
@@ -623,6 +641,7 @@
                     innerWrapper
                     checkboxgroupTEL
                     flexContainerFormB">
+                <div class="overlay" v-show="true"></div>
                 <label class="headerFormA">TEL/EL/EAL/UEAL</label>
                 <div class="flexContainerFormA">
                   <div class="flexContainerFormB">
@@ -673,6 +692,7 @@
                     innerWrapper
                     checkboxgroupFachberater
                     flexContainerFormB">
+                <div class="overlay" v-show="true"></div>
                 <label class="headerFormA">Fachberater</label>
                 <div class="
                         inputWrapper
@@ -741,6 +761,7 @@
                     innerWrapper
                     checkboxgroupVerb
                     flexContainerFormB">
+                <div class="overlay" v-show="true"></div>
                 <label class="headerFormA">Verb. stellen</label>
                 <div class="
                         inputWrapper
@@ -820,6 +841,7 @@
                     innerWrapper
                     inputVermerke
                     flexContainerFormB">
+              <div class="overlay" v-show="true"></div>
               <label class="headerFormA">Vermerke</label>
               <textarea id="annotations"
                         cols="35"
@@ -1339,11 +1361,20 @@ export default {
     justify-content: space-evenly;
   }
 
-  .testSquare{
+  .testSquare {
     background-color: yellow;
     width: 100px;
     height: 50px;
     margin: 10px;
+  }
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   input {
