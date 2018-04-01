@@ -1,15 +1,39 @@
 <template>
   <div class="flexContainerFormA"
        style="flex-wrap: nowrap">
+  <!-- Just for development -->
+  <label for="stateselect"> Select ticket state: </label>
+  <select v-model.number="formdata.ticketState" id="stateselect">
+    <option>0</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+    <option>10</option>
+    <option>11</option>
+    <option>12</option>
+    <option>13</option>
+    <option>14</option>
+    <option>15</option>
+  </select>
+  <!-- ----------------- -->
     <!--main-form-->
     <div class="
           formWrapper
           hasShadowFormA">
-      <el-form class="
-              form
-              flexContainerFormB"
-               ref="form"
-               :model="formdata">
+      <el-form ref="form" :model="formdata"
+      :class="{
+        'is-blue': isBlue,
+        'is-green': isGreen,
+        'is-yellow': isYellow,
+        'is-red': isRed,
+        'form, flexContainerFormB': true
+        }">
 
         <!--top-section-->
         <div class="
@@ -32,7 +56,7 @@
               <div class="
                     innerWrapper
                     checkboxgroupMTTop">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!checkboxGroupTop"></div>
                 <div class="flexContainerFormC">
                   <label>
                     <input id="radioTop"
@@ -74,7 +98,7 @@
                     innerWrapper
                     inputIncoming
                     flexContainerFormB">
-                  <div class="overlay" v-show="true"></div>
+                  <div class="overlay" v-show="!aufnahme"></div>
                   <label class="headerFormA">Eingehend</label>
                   <label class="headerFormB">Aufnahmevermerk</label>
                   <div class="
@@ -126,7 +150,7 @@
                     innerWrapper
                     inputOutgoing
                     flexContainerFormB">
-                  <div class="overlay" v-show="true"></div>
+                  <div class="overlay" v-show="!annahmeBefoerderung"></div>
                   <label class="headerFormA">Ausgehend</label>
                   <div class="flexContainerFormA">
                     <div class="flexContainerFormB">
@@ -237,7 +261,7 @@
                     innerWrapper
                     inputTB
                     flexContainerFormB">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!technischesBetriebsbuch"></div>
                 <label class="headerFormA">Technisches Betriebsbuch</label>
                 <div class="
                         inputWrapper
@@ -283,7 +307,7 @@
             <div class="
                     innerWrapper
                     inputRGS">
-              <div class="overlay" v-show="true"></div>
+              <div class="overlay" v-show="!gegenstelle"></div>
               <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -322,7 +346,7 @@
             <div class="
                     innerWrapper
                     checkboxgroupMTMid">
-              <div class="overlay" v-show="true"></div>
+              <div class="overlay" v-show="!checkboxgroupMiddle"></div>
               <div class="flexContainerFormC">
                 <label>
                   <input id="radioMid"
@@ -363,7 +387,7 @@
               <div class="
                     innerWrapper
                     checkboxgroupDS">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!durchsageSpruch"></div>
                 <div class="flexContainerFormC">
                   <label>
                     <input id="callAnnouncement"
@@ -384,7 +408,7 @@
               <div class="
                     innerWrapper
                     checkboxgroupSB">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!sofortBlitz"></div>
                 <div class="flexContainerFormC">
                   <label>
                     <input id="priorityInstant"
@@ -409,7 +433,7 @@
               <div class="
                     innerWrapper
                     inputRufnr">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!rufnummer"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -429,7 +453,7 @@
               <div class="
                     innerWrapper
                     inputAnschrift">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!anschrift"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -450,7 +474,7 @@
                     innerWrapper
                     inputGESP">
                 <div class="overlay"
-                     v-show="true"></div>
+                     v-show="!gespraechsnotiz"></div>
                 <label>
                   <input id="talkNote"
                          type="checkbox"
@@ -473,7 +497,7 @@
             <div class="
                     innerWrapper
                     inputInhalt">
-              <div class="overlay" v-show="true"></div>
+              <div class="overlay" v-show="!inhalt"></div>
               <div class="
                         inputWrapper
                         flexContainerFormA"
@@ -500,7 +524,7 @@
             <div class="
                     innerWrapper
                     inputAbsender">
-              <div class="overlay" v-show="true"></div>
+              <div class="overlay" v-show="!absender"></div>
               <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -523,7 +547,7 @@
               <div class="
                     innerWrapper
                     inputAbZeit">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!abfassungszeit"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -543,7 +567,7 @@
               <div class="
                     innerWrapper
                     inputZeichen">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!zeichen"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -563,7 +587,7 @@
               <div class="
                     innerWrapper
                     inputFunktion">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!funktion"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -604,7 +628,7 @@
                     innerWrapper
                     inputQuittung
                     flexContainerFormB">
-              <div class="overlay" v-show="true"></div>
+              <div class="overlay" v-show="!quittung"></div>
               <label class="headerFormA">Quittung</label>
               <div class="
                         inputWrapper
@@ -641,7 +665,7 @@
                     innerWrapper
                     checkboxgroupTEL
                     flexContainerFormB">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!tel"></div>
                 <label class="headerFormA">TEL/EL/EAL/UEAL</label>
                 <div class="flexContainerFormA">
                   <div class="flexContainerFormB">
@@ -692,7 +716,7 @@
                     innerWrapper
                     checkboxgroupFachberater
                     flexContainerFormB">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!tel"></div>
                 <label class="headerFormA">Fachberater</label>
                 <div class="
                         inputWrapper
@@ -761,7 +785,7 @@
                     innerWrapper
                     checkboxgroupVerb
                     flexContainerFormB">
-                <div class="overlay" v-show="true"></div>
+                <div class="overlay" v-show="!tel"></div>
                 <label class="headerFormA">Verb. stellen</label>
                 <div class="
                         inputWrapper
@@ -841,7 +865,7 @@
                     innerWrapper
                     inputVermerke
                     flexContainerFormB">
-              <div class="overlay" v-show="true"></div>
+              <div class="overlay" v-show="!vermerke"></div>
               <label class="headerFormA">Vermerke</label>
               <textarea id="annotations"
                         cols="35"
@@ -972,7 +996,9 @@ export default {
         connectionTickD: false,
         connectionTickE: false,
 
-        annotations: ''
+        annotations: '',
+
+        ticketState: 0
       },
 
       other: {
@@ -1094,6 +1120,159 @@ export default {
         this.formdata.outgoing = true
       }
     }
+  },
+
+  computed: {
+
+    // =================================================
+    // Beginning of visibility switches
+    //
+    // Each property checks if a certain state is
+    // selected and decides whether or not the
+    // overlay should be shown or another button
+    // should be rendered
+
+    // Overlay switches
+    // true means component is relevant for current state,
+    // so the overlay may NOT be shown (and vice versa)
+
+    checkboxGroupTop: function () {
+      return [10, 3, 5, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    aufnahme: function () {
+      return [10, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    annahmeBefoerderung: function () {
+      return [3, 5, 4, 6, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    technischesBetriebsbuch: function () {
+      return [3, 5, 11, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    gegenstelle: function () {
+      return [10, 3, 5, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    checkboxgroupMiddle: function () {
+      return [0, 2, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    durchsageSpruch: function () {
+      return [14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    sofortBlitz: function () {
+      return [1, 7, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    rufnummer: function () {
+      return [10, 0, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    anschrift: function () {
+      return [10, 0, 2, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    gespraechsnotiz: function () {
+      return [10, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    inhalt: function () {
+      return [10, 0, 2, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    absender: function () {
+      return [10, 0, 2, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    abfassungszeit: function () {
+      return [0, 2, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    zeichen: function () {
+      return [0, 2, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    funktion: function () {
+      return [0, 2, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    quittung: function () {
+      return [1, 7, 13, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    tel: function () {
+      return [1, 7, 13, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    vermerke: function () {
+      return [10, 0, 1, 7, 13, 3, 5, 11, 4, 6,
+        2, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    // Color switches
+
+    isGreen: function () {
+      return [1, 2, 3, 4, 5, 6, 7].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    isBlue: function () {
+      return [10, 0, 13, 11, 12].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    isYellow: function () {
+      return [14, 8].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    isRed: function () {
+      return [15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    // Button switches
+
+    sendButtonText: function () {
+      let state = this.formdata.ticketState
+      if (state === 8 || state === 14) {
+        return 'Drucken'
+      } else {
+        return 'Abschicken'
+      }
+    },
+
+    rejectable: function () {
+      return [1, 7, 13, 3, 5, 11].indexOf(
+        this.formdata.ticketState) !== -1
+    }
+
+    // End of visibility switches
+    // =================================================
+
   }
 }
 </script>
@@ -1368,13 +1547,34 @@ export default {
     margin: 10px;
   }
   .overlay {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
     z-index: 1;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  .is-green {
+    background: var(--formGreenColor);
+    border-left-color: var(--formGreenColor);
+  }
+
+  .is-blue {
+    background: var(--formBlueColor);
+    border-left-color: var(--formBlueColor);
+  }
+
+  .is-red {
+    background: var(--formRedColor);
+    border-left-color: var(--formRedColor);
+  }
+
+  .is-yellow {
+    background: var(--formYellowColor);
+    border-left-color: var(--formYellowColor);
   }
 
   input {

@@ -42,9 +42,9 @@ export default {
     --mainColor: #3d6cb8;
     --lightMainColor: #799bd2;
     --formBlueColor: #9cb7e2;
-    --formGreenColor: "";
-    --formRedColor: "";
-    --formYellowColor: "";
+    --formGreenColor: #9ce2a4;
+    --formRedColor: #e29c9c;
+    --formYellowColor: #e2e29c;
 
     /*secondary colors*/
     --successColor: #67C23A;
