@@ -193,12 +193,6 @@ export default {
         showClose: false
       })
     },
-    setFilter (filter) {
-      this.$data.filter = filter
-    },
-    setData (data) {
-      this.$data.tabledata = data
-    },
     //  formatter that returns the fitting icons for all different states
     formatState (row, column, cellValue) {
       switch (cellValue) {
