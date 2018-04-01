@@ -986,7 +986,7 @@ export default {
 
     saveNewForm: function () {
       this.saveNewFormAction(this.formdata)
-        .then(() => this.$router.push('home'))
+        .then(() => this.$router.push({name: 'Home'}))
         .catch(error => alert(error))
     },
 
