@@ -1,4 +1,4 @@
-export const setTicketlist = (state, newList) => {
+export const setTicketList = (state, newList) => {
   state.ticketlist = newList
 }
 

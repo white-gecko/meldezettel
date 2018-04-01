@@ -797,7 +797,7 @@
           hasShadowFormA
           flexContainerFormB">
       <el-button @click="
-                  addFormData();
+                  saveNewForm();
                   notifySuccess('Abgeschickt')"
                  tabindex="6">
         Abschicken
@@ -814,9 +814,6 @@
 <script>
 import { Notification } from 'element-ui'
 import { mapMutations, mapActions } from 'vuex'
-import { quitstore } from '../api/QuitStoreAdapter.js'
-import { parseResponse } from '../sparql_help/sparql_response.js'
-import sparql from '../sparql_help/sparql_queries.js'
 import ElHeader from 'element-ui/packages/header/src/main'
 import ElRow from 'element-ui/packages/row/src/row'
 import ElContainer from 'element-ui/packages/container/src/main'
@@ -917,7 +914,7 @@ export default {
 
   // load formdata before entering
   beforeRouteEnter (to, from, next) {
-    var id = to.params.id
+    let id = to.params.id
 
     if (id === undefined) {
       next(vm => {
@@ -925,34 +922,16 @@ export default {
         vm.setDefaultData(vm.$options.data())
       })
     } else {
-      let query = sparql.formQuery(id)
-
-      // query quitstore for the requested id
-      quitstore
-        .getData(query)
-        .then(response => {
-          response = parseResponse(response.data)
-          if (response.length > 0) {
-            // response length > 0 -> load document
-            next(vm => {
-              let data = {}
-              // data is in the form [{p: 'predicateName', o: 'predicateValue'},...] -> convert to {'predicateName': predicateValue, ...}
-              for (let predicate of response) {
-                data[predicate.p] = predicate.o
-              }
-              vm.setDefaultData({ formdata: data })
-            })
-          } else {
-            // response length == 0 -> no triples for the document id can be found
-            alert('document not found')
+      next(vm => {
+        vm.$store.dispatch('loadFormDataAction', id)
+          .then(formData => {
+            vm.$data.formdata = formData.formdata
+          })
+          .catch(error => {
+            alert(error)
             next(false)
-          }
-        })
-        .catch(error => {
-          // something went wrong
-          alert('Error trying to load document')
-          console.error(error)
-        })
+          })
+      })
     }
   },
 
@@ -974,9 +953,9 @@ export default {
     ...mapMutations(['saveTicket']),
     ...mapActions(['addFormData']),
 
-    addFormData: function () {
+    saveNewForm: function () {
       this.$store
-        .dispatch('addFormData', this.formdata)
+        .dispatch('saveNewFormAction', this.formdata)
         .then(() => this.$router.push('home'))
         .catch(error => alert(error))
     },
