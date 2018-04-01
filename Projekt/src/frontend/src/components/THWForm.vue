@@ -1547,7 +1547,7 @@ export default {
     margin: 10px;
   }
   .overlay {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.15);
     pointer-events: none;
     z-index: 1;
     width: 100%;
