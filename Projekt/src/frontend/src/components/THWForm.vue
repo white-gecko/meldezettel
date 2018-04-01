@@ -962,6 +962,13 @@ export default {
         .catch(error => alert(error))
     },
 
+    updateForm: function () {
+      this.$store
+        .dispatch('updateFromDataAction', this.formdata)
+        .then(() => this.$router.push('home'))
+        .catch(error => alert(error))
+    },
+
     formReset: function () {
       this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata))
     },

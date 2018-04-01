@@ -70,6 +70,24 @@ export const loadFormDataAction = (context, id) => {
   })
 }
 
+/**
+ *
+ * @param context
+ * @param formData
+ * @returns {Promise<any>}
+ */
 export const updateFormDataAction = (context, formData) => {
-  /* @TODO implement action once delete query is available */
+  return new Promise((resolve, reject) => {
+    loadFormDataAction(null, formData.documentID)
+      .then(oldFormData => {
+        let deleteOldDataQuery = queryHelper.formdataToDeleteQuery(oldFormData)
+        quitstore.sendData(deleteOldDataQuery)
+          .then(() => {
+            let insertNewDataQuery = queryHelper.formdataToInsertQuery(formData)
+            quitstore.sendData(insertNewDataQuery)
+              .then(() => {return resolve()})
+              .catch(error => new Error('Unable to insert data. Error Msg:\n' + error))
+          }).catch(error => new Error('Unable to delete data. Error Msg:\n' + error))
+      }).catch(error => new Error('Unable to load form data. Error Msg:\n' + error))
+  })
 }
