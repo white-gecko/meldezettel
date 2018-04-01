@@ -1,5 +1,6 @@
 <template>
-  <div class="flexContainerFormA">
+  <div class="flexContainerFormA"
+       style="flex-wrap: nowrap">
     <!--main-form-->
     <div class="
           formWrapper
@@ -15,7 +16,8 @@
               outerWrapper
               hasMarginFormA
               hasPaddingFormA
-              flexContainerFormB">
+              flexContainerFormB"
+             style="padding-top: 5px">
 
           <div class="flexContainerFormA">
 
@@ -29,9 +31,8 @@
               <!--checkbox-group (message-type)-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
-                <el-form-item class="flexContainerFormA">
+                    checkboxgroupMTTop">
+                <div class="flexContainerFormC">
                   <label>
                     <input id="radioTop"
                            type="checkbox"
@@ -62,7 +63,7 @@
                            v-model="formdata.topCourier"/>
                     Kurier/Melder
                   </label>
-                </el-form-item>
+                </div>
               </div>
 
               <div class="flexContainerFormA">
@@ -70,8 +71,7 @@
                 <!--input-complex ("Eingehend")-->
                 <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    inputIncoming
                     flexContainerFormB">
                   <label class="headerFormA">Eingehend</label>
                   <label class="headerFormB">Aufnahmevermerk</label>
@@ -83,7 +83,9 @@
                       Datum
                     </label>
                     <input id="primaryDate"
-                           class="inputWithLabel"
+                           class="
+                            inputWithLabel
+                            hasMinMaxA"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryDate"/>
                   </div>
@@ -95,7 +97,9 @@
                       Zeit
                     </label>
                     <input id="primaryTime"
-                           class="inputWithLabel"
+                           class="
+                            inputWithLabel
+                            hasMinMaxA"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryTime"/>
                   </div>
@@ -107,7 +111,9 @@
                       Hdz
                     </label>
                     <input id="primaryHdZ"
-                           class="inputWithLabel"
+                           class="
+                            inputWithLabel
+                            hasMinMaxA"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryHdZ"/>
                   </div>
@@ -116,10 +122,9 @@
                 <!--input-complex ("Ausgehend")-->
                 <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    inputOutgoing
                     flexContainerFormB">
-                  <label class="headerFormA">Eingehend</label>
+                  <label class="headerFormA">Ausgehend</label>
                   <div class="flexContainerFormA">
                     <div class="flexContainerFormB">
                       <label class="headerFormB">Annahmevermerk</label>
@@ -131,7 +136,9 @@
                           Datum
                         </label>
                         <input id="secondaryDate"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.secondaryDate"/>
                       </div>
@@ -143,7 +150,9 @@
                           Zeit
                         </label>
                         <input id="secondaryTime"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.secondaryTime"/>
                       </div>
@@ -155,7 +164,9 @@
                           Hdz
                         </label>
                         <input id="secondaryHdZ"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.primaryHdZ"/>
                       </div>
@@ -170,7 +181,9 @@
                           Datum
                         </label>
                         <input id="tertiaryDate"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.tertiaryDate"/>
                       </div>
@@ -182,7 +195,9 @@
                           Zeit
                         </label>
                         <input id="tertiaryTime"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.tertiaryTime"/>
                       </div>
@@ -194,7 +209,9 @@
                           Hdz
                         </label>
                         <input id="tertiaryHdZ"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.tertiaryHdZ"/>
                       </div>
@@ -215,29 +232,31 @@
               <!--input-complex ("Technisches Betriebsbuch")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    inputTB
                     flexContainerFormB">
                 <label class="headerFormA">Technisches Betriebsbuch</label>
                 <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                     style="margin: 30px 0 0 20px;">
                   <label class="inputLabel"
                          for="numberTB">
                     Nr.
                   </label>
                   <input id="numberTB"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxA"
                          v-model="formdata.numberTB"/>
                 </div>
-                <label>
+                <label style="margin: 30px 0 0 20px;">
                   <input id="checkboxEingehendTop"
                          @change="checkIn();"
                          type="checkbox"
                          v-model="other.tempEingehend"/>
                   Eingehend
                 </label>
-                <label>
+                <label style="margin: 30px 0 0 20px;">
                   <input id="checkboxAusgehendTop"
                          @change="checkOut();"
                          type="checkbox"
@@ -256,20 +275,22 @@
                 hasMarginFormB
                 hasPaddingFormB">
 
-            <!--input-complex ("Rufnahme Gegenstelle/Spruchkopf") -->
+            <!--input-complex ("Rufname Gegenstelle/Spruchkopf") -->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputRGS">
               <div class="
                         inputWrapper
                         flexContainerFormA">
                 <label class="inputLabel"
-                       for="receiverName">
-                  Rufnahme der Gegenstelle/Spruchkopf
+                       for="receiverName"
+                       style="min-width: 270px">
+                  Rufname der Gegenstelle/Spruchkopf
                 </label>
                 <input id="receiverName"
-                       class="inputWithLabel"
+                       class="
+                        inputWithLabel
+                        hasMinMaxB"
                        v-model="formdata.receiverName"/>
               </div>
             </div>
@@ -295,9 +316,8 @@
             <!--checkboxgroup (message-type)-->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
-              <el-form-item class="flexContainerFormA">
+                    checkboxgroupMTMid">
+              <div class="flexContainerFormC">
                 <label>
                   <input id="radioMid"
                          type="checkbox"
@@ -328,7 +348,7 @@
                          v-model="formdata.midCourier"/>
                   Kurier/Melder
                 </label>
-              </el-form-item>
+              </div>
             </div>
 
             <div class="flexContainerFormA">
@@ -336,9 +356,8 @@
               <!--checkbox-group ("Durchsage/Spruch")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
-                <el-form-item class="flexContainerFormA">
+                    checkboxgroupDS">
+                <div class="flexContainerFormC">
                   <label>
                     <input id="callAnnouncement"
                            type="checkbox"
@@ -351,15 +370,14 @@
                            v-model="formdata.callMessage"/>
                     Spruch
                   </label>
-                </el-form-item>
+                </div>
               </div>
 
               <!--checkbox-group ("Sofort/Blitz")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
-                <el-form-item class="flexContainerFormA">
+                    checkboxgroupSB">
+                <div class="flexContainerFormC">
                   <label>
                     <input id="priorityInstant"
                            type="checkbox"
@@ -372,7 +390,7 @@
                            v-model="formdata.priorityFlash"/>
                     Blitz
                   </label>
-                </el-form-item>
+                </div>
               </div>
 
             </div>
@@ -382,8 +400,7 @@
               <!--input-complex ("Rufnr.")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputRufnr">
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -392,7 +409,9 @@
                     Ruf Nr.
                   </label>
                   <input id="callNumber"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxC"
                          v-model="formdata.callNumber"/>
                 </div>
               </div>
@@ -400,8 +419,7 @@
               <!--input-complex ("Anschrift")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputAnschrift">
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -410,7 +428,9 @@
                     Anschrift
                   </label>
                   <input id="address"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxC"
                          v-model="formdata.address"/>
                 </div>
               </div>
@@ -418,8 +438,7 @@
               <!--input-complex ("Gesprächsnotiz")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputGESP">
                 <label>
                   <input id="talkNote"
                          type="checkbox"
@@ -441,16 +460,17 @@
             <!--input-complex ("Inhalt")-->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputInhalt">
               <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                   style="height: auto">
                 <textarea id="content"
-                          rows="5"
-                          cols="10"
                           placeholder="Inhalt"
-                          class="inputWithLabel"
+                          rows="5"
+                          class="
+                            inputWithLabel
+                            hasMinMaxD"
                           v-model="formdata.content"/>
               </div>
             </div>
@@ -466,8 +486,7 @@
             <!--input-complex ("Absender")-->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputAbsender">
               <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -477,7 +496,9 @@
                 </label>
                 <input id="sender"
                        placeholder="Einheit/Einrichtung/Stelle"
-                       class="inputWithLabel"
+                       class="
+                        inputWithLabel
+                        hasMinMaxE"
                        v-model="formdata.sender"/>
               </div>
             </div>
@@ -487,8 +508,7 @@
               <!--input-complex ("Abfassungszeit")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputAbZeit">
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -497,7 +517,9 @@
                     Abfassungszeit
                   </label>
                   <input id="createTime"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxA"
                          v-model="formdata.createTime"/>
                 </div>
               </div>
@@ -505,8 +527,7 @@
               <!--input-complex ("Zeichen")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputZeichen">
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -515,7 +536,9 @@
                     Zeichen
                   </label>
                   <input id="identification"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxF"
                          v-model="formdata.identification"/>
                 </div>
               </div>
@@ -523,8 +546,7 @@
               <!--input-complex ("Funktion")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputFunktion">
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -533,7 +555,9 @@
                     Funktion
                   </label>
                   <input id="position"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxF"
                          v-model="formdata.position"/>
                 </div>
               </div>
@@ -561,8 +585,8 @@
             <!--input-complex ("Quittung")-->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputQuittung
+                    flexContainerFormB">
               <label class="headerFormA">Quittung</label>
               <div class="
                         inputWrapper
@@ -572,7 +596,9 @@
                   Zeit
                 </label>
                 <input id="docketTime"
-                       class="inputWithLabel"
+                       class="
+                        inputWithLabel
+                        hasMinMaxG"
                        v-model="formdata.docketTime"/>
               </div>
               <div class="
@@ -583,7 +609,9 @@
                   Zeichen
                 </label>
                 <input id="docketIdentification"
-                       class="inputWithLabel"
+                       class="
+                        inputWithLabel
+                        hasMinMaxG"
                        v-model="formdata.docketIdentification"/>
               </div>
             </div>
@@ -593,13 +621,12 @@
               <!--input-complex ("TEL/EL/...")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    checkboxgroupTEL
                     flexContainerFormB">
                 <label class="headerFormA">TEL/EL/EAL/UEAL</label>
                 <div class="flexContainerFormA">
                   <div class="flexContainerFormB">
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationLeader"
                              type="checkbox"
                              v-model="formdata.stationLeader"/>
@@ -607,31 +634,31 @@
                     </label>
                   </div>
                   <div class="flexContainerFormB">
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationS1"
                              type="checkbox"
                              v-model="formdata.stationS1"/>
                       S1
                     </label>
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationS2"
                              type="checkbox"
                              v-model="formdata.stationS2"/>
                       S2
                     </label>
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationS3"
                              type="checkbox"
                              v-model="formdata.stationS3"/>
                       S3
                     </label>
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationS4"
                              type="checkbox"
                              v-model="formdata.stationS4"/>
                       S4
                     </label>
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationS6"
                              type="checkbox"
                              v-model="formdata.stationS6"/>
@@ -644,8 +671,7 @@
               <!--input-complex ("Fachberater")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    checkboxgroupFachberater
                     flexContainerFormB">
                 <label class="headerFormA">Fachberater</label>
                 <div class="
@@ -655,7 +681,9 @@
                          type="checkbox"
                          v-model="formdata.advisorTickA"/>
                   <input id="advisorA"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.advisorA"/>
                 </div>
                 <div class="
@@ -665,7 +693,9 @@
                          type="checkbox"
                          v-model="formdata.advisorTickB"/>
                   <input id="advisorB"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.advisorB"/>
                 </div>
                 <div class="
@@ -675,7 +705,9 @@
                          type="checkbox"
                          v-model="formdata.advisorTickC"/>
                   <input id="advisorC"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.advisorC"/>
                 </div>
                 <div class="
@@ -685,7 +717,9 @@
                          type="checkbox"
                          v-model="formdata.advisorTickD"/>
                   <input id="advisorD"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.advisorD"/>
                 </div>
                 <div class="
@@ -695,7 +729,9 @@
                          type="checkbox"
                          v-model="formdata.advisorTickE"/>
                   <input id="advisorE"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.advisorE"/>
                 </div>
               </div>
@@ -703,8 +739,7 @@
               <!--input-complex ("Verb. stellen")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    checkboxgroupVerb
                     flexContainerFormB">
                 <label class="headerFormA">Verb. stellen</label>
                 <div class="
@@ -714,7 +749,9 @@
                          type="checkbox"
                          v-model="formdata.connectionTickA"/>
                   <input id="connectionA"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.connectionA"/>
                 </div>
                 <div class="
@@ -724,7 +761,9 @@
                          type="checkbox"
                          v-model="formdata.connectionTickB"/>
                   <input id="connectionB"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.connectionB"/>
                 </div>
                 <div class="
@@ -734,7 +773,9 @@
                          type="checkbox"
                          v-model="formdata.connectionTickC"/>
                   <input id="connectionC"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.connectionC"/>
                 </div>
                 <div class="
@@ -744,7 +785,9 @@
                          type="checkbox"
                          v-model="formdata.connectionTickD"/>
                   <input id="connectionD"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.connectionD"/>
                 </div>
                 <div class="
@@ -754,7 +797,9 @@
                          type="checkbox"
                          v-model="formdata.connectionTickE"/>
                   <input id="connectionE"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.connectionE"/>
                 </div>
               </div>
@@ -773,14 +818,14 @@
             <!--input-complex ("Vermerke")-->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    inputVermerke
                     flexContainerFormB">
               <label class="headerFormA">Vermerke</label>
               <textarea id="annotations"
-                        rows="5"
-                        cols="10"
-                        class="inputWithLabel"
+                        cols="35"
+                        class="
+                          inputWithLabel
+                          hasMinMaxI"
                         v-model="formdata.annotations"/>
             </div>
 
@@ -1038,6 +1083,7 @@ export default {
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
+    padding: 10px 0 20px 0;
   }
   .formWrapper {
     background-color: var(--semiLightNeutralColor);
@@ -1046,8 +1092,6 @@ export default {
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
-    padding-top: 50px;
-    padding-bottom: 20px;
   }
   .sideMenuForm {
     background-color: var(--semiLightNeutralColor);
@@ -1056,37 +1100,148 @@ export default {
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding: 50px 0 20px 0;
     margin-left: 40px;
   }
   .inputWrapper {
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 10px;
-    height: 40px
+    margin: 0 10px 0 20px;
+    height: 40px;
   }
   .inputLabel {
     background-color: var(--darkNeutralColor);
+    white-space: nowrap;
     min-width: 60px;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 10px 10px 0 10px;
+  }
+  .checkboxLabel {
+    padding: 10px 15px 14px 10px;
+    cursor: pointer;
   }
   .inputWithLabel {
+    background-color: var(--semiLightNeutralColor);
+    padding-left: 10px;
     border: var(--darkNeutralColor);
     border-style: solid;
-    max-width: 60px;
-    padding-left: 10px;
+    border-width:2px;
   }
   .headerFormA {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
+    padding: 10px 0 10px 10px;
+    white-space: nowrap;
   }
   .headerFormB {
-    padding-bottom: 10px;
-    padding-left: 20px;
+    padding: 0 0 10px 20px;
+  }
+
+  /*top-section*/
+  .checkboxgroupMTTop {
+    margin: 0 5px 5px 5px;
+    padding: 10px 0 10px 0;
+    max-width: 787.85px;
+  }
+  .inputIncoming {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 260.93px;
+  }
+  .inputOutgoing {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 521.9px;
+  }
+  .inputTB {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    height: 223px;
+    max-width: 256.367px;
+  }
+  .inputRGS {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 1049.22px;
+  }
+
+  /*mid-section*/
+  .checkboxgroupMTMid {
+    margin: 0 5px 5px 5px;
+    padding: 10px 0 10px 0;
+    max-width: 1049.22px;
+  }
+  .checkboxgroupDS {
+    margin: 0 5px 5px 5px;
+    padding: 5px 0 10px 0;
+    max-width: 563.1px;
+  }
+  .checkboxgroupSB {
+    margin: 0 5px 5px 0;
+    padding: 5px 0 10px 0;
+    max-width: 481.177px;
+  }
+  .inputRufnr {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 355.733px;
+  }
+  .inputAnschrift {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 397.75px;
+  }
+  .inputGESP {
+    margin: 0 5px 5px 0;
+    padding: 10px 0 0 35px;
+    max-width: 285.733px;
+  }
+  .inputInhalt {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 1049.22px;
+  }
+  .inputAbsender {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 1049.22px;
+  }
+  .inputAbZeit {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 376.783px;
+  }
+  .inputZeichen {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 330.75px;
+  }
+  .inputFunktion {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 331.683px;
+  }
+
+  /*bot-section*/
+  .inputQuittung {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 716.383px;
+  }
+  .checkboxgroupTEL {
+    margin: 0 5px 5px 5px;
+    padding: 0 15px 0 0;
+    max-width: 161px;
+  }
+  .checkboxgroupFachberater {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 272.683px;
+  }
+  .checkboxgroupVerb {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 272.7px;
+  }
+  .inputVermerke {
+    margin: 0 5px 5px 0;
+    padding: 0 20px 0 0;
+    max-width: 327.833px;
   }
 
   /*
@@ -1094,47 +1249,65 @@ export default {
     different settings for spacing
    */
   .hasMarginFormA {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 0 20px 0px 20px;
   }
   .hasPaddingFormA {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding: 0 10px 10px 10px;
   }
 
   .hasMarginFormB {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 0 0 0 0;
   }
   .hasPaddingFormB {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding:  0 0 0 0;
   }
 
-  .hasMarginFormC {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .hasPaddingFormC {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
-/*border-settings:
+  /*
+  border-settings:
     different border styles
   */
+
+  /*
+  min-max-settings:
+  */
+  .hasMinMaxA {
+    min-width: 50px;
+    width: 55%;
+  }
+  .hasMinMaxB {
+    min-width: 50px;
+    width: 69.3%;
+  }
+  .hasMinMaxC {
+    min-width: 50px;
+    width: 72%;
+  }
+  .hasMinMaxD {
+    min-width: 50px;
+    width: 97.6%;
+  }
+  .hasMinMaxE {
+    min-width: 50px;
+    width: 89%;
+  }
+  .hasMinMaxF {
+    min-width: 50px;
+    width: 65.5%;
+  }
+  .hasMinMaxG {
+    min-width: 50px;
+    width: 84.5%;
+  }
+  .hasMinMaxH {
+    min-width: 50px;
+    width: 83%;
+  }
+  .hasMinMaxI {
+    min-width: 50px;
+    width: 90%;
+    margin-left: 20px;
+    height: 100%;
+  }
 
   /*
  shadow-settings:
@@ -1154,10 +1327,16 @@ export default {
   .flexContainerFormA {
     display: flex;
     flex-direction: row;
+    align-content: stretch;
   }
   .flexContainerFormB {
     display: flex;
     flex-direction: column;
+  }
+  .flexContainerFormC {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 
   .testSquare{
@@ -1165,5 +1344,14 @@ export default {
     width: 100px;
     height: 50px;
     margin: 10px;
+  }
+
+  input {
+    margin: 0;
+    padding: 0;
+  }
+  textarea {
+    resize: none;
+    font-size: var(--bodySize);
   }
 </style>

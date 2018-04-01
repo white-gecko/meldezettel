@@ -100,6 +100,7 @@ export default {
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
     padding-top: 50px;
+    height: 400px;
   }
 
   .menu-item {

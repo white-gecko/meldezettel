@@ -13,7 +13,7 @@
         <router-view style="
                       width: 78%;
                       margin-left: 40px;
-                      margin-top: 90px;"/>
+                      margin-top: 140px;"/>
 
     </div>
 
@@ -103,20 +103,25 @@ export default {
   .outerWrapper {
     background-color: var(--darkNeutralColor);
     font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
+    flex-grow: 1;
   }
 
   .middleWrapper {
     background-color: var(--middleNeutralColor);
     font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
+    flex-grow: 1;
   }
 
   .innerWrapper {
-    background-color: var(--lightNeutralColor);
+    background-color: var(--semiLightNeutralColor);
     font-family: var(--mainFont);
     font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
+    flex-grow: 1;
   }
 
   /*CSS-reset:
