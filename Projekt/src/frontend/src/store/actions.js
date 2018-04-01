@@ -79,15 +79,35 @@ export const loadFormDataAction = (context, id) => {
 export const updateFormDataAction = (context, formData) => {
   return new Promise((resolve, reject) => {
     loadFormDataAction(null, formData.documentID)
+
       .then(oldFormData => {
-        let deleteOldDataQuery = queryHelper.formdataToDeleteQuery(oldFormData)
+        let formdata = oldFormData.formdata
+        console.log(formdata)
+        let deleteOldDataQuery = queryHelper.formdataToDeleteQuery(formdata)
+        console.log(deleteOldDataQuery)
         quitstore.sendData(deleteOldDataQuery)
+
           .then(() => {
             let insertNewDataQuery = queryHelper.formdataToInsertQuery(formData)
+            console.log('INQD: ' + insertNewDataQuery)
             quitstore.sendData(insertNewDataQuery)
-              .then(() => {return resolve()})
-              .catch(error => new Error('Unable to insert data. Error Msg:\n' + error))
-          }).catch(error => new Error('Unable to delete data. Error Msg:\n' + error))
-      }).catch(error => new Error('Unable to load form data. Error Msg:\n' + error))
+
+              .then(() => {
+                return resolve()
+              })
+              // Catch errors that were thrown when trying to send new data
+              .catch(error => {
+                return reject(new Error(error))
+              })
+            // Catch errors that were thrown when trying to send delete query
+          }).catch(error => {
+            console.log('Unable to delete data. Error Msg:\n' + error)
+            return reject(new Error(error))
+          })
+        // Catch errors that were thrown when trying to get old form data
+      }).catch(error => {
+        console.log('Unable to load form data. Error Msg:\n' + error)
+        return reject(new Error(error))
+      })
   })
 }

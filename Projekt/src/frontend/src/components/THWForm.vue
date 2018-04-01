@@ -807,6 +807,9 @@
                   notifySuccess('Formular zurückgesetzt')">
         Zurücksetzen
       </el-button>
+      <el-button @click="updateForm">
+        Update
+      </el-button>
     </div>
   </div>
 </template>
@@ -956,17 +959,18 @@ export default {
     ...mapActions(['addFormData']),
 
     saveNewForm: function () {
-      this.$store
-        .dispatch('saveNewFormAction', this.formdata)
+      this.$store.dispatch('saveNewFormAction', this.formdata)
         .then(() => this.$router.push('home'))
         .catch(error => alert(error))
     },
 
-    updateForm: function () {
-      this.$store
-        .dispatch('updateFromDataAction', this.formdata)
-        .then(() => this.$router.push('home'))
-        .catch(error => alert(error))
+    updateForm: function (event) {
+      event.preventDefault()
+      this.$store.dispatch('updateFormDataAction', this.formdata)
+        .then(() => {
+          this.$router.push('home')
+        })
+        .catch(error => console.log(error))
     },
 
     formReset: function () {

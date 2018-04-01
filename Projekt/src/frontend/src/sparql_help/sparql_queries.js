@@ -53,10 +53,10 @@ PREFIX : <http://www.na17b.org/thw/>
   formdataToDeleteQuery: function (doc) {
     // default prefixes + graph prefixes
     let query = `
-PREFIX id: <http://www.na17b.org/thw/resource/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX : <http://www.na17b.org/thw/>
-`
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX : <http://www.na17b.org/thw/>
+      `
 
     let uri = 'id:' + doc.documentID
     delete doc.documentID
