@@ -831,6 +831,8 @@ export default {
   data: () => {
     return {
       formdata: {
+        documentID: '',
+
         topRadio: true,
         topPhone: false,
         topFax: false,

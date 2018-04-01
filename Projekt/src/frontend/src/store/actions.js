@@ -61,6 +61,7 @@ export const loadFormDataAction = (context, id) => {
           for (let pred of formDataObj) {
             formData[pred.p] = pred.o
           }
+          formData['documentID'] = id
           return resolve(formData)
         } else {
           // response length == 0 -> no triples for the document id can be found

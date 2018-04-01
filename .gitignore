@@ -19,6 +19,10 @@
 #ignore possible dolphin setting files
 *.directory
 
+#ignore possible python compiler files
+*.pyc
+
+
 *.swp
 
 .vscode/
