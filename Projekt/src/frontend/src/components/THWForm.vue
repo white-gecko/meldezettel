@@ -964,8 +964,7 @@ export default {
         .catch(error => alert(error))
     },
 
-    updateForm: function (event) {
-      event.preventDefault()
+    updateForm: function () {
       this.$store.dispatch('updateFormDataAction', this.formdata)
         .then(() => {
           this.$router.push('home')
