@@ -16,7 +16,7 @@ export default new Router({
       redirect: 'home',
       children: [
         {
-          path: '/home',
+          path: 'home',
           name: 'Home',
           component: THWDashboard
         },

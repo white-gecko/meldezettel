@@ -87,12 +87,12 @@
         </el-collapse-item>
       </el-collapse>
     </el-form>
-  <el-table :data="tabledata" style="width: 100%" max-height="500">
+  <el-table :data="ticketList" style="width: 100%" max-height="500">
     <el-table-column width="80">
       <template slot-scope="scope">
         <router-link v-bind:to="{
           name:'Create',
-          params:{id: tabledata[scope.$index]['id'] }}"
+          params:{id: ticketList[scope.$index]['id'] }}"
                      tag="el-button">
           <i class="el-icon-zoom-in"></i>
         </router-link>
@@ -102,7 +102,7 @@
     <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
     <el-table-column :formatter="formatState"
                      label="Status"
-                     prop="state"
+                     prop="ticketState"
                      align="center"
                      width="100"></el-table-column>
 
@@ -138,59 +138,41 @@
   </el-table>
   </div>
 </template>
-
 <script>
 import { Notification } from 'element-ui'
-import { quitstore } from '../api/QuitStoreAdapter.js'
-import { parseResponse } from '../sparql_help/sparql_response.js'
-import sparql from '../sparql_help/sparql_queries.js'
-import store from '../store/index.js'
 import { mapActions } from 'vuex'
 
 export default {
   name: 'THWDashboard',
 
   beforeRouteEnter (to, from, next) {
-    let filterStore = store.getters.getFilters
-    let query = sparql.dashboardQuery(filterStore)
-    quitstore.getData(query)
-      .then((response) => {
-        next(vm => {
-          let data = parseResponse(response.data)
-          data = vm.formatDisplay(data)
-          vm.setData(data)
-          vm.$store.dispatch('setTicketlist', data)
-          vm.setFilter(filterStore)
-        })
-      })
-      .catch((error) => {
-        alert(error)
-        next()
-      })
+    next(vm => {
+      vm.$store.dispatch('updateTicketListAction')
+        .catch(error => alert(error))
+    })
   },
 
   beforeRouteUpdate (to, from, next) {
     next(false)
   },
 
-  data () {
-    return {
-      filter: {},
-      tabledata: [{}]
+  computed: {
+    ticketList () {
+      return this.$store.state.ticketlist
+    },
+    filter () {
+      return this.$store.state.filter
     }
   },
 
-  computed: {
-    ...mapActions['setFilters']
-  },
-
   methods: {
+    ...mapActions['setFilters'],
     /*  function that changes filters in vuex store, then calls
         a function that updates dashboard
     */
     changeFilters: function () {
       this.$store
-        .dispatch('setFilters', this.filters)
+        .dispatch('setFilters', this.filter)
         .then(() => this.useFilters())
         .catch((error) => alert(error))
     },
@@ -199,17 +181,8 @@ export default {
         works similar to beforeRouteEnter
     */
     useFilters: function () {
-      let filterStore = this.$store.getters.getFilters
-      let query = sparql.dashboardQuery(filterStore)
-      quitstore.getData(query)
-        .then((response) => {
-          let data = parseResponse(response.data)
-          data = this.formatDisplay(data)
-          this.setData(data)
-          this.$store.dispatch('setTicketlist', data)
-          this.setFilter(filterStore)
-          this.notifySuccess('Filter angewandt')
-        })
+      this.$store.dispatch('updateTicketListAction')
+        .catch(error => alert(error))
     },
     /*  This function sets values for creator, date and time to
         match the correct fields depending on if the document is
@@ -298,7 +271,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style>
@@ -323,7 +295,56 @@ export default {
   .stateFilter{
     font-size: 20px;
   }
-  .stateTable{
+  .stateTable {
     font-size: 35px;
+  }
+  .dashboard {
+    background-color: var(--semiLightNeutralColor);
+    width: 80%;
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+    padding-top: 50px;
+    padding-bottom: 20px;
+  }
+  .sideMenuDashboard {
+    background-color: var(--semiLightNeutralColor);
+    width: 20%;
+    overflow: visible;
+    font-family: var(--mainFont);
+    font-size: var(--bigTitleSize);
+    color: var(--primaryTextColor);
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-left: 40px;
+  }
+
+  /*
+  shadow-settings:
+  different shadow settings
+   */
+  .hasShadowDashboardA {
+    box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
+  }
+  .hasShadowDashboardB {
+    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
+  }
+
+  /*
+  flex-settings:
+    different settings for the flex attribute
+  */
+  .flexContainerDashboardA {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .flexContainerDashboardB {
+    display: flex;
+    flex-direction: row;
+  }
+  .flexChildDashboardA {
+    align-self: center;
   }
 </style>

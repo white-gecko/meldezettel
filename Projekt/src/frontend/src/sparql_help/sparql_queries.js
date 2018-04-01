@@ -1,5 +1,5 @@
 export default{
-  /** function which creates a SPARQL query based on given doc object
+  /** function which creates a SPARQL Insert query based on given doc object
    * @param = formdata object that got edited or created in THWForm.vue
    * @return = SPARQL query that inserts data of formdata object into
    *           QuitStore
@@ -7,29 +7,69 @@ export default{
   formdataToInsertQuery: function (doc) {
     // default prefixes + graph prefixes
     let query = `
-      PREFIX id: <http://www.na17b.org/thw/resource/>
-      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-      PREFIX thw: <http://www.na17b.org/thw/>
-      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    `
+PREFIX id: <http://www.na17b.org/thw/resource/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.na17b.org/thw/>
+`
 
     let uri = ''
     if (doc.documentID !== '') {
       uri = 'id:' + doc.documentID
+    } else if (doc.outgoing) {
+      uri = 'id:' + doc.identification + Date.now()
     } else {
-      uri = 'id:' + doc.signature + Date.now()
+      uri = 'id:' + doc.primaryHdZ + Date.now()
     }
     delete doc.documentID
 
     // base for sparql insert queries
-    query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
+    query += 'INSERT DATA {GRAPH : {'
 
-    query += uri + ' rdf:type thw:document'
+    query += uri + ' rdf:type :document'
 
     for (let key in doc) {
       let value = doc[key]
 
-      query += ';thw:' + key + ' '
+      query += ';:' + key + ' '
+      if (typeof value === 'string') {
+        query += '"' + value + '"'
+      } else if (typeof value === 'object') {
+        let date = new Date(value)
+        query += date.getTime()
+      } else {
+        query += value
+      }
+    }
+    query += '.}}'
+
+    return query
+  },
+
+  /** function which creates a SPARQL delete query based on given doc object
+   * @param = old formdata object that got updated in THWForm.vue
+   * @return = SPARQL query that deletes data of formdata object from
+   *           QuitStore
+   */
+  formdataToDeleteQuery: function (doc) {
+    // default prefixes + graph prefixes
+    let query = `
+PREFIX id: <http://www.na17b.org/thw/resource/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.na17b.org/thw/>
+`
+
+    let uri = 'id:' + doc.documentID
+    delete doc.documentID
+
+    // base for sparql delete queries
+    query += 'DELETE DATA {GRAPH : {'
+
+    query += uri + ' rdf:type :document'
+
+    for (let key in doc) {
+      let value = doc[key]
+
+      query += ';:' + key + ' '
       if (typeof value === 'string') {
         query += '"' + value + '"'
       } else if (typeof value === 'object') {
@@ -52,23 +92,11 @@ export default{
 PREFIX thw: <http://www.na17b.org/thw/>
 PREFIX id: <http://www.na17b.org/thw/resource/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-SELECT
-?id
-?state
-?numberTB
-?identification
-?content
-?primaryDate
-?primaryTime
-?primaryHdZ
-?tertiaryDate
-?tertiaryTime
-?receiverName 
-?docketIdentification
+SELECT *
 FROM thw:
 WHERE {
 ?id rdf:type  thw:document;
-thw:state ?state;
+thw:ticketState ?ticketState;
 thw:receiverName ?receiverName;
 thw:content ?content;
 thw:primaryDate ?primaryDate;
@@ -99,98 +127,98 @@ thw:docketIdentification ?docketIdentification`
     let check = false
     let states = ''
     if (filter.s1) {
-      states += ` ?state = 1`
+      states += ` ?ticketState = 1`
       check = true
     }
     if (filter.s2) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 2`
+      states += ` ?ticketState = 2`
       check = true
     }
     if (filter.s3) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 3`
+      states += ` ?ticketState = 3`
       check = true
     }
     if (filter.s4) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 4`
+      states += ` ?ticketState = 4`
       check = true
     }
     if (filter.s5) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 5`
+      states += ` ?ticketState = 5`
       check = true
     }
     if (filter.s6) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 6`
+      states += ` ?ticketState = 6`
       check = true
     }
     if (filter.s7) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 7`
+      states += ` ?ticketState = 7`
       check = true
     }
     if (filter.s8) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 8`
+      states += ` ?ticketState = 8`
       check = true
     }
     if (filter.s9) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 9`
+      states += ` ?ticketState = 9`
       check = true
     }
     if (filter.s11) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 11`
+      states += ` ?ticketState = 11`
       check = true
     }
     if (filter.s12) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 12`
+      states += ` ?ticketState = 12`
       check = true
     }
     if (filter.s13) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 13`
+      states += ` ?ticketState = 13`
       check = true
     }
     if (filter.s14) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 14`
+      states += ` ?ticketState = 14`
       check = true
     }
     if (filter.s15) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?state = 15`
+      states += ` ?ticketState = 15`
     }
 
     let queryFilter = ''
@@ -205,7 +233,6 @@ thw:docketIdentification ?docketIdentification`
     }
 
     query += queryFilter + '}'
-    console.log(query)
 
     return query
   },
@@ -220,7 +247,7 @@ thw:docketIdentification ?docketIdentification`
       PREFIX thw: <http://www.na17b.org/thw/>
       PREFIX id: <http://www.na17b.org/thw/resource/>
 
-      SELECT ?id ?p ?o FROM thw: WHERE{
+      SELECT ?p ?o FROM thw: WHERE{
         id:` + id + ` ?p ?o
         FILTER(?p != rdf:type)
       }

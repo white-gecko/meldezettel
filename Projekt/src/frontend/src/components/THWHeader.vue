@@ -1,63 +1,78 @@
 <template>
-  <div class="header">
-    <!-- <el-row>
-      <el-col :span="3">
-        <el-row>
-          <div class="wrapperTHWHeA" style="width: 120px;">
-            <div class="wrapperTHWHeB"
-                 style="padding-top: 0; height: 60px; width: 60px;">
-             <img src="@/assets/PlaceholderMainIcon.png"
-                   height="60"
-                   width="60">
-            </div>
-          </div>
-        </el-row>
-      </el-col>
 
-      <el-col :span="12">
-        <el-row>
-          <div style="height: 20px;">
+  <div class="
+        header
+        hasShadowHeaderA
+        flexContainerHeaderA">
 
-          </div>
-        </el-row>
-      </el-col>
+    <div class="
+          THWlogoWrapper
+          flexContainerHeaderB">
 
-      <el-col :span="9">
-        <el-row>
-          <el-col :span="7.5">
-            <div class="wrapperTHWHeA" style="width: 120px;">
-              <div class="wrapperTHWHeB"
-                   style="padding-top: 0; height: 60px; width: 60px;">
-                <img src="@/assets/PlaceholderSichterIcon.png"
-                     height="60"
-                     width="60">
-              </div>
-            </div>
-          </el-col>
-          <el-col :span="8">
-            <div class="wrapperTHWHeA">
-              <div class="wrapperTHWHeB">
-                <div class="wrapperTHWHeC">
-                  {{ this.role }}
-                </div>
-              </div>
-            </div>
-          </el-col>
-          <el-col :span="8">
-            <div class="wrapperTHWHeA">
-              <div class="wrapperTHWHeB">
-                <div class="wrapperTHWHeC">
-                  Zeichen
-                </div>
-              </div>
-            </div>
-          </el-col>
-        </el-row>
-      </el-col>
+      <div class="
+          logoHeader
+          hasShadowHeaderB
+          flexContainerHeaderA
+          flexChildHeaderB">
+        <img src="@/assets/thwLogo.png"
+             height="70"
+             width="70">
+      </div>
 
-    </el-row> -->
-    <!-- <img src="@/assets/thw-logo.png" height="60" width="60">-->
+      <div class="
+            headerWrapper
+            hasShadowHeaderB"
+           style="
+            margin-left: 0%;
+            padding-left: 10%;
+            padding-right: 10%;
+            margin-left: 0%;
+            margin-right: 0%;">
+        Technisches Hilfswerk
+      </div>
+
+    </div>
+
+    <div class="
+          headerWrapper
+          hasShadowHeaderB">
+      Einsatz
+    </div>
+
+    <div class="
+          headerWrapper
+          hasShadowHeaderB">
+      Zeichen
+    </div>
+
+    <div class="
+          roleLogoWrapper
+          flexContainerHeaderB">
+      <div class="
+          logoHeader
+          hasShadowHeaderB
+          flexContainerHeaderA">
+        <img :src="selectIcon"
+             height="70"
+             width="70">
+      </div>
+
+      <div class="
+            headerWrapper
+            hasShadowHeaderB"
+           style="
+            margin-right: 0%;
+            padding-left: 10%;
+            padding-right: 10%;
+            margin-left: 0%;
+            margin-right: 0%;">
+        {{this.user.role}}
+      </div>
+
+    </div>
+
   </div>
+
 </template>
 
 <script>
@@ -66,67 +81,121 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'THWHeader',
-
   computed: {
     ...mapGetters({
-      role: 'getRole'
-    })
+      user: 'getUser'
+    }),
+
+    selectIcon: function () {
+      /* if (this.role === 'Sichter') {
+        return require('@/assets/sichterIcon.png')
+      } else if (this.role === 'LdF') {
+        return require('@/assets/LdFIcon.png')
+      } else if (this.role === 'Fernmelder') {
+        return require('@/assets/fernmelderIcon.png')
+      } else if (this.role === 'SGL') {
+        return require('@/assets/SGLIcon.png')
+      } else if (this.role === 'Fachberater') {
+        return require('@/assets/fachberaterIcon.png')
+      } else if (this.role === 'Verbindungsstelle') {
+        return require('@/assets/verbindungsstelleIcon.png')
+      } else {
+        return require('@/assets/placeholderIcon.png')
+      } */
+      return require('@/assets/sichterIcon.png')
+      // return require('@/assets/LdFIcon.png')
+      // return require('@/assets/fernmelderIcon.png')
+      // return require('@/assets/SGLIcon.png')
+      // return require('@/assets/fachberaterIcon.png')
+      // return require('@/assets/verbindungsstelleIcon.png')
+      // return require('@/assets/placeholderIcon.png')
+    }
+
   }
 }
 </script>
 
 <style>
   .header {
-    background-color: var(--mainColor);
-    height: 60px;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--regularTextColor);
-    border-radius: 0px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 10px;
-  }
-
-  .wrapperTHWHeA {
-    background-color: var(--darkNeutralColor);
-    height: 60px;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--regularTextColor);
-    border-radius: 5px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-
-  .wrapperTHWHeB {
-    background-color: var(--middleNeutralColor);
+    background-color: var(--semiLightNeutralColor);
     height: 50px;
+    width: 100%;
+    border-radius: 0px 0px 0px 0px;
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--regularTextColor);
-    border-radius: 50px;
+    overflow: visible;
+    padding-top: 0%;
+    position: fixed;
+  }
+  .headerWrapper {
+    height: 40px;
+    background-color: var(--semiLightNeutralColor);
+    border-bottom: var(--mainColor);
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
     padding-top: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-
+    margin-left: 1%;
+    margin-right: 1%;
+    white-space: nowrap;
+  }
+  .logoHeader {
+    background-color: var(--darkNeutralColor);
+    min-height: 70px;
+    min-width: 80px;
+    border-bottom: var(--mainColor);
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+  }
+  .THWlogoWrapper {
+    margin-left: 10%;
+    margin-right: 18%;
+  }
+  .roleLogoWrapper {
+    margin-left: 1%;
+    margin-right: 10%;
   }
 
-  .wrapperTHWHeC {
-    background-color: var(--lightNeutralColor);
-    height: 40px;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    font-weight: bold;
-    color: var(--regularTextColor);
-
-    border-radius: 5px;
+  /*
+  flex-settings:
+    different settings for the flex attribute
+  */
+  .flexContainerHeaderA{
     display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .flexContainerHeaderB{
+    display: flex;
+    flex-direction: row;
+  }
+
+  /*
+  shadow-settings:
+    different shadow settings
+  */
+  .hasShadowHeaderA {
+    box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
+  }
+  .hasShadowHeaderB {
+    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
+  }
+
+  /*temp*/
+  .testSquare1 {
+    background-color: white;
+    height: 70px;
+    width: 10%;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  .testSquare2 {
+    background-color: white;
+    height: 70px;
+    width: 40%;
+    margin-left: 2%;
+    margin-right: 2%;
   }
 </style>

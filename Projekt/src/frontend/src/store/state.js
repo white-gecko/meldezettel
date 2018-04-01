@@ -19,6 +19,7 @@ export default {
     s14: true,
     s15: true
   },
+  draft: undefined,
   user: {
     role: '',
     sender: '',

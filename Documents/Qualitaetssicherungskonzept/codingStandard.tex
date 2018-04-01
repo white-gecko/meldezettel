@@ -4,74 +4,74 @@ Ein einheitlicher Coding-Standard ist sinnvoll, da er eine gute Lesbarkeit des C
 \subsection{Code Layout}
 
 \begin{itemize}
-\item Einrückungen
-\begin{itemize}
-\item Generell werden für Einrückungen Tabs mit der Länge von vier Zeichen empfohlen. Dabei ist gerade bei Python zu beachten, dass Tabs und Leerzeichen nicht gemischt werden dürfen, bei Javascript ist es jedem freigestellt was er benutzen möchte.
-\item Folgezeilen sollten klar erkennbar sein, wobei aber die \grqq vier Leerzeichen einrücken\grqq -Regel nicht gilt.
-z.B: \\
-(1)
-\begin{lstlisting}[language=python]
-foo = long_function_name(var_one, var_two,
-                         var_three, var_four)
-\end{lstlisting}
-(2) 
-\begin{lstlisting}[language=python]
-foo = long_function_name(
-  	  var_one, var_two,
-  	  var_three, var_four)   
-\end{lstlisting}
-\end{itemize}
-\item Zeilenlänge
-\begin{itemize}
-\item Die maximale Zeilenlänge ist auf 80 Zeichen beschränkt. 
-%\item Längere Textabschnitte, wie z.B: Kommentare oder Dokumentarstrings, sind auf 72 Zeichen beschränkt.
-\item Längere Textabschnitte, wie z.B: Kommentare oder Dokumentarstrings, sind davon ausgenommen.
-\end{itemize}
-\item Zeilenumbrüche bei binären Operatoren
-\begin{itemize}
-\item Zeilenumbrüche sollten immer vor binären Operatoren stehen, da so einfacher zu erkennen ist, welcher Operator zu welchem Objekt gehört.
-z.B.: 
-\begin{lstlisting}[language=python]
-income = (gross_wages
-        + taxable_interest
-        + (dividends - qualified_dividends)
-        - ira_deduction
-        - student_loan_interest)
-\end{lstlisting}
-\end{itemize}
-\item Leerzeilen
-\begin{itemize}
-\item Top-Level Funktionen und Klassen-Definitionen sollten mit jeweils zwei Leerzeilen umfasst sein.
-\item Einfache Methoden-Definitionen in Klassen sollten mit jeweils einer Leerzeile umgeben werden.
-\item Zusätzliche Leerzeilen können, wenn auch sparsam, genutz werden um die logische Struktur von z.B.: Gruppen von Funktionen oder Sektionen mit ähnlichem/zusammengehörigem Inhalt zu verdeutlichen.
-\end{itemize}
-\item Kommentare
-\begin{itemize}
-\item Kommentare sollten immer über dem Objekt stehen welches sie beschreiben.
-\end{itemize}
+	\item Einrückungen
+	\begin{itemize}
+		\item Generell werden für Einrückungen Tabs mit der Länge von vier Zeichen empfohlen. Dabei ist gerade bei Python zu beachten, dass Tabs und Leerzeichen nicht gemischt werden dürfen, bei Javascript ist es jedem freigestellt was er benutzen möchte.
+		\item Folgezeilen sollten klar erkennbar sein, wobei aber die \grqq vier Leerzeichen einrücken\grqq -Regel nicht gilt.
+		z.B: \\
+		(1)
+		\begin{lstlisting}[language=python]
+		foo = long_function_name(var_one, var_two,
+		var_three, var_four)
+		\end{lstlisting}
+		(2) 
+		\begin{lstlisting}[language=python]
+		foo = long_function_name(
+		var_one, var_two,
+		var_three, var_four)   
+		\end{lstlisting}
+	\end{itemize}
+	\item Zeilenlänge
+	\begin{itemize}
+		\item Die maximale Zeilenlänge ist auf 80 Zeichen beschränkt. 
+		%\item Längere Textabschnitte, wie z.B: Kommentare oder Dokumentarstrings, sind auf 72 Zeichen beschränkt.
+		\item Längere Textabschnitte, wie z.B: Kommentare oder Dokumentarstrings, sind davon ausgenommen.
+	\end{itemize}
+	\item Zeilenumbrüche bei binären Operatoren
+	\begin{itemize}
+		\item Zeilenumbrüche sollten immer vor binären Operatoren stehen, da so einfacher zu erkennen ist, welcher Operator zu welchem Objekt gehört.
+		z.B.: 
+		\begin{lstlisting}[language=python]
+		income = (gross_wages
+		+ taxable_interest
+		+ (dividends - qualified_dividends)
+		- ira_deduction
+		- student_loan_interest)
+		\end{lstlisting}
+	\end{itemize}
+	\item Leerzeilen
+	\begin{itemize}
+		\item Top-Level Funktionen und Klassen-Definitionen sollten mit jeweils zwei Leerzeilen umfasst sein.
+		\item Einfache Methoden-Definitionen in Klassen sollten mit jeweils einer Leerzeile umgeben werden.
+		\item Zusätzliche Leerzeilen können, wenn auch sparsam, genutzt werden um die logische Struktur von z.B.: Gruppen von Funktionen oder Sektionen mit ähnlichem/zusammengehörigem Inhalt zu verdeutlichen.
+	\end{itemize}
+	\item Kommentare
+	\begin{itemize}
+		\item Kommentare sollten immer über dem Objekt stehen welches sie beschreiben.
+	\end{itemize}
 \end{itemize}
 
 \subsection{Leerzeichen}
 \begin{itemize}
-\item vermeiden
-\begin{itemize}
-\item Sie sollten direkt nach öffnenden Klammern oder vor schließenden Klammern vermieden werden.
-z.B.: 
-\begin{lstlisting}[language=python]
-spam(ham[1], {eggs: 2})
-spam( ham[ 1 ], { eggs: 2 } )
-\end{lstlisting}
-\item Sie sollten nicht vor Kommas, Semikolons oder Doppelpunkten stehen (wobei das nicht für alle Doppelpunkte gilt, siehe \grqq Slice-Expressions \grqq).
-\item Zwischen \grqq nachfolgenden \grqq Kommas und schließenden Klammern sollten sie vermieden werden.
-\item Auch direkt vor öffnenden Klammern, welche Argumentlisten eröffnen, bzw. Indizes oder Slices beginnen, sollten sie vermieden werden.
-\end{itemize}
-\item nutzen
-\begin{itemize}
-\item Sie sollten genutz werden um die folgenden binäre Operatoren zu umgeben: assignment (=), augmented assignment (+=, -=, etc.), comparisons (==, <, >, !=, <>, <=, >=, in, not in, is, is not), Booleans (and, or, not), Slicing(:).
-\item Auch sollte der \grqq -> \grqq -Operator bei Funktionsannotationen mit jeweils einem Leerzeichen umgeben sein.
-\item Kommentare innerhalb von Methoden oder Funktionen sollen mindestens mit zwei Leerzeichen vom Ausdruck getrennt sein welchen sie beschreiben.
-\item Nach einem Komma, Semikolon, Doppelpunkt sollte ein Leerzeichen folgen.
-\end{itemize}
+	\item vermeiden
+	\begin{itemize}
+		\item Sie sollten direkt nach öffnenden Klammern oder vor schließenden Klammern vermieden werden.
+		z.B.: 
+		\begin{lstlisting}[language=python]
+		spam(ham[1], {eggs: 2})
+		spam( ham[ 1 ], { eggs: 2 } )
+		\end{lstlisting}
+		\item Sie sollten nicht vor Kommas, Semikolons oder Doppelpunkten stehen (wobei das nicht für alle Doppelpunkte gilt, siehe \grqq Slice-Expressions \grqq).
+		\item Zwischen \grqq nachfolgenden \grqq Kommas und schließenden Klammern sollten sie vermieden werden.
+		\item Auch direkt vor öffnenden Klammern, welche Argumentlisten eröffnen, bzw. Indizes oder Slices beginnen, sollten sie vermieden werden.
+	\end{itemize}
+	\item nutzen
+	\begin{itemize}
+		\item Sie sollten genutzt werden um die folgenden binäre Operatoren zu umgeben: assignment (=), augmented assignment (+=, -=, etc.), comparisons (==, <, >, !=, <>, <=, >=, in, not in, is, is not), Booleans (and, or, not), Slicing(:).
+		\item Auch sollte der \grqq -> \grqq -Operator bei Funktionsannotationen mit jeweils einem Leerzeichen umgeben sein.
+		\item Kommentare innerhalb von Methoden oder Funktionen sollen mindestens mit zwei Leerzeichen vom Ausdruck getrennt sein welchen sie beschreiben.
+		\item Nach einem Komma, Semikolon, Doppelpunkt sollte ein Leerzeichen folgen.
+	\end{itemize}
 \end{itemize}
 
 \subsection{Kommentare}

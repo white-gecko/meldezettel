@@ -1,4 +1,4 @@
-export const setTicketlist = (state, newList) => {
+export const setTicketList = (state, newList) => {
   state.ticketlist = newList
 }
 
@@ -12,4 +12,8 @@ export const setShowLandingPage = (state) => {
 
 export const setFilters = (state, newFilter) => {
   state.filters = newFilter
+}
+
+export const setDraft = (state, fromdata) => {
+  state.draft = fromdata
 }
