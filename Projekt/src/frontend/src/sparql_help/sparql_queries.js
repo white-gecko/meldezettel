@@ -32,7 +32,7 @@ PREFIX : <http://www.na17b.org/thw/>
 
       query += ';:' + key + ' '
       if (typeof value === 'string') {
-        query += '"' + value + '"'
+        query += '"""' + value + '"""'
       } else if (typeof value === 'object') {
         let date = new Date(value)
         query += date.getTime()
@@ -42,7 +42,7 @@ PREFIX : <http://www.na17b.org/thw/>
     }
     query += '.}}'
 
-    return query
+    return encodeURIComponent(query)
   },
 
   /** function which creates a SPARQL delete query based on given doc object
@@ -71,7 +71,7 @@ PREFIX : <http://www.na17b.org/thw/>
 
       query += ';:' + key + ' '
       if (typeof value === 'string') {
-        query += '"' + value + '"'
+        query += '"""' + value + '"""'
       } else if (typeof value === 'object') {
         let date = new Date(value)
         query += date.getTime()
@@ -81,7 +81,7 @@ PREFIX : <http://www.na17b.org/thw/>
     }
     query += '.}}'
 
-    return query
+    return encodeURIComponent(query)
   },
 
   /**
