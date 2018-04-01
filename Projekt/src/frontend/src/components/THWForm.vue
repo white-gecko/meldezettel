@@ -812,8 +812,8 @@
 </template>
 
 <script>
-import { Notification } from 'element-ui'
-import { mapMutations, mapActions } from 'vuex'
+import { MessageBox, Notification } from 'element-ui'
+import { mapMutations, mapActions, mapGetters } from 'vuex'
 import ElHeader from 'element-ui/packages/header/src/main'
 import ElRow from 'element-ui/packages/row/src/row'
 import ElContainer from 'element-ui/packages/container/src/main'
@@ -914,56 +914,84 @@ export default {
     }
   },
 
-  // load formdata before entering
   beforeRouteEnter (to, from, next) {
-    let id = to.params.id
-
-    if (id === undefined) {
-      next(vm => {
-        // no id => load default values
-        vm.setDefaultData(vm.$options.data())
-      })
-    } else {
-      next(vm => {
-        vm.$store.dispatch('loadFormDataAction', id)
-          .then(formData => {
-            vm.$data.formdata = formData.formdata
-          })
-          .catch(error => {
-            alert(error)
-            next(false)
-          })
-      })
-    }
+    next(vm => vm.loadDocument(to.params.id))
   },
 
   beforeRouteUpdate (to, from, next) {
-    next(false)
+    if (from.params.id === undefined) {
+      this.askSaveDraft()
+        .then(() => {
+          this.loadDocument(to.params.id)
+          next()
+        })
+    } else {
+      this.loadDocument(to.params.id)
+      next()
+    }
   },
 
-  created () {
-    document.addEventListener('focusin', this.focusIn)
-    document.addEventListener('focusout', this.focusOut)
-  },
-
-  beforeDestroy () {
-    document.removeEventListener('focusin', this.focusIn)
-    document.removeEventListener('focusout', this.focusOut)
+  beforeRouteLeave (to, from, next) {
+    if (from.params.id === undefined) {
+      this.askSaveDraft()
+        .then(() => next())
+    } else {
+      next()
+    }
   },
 
   methods: {
-    ...mapMutations(['saveTicket']),
-    ...mapActions(['addFormData']),
+    ...mapMutations(['setDraft']),
+    ...mapActions(['saveNewFormAction', 'loadFormDataAction']),
+    ...mapGetters(['getDraft']),
+
+    loadDefault: function () {
+      this.setDefaultData(this.$options.data().formdata)
+    },
+
+    loadDraft: function () {
+      let draft = this.getDraft() || this.$options.data().formdata
+      this.setDefaultData(draft)
+    },
+
+    loadID: function (id) {
+      this.loadFormDataAction(id)
+        .then((formdata) => this.setDefaultData(formdata))
+        .catch((error) => {
+          this.messageBoxError('', error.message)
+            .then(this.$router.push({name: 'Home'}))
+        })
+    },
+
+    loadDocument: function (id) {
+      if (id === undefined) this.loadDefault()
+      else if (id === 'draft') this.loadDraft()
+      else this.loadID(id)
+    },
+
+    askSaveDraft: function () {
+      return new Promise((resolve, reject) => {
+        this.dialog(
+          '',
+          'Soll das Formular als Entwurf gespeichert werden?')
+          .then(() => {
+            this.setDraft(this.$data.formdata)
+            return resolve()
+          })
+          .catch(() => {
+            return resolve()
+          })
+      })
+    },
 
     saveNewForm: function () {
-      this.$store
-        .dispatch('saveNewFormAction', this.formdata)
-        .then(() => this.$router.push('home'))
+      this.saveNewFormAction(this.formdata)
+        .then(() => this.$router.push({name: 'Home'}))
         .catch(error => alert(error))
     },
 
     formReset: function () {
-      this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata))
+      this.$data.formdata = JSON.parse(JSON.stringify(this.default))
     },
 
     setDefaultData: function (value) {
@@ -971,18 +999,31 @@ export default {
       this.formReset()
     },
 
-    focusIn (event) {
-      const el = event.target
-      if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.add('highlighted')
-      }
+    dialog: function (title, message) {
+      return MessageBox({
+        title: title,
+        message: message,
+        confirmButtonText: 'Ja',
+        showCancelButton: true,
+        cancelButtonText: 'Nein',
+        showClose: false,
+        closeOnPressEscape: false,
+        closeOnClickModal: false,
+        modal: true
+      })
     },
 
-    focusOut (event) {
-      const el = event.target
-      if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.remove('highlighted')
-      }
+    messageBoxError: function (title, message) {
+      return MessageBox({
+        title: title,
+        message: message,
+        type: 'error',
+        confirmButtonText: 'Ok',
+        showClose: false,
+        closeOnPressEscape: false,
+        closeOnClickModal: false,
+        modal: true
+      })
     },
 
     notifySuccess (message) {
@@ -990,6 +1031,17 @@ export default {
         title: message,
         duration: 1200,
         type: 'success',
+        offset: 120,
+        showClose: false
+      })
+    },
+
+    notifyError (title, message) {
+      Notification({
+        title: title,
+        message: message,
+        duration: 1200,
+        type: 'error',
         offset: 120,
         showClose: false
       })
