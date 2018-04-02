@@ -32,7 +32,7 @@ PREFIX : <http://www.na17b.org/thw/>
 
       query += ';:' + key + ' '
       if (typeof value === 'string') {
-        query += '"' + value + '"'
+        query += '"""' + value + '"""'
       } else if (typeof value === 'object') {
         let date = new Date(value)
         query += date.getTime()
@@ -71,7 +71,7 @@ PREFIX : <http://www.na17b.org/thw/>
 
       query += ';:' + key + ' '
       if (typeof value === 'string') {
-        query += '"' + value + '"'
+        query += '"""' + value + '"""'
       } else if (typeof value === 'object') {
         let date = new Date(value)
         query += date.getTime()
