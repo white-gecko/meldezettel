@@ -3,7 +3,6 @@
 <template>
 
 <div class="userData">
-<!-- formWrapper hasShadowFormA form flexContainerFormB-->
 <el-form
   :model="userData"
   :rules="rules"
@@ -44,32 +43,18 @@
         border
         @current-change="selectOperation"
         size="small">
-        <el-table-column
-          prop="operationName"
-          label="Einsatz-Name">
-        </el-table-column>
-        <el-table-column
-          prop="operationAdress"
-          label="Einsatz-Adresse">
-        </el-table-column>
-        <el-table-column
-          prop="operationStaffType"
-          label="Art des Stabes">
-        </el-table-column>
-        <!--
-        <el-table-column
-          fixed="right"
-          label="Optionen"
-          width="120">
-          <template slot-scope="scope">
-            <el-button
-              type="text"
-              size="small">
-              Wählen
-            </el-button>
-          </template>
-        </el-table-column>
-        -->
+          <el-table-column
+            prop="operationName"
+            label="Einsatz-Name">
+          </el-table-column>
+          <el-table-column
+            prop="operationAdress"
+            label="Einsatz-Adresse">
+          </el-table-column>
+          <el-table-column
+            prop="operationStaffType"
+            label="Art des Stabes">
+          </el-table-column>
         </el-table>
       </el-form-item>
     </el-form-item>
@@ -96,31 +81,7 @@
         </label>
         <input v-model="newOperation.operationStaffType"/>
       </div>
-<!--
-      <el-form-item style="margin-bottom: 20px">
-        <el-input v-model="newOperation.operationName">
-          <template slot='prepend'>
-            <span>Einsatzname</span>
-          </template>
-        </el-input>
-      </el-form-item>
 
-      <el-form-item style="margin-bottom: 20px">
-        <el-input v-model="newOperation.operationAdress">
-          <template slot='prepend'>
-            <span>Anschrift</span>
-          </template>
-        </el-input>
-      </el-form-item>
-
-      <el-form-item style="margin-bottom: 20px">
-        <el-input v-model="newOperation.operationStaffType">
-          <template slot='prepend'>
-            <span>Art des Stabes</span>
-          </template>
-        </el-input>
-      </el-form-item>
--->
       <el-form-item>
         <el-button @click="validateOperation()">Einsatz speichern</el-button>
       </el-form-item>
@@ -164,23 +125,7 @@
       </label>
       <input v-model="userData.identification"/>
     </div>
-<!--
-  <el-form-item prop="sender" style="margin-bottom: 20px">
-    <el-input v-model="userData.sender">
-      <template slot='prepend'>
-        <span>Absender</span>
-      </template>
-    </el-input>
-  </el-form-item>
 
-  <el-form-item prop="identification" style="margin-bottom: 20px">
-    <el-input v-model="userData.identification">
-      <template slot='prepend'>
-        <span>Handzeichen</span>
-      </template>
-    </el-input>
-  </el-form-item>
--->
   <el-form-item style="margintop: 100px">
     <el-button @click="validateUser('userData')">Eingaben speichern</el-button>
     <el-button @click="resetForm('userData')">Felder leeren</el-button>
@@ -236,66 +181,7 @@ export default {
       // objects for operations, roles and positions
       operations: [{}],
       roles: roleOptions,
-      positions: positionOptions,
-
-      // rules to validate input
-      rules: {
-        sender: [
-          { required: true,
-            message: 'Bitte Namen eingeben',
-            trigger: 'blur' },
-          { min: 3,
-            max: 30,
-            message: 'Der Name sollte aus 3-30 Zeichen bestehen',
-            trigger: 'blur' }
-        ],
-        identification: [
-          { required: true,
-            message: 'Bitte Handzeichen eingeben',
-            trigger: 'blur' },
-          { min: 2,
-            max: 3,
-            message: 'Das Handzeichen sollte aus 2-3 Zeichen bestehen',
-            trigger: 'blur' }
-        ],
-        operationName: [
-          { required: true,
-            message: 'Bitte Einsatzbezeichnung eingeben',
-            trigger: 'blur' },
-          { min: 2,
-            max: 3,
-            message: 'Die Einsatzbezeichnung sollte aus 3-30 Zeichen bestehen',
-            trigger: 'blur' }
-        ],
-        operationAdress: [
-          { required: true,
-            message: 'Bitte Anschrift eingeben',
-            trigger: 'blur' },
-          { min: 2,
-            max: 3,
-            message: 'Die Anschrift sollte aus 3-30 Zeichen bestehen',
-            trigger: 'blur' }
-        ],
-        operationStaffType: [
-          { required: true,
-            message: 'Bitte Art des Stabes eingeben',
-            trigger: 'blur' },
-          { min: 2,
-            max: 3,
-            message: 'Art des Stabes sollte aus 3-30 Zeichen bestehen',
-            trigger: 'blur' }
-        ],
-        position: [
-          { required: (this.role === 'SGL'),
-            message: 'Bitte die Funktion auswählen',
-            trigger: 'change' }
-        ],
-        role: [
-          { required: true,
-            message: 'Bitte eine Rolle auswählen',
-            trigger: 'change' }
-        ]
-      }
+      positions: positionOptions
     }
   },
 
