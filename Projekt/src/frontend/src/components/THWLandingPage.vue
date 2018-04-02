@@ -207,7 +207,7 @@ export default {
       this.$data.operations.pop()
       this.$data.operations = storedOperations
     },
-    // stores userData in store/state.js (vuex)
+    // checks if userData is typed in (not empty)
     validateUser (userData) {
       if (this.userData.identification === '' || this.userData.sender === '') {
         alert('Bitte Absender und Handzeichen eintragen.')
@@ -215,6 +215,7 @@ export default {
         this.submitUser()
       }
     },
+    // stores userData in store/state.js (vuex)
     submitUser () {
       this.$store.commit('setUser', this.userData)
       this.notifySuccess('Eingaben erfolgreich gespeichert')
@@ -231,6 +232,7 @@ export default {
       this.notifySuccess('Einsatz ausgewählt.')
       this.choosingOperation = false
     },
+    // check if operation data is filled in
     validateOperation () {
       if (
         this.newOperation.operationName === '' ||
@@ -239,6 +241,7 @@ export default {
         alert('Bitte Einsatzdaten eingeben.')
       } else {
         this.submitOperation()
+        this.selectOperation(this.newOperation)
       }
     },
     // handle saving of a new operation
