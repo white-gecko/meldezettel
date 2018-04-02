@@ -82,6 +82,10 @@
                 @click="changeFilters()">
                 Anwenden
               </el-button>
+              <el-button
+                @click="resetFilters()">
+                Zurücksetzen
+              </el-button>
             </el-col>
           </el-row>
         </el-collapse-item>
@@ -166,13 +170,19 @@ export default {
   },
 
   methods: {
-    ...mapActions['setFilters'],
+    ...mapActions['setFilters','setDefaultFilters'],
     /*  function that changes filters in vuex store, then calls
         a function that updates dashboard
     */
     changeFilters: function () {
       this.$store
         .dispatch('setFilters', this.filter)
+        .then(() => this.useFilters())
+        .catch((error) => alert(error))
+    },
+    resetFilters: function () {
+      this.$store
+        .dispatch('setDefaultFilters')
         .then(() => this.useFilters())
         .catch((error) => alert(error))
     },
