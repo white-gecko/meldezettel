@@ -12,3 +12,7 @@ export const setUser = (state, userData) => {
 export const setShowLandingPage = (state) => {
   state.showLandingPage = false
 }
+
+export const setDraft = (state, fromdata) => {
+  state.draft = fromdata
+}

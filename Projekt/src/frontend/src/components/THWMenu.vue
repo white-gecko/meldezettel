@@ -67,6 +67,25 @@
             min-width: 150px;">Nutzerdaten</div>
     </div>
 
+    <div class="
+          menu-item
+          hasShadowMenuB
+          flexContainerMenuB"
+         index="create"
+         @click="goTo('Create', {id: 'draft'})">
+      <div class="
+            logoMenu
+            hasShadowMenuA
+            flexChildMenuA">
+      </div>
+      <div class="flexChildMenuA"
+           style="
+            text-align: right;
+            margin-left: 5%;
+            margin-right: 5%;
+            min-width: 150px;">Entwurf öffnen</div>
+    </div>
+
   </div>
 </template>
 
@@ -84,8 +103,8 @@ export default {
   },
 
   methods: {
-    goTo: function (path) {
-      this.$router.push({name: path})
+    goTo: function (path, params) {
+      this.$router.push({name: path, params: params})
     }
   }
 }
@@ -100,6 +119,7 @@ export default {
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
     padding-top: 50px;
+    height: 400px;
   }
 
   .menu-item {
