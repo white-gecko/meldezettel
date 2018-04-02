@@ -122,7 +122,7 @@
       </el-form-item>
 -->
       <el-form-item>
-        <el-button @click="submitOperation()">Einsatz speichern</el-button>
+        <el-button @click="validateOperation()">Einsatz speichern</el-button>
       </el-form-item>
     </div>
 
@@ -182,7 +182,7 @@
   </el-form-item>
 -->
   <el-form-item style="margintop: 100px">
-    <el-button @click="submitUser('userData')">Eingaben speichern</el-button>
+    <el-button @click="validateUser('userData')">Eingaben speichern</el-button>
     <el-button @click="resetForm('userData')">Felder leeren</el-button>
   </el-form-item>
 
@@ -258,6 +258,33 @@ export default {
             message: 'Das Handzeichen sollte aus 2-3 Zeichen bestehen',
             trigger: 'blur' }
         ],
+        operationName: [
+          { required: true,
+            message: 'Bitte Einsatzbezeichnung eingeben',
+            trigger: 'blur' },
+          { min: 2,
+            max: 3,
+            message: 'Die Einsatzbezeichnung sollte aus 3-30 Zeichen bestehen',
+            trigger: 'blur' }
+        ],
+        operationAdress: [
+          { required: true,
+            message: 'Bitte Anschrift eingeben',
+            trigger: 'blur' },
+          { min: 2,
+            max: 3,
+            message: 'Die Anschrift sollte aus 3-30 Zeichen bestehen',
+            trigger: 'blur' }
+        ],
+        operationStaffType: [
+          { required: true,
+            message: 'Bitte Art des Stabes eingeben',
+            trigger: 'blur' },
+          { min: 2,
+            max: 3,
+            message: 'Art des Stabes sollte aus 3-30 Zeichen bestehen',
+            trigger: 'blur' }
+        ],
         position: [
           { required: (this.role === 'SGL'),
             message: 'Bitte die Funktion auswählen',
@@ -289,32 +316,23 @@ export default {
   methods: {
 
     ...mapActions(['handleOperation']),
-    // TODO: load stored operations into LandingPage
-    /*
-    setStoredOperations (storedOperations) {
-      this.default = storedOperations
-      this.setOperations()
-    },
-    setOperations () {
-      this.$data.userData.operations =
-        JSON.parse(JSON.stringify(this.default.userData))
-    },
-    */
+
     setStoredOperations (storedOperations) {
       this.$data.operations.pop()
       this.$data.operations = storedOperations
     },
     // stores userData in store/state.js (vuex)
-    submitUser (userName) {
-      this.$refs[userName].validate((valid) => {
-        if (valid) {
-          this.$store.commit('setUser', this.userData)
-          this.notifySuccess('Eingaben erfolgreich gespeichert')
-          this.$store.commit('setShowLandingPage')
-        } else {
-          return false
-        }
-      })
+    validateUser (userData) {
+      if (this.userData.identification === '' || this.userData.sender === '') {
+        alert('Bitte Absender und Handzeichen eintragen.')
+      } else {
+        this.submitUser()
+      }
+    },
+    submitUser () {
+      this.$store.commit('setUser', this.userData)
+      this.notifySuccess('Eingaben erfolgreich gespeichert')
+      this.$store.commit('setShowLandingPage')
     },
     // resets inputs
     resetForm (formName) {
@@ -326,6 +344,16 @@ export default {
       this.userData.operation = this.currentRowObject
       this.notifySuccess('Einsatz ausgewählt.')
       this.choosingOperation = false
+    },
+    validateOperation () {
+      if (
+        this.newOperation.operationName === '' ||
+        this.newOperation.operationAdress === '' ||
+        this.newOperation.operationStaffType === '') {
+        alert('Bitte Einsatzdaten eingeben.')
+      } else {
+        this.submitOperation()
+      }
     },
     // handle saving of a new operation
     submitOperation () {
