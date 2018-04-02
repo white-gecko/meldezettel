@@ -6,7 +6,7 @@ import axios from 'axios'
  * We assume that the QuitStore will always listen at port 5000
  */
 export const quitstore = {
-  url: 'http://192.168.99.100:5000/sparql',
+  url: 'http://127.0.0.1:5000/sparql',
   /**
    * Method used for retrieving data from the QuitStore via axios's get method.
    * @param {string} sparqlQuery - A SPARQL SELECT query
