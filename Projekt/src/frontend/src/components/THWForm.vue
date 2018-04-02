@@ -797,7 +797,7 @@
           hasShadowFormA
           flexContainerFormB">
       <el-button @click="
-                  saveNewForm();
+                  saveForm();
                   notifySuccess('Abgeschickt')"
                  tabindex="6">
         Abschicken
@@ -806,9 +806,6 @@
                   formReset();
                   notifySuccess('Formular zurückgesetzt')">
         Zurücksetzen
-      </el-button>
-      <el-button @click="updateForm()">
-        Update
       </el-button>
     </div>
   </div>
@@ -912,7 +909,8 @@ export default {
 
       other: {
         tempEingehend: true,
-        tempAusgehend: false
+        tempAusgehend: false,
+        isEdit: false
       }
     }
   },
@@ -928,9 +926,11 @@ export default {
       })
     } else {
       next(vm => {
+        // load form data by id, replace 'Erstellen' button with 'Update' btn.
         vm.$store.dispatch('loadFormDataAction', id)
           .then(formData => {
             vm.$data.formdata = formData.formdata
+            vm.$data.other.isEdit = true
           })
           .catch(error => {
             alert(error)
@@ -958,18 +958,18 @@ export default {
     ...mapMutations(['saveTicket']),
     ...mapActions(['addFormData']),
 
-    saveNewForm: function () {
-      this.$store.dispatch('saveNewFormAction', this.formdata)
-        .then(() => this.$router.push('home'))
-        .catch(error => alert(error))
-    },
-
-    updateForm: function () {
-      this.$store.dispatch('updateFormDataAction', this.formdata)
-        .then(() => {
-          this.$router.push('home')
-        })
-        .catch(error => console.log(error))
+    saveForm: function () {
+      if (this.$data.other.isEdit) {
+        this.$store.dispatch('updateFormDataAction', this.formdata)
+          .then(() => {
+            this.$router.push({name: 'Home'})
+          })
+          .catch(error => console.log(error))
+      } else {
+        this.$store.dispatch('saveNewFormAction', this.formdata)
+          .then(() => this.$router.push({name: 'Home'}))
+          .catch(error => console.log(error))
+      }
     },
 
     formReset: function () {
