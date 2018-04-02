@@ -13,7 +13,7 @@
         <router-view style="
                       width: 78%;
                       margin-left: 40px;
-                      margin-top: 90px;"/>
+                      margin-top: 140px;"/>
 
     </div>
 
@@ -42,9 +42,9 @@ export default {
     --mainColor: #3d6cb8;
     --lightMainColor: #799bd2;
     --formBlueColor: #9cb7e2;
-    --formGreenColor: "";
-    --formRedColor: "";
-    --formYellowColor: "";
+    --formGreenColor: #9ce2a4;
+    --formRedColor: #e29c9c;
+    --formYellowColor: #e2e29c;
 
     /*secondary colors*/
     --successColor: #67C23A;
@@ -103,20 +103,26 @@ export default {
   .outerWrapper {
     background-color: var(--darkNeutralColor);
     font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
+    flex-grow: 1;
   }
 
   .middleWrapper {
     background-color: var(--middleNeutralColor);
     font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
+    flex-grow: 1;
   }
 
   .innerWrapper {
-    background-color: var(--lightNeutralColor);
+    background-color: var(--semiLightNeutralColor);
     font-family: var(--mainFont);
     font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
+    position: relative;
+    flex-grow: 1;
   }
 
   /*CSS-reset:

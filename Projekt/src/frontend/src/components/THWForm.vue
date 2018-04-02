@@ -1,21 +1,26 @@
 <template>
-  <div class="flexContainerFormA">
+  <div class="flexContainerFormA"
+       style="flex-wrap: nowrap">
     <!--main-form-->
     <div class="
           formWrapper
           hasShadowFormA">
-      <el-form class="
-              form
-              flexContainerFormB"
-               ref="form"
-               :model="formdata">
+      <el-form ref="form" :model="formdata"
+      :class="{
+        'is-blue': isBlue,
+        'is-green': isGreen,
+        'is-yellow': isYellow,
+        'is-red': isRed,
+        'form, flexContainerFormB': true
+        }">
 
         <!--top-section-->
         <div class="
               outerWrapper
               hasMarginFormA
               hasPaddingFormA
-              flexContainerFormB">
+              flexContainerFormB"
+             style="padding-top: 5px">
 
           <div class="flexContainerFormA">
 
@@ -29,9 +34,9 @@
               <!--checkbox-group (message-type)-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
-                <el-form-item class="flexContainerFormA">
+                    checkboxgroupMTTop">
+                <div class="overlay" v-show="!checkboxGroupTop"></div>
+                <div class="flexContainerFormC">
                   <label>
                     <input id="radioTop"
                            type="checkbox"
@@ -62,7 +67,7 @@
                            v-model="formdata.topCourier"/>
                     Kurier/Melder
                   </label>
-                </el-form-item>
+                </div>
               </div>
 
               <div class="flexContainerFormA">
@@ -70,9 +75,9 @@
                 <!--input-complex ("Eingehend")-->
                 <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    inputIncoming
                     flexContainerFormB">
+                  <div class="overlay" v-show="!aufnahme"></div>
                   <label class="headerFormA">Eingehend</label>
                   <label class="headerFormB">Aufnahmevermerk</label>
                   <div class="
@@ -83,7 +88,9 @@
                       Datum
                     </label>
                     <input id="primaryDate"
-                           class="inputWithLabel"
+                           class="
+                            inputWithLabel
+                            hasMinMaxA"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryDate"/>
                   </div>
@@ -95,7 +102,9 @@
                       Zeit
                     </label>
                     <input id="primaryTime"
-                           class="inputWithLabel"
+                           class="
+                            inputWithLabel
+                            hasMinMaxA"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryTime"/>
                   </div>
@@ -107,7 +116,9 @@
                       Hdz
                     </label>
                     <input id="primaryHdZ"
-                           class="inputWithLabel"
+                           class="
+                            inputWithLabel
+                            hasMinMaxA"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryHdZ"/>
                   </div>
@@ -116,10 +127,10 @@
                 <!--input-complex ("Ausgehend")-->
                 <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    inputOutgoing
                     flexContainerFormB">
-                  <label class="headerFormA">Eingehend</label>
+                  <div class="overlay" v-show="!annahmeBefoerderung"></div>
+                  <label class="headerFormA">Ausgehend</label>
                   <div class="flexContainerFormA">
                     <div class="flexContainerFormB">
                       <label class="headerFormB">Annahmevermerk</label>
@@ -131,7 +142,9 @@
                           Datum
                         </label>
                         <input id="secondaryDate"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.secondaryDate"/>
                       </div>
@@ -143,7 +156,9 @@
                           Zeit
                         </label>
                         <input id="secondaryTime"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.secondaryTime"/>
                       </div>
@@ -155,7 +170,9 @@
                           Hdz
                         </label>
                         <input id="secondaryHdZ"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.primaryHdZ"/>
                       </div>
@@ -170,7 +187,9 @@
                           Datum
                         </label>
                         <input id="tertiaryDate"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.tertiaryDate"/>
                       </div>
@@ -182,7 +201,9 @@
                           Zeit
                         </label>
                         <input id="tertiaryTime"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.tertiaryTime"/>
                       </div>
@@ -194,7 +215,9 @@
                           Hdz
                         </label>
                         <input id="tertiaryHdZ"
-                               class="inputWithLabel"
+                               class="
+                                inputWithLabel
+                                hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.tertiaryHdZ"/>
                       </div>
@@ -215,29 +238,32 @@
               <!--input-complex ("Technisches Betriebsbuch")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    inputTB
                     flexContainerFormB">
+                <div class="overlay" v-show="!technischesBetriebsbuch"></div>
                 <label class="headerFormA">Technisches Betriebsbuch</label>
                 <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                     style="margin: 30px 0 0 20px;">
                   <label class="inputLabel"
                          for="numberTB">
                     Nr.
                   </label>
                   <input id="numberTB"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxA"
                          v-model="formdata.numberTB"/>
                 </div>
-                <label>
+                <label style="margin: 30px 0 0 20px;">
                   <input id="checkboxEingehendTop"
                          @change="checkIn();"
                          type="checkbox"
                          v-model="other.tempEingehend"/>
                   Eingehend
                 </label>
-                <label>
+                <label style="margin: 30px 0 0 20px;">
                   <input id="checkboxAusgehendTop"
                          @change="checkOut();"
                          type="checkbox"
@@ -256,20 +282,23 @@
                 hasMarginFormB
                 hasPaddingFormB">
 
-            <!--input-complex ("Rufnahme Gegenstelle/Spruchkopf") -->
+            <!--input-complex ("Rufname Gegenstelle/Spruchkopf") -->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputRGS">
+              <div class="overlay" v-show="!gegenstelle"></div>
               <div class="
                         inputWrapper
                         flexContainerFormA">
                 <label class="inputLabel"
-                       for="receiverName">
-                  Rufnahme der Gegenstelle/Spruchkopf
+                       for="receiverName"
+                       style="min-width: 270px">
+                  Rufname der Gegenstelle/Spruchkopf
                 </label>
                 <input id="receiverName"
-                       class="inputWithLabel"
+                       class="
+                        inputWithLabel
+                        hasMinMaxB"
                        v-model="formdata.receiverName"/>
               </div>
             </div>
@@ -295,9 +324,9 @@
             <!--checkboxgroup (message-type)-->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
-              <el-form-item class="flexContainerFormA">
+                    checkboxgroupMTMid">
+              <div class="overlay" v-show="!checkboxgroupMiddle"></div>
+              <div class="flexContainerFormC">
                 <label>
                   <input id="radioMid"
                          type="checkbox"
@@ -328,7 +357,7 @@
                          v-model="formdata.midCourier"/>
                   Kurier/Melder
                 </label>
-              </el-form-item>
+              </div>
             </div>
 
             <div class="flexContainerFormA">
@@ -336,9 +365,9 @@
               <!--checkbox-group ("Durchsage/Spruch")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
-                <el-form-item class="flexContainerFormA">
+                    checkboxgroupDS">
+                <div class="overlay" v-show="!durchsageSpruch"></div>
+                <div class="flexContainerFormC">
                   <label>
                     <input id="callAnnouncement"
                            type="checkbox"
@@ -351,15 +380,15 @@
                            v-model="formdata.callMessage"/>
                     Spruch
                   </label>
-                </el-form-item>
+                </div>
               </div>
 
               <!--checkbox-group ("Sofort/Blitz")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
-                <el-form-item class="flexContainerFormA">
+                    checkboxgroupSB">
+                <div class="overlay" v-show="!sofortBlitz"></div>
+                <div class="flexContainerFormC">
                   <label>
                     <input id="priorityInstant"
                            type="checkbox"
@@ -372,7 +401,7 @@
                            v-model="formdata.priorityFlash"/>
                     Blitz
                   </label>
-                </el-form-item>
+                </div>
               </div>
 
             </div>
@@ -382,8 +411,8 @@
               <!--input-complex ("Rufnr.")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputRufnr">
+                <div class="overlay" v-show="!rufnummer"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -392,7 +421,9 @@
                     Ruf Nr.
                   </label>
                   <input id="callNumber"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxC"
                          v-model="formdata.callNumber"/>
                 </div>
               </div>
@@ -400,8 +431,8 @@
               <!--input-complex ("Anschrift")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputAnschrift">
+                <div class="overlay" v-show="!anschrift"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -410,7 +441,9 @@
                     Anschrift
                   </label>
                   <input id="address"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxC"
                          v-model="formdata.address"/>
                 </div>
               </div>
@@ -418,8 +451,9 @@
               <!--input-complex ("Gesprächsnotiz")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputGESP">
+                <div class="overlay"
+                     v-show="!gespraechsnotiz"></div>
                 <label>
                   <input id="talkNote"
                          type="checkbox"
@@ -441,16 +475,18 @@
             <!--input-complex ("Inhalt")-->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputInhalt">
+              <div class="overlay" v-show="!inhalt"></div>
               <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                   style="height: auto">
                 <textarea id="content"
-                          rows="5"
-                          cols="10"
                           placeholder="Inhalt"
-                          class="inputWithLabel"
+                          rows="5"
+                          class="
+                            inputWithLabel
+                            hasMinMaxD"
                           v-model="formdata.content"/>
               </div>
             </div>
@@ -466,8 +502,8 @@
             <!--input-complex ("Absender")-->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputAbsender">
+              <div class="overlay" v-show="!absender"></div>
               <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -477,7 +513,9 @@
                 </label>
                 <input id="sender"
                        placeholder="Einheit/Einrichtung/Stelle"
-                       class="inputWithLabel"
+                       class="
+                        inputWithLabel
+                        hasMinMaxE"
                        v-model="formdata.sender"/>
               </div>
             </div>
@@ -487,8 +525,8 @@
               <!--input-complex ("Abfassungszeit")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputAbZeit">
+                <div class="overlay" v-show="!abfassungszeit"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -497,7 +535,9 @@
                     Abfassungszeit
                   </label>
                   <input id="createTime"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxA"
                          v-model="formdata.createTime"/>
                 </div>
               </div>
@@ -505,8 +545,8 @@
               <!--input-complex ("Zeichen")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputZeichen">
+                <div class="overlay" v-show="!zeichen"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -515,7 +555,9 @@
                     Zeichen
                   </label>
                   <input id="identification"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxF"
                          v-model="formdata.identification"/>
                 </div>
               </div>
@@ -523,8 +565,8 @@
               <!--input-complex ("Funktion")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputFunktion">
+                <div class="overlay" v-show="!funktion"></div>
                 <div class="
                         inputWrapper
                         flexContainerFormA">
@@ -533,7 +575,9 @@
                     Funktion
                   </label>
                   <input id="position"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxF"
                          v-model="formdata.position"/>
                 </div>
               </div>
@@ -561,8 +605,9 @@
             <!--input-complex ("Quittung")-->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC">
+                    inputQuittung
+                    flexContainerFormB">
+              <div class="overlay" v-show="!quittung"></div>
               <label class="headerFormA">Quittung</label>
               <div class="
                         inputWrapper
@@ -572,7 +617,9 @@
                   Zeit
                 </label>
                 <input id="docketTime"
-                       class="inputWithLabel"
+                       class="
+                        inputWithLabel
+                        hasMinMaxG"
                        v-model="formdata.docketTime"/>
               </div>
               <div class="
@@ -583,7 +630,9 @@
                   Zeichen
                 </label>
                 <input id="docketIdentification"
-                       class="inputWithLabel"
+                       class="
+                        inputWithLabel
+                        hasMinMaxG"
                        v-model="formdata.docketIdentification"/>
               </div>
             </div>
@@ -593,13 +642,13 @@
               <!--input-complex ("TEL/EL/...")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    checkboxgroupTEL
                     flexContainerFormB">
+                <div class="overlay" v-show="!tel"></div>
                 <label class="headerFormA">TEL/EL/EAL/UEAL</label>
                 <div class="flexContainerFormA">
                   <div class="flexContainerFormB">
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationLeader"
                              type="checkbox"
                              v-model="formdata.stationLeader"/>
@@ -607,31 +656,31 @@
                     </label>
                   </div>
                   <div class="flexContainerFormB">
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationS1"
                              type="checkbox"
                              v-model="formdata.stationS1"/>
                       S1
                     </label>
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationS2"
                              type="checkbox"
                              v-model="formdata.stationS2"/>
                       S2
                     </label>
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationS3"
                              type="checkbox"
                              v-model="formdata.stationS3"/>
                       S3
                     </label>
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationS4"
                              type="checkbox"
                              v-model="formdata.stationS4"/>
                       S4
                     </label>
-                    <label>
+                    <label class="checkboxLabel">
                       <input id="stationS6"
                              type="checkbox"
                              v-model="formdata.stationS6"/>
@@ -644,9 +693,9 @@
               <!--input-complex ("Fachberater")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    checkboxgroupFachberater
                     flexContainerFormB">
+                <div class="overlay" v-show="!tel"></div>
                 <label class="headerFormA">Fachberater</label>
                 <div class="
                         inputWrapper
@@ -655,7 +704,9 @@
                          type="checkbox"
                          v-model="formdata.advisorTickA"/>
                   <input id="advisorA"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.advisorA"/>
                 </div>
                 <div class="
@@ -665,7 +716,9 @@
                          type="checkbox"
                          v-model="formdata.advisorTickB"/>
                   <input id="advisorB"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.advisorB"/>
                 </div>
                 <div class="
@@ -675,7 +728,9 @@
                          type="checkbox"
                          v-model="formdata.advisorTickC"/>
                   <input id="advisorC"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.advisorC"/>
                 </div>
                 <div class="
@@ -685,7 +740,9 @@
                          type="checkbox"
                          v-model="formdata.advisorTickD"/>
                   <input id="advisorD"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.advisorD"/>
                 </div>
                 <div class="
@@ -695,7 +752,9 @@
                          type="checkbox"
                          v-model="formdata.advisorTickE"/>
                   <input id="advisorE"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.advisorE"/>
                 </div>
               </div>
@@ -703,9 +762,9 @@
               <!--input-complex ("Verb. stellen")-->
               <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    checkboxgroupVerb
                     flexContainerFormB">
+                <div class="overlay" v-show="!tel"></div>
                 <label class="headerFormA">Verb. stellen</label>
                 <div class="
                         inputWrapper
@@ -714,7 +773,9 @@
                          type="checkbox"
                          v-model="formdata.connectionTickA"/>
                   <input id="connectionA"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.connectionA"/>
                 </div>
                 <div class="
@@ -724,7 +785,9 @@
                          type="checkbox"
                          v-model="formdata.connectionTickB"/>
                   <input id="connectionB"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.connectionB"/>
                 </div>
                 <div class="
@@ -734,7 +797,9 @@
                          type="checkbox"
                          v-model="formdata.connectionTickC"/>
                   <input id="connectionC"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.connectionC"/>
                 </div>
                 <div class="
@@ -744,7 +809,9 @@
                          type="checkbox"
                          v-model="formdata.connectionTickD"/>
                   <input id="connectionD"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.connectionD"/>
                 </div>
                 <div class="
@@ -754,7 +821,9 @@
                          type="checkbox"
                          v-model="formdata.connectionTickE"/>
                   <input id="connectionE"
-                         class="inputWithLabel"
+                         class="
+                          inputWithLabel
+                          hasMinMaxH"
                          v-model="formdata.connectionE"/>
                 </div>
               </div>
@@ -773,14 +842,15 @@
             <!--input-complex ("Vermerke")-->
             <div class="
                     innerWrapper
-                    hasMarginFormC
-                    hasPaddingFormC
+                    inputVermerke
                     flexContainerFormB">
+              <div class="overlay" v-show="!vermerke"></div>
               <label class="headerFormA">Vermerke</label>
               <textarea id="annotations"
-                        rows="5"
-                        cols="10"
-                        class="inputWithLabel"
+                        cols="35"
+                        class="
+                          inputWithLabel
+                          hasMinMaxI"
                         v-model="formdata.annotations"/>
             </div>
 
@@ -797,7 +867,7 @@
           hasShadowFormA
           flexContainerFormB">
       <el-button @click="
-                  addFormData();
+                  saveNewForm();
                   notifySuccess('Abgeschickt')"
                  tabindex="6">
         Abschicken
@@ -807,21 +877,39 @@
                   notifySuccess('Formular zurückgesetzt')">
         Zurücksetzen
       </el-button>
+
+      <!-- Just for development -->
+      <label for="stateselect"> Select ticket state: </label>
+      <select v-model.number="formdata.ticketState" id="stateselect">
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+      </select>
+      <!-- ----------------- -->
     </div>
   </div>
 </template>
 
 <script>
-import { Notification } from 'element-ui'
-import { mapMutations, mapActions } from 'vuex'
-import { quitstore } from '../api/QuitStoreAdapter.js'
-import { parseResponse } from '../sparql_help/sparql_response.js'
-import sparql from '../sparql_help/sparql_queries.js'
+import { MessageBox, Notification } from 'element-ui'
+import { mapMutations, mapActions, mapGetters } from 'vuex'
 import ElHeader from 'element-ui/packages/header/src/main'
 import ElRow from 'element-ui/packages/row/src/row'
 import ElContainer from 'element-ui/packages/container/src/main'
 import ElMain from 'element-ui/packages/main/src/main'
-import config from '../status.config'
 
 export default {
   components: {
@@ -835,6 +923,8 @@ export default {
   data: () => {
     return {
       formdata: {
+        documentID: '',
+
         topRadio: true,
         topPhone: false,
         topFax: false,
@@ -908,7 +998,7 @@ export default {
 
         annotations: '',
 
-        ticketState: 's0'
+        ticketState: 0
       },
 
       other: {
@@ -918,86 +1008,84 @@ export default {
     }
   },
 
-  computed: {
-    /** Property sets the tabindex value for input element in the form
-     * @returns Object */
-    tabIndexConf: function () {
-      let baseConf = config.tabOrder.base
-      let state = this.formdata.ticketState
-      let stateConf = config.tabOrder[state]
-      // create state-specific tabindex config
-      return Object.assign(baseConf, stateConf)
-    }
-  },
-
-  // load formdata before entering
   beforeRouteEnter (to, from, next) {
-    let id = to.params.id
-
-    if (id === undefined) {
-      next(vm => {
-        // no id => load default values
-        vm.setDefaultData(vm.$options.data())
-      })
-    } else {
-      let query = sparql.formQuery(id)
-
-      // query quitstore for the requested id
-      quitstore
-        .getData(query)
-        .then(response => {
-          response = parseResponse(response.data)
-          if (response.length > 0) {
-            // response length > 0 -> load document
-            next(vm => {
-              let data = {}
-              // data is in the form [{p: 'predicateName', o: 'predicateValue'},...] -> convert to {'predicateName': predicateValue, ...}
-              for (let predicate of response) {
-                data[predicate.p] = predicate.o
-              }
-              vm.setDefaultData({ formdata: data })
-            })
-          } else {
-            // response length == 0 -> no triples for the document id can be found
-            alert('document not found')
-            next(false)
-          }
-        })
-        .catch(error => {
-          // something went wrong
-          alert('Error trying to load document')
-          console.error(error)
-        })
-    }
+    next(vm => vm.loadDocument(to.params.id))
   },
 
   beforeRouteUpdate (to, from, next) {
-    next(false)
+    if (from.params.id === undefined) {
+      this.askSaveDraft()
+        .then(() => {
+          this.loadDocument(to.params.id)
+          next()
+        })
+    } else {
+      this.loadDocument(to.params.id)
+      next()
+    }
   },
 
-  created () {
-    document.addEventListener('focusin', this.focusIn)
-    document.addEventListener('focusout', this.focusOut)
-  },
-
-  beforeDestroy () {
-    document.removeEventListener('focusin', this.focusIn)
-    document.removeEventListener('focusout', this.focusOut)
+  beforeRouteLeave (to, from, next) {
+    if (from.params.id === undefined) {
+      this.askSaveDraft()
+        .then(() => next())
+    } else {
+      next()
+    }
   },
 
   methods: {
-    ...mapMutations(['saveTicket']),
-    ...mapActions(['addFormData']),
+    ...mapMutations(['setDraft']),
+    ...mapActions(['saveNewFormAction', 'loadFormDataAction']),
+    ...mapGetters(['getDraft']),
 
-    addFormData: function () {
-      this.$store
-        .dispatch('addFormData', this.formdata)
-        .then(() => this.$router.push('home'))
+    loadDefault: function () {
+      this.setDefaultData(this.$options.data().formdata)
+    },
+
+    loadDraft: function () {
+      let draft = this.getDraft() || this.$options.data().formdata
+      this.setDefaultData(draft)
+    },
+
+    loadID: function (id) {
+      this.loadFormDataAction(id)
+        .then((formdata) => this.setDefaultData(formdata))
+        .catch((error) => {
+          this.messageBoxError('', error.message)
+            .then(this.$router.push({name: 'Home'}))
+        })
+    },
+
+    loadDocument: function (id) {
+      if (id === undefined) this.loadDefault()
+      else if (id === 'draft') this.loadDraft()
+      else this.loadID(id)
+    },
+
+    askSaveDraft: function () {
+      return new Promise((resolve, reject) => {
+        this.dialog(
+          '',
+          'Soll das Formular als Entwurf gespeichert werden?')
+          .then(() => {
+            this.setDraft(this.$data.formdata)
+            return resolve()
+          })
+          .catch(() => {
+            return resolve()
+          })
+      })
+    },
+
+    saveNewForm: function () {
+      this.saveNewFormAction(this.formdata)
+        .then(() => this.$router.push({name: 'Home'}))
         .catch(error => alert(error))
     },
 
     formReset: function () {
-      this.$data.formdata = JSON.parse(JSON.stringify(this.default.formdata))
+      this.$data.formdata = JSON.parse(JSON.stringify(this.default))
     },
 
     setDefaultData: function (value) {
@@ -1005,18 +1093,31 @@ export default {
       this.formReset()
     },
 
-    focusIn (event) {
-      const el = event.target
-      if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.add('highlighted')
-      }
+    dialog: function (title, message) {
+      return MessageBox({
+        title: title,
+        message: message,
+        confirmButtonText: 'Ja',
+        showCancelButton: true,
+        cancelButtonText: 'Nein',
+        showClose: false,
+        closeOnPressEscape: false,
+        closeOnClickModal: false,
+        modal: true
+      })
     },
 
-    focusOut (event) {
-      const el = event.target
-      if (el.type === 'text' || el.type === 'textarea') {
-        el.classList.remove('highlighted')
-      }
+    messageBoxError: function (title, message) {
+      return MessageBox({
+        title: title,
+        message: message,
+        type: 'error',
+        confirmButtonText: 'Ok',
+        showClose: false,
+        closeOnPressEscape: false,
+        closeOnClickModal: false,
+        modal: true
+      })
     },
 
     notifySuccess (message) {
@@ -1024,6 +1125,17 @@ export default {
         title: message,
         duration: 1200,
         type: 'success',
+        offset: 120,
+        showClose: false
+      })
+    },
+
+    notifyError (title, message) {
+      Notification({
+        title: title,
+        message: message,
+        duration: 1200,
+        type: 'error',
         offset: 120,
         showClose: false
       })
@@ -1042,6 +1154,159 @@ export default {
         this.formdata.outgoing = true
       }
     }
+  },
+
+  computed: {
+
+    // =================================================
+    // Beginning of visibility switches
+    //
+    // Each property checks if a certain state is
+    // selected and decides whether or not the
+    // overlay should be shown or another button
+    // should be rendered
+
+    // Overlay switches
+    // true means component is relevant for current state,
+    // so the overlay may NOT be shown (and vice versa)
+
+    checkboxGroupTop: function () {
+      return [10, 3, 5, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    aufnahme: function () {
+      return [10, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    annahmeBefoerderung: function () {
+      return [3, 5, 4, 6, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    technischesBetriebsbuch: function () {
+      return [3, 5, 11, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    gegenstelle: function () {
+      return [10, 3, 5, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    checkboxgroupMiddle: function () {
+      return [0, 2, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    durchsageSpruch: function () {
+      return [14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    sofortBlitz: function () {
+      return [1, 7, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    rufnummer: function () {
+      return [10, 0, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    anschrift: function () {
+      return [10, 0, 2, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    gespraechsnotiz: function () {
+      return [10, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    inhalt: function () {
+      return [10, 0, 2, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    absender: function () {
+      return [10, 0, 2, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    abfassungszeit: function () {
+      return [0, 2, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    zeichen: function () {
+      return [0, 2, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    funktion: function () {
+      return [0, 2, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    quittung: function () {
+      return [1, 7, 13, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    tel: function () {
+      return [1, 7, 13, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    vermerke: function () {
+      return [10, 0, 1, 7, 13, 3, 5, 11, 4, 6,
+        2, 12, 14, 8, 15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    // Color switches
+
+    isGreen: function () {
+      return [1, 2, 3, 4, 5, 6, 7].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    isBlue: function () {
+      return [10, 0, 13, 11, 12].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    isYellow: function () {
+      return [14, 8].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    isRed: function () {
+      return [15, 9].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    // Button switches
+
+    sendButtonText: function () {
+      let state = this.formdata.ticketState
+      if (state === 8 || state === 14) {
+        return 'Drucken'
+      } else {
+        return 'Abschicken'
+      }
+    },
+
+    rejectable: function () {
+      return [1, 7, 13, 3, 5, 11].indexOf(
+        this.formdata.ticketState) !== -1
+    }
+
+    // End of visibility switches
+    // =================================================
+
   }
 }
 </script>
@@ -1053,6 +1318,7 @@ export default {
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
+    padding: 10px 0 20px 0;
   }
   .formWrapper {
     background-color: var(--semiLightNeutralColor);
@@ -1061,8 +1327,6 @@ export default {
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
-    padding-top: 50px;
-    padding-bottom: 20px;
   }
   .sideMenuForm {
     background-color: var(--semiLightNeutralColor);
@@ -1071,37 +1335,148 @@ export default {
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding: 50px 0 20px 0;
     margin-left: 40px;
   }
   .inputWrapper {
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 10px;
-    height: 40px
+    margin: 0 10px 0 20px;
+    height: 40px;
   }
   .inputLabel {
     background-color: var(--darkNeutralColor);
+    white-space: nowrap;
     min-width: 60px;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 10px 10px 0 10px;
+  }
+  .checkboxLabel {
+    padding: 10px 15px 14px 10px;
+    cursor: pointer;
   }
   .inputWithLabel {
+    background-color: var(--semiLightNeutralColor);
+    padding-left: 10px;
     border: var(--darkNeutralColor);
     border-style: solid;
-    max-width: 60px;
-    padding-left: 10px;
+    border-width:2px;
   }
   .headerFormA {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
+    padding: 10px 0 10px 10px;
+    white-space: nowrap;
   }
   .headerFormB {
-    padding-bottom: 10px;
-    padding-left: 20px;
+    padding: 0 0 10px 20px;
+  }
+
+  /*top-section*/
+  .checkboxgroupMTTop {
+    margin: 0 5px 5px 5px;
+    padding: 10px 0 10px 0;
+    max-width: 787.85px;
+  }
+  .inputIncoming {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 260.93px;
+  }
+  .inputOutgoing {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 521.9px;
+  }
+  .inputTB {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    height: 223px;
+    max-width: 256.367px;
+  }
+  .inputRGS {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 1049.22px;
+  }
+
+  /*mid-section*/
+  .checkboxgroupMTMid {
+    margin: 0 5px 5px 5px;
+    padding: 10px 0 10px 0;
+    max-width: 1049.22px;
+  }
+  .checkboxgroupDS {
+    margin: 0 5px 5px 5px;
+    padding: 5px 0 10px 0;
+    max-width: 563.1px;
+  }
+  .checkboxgroupSB {
+    margin: 0 5px 5px 0;
+    padding: 5px 0 10px 0;
+    max-width: 481.177px;
+  }
+  .inputRufnr {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 355.733px;
+  }
+  .inputAnschrift {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 397.75px;
+  }
+  .inputGESP {
+    margin: 0 5px 5px 0;
+    padding: 10px 0 0 35px;
+    max-width: 285.733px;
+  }
+  .inputInhalt {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 1049.22px;
+  }
+  .inputAbsender {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 1049.22px;
+  }
+  .inputAbZeit {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 376.783px;
+  }
+  .inputZeichen {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 330.75px;
+  }
+  .inputFunktion {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 331.683px;
+  }
+
+  /*bot-section*/
+  .inputQuittung {
+    margin: 0 5px 5px 5px;
+    padding: 0 0 0 0;
+    max-width: 716.383px;
+  }
+  .checkboxgroupTEL {
+    margin: 0 5px 5px 5px;
+    padding: 0 15px 0 0;
+    max-width: 161px;
+  }
+  .checkboxgroupFachberater {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 272.683px;
+  }
+  .checkboxgroupVerb {
+    margin: 0 5px 5px 0;
+    padding: 0 0 0 0;
+    max-width: 272.7px;
+  }
+  .inputVermerke {
+    margin: 0 5px 5px 0;
+    padding: 0 20px 0 0;
+    max-width: 327.833px;
   }
 
   /*
@@ -1109,47 +1484,65 @@ export default {
     different settings for spacing
    */
   .hasMarginFormA {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 0 20px 0px 20px;
   }
   .hasPaddingFormA {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding: 0 10px 10px 10px;
   }
 
   .hasMarginFormB {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 0 0 0 0;
   }
   .hasPaddingFormB {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding:  0 0 0 0;
   }
 
-  .hasMarginFormC {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .hasPaddingFormC {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
-/*border-settings:
+  /*
+  border-settings:
     different border styles
   */
+
+  /*
+  min-max-settings:
+  */
+  .hasMinMaxA {
+    min-width: 50px;
+    width: 55%;
+  }
+  .hasMinMaxB {
+    min-width: 50px;
+    width: 69.3%;
+  }
+  .hasMinMaxC {
+    min-width: 50px;
+    width: 72%;
+  }
+  .hasMinMaxD {
+    min-width: 50px;
+    width: 97.6%;
+  }
+  .hasMinMaxE {
+    min-width: 50px;
+    width: 89%;
+  }
+  .hasMinMaxF {
+    min-width: 50px;
+    width: 65.5%;
+  }
+  .hasMinMaxG {
+    min-width: 50px;
+    width: 84.5%;
+  }
+  .hasMinMaxH {
+    min-width: 50px;
+    width: 83%;
+  }
+  .hasMinMaxI {
+    min-width: 50px;
+    width: 90%;
+    margin-left: 20px;
+    height: 100%;
+  }
 
   /*
  shadow-settings:
@@ -1169,16 +1562,61 @@ export default {
   .flexContainerFormA {
     display: flex;
     flex-direction: row;
+    align-content: stretch;
   }
   .flexContainerFormB {
     display: flex;
     flex-direction: column;
   }
+  .flexContainerFormC {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 
-  .testSquare{
+  .testSquare {
     background-color: yellow;
     width: 100px;
     height: 50px;
     margin: 10px;
+  }
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .is-green {
+    background: var(--formGreenColor);
+    border-left-color: var(--formGreenColor);
+  }
+
+  .is-blue {
+    background: var(--formBlueColor);
+    border-left-color: var(--formBlueColor);
+  }
+
+  .is-red {
+    background: var(--formRedColor);
+    border-left-color: var(--formRedColor);
+  }
+
+  .is-yellow {
+    background: var(--formYellowColor);
+    border-left-color: var(--formYellowColor);
+  }
+
+  input {
+    margin: 0;
+    padding: 0;
+  }
+  textarea {
+    resize: none;
+    font-size: var(--bodySize);
   }
 </style>
