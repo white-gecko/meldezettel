@@ -42,7 +42,7 @@ PREFIX : <http://www.na17b.org/thw/>
     }
     query += '.}}'
 
-    return encodeURIComponent(query)
+    return query
   },
 
   /** function which creates a SPARQL delete query based on given doc object
@@ -81,7 +81,7 @@ PREFIX : <http://www.na17b.org/thw/>
     }
     query += '.}}'
 
-    return encodeURIComponent(query)
+    return query
   },
 
   /**
