@@ -170,7 +170,7 @@ export default {
   },
 
   methods: {
-    ...mapActions['setFilters','setDefaultFilters'],
+    ...mapActions(['setFilters', 'setDefaultFilters']),
     /*  function that changes filters in vuex store, then calls
         a function that updates dashboard
     */
