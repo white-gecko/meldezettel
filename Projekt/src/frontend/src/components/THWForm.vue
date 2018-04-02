@@ -867,7 +867,7 @@
           hasShadowFormA
           flexContainerFormB">
       <el-button @click="
-                  saveNewForm();
+                  saveForm();
                   notifySuccess('Abgeschickt')"
                  tabindex="6">
         Abschicken
@@ -1003,7 +1003,8 @@ export default {
 
       other: {
         tempEingehend: true,
-        tempAusgehend: false
+        tempAusgehend: false,
+        isEdit: false
       }
     }
   },
@@ -1050,7 +1051,10 @@ export default {
 
     loadID: function (id) {
       this.loadFormDataAction(id)
-        .then((formdata) => this.setDefaultData(formdata))
+        .then((formdata) => {
+          this.setDefaultData(formdata)
+          this.$data.other.isEdit = true
+        })
         .catch((error) => {
           this.messageBoxError('', error.message)
             .then(this.$router.push({name: 'Home'}))
@@ -1078,10 +1082,18 @@ export default {
       })
     },
 
-    saveNewForm: function () {
-      this.saveNewFormAction(this.formdata)
-        .then(() => this.$router.push({name: 'Home'}))
-        .catch(error => alert(error))
+    saveForm: function () {
+      if (this.$data.other.isEdit) {
+        this.$store.dispatch('updateFormDataAction', this.$data.formdata)
+          .then(() => {
+            this.$router.push({name: 'Home'})
+          })
+          .catch(error => console.log(error))
+      } else {
+        this.$store.dispatch('saveNewFormAction', this.$data.formdata)
+          .then(() => this.$router.push({name: 'Home'}))
+          .catch(error => console.log(error))
+      }
     },
 
     formReset: function () {
