@@ -1084,13 +1084,13 @@ export default {
 
     saveForm: function () {
       if (this.$data.other.isEdit) {
-        this.$store.dispatch('updateFormDataAction', this.formdata)
+        this.$store.dispatch('updateFormDataAction', this.$data.formdata)
           .then(() => {
             this.$router.push({name: 'Home'})
           })
           .catch(error => console.log(error))
       } else {
-        this.$store.dispatch('saveNewFormAction', this.formdata)
+        this.$store.dispatch('saveNewFormAction', this.$data.formdata)
           .then(() => this.$router.push({name: 'Home'}))
           .catch(error => console.log(error))
       }

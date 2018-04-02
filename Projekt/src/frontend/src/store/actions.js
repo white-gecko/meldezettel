@@ -86,8 +86,7 @@ export const updateFormDataAction = (context, formData) => {
     loadFormDataAction(null, formData.documentID)
 
       .then(oldFormData => {
-        let formdata = oldFormData.formdata
-        let deleteOldDataQuery = queryHelper.formdataToDeleteQuery(formdata)
+        let deleteOldDataQuery = queryHelper.formdataToDeleteQuery(oldFormData)
         quitstore.sendData(deleteOldDataQuery)
 
           .then(() => {
