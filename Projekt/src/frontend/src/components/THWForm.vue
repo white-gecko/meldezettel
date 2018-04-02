@@ -867,8 +867,7 @@
           hasShadowFormA
           flexContainerFormB">
       <el-button @click="
-                  saveNewForm();
-                  notifySuccess('Abgeschickt')"
+                  saveNewForm()"
                  tabindex="6">
         Abschicken
       </el-button>
@@ -1004,7 +1003,9 @@ export default {
       other: {
         tempEingehend: true,
         tempAusgehend: false
-      }
+      },
+
+      sent: false
     }
   },
 
@@ -1026,7 +1027,7 @@ export default {
   },
 
   beforeRouteLeave (to, from, next) {
-    if (from.params.id === undefined) {
+    if (from.params.id === undefined && this.sent === false) {
       this.askSaveDraft()
         .then(() => next())
     } else {
@@ -1069,7 +1070,7 @@ export default {
           '',
           'Soll das Formular als Entwurf gespeichert werden?')
           .then(() => {
-            this.setDraft(this.$data.formdata)
+            this.setDraft(this.formdata)
             return resolve()
           })
           .catch(() => {
@@ -1079,13 +1080,25 @@ export default {
     },
 
     saveNewForm: function () {
-      this.saveNewFormAction(this.formdata)
-        .then(() => this.$router.push({name: 'Home'}))
-        .catch(error => alert(error))
+      if (this.sent === false) {
+        this.sent = true
+        this.saveNewFormAction(this.formdata)
+          .then(() => {
+            this.notifySuccess('Abgeschickt')
+            this.$router.push({name: 'Home'})
+          })
+          .catch(error => {
+            this.sent = false
+            console.error(error)
+            this.messageBoxError('', 'Fehler beim Versenden des Dokuments')
+          })
+      } else {
+        this.notifyError('', 'Dokument wurde bereits versendet')
+      }
     },
 
     formReset: function () {
-      this.$data.formdata = JSON.parse(JSON.stringify(this.default))
+      this.formdata = JSON.parse(JSON.stringify(this.default))
     },
 
     setDefaultData: function (value) {
