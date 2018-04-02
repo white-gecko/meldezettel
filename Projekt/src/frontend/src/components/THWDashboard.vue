@@ -170,20 +170,26 @@ export default {
   },
 
   methods: {
-    ...mapActions['setFilters','setDefaultFilters'],
+    ...mapActions['setFilters,setDefaultFilters'],
     /*  function that changes filters in vuex store, then calls
         a function that updates dashboard
     */
     changeFilters: function () {
       this.$store
         .dispatch('setFilters', this.filter)
-        .then(() => this.useFilters())
+        .then(() => {
+          this.useFilters()
+          this.notifySuccess('Filter angewandt')
+        })
         .catch((error) => alert(error))
     },
     resetFilters: function () {
       this.$store
         .dispatch('setDefaultFilters')
-        .then(() => this.useFilters())
+        .then(() => {
+          this.useFilters()
+          this.notifySuccess('Filter angewandt')
+        })
         .catch((error) => alert(error))
     },
     /*  function that updates the displayed documents on dashboard

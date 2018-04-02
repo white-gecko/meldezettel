@@ -11,7 +11,7 @@ export const setShowLandingPage = (state) => {
 }
 
 export const setFilters = (state, newFilter) => {
-  state.filters = newFilter
+  state.filter = newFilter
 }
 
 export const setDraft = (state, fromdata) => {

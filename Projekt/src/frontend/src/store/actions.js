@@ -96,11 +96,12 @@ export const updateFormDataAction = (context, formData) => {
 }
 
 export const setFilters = (context, newFilter) => {
-  context.state.filters = newFilter
+  context.state.filter = newFilter
 }
 
 export const setDefaultFilters = (context) => {
   let role = context.state.user.role
+  console.log(role)
   let defFilter = {}
   switch (role) {
     case 'Sichter':
@@ -139,7 +140,7 @@ export const setDefaultFilters = (context) => {
         s15: false
       }
       break
-    case 'Sachbearbeiter' :
+    case 'SGL' :
       defFilter = {
         s1: false,
         s2: true,

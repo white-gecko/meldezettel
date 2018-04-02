@@ -131,7 +131,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$store.commit('setUser', this.userData)
-          this.$store.commit('setDefaultData')
+          this.$store.dispatch('setDefaultFilters')
           this.notifySuccess('Eingaben erfolgreich gespeichert')
           this.$store.commit('setShowLandingPage')
         } else {
