@@ -27,6 +27,11 @@ PREFIX : <http://www.na17b.org/thw/>
 
     query += uri + ' rdf:type :document'
 
+    if (doc.operation !== '') {
+      query += '; :inOperation id:' + doc.operation
+    }
+    delete doc.operation
+
     for (let key in doc) {
       let value = doc[key]
 
@@ -65,6 +70,11 @@ PREFIX : <http://www.na17b.org/thw/>
     query += 'DELETE DATA {GRAPH : {'
 
     query += uri + ' rdf:type :document'
+
+    if (doc.operation !== '') {
+      query += '; :inOperation id:' + doc.operation
+    }
+    delete doc.operation
 
     for (let key in doc) {
       let value = doc[key]
@@ -135,7 +145,7 @@ PREFIX : <http://www.na17b.org/thw/>
       PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     `
     // generate id
-    let rid = newOperation.operationName + Date.now()
+    let rid = newOperation.operationID
     // base for sparql insert queries
     query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
     let uri = 'id:' + rid

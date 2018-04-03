@@ -992,6 +992,7 @@ export default {
     return {
       formdata: {
         documentID: '',
+        operation: '',
 
         topRadio: true,
         topPhone: false,
@@ -1114,6 +1115,7 @@ export default {
 
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
+      this.$data.formdata.operation = this.$store.user.operation.operationID
     },
 
     loadDraft: function () {

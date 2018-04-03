@@ -158,7 +158,7 @@ export default {
           operationName: '',
           operationAdress: '',
           operationStaffType: '',
-          operationID: 0
+          operationID: ''
         },
         role: 'SGL',
         position: '',
@@ -175,7 +175,7 @@ export default {
         operationName: '',
         operationAdress: '',
         operationStaffType: '',
-        operationID: 0
+        operationID: ''
       },
 
       // objects for operations, roles and positions
@@ -246,6 +246,7 @@ export default {
     },
     // handle saving of a new operation
     submitOperation () {
+      this.newOperation.operationID = 'operation' + Date.now()
       // Quitstore post via sparql_queries.js and QuitStoreAdapter.js
       this.$store.dispatch('handleOperation', this.newOperation)
       // add operation to operations array for table
@@ -253,14 +254,14 @@ export default {
         operationName: this.newOperation.operationName,
         operationAdress: this.newOperation.operationAdress,
         operationStaffType: this.newOperation.operationStaffType,
-        operationID: this.operationID
+        operationID: this.newOperation.operationID
       })
       this.notifySuccess('Einsatz gespeichert')
       this.newOperation.operationName = ''
       this.newOperation.operationAdress = ''
       this.newOperation.operationStaffType = ''
       this.addingOperation = false
-      this.operationID += 1
+      this.operationID = ''
     },
     notifySuccess (message) {
       Notification({

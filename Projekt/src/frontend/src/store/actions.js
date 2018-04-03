@@ -117,7 +117,7 @@ export const updateFormDataAction = (context, formData) => {
  * @param context - vuex store context
  * @param {object} newOperation - current new operation to be stored */
 export const handleOperation = (context, newOperation) => {
-  let operationInsertQuery = Sparql.operationToInsertQuery(newOperation)
+  let operationInsertQuery = queryHelper.operationToInsertQuery(newOperation)
 
   return quitstore.sendData(operationInsertQuery)
 }
