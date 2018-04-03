@@ -1215,7 +1215,7 @@ export default {
     },
 
     openPDF: function () {
-      let pdf = getPDFAction(this.formdata)
+      this.getPDFAction(this.formdata)
     },
 
     setDefaultData: function (value) {

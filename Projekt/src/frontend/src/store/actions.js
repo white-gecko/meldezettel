@@ -126,13 +126,18 @@ export const handleOperation = (context, newOperation) => {
 export const getPDFAction = (context, formdata) => {
   return new Promise((resolve, reject) => {
     printservice.sendData(JSON.stringify(formdata))
-    .then((response) => {
-      console.log(response)
-      const blob = new Blob([response.data], {
-        type: 'application/pdf',
-      });
-      return resolve(blob)
-    })
-    .catch((error) => {return reject(new Error('Fehler beim Anfordern der PDF'))})
+      .then((response) => {
+        console.log(response)
+        let file = new Blob([response.data], {
+          type: 'application/pdf'})
+        let fileURL = URL.createObjectURL(file)
+        window.open(fileURL)
+
+        return resolve()
+      })
+      .catch((error) => {
+        console.error(error)
+        return reject(new Error('Fehler beim Anfordern der PDF'))
+      })
   })
 }
