@@ -91,8 +91,42 @@ export const loadFormDataAction = (context, id) => {
   })
 }
 
+/**
+ *
+ * @param context
+ * @param formData
+ * @returns {Promise<any>}
+ */
 export const updateFormDataAction = (context, formData) => {
-  /* @TODO implement action once delete query is available */
+  return new Promise((resolve, reject) => {
+    loadFormDataAction(null, formData.documentID)
+
+      .then(oldFormData => {
+        let deleteOldDataQuery = queryHelper.formdataToDeleteQuery(oldFormData)
+        quitstore.sendData(deleteOldDataQuery)
+
+          .then(() => {
+            let insertNewDataQuery = queryHelper.formdataToInsertQuery(formData)
+            quitstore.sendData(insertNewDataQuery)
+
+              .then(() => {
+                return resolve()
+              })
+              // Catch errors that were thrown when trying to send new data
+              .catch(error => {
+                return reject(new Error(error))
+              })
+            // Catch errors that were thrown when trying to send delete query
+          }).catch(error => {
+            console.log('Unable to delete data. Error Msg:\n' + error)
+            return reject(new Error(error))
+          })
+        // Catch errors that were thrown when trying to get old form data
+      }).catch(error => {
+        console.log('Unable to load form data. Error Msg:\n' + error)
+        return reject(new Error(error))
+      })
+  })
 }
 
 export const setFilters = (context, newFilter) => {

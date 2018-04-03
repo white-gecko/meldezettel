@@ -1,7 +1,7 @@
 export default{
   /** function which creates a SPARQL Insert query based on given doc object
-   * @param = formdata object that got edited or created in THWForm.vue
-   * @return = SPARQL query that inserts data of formdata object into
+   * @param doc formdata object that got edited or created in THWForm.vue
+   * @return string SPARQL query that inserts data of formdata object into
    *           QuitStore
    */
   formdataToInsertQuery: function (doc) {
@@ -32,7 +32,7 @@ PREFIX : <http://www.na17b.org/thw/>
 
       query += ';:' + key + ' '
       if (typeof value === 'string') {
-        query += '"' + value + '"'
+        query += '"""' + value + '"""'
       } else if (typeof value === 'object') {
         let date = new Date(value)
         query += date.getTime()
@@ -46,17 +46,17 @@ PREFIX : <http://www.na17b.org/thw/>
   },
 
   /** function which creates a SPARQL delete query based on given doc object
-   * @param = old formdata object that got updated in THWForm.vue
-   * @return = SPARQL query that deletes data of formdata object from
+   * @param doc old formdata object that got updated in THWForm.vue
+   * @return string SPARQL query that deletes data of formdata object from
    *           QuitStore
    */
   formdataToDeleteQuery: function (doc) {
     // default prefixes + graph prefixes
     let query = `
-PREFIX id: <http://www.na17b.org/thw/resource/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX : <http://www.na17b.org/thw/>
-`
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX : <http://www.na17b.org/thw/>
+      `
 
     let uri = 'id:' + doc.documentID
     delete doc.documentID
@@ -71,7 +71,7 @@ PREFIX : <http://www.na17b.org/thw/>
 
       query += ';:' + key + ' '
       if (typeof value === 'string') {
-        query += '"' + value + '"'
+        query += '"""' + value + '"""'
       } else if (typeof value === 'object') {
         let date = new Date(value)
         query += date.getTime()
@@ -239,8 +239,8 @@ thw:docketIdentification ?docketIdentification`
 
   /**
    * Creates a query to retrieve a specified document
-   * @param {*String} id = Id to be queried for
-   * @return query string to retrieve all triples of a given document id
+   * @param {String} id Id to be queried for
+   * @return string query string to retrieve all triples of a given document id
    */
   formQuery: function (id) {
     return `
