@@ -27,7 +27,7 @@ PREFIX : <http://www.na17b.org/thw/>
 
     query += uri + ' rdf:type :document'
 
-    if (doc.inOperation !== '') {
+    if (doc.inOperation !== '' && doc.inOperation !== undefined) {
       query += '; :inOperation id:' + doc.inOperation
     }
     delete doc.inOperation
@@ -70,7 +70,7 @@ PREFIX : <http://www.na17b.org/thw/>
 
     query += uri + ' rdf:type :document'
 
-    if (doc.inOperation !== '') {
+    if (doc.inOperation !== '' && doc.inOperation!==undefined) {
       query += '; :inOperation id:' + doc.inOperation
     }
     delete doc.inOperation
@@ -269,11 +269,9 @@ thw:docketIdentification ?docketIdentification`
       PREFIX thw: <http://www.na17b.org/thw/>
       PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     `
-    // generate id
-    let rid = newOperation.operationID
     // base for sparql insert queries
     query += 'INSERT DATA {GRAPH thw: {'
-    let uri = 'id:' + rid
+    let uri = 'id:' + newOperation.operationID
     query += uri + ' rdf:type thw:operation'
 
     query += ';thw:operationName ' + '"""' + newOperation.operationName + '"""'
@@ -292,13 +290,13 @@ thw:docketIdentification ?docketIdentification`
     return `
       PREFIX thw: <http://www.na17b.org/thw/>
       PREFIX id: <http://www.na17b.org/thw/resource/>
-      prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
       SELECT
         *
       FROM thw:
       WHERE {
-          ?operationId rdf:type thw:operation;
+          ?operationID rdf:type thw:operation;
           thw:operationName ?operationName;
           thw:operationAdress ?operationAdress;
           thw:operationStaffType ?operationStaffType.

@@ -84,25 +84,25 @@ test ('operationToInsertQuery function works',() =>{
     operationID:'operation1337133713371'}
 
     expect(sparql.operationToInsertQuery(operation)).toMatch(
-      /INSERT DATA {GRAPH thw: {id:operation1337133713371 rdf:type thw:operation;thw:operationName """Frederike""";thw:operationAdress """EAL THW""";thw:operationStaffType """StabStab""".}}/
+      /INSERT DATA {GRAPH thw: {id:operation1337133713371 rdf:type thw:operation;thw:operationName """Frederike""";thw:operationAdress """THW EAL""";thw:operationStaffType """StabStab""".}}/
     )
 })
 
 test ('Operations query function works',() =>{
 
-  expect(sparql.operationToInsertQuery()).toBe(`
-    PREFIX thw: <http://www.na17b.org/thw/>
-    PREFIX id: <http://www.na17b.org/thw/resource/>
-    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  expect(sparql.operationsQuery()).toBe(`
+      PREFIX thw: <http://www.na17b.org/thw/>
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-    SELECT
-      *
-    FROM thw:
-    WHERE {
-        ?operationId rdf:type thw:operation;
-        thw:operationName ?operationName;
-        thw:operationAdress ?operationAdress;
-        thw:operationStaffType ?operationStaffType.
-    }
-  `)
+      SELECT
+        *
+      FROM thw:
+      WHERE {
+          ?operationID rdf:type thw:operation;
+          thw:operationName ?operationName;
+          thw:operationAdress ?operationAdress;
+          thw:operationStaffType ?operationStaffType.
+      }
+    `)
 })
