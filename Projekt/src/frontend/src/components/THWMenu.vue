@@ -2,7 +2,8 @@
   <div class="
         menu
         hasShadowMenuA
-        flexContainerMenuA">
+        flexContainerMenuA"
+       index="home">
 
     <div class="
           menuItem
@@ -25,7 +26,8 @@
 
     <div class="
           menuItem
-          flexContainerMenuB">
+          flexContainerMenuB"
+         index="create">
       <div class="
             menuLogo
             hasShadowMenuA"
@@ -44,7 +46,8 @@
 
     <div class="
           menuItem
-          flexContainerMenuB">
+          flexContainerMenuB"
+         index="draft">
       <div class="
             menuLogo
             hasShadowMenuA"
