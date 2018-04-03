@@ -212,7 +212,7 @@ def renderPDF(formDataString):
     m = hashlib.md5()
     m.update(formDataString)
     formDataStringHash = m.hexdigest()
-    
+
     # Copy files to working dir
     os.mkdir(formDataStringHash)
     shutil.copy2("template.tex", os.path.join(formDataStringHash, "template.tex"))
@@ -223,19 +223,17 @@ def renderPDF(formDataString):
     os.chdir(formDataStringHash)
 
     # Writing generated string to .tex
-    #variablesPath = os.path.join(formDataString, "variables.tex") 
     with io.open("variables.tex", mode="w", encoding="UTF8") as fd:
         fd.write(variablesString)
-    
+
     # Compiling pdf, via synchronous call
     p = subprocess.check_call(['pdflatex', '-halt-on-error', 'template.tex'])
-    
+
     # Reading pdf as byteString
-    #pdfPath = os.path.join(formDataString, "template.pdf")
     with open("template.pdf", "rb") as pdf:
         pdfBytes = pdf.read()
-    
-    #Removing working dir
+
+    # Removing working dir
     os.chdir("../")
     shutil.rmtree(formDataStringHash)
     return pdfBytes
@@ -247,5 +245,5 @@ if __name__ == "__main__":
         formDataDir = json.load(json_data)
 
     formDataString = json.dumps(formDataDir)
-    
+
     renderPDF(formDataString)
