@@ -877,7 +877,7 @@
                   notifySuccess('Formular zurückgesetzt')">
         Zurücksetzen
       </el-button>
-      
+
       <!-- Just for development -->
       <label for="stateselect"> Select ticket state: </label>
       <select v-model.number="formdata.ticketState" id="stateselect">
