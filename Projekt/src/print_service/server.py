@@ -11,12 +11,13 @@ class S(BaseHTTPRequestHandler):
             content = FieldStorage(
                 fp=self.rfile,
                 headers=self.headers,
-                environ={'REQUEST_METHOD': 'POST',
+                environ={
+                    'REQUEST_METHOD': 'POST',
                     'CONTENT_TYPE': self.headers['content-type'],
                 }
-            ) 
-            pdf=renderPDF(content.getvalue('data'))
-        except:
+            )
+            pdf = renderPDF(content.getvalue('data'))
+        except Error:
             self.send_response(400)
             self.end_headers()
             return
@@ -30,5 +31,5 @@ class S(BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     # renderPDF('form.json')
-    httpd = HTTPServer(('localhost', 8000), S)
+    httpd = HTTPServer(('localhost', 5001), S)
     httpd.serve_forever()
