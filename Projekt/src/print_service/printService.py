@@ -87,11 +87,8 @@ def replaceLatexCharacters(str):
 
 
 # Parses variables and their values from json to latex and writes them to .tex
-def renderPDF(jsonFile):
-    # Opens json file and loads it to string
-    with open(jsonFile) as json_data:
-        d = json.load(json_data)
-
+def renderPDF(formDataDir):
+    
     # Array of boolean variable names
     booleans = [
         "topRadio",
@@ -173,7 +170,7 @@ def renderPDF(jsonFile):
 
     # Translating string variables from json to latex
     for [variableName, lineLength] in strings:
-        s = d[variableName]
+        s = formDataDir[variableName]
         s = removeUnwantedCharacters(s)
         s = trimString(s, lineLength)
         s = replaceLatexCharacters(s)
@@ -181,7 +178,7 @@ def renderPDF(jsonFile):
 
     # Translating multiline string variables from json to latex
     for [variableName, maxLines, lineLength] in multiLineStrings:
-        s = d[variableName]
+        s = formDataDir[variableName]
         s = removeUnwantedCharacters(s)
         s = adjustString(s, maxLines, lineLength)
         s = replaceLatexCharacters(s)
@@ -189,20 +186,20 @@ def renderPDF(jsonFile):
 
     # Translating boolean variables from json to latex
     for variableName in booleans:
-        if d[variableName]:
+        if formDataDir[variableName]:
             VV += "\\def \\" + variableName + "{\\checkedbox}"
         else:
             VV += "\\def \\" + variableName + "{\\uncheckedbox}"
 
     # Translating boolean variables with inconsistent names from json to latex
     for [jsonVariableName, latexVariableName] in boolInconsistentVariableName:
-        if d[jsonVariableName]:
+        if formDataDir[jsonVariableName]:
             VV += "\\def \\" + latexVariableName + "{\\checkedbox}"
         else:
             VV += "\\def \\" + latexVariableName + "{\\uncheckedbox}"
 
     # Special case where Json has one variable and latex template requires two
-    if d["outgoing"]:
+    if formDataDir["outgoing"]:
         VV += "\\def \\incoming{\\uncheckedbox}"
     else:
         VV += "\\def \\incoming{\\checkedbox}"
@@ -212,9 +209,14 @@ def renderPDF(jsonFile):
         fd.write(VV)
 
     # Compiling pdf
-    os.system("pdflatex VVtest.tex")
+    #os.system("pdflatex VVtest.tex")
+    subprocess.Popen("pdflatex VVtest.tex")
     return
 
 
 if __name__ == "__main__":
-    renderPDF(sys.argv[1])
+    # Opens json file and loads it to string
+    with open(sys.argv[1]) as json_data:
+        formDataDir = json.load(json_data)
+
+    renderPDF(formDataDir)
