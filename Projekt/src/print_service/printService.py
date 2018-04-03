@@ -4,8 +4,9 @@ import io
 import json
 import re
 import sys
-import md5
+import hashlib
 import subprocess
+import shutil
 
 
 # Inserts char into string at given position
@@ -169,7 +170,7 @@ def renderPDF(formDataString):
         ["stationS4", "stationSFour"],
         ["stationS6", "stationSSix"]]
 
-    VV = ""
+    variablesString = ""
 
     # Translating string variables from json to latex
     for [variableName, lineLength] in strings:
@@ -177,7 +178,7 @@ def renderPDF(formDataString):
         s = removeUnwantedCharacters(s)
         s = trimString(s, lineLength)
         s = replaceLatexCharacters(s)
-        VV += "\\def \\" + variableName + "{" + s + "} "
+        variablesString += "\\def \\" + variableName + "{" + s + "} "
 
     # Translating multiline string variables from json to latex
     for [variableName, maxLines, lineLength] in multiLineStrings:
@@ -185,52 +186,58 @@ def renderPDF(formDataString):
         s = removeUnwantedCharacters(s)
         s = adjustString(s, maxLines, lineLength)
         s = replaceLatexCharacters(s)
-        VV += "\\def \\" + variableName + "{" + s + "} "
+        variablesString += "\\def \\" + variableName + "{" + s + "} "
 
     # Translating boolean variables from json to latex
     for variableName in booleans:
         if formDataDir[variableName]:
-            VV += "\\def \\" + variableName + "{\\checkedbox}"
+            variablesString += "\\def \\" + variableName + "{\\checkedbox}"
         else:
-            VV += "\\def \\" + variableName + "{\\uncheckedbox}"
+            variablesString += "\\def \\" + variableName + "{\\uncheckedbox}"
 
     # Translating boolean variables with inconsistent names from json to latex
     for [jsonVariableName, latexVariableName] in boolInconsistentVariableName:
         if formDataDir[jsonVariableName]:
-            VV += "\\def \\" + latexVariableName + "{\\checkedbox}"
+            variablesString += "\\def \\" + latexVariableName + "{\\checkedbox}"
         else:
-            VV += "\\def \\" + latexVariableName + "{\\uncheckedbox}"
+            variablesString += "\\def \\" + latexVariableName + "{\\uncheckedbox}"
 
     # Special case where Json has one variable and latex template requires two
     if formDataDir["outgoing"]:
-        VV += "\\def \\incoming{\\uncheckedbox}"
+        variablesString += "\\def \\incoming{\\uncheckedbox}"
     else:
-        VV += "\\def \\incoming{\\checkedbox}"
+        variablesString += "\\def \\incoming{\\checkedbox}"
 
-    # Writing generated string to .tex
-    with io.open("variables.tex", mode="w", encoding="UTF8") as fd:
-        fd.write(VV)
-
-    m = md5.new()
+    # Hashing formDataString toi get unique name for working dir
+    m = hashlib.md5()
     m.update(formDataString)
     formDataStringHash = m.hexdigest()
-    pdflatexCommand = "pdflatex -jobname=" + formDataStringHash + " VVtest.tex"
+    
+    # Copy files to working dir
+    os.mkdir(formDataStringHash)
+    shutil.copy2("template.tex", os.path.join(formDataStringHash, "template.tex"))
+    shutil.copy2("template.aux", os.path.join(formDataStringHash, "template.aux"))
+    shutil.copy2("template.log", os.path.join(formDataStringHash, "template.log"))
 
-    # Compiling pdf
-    # os.system("pdflatex VVtest.tex")
-    os.system(pdflatexCommand)
-    # subprocess.Popen(pdflatexCommand)
+    # Changing to working dir
+    os.chdir(formDataStringHash)
 
-    pdfName = formDataStringHash + ".pdf"
-    auxName = formDataStringHash + ".aux"
-    logName = formDataStringHash + ".log"
-
-    with open(pdfName, "rb") as pdf:
+    # Writing generated string to .tex
+    #variablesPath = os.path.join(formDataString, "variables.tex") 
+    with io.open("variables.tex", mode="w", encoding="UTF8") as fd:
+        fd.write(variablesString)
+    
+    # Compiling pdf, via synchronous call
+    p = subprocess.check_call(['pdflatex', '-halt-on-error', 'template.tex'])
+    
+    # Reading pdf as byteString
+    #pdfPath = os.path.join(formDataString, "template.pdf")
+    with open("template.pdf", "rb") as pdf:
         pdfBytes = pdf.read()
-
-    os.remove(pdfName)
-    os.remove(auxName)
-    os.remove(logName)
+    
+    #Removing working dir
+    os.chdir("../")
+    shutil.rmtree(formDataStringHash)
     return pdfBytes
 
 
@@ -240,5 +247,5 @@ if __name__ == "__main__":
         formDataDir = json.load(json_data)
 
     formDataString = json.dumps(formDataDir)
-
-    print(renderPDF(formDataString))
+    
+    renderPDF(formDataString)
