@@ -135,7 +135,6 @@ export const setFilters = (context, newFilter) => {
 
 export const setDefaultFilters = (context) => {
   let role = context.state.user.role
-  console.log(role)
   let defFilter = {}
   switch (role) {
     case 'Sichter':

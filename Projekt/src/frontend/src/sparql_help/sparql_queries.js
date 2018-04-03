@@ -232,7 +232,6 @@ thw:docketIdentification ?docketIdentification`
     }
 
     query += queryFilter + '}'
-    console.log(query)
     return query
   },
 
