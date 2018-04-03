@@ -4,7 +4,12 @@ Durch die besondere Verantwortung des THW hat die Zuverlässigkeit der Software 
 Um die Coding Standards einzuhalten wird auch Linting in die CI eingebunden. Für Javascript wird
 ESLint verwendet und für Python pycodestyle.
 \subsection{Komponententests}
-Als Testing Framework findet in diesem Projekt \href{https://facebook.github.io/jest/docs/en/getting-started.htmll}{Jest} Verwendung. Komponententests sind nach folgenden Konventionen zu erstellen: Für jede Datei existiert eine Testdateei und für jede Funktion mindestens eine Testfunktion. Bei der Namensgebung wird im Dateinamen vor der Dateiendung ein .test eingeschoben. So erhält die Datei \textit{exampleModule.js} ihre Testdatei \textit{exampleModule.test.js}. Testdateien befinden sich im gleichen Ordner wie zu testende Dateien.
+\paragraph{Python}
+Als Testing Framework für Python findet in diesem Projekt \href{https://docs.python.org/3/library/unittest.html}{Python Unit testing Framework} Verwendung. Komponententests sind nach folgenden Konventionen zu erstellen: Für jede Datei existiert eine Testdateei und für jede Funktion mindestens eine Testfunktion. Bei der Namensgebung wird im Dateinamen vor der Dateiendung ein .test eingeschoben. So erhält die Datei \textit{MittringEmulator.py} ihre Testdatei \textit{MittringEmulator.test.py}. Testdateien befinden sich im gleichen Ordner wie zu testende Dateien.
+\pyfile{../../Projekt/src/frontend/src/test-examples/MittringEmulator.py}
+\pyfile{../../Projekt/src/frontend/src/test-examples/MittringEmulator.test.py}
+\paragraph{JavaScript}
+Als Testing Framework für JavaScript findet in diesem Projekt \href{https://facebook.github.io/jest/docs/en/getting-started.htmll}{Jest} Verwendung. Komponententests sind nach folgenden Konventionen zu erstellen: Für jede Datei existiert eine Testdateei und für jede Funktion mindestens eine Testfunktion. Bei der Namensgebung wird im Dateinamen vor der Dateiendung ein .test eingeschoben. So erhält die Datei \textit{exampleModule.js} ihre Testdatei \textit{exampleModule.test.js}. Testdateien befinden sich im gleichen Ordner wie zu testende Dateien.
 \jsfile{../../Projekt/src/frontend/src/test-examples/module.js}
 \jsfile{../../Projekt/src/frontend/src/test-examples/module.test.js}
 \subsection{GUI Tests}
