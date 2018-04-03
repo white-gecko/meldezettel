@@ -61,6 +61,13 @@ chmod +x quitstore.sh
 ./quitstore.sh
 ```
 
+oder:
+
+```bash
+cd Projekt/src/frontend
+npm run quit
+```
+
 Anschließend ist der Quitstore unter
 
 [http://localhost:5000](http://localhost:5000)

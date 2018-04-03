@@ -1,33 +1,87 @@
 export default{
-  /** function which creates a SPARQL query based on given doc object
-   * @param = formdata object that got edited or created in THWForm.vue
-   * @return = SPARQL query that inserts data of formdata object into
+  /** function which creates a SPARQL Insert query based on given doc object
+   * @param doc formdata object that got edited or created in THWForm.vue
+   * @return string SPARQL query that inserts data of formdata object into
    *           QuitStore
    */
   formdataToInsertQuery: function (doc) {
     // default prefixes + graph prefixes
     let query = `
-      PREFIX id: <http://www.na17b.org/thw/resource/>
-      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-      PREFIX thw: <http://www.na17b.org/thw/>
-      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    `
+PREFIX id: <http://www.na17b.org/thw/resource/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.na17b.org/thw/>
+`
 
-    // creating a random number as ID for each document
-    // we are aware that this is a bad solution, we will tend to that later
-    let rid = Math.floor((Math.random() * 900000) + 100000)
+    let uri = ''
+    if (doc.documentID !== '') {
+      uri = 'id:' + doc.documentID
+    } else if (doc.outgoing) {
+      uri = 'id:' + doc.identification + Date.now()
+    } else {
+      uri = 'id:' + doc.primaryHdZ + Date.now()
+    }
+    delete doc.documentID
+
     // base for sparql insert queries
-    query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
-    let uri = 'id:' + rid
+    query += 'INSERT DATA {GRAPH : {'
 
-    query += uri + ' rdf:type thw:document'
+    query += uri + ' rdf:type :document'
+
+    if (doc.operation !== '') {
+      query += '; :inOperation id:' + doc.operation
+    }
+    delete doc.operation
 
     for (let key in doc) {
       let value = doc[key]
 
-      query += ';thw:' + key + ' '
+      query += ';:' + key + ' '
       if (typeof value === 'string') {
-        query += '"' + value + '"'
+        query += '"""' + value + '"""'
+      } else if (typeof value === 'object') {
+        let date = new Date(value)
+        query += date.getTime()
+      } else {
+        query += value
+      }
+    }
+    query += '.}}'
+
+    return query
+  },
+
+  /** function which creates a SPARQL delete query based on given doc object
+   * @param doc old formdata object that got updated in THWForm.vue
+   * @return string SPARQL query that deletes data of formdata object from
+   *           QuitStore
+   */
+  formdataToDeleteQuery: function (doc) {
+    // default prefixes + graph prefixes
+    let query = `
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX : <http://www.na17b.org/thw/>
+      `
+
+    let uri = 'id:' + doc.documentID
+    delete doc.documentID
+
+    // base for sparql delete queries
+    query += 'DELETE DATA {GRAPH : {'
+
+    query += uri + ' rdf:type :document'
+
+    if (doc.operation !== '') {
+      query += '; :inOperation id:' + doc.operation
+    }
+    delete doc.operation
+
+    for (let key in doc) {
+      let value = doc[key]
+
+      query += ';:' + key + ' '
+      if (typeof value === 'string') {
+        query += '"""' + value + '"""'
       } else if (typeof value === 'object') {
         let date = new Date(value)
         query += date.getTime()
@@ -42,7 +96,7 @@ export default{
 
   /**
    * Creates a query to query for dashboard specific data
-   * @return query string to query for dashboard specific data
+   * @return string  query string to query for dashboard specific data
    */
   dashboardQuery: function () {
     return `
@@ -68,8 +122,8 @@ export default{
 
   /**
    * Creates a query to retrieve a specified document
-   * @param {*String} id Id to be queried for
-   * @return query string to retrieve all triples of a given document id
+   * @param {String} id Id to be queried for
+   * @return string query string to retrieve all triples of a given document id
    */
   formQuery: function (id) {
     return `
@@ -91,7 +145,7 @@ export default{
       PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     `
     // generate id
-    let rid = newOperation.operationName + Date.now()
+    let rid = newOperation.operationID
     // base for sparql insert queries
     query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
     let uri = 'id:' + rid
