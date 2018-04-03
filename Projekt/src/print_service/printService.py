@@ -89,9 +89,9 @@ def replaceLatexCharacters(str):
 
 
 # Parses variables and their values from json to latex and writes them to .tex
-def renderPDF(formDataString):    
+def renderPDF(formDataString):
     formDataDir = json.loads(formDataString)
-    
+
     # Array of boolean variable names
     booleans = [
         "topRadio",
@@ -210,24 +210,24 @@ def renderPDF(formDataString):
     # Writing generated string to .tex
     with io.open("variables.tex", mode="w", encoding="UTF8") as fd:
         fd.write(VV)
-    
+
     m = md5.new()
     m.update(formDataString)
     formDataStringHash = m.hexdigest()
-    pdflatexCommand = "pdflatex -jobname=" + formDataStringHash + " VVtest.tex" 
-    
+    pdflatexCommand = "pdflatex -jobname=" + formDataStringHash + " VVtest.tex"
+
     # Compiling pdf
-    #os.system("pdflatex VVtest.tex")
+    # os.system("pdflatex VVtest.tex")
     os.system(pdflatexCommand)
-    #subprocess.Popen(pdflatexCommand)
-    
+    # subprocess.Popen(pdflatexCommand)
+
     pdfName = formDataStringHash + ".pdf"
     auxName = formDataStringHash + ".aux"
     logName = formDataStringHash + ".log"
-    
+
     with open(pdfName, "rb") as pdf:
         pdfBytes = pdf.read()
-    
+
     os.remove(pdfName)
     os.remove(auxName)
     os.remove(logName)
@@ -238,8 +238,7 @@ if __name__ == "__main__":
     # Opens json file and loads it to string
     with open(sys.argv[1]) as json_data:
         formDataDir = json.load(json_data)
-        
-    formDataString = json.dumps(formDataDir)
-    
-    print(renderPDF(formDataString))
 
+    formDataString = json.dumps(formDataDir)
+
+    print(renderPDF(formDataString))
