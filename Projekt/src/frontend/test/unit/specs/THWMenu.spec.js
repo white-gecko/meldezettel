@@ -17,7 +17,7 @@ describe('THWMenu', () => {
     expect(wrapper.html()).toContain('index="create"')
   })
 
-  it('let\'s you choose the role selection menu', () => {
-    expect(wrapper.html()).toContain('index="role"')
+  it('let\'s you open the saved draft', () => {
+    expect(wrapper.html()).toContain('index="draft"')
   })
 })
