@@ -112,7 +112,7 @@ export default {
 
 <style>
   .menu {
-    height: 402px;
+    height: 320px;
     background-color: var(--semiLightNeutralColor);
     padding-bottom: 40px;
     overflow: visible;
