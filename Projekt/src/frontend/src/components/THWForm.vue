@@ -943,6 +943,10 @@
                  :tabindex="other.tabIndexConf.buttonReset">
         Zurücksetzen
       </el-button>
+      <el-button @click="
+                  openPDF()">
+        PDF
+      </el-button>
 
       <!-- Just for development -->
       <label for="stateselect"> Select ticket state: </label>
@@ -1114,7 +1118,8 @@ export default {
     ...mapActions([
       'saveNewFormAction',
       'updateFormDataAction',
-      'loadFormDataAction'
+      'loadFormDataAction',
+      'getPDFAction'
     ]),
     ...mapGetters(['getDraft', 'getUser']),
 
@@ -1207,6 +1212,10 @@ export default {
 
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
+    },
+
+    openPDF: function () {
+      let pdf = getPDFAction(this.formdata)
     },
 
     setDefaultData: function (value) {
