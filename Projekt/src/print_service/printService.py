@@ -210,7 +210,7 @@ def renderPDF(formDataString):
 
     # Hashing formDataString toi get unique name for working dir
     m = hashlib.md5()
-    m.update(formDataString)
+    m.update(formDataString.encode('ascii','UTF8'))
     formDataStringHash = m.hexdigest()
 
     # Copy files to working dir
@@ -241,7 +241,7 @@ def renderPDF(formDataString):
 
 if __name__ == "__main__":
     # Opens json file and loads it to string
-    with open(sys.argv[1]) as json_data:
+    with open("form.json") as json_data:
         formDataDir = json.load(json_data)
 
     formDataString = json.dumps(formDataDir)
