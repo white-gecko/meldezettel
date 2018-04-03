@@ -5,85 +5,60 @@
         flexContainerMenuA">
 
     <div class="
-          menu-item
-          hasShadowMenuB
-          flexContainerMenuB"
-         index="home"
-         @click="goTo('Home')">
+          menuItem
+          flexContainerMenuB">
       <div class="
-            logoMenu
-            hasShadowMenuA
-            flexChildMenuA">
+            menuLogo
+            hasShadowMenuA"
+           @click="goTo('Home')"
+           @mouseover="showOverviewDesc"
+           @mouseout="hideOverviewDesc">
         <img src="@/assets/homeIcon.png"
              height="70"
              width="70">
       </div>
-      <div class="flexChildMenuA"
-           style="
-            text-align: right;
-            margin-left: 5%;
-            margin-right: 5%;
-            min-width: 150px;">Übersicht</div>
+      <div class="menuDesc"
+           v-show="overviewDesc">
+        Übersicht
+      </div>
     </div>
 
     <div class="
-          menu-item
-          hasShadowMenuB
-          flexContainerMenuB"
-         index="create"
-         @click="goTo('Create')">
+          menuItem
+          flexContainerMenuB">
       <div class="
-            logoMenu
-            hasShadowMenuA
-            flexChildMenuA">
+            menuLogo
+            hasShadowMenuA"
+           @click="goTo('Create')"
+           @mouseover="showNewFormDesc"
+           @mouseout="hideNewFormDesc">
         <img src="@/assets/formIcon.png"
              height="70"
              width="70">
       </div>
-      <div class="flexChildMenuA"
-           style="
-            text-align: right;
-            margin-left: 5%;
-            margin-right: 5%;
-            min-width: 150px;">Neues Formular</div>
+      <div class="menuDesc"
+           v-show="newFormDesc">
+        Neues Formular
+      </div>
     </div>
 
     <div class="
-          menu-item
-          hasShadowMenuB
-          flexContainerMenuB"
-         index="role"
-         @click="goTo('Role')">
+          menuItem
+          flexContainerMenuB">
       <div class="
-            logoMenu
-            hasShadowMenuA
-            flexChildMenuA">
+            menuLogo
+            hasShadowMenuA"
+           @click="goTo('Create', {id: 'draft'})"
+           @mouseover="showDraftDesc"
+           @mouseout="hideDraftDesc">
+        <img src="@/assets/draftIcon.png"
+             height="70"
+             width="70">
       </div>
-      <div class="flexChildMenuA"
-           style="
-            text-align: right;
-            margin-left: 5%;
-            margin-right: 5%;
-            min-width: 150px;">Nutzerdaten</div>
-    </div>
-
-    <div class="
-          menu-item
-          hasShadowMenuB
-          flexContainerMenuB"
-         index="create"
-         @click="goTo('Create', {id: 'draft'})">
-      <div class="
-            logoMenu
-            hasShadowMenuA
-            flexChildMenuA">
+      <div class="menuDesc"
+           v-show="draftDesc">
+        Entwurf öffnen
       </div>
-      <div class="flexChildMenuA"
-           style="
-            text-align: right;
-            margin-left: 5%;
-            margin-right: 5%;
-            min-width: 150px;">Entwurf öffnen</div>
     </div>
 
   </div>
@@ -98,13 +73,34 @@ export default {
   data: () => {
     return {
       isCollapsed: false,
-      activeLink: null
+      activeLink: null,
+      overviewDesc: false,
+      newFormDesc: false,
+      draftDesc: false
     }
   },
 
   methods: {
     goTo: function (path, params) {
       this.$router.push({name: path, params: params})
+    },
+    showOverviewDesc: function () {
+      this.overviewDesc = true
+    },
+    hideOverviewDesc: function () {
+      this.overviewDesc = false
+    },
+    showNewFormDesc: function () {
+      this.newFormDesc = true
+    },
+    hideNewFormDesc: function () {
+      this.newFormDesc = false
+    },
+    showDraftDesc: function () {
+      this.draftDesc = true
+    },
+    hideDraftDesc: function () {
+      this.draftDesc = false
     }
   }
 }
@@ -113,38 +109,53 @@ export default {
 
 <style>
   .menu {
+    height: 402px;
     background-color: var(--semiLightNeutralColor);
+    padding-bottom: 40px;
     overflow: visible;
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
-    padding-top: 50px;
-    height: 400px;
   }
-
-  .menu-item {
+  .menuItem {
+    position: relative;
+  }
+  .menuLogo {
+    background-color: var(--darkNeutralColor);
     position: relative;
     left: 10px;
-    background-color: var(--semiLightNeutralColor);
-    overflow: visible;
-    height: 60px;
-    width: 82.9%;
-    min-width: 240px;
-    font-family: var(--mainFont);
-    font-size: var(--titleSize);
-    color: var(--primaryTextColor);
+    z-index: 11;
     border-right: var(--formBlueColor);
     border-right-style: solid;
     border-right-width: 10px;
-    margin-bottom: 50px;
-    white-space: nowrap;
   }
-  .logoMenu{
-    position: relative;
-    top: 5px;
-    background-color: var(--darkNeutralColor);
-    min-height: 70px;
-    min-width: 70px;
+  .menuDesc {
+    height: 40px;
+    width: 220px;
+    background-color: var(--semiLightNeutralColor);
+    padding: 20px 20px 0 0;
+    border-right: var(--mainColor);
+    border-right-style: solid;
+    border-right-width: 10px;
+    position: absolute;
+    z-index: 10;
+    font-family: var(--mainFont);
+    font-size: var(--titleSize);
+    color: var(--primaryTextColor);
+    text-align: right;
+    animation: descBlendIn 0.3s ease 0.1s 1 normal backwards;
+  }
+
+  /*
+  hover-settings:
+    settings for elements, when they are hovered over
+  */
+  .menuItem:hover {
+    cursor: pointer;
+  }
+  .menuLogo:hover {
+    border-right-style: none;
+    left: 0;
   }
 
   /*
@@ -159,31 +170,46 @@ export default {
   }
 
   /*
-  hover-settings:
-    settings for elements, when they are hovered over
-  */
-  .menu-item:hover {
-    border-right: var(--mainColor);
-    border-right-style: solid;
-    border-right-width: 10px;
-    cursor: pointer;
-  }
-
-  /*
   flex-settings:
     different settings for the flex attribute
   */
   .flexContainerMenuA {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: flex-end;
   }
   .flexContainerMenuB {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
   }
   .flexChildMenuA {
     align-self: center;
   }
+
+  /*
+  animations
+  */
+  @keyframes descBlendIn {
+    0%  { width: 50px;
+          height: 50px;
+          background-color: var(--semiLightNeutralColor);
+          font-size: 0;}
+    40% { width: 50px;
+          height: 40px;
+          background-color: var(--semiLightNeutralColor);
+          font-size: 0;}
+    46% { width: 60px;
+          height: 40px;
+          background-color: var(--semiLightNeutralColor);
+          font-size: 0;}
+    47% { width: 61.7px;
+          height: 40px;
+          background-color: var(--semiLightNeutralColor);
+          font-size: var(--titleSize);}
+    100%  { width: 220px;
+            height: 40px;
+            background-color: var(--semiLightNeutralColor);}
+  }
+
 </style>
