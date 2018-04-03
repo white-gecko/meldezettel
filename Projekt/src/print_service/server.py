@@ -1,6 +1,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from cgi import FieldStorage
 from printService import renderPDF
+from io import BytesIO
 
 
 class S(BaseHTTPRequestHandler):
