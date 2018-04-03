@@ -1,13 +1,33 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from cgi import FieldStorage
+from printService import renderPDF
 
+class S(BaseHTTPRequestHandler):
+    def do_POST(self):
+        
+        try:
+            content = FieldStorage(
+                fp = self.rfile,
+                headers = self.headers,
+                environ = {'REQUEST_METHOD':'POST',
+                    'CONTENT_TYPE': self.headers['content-type'],
+                }
+            ) 
+            pdf = renderPDF(content.getvalue('data'))
+        except:
+            self.send_response(400)
+            self.end_headers()
+            return
 
-class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-
-    def do_GET(self):
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(b'Hello, world!')
+        response = BytesIO()
+        response.write(pdf)
+        self.wfile.write(response.getvalue())
 
 
-httpd = HTTPServer(('localhost', 8000), SimpleHTTPRequestHandler)
-httpd.serve_forever()
+
+if __name__ == '__main__':
+    #renderPDF('form.json')
+    httpd = HTTPServer(('localhost', 8000), S)
+    httpd.serve_forever()
