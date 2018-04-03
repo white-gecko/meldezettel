@@ -12,6 +12,7 @@
                   margin-top: 90px;"/>
         <router-view style="
                       width: 78%;
+                      min-width: 660px;
                       margin-left: 40px;
                       margin-top: 140px;"/>
 

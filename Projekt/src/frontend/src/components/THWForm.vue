@@ -1,6 +1,5 @@
 <template>
-  <div class="flexContainerFormA"
-       style="flex-wrap: nowrap">
+  <div class="flexContainerFormA">
     <!--main-form-->
     <div class="
           formWrapper
@@ -19,10 +18,10 @@
               outerWrapper
               hasMarginFormA
               hasPaddingFormA
-              flexContainerFormB"
-             style="padding-top: 5px">
+              flexContainerFormB">
 
-          <div class="flexContainerFormA">
+          <div class="flexContainerFormA"
+               style="flex-wrap: wrap">
 
             <!--sectionTABC-->
             <div class="
@@ -70,7 +69,8 @@
                 </div>
               </div>
 
-              <div class="flexContainerFormA">
+              <div class="flexContainerFormA"
+                   style="flex-wrap: wrap">
 
                 <!--input-complex ("Eingehend")-->
                 <div class="
@@ -360,7 +360,8 @@
               </div>
             </div>
 
-            <div class="flexContainerFormA">
+            <div class="flexContainerFormA"
+                 style="flex-wrap: wrap">
 
               <!--checkbox-group ("Durchsage/Spruch")-->
               <div class="
@@ -406,7 +407,8 @@
 
             </div>
 
-            <div class="flexContainerFormA">
+            <div class="flexContainerFormA"
+                 style="flex-wrap: wrap">
 
               <!--input-complex ("Rufnr.")-->
               <div class="
@@ -520,7 +522,8 @@
               </div>
             </div>
 
-            <div class="flexContainerFormA">
+            <div class="flexContainerFormA"
+                 style="flex-wrap: wrap">
 
               <!--input-complex ("Abfassungszeit")-->
               <div class="
@@ -1330,11 +1333,12 @@ export default {
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
-    padding: 10px 0 20px 0;
+    padding: 10px 0 30px 0;
   }
   .formWrapper {
     background-color: var(--semiLightNeutralColor);
     width: 80%;
+    min-width: 670px;
     overflow: visible;
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
@@ -1381,28 +1385,29 @@ export default {
 
   /*top-section*/
   .checkboxgroupMTTop {
-    margin: 0 5px 5px 5px;
+    margin: 0 0 5px 5px;
     padding: 10px 0 10px 0;
     max-width: 787.85px;
+    min-width: 600px;
   }
   .inputIncoming {
-    margin: 0 5px 5px 5px;
+    margin: 0 0 5px 5px;
     padding: 0 0 0 0;
     max-width: 260.93px;
   }
   .inputOutgoing {
-    margin: 0 5px 5px 0;
+    margin: 0 0 5px 5px;
     padding: 0 0 0 0;
     max-width: 521.9px;
   }
   .inputTB {
-    margin: 0 5px 5px 0;
+    margin: 0 0 5px 5px;
     padding: 0 0 0 0;
     height: 223px;
     max-width: 256.367px;
   }
   .inputRGS {
-    margin: 0 5px 5px 5px;
+    margin: 0 0 5px 5px;
     padding: 0 0 0 0;
     max-width: 1049.22px;
   }
@@ -1574,7 +1579,6 @@ export default {
   .flexContainerFormA {
     display: flex;
     flex-direction: row;
-    align-content: stretch;
   }
   .flexContainerFormB {
     display: flex;
