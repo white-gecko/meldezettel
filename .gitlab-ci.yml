@@ -20,10 +20,9 @@ pythonlinting_and_testing:
   image:
     name: python:2.7
   script:
-    - cd ./Projekt/src/print_service
     - pip install pycodestyle
-    - pycodestyle printService.py
-    - pycodestyle printService.test.py
+    - pycodestyle Project/
+    - cd ./Projekt/src/print_service
     - python printService.test.py -v
     
 jslinting_and_testing:
