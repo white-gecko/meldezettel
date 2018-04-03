@@ -1216,6 +1216,7 @@ export default {
 
     openPDF: function () {
       this.getPDFAction(this.formdata)
+        .catch((error) => this.notifyError('', error.message))
     },
 
     setDefaultData: function (value) {

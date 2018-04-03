@@ -123,11 +123,15 @@ export const handleOperation = (context, newOperation) => {
   return quitstore.sendData(operationInsertQuery)
 }
 
+/**
+ * Sends a formdata object to the pdf service and opens the response in a new window
+ * @param {*} context - vuex store context
+ * @param {*} formdata - formdata object
+ */
 export const getPDFAction = (context, formdata) => {
   return new Promise((resolve, reject) => {
     printservice.sendData(JSON.stringify(formdata))
       .then((response) => {
-        console.log(response)
         let file = new Blob([response.data], {
           type: 'application/pdf'})
         let fileURL = URL.createObjectURL(file)
