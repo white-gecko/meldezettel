@@ -235,14 +235,32 @@ export default {
     // check if operation data is filled in
     validateOperation () {
       if (
+        // test if input fields are empty
         this.newOperation.operationName === '' ||
         this.newOperation.operationAdress === '' ||
         this.newOperation.operationStaffType === '') {
         alert('Bitte Einsatzdaten eingeben.')
+      } else if (
+        // test if operation with same name already exists
+        this.operationIsDuplicate(this.newOperation) === true) {
+        alert('Einsatz mit gleichen Daten existiert bereits.')
       } else {
         this.submitOperation()
         this.selectOperation(this.newOperation)
       }
+    },
+    // check if data of newOperation already is in operations
+    operationIsDuplicate () {
+      let isDuplicate = false
+      for (operation of this.$data.operations) {
+        if (
+          this.$data.newOperation.operationName === operation.operationName ||
+          this.$data.newOperation.operationAdress === operation.operationAdress
+        ) {
+          isDuplicate = true
+        }
+      }
+      return isDuplicate
     },
     // handle saving of a new operation
     submitOperation () {
