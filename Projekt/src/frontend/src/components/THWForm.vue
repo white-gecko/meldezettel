@@ -933,8 +933,7 @@
           hasShadowFormA
           flexContainerFormB">
       <el-button @click="
-                  saveForm();
-                  notifySuccess('Abgeschickt')"
+                  saveForm()"
                   :tabindex="other.tabIndexConf.buttonSend">
         Abschicken
       </el-button>
@@ -1074,7 +1073,9 @@ export default {
         tempAusgehend: false,
         isEdit: false,
         tabIndexConf: {}
-      }
+      },
+
+      sent: false
     }
   },
 
@@ -1099,7 +1100,7 @@ export default {
   },
 
   beforeRouteLeave (to, from, next) {
-    if (from.params.id === undefined) {
+    if (from.params.id === undefined && this.sent === false) {
       this.askSaveDraft()
         .then(() => next())
     } else {
@@ -1109,7 +1110,11 @@ export default {
 
   methods: {
     ...mapMutations(['setDraft']),
-    ...mapActions(['saveNewFormAction', 'loadFormDataAction']),
+    ...mapActions([
+      'saveNewFormAction',
+      'updateFormDataAction',
+      'loadFormDataAction'
+    ]),
     ...mapGetters(['getDraft']),
 
     loadDefault: function () {
@@ -1158,7 +1163,7 @@ export default {
           '',
           'Soll das Formular als Entwurf gespeichert werden?')
           .then(() => {
-            this.setDraft(this.$data.formdata)
+            this.setDraft(this.formdata)
             return resolve()
           })
           .catch(() => {
@@ -1168,21 +1173,38 @@ export default {
     },
 
     saveForm: function () {
-      if (this.$data.other.isEdit) {
-        this.$store.dispatch('updateFormDataAction', this.$data.formdata)
-          .then(() => {
-            this.$router.push({name: 'Home'})
-          })
-          .catch(error => console.log(error))
+      if (this.sent === false) {
+        this.sent = true
+        if (this.other.isEdit) {
+          this.updateFormDataAction(this.$data.formdata)
+            .then(() => {
+              this.notifySuccess('Abgeschickt')
+              this.$router.push({name: 'Home'})
+            })
+            .catch(error => {
+              this.sent = false
+              console.error(error)
+              this.messageBoxError('', 'Fehler beim Versenden des Dokuments')
+            })
+        } else {
+          this.saveNewFormAction(this.formdata)
+            .then(() => {
+              this.notifySuccess('Abgeschickt')
+              this.$router.push({name: 'Home'})
+            })
+            .catch(error => {
+              this.sent = false
+              console.error(error)
+              this.messageBoxError('', 'Fehler beim Versenden des Dokuments')
+            })
+        }
       } else {
-        this.$store.dispatch('saveNewFormAction', this.$data.formdata)
-          .then(() => this.$router.push({name: 'Home'}))
-          .catch(error => console.log(error))
+        this.notifyError('', 'Dokument wurde bereits versendet')
       }
     },
 
     formReset: function () {
-      this.$data.formdata = JSON.parse(JSON.stringify(this.default))
+      this.formdata = JSON.parse(JSON.stringify(this.default))
     },
 
     setDefaultData: function (value) {
