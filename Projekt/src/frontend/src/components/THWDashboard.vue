@@ -21,6 +21,12 @@
                 <el-option value='Alle'>
                   Alle
                 </el-option>
+                <el-option
+                  v-for='operation in operationList'
+                  :key='operation.operationName'
+                  :value='operation.operationName'>
+                  {{ operation.operationName }}
+                </el-option>
               </el-select>
             </el-col>
           </el-row>
@@ -145,6 +151,9 @@
 <script>
 import { Notification } from 'element-ui'
 import { mapActions } from 'vuex'
+import { quitstore } from '../api/QuitStoreAdapter.js'
+import queryHelper from '../sparql_help/sparql_queries.js'
+import { parseResponse } from '../sparql_help/sparql_response'
 
 export default {
   name: 'THWDashboard',
@@ -153,11 +162,28 @@ export default {
     next(vm => {
       vm.$store.dispatch('updateTicketListAction')
         .catch(error => alert(error))
+
+      let operationsQuery = queryHelper.operationsQuery()
+
+      quitstore.getData(operationsQuery)
+        .then((response) => {
+          let data = parseResponse(response)
+          vm.$data.operationList = data
+        })
+        .catch((error) => {
+          alert(error)
+        })
     })
   },
 
   beforeRouteUpdate (to, from, next) {
     next(false)
+  },
+
+  data: () => {
+    return {
+      operationList: []
+    }
   },
 
   computed: {

@@ -27,10 +27,10 @@ PREFIX : <http://www.na17b.org/thw/>
 
     query += uri + ' rdf:type :document'
 
-    if (doc.operation !== '') {
-      query += '; :inOperation id:' + doc.operation
+    if (doc.inOperation !== '') {
+      query += '; :inOperation id:' + doc.inOperation
     }
-    delete doc.operation
+    delete doc.inOperation
 
     for (let key in doc) {
       let value = doc[key]
@@ -70,10 +70,10 @@ PREFIX : <http://www.na17b.org/thw/>
 
     query += uri + ' rdf:type :document'
 
-    if (doc.operation !== '') {
-      query += '; :inOperation id:' + doc.operation
+    if (doc.inOperation !== '') {
+      query += '; :inOperation id:' + doc.inOperation
     }
-    delete doc.operation
+    delete doc.inOperation
 
     for (let key in doc) {
       let value = doc[key]
@@ -118,7 +118,7 @@ thw:identification ?identification;
 thw:docketIdentification ?docketIdentification`
 
     if (filter.operation !== 'Alle') {
-      query += `; thw:operation ?operation.` +
+      query += `; thw:inOperation ?operation.` +
                 ` ?operation thw:operationName "` + filter.operation + `"`
     }
     query += '.'

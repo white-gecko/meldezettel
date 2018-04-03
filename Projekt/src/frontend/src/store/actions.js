@@ -264,7 +264,7 @@ export const setDefaultFilters = (context) => {
       }
   }
   defFilter['search'] = ''
-  defFilter['operation'] = 'Alle'
+  defFilter['operation'] = context.state.user.operation.operationName
   context.commit('setFilters', defFilter)
 }
 
