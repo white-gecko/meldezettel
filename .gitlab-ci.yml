@@ -21,6 +21,7 @@ pythonlinting_and_testing:
     name: python:2.7
   script:
     - pip install pycodestyle
+    - ls
     - pycodestyle Project/
     - cd ./Projekt/src/print_service
     - python printService.test.py -v
