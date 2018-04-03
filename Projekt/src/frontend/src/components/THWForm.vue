@@ -28,7 +28,8 @@
                   middleWrapper
                   hasMarginFormB
                   hasPaddingFormB
-                  flexContainerFormB">
+                  flexContainerFormB"
+                 style="width: 70%">
 
               <!--checkbox-group (message-type)-->
               <div class="
@@ -70,7 +71,9 @@
               </div>
 
               <div class="flexContainerFormA"
-                   style="flex-wrap: wrap">
+                   style="
+                    width: 100%;
+                    flex-wrap: wrap">
 
                 <!--input-complex ("Eingehend")-->
                 <div class="
@@ -233,7 +236,8 @@
             <div class="
                   middleWrapper
                   hasMarginFormB
-                  hasPaddingFormB">
+                  hasPaddingFormB"
+                 style="width: 30%">
 
               <!--input-complex ("Technisches Betriebsbuch")-->
               <div class="
@@ -1336,8 +1340,8 @@ export default {
     padding: 10px 0 30px 0;
   }
   .formWrapper {
-    background-color: var(--semiLightNeutralColor);
     width: 80%;
+    background-color: var(--semiLightNeutralColor);
     min-width: 670px;
     overflow: visible;
     font-family: var(--mainFont);
@@ -1345,8 +1349,8 @@ export default {
     color: var(--primaryTextColor);
   }
   .sideMenuForm {
-    background-color: var(--semiLightNeutralColor);
     width: 20%;
+    background-color: var(--semiLightNeutralColor);
     overflow: visible;
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
@@ -1374,6 +1378,7 @@ export default {
     border: var(--darkNeutralColor);
     border-style: solid;
     border-width:2px;
+    box-sizing:border-box
   }
   .headerFormA {
     padding: 10px 0 10px 10px;
@@ -1387,24 +1392,20 @@ export default {
   .checkboxgroupMTTop {
     margin: 0 0 5px 5px;
     padding: 10px 0 10px 0;
-    max-width: 787.85px;
-    min-width: 600px;
+    width: 100%;
   }
   .inputIncoming {
     margin: 0 0 5px 5px;
     padding: 0 0 0 0;
-    max-width: 260.93px;
   }
   .inputOutgoing {
     margin: 0 0 5px 5px;
     padding: 0 0 0 0;
-    max-width: 521.9px;
   }
   .inputTB {
     margin: 0 0 5px 5px;
     padding: 0 0 0 0;
     height: 223px;
-    max-width: 256.367px;
   }
   .inputRGS {
     margin: 0 0 5px 5px;
@@ -1512,53 +1513,6 @@ export default {
   }
   .hasPaddingFormB {
     padding:  0 0 0 0;
-  }
-
-  /*
-  border-settings:
-    different border styles
-  */
-
-  /*
-  min-max-settings:
-  */
-  .hasMinMaxA {
-    min-width: 50px;
-    width: 55%;
-  }
-  .hasMinMaxB {
-    min-width: 50px;
-    width: 69.3%;
-  }
-  .hasMinMaxC {
-    min-width: 50px;
-    width: 72%;
-  }
-  .hasMinMaxD {
-    min-width: 50px;
-    width: 97.6%;
-  }
-  .hasMinMaxE {
-    min-width: 50px;
-    width: 89%;
-  }
-  .hasMinMaxF {
-    min-width: 50px;
-    width: 65.5%;
-  }
-  .hasMinMaxG {
-    min-width: 50px;
-    width: 84.5%;
-  }
-  .hasMinMaxH {
-    min-width: 50px;
-    width: 83%;
-  }
-  .hasMinMaxI {
-    min-width: 50px;
-    width: 90%;
-    margin-left: 20px;
-    height: 100%;
   }
 
   /*
