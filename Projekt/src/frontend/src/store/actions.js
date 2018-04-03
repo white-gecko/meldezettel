@@ -1,4 +1,5 @@
 import { quitstore } from '../api/QuitStoreAdapter'
+import { printservice } from '../api/PrintServiceAdapter'
 import queryHelper from '../sparql_help/sparql_queries'
 import { parseResponse } from '../sparql_help/sparql_response'
 
@@ -120,4 +121,18 @@ export const handleOperation = (context, newOperation) => {
   let operationInsertQuery = queryHelper.operationToInsertQuery(newOperation)
 
   return quitstore.sendData(operationInsertQuery)
+}
+
+export const getPDFAction = (context, formdata) => {
+  return new Promise((resolve, reject) => {
+    printservice.sendData(JSON.stringify(formdata))
+    .then((response) => {
+      console.log(response)
+      const blob = new Blob([response.data], {
+        type: 'application/pdf',
+      });
+      return resolve(blob)
+    })
+    .catch((error) => {return reject(new Error('Fehler beim Anfordern der PDF'))})
+  })
 }
