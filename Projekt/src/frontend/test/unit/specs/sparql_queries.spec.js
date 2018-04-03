@@ -19,7 +19,7 @@ test ('Dashboard query function works',() =>{
     s14: false,
     s15: false
   }
-  expect(sparql.dashboardQuery()).toBe(`
+  expect(sparql.dashboardQuery(filter)).toBe(`
 PREFIX thw: <http://www.na17b.org/thw/>
 PREFIX id: <http://www.na17b.org/thw/resource/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -37,8 +37,8 @@ thw:tertiaryDate ?tertiaryDate;
 thw:tertiaryTime ?tertiaryTime;
 thw:numberTB ?numberTB;
 thw:identification ?identification;
-thw:docketIdentification ?docketIdentification. FILTER((regex(?content, "abc") || regex(?numberTB, "abc") || regex(?receiverName, "abc") ||?primaryHdZ = "abc" || ?identification = "abc") && ( ?ticketState = 1 || ?ticketState = 7 || ?ticketState = 13))}
-`)
+thw:docketIdentification ?docketIdentification. FILTER((regex(?content, "abc") || regex(?numberTB, "abc") || regex(?receiverName, "abc") ||?primaryHdZ = "abc" || ?identification = "abc") && ( ?ticketState = 1 || ?ticketState = 7 || ?ticketState = 13))}`
+  )
 })
 
 test ('FormQuery function works',() => {
@@ -62,7 +62,7 @@ test ('InsertQuery function works',() => {
   let obj={documentID: 'fr1234567891011',one:'text',two:false,three:333,four:date}
 
   expect(sparql.formdataToInsertQuery(obj)).toMatch(
-    /INSERT DATA {GRAPH <http:\/\/www.na17b.org\/thw\/> {id:fr1234567891011 rdf:type thw:document;thw:one """text""";thw:two false;thw:three 333;thw:four 40.}}/
+    /INSERT DATA {GRAPH : {id:fr1234567891011 rdf:type :document;:one \"\"\"text\"\"\";:two false;:three 333;:four 40.}}/
   )
 })
 
@@ -72,7 +72,7 @@ test ('DeleteQuery function works',() => {
   let obj={documentID: 'fr1234567891011',one:'text',two:false,three:333,four:date}
 
   expect(sparql.formdataToDeleteQuery(obj)).toMatch(
-    /DELETE DATA {GRAPH <http:\/\/www.na17b.org\/thw\/> {id:fr1234567891011 rdf:type thw:document;thw:one """text""";thw:two false;thw:three 333;thw:four 40.}}/
+    /DELETE DATA {GRAPH : {id:fr1234567891011 rdf:type :document;:one \"\"\"text\"\"\";:two false;:three 333;:four 40.}}/
   )
 })
 
