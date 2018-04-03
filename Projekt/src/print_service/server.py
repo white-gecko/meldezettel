@@ -3,10 +3,13 @@ from cgi import FieldStorage
 from printService import renderPDF
 from io import BytesIO
 
+class CORSRequestHandler (BaseHTTPRequestHandler):
+    def end_headers (self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        BaseHTTPRequestHandler.end_headers(self)
 
-class S(BaseHTTPRequestHandler):
+class S(CORSRequestHandler):
     def do_POST(self):
-
         try:
             content = FieldStorage(
                 fp=self.rfile,
@@ -30,6 +33,5 @@ class S(BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    # renderPDF('form.json')
     httpd = HTTPServer(('localhost', 5001), S)
     httpd.serve_forever()
