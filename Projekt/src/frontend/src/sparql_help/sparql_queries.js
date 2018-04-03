@@ -147,16 +147,16 @@ PREFIX : <http://www.na17b.org/thw/>
     // generate id
     let rid = newOperation.operationID
     // base for sparql insert queries
-    query += 'INSERT DATA {GRAPH <http://www.na17b.org/thw/> {'
+    query += 'INSERT DATA {GRAPH thw: {'
     let uri = 'id:' + rid
     query += uri + ' rdf:type thw:operation'
 
-    query += ';thw:operationName ' + '"' + newOperation.operationName + '"'
-    query += ';thw:operationAdress ' + '"' + newOperation.operationAdress + '"'
+    query += ';thw:operationName ' + '"""' + newOperation.operationName + '"""'
+    query += ';thw:operationAdress ' + '"""' + newOperation.operationAdress + '"""'
     query += ';thw:operationStaffType ' +
-      '"' +
+      '"""' +
       newOperation.operationStaffType +
-      '"'
+      '"""'
     query += '.}}'
 
     return query
@@ -168,15 +168,15 @@ PREFIX : <http://www.na17b.org/thw/>
       PREFIX id: <http://www.na17b.org/thw/resource/>
       prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-    SELECT
-      *
-    FROM thw:
-    WHERE {
-        ?operationId rdf:type thw:operation;
-        thw:operationName ?operationName;
-        thw:operationAdress ?operationAdress;
-        thw:operationStaffType ?operationStaffType.
-    }
+      SELECT
+        *
+      FROM thw:
+      WHERE {
+          ?operationId rdf:type thw:operation;
+          thw:operationName ?operationName;
+          thw:operationAdress ?operationAdress;
+          thw:operationStaffType ?operationStaffType.
+      }
     `
   }
 }
