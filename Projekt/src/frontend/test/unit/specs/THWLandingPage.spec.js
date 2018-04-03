@@ -39,7 +39,7 @@ describe('THWLandingPage', () => {
       operationName: '',
       operationAdress: '',
       operationStaffType: '',
-      operationID: 0
+      operationID: ''
     })
   })
 })

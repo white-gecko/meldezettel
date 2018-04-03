@@ -992,7 +992,7 @@ export default {
     return {
       formdata: {
         documentID: '',
-        operation: '',
+        inOperation: '',
 
         topRadio: true,
         topPhone: false,
@@ -1111,11 +1111,11 @@ export default {
   methods: {
     ...mapMutations(['setDraft']),
     ...mapActions(['saveNewFormAction', 'loadFormDataAction']),
-    ...mapGetters(['getDraft']),
+    ...mapGetters(['getDraft', 'getUser']),
 
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
-      this.$data.formdata.operation = this.$store.user.operation.operationID
+      this.$data.formdata.inOperation = this.getUser().operation.operationId
     },
 
     loadDraft: function () {

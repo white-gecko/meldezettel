@@ -178,7 +178,7 @@ export default {
       },
 
       // objects for operations, roles and positions
-      operations: [{}],
+      operations: [],
       roles: roleOptions,
       positions: positionOptions
     }
@@ -189,7 +189,7 @@ export default {
 
     quitstore.getData(operationsQuery)
       .then((response) => {
-        let data = parseResponse(response.data)
+        let data = parseResponse(response)
         this.setStoredOperations(data)
         // vm.setStoredOperations({'storedOperations': data})
       })
