@@ -71,9 +71,7 @@
               </div>
 
               <div class="flexContainerFormA"
-                   style="
-                    width: 100%;
-                    flex-wrap: wrap">
+                   style="width: 100%">
 
                 <!--input-complex ("Eingehend")-->
                 <div class="
@@ -94,6 +92,7 @@
                            class="
                             inputWithLabel
                             hasMinMaxA"
+                           type="text"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryDate"/>
                   </div>
@@ -1359,26 +1358,34 @@ export default {
     margin-left: 40px;
   }
   .inputWrapper {
+    width: 100%;
     margin: 0 10px 0 20px;
     height: 40px;
+    box-sizing: border-box
   }
   .inputLabel {
     background-color: var(--darkNeutralColor);
     white-space: nowrap;
+    height: 40px;
     min-width: 60px;
     padding: 10px 10px 0 10px;
+    border: var(--darkNeutralColor);
+    border-style: solid;
+    border-width:2px;
+    box-sizing: border-box
   }
   .checkboxLabel {
     padding: 10px 15px 14px 10px;
     cursor: pointer;
   }
   .inputWithLabel {
+    width: 50%;
     background-color: var(--semiLightNeutralColor);
     padding-left: 10px;
     border: var(--darkNeutralColor);
     border-style: solid;
     border-width:2px;
-    box-sizing:border-box
+    box-sizing: border-box
   }
   .headerFormA {
     padding: 10px 0 10px 10px;
@@ -1397,10 +1404,12 @@ export default {
   .inputIncoming {
     margin: 0 0 5px 5px;
     padding: 0 0 0 0;
+    width: 33%;
   }
   .inputOutgoing {
     margin: 0 0 5px 5px;
     padding: 0 0 0 0;
+    width: 67%;
   }
   .inputTB {
     margin: 0 0 5px 5px;
