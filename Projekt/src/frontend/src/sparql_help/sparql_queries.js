@@ -152,7 +152,8 @@ PREFIX : <http://www.na17b.org/thw/>
     query += uri + ' rdf:type thw:operation'
 
     query += ';thw:operationName ' + '"""' + newOperation.operationName + '"""'
-    query += ';thw:operationAdress ' + '"""' + newOperation.operationAdress + '"""'
+    query += ';thw:operationAdress ' +
+      '"""' + newOperation.operationAdress + '"""'
     query += ';thw:operationStaffType ' +
       '"""' +
       newOperation.operationStaffType +
