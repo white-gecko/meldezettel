@@ -1,7 +1,8 @@
 stages:
   - xmlinting
+  - pythonlinting_and_testing
   - jslinting_and_testing
-
+  
 
 validate_time_tracking:
   stage: xmlinting
@@ -14,6 +15,17 @@ validate_time_tracking:
   only:
     - master
 
+pythonlinting_and_testing:
+  stage: pythonlinting_and_testing
+  image:
+    name: python:2.7
+  script:
+    - cd ./Projekt/src/print_service
+    - pip install pycodestyle
+    - pycodestyle printService.py
+    - pycodestyle printService.test.py
+    - python printService.test.py -v
+    
 jslinting_and_testing:
   stage: jslinting_and_testing
   image: 
@@ -29,3 +41,4 @@ jslinting_and_testing:
     # Installing jest, vue-test-utils and dependencies
     - npm install jest jest-serializer-vue vue-jest vue-template-compiler babel-jest vue @vue/test-utils babel-preset-stage-2 babel-plugin-dynamic-import-node vuex axios element-ui vue-server-renderer
     - npm run unit
+    

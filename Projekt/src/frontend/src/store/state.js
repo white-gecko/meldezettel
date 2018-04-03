@@ -1,6 +1,7 @@
 export default {
   role: 'Sichter',
   ticketlist: [],
+  draft: undefined,
   user: {
     operation: {},
     role: '',

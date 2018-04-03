@@ -1,18 +1,22 @@
 <template>
-  <div >
-    <el-container>
-      <el-header height="90px">
-        <THWHeader/>
-      </el-header>
-      <el-container>
-        <el-aside width="220px">
-          <THWMenu/>
-        </el-aside>
-        <el-main>
-          <router-view/>
-        </el-main>
-      </el-container>
-    </el-container>
+  <div class="flexContainerLayoutA">
+    <div style="z-index: 2">
+      <THWHeader/>
+    </div>
+
+    <div class="
+          flexContainerLayoutB"
+         style="z-index: 1">
+        <THWMenu style="
+                  width: 10%;
+                  margin-top: 100px;"/>
+       <router-view style="
+                      width: 78%;
+                      margin-left: 50px;
+                      margin-top: 100px;"/>
+
+    </div>
+
   </div>
 </template>
 
@@ -31,14 +35,16 @@ export default {
 </script>
 
 <style>
+
   :root {
     /*colors*/
     /*main colors*/
     --mainColor: #3d6cb8;
+    --lightMainColor: #799bd2;
     --formBlueColor: #9cb7e2;
-    --formGreenColor: "";
-    --formRedColor: "";
-    --formYellowColor: "";
+    --formGreenColor: #9ce2a4;
+    --formRedColor: #e29c9c;
+    --formYellowColor: #e2e29c;
 
     /*secondary colors*/
     --successColor: #67C23A;
@@ -49,9 +55,13 @@ export default {
     /*neutral colors*/
     --darkNeutralColor: #DCDFE6;
     --middleNeutralColor: #EBEEF5;
+    --semiLightNeutralColor: #fafafa;
     --lightNeutralColor: white;
 
     /*shadow colors*/
+    --darkShadowColor: #666666;
+    --middleShadowColor: #999999;
+    --lightShadowColor: #cccccc;
 
     /*font-specific parameters*/
     /*font(s)*/
@@ -73,6 +83,19 @@ export default {
   }
 
   /*
+  flex-settings:
+  different settings for the flex attribute
+   */
+  .flexContainerLayoutA {
+    display: flex;
+    flex-direction: column;
+  }
+  .flexContainerLayoutB {
+    display: flex;
+    flex-direction: row;
+  }
+
+  /*
   wrapper
     different wrappers to enclose elements in,
     mainly for structural and design reasons
@@ -80,38 +103,74 @@ export default {
   .outerWrapper {
     background-color: var(--darkNeutralColor);
     font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
-    border-bottom: var(--placeholderTextColor);
-    border-bottom-style: solid;
-    border-bottom-width: 10px;
-    border-radius: 0px;
+    flex-grow: 1;
   }
 
   .middleWrapper {
     background-color: var(--middleNeutralColor);
     font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    flex-grow: 1;
   }
 
   .innerWrapper {
-    background-color: var(--lightNeutralColor);
+    background-color: var(--semiLightNeutralColor);
     font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
-    border-left: var(--formBlueColor);
-    border-left-style: solid;
-    border-left-width: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    position: relative;
+    flex-grow: 1;
   }
 
-  .el-header, .el-footer, .el-form-item, el-input, el-main, el-container {
-    padding: 0;
+  /*CSS-reset:
+      resets the whole standart css settings,
+      to reduce problems with different browsers
+     */
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video, el-header, el-footer,
+  el-form-item, el-input, el-main, el-container{
     margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+  body {
+    line-height: 1;
+  }
+  ol, ul {
+    list-style: none;
+  }
+  blockquote, q {
+    quotes: none;
+  }
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
   }
 </style>
