@@ -8,12 +8,12 @@
           flexContainerLayoutB"
          style="z-index: 1">
         <THWMenu style="
-                  width: 20%;
-                  margin-top: 90px;"/>
-        <router-view style="
+                  width: 10%;
+                  margin-top: 100px;"/>
+       <router-view style="
                       width: 78%;
-                      margin-left: 40px;
-                      margin-top: 140px;"/>
+                      margin-left: 50px;
+                      margin-top: 100px;"/>
 
     </div>
 
