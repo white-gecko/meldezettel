@@ -204,7 +204,6 @@ export default {
 
     setStoredOperations (storedOperations) {
       this.$data.operations = storedOperations
-      console.log(JSON.stringify(storedOperations))
     },
     // checks if userData is typed in (not empty)
     validateUser (userData) {
@@ -217,6 +216,7 @@ export default {
     // stores userData in store/state.js (vuex)
     submitUser () {
       this.$store.commit('setUser', this.userData)
+      this.$store.dispatch('setDefaultFilters')
       this.notifySuccess('Eingaben erfolgreich gespeichert')
       this.$store.commit('setShowLandingPage')
     },
