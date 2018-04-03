@@ -15,15 +15,15 @@ describe('THWDashboard', () => {
   })
 
   it('displays the author', () => {
-    expect(wrapper.html()).toContain('prop="primaryHdZ"')
+    expect(wrapper.html()).toContain('prop="creator"')
   })
 
   it('displays the creation date', () => {
-    expect(wrapper.html()).toContain('prop="primaryDate"')
+    expect(wrapper.html()).toContain('prop="date"')
   })
 
   it('displays the creation time', () => {
-    expect(wrapper.html()).toContain('prop="primaryTime"')
+    expect(wrapper.html()).toContain('prop="time"')
   })
 
   it('displays the content of a ticket', () => {
