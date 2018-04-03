@@ -14,7 +14,7 @@
           hasShadowHeaderB
           flexContainerHeaderA
           flexChildHeaderB">
-        <img src="@/assets/thwLogo.png"
+        <img src="@/assets/placeholderIcon.png"
              height="70"
              width="70">
       </div>
@@ -23,12 +23,9 @@
             headerWrapper
             hasShadowHeaderB"
            style="
-            margin-left: 0%;
-            padding-left: 10%;
-            padding-right: 10%;
-            margin-left: 0%;
-            margin-right: 0%;">
-        Technisches Hilfswerk
+            min-width: 215px;
+            margin: 0 0 0 0;">
+        Nachrichtenkom. für das THW
       </div>
 
     </div>
@@ -36,37 +33,54 @@
     <div class="
           headerWrapper
           hasShadowHeaderB">
-      Einsatz
+      {{this.user.operation.operationName}}
     </div>
 
     <div class="
           headerWrapper
           hasShadowHeaderB">
-      {{this.user.signature}}
+      {{this.user.identification}}
     </div>
 
     <div class="
+          menuWrapper
+          flexContainerHeaderC"
+         @mouseover="showDropDownMenu"
+         @mouseout="hideDropDownMenu">
+
+      <div class="
           roleLogoWrapper
           flexContainerHeaderB">
-      <div class="
+        <div class="
           logoHeader
           hasShadowHeaderB
           flexContainerHeaderA">
-        <img :src="selectIcon"
-             height="70"
-             width="70">
+          <img :src="selectIcon"
+               height="70"
+               width="70">
+        </div>
+
+        <div class="
+            headerWrapper
+            hasShadowHeaderB"
+             style="
+              width: 215px;
+              margin: 0 0 0 0;">
+          {{this.user.role}}
+        </div>
       </div>
 
       <div class="
-            headerWrapper
-            hasShadowHeaderB"
-           style="
-            margin-right: 0%;
-            padding-left: 10%;
-            padding-right: 10%;
-            margin-left: 0%;
-            margin-right: 0%;">
-        {{this.user.role}}
+        headerDropDown
+        hasShadowHeaderB
+        flexContainerHeaderD"
+           v-show="headerDropDownCollapsed">
+        <div class="
+              headerMenuItem
+              hasShadowHeaderB"
+             @click="goTo('Role')">
+          Nutzerdaten auswählen
+        </div>
       </div>
 
     </div>
@@ -81,6 +95,13 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'THWHeader',
+
+  data: () => {
+    return {
+      headerDropDownCollapsed: false
+    }
+  },
+
   computed: {
     ...mapGetters({
       user: 'getUser'
@@ -103,7 +124,21 @@ export default {
         return require('@/assets/placeholderIcon.png')
       }
     }
+  },
 
+  methods: {
+    goTo: function (path, params) {
+      this.$router.push({name: path, params: params})
+    },
+    showDropDownMenu: function () {
+      this.headerDropDownCollapsed = true
+    },
+    hideDropDownMenu: function () {
+      this.headerDropDownCollapsed = false
+    },
+    printStuff: function () {
+      console.log('SUCCESS!')
+    }
   }
 }
 </script>
@@ -123,32 +158,70 @@ export default {
   }
   .headerWrapper {
     height: 40px;
+    min-width: 150px;
     background-color: var(--semiLightNeutralColor);
     border-bottom: var(--mainColor);
     border-bottom-style: solid;
     border-bottom-width: 10px;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-top: 10px;
     margin-left: 1%;
     margin-right: 1%;
+    text-align: center;
     white-space: nowrap;
   }
   .logoHeader {
     background-color: var(--darkNeutralColor);
-    min-height: 70px;
-    min-width: 80px;
+    height: 70px;
+    width: 80px;
     border-bottom: var(--mainColor);
     border-bottom-style: solid;
     border-bottom-width: 10px;
   }
   .THWlogoWrapper {
     margin-left: 10%;
-    margin-right: 18%;
+    margin-right: 10%;
   }
-  .roleLogoWrapper {
+  .menuWrapper {
+    position: relative;
     margin-left: 1%;
     margin-right: 10%;
+  }
+  .roleLogoWrapper {
+    z-index: 2;
+    cursor: pointer;
+  }
+  .headerDropDown {
+    width: 285px;
+    background-color: var(--semiLightNeutralColor);
+    overflow: visible;
+    position: absolute;
+    margin: 0 0 0 10px;
+    left: 0;
+    z-index: 1;
+    border-left: var(--formBlueColor);
+    border-left-style: solid;
+    border-left-width: 10px;
+    animation: dropDownBlendIn 0.4s ease 0s 1 normal both;
+  }
+  .headerMenuItem {
+    height: 40px;
+    width: 265px;
+    background-color: var(--semiLightNeutralColor);
+    position: absolute;
+    margin: 0 0 20px 0;
+    padding: 20px 20px 0 0;
+    border-right: var(--formBlueColor);
+    border-right-style: solid;
+    border-right-width: 10px;
+    text-align: center;
+  }
+  .headerMenuItem:hover {
+    border-right: var(--mainColor);
+    border-right-style: solid;
+    border-right-width: 10px;
+    cursor: pointer;
   }
 
   /*
@@ -164,6 +237,16 @@ export default {
     display: flex;
     flex-direction: row;
   }
+  .flexContainerHeaderC{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  .flexContainerHeaderD{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
 
   /*
   shadow-settings:
@@ -176,19 +259,16 @@ export default {
     box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
   }
 
-  /*temp*/
-  .testSquare1 {
-    background-color: white;
-    height: 70px;
-    width: 10%;
-    margin-left: 2%;
-    margin-right: 2%;
-  }
-  .testSquare2 {
-    background-color: white;
-    height: 70px;
-    width: 40%;
-    margin-left: 2%;
-    margin-right: 2%;
+  /*
+  animations:
+  */
+  @keyframes dropDownBlendIn {
+    0% {
+      height: 50px;
+    }
+
+    100% {
+      height: 180px;
+    }
   }
 </style>
