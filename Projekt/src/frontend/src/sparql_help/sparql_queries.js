@@ -169,16 +169,14 @@ PREFIX : <http://www.na17b.org/thw/>
       prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
     SELECT
-      ?operationName
-      ?operationAdress
-      ?operationStaffType
+      *
     FROM thw:
     WHERE {
-        ?id rdf:type thw:operation;
+        ?operationId rdf:type thw:operation;
         thw:operationName ?operationName;
         thw:operationAdress ?operationAdress;
-        thw:operationStaffType ?operationStaffType
-    .}
+        thw:operationStaffType ?operationStaffType.
+    }
     `
   }
 }
