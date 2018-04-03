@@ -18,11 +18,10 @@ validate_time_tracking:
 pythonlinting_and_testing:
   stage: pythonlinting_and_testing
   image:
-    name: python:2.7
+    name: python:3.6
   script:
     - pip install pycodestyle
-    - ls
-    - pycodestyle Project/
+    - pycodestyle Projekt/
     - cd ./Projekt/src/print_service
     - python printService.test.py -v
     
