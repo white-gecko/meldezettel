@@ -210,7 +210,7 @@ def renderPDF(formDataString):
 
     # Hashing formDataString toi get unique name for working dir
     m = hashlib.md5()
-    m.update(formDataString.encode('ascii','UTF8'))
+    m.update(formDataString.encode('ascii', 'UTF8'))
     formDataStringHash = m.hexdigest()
 
     # Copy files to working dir
