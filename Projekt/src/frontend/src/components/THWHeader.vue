@@ -42,7 +42,7 @@
     <div class="
           headerWrapper
           hasShadowHeaderB">
-      Zeichen
+      {{this.user.signature}}
     </div>
 
     <div class="
@@ -66,7 +66,7 @@
             padding-right: 10%;
             margin-left: 0%;
             margin-right: 0%;">
-        {{this.role}}
+        {{this.user.role}}
       </div>
 
     </div>
@@ -83,32 +83,25 @@ export default {
   name: 'THWHeader',
   computed: {
     ...mapGetters({
-      role: 'getRole'
+      user: 'getUser'
     }),
 
     selectIcon: function () {
-      /* if (this.role === 'Sichter') {
+      if (this.user.role === 'Sichter') {
         return require('@/assets/sichterIcon.png')
-      } else if (this.role === 'LdF') {
+      } else if (this.user.role === 'LdF') {
         return require('@/assets/LdFIcon.png')
-      } else if (this.role === 'Fernmelder') {
+      } else if (this.user.role === 'Fernmelder') {
         return require('@/assets/fernmelderIcon.png')
-      } else if (this.role === 'SGL') {
+      } else if (this.user.role === 'SGL') {
         return require('@/assets/SGLIcon.png')
-      } else if (this.role === 'Fachberater') {
+      } else if (this.user.role === 'Fachberater') {
         return require('@/assets/fachberaterIcon.png')
-      } else if (this.role === 'Verbindungsstelle') {
-        return require('@/assets/verbindungsstelleIcon.png')
+      } else if (this.user.role === 'Verbindungsstelle') {
+        return require('@/assets/placeholderIcon.png') /* require('@/assets/verbindungsstelleIcon.png') */
       } else {
         return require('@/assets/placeholderIcon.png')
-      } */
-      return require('@/assets/sichterIcon.png')
-      // return require('@/assets/LdFIcon.png')
-      // return require('@/assets/fernmelderIcon.png')
-      // return require('@/assets/SGLIcon.png')
-      // return require('@/assets/fachberaterIcon.png')
-      // return require('@/assets/verbindungsstelleIcon.png')
-      // return require('@/assets/placeholderIcon.png')
+      }
     }
 
   }
