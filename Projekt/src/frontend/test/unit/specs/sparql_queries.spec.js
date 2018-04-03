@@ -52,10 +52,11 @@ test ('operationToInsertQuery function works',() =>{
   let operation={
     operationName:'Frederike',
     operationAdress:'THW EAL',
-    operationStaffType:'StabStab'}
+    operationStaffType:'StabStab',
+    operationID:'operation1337133713371'}
 
     expect(sparql.operationToInsertQuery(operation)).toMatch(
-      /INSERT DATA {GRAPH thw: {id:operation[0-9]{13} rdf:type thw:operation;thw:operationName """Frederike""";thw:operationAdress """EAL THW""";thw:operationStaffType """StabStab""".}}/
+      /INSERT DATA {GRAPH thw: {id:operation1337133713371 rdf:type thw:operation;thw:operationName """Frederike""";thw:operationAdress """EAL THW""";thw:operationStaffType """StabStab""".}}/
     )
 })
 
