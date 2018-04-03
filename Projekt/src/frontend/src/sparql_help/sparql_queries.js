@@ -27,6 +27,11 @@ PREFIX : <http://www.na17b.org/thw/>
 
     query += uri + ' rdf:type :document'
 
+    if (doc.operation !== '') {
+      query += '; :inOperation id:' + doc.operation
+    }
+    delete doc.operation
+
     for (let key in doc) {
       let value = doc[key]
 
@@ -64,6 +69,11 @@ PREFIX : <http://www.na17b.org/thw/>
     query += 'DELETE DATA {GRAPH : {'
 
     query += uri + ' rdf:type :document'
+
+    if (doc.operation !== '') {
+      query += '; :inOperation id:' + doc.operation
+    }
+    delete doc.operation
 
     for (let key in doc) {
       let value = doc[key]
@@ -248,6 +258,50 @@ thw:docketIdentification ?docketIdentification`
       SELECT ?p ?o FROM thw: WHERE{
         id:` + id + ` ?p ?o
         FILTER(?p != rdf:type)
+      }
+    `
+  },
+  operationToInsertQuery: function (newOperation) {
+    // default prefixes
+    let query = `
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX thw: <http://www.na17b.org/thw/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    `
+    // generate id
+    let rid = newOperation.operationID
+    // base for sparql insert queries
+    query += 'INSERT DATA {GRAPH thw: {'
+    let uri = 'id:' + rid
+    query += uri + ' rdf:type thw:operation'
+
+    query += ';thw:operationName ' + '"""' + newOperation.operationName + '"""'
+    query += ';thw:operationAdress ' +
+      '"""' + newOperation.operationAdress + '"""'
+    query += ';thw:operationStaffType ' +
+      '"""' +
+      newOperation.operationStaffType +
+      '"""'
+    query += '.}}'
+
+    return query
+  },
+  operationsQuery: function () {
+    // Similar to dashboardQuery
+    return `
+      PREFIX thw: <http://www.na17b.org/thw/>
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+      prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+      SELECT
+        *
+      FROM thw:
+      WHERE {
+          ?operationId rdf:type thw:operation;
+          thw:operationName ?operationName;
+          thw:operationAdress ?operationAdress;
+          thw:operationStaffType ?operationStaffType.
       }
     `
   }

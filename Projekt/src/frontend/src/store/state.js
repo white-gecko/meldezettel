@@ -21,10 +21,11 @@ export default {
   },
   draft: undefined,
   user: {
+    operation: {},
     role: '',
     sender: '',
     position: '',
-    signature: ''
+    identification: ''
   },
   showLandingPage: true
 }

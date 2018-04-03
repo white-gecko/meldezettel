@@ -267,3 +267,12 @@ export const setDefaultFilters = (context) => {
   defFilter['operation'] = 'Alle'
   context.commit('setFilters', defFilter)
 }
+
+/**
+ * @param context - vuex store context
+ * @param {object} newOperation - current new operation to be stored */
+export const handleOperation = (context, newOperation) => {
+  let operationInsertQuery = queryHelper.operationToInsertQuery(newOperation)
+
+  return quitstore.sendData(operationInsertQuery)
+}
