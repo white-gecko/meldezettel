@@ -5,7 +5,6 @@
 <div class="userData">
 <el-form
   :model="userData"
-  :rules="rules"
   ref="userData">
 
   <el-form-item>
@@ -204,8 +203,8 @@ export default {
     ...mapActions(['handleOperation']),
 
     setStoredOperations (storedOperations) {
-      this.$data.operations.pop()
       this.$data.operations = storedOperations
+      console.log(JSON.stringify(storedOperations))
     },
     // checks if userData is typed in (not empty)
     validateUser (userData) {
@@ -240,16 +239,13 @@ export default {
         this.newOperation.operationAdress === '' ||
         this.newOperation.operationStaffType === '') {
         alert('Bitte Einsatzdaten eingeben.')
-      } else if (
-        // test if operation with same name already exists
-        this.operationIsDuplicate(this.newOperation) === true) {
-        alert('Einsatz mit gleichen Daten existiert bereits.')
       } else {
         this.submitOperation()
         this.selectOperation(this.newOperation)
       }
     },
     // check if data of newOperation already is in operations
+    /*
     operationIsDuplicate () {
       let isDuplicate = false
       for (operation of this.$data.operations) {
@@ -262,6 +258,7 @@ export default {
       }
       return isDuplicate
     },
+    */
     // handle saving of a new operation
     submitOperation () {
       this.newOperation.operationID = 'operation' + Date.now()
