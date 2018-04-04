@@ -89,9 +89,8 @@ def replaceLatexCharacters(str):
     return str
 
 
-# Parses variables and their values from json to latex and writes them to .tex
-def renderPDF(formDataString):
-    formDataDir = json.loads(formDataString)
+# Translates formData.json to String that can be used in .tex
+def formDataStringToVariablesString(formDataDir):
 
     # Array of boolean variable names
     booleans = [
@@ -208,7 +207,17 @@ def renderPDF(formDataString):
     else:
         variablesString += "\\def \\incoming{\\checkedbox}"
 
-    # Hashing formDataString toi get unique name for working dir
+    return variablesString
+
+
+# Parses variables and their values from json to latex and writes them to .tex
+def renderPDF(formDataString):
+    # Interpreting formDataString as Dir
+    formDataDir = json.loads(formDataString)
+
+    variablesString = formDataStringToVariablesString(formDataDir)
+
+    # Hashing formDataString to get unique name for working dir
     m = hashlib.md5()
     m.update(formDataString.encode('ascii', 'UTF8'))
     formDataStringHash = m.hexdigest()
@@ -236,14 +245,17 @@ def renderPDF(formDataString):
     # Removing working dir
     os.chdir("../")
     shutil.rmtree(formDataStringHash)
+
     return pdfBytes
 
 
+"""
 if __name__ == "__main__":
-    # Opens json file and loads it to string
-    with open("form.json") as json_data:
+    # Opens json file and loads it to dir
+    with open("formData.json") as json_data:
         formDataDir = json.load(json_data)
 
     formDataString = json.dumps(formDataDir)
 
     renderPDF(formDataString)
+"""

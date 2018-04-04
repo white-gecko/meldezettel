@@ -1,6 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 import unittest
 import printService
+import json
 
 
 class TestPrintService(unittest.TestCase):
@@ -44,6 +45,34 @@ class TestPrintService(unittest.TestCase):
         self.assertEqual(printService.replaceLatexCharacters('#Haschtag'), '\\#Haschtag')
         self.assertEqual(printService.replaceLatexCharacters('_5$'), '\\_5\\$')
         self.assertEqual(printService.replaceLatexCharacters('Fifty Fifry = 50%'), 'Fifty Fifry = 50\\%')
+
+    def testFormDataStringToVariablesString(self):
+        # Opens json file and loads it to dir
+        with open("formData.test.json") as json_data:
+            formDataDir = json.load(json_data)
+
+        # Opens tex file and loads it to string
+        with open("variables.test.tex") as tex:
+            variablesString = tex.read()
+
+        self.assertEqual(printService.formDataStringToVariablesString(formDataDir), variablesString)
+
+    """
+    def testRenderPDF(self):
+        # Opens json file and loads it to dir
+        with open("formData.json") as json_data:
+            formDataDir = json.load(json_data)
+
+        # Converts dir to string
+        formDataString = json.dumps(formDataDir)
+
+        # Opens pdf file and loads it to bytestring
+        with open("template.pdf", "rb") as pdf:
+            pdfBytes = pdf.read()
+
+
+        self.assertEqual(printService.renderPDF(formDataString), pdfBytes)
+    """
 
 
 # Calling unittest, which does actual Testing
