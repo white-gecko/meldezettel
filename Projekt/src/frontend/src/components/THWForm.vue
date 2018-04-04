@@ -1255,7 +1255,6 @@ export default {
       this.setIncomingOutgoing()
       this.autoFillValues()
       this.$data.formdata.inOperation = this.getUser().operation.operationID
-
     },
 
     loadDraft: function () {
