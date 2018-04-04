@@ -264,7 +264,11 @@ export const setDefaultFilters = (context) => {
       }
   }
   defFilter['search'] = ''
-  defFilter['operation'] = context.state.user.operation.operationName
+  if (typeof (context.state.user.operation.operationName) !== 'undefined') {
+    defFilter['operation'] = context.state.user.operation.operationName
+  } else {
+    defFilter['operation'] = 'Alle'
+  }
   context.commit('setFilters', defFilter)
 }
 
