@@ -253,7 +253,7 @@ export default {
         case 7:
           return <i class='el-icon-circle-check out stateTable'></i>
         case 8:
-          return <i class='el-icon-edit-printer out stateTable'></i>
+          return <i class='el-icon-printer out stateTable'></i>
         case 9:
           return <span class='out stateTable'>&#9632;</span>
         case 11:

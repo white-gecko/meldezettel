@@ -120,7 +120,7 @@
                         flexContainerFormA">
                     <label class="inputLabel"
                            for="primaryHdZ">
-                      Hdz
+                      HdZ
                     </label>
                     <input id="primaryHdZ"
                            class="
@@ -177,14 +177,14 @@
                         flexContainerFormA">
                         <label class="inputLabel"
                                for="secondaryHdZ">
-                          Hdz
+                          HdZ
                         </label>
                         <input id="secondaryHdZ"
                                class="
                                 inputWithLabel
                                 hasMinMaxA"
                                :disabled="other.tempEingehend"
-                               v-model="formdata.primaryHdZ"
+                               v-model="formdata.secondaryHdZ"
                                :tabindex="other.tabIndexConf.outboundAccHdZ"/>
                       </div>
                     </div>
@@ -227,7 +227,7 @@
                         flexContainerFormA">
                         <label class="inputLabel"
                                for="tertiaryHdZ">
-                          Hdz
+                          HdZ
                         </label>
                         <input id="tertiaryHdZ"
                                class="
@@ -278,6 +278,7 @@
                          @change="checkIn()"
                          type="checkbox"
                          v-model="other.tempEingehend"
+                         :disabled="formdata.ticketState % 10 != 0"
                          :tabindex="other.tabIndexConf.selectIncoming"/>
                   Eingehend
                 </label>
@@ -286,6 +287,7 @@
                          @change="checkOut();"
                          type="checkbox"
                          v-model="other.tempAusgehend"
+                         :disabled="formdata.ticketState % 10 != 0"
                          :tabindex="other.tabIndexConf.selectOutbound"/>
                   Ausgehend
                 </label>
@@ -936,7 +938,7 @@
       <!-- Depending on the state, different buttons need to be shown -->
       <!-- Submit new ticket -->
       <el-button @click="
-                 saveForm();
+                 saveForm('accept');
                  notifySuccess('Abgeschickt')"
                  :tabindex="other.tabIndexConf.buttonSend"
                  v-show="isNew">
@@ -945,7 +947,7 @@
 
       <!-- Send ticket to next station -->
       <el-button @click="
-                 sendTicket();
+                 saveForm('accept');
                  notifySuccess('Abgeschickt')"
                  tabindex="6"
                  v-show="sendable">
@@ -961,44 +963,21 @@
         Drucken
       </el-button>
 
-      <!-- Reset all inputs (only while new) -->
-      <el-button @click="
-                  formReset();
-                  notifySuccess('Formular zurückgesetzt')"
-                  :tabindex="other.tabIndexConf.buttonReset"
-                  v-show="isNew">
-        Zurücksetzen
-      </el-button>
-
       <!-- Reject ticket due to flaws -->
       <el-button @click="
-                  rejectTicket();
+                  saveForm('reject');
                   notifySuccess('Zurückgeschickt')"
                   v-show="rejectable">
         Abweisen
       </el-button>
 
-      <!-- Just for development -->
-      <label for="stateselect"> Select ticket state: </label>
-      <select v-model.number="formdata.ticketState" id="stateselect">
-        <option>0</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
-        <option>13</option>
-        <option>14</option>
-        <option>15</option>
-      </select>
-      <!-- ----------------- -->
+      <!-- Reset all inputs (only while new) -->
+      <el-button @click="
+                  formReset();
+                  notifySuccess('Formular zurückgesetzt')"
+                 :tabindex="other.tabIndexConf.buttonReset">
+        Zurücksetzen
+      </el-button>
     </div>
   </div>
 </template>
@@ -1033,7 +1012,7 @@ export default {
         topDFU: false,
         topCourier: false,
         numberTB: '',
-        outgoing: false,
+        outgoing: true,
         receiverName: '',
 
         primaryDate: '',
@@ -1104,8 +1083,8 @@ export default {
       },
 
       other: {
-        tempEingehend: true,
-        tempAusgehend: false,
+        tempEingehend: false,
+        tempAusgehend: true,
         isEdit: false,
         tabIndexConf: {}
       },
@@ -1182,32 +1161,40 @@ export default {
         case 10:
           if (this.formdata.primaryDate === '') {
             this.formdata.primaryDate = date
-          } else if (this.formdata.primaryHdz === '') {
-            this.formdata.primaryHdz = user.identification
+          }
+          if (this.formdata.primaryHdZ === '') {
+            this.formdata.primaryHdZ = user.identification
           }
           this.formdata.topRadio = true
           this.formdata.midRadio = false
+          this.formdata.sender = ''
+          this.formdata.position = ''
+          this.formdata.identification = ''
           break
         case 3:
           if (this.formdata.secondaryDate === '') {
             this.formdata.secondaryDate = date
-          } else if (this.formdata.secondaryHdz === '') {
-            this.formdata.secondaryHdz = user.identification
+          }
+          if (this.formdata.secondaryHdZ === '') {
+            this.formdata.secondaryHdZ = user.identification
           }
           break
         case 4:
           if (this.formdata.tertiaryDate === '') {
             this.formdata.tertiaryDate = date
-          } else if (this.formdata.tertiaryHdz === '') {
-            this.formdata.tertiaryHdz = user.identification
+          }
+          if (this.formdata.tertiaryHdZ === '') {
+            this.formdata.tertiaryHdZ = user.identification
           }
           break
         case 0:
           if (this.formdata.sender === '') {
             this.formdata.sender = user.sender
-          } else if (this.formdata.identification === '') {
+          }
+          if (this.formdata.identification === '') {
             this.formdata.identification = user.identification
-          } else if (this.formdata.position === '') {
+          }
+          if (this.formdata.position === '') {
             if (user.role === 'SGL') {
               this.formdata.position = user.position
             } else {
@@ -1216,6 +1203,8 @@ export default {
           }
           this.formdata.midRadio = true
           this.formdata.topRadio = false
+          this.formdata.primaryDate = ''
+          this.formdata.primaryHdZ = ''
           break
       }
     },
@@ -1263,12 +1252,16 @@ export default {
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
       this.$data.formdata.inOperation = this.getUser().operation.operationId
+      this.setIncomingOutgoing()
       this.autoFillValues()
+      this.$data.formdata.inOperation = this.getUser().operation.operationID
+
     },
 
     loadDraft: function () {
       let draft = this.getDraft() || this.$options.data().formdata
       this.setDefaultData(draft)
+      this.setIncomingOutgoing()
       this.autoFillValues()
     },
 
@@ -1276,6 +1269,7 @@ export default {
       this.loadFormDataAction(id)
         .then((formdata) => {
           this.setDefaultData(formdata)
+          this.setIncomingOutgoing()
           this.$data.other.isEdit = true
           this.autoFillValues()
         })
@@ -1299,9 +1293,23 @@ export default {
     },
 
     loadDocument: function (id) {
-      if (id === undefined) this.loadDefault()
-      else if (id === 'draft') this.loadDraft()
-      else this.loadID(id)
+      if (id === undefined) {
+        this.loadDefault()
+      } else if (id === 'draft') {
+        this.loadDraft()
+      } else {
+        this.loadID(id)
+      }
+    },
+
+    setIncomingOutgoing: function () {
+      if (this.formdata.outgoing) {
+        this.other.tempAusgehend = true
+        this.other.tempEingehend = false
+      } else {
+        this.other.tempAusgehend = false
+        this.other.tempEingehend = true
+      }
     },
 
     askSaveDraft: function () {
@@ -1319,10 +1327,11 @@ export default {
       })
     },
 
-    saveForm: function () {
+    saveForm: function (action) {
       if (this.sent === false) {
         this.sent = true
         this.autoFillTime()
+        this.mapState(action)
         if (this.other.isEdit) {
           this.updateFormDataAction(this.$data.formdata)
             .then(() => {
@@ -1352,18 +1361,81 @@ export default {
     },
 
     printTicket: function () {
-      // TODO
-      // Call print helper and increment state
+      // Call print helper
+      this.saveForm('accept')
     },
 
-    rejectTicket: function () {
-      // TODO
-      // Decrement state
-    },
-
-    sendTicket: function () {
-      // TODO
-      // Increment state
+    mapState: function (sendAction) {
+      let currentState = this.formdata.ticketState
+      let newState = currentState
+      if (sendAction === 'reject') {
+        switch (currentState) {
+          case 1:
+            newState = 2
+            break
+          case 3:
+            newState = 2
+            break
+          case 5:
+            newState = 6
+            break
+          case 7:
+            newState = 6
+            break
+          case 11:
+            newState = 12
+            break
+          case 13:
+            newState = 12
+            break
+        }
+      } else if (sendAction === 'accept') {
+        switch (currentState) {
+          case 0:
+            newState = 1
+            break
+          case 1:
+            newState = 3
+            break
+          case 2:
+            newState = 1
+            break
+          case 3:
+            newState = 4
+            break
+          case 4:
+            newState = 5
+            break
+          case 5:
+            newState = 7
+            break
+          case 6:
+            newState = 5
+            break
+          case 7:
+            newState = 8
+            break
+          case 8:
+            newState = 9
+            break
+          case 10:
+            newState = 11
+            break
+          case 11:
+            newState = 13
+            break
+          case 12:
+            newState = 11
+            break
+          case 13:
+            newState = 14
+            break
+          case 14:
+            newState = 15
+            break
+        }
+      }
+      this.formdata.ticketState = newState
     },
 
     formReset: function () {
@@ -1427,6 +1499,11 @@ export default {
       if (this.other.tempEingehend) {
         this.other.tempAusgehend = false
         this.formdata.outgoing = false
+        this.formdata.ticketState = 10
+      } else {
+        this.other.tempAusgehend = true
+        this.formdata.outgoing = true
+        this.formdata.ticketState = 0
       }
       this.autoFillValues()
     },
@@ -1435,6 +1512,11 @@ export default {
       if (this.other.tempAusgehend) {
         this.other.tempEingehend = false
         this.formdata.outgoing = true
+        this.formdata.ticketState = 0
+      } else {
+        this.other.tempEingehend = true
+        this.formdata.outgoing = false
+        this.formdata.ticketState = 10
       }
       this.autoFillValues()
     }
