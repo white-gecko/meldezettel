@@ -945,7 +945,7 @@
 
       <!-- Send ticket to next station -->
       <el-button @click="
-                 sendTicket();
+                 saveForm();
                  notifySuccess('Abgeschickt')"
                  tabindex="6"
                  v-show="sendable">
