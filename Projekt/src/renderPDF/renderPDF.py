@@ -219,7 +219,7 @@ def renderPDF(formDataString):
 
     # Hashing formDataString to get unique name for working dir
     m = hashlib.md5()
-    m.update(formDataString.encode('ascii', 'UTF8'))
+    # m.update(formDataString.encode('ascii', 'UTF8'))
     formDataStringHash = m.hexdigest()
 
     # Changing to current working dir
