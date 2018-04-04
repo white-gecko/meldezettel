@@ -182,20 +182,4 @@ export default {
   .hasShadowHeaderB {
     box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
   }
-
-  /*temp*/
-  .testSquare1 {
-    background-color: white;
-    height: 70px;
-    width: 10%;
-    margin-left: 2%;
-    margin-right: 2%;
-  }
-  .testSquare2 {
-    background-color: white;
-    height: 70px;
-    width: 40%;
-    margin-left: 2%;
-    margin-right: 2%;
-  }
 </style>

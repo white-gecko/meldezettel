@@ -1,5 +1,15 @@
 <template>
   <div class="flexContainerLayoutA">
+    <el-dialog :visible="showLandingPage"
+               :show-close="false"
+               :close-on-click-modal="false"
+               style="
+                width: 0;
+                height: 0;
+                overflow: visible;
+                margin: 0 25% 0 25%">
+      <THWLandingPage/>
+    </el-dialog>
     <div style="z-index: 2">
       <THWHeader/>
     </div>
@@ -24,12 +34,20 @@
 
 import THWHeader from '@/components/THWHeader'
 import THWMenu from '@/components/THWMenu'
+import THWLandingPage from '@/components/THWLandingPage'
 
 export default {
   name: 'Layout',
   components: {
     THWHeader,
-    THWMenu
+    THWMenu,
+    THWLandingPage
+  },
+
+  computed: {
+    showLandingPage () {
+      return this.$store.state.showLandingPage
+    }
   }
 }
 </script>

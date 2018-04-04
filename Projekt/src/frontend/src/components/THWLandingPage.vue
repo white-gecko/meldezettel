@@ -1,47 +1,105 @@
 <!-- this component will be our landing page -->
 <!-- landing page will demand Rolle, Name, Hdz, Funktion -->
 <template>
+  <div class="
+        landingPage
+        hasShadowLandingPageA
+        flexContainerFormB">
 
-<div class="userData">
-<el-form
-  :model="userData"
-  ref="userData">
+    <div class="
+      topSection
+      hasShadowLandingPageC
+      flexContainerFormB">
 
-  <el-form-item>
-    <h3 style="color:#606266">
-      Rolle auswählen und Daten eingeben
-    </h3>
-  </el-form-item>
+      <!--role-selector-->
+      <el-radio-group class="
+                      landingPageRoleSelect
+                      hasShadowLandingPageB"
+                      v-model="userData.role">
+        <el-radio-button v-for="roleOption in roles"
+                         :label="roleOption"
+                         :key="roleOption">
+          {{ roleOption }}
+        </el-radio-button>
+      </el-radio-group>
 
-  <el-form-item
-    style="margin-bottom: 30px"
-    v-if="userData.operation.operationName != ''">
-    <h3 style="color:#606266">
-      Ausgewählter Einsatz: {{ userData.operation.operationName }}
-    </h3>
-  </el-form-item>
+      <!--sub-role-selector for SGL-->
+      <el-radio-group class="
+                      landingPageSubRoleSelect
+                      hasShadowLandingPageB"
+                      v-model="userData.position"
+                      v-if="userData.role === 'SGL'"
+                      size="medium">
+        <el-radio-button
+          v-for="positionOption in positions"
+          :label="positionOption"
+          :key="positionOption">
+          {{ positionOption }}
+        </el-radio-button>
+      </el-radio-group>
 
-  <el-form-item>
-    <el-button
-      @click="choosingOperation = !choosingOperation;
-        addingOperation = false"
-      style="margin-bottom: 20px">
-      Einsatz auswählen
-    </el-button>
+      <div class="flexContainerFormA"
+           style="margin-top: 40px">
+        <div class="
+            landingPageInput
+            hasShadowLandingPageB
+            flexContainerFormC"
+             style="position: relative; right: 2.5px;">
+          <label class="landingPageInputLabel">
+            Absender
+          </label>
+          <input class="landingPageInputField"
+                 v-model="userData.sender"/>
+        </div>
+        <div class="
+            landingPageInput
+            hasShadowLandingPageB
+            flexContainerFormC"
+             style="position: relative; right: 15px;">
+          <label class="landingPageInputLabel">
+            Handzeichen
+          </label>
+          <input class="landingPageInputField"
+                 v-model="userData.identification"/>
+        </div>
+      </div>
 
-    <el-button
-      @click="addingOperation = !addingOperation;
-        choosingOperation = false"
-      style="margin-bottom: 20px">
-      Einsatz erstellen
-    </el-button>
+      <div class="
+          landingPageSelectedOperation
+          hasShadowLandingPageB"
+           v-if="userData.operation.operationName != ''">
+        Ausgewählter Einsatz: {{ userData.operation.operationName }}
+      </div>
 
-    <el-form-item v-if="choosingOperation">
-      <el-table
-        :data="operations"
-        border
-        @current-change="selectOperation"
-        size="small">
+      <div class="flexContainerFormA" >
+        <div class="
+            landingPageButton
+            hasShadowLandingPageD"
+             @click="validateUser('userData')">
+          Eingaben speichern
+        </div>
+        <div class="
+            landingPageButton
+            hasShadowLandingPageD"
+             @click="resetForm('userData')">
+          Felder leeren
+        </div>
+      </div>
+
+    </div>
+
+    <div class="
+          botSection
+          hasShadowLandingPageC">
+      <div class="
+            operationContent
+            hasShadowLandingPageB">
+        <el-table
+          v-show="choosingOperation"
+          :data="operations"
+          border
+          @current-change="selectOperation"
+          size="medium">
           <el-table-column
             prop="operationName"
             label="Einsatz-Name">
@@ -55,85 +113,87 @@
             label="Art des Stabes">
           </el-table-column>
         </el-table>
-      </el-form-item>
-    </el-form-item>
-
-    <div v-if="addingOperation">
-      <div style="margin-bottom: 20px">
-        <label
-          style="color:#606266">
-          Einsatzname
-        </label>
-        <input v-model="newOperation.operationName"/>
       </div>
 
-      <div style="margin-bottom: 20px">
-        <label style="color:#606266">
-          Einsatzadresse
-        </label>
-        <input v-model="newOperation.operationAdress"/>
+      <div class="
+            operationContent
+            hasShadowLandingPageB
+            flexContainerFormB"
+           v-show="addingOperation">
+        <div class="
+            landingPageInput
+            hasShadowLandingPageB
+            flexContainerFormC"
+             style="
+              width: 94.2%;
+              margin: 20px 10px 20px 20px;">
+          <label class="landingPageInputLabel">
+            Einsatzname
+          </label>
+          <input class="landingPageInputField"
+                 style="width: 100%;"
+                 v-model="newOperation.operationName"/>
+        </div>
+        <div class="
+            landingPageInput
+            hasShadowLandingPageB
+            flexContainerFormC"
+             style="
+              width: 94.2%;
+              margin: 0 20px 20px 20px;">
+          <label class="landingPageInputLabel">
+            Einsatzadresse
+          </label>
+          <input class="landingPageInputField"
+                 style="width: 100%;"
+                 v-model="newOperation.operationAdress"/>
+        </div>
+        <div class="
+            landingPageInput
+            hasShadowLandingPageB
+            flexContainerFormC"
+             style="
+              width: 94.2%;
+              margin: 0 20px 20px 20px;">
+          <label class="landingPageInputLabel">
+            Art des Stabes
+          </label>
+          <input class="landingPageInputField"
+                 style="width: 100%;"
+                 v-model="newOperation.operationStaffType"/>
+        </div>
+
+        <div class="
+            landingPageButton
+            hasShadowLandingPageD"
+             style="align-self: center"
+             @click="validateOperation()">
+          Einsatz speichern
+        </div>
+
       </div>
 
-      <div style="margin-bottom: 20px">
-        <label style="color:#606266">
-          Art des Stabes
-        </label>
-        <input v-model="newOperation.operationStaffType"/>
+      <div class="flexContainerFormA" >
+        <div class="
+            landingPageButton
+            hasShadowLandingPageD"
+             @click="
+              addingOperation = !addingOperation;
+              choosingOperation = false">
+          Einsatz erstellen
+        </div>
+        <div class="
+            landingPageButton
+            hasShadowLandingPageD"
+             @click="
+              choosingOperation = !choosingOperation;
+              addingOperation = false">
+          Einsatz auswählen
+        </div>
       </div>
 
-      <el-form-item>
-        <el-button @click="validateOperation()">Einsatz speichern</el-button>
-      </el-form-item>
     </div>
-
-  <el-form-item prop="role" style="margin-bottom: 20px">
-    <el-radio-group v-model="userData.role" size="medium">
-      <el-radio-button
-        v-for="roleOption in roles"
-        :label="roleOption"
-        :key="roleOption">
-        {{ roleOption }}
-      </el-radio-button>
-    </el-radio-group>
-  </el-form-item>
-
-  <el-form-item prop="position" style="margin-bottom: 20px">
-    <el-radio-group
-      v-model="userData.position"
-      v-if="userData.role === 'SGL'"
-      size="medium">
-      <el-radio-button
-        v-for="positionOption in positions"
-        :label="positionOption"
-        :key="positionOption">
-        {{ positionOption }}
-      </el-radio-button>
-    </el-radio-group>
-  </el-form-item>
-
-    <div style="margin-bottom: 20px">
-      <label style="color:#606266">
-        Absender
-      </label>
-      <input v-model="userData.sender"/>
-    </div>
-
-      <div style="margin-bottom: 20px">
-      <label style="color:#606266">
-        Handzeichen
-      </label>
-      <input v-model="userData.identification"/>
-    </div>
-
-  <el-form-item style="margintop: 100px">
-    <el-button @click="validateUser('userData')">Eingaben speichern</el-button>
-    <el-button @click="resetForm('userData')">Felder leeren</el-button>
-  </el-form-item>
-
-</el-form>
-
-</div>
-
+  </div>
 </template>
 
 <script>
@@ -291,10 +351,128 @@ export default {
 }
 </script>
 <style>
-    .userData{
-        background-color: #DCDFE6;
-        padding: 0.5em 0.5em;
-        font-family: helvetica;
-        width: 68%; margin: auto;
-    }
+  .landingPage {
+    background-color: var(--darkNeutralColor);
+    padding: 20px 20px 20px 20px;
+    width: 715px;
+  }
+  .topSection {
+    width: 700px;
+    padding: 40px 0 0 14px;
+    background-color: var(--semiLightNeutralColor);
+    font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
+    color: var(--primaryTextColor);
+    overflow: visible;
+  }
+  .botSection {
+    width: 700px;
+    padding: 0 0 0 14px;
+    margin: 40px 0 0 0;
+    background-color: var(--semiLightNeutralColor);
+    font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
+    color: var(--primaryTextColor);
+    overflow: visible;
+  }
+  .landingPageRoleSelect {
+    width: 86%;
+    margin: 0 5px 0 40px;
+    display: flex;
+    justify-content: center;
+  }
+  .landingPageSubRoleSelect {
+    width: 40%;
+    margin: 10px 5px 0 42px;
+    display: flex;
+    justify-content: center;
+  }
+  .landingPageInput {
+    height: 35px;
+    width: 290px;
+    margin: 0 0 40px 0;
+  }
+  .landingPageInputLabel {
+    background-color: var(--darkNeutralColor);
+    white-space: nowrap;
+    min-width: 100px;
+    padding: 5px 10px 0 10px;
+  }
+  .landingPageInputField {
+    background-color: var(--semiLightNeutralColor);
+    width: 157px;
+    padding-left: 10px;
+    border: var(--darkNeutralColor);
+    border-style: solid;
+    border-width:2px;
+  }
+  .landingPageSelectedOperation {
+    height: 35px;
+    width: 93%;
+    background-color: var(--semiLightNeutralColor);
+    padding: 5px 0 0 0;
+    margin: 0 5px 40px 25px;
+    text-align: center  ;
+  }
+  .landingPageButton {
+    height: 35px;
+    width: 30%;
+    background-color: var(--semiLightNeutralColor);
+    padding: 5px 0 0 0;
+    border-bottom: var(--formBlueColor);
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    position: relative;
+    top: 10px;
+    text-align: center;
+  }
+  .landingPageButton:hover {
+    border-bottom: var(--mainColor);
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    cursor: pointer;
+  }
+  .operationContent {
+    width: 95%;
+    margin: 10px 0 40px 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /*
+  shadow-settings:
+  different shadow settings
+   */
+  .hasShadowLandingPageA {
+    box-shadow: 0px 5px 10px 0px var(--darkShadowColor);
+  }
+  .hasShadowLandingPageB {
+    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
+  }
+  .hasShadowLandingPageC {
+    box-shadow: 0px 5px 10px 0px var(--middleShadowColor);
+  }
+  .hasShadowLandingPageD {
+    box-shadow: 0px -6px 8px 0px var(--lightShadowColor),
+      0px 5px 10px -1px var(--middleShadowColor);
+  }
+
+  /*
+  flex-settings:
+    different settings for the flex attribute
+  */
+  .flexContainerFormA {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .flexContainerFormB {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .flexContainerFormC {
+    display: flex;
+    flex-direction: row;
+  }
 </style>
