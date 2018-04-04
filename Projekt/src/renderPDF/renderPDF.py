@@ -221,10 +221,10 @@ def renderPDF(formDataString):
     m = hashlib.md5()
     m.update(formDataString.encode('ascii', 'UTF8'))
     formDataStringHash = m.hexdigest()
-    
-     # Changing to current working dir
+
+    # Changing to current working dir
     os.chdir(os.path.dirname(__file__))
-    
+
     # Copy files to working dir
     os.mkdir(formDataStringHash)
     shutil.copy2("template.tex", os.path.join(formDataStringHash, "template.tex"))

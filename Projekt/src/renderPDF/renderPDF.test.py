@@ -50,7 +50,7 @@ class TestPrintService(unittest.TestCase):
     def testFormDataStringToVariablesString(self):
         # Changing to current working dir
         os.chdir(os.path.dirname(__file__))
-        
+
         # Opens json file and loads it to dir
         with open("formData.test.json") as json_data:
             formDataDir = json.load(json_data)
