@@ -932,16 +932,50 @@
           sideMenuForm
           hasShadowFormA
           flexContainerFormB">
+
+      <!-- Depending on the state, different buttons need to be shown -->
+      <!-- Submit new ticket -->
       <el-button @click="
-                  saveForm()"
-                  :tabindex="other.tabIndexConf.buttonSend">
+                 saveForm();
+                 notifySuccess('Abgeschickt')"
+                 :tabindex="other.tabIndexConf.buttonSend"
+                 v-show="isNew">
         Abschicken
       </el-button>
+
+      <!-- Send ticket to next station -->
+      <el-button @click="
+                 saveForm();
+                 notifySuccess('Abgeschickt')"
+                 tabindex="6"
+                 v-show="sendable">
+        Weitersenden
+      </el-button>
+
+      <!-- Print ticket and archive -->
+      <el-button @click="
+                 printTicket();
+                 notifySuccess('Gedruckt')"
+                 tabindex="6"
+                 v-show="toBePrinted">
+        Drucken
+      </el-button>
+
+      <!-- Reset all inputs (only while new) -->
       <el-button @click="
                   formReset();
                   notifySuccess('Formular zurückgesetzt')"
-                 :tabindex="other.tabIndexConf.buttonReset">
+                  :tabindex="other.tabIndexConf.buttonReset"
+                  v-show="isNew">
         Zurücksetzen
+      </el-button>
+
+      <!-- Reject ticket due to flaws -->
+      <el-button @click="
+                  rejectTicket();
+                  notifySuccess('Zurückgeschickt')"
+                  v-show="rejectable">
+        Abweisen
       </el-button>
 
       <!-- Just for development -->
@@ -1205,6 +1239,21 @@ export default {
       }
     },
 
+    printTicket: function () {
+      // TODO
+      // Call print helper and increment state
+    },
+
+    rejectTicket: function () {
+      // TODO
+      // Decrement state
+    },
+
+    sendTicket: function () {
+      // TODO
+      // Increment state
+    },
+
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
     },
@@ -1411,17 +1460,23 @@ export default {
 
     // Button switches
 
-    sendButtonText: function () {
-      let state = this.formdata.ticketState
-      if (state === 8 || state === 14) {
-        return 'Drucken'
-      } else {
-        return 'Abschicken'
-      }
+    toBePrinted: function () {
+      return [8, 14].indexOf(
+        this.formdata.ticketState) !== -1
     },
 
     rejectable: function () {
-      return [1, 7, 13, 3, 5, 11].indexOf(
+      return [1, 7, 3, 5, 11, 13].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    sendable: function () {
+      return [1, 2, 3, 4, 5, 6, 7, 11, 12, 13].indexOf(
+        this.formdata.ticketState) !== -1
+    },
+
+    isNew: function () {
+      return [0, 10].indexOf(
         this.formdata.ticketState) !== -1
     }
     // End of visibility switches
