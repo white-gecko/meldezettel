@@ -961,14 +961,6 @@
         Drucken
       </el-button>
 
-      <!-- Reset all inputs (only while new) -->
-      <el-button @click="
-                  formReset();
-                  notifySuccess('Formular zurückgesetzt')"
-                  :tabindex="other.tabIndexConf.buttonReset">
-        Zurücksetzen
-      </el-button>
-
       <!-- Reject ticket due to flaws -->
       <el-button @click="
                   saveForm('reject');
@@ -977,27 +969,13 @@
         Abweisen
       </el-button>
 
-      <!-- Just for development -->
-      <label for="stateselect"> Select ticket state: </label>
-      <select v-model.number="formdata.ticketState" id="stateselect">
-        <option>0</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
-        <option>13</option>
-        <option>14</option>
-        <option>15</option>
-      </select>
-      <!-- ----------------- -->
+      <!-- Reset all inputs (only while new) -->
+      <el-button @click="
+                  formReset();
+                  notifySuccess('Formular zurückgesetzt')"
+                 :tabindex="other.tabIndexConf.buttonReset">
+        Zurücksetzen
+      </el-button>
     </div>
   </div>
 </template>
@@ -1240,8 +1218,8 @@ export default {
     },
 
     printTicket: function () {
-      // TODO
-      // Call print helper and increment state
+      // Call print helper
+      this.saveForm('accept')
     },
 
     mapState: function (action) {
