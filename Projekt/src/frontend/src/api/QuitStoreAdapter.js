@@ -27,7 +27,7 @@ export const quitstore = {
     return axios.request({
       method: 'post',
       url: this.url,
-      data: 'query=' + sparqlQuery
+      data: 'query=' + encodeURIComponent(sparqlQuery)
     })
   }
 }

@@ -66,7 +66,7 @@
             padding-right: 10%;
             margin-left: 0%;
             margin-right: 0%;">
-        {{this.role}}
+        {{this.user.role}}
       </div>
 
     </div>
@@ -83,7 +83,7 @@ export default {
   name: 'THWHeader',
   computed: {
     ...mapGetters({
-      role: 'getRole'
+      user: 'getUser'
     }),
 
     selectIcon: function () {
