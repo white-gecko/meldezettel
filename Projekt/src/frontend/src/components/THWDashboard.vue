@@ -1,151 +1,98 @@
 <template>
-  <div>
-    <el-form :model='filter'>
-      <el-collapse>
-        <el-collapse-item title='Filter'>
-          <el-row>
-            <el-col :span='2'>
-              Suchen:
-            </el-col>
-            <el-col :span='20'>
-              <el-input style='width:600px' v-model='filter.search'></el-input>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span='2'>
-              Einsatz:
-            </el-col>
-            <el-col :span='20'>
-              <el-select v-model='filter.operation'
-                         style='width:600px'>
-                <el-option value='Alle'>
-                  Alle
-                </el-option>
-                <el-option
-                  v-for='operation in operationList'
-                  :key='operation.operationName'
-                  :value='operation.operationName'>
-                  {{ operation.operationName }}
-                </el-option>
-              </el-select>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span='2'>Status Ausgang:</el-col>
-            <el-col :span='20'>
-              <el-checkbox-button v-model='filter.s1'>
-                <i class="el-icon-edit-outline stateFilter out">
-                </i> Zu sichten</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s2'>
-                <i class="el-icon-circle-close stateFilter out">
-                </i> Zurückgeschickt</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s3'>
-                <i class="el-icon-view stateFilter out">
-                </i> Gesichtet</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s4'>
-                <i class="el-icon-service stateFilter out">
-                </i> Sendfertig</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s5'>
-                <i class="el-icon-circle-check-outline stateFilter out">
-                </i> Versandt(LdF)</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s7'>
-                <i class="el-icon-circle-check stateFilter out">
-                </i> Versandt(Sichter)</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s6'>
-                <i class="el-icon-circle-close-outline stateFilter out">
-                </i> Zurück(Funker)</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s8'>
-                <i class="el-icon-printer stateFilter out">
-                </i> Druckfertig</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s9'>
-                <span class="stateFilter out">
-                  &#9632;</span> Archiviert</el-checkbox-button>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span='2'>Status Eingang:</el-col>
-            <el-col :span='20'>
-              <el-checkbox-button v-model='filter.s11'>
-                <i class="el-icon-edit-outline stateFilter in">
-                </i> Erstellt</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s12'>
-                <i class="el-icon-circle-close stateFilter in">
-                </i> Zurückgeschickt</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s13'>
-                <i class="el-icon-tickets stateFilter in">
-                </i> Zu sichten</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s14'>
-                <i class="el-icon-printer stateFilter in">
-                </i> Druckfertig</el-checkbox-button>
-              <el-checkbox-button v-model='filter.s15'>
-                <span class="stateFilter in">
-                  &#9632; </span> Archiviert</el-checkbox-button>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span='2'>
-              <el-button
-                @click="changeFilters()">
-                Anwenden
-              </el-button>
-              <el-button
-                @click="resetFilters()">
-                Zurücksetzen
-              </el-button>
-            </el-col>
-          </el-row>
-        </el-collapse-item>
-      </el-collapse>
-    </el-form>
-  <el-table :data="ticketList" style="width: 100%" max-height="500">
-    <el-table-column width="80">
-      <template slot-scope="scope">
-        <router-link v-bind:to="{
+  <div class="flexContainerDashboardA">
+
+    <div class="
+          dashboard
+          hasShadowDashboardA">
+      <el-table :data="ticketList" style="width: 100%" max-height="500">
+        <el-table-column width="80">
+          <template slot-scope="scope">
+            <router-link v-bind:to="{
           name:'Create',
           params:{id: ticketList[scope.$index]['id'] }}"
-                     tag="el-button">
-          <i class="el-icon-zoom-in"></i>
-        </router-link>
-      </template>
-    </el-table-column>
+                         tag="el-button">
+              <i class="el-icon-zoom-in"></i>
+            </router-link>
+          </template>
+        </el-table-column>
 
-    <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
-    <el-table-column :formatter="formatState"
-                     label="Status"
-                     prop="ticketState"
-                     align="center"
-                     width="100"></el-table-column>
+        <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
+        <el-table-column :formatter="formatState"
+                         label="Status"
+                         prop="ticketState"
+                         align="center"
+                         width="100"></el-table-column>
 
-    <el-table-column prop="numberTB"
-                     label="TB Nummer"
-                     width="130"></el-table-column>
+        <el-table-column prop="numberTB"
+                         label="TB Nummer"
+                         width="130"></el-table-column>
 
-    <el-table-column prop="creator"
-                     label="Verfasser"
-                     width="100"></el-table-column>
+        <el-table-column prop="creator"
+                         label="Verfasser"
+                         width="100"></el-table-column>
 
-    <el-table-column prop="docketIdentification"
-                     label="Sichter" width="100"></el-table-column>
+        <el-table-column prop="docketIdentification"
+                         label="Sichter" width="100"></el-table-column>
 
-    <el-table-column :formatter="formatDate"
-                     prop="date"
-                     label="Datum"
-                     width="100"></el-table-column>
+        <el-table-column :formatter="formatDate"
+                         prop="date"
+                         label="Datum"
+                         width="100"></el-table-column>
 
-    <el-table-column :formatter="formatTime"
-                     prop="time"
-                     label="Uhrzeit"
-                     width="100"></el-table-column>
+        <el-table-column :formatter="formatTime"
+                         prop="time"
+                         label="Uhrzeit"
+                         width="100"></el-table-column>
 
-    <el-table-column prop="receiverName"
-                     label="Empfänger"
-                     width="120"></el-table-column>
+        <el-table-column prop="receiverName"
+                         label="Empfänger"
+                         width="120"></el-table-column>
 
-    <el-table-column :formatter="formatContent"
-                     prop="content"
-                     label="Kurzinhalt"></el-table-column>
+        <el-table-column :formatter="formatContent"
+                         prop="content"
+                         label="Kurzinhalt"></el-table-column>
 
-  </el-table>
+      </el-table>
+    </div>
+
+    <div class="
+          sideMenuDashboard
+          hasShadowDashboardA
+          flexContainerDashboardB">
+
+      <input class="dashboardInput"
+             v-model='filter.search'
+             placeholder="Suche"/>
+
+      <el-select v-model='filter.operation'
+                 style="margin: 40px 10px 0 10px ">
+        <el-option value='Alle'>
+          Alle
+        </el-option>
+        <el-option
+          v-for='operation in operationList'
+          :key='operation.operationName'
+          :value='operation.operationName'>
+          {{ operation.operationName }}
+        </el-option>
+      </el-select>
+
+      <div class="
+            dashboardButton
+            hasShadowDashboardA"
+           style="margin: 80px 0 20px 0"
+           @click="changeFilters()">
+        Anwenden
+      </div>
+      <div class="
+            dashboardButton
+            hasShadowDashboardA"
+           @click="resetFilters()">
+        Zurücksetzen
+      </div>
+
+    </div>
+
   </div>
 </template>
 <script>
@@ -322,6 +269,9 @@ export default {
     color: var(--primaryTextColor);
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
+    color: var(--primaryTextColor);
   }
   .sideMenuDashboard {
     background-color: var(--semiLightNeutralColor);
@@ -331,8 +281,40 @@ export default {
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
     padding-top: 50px;
-    padding-bottom: 20px;
     margin-left: 40px;
+    font-family: var(--mainFont);
+    font-size: var(--smallTitleSize);
+    color: var(--primaryTextColor);
+  }
+  .dashboardInput {
+    height: 40px;
+    background-color: var(--semiLightNeutralColor);
+    margin: 0 10px 0 10px;
+    padding-left: 10px;
+    border: var(--darkNeutralColor);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+  }
+
+  .dashboardButton {
+    height: 35px;
+    width: 220px;
+    background-color: var(--semiLightNeutralColor);
+    padding: 15px 20px 0 0;
+    margin: 0 0 20px 0;
+    position: relative;
+    right: 10px;
+    border-left: var(--formBlueColor);
+    border-left-style: solid;
+    border-left-width: 10px;
+    text-align: center;
+  }
+  .dashboardButton:hover {
+    border-left: var(--mainColor);
+    border-left-style: solid;
+    border-left-width: 10px;
+    cursor: pointer;
   }
 
   /*
@@ -352,14 +334,10 @@ export default {
   */
   .flexContainerDashboardA {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    flex-direction: row;
   }
   .flexContainerDashboardB {
     display: flex;
-    flex-direction: row;
-  }
-  .flexChildDashboardA {
-    align-self: center;
+    flex-direction: column;
   }
 </style>
