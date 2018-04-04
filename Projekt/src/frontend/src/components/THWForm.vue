@@ -1133,18 +1133,21 @@ export default {
 
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
+      this.setIncomingOutgoing()
       this.$data.formdata.inOperation = this.getUser().operation.operationID
     },
 
     loadDraft: function () {
       let draft = this.getDraft() || this.$options.data().formdata
       this.setDefaultData(draft)
+      this.setIncomingOutgoing()
     },
 
     loadID: function (id) {
       this.loadFormDataAction(id)
         .then((formdata) => {
           this.setDefaultData(formdata)
+          this.setIncomingOutgoing()
           this.$data.other.isEdit = true
         })
         .catch((error) => {
@@ -1174,12 +1177,15 @@ export default {
       } else {
         this.loadID(id)
       }
+    },
+
+    setIncomingOutgoing: function () {
       if (this.formdata.outgoing) {
-        this.tempAusgehend = true
-        this.tempEingehend = false
+        this.other.tempAusgehend = true
+        this.other.tempEingehend = false
       } else {
-        this.tempAusgehend = false
-        this.tempEingehend = true
+        this.other.tempAusgehend = false
+        this.other.tempEingehend = true
       }
     },
 
