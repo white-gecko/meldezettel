@@ -1101,6 +1101,8 @@ export default {
   },
 
   beforeRouteUpdate (to, from, next) {
+    // @TODO Clicking new document after opening an other to fix
+    this.other.isEdit = false
     if (from.params.id === undefined) {
       this.askSaveDraft()
         .then(() => {
