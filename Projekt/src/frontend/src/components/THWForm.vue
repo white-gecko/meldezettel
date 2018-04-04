@@ -184,7 +184,7 @@
                                 inputWithLabel
                                 hasMinMaxA"
                                :disabled="other.tempEingehend"
-                               v-model="formdata.primaryHdZ"
+                               v-model="formdata.secondaryHdZ"
                                :tabindex="other.tabIndexConf.outboundAccHdZ"/>
                       </div>
                     </div>
@@ -278,6 +278,7 @@
                          @change="checkIn()"
                          type="checkbox"
                          v-model="other.tempEingehend"
+                         :disabled="formdata.ticketState % 10 != 0"
                          :tabindex="other.tabIndexConf.selectIncoming"/>
                   Eingehend
                 </label>
@@ -286,6 +287,7 @@
                          @change="checkOut();"
                          type="checkbox"
                          v-model="other.tempAusgehend"
+                         :disabled="formdata.ticketState % 10 != 0"
                          :tabindex="other.tabIndexConf.selectOutbound"/>
                   Ausgehend
                 </label>
@@ -1010,7 +1012,7 @@ export default {
         topDFU: false,
         topCourier: false,
         numberTB: '',
-        outgoing: false,
+        outgoing: true,
         receiverName: '',
 
         primaryDate: '',
@@ -1165,9 +1167,20 @@ export default {
     },
 
     loadDocument: function (id) {
-      if (id === undefined) this.loadDefault()
-      else if (id === 'draft') this.loadDraft()
-      else this.loadID(id)
+      if (id === undefined) {
+        this.loadDefault()
+      } else if (id === 'draft') {
+        this.loadDraft()
+      } else {
+        this.loadID(id)
+      }
+      if (this.formdata.outgoing) {
+        this.tempAusgehend = true
+        this.tempEingehend = false
+      } else {
+        this.tempAusgehend = false
+        this.tempEingehend = true
+      }
     },
 
     askSaveDraft: function () {
@@ -1222,10 +1235,10 @@ export default {
       this.saveForm('accept')
     },
 
-    mapState: function (action) {
+    mapState: function (sendAction) {
       let currentState = this.formdata.ticketState
       let newState = currentState
-      if (action === 'reject') {
+      if (sendAction === 'reject') {
         switch (currentState) {
           case 1:
             newState = 2
@@ -1246,7 +1259,7 @@ export default {
             newState = 12
             break
         }
-      } else if (action === 'accept') {
+      } else if (sendAction === 'accept') {
         switch (currentState) {
           case 0:
             newState = 1
@@ -1356,6 +1369,11 @@ export default {
       if (this.other.tempEingehend) {
         this.other.tempAusgehend = false
         this.formdata.outgoing = false
+        this.formdata.ticketState = 10
+      } else {
+        this.other.tempAusgehend = true
+        this.formdata.outgoing = true
+        this.formdata.ticketState = 0
       }
     },
 
@@ -1363,6 +1381,11 @@ export default {
       if (this.other.tempAusgehend) {
         this.other.tempEingehend = false
         this.formdata.outgoing = true
+        this.formdata.ticketState = 0
+      } else {
+        this.other.tempEingehend = true
+        this.formdata.outgoing = false
+        this.formdata.ticketState = 10
       }
     }
   },
