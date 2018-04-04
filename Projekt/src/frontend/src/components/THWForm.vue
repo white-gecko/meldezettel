@@ -120,7 +120,7 @@
                         flexContainerFormA">
                     <label class="inputLabel"
                            for="primaryHdZ">
-                      Hdz
+                      HdZ
                     </label>
                     <input id="primaryHdZ"
                            class="
@@ -177,14 +177,14 @@
                         flexContainerFormA">
                         <label class="inputLabel"
                                for="secondaryHdZ">
-                          Hdz
+                          HdZ
                         </label>
                         <input id="secondaryHdZ"
                                class="
                                 inputWithLabel
                                 hasMinMaxA"
                                :disabled="other.tempEingehend"
-                               v-model="formdata.primaryHdZ"
+                               v-model="formdata.secondaryHdZ"
                                :tabindex="other.tabIndexConf.outboundAccHdZ"/>
                       </div>
                     </div>
@@ -227,7 +227,7 @@
                         flexContainerFormA">
                         <label class="inputLabel"
                                for="tertiaryHdZ">
-                          Hdz
+                          HdZ
                         </label>
                         <input id="tertiaryHdZ"
                                class="
@@ -278,6 +278,7 @@
                          @change="checkIn()"
                          type="checkbox"
                          v-model="other.tempEingehend"
+                         :disabled="formdata.ticketState % 10 != 0"
                          :tabindex="other.tabIndexConf.selectIncoming"/>
                   Eingehend
                 </label>
@@ -286,6 +287,7 @@
                          @change="checkOut();"
                          type="checkbox"
                          v-model="other.tempAusgehend"
+                         :disabled="formdata.ticketState % 10 != 0"
                          :tabindex="other.tabIndexConf.selectOutbound"/>
                   Ausgehend
                 </label>
@@ -936,7 +938,7 @@
       <!-- Depending on the state, different buttons need to be shown -->
       <!-- Submit new ticket -->
       <el-button @click="
-                 saveForm();
+                 saveForm('accept');
                  notifySuccess('Abgeschickt')"
                  :tabindex="other.tabIndexConf.buttonSend"
                  v-show="isNew">
@@ -945,7 +947,7 @@
 
       <!-- Send ticket to next station -->
       <el-button @click="
-                 sendTicket();
+                 saveForm('accept');
                  notifySuccess('Abgeschickt')"
                  tabindex="6"
                  v-show="sendable">
@@ -959,6 +961,14 @@
                  tabindex="6"
                  v-show="toBePrinted">
         Drucken
+      </el-button>
+
+      <!-- Reject ticket due to flaws -->
+      <el-button @click="
+                  saveForm('reject');
+                  notifySuccess('Zurückgeschickt')"
+                  v-show="rejectable">
+        Abweisen
       </el-button>
 
       <!-- Reset all inputs (only while new) -->
@@ -1009,13 +1019,13 @@ export default {
         documentID: '',
         inOperation: '',
 
-        topRadio: true,
+        topRadio: false,
         topPhone: false,
         topFax: false,
         topDFU: false,
         topCourier: false,
         numberTB: '',
-        outgoing: false,
+        outgoing: true,
         receiverName: '',
 
         primaryDate: '',
@@ -1027,7 +1037,7 @@ export default {
         tertiaryDate: '',
         tertiaryTime: '',
         tertiaryHdZ: '',
-        midRadio: true,
+        midRadio: false,
         midPhone: false,
         midFax: false,
         midDFU: false,
@@ -1086,8 +1096,8 @@ export default {
       },
 
       other: {
-        tempEingehend: true,
-        tempAusgehend: false,
+        tempEingehend: false,
+        tempAusgehend: true,
         isEdit: false,
         tabIndexConf: {}
       },
@@ -1104,6 +1114,8 @@ export default {
   },
 
   beforeRouteUpdate (to, from, next) {
+    // @TODO Clicking new document after opening an other to fix
+    this.other.isEdit = false
     if (from.params.id === undefined) {
       this.askSaveDraft()
         .then(() => {
@@ -1135,21 +1147,146 @@ export default {
     ]),
     ...mapGetters(['getDraft', 'getUser']),
 
+    autoFillValues: function () {
+      // import user from vuex
+      let user = this.$store.state.user
+      // generate date
+      let today = new Date()
+      let dd = today.getDate()
+      let mm = today.getMonth() + 1 // January is 0!
+      let yyyy = today.getFullYear()
+      if (dd < 10) {
+        dd = '0' + dd
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      let date = dd + '.' + mm + '.' + yyyy
+
+      switch (this.formdata.ticketState) {
+        case 13:
+          if (this.formdata.docketIdentification === '') {
+            this.formdata.docketIdentification = user.identification
+          }
+          break
+        case 7:
+          if (this.formdata.docketIdentification === '') {
+            this.formdata.docketIdentification = user.identification
+          }
+          break
+        case 10:
+          if (this.formdata.primaryDate === '') {
+            this.formdata.primaryDate = date
+          }
+          if (this.formdata.primaryHdZ === '') {
+            this.formdata.primaryHdZ = user.identification
+          }
+          this.formdata.topRadio = true
+          this.formdata.midRadio = false
+          this.formdata.sender = ''
+          this.formdata.position = ''
+          this.formdata.identification = ''
+          break
+        case 3:
+          if (this.formdata.secondaryDate === '') {
+            this.formdata.secondaryDate = date
+          }
+          if (this.formdata.secondaryHdZ === '') {
+            this.formdata.secondaryHdZ = user.identification
+          }
+          break
+        case 4:
+          if (this.formdata.tertiaryDate === '') {
+            this.formdata.tertiaryDate = date
+          }
+          if (this.formdata.tertiaryHdZ === '') {
+            this.formdata.tertiaryHdZ = user.identification
+          }
+          break
+        case 0:
+          if (this.formdata.sender === '') {
+            this.formdata.sender = user.sender
+          }
+          if (this.formdata.identification === '') {
+            this.formdata.identification = user.identification
+          }
+          if (this.formdata.position === '') {
+            if (user.role === 'SGL') {
+              this.formdata.position = user.position
+            } else {
+              this.formdata.position = user.role
+            }
+          }
+          this.formdata.midRadio = true
+          this.formdata.topRadio = false
+          this.formdata.primaryDate = ''
+          this.formdata.primaryHdZ = ''
+          break
+      }
+    },
+
+    autoFillTime: function () {
+      let today = new Date()
+      let hh = today.getHours()
+      let mm = today.getMinutes()
+      let time = hh + ':' + mm
+
+      switch (this.formdata.ticketState) {
+        case 7:
+          if (this.formdata.docketTime === '') {
+            this.formdata.docketTime = time
+          }
+          break
+        case 13:
+          if (this.formdata.docketTime === '') {
+            this.formdata.docketTime = time
+          }
+          break
+        case 10:
+          if (this.formdata.primaryTime === '') {
+            this.formdata.primaryTime = time
+          }
+          break
+        case 3:
+          if (this.formdata.secondaryTime === '') {
+            this.formdata.secondaryTime = time
+          }
+          break
+        case 4:
+          if (this.formdata.tertiaryTime === '') {
+            this.formdata.tertiaryTime = time
+          }
+          break
+        case 0:
+          if (this.formdata.createTime === '') {
+            this.formdata.createTime = time
+          }
+          break
+      }
+    },
+
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
       this.$data.formdata.inOperation = this.getUser().operation.operationId
+      this.setIncomingOutgoing()
+      this.autoFillValues()
+      this.$data.formdata.inOperation = this.getUser().operation.operationID
     },
 
     loadDraft: function () {
       let draft = this.getDraft() || this.$options.data().formdata
       this.setDefaultData(draft)
+      this.setIncomingOutgoing()
+      this.autoFillValues()
     },
 
     loadID: function (id) {
       this.loadFormDataAction(id)
         .then((formdata) => {
           this.setDefaultData(formdata)
+          this.setIncomingOutgoing()
           this.$data.other.isEdit = true
+          this.autoFillValues()
         })
         .catch((error) => {
           this.messageBoxError('', error.message)
@@ -1171,9 +1308,23 @@ export default {
     },
 
     loadDocument: function (id) {
-      if (id === undefined) this.loadDefault()
-      else if (id === 'draft') this.loadDraft()
-      else this.loadID(id)
+      if (id === undefined) {
+        this.loadDefault()
+      } else if (id === 'draft') {
+        this.loadDraft()
+      } else {
+        this.loadID(id)
+      }
+    },
+
+    setIncomingOutgoing: function () {
+      if (this.formdata.outgoing) {
+        this.other.tempAusgehend = true
+        this.other.tempEingehend = false
+      } else {
+        this.other.tempAusgehend = false
+        this.other.tempEingehend = true
+      }
     },
 
     askSaveDraft: function () {
@@ -1191,9 +1342,11 @@ export default {
       })
     },
 
-    saveForm: function () {
+    saveForm: function (action) {
       if (this.sent === false) {
         this.sent = true
+        this.autoFillTime()
+        this.mapState(action)
         if (this.other.isEdit) {
           this.updateFormDataAction(this.$data.formdata)
             .then(() => {
@@ -1223,18 +1376,81 @@ export default {
     },
 
     printTicket: function () {
-      // TODO
-      // Call print helper and increment state
+      // Call print helper
+      this.saveForm('accept')
     },
 
-    rejectTicket: function () {
-      // TODO
-      // Decrement state
-    },
-
-    sendTicket: function () {
-      // TODO
-      // Increment state
+    mapState: function (sendAction) {
+      let currentState = this.formdata.ticketState
+      let newState = currentState
+      if (sendAction === 'reject') {
+        switch (currentState) {
+          case 1:
+            newState = 2
+            break
+          case 3:
+            newState = 2
+            break
+          case 5:
+            newState = 6
+            break
+          case 7:
+            newState = 6
+            break
+          case 11:
+            newState = 12
+            break
+          case 13:
+            newState = 12
+            break
+        }
+      } else if (sendAction === 'accept') {
+        switch (currentState) {
+          case 0:
+            newState = 1
+            break
+          case 1:
+            newState = 3
+            break
+          case 2:
+            newState = 1
+            break
+          case 3:
+            newState = 4
+            break
+          case 4:
+            newState = 5
+            break
+          case 5:
+            newState = 7
+            break
+          case 6:
+            newState = 5
+            break
+          case 7:
+            newState = 8
+            break
+          case 8:
+            newState = 9
+            break
+          case 10:
+            newState = 11
+            break
+          case 11:
+            newState = 13
+            break
+          case 12:
+            newState = 11
+            break
+          case 13:
+            newState = 14
+            break
+          case 14:
+            newState = 15
+            break
+        }
+      }
+      this.formdata.ticketState = newState
     },
 
     formReset: function () {
@@ -1303,14 +1519,26 @@ export default {
       if (this.other.tempEingehend) {
         this.other.tempAusgehend = false
         this.formdata.outgoing = false
+        this.formdata.ticketState = 10
+      } else {
+        this.other.tempAusgehend = true
+        this.formdata.outgoing = true
+        this.formdata.ticketState = 0
       }
+      this.autoFillValues()
     },
 
     checkOut () {
       if (this.other.tempAusgehend) {
         this.other.tempEingehend = false
         this.formdata.outgoing = true
+        this.formdata.ticketState = 0
+      } else {
+        this.other.tempEingehend = true
+        this.formdata.outgoing = false
+        this.formdata.ticketState = 10
       }
+      this.autoFillValues()
     }
   },
 
