@@ -60,22 +60,27 @@
           hasShadowDashboardA
           flexContainerDashboardB">
 
-      <input class="dashboardInput"
+      <input class="
+              dashboardInput
+              hasShadowDashboardB"
              v-model='filter.search'
              placeholder="Suche"/>
 
-      <el-select v-model='filter.operation'
-                 style="margin: 40px 10px 0 10px ">
-        <el-option value='Alle'>
+      <select class="
+                dashboardSelect
+                hasShadowDashboardB"
+                 v-model='filter.operation'>
+        <option class="dashboardOption"
+                value='Alle'>
           Alle
-        </el-option>
-        <el-option
+        </option>
+        <option class="dashboardSelect"
           v-for='operation in operationList'
           :key='operation.operationName'
           :value='operation.operationName'>
           {{ operation.operationName }}
-        </el-option>
-      </el-select>
+        </option>
+      </select>
 
       <div class="
             dashboardButton
@@ -287,19 +292,37 @@ export default {
     color: var(--primaryTextColor);
   }
   .dashboardInput {
-    height: 40px;
+    height: 50px;
+    width: 97%;
     background-color: var(--semiLightNeutralColor);
-    margin: 0 10px 0 10px;
+    position: relative;
+    right: 10px;
     padding-left: 10px;
-    border: var(--darkNeutralColor);
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
+    border-style: none;
+    border-left: var(--formBlueColor);
+    border-left-style: solid;
+    border-left-width: 10px;
   }
+  .dashboardSelect {
+    appearance: none;
+    height: 50px;
+    width: 100%;
+    background-color: var(--semiLightNeutralColor);
+    margin: 80px 0 0 0;
+    position: relative;
+    right: 10px;
+    cursor: pointer;
+    border-style: none;
+    border-left: var(--formBlueColor);
+    border-left-style: solid;
+    border-left-width: 10px;
+  }
+  .dashboardOption {
 
+  }
   .dashboardButton {
     height: 35px;
-    width: 220px;
+    width: 93%;
     background-color: var(--semiLightNeutralColor);
     padding: 15px 20px 0 0;
     margin: 0 0 20px 0;
