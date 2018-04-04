@@ -36,7 +36,10 @@ import { Header,
   Input,
   Dropdown,
   DropdownItem,
-  DropdownMenu
+  DropdownMenu,
+  Collapse,
+  CollapseItem,
+  CheckboxButton
 } from 'element-ui'
 
 Vue.use(Header)
@@ -66,6 +69,9 @@ Vue.use(Input)
 Vue.use(Dropdown)
 Vue.use(DropdownItem)
 Vue.use(DropdownMenu)
+Vue.use(Collapse)
+Vue.use(CollapseItem)
+Vue.use(CheckboxButton)
 
 Vue.config.productionTip = false
 
