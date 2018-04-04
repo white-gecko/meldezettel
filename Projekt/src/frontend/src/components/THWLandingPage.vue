@@ -279,6 +279,7 @@ export default {
       this.$store.dispatch('setDefaultFilters')
       this.notifySuccess('Eingaben erfolgreich gespeichert')
       this.$store.commit('setShowLandingPage')
+      this.$router.push({ path: 'home' })
     },
     // resets inputs
     resetForm () {
