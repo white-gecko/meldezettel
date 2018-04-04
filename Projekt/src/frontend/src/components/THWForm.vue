@@ -120,7 +120,7 @@
                         flexContainerFormA">
                     <label class="inputLabel"
                            for="primaryHdZ">
-                      Hdz
+                      HdZ
                     </label>
                     <input id="primaryHdZ"
                            class="
@@ -177,7 +177,7 @@
                         flexContainerFormA">
                         <label class="inputLabel"
                                for="secondaryHdZ">
-                          Hdz
+                          HdZ
                         </label>
                         <input id="secondaryHdZ"
                                class="
@@ -227,7 +227,7 @@
                         flexContainerFormA">
                         <label class="inputLabel"
                                for="tertiaryHdZ">
-                          Hdz
+                          HdZ
                         </label>
                         <input id="tertiaryHdZ"
                                class="
@@ -1006,7 +1006,7 @@ export default {
         documentID: '',
         inOperation: '',
 
-        topRadio: true,
+        topRadio: false,
         topPhone: false,
         topFax: false,
         topDFU: false,
@@ -1024,7 +1024,7 @@ export default {
         tertiaryDate: '',
         tertiaryTime: '',
         tertiaryHdZ: '',
-        midRadio: true,
+        midRadio: false,
         midPhone: false,
         midFax: false,
         midDFU: false,
@@ -1133,9 +1133,129 @@ export default {
     ]),
     ...mapGetters(['getDraft', 'getUser']),
 
+    autoFillValues: function () {
+      // import user from vuex
+      let user = this.$store.state.user
+      // generate date
+      let today = new Date()
+      let dd = today.getDate()
+      let mm = today.getMonth() + 1 // January is 0!
+      let yyyy = today.getFullYear()
+      if (dd < 10) {
+        dd = '0' + dd
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      let date = dd + '.' + mm + '.' + yyyy
+
+      switch (this.formdata.ticketState) {
+        case 13:
+          if (this.formdata.docketIdentification === '') {
+            this.formdata.docketIdentification = user.identification
+          }
+          break
+        case 7:
+          if (this.formdata.docketIdentification === '') {
+            this.formdata.docketIdentification = user.identification
+          }
+          break
+        case 10:
+          if (this.formdata.primaryDate === '') {
+            this.formdata.primaryDate = date
+          }
+          if (this.formdata.primaryHdZ === '') {
+            this.formdata.primaryHdZ = user.identification
+          }
+          this.formdata.topRadio = true
+          this.formdata.midRadio = false
+          this.formdata.sender = ''
+          this.formdata.position = ''
+          this.formdata.identification = ''
+          break
+        case 3:
+          if (this.formdata.secondaryDate === '') {
+            this.formdata.secondaryDate = date
+          }
+          if (this.formdata.secondaryHdZ === '') {
+            this.formdata.secondaryHdZ = user.identification
+          }
+          break
+        case 4:
+          if (this.formdata.tertiaryDate === '') {
+            this.formdata.tertiaryDate = date
+          }
+          if (this.formdata.tertiaryHdZ === '') {
+            this.formdata.tertiaryHdZ = user.identification
+          }
+          break
+        case 0:
+          if (this.formdata.sender === '') {
+            this.formdata.sender = user.sender
+          }
+          if (this.formdata.identification === '') {
+            this.formdata.identification = user.identification
+          }
+          if (this.formdata.position === '') {
+            if (user.role === 'SGL') {
+              this.formdata.position = user.position
+            } else {
+              this.formdata.position = user.role
+            }
+          }
+          this.formdata.midRadio = true
+          this.formdata.topRadio = false
+          this.formdata.primaryDate = ''
+          this.formdata.primaryHdZ = ''
+          break
+      }
+    },
+
+    autoFillTime: function () {
+      let today = new Date()
+      let hh = today.getHours()
+      let mm = today.getMinutes()
+      let time = hh + ':' + mm
+
+      switch (this.formdata.ticketState) {
+        case 7:
+          if (this.formdata.docketTime === '') {
+            this.formdata.docketTime = time
+          }
+          break
+        case 13:
+          if (this.formdata.docketTime === '') {
+            this.formdata.docketTime = time
+          }
+          break
+        case 10:
+          if (this.formdata.primaryTime === '') {
+            this.formdata.primaryTime = time
+          }
+          break
+        case 3:
+          if (this.formdata.secondaryTime === '') {
+            this.formdata.secondaryTime = time
+          }
+          break
+        case 4:
+          if (this.formdata.tertiaryTime === '') {
+            this.formdata.tertiaryTime = time
+          }
+          break
+        case 0:
+          if (this.formdata.createTime === '') {
+            this.formdata.createTime = time
+          }
+          break
+      }
+    },
+
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
+      this.$data.formdata.inOperation = this.getUser().operation.operationId
       this.setIncomingOutgoing()
+      this.autoFillValues()
       this.$data.formdata.inOperation = this.getUser().operation.operationID
     },
 
@@ -1143,6 +1263,7 @@ export default {
       let draft = this.getDraft() || this.$options.data().formdata
       this.setDefaultData(draft)
       this.setIncomingOutgoing()
+      this.autoFillValues()
     },
 
     loadID: function (id) {
@@ -1151,6 +1272,7 @@ export default {
           this.setDefaultData(formdata)
           this.setIncomingOutgoing()
           this.$data.other.isEdit = true
+          this.autoFillValues()
         })
         .catch((error) => {
           this.messageBoxError('', error.message)
@@ -1209,6 +1331,7 @@ export default {
     saveForm: function (action) {
       if (this.sent === false) {
         this.sent = true
+        this.autoFillTime()
         this.mapState(action)
         if (this.other.isEdit) {
           this.updateFormDataAction(this.$data.formdata)
@@ -1383,6 +1506,7 @@ export default {
         this.formdata.outgoing = true
         this.formdata.ticketState = 0
       }
+      this.autoFillValues()
     },
 
     checkOut () {
@@ -1395,6 +1519,7 @@ export default {
         this.formdata.outgoing = false
         this.formdata.ticketState = 10
       }
+      this.autoFillValues()
     }
   },
 
