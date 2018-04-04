@@ -1083,8 +1083,8 @@ export default {
       },
 
       other: {
-        tempEingehend: true,
-        tempAusgehend: false,
+        tempEingehend: false,
+        tempAusgehend: true,
         isEdit: false,
         tabIndexConf: {}
       },
