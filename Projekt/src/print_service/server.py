@@ -3,10 +3,12 @@ from cgi import FieldStorage
 from printService import renderPDF
 from io import BytesIO
 
+
 class CORSRequestHandler (BaseHTTPRequestHandler):
-    def end_headers (self):
+    def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
         BaseHTTPRequestHandler.end_headers(self)
+
 
 class S(CORSRequestHandler):
     def do_POST(self):
