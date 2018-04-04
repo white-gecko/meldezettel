@@ -1117,7 +1117,6 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.loadDocument(to.params.id)
-      vm.setAutoValues()
       vm.setTabIndexConf()
     })
   },
@@ -1153,9 +1152,9 @@ export default {
     ]),
     ...mapGetters(['getDraft', 'getUser']),
 
-    setAutoValues: function () {
+    autoFillValues: function () {
       // import user from vuex
-      let user = this.$store.getUser
+      let user = this.$store.state.user
       // generate date
       let today = new Date()
       let dd = today.getDate()
@@ -1169,29 +1168,61 @@ export default {
       }
       let date = dd + '.' + mm + '.' + yyyy
 
-      switch (this.data.ticketState) {
+      switch (this.formdata.ticketState) {
         case 13:
-          this.data.formdata.docketIdentification = user.identification
+          this.formdata.docketIdentification = user.identification
           break
         case 7:
-          this.data.formdata.docketIdentification = user.identification
+          this.formdata.docketIdentification = user.identification
           break
-        case 1:
-          this.data.formdata.primaryDate = date
-          this.data.formdata.primaryHdz = user.identification
+        case 10:
+          this.formdata.primaryDate = date
+          this.formdata.primaryHdz = user.identification
           break
         case 3:
-          this.data.formdata.secondaryDate = date
-          this.data.formdata.secondaryHdz = user.identification
+          this.formdata.secondaryDate = date
+          this.formdata.secondaryHdz = user.identification
           break
         case 4:
-          this.data.formdata.tertiaryDate = date
-          this.data.formdata.tertiaryHdz = user.identification
+          this.formdata.tertiaryDate = date
+          this.formdata.tertiaryHdz = user.identification
           break
         case 0:
-          this.data.formdata.sender = user.sender
-          this.data.formdata.identification = user.identification
-          this.data.formdata.position = user.position
+          this.formdata.sender = user.sender
+          this.formdata.identification = user.identification
+          if (user.role === 'SGL') {
+            this.formdata.position = user.position
+          } else {
+            this.formdata.position = user.role
+          }
+          break
+      }
+    },
+
+    autoFillTime: function () {
+      let today = new Date()
+      let hh = today.getHours()
+      let mm = today.getMinutes()
+      let time = hh + ':' + mm
+
+      switch (this.formdata.ticketState) {
+        case 7:
+          this.formdata.docketTime = time
+          break
+        case 13:
+          this.formdata.docketTime = time
+          break
+        case 10:
+          this.formdata.primaryTime = time
+          break
+        case 3:
+          this.formdata.secondaryTime = time
+          break
+        case 4:
+          this.formdata.tertiaryTime = time
+          break
+        case 0:
+          this.formdata.createTime = time
           break
       }
     },
@@ -1235,6 +1266,7 @@ export default {
       if (id === undefined) this.loadDefault()
       else if (id === 'draft') this.loadDraft()
       else this.loadID(id)
+      this.autoFillValues()
     },
 
     askSaveDraft: function () {
@@ -1255,6 +1287,7 @@ export default {
     saveForm: function () {
       if (this.sent === false) {
         this.sent = true
+        this.autoFillTime()
         if (this.other.isEdit) {
           this.updateFormDataAction(this.$data.formdata)
             .then(() => {
