@@ -45,8 +45,12 @@
         <el-table-column prop="receiverName"
                          label="Empfänger"></el-table-column>
 
-    <el-table-column prop="docketIdentification"
+        <el-table-column prop="docketIdentification"
                      label="Sichter" width="100"></el-table-column>
+
+        <el-table-column :formatter="formatContent"
+                         prop="content"
+                         label="Kurzinhalt"></el-table-column>
 
       </el-table>
     </div>
@@ -313,12 +317,7 @@
           Zurücksetzen
         </div>
       </div>
-
-    <el-table-column :formatter="formatContent"
-                     prop="content"
-                     label="Kurzinhalt"></el-table-column>
-
-  </el-table>
+    </div>
   </div>
 </template>
 <script>
