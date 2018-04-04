@@ -1186,6 +1186,7 @@ export default {
             this.formdata.primaryHdz = user.identification
           }
           this.formdata.topRadio = true
+          this.formdata.midRadio = false
           break
         case 3:
           if (this.formdata.secondaryDate === '') {
@@ -1214,6 +1215,7 @@ export default {
             }
           }
           this.formdata.midRadio = true
+          this.formdata.topRadio = false
           break
       }
     },
@@ -1426,6 +1428,7 @@ export default {
         this.other.tempAusgehend = false
         this.formdata.outgoing = false
       }
+      this.autoFillValues()
     },
 
     checkOut () {
@@ -1433,6 +1436,7 @@ export default {
         this.other.tempEingehend = false
         this.formdata.outgoing = true
       }
+      this.autoFillValues()
     }
   },
 
