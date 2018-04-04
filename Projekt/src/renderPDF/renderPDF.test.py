@@ -2,6 +2,7 @@
 import unittest
 import renderPDF
 import json
+import os
 
 
 class TestPrintService(unittest.TestCase):
@@ -47,6 +48,9 @@ class TestPrintService(unittest.TestCase):
         self.assertEqual(renderPDF.replaceLatexCharacters('Fifty Fifry = 50%'), 'Fifty Fifry = 50\\%')
 
     def testFormDataStringToVariablesString(self):
+        # Changing to current working dir
+        os.chdir(os.path.dirname(__file__))
+        
         # Opens json file and loads it to dir
         with open("formData.test.json") as json_data:
             formDataDir = json.load(json_data)
