@@ -10,6 +10,10 @@ export const setShowLandingPage = (state) => {
   state.showLandingPage = false
 }
 
+export const resetShowLandingPage = (state) => {
+  state.showLandingPage = true
+}
+
 export const setFilters = (state, newFilter) => {
   state.filter = newFilter
 }
