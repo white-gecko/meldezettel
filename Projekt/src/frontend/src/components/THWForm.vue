@@ -1170,30 +1170,47 @@ export default {
 
       switch (this.formdata.ticketState) {
         case 13:
-          this.formdata.docketIdentification = user.identification
+          if (this.formdata.docketIdentification === '') {
+            this.formdata.docketIdentification = user.identification
+          }
           break
         case 7:
-          this.formdata.docketIdentification = user.identification
+          if (this.formdata.docketIdentification === '') {
+            this.formdata.docketIdentification = user.identification
+          }
           break
         case 10:
-          this.formdata.primaryDate = date
-          this.formdata.primaryHdz = user.identification
+          if (this.formdata.primaryDate === '') {
+            this.formdata.primaryDate = date
+          } else if (this.formdata.primaryHdz === '') {
+            this.formdata.primaryHdz = user.identification
+          }
           break
         case 3:
-          this.formdata.secondaryDate = date
-          this.formdata.secondaryHdz = user.identification
+          if (this.formdata.secondaryDate === '') {
+            this.formdata.secondaryDate = date
+          } else if (this.formdata.secondaryHdz === '') {
+            this.formdata.secondaryHdz = user.identification
+          }
           break
         case 4:
-          this.formdata.tertiaryDate = date
-          this.formdata.tertiaryHdz = user.identification
+          if (this.formdata.tertiaryDate === '') {
+            this.formdata.tertiaryDate = date
+          } else if (this.formdata.tertiaryHdz === '') {
+            this.formdata.tertiaryHdz = user.identification
+          }
           break
         case 0:
-          this.formdata.sender = user.sender
-          this.formdata.identification = user.identification
-          if (user.role === 'SGL') {
-            this.formdata.position = user.position
-          } else {
-            this.formdata.position = user.role
+          if (this.formdata.sender === '') {
+            this.formdata.sender = user.sender
+          } else if (this.formdata.identification === '') {
+            this.formdata.identification = user.identification
+          } else if (this.formdata.position === '') {
+            if (user.role === 'SGL') {
+              this.formdata.position = user.position
+            } else {
+              this.formdata.position = user.role
+            }
           }
           break
       }
@@ -1207,22 +1224,34 @@ export default {
 
       switch (this.formdata.ticketState) {
         case 7:
-          this.formdata.docketTime = time
+          if (this.formdata.docketTime === '') {
+            this.formdata.docketTime = time
+          }
           break
         case 13:
-          this.formdata.docketTime = time
+          if (this.formdata.docketTime === '') {
+            this.formdata.docketTime = time
+          }
           break
         case 10:
-          this.formdata.primaryTime = time
+          if (this.formdata.primaryTime === '') {
+            this.formdata.primaryTime = time
+          }
           break
         case 3:
-          this.formdata.secondaryTime = time
+          if (this.formdata.secondaryTime === '') {
+            this.formdata.secondaryTime = time
+          }
           break
         case 4:
-          this.formdata.tertiaryTime = time
+          if (this.formdata.tertiaryTime === '') {
+            this.formdata.tertiaryTime = time
+          }
           break
         case 0:
-          this.formdata.createTime = time
+          if (this.formdata.createTime === '') {
+            this.formdata.createTime = time
+          }
           break
       }
     },
