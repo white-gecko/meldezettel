@@ -23,7 +23,8 @@ pythonlinting_and_testing:
     - pip install pycodestyle
     - pycodestyle Projekt/
     - cd ./Projekt/src/renderPDF
-    - python renderPDF.test.py -v
+    - for f in $(find Projekt -name '*.test.py'); do python3 $f -v; done
+
     
 jslinting_and_testing:
   stage: jslinting_and_testing
