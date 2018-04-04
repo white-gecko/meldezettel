@@ -1027,7 +1027,7 @@ export default {
         documentID: '',
         inOperation: '',
 
-        topRadio: true,
+        topRadio: false,
         topPhone: false,
         topFax: false,
         topDFU: false,
@@ -1045,7 +1045,7 @@ export default {
         tertiaryDate: '',
         tertiaryTime: '',
         tertiaryHdZ: '',
-        midRadio: true,
+        midRadio: false,
         midPhone: false,
         midFax: false,
         midDFU: false,
@@ -1185,6 +1185,7 @@ export default {
           } else if (this.formdata.primaryHdz === '') {
             this.formdata.primaryHdz = user.identification
           }
+          this.formdata.topRadio = true
           break
         case 3:
           if (this.formdata.secondaryDate === '') {
@@ -1212,6 +1213,7 @@ export default {
               this.formdata.position = user.role
             }
           }
+          this.formdata.midRadio = true
           break
       }
     },
@@ -1259,11 +1261,13 @@ export default {
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
       this.$data.formdata.inOperation = this.getUser().operation.operationId
+      this.autoFillValues()
     },
 
     loadDraft: function () {
       let draft = this.getDraft() || this.$options.data().formdata
       this.setDefaultData(draft)
+      this.autoFillValues()
     },
 
     loadID: function (id) {
@@ -1271,6 +1275,7 @@ export default {
         .then((formdata) => {
           this.setDefaultData(formdata)
           this.$data.other.isEdit = true
+          this.autoFillValues()
         })
         .catch((error) => {
           this.messageBoxError('', error.message)
@@ -1295,7 +1300,6 @@ export default {
       if (id === undefined) this.loadDefault()
       else if (id === 'draft') this.loadDraft()
       else this.loadID(id)
-      this.autoFillValues()
     },
 
     askSaveDraft: function () {
