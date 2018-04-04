@@ -1117,6 +1117,7 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.loadDocument(to.params.id)
+      vm.setAutoValues()
       vm.setTabIndexConf()
     })
   },
@@ -1151,6 +1152,49 @@ export default {
       'loadFormDataAction'
     ]),
     ...mapGetters(['getDraft', 'getUser']),
+
+    setAutoValues: function () {
+      // import user from vuex
+      let user = this.$store.getUser
+      // generate date
+      let today = new Date()
+      let dd = today.getDate()
+      let mm = today.getMonth() + 1 // January is 0!
+      let yyyy = today.getFullYear()
+      if (dd < 10) {
+        dd = '0' + dd
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      let date = dd + '.' + mm + '.' + yyyy
+
+      switch (this.data.ticketState) {
+        case 13:
+          this.data.formdata.docketIdentification = user.identification
+          break
+        case 7:
+          this.data.formdata.docketIdentification = user.identification
+          break
+        case 1:
+          this.data.formdata.primaryDate = date
+          this.data.formdata.primaryHdz = user.identification
+          break
+        case 3:
+          this.data.formdata.secondaryDate = date
+          this.data.formdata.secondaryHdz = user.identification
+          break
+        case 4:
+          this.data.formdata.tertiaryDate = date
+          this.data.formdata.tertiaryHdz = user.identification
+          break
+        case 0:
+          this.data.formdata.sender = user.sender
+          this.data.formdata.identification = user.identification
+          this.data.formdata.position = user.position
+          break
+      }
+    },
 
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
