@@ -46,7 +46,6 @@ PREFIX : <http://www.na17b.org/thw/>
       }
     }
     query += '.}}'
-    console.log(query)
     return query
   },
 
