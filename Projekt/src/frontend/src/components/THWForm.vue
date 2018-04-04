@@ -975,7 +975,8 @@
       <el-button @click="
                   formReset();
                   notifySuccess('Formular zurückgesetzt')"
-                 :tabindex="other.tabIndexConf.buttonReset">
+                  :tabindex="other.tabIndexConf.buttonReset"
+                  v-show="isNew">
         Zurücksetzen
       </el-button>
     </div>
@@ -1129,7 +1130,8 @@ export default {
     ...mapActions([
       'saveNewFormAction',
       'updateFormDataAction',
-      'loadFormDataAction'
+      'loadFormDataAction',
+      'getPDFAction'
     ]),
     ...mapGetters(['getDraft', 'getUser']),
 
@@ -1362,7 +1364,7 @@ export default {
     },
 
     printTicket: function () {
-      // Call print helper
+      this.openPDF()
       this.saveForm('accept')
     },
 
@@ -1441,6 +1443,11 @@ export default {
 
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
+    },
+
+    openPDF: function () {
+      this.getPDFAction(this.formdata)
+        .catch((error) => this.notifyError('', error.message))
     },
 
     setDefaultData: function (value) {
@@ -1658,7 +1665,7 @@ export default {
     // Button switches
 
     toBePrinted: function () {
-      return [8, 14].indexOf(
+      return [8, 9, 14, 15].indexOf(
         this.formdata.ticketState) !== -1
     },
 

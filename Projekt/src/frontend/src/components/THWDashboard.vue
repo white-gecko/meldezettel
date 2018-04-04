@@ -30,7 +30,7 @@
                          label="Verfasser"></el-table-column>
 
         <el-table-column prop="docketIdentification"
-                         label="Sichter" width="100"></el-table-column>
+                         label="Sichter"></el-table-column>
 
         <el-table-column :formatter="formatDate"
                          prop="date"
@@ -44,7 +44,6 @@
 
         <el-table-column prop="receiverName"
                          label="Empfänger"></el-table-column>
-
         <el-table-column :formatter="formatContent"
                          prop="content"
                          label="Kurzinhalt"></el-table-column>
@@ -314,9 +313,7 @@
           Zurücksetzen
         </div>
       </div>
-
     </div>
-
   </div>
 </template>
 <script>

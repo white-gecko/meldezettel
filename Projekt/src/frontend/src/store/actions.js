@@ -1,4 +1,5 @@
 import { quitstore } from '../api/QuitStoreAdapter'
+import { printservice } from '../api/PrintServiceAdapter'
 import queryHelper from '../sparql_help/sparql_queries'
 import { parseResponse } from '../sparql_help/sparql_response'
 
@@ -279,4 +280,27 @@ export const handleOperation = (context, newOperation) => {
   let operationInsertQuery = queryHelper.operationToInsertQuery(newOperation)
 
   return quitstore.sendData(operationInsertQuery)
+}
+
+/**
+ * Sends a formdata object to the pdf service and opens the response in a new window
+ * @param {*} context - vuex store context
+ * @param {*} formdata - formdata object
+ */
+export const getPDFAction = (context, formdata) => {
+  return new Promise((resolve, reject) => {
+    printservice.sendData(JSON.stringify(formdata))
+      .then((response) => {
+        let file = new Blob([response.data], {
+          type: 'application/pdf'})
+        let fileURL = URL.createObjectURL(file)
+        window.open(fileURL)
+
+        return resolve()
+      })
+      .catch((error) => {
+        console.error(error)
+        return reject(new Error('Fehler beim Anfordern der PDF'))
+      })
+  })
 }
