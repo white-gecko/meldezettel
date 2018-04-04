@@ -979,18 +979,6 @@
                   v-show="isNew">
         Zurücksetzen
       </el-button>
-      <el-button @click="
-                  openPDF()">
-        PDF
-      </el-button>
-
-      <!-- Reject ticket due to flaws -->
-      <el-button @click="
-                  rejectTicket();
-                  notifySuccess('Zurückgeschickt')"
-                  v-show="rejectable">
-        Abweisen
-      </el-button>
     </div>
   </div>
 </template>
@@ -1376,7 +1364,7 @@ export default {
     },
 
     printTicket: function () {
-      // Call print helper
+      this.openPDF()
       this.saveForm('accept')
     },
 
@@ -1677,7 +1665,7 @@ export default {
     // Button switches
 
     toBePrinted: function () {
-      return [8, 14].indexOf(
+      return [8, 9, 14, 15].indexOf(
         this.formdata.ticketState) !== -1
     },
 
