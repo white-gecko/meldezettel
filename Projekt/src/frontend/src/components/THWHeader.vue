@@ -78,7 +78,7 @@
         <div class="
               headerMenuItem
               hasShadowHeaderB"
-             @click="goTo('Role')">
+             @click="showLandingPage">
           Nutzerdaten auswählen
         </div>
       </div>
@@ -138,6 +138,9 @@ export default {
     },
     printStuff: function () {
       console.log('SUCCESS!')
+    },
+    showLandingPage: function () {
+      this.$store.commit('resetShowLandingPage')
     }
   }
 }

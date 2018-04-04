@@ -3,11 +3,15 @@
     <el-dialog :visible="showLandingPage"
                :show-close="false"
                :close-on-click-modal="false"
+               :lock-scroll="false"
+               top="5vh"
                style="
                 width: 0;
                 height: 0;
                 overflow: visible;
-                margin: 0 25% 0 25%">
+                position: absolute;
+                left: 25%;
+                top: 0">
       <THWLandingPage/>
     </el-dialog>
     <div style="z-index: 2">
