@@ -936,7 +936,7 @@
       <!-- Depending on the state, different buttons need to be shown -->
       <!-- Submit new ticket -->
       <el-button @click="
-                 saveForm();
+                 saveForm('accept');
                  notifySuccess('Abgeschickt')"
                  :tabindex="other.tabIndexConf.buttonSend"
                  v-show="isNew">
@@ -945,7 +945,7 @@
 
       <!-- Send ticket to next station -->
       <el-button @click="
-                 sendTicket();
+                 saveForm('accept');
                  notifySuccess('Abgeschickt')"
                  tabindex="6"
                  v-show="sendable">
@@ -965,14 +965,13 @@
       <el-button @click="
                   formReset();
                   notifySuccess('Formular zurückgesetzt')"
-                  :tabindex="other.tabIndexConf.buttonReset"
-                  v-show="isNew">
+                  :tabindex="other.tabIndexConf.buttonReset">
         Zurücksetzen
       </el-button>
 
       <!-- Reject ticket due to flaws -->
       <el-button @click="
-                  rejectTicket();
+                  saveForm('reject');
                   notifySuccess('Zurückgeschickt')"
                   v-show="rejectable">
         Abweisen
@@ -1154,7 +1153,7 @@ export default {
 
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
-      this.$data.formdata.inOperation = this.getUser().operation.operationId
+      this.$data.formdata.inOperation = this.getUser().operation.operationID
     },
 
     loadDraft: function () {
@@ -1208,9 +1207,10 @@ export default {
       })
     },
 
-    saveForm: function () {
+    saveForm: function (action) {
       if (this.sent === false) {
         this.sent = true
+        this.mapState(action)
         if (this.other.isEdit) {
           this.updateFormDataAction(this.$data.formdata)
             .then(() => {
@@ -1244,14 +1244,77 @@ export default {
       // Call print helper and increment state
     },
 
-    rejectTicket: function () {
-      // TODO
-      // Decrement state
-    },
-
-    sendTicket: function () {
-      // TODO
-      // Increment state
+    mapState: function (action) {
+      let currentState = this.formdata.ticketState
+      let newState = currentState
+      if (action === 'reject') {
+        switch (currentState) {
+          case 1:
+            newState = 2
+            break
+          case 3:
+            newState = 2
+            break
+          case 5:
+            newState = 6
+            break
+          case 7:
+            newState = 6
+            break
+          case 11:
+            newState = 12
+            break
+          case 13:
+            newState = 12
+            break
+        }
+      } else if (action === 'accept') {
+        switch (currentState) {
+          case 0:
+            newState = 1
+            break
+          case 1:
+            newState = 3
+            break
+          case 2:
+            newState = 1
+            break
+          case 3:
+            newState = 4
+            break
+          case 4:
+            newState = 5
+            break
+          case 5:
+            newState = 7
+            break
+          case 6:
+            newState = 5
+            break
+          case 7:
+            newState = 8
+            break
+          case 8:
+            newState = 9
+            break
+          case 10:
+            newState = 11
+            break
+          case 11:
+            newState = 13
+            break
+          case 12:
+            newState = 11
+            break
+          case 13:
+            newState = 14
+            break
+          case 14:
+            newState = 15
+            break
+        }
+      }
+      this.formdata.ticketState = newState
     },
 
     formReset: function () {
