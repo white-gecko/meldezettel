@@ -42,14 +42,17 @@ Komponententests befinden sich jeweils im gleichen Ordner wie die zu testende Ko
 Die Testspezifikationen befinden sich vom frontend-Verzeichnis aus gesehen in \verb+test/unit/specs+.
 Dort liegt für jede Komponente eine eigene Datei, welche die geforderten Eigenschaften und Funktionen
 einer Komponente beschreibt. Es genügt, im Ordner frontend den Befehl \verb+npm run unit+ auszuführen; daraufhin werden alle Test-Suites automatisch abgearbeitet. Eine beispielhafte Ausgabe ist in folgender Abbildung zu sehen.
+\newline
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.8\linewidth]{test}
 \caption{Ausgabe des Befehls npm run unit}
 \label{fig:npmtest}
 \end{figure}
+\newline
 Die Tests umfassen das Prüfen von Anwesenheit bestimmter Variablen und html-Elemente, sowie die Rückgabewerte einiger Funktionen und das Parsen von sparql-Rückgaben.
 Die Ergebnisse sind in folgender Tabelle aufgelistet.
+\newpage
 \begin{table}[htpb]
 \centering
 \label{tab:test}
@@ -62,6 +65,7 @@ THWLandingPage & 2 & ja\\
 sparql\_response & 1 & ja\\
 sparql\_queries & 3 & ja\\
 \end{tabular}
+
 \caption{Testergebnisse der momentanen Frontend-Komponenten}
 \end{table}
 Die Tests für THWForm werden derzeit nicht ausgeführt, weil es zu Komplikationen mit Jest kam, welche noch nicht behoben werden konnten.
