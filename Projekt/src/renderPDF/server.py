@@ -35,5 +35,5 @@ class S(CORSRequestHandler):
 
 
 if __name__ == '__main__':
-    httpd = HTTPServer(('localhost', 5001), S)
+    httpd = HTTPServer(('0.0.0.0', 5001), S)
     httpd.serve_forever()

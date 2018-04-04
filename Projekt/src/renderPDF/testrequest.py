@@ -2,9 +2,9 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 import json
 
-url = 'http://localhost:5001/'
+url = 'http://192.168.2.101:5001/'
 
-with open('form.json') as f:
+with open('formData.json') as f:
     formdata = json.load(f)
 
 
