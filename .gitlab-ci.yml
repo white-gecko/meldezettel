@@ -22,8 +22,8 @@ pythonlinting_and_testing:
   script:
     - pip install pycodestyle
     - pycodestyle Projekt/
-    - cd ./Projekt/src/print_service
-    - python printService.test.py -v
+    - cd ./Projekt/src/renderPDF
+    - python renderPDF.test.py -v
     
 jslinting_and_testing:
   stage: jslinting_and_testing
