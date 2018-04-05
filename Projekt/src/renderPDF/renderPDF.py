@@ -214,29 +214,27 @@ def formDataStringToVariablesString(formDataDir):
 def renderPDF(formDataString):
     # Interpreting formDataString as Dir
     formDataDir = json.loads(formDataString)
-    
+
     # Check if .aux tex compiler side file exists, and creates it if it doesnt
     # usually the case if script has never bin run before
     # having aux file ready greatly reduces compile time from ~20s to ~3s on pi3b
     if not os.path.exists("template.aux"):
         p = subprocess.check_call(['pdflatex', '-halt-on-error', 'template.tex'])
-        
-    
+
     variablesString = formDataStringToVariablesString(formDataDir)
 
     # Hashing formDataString to get unique name for working dir
     m = hashlib.md5(formDataString.encode('utf-8'))
     formDataStringHash = m.hexdigest()
 
-    
     # Get dir this file is in
     currentDir = os.path.dirname(os.path.realpath(__file__))
-    
+
     # Check if working dir exists, if not create working dir
     workingDir = os.path.join(currentDir, formDataStringHash)
     if not os.path.exists(workingDir):
         os.mkdir(workingDir)
-    
+
     # Copy necessary files to working dir
     shutil.copy2(
         os.path.join(currentDir, "template.tex"),
@@ -252,17 +250,18 @@ def renderPDF(formDataString):
 
     # Compiling pdf, via synchronous call
     outputDirArg = '-output-directory=' + workingDir
-    p = subprocess.check_call(['pdflatex', '-halt-on-error', outputDirArg , "template.tex"])
+    p = subprocess.check_call(['pdflatex', '-halt-on-error', outputDirArg, "template.tex"])
 
     # Reading pdf as byteString
     templatePDFPath = os.path.join(workingDir, "template.pdf")
     with open(templatePDFPath, "rb") as pdf:
         pdfBytes = pdf.read()
-    
+
     # Removing working dir
     shutil.rmtree(workingDir)
 
     return pdfBytes
+
 
 """
 if __name__ == "__main__":
@@ -273,6 +272,4 @@ if __name__ == "__main__":
     formDataString = json.dumps(formDataDir)
 
     print(renderPDF(formDataString))
-    
-    
 """
