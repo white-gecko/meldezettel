@@ -103,6 +103,12 @@ export default {
     --secondaryTextColor: #909399;
     --placeholderTextColor: #C0C4CC;
   }
+  /* border-size setting(s) for defining overflow behaviour */
+  .hasBorderSizeA {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
 
   /*
   flex-settings:
@@ -124,27 +130,33 @@ export default {
    */
   .outerWrapper {
     background-color: var(--darkNeutralColor);
-    font-family: var(--mainFont);
-    font-size: var(--smallTitleSize);
+    font: var(--smallTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
     flex-grow: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
 
   .middleWrapper {
     background-color: var(--middleNeutralColor);
-    font-family: var(--mainFont);
-    font-size: var(--smallTitleSize);
+    font: var(--smallTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
     flex-grow: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
 
   .innerWrapper {
     background-color: var(--semiLightNeutralColor);
-    font-family: var(--mainFont);
-    font-size: var(--smallTitleSize);
+    font: var(--smallTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
     position: relative;
     flex-grow: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
 
   /*CSS-reset:

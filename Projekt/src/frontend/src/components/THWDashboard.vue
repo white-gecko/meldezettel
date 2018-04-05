@@ -587,7 +587,8 @@ export default {
     border-left-width: 10px;
     cursor: pointer;
   }
-  /* checkbox */
+
+  /* custom checkbox */
   .dashboardCheckbox {
     margin: 5px 0 0 10px;
     border: 1px solid var(--darkNeutralColor);
