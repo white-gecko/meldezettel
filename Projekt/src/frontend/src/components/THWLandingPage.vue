@@ -267,6 +267,9 @@ export default {
     validateUser (userData) {
       if (this.userData.identification === '' || this.userData.sender === '') {
         alert('Bitte Absender und Handzeichen eintragen.')
+      }
+      if (this.userData.role === 'SGL' && this.userData.position === '') {
+        alert('Bitte eine SGL-Funktion auswählen.')
       } else {
         this.submitUser()
       }
@@ -304,21 +307,32 @@ export default {
         // generate ID
         this.newOperation.operationID = 'operation' + Date.now()
         // set operation inside user
-        this.userData.operation = newOperation
+        this.setUserOperation(newOperation)
         // Quitstore post via sparql_queries.js and QuitStoreAdapter.js
         this.$store.dispatch('handleOperation', this.newOperation)
         // add operation to operations array for table
-        this.operations.push({
-          operationName: this.newOperation.operationName,
-          operationAdress: this.newOperation.operationAdress,
-          operationStaffType: this.newOperation.operationStaffType,
-          operationID: this.newOperation.operationID
-        })
-        this.resetOperationFields()
+        this.pushToOperationsArray()
+        this.resetNewOperationFields()
       }
     },
 
-    resetOperationFields () {
+    setUserOperation (operation) {
+      this.userData.operation.operationName = operation.operationName
+      this.userData.operation.operationAdress = operation.operationAdress
+      this.userData.operation.operationStaffType = operation.operationStaffType
+      this.userData.operation.operationID = this.newOperation.operationID
+    },
+
+    pushToOperationsArray () {
+      this.operations.push({
+        operationName: this.newOperation.operationName,
+        operationAdress: this.newOperation.operationAdress,
+        operationStaffType: this.newOperation.operationStaffType,
+        operationID: this.newOperation.operationID
+      })
+    },
+
+    resetNewOperationFields () {
       this.newOperation.operationName = ''
       this.newOperation.operationAdress = ''
       this.newOperation.operationStaffType = ''
