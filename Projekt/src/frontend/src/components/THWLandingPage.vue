@@ -81,7 +81,7 @@
         <div class="
             landingPageButton
             hasShadowLandingPageD"
-             @click="resetForm()">
+             @click="resetUserData()">
           Felder leeren
         </div>
       </div>
@@ -308,11 +308,17 @@ export default {
       this.$router.push({ path: 'home' })
     },
     // resets inputs
-    resetForm () {
+    resetUserData () {
       this.userData.sender = ''
       this.userData.role = 'SGL'
       this.userData.position = ''
       this.userData.identification = ''
+      this.userData.operation = {
+        operationName: '',
+        operationAdress: '',
+        operationStaffType: '',
+        operationID: ''
+      }
     },
     // handle selection of operation in operations table
     selectOperation (selectedOperation) {
