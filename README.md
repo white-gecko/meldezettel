@@ -77,16 +77,19 @@ zu erreichen.
 ## PDFRendering
 Um das PDFRendering nutzen zu können ist ein latex-compiler nötig, empfohlen wird texlive(>=3.14159265-2.6-1.40.17), unter miktex kann es zu Problemen kommen.
 Die Installation erfolgt am einfachsten über die jeweiligen offiziellen Paketquellen bspw. mit:
-'''sudo apt-get install texlive texlive-lang-german texlive-doc-de texlive-latex-extra'''
-
+```bash
+apt-get install texlive texlive-lang-german texlive-doc-de texlive-latex-extra
+```
 Desweiteren wird python(>=3.53) benötigt, welches für die meisten unix system vorinstalliert ist. Falls nicht ist auch hier die Installation über die offiziellen Paketquellen am einfachsten mit:
-'''sudo apt-get install python3'''
+```bash
+sudo apt-get install python3
+```
 
 Außerdem muss der renderServer gestartet werden, dies geschieht mit:
-'''bash
+```bash
 cd Projekt/src/renderPDF
 python3 server.py
-'''
+```
 
 
 ## Wichtig
