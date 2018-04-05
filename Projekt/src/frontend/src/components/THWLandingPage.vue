@@ -260,6 +260,7 @@ export default {
 
     ...mapActions(['handleOperation', 'sortOperations']),
 
+    // method to sort operations array, not called
     sortOperations (storedOperations) {
       let sortedOperations =
         this.$store.dispatch('sortOperations', storedOperations)

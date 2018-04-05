@@ -282,14 +282,17 @@ export const handleOperation = (context, newOperation) => {
   return quitstore.sendData(operationInsertQuery)
 }
 
-// sorts operations array with bubblesort
-export const sortOperations = (context, operations) => {
-  let op = operations
+/**
+ * sorts operations array with bubblesort
+ * @param context
+ * @param {object} storedOperations */
+export const sortOperations = (context, storedOperations) => {
+  var op = storedOperations
 
   for (var i = op.length - 1; i > 0; i--) {
     for (var j = 0; j < i; j++) {
-      if (op[j].operationName < op[i].operationName) {
-        let temp = op[j]
+      if (op[i].operationName < op[j].operationName) {
+        var temp = op[j]
         op[j] = op[i]
         op[i] = temp
       }
