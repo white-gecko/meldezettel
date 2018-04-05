@@ -282,6 +282,22 @@ export const handleOperation = (context, newOperation) => {
   return quitstore.sendData(operationInsertQuery)
 }
 
+// sorts operations array with bubblesort
+export const sortOperations = (context, operations) => {
+  let op = operations
+
+  for (var i = op.length - 1; i > 0; i--) {
+    for (var j = 0; j < i; j++) {
+      if (op[j].operationName < op[i].operationName) {
+        let temp = op[j]
+        op[j] = op[i]
+        op[i] = temp
+      }
+    }
+  }
+  return op
+}
+
 /**
  * Sends a formdata object to the pdf service and opens the response in a new window
  * @param {*} context - vuex store context

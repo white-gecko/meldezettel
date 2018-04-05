@@ -258,10 +258,16 @@ export default {
 
   methods: {
 
-    ...mapActions(['handleOperation']),
+    ...mapActions(['handleOperation', 'sortOperations']),
 
-    setStoredOperations (storedOperations) {
-      this.operations = storedOperations
+    sortOperations (storedOperations) {
+      let sortedOperations =
+        this.$store.dispatch('sortOperations', storedOperations)
+      this.setStoredOperations(sortedOperations)
+    },
+
+    setStoredOperations (sortedOperations) {
+      this.operations = sortedOperations
     },
     // checks if userData is typed in (not empty)
     validateUser (userData) {
