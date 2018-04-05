@@ -270,6 +270,9 @@ export default {
       }
       if (this.userData.role === 'SGL' && this.userData.position === '') {
         alert('Bitte eine SGL-Funktion auswählen.')
+      }
+      if (this.userData.operation.operationName === '') {
+        alert('Bitte einen Einsatz auswählen oder einen neuen Einsatz anlegen.')
       } else {
         this.submitUser()
       }
