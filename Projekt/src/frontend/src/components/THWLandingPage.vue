@@ -167,7 +167,7 @@
             landingPageButton
             hasShadowLandingPageD"
              style="align-self: center"
-             @click="validateOperation()">
+             @click="submitOperation(newOperation)">
           Einsatz speichern
         </div>
 
@@ -227,8 +227,6 @@ export default {
       // booleans for the operation options to be shown or hidden
       addingOperation: false,
       choosingOperation: false,
-      // object for operation selection in table
-      currentRowObject: {},
       // new Operation object that binds to operation input
       newOperation: {
         operationName: '',
@@ -263,7 +261,7 @@ export default {
     ...mapActions(['handleOperation']),
 
     setStoredOperations (storedOperations) {
-      this.$data.operations = storedOperations
+      this.operations = storedOperations
     },
     // checks if userData is typed in (not empty)
     validateUser (userData) {
@@ -283,65 +281,51 @@ export default {
     },
     // resets inputs
     resetForm () {
-      this.$data.userData.sender = ''
-      this.$data.userData.role = 'SGL'
-      this.$data.userData.position = ''
-      this.$data.userData.identification = ''
+      this.userData.sender = ''
+      this.userData.role = 'SGL'
+      this.userData.position = ''
+      this.userData.identification = ''
     },
     // handle selection of operation in operations table
     selectOperation (selectedOperation) {
-      this.currentRowObject = selectedOperation
-      this.userData.operation = this.currentRowObject
+      this.userData.operation = selectedOperation
       this.notifySuccess('Einsatz ausgewählt.')
       this.choosingOperation = false
     },
-    // check if operation data is filled in
-    validateOperation () {
+    // handle saving of a new operation
+    submitOperation (newOperation) {
       if (
         // test if input fields are empty
         this.newOperation.operationName === '' ||
         this.newOperation.operationAdress === '' ||
         this.newOperation.operationStaffType === '') {
-        alert('Bitte Einsatzdaten eingeben.')
+        alert('Bitte alle Einsatzdaten eingeben.')
       } else {
-        this.submitOperation()
-        this.selectOperation(this.newOperation)
+        // generate ID
+        this.newOperation.operationID = 'operation' + Date.now()
+        // set operation inside user
+        this.userData.operation = newOperation
+        // Quitstore post via sparql_queries.js and QuitStoreAdapter.js
+        this.$store.dispatch('handleOperation', this.newOperation)
+        // add operation to operations array for table
+        this.operations.push({
+          operationName: this.newOperation.operationName,
+          operationAdress: this.newOperation.operationAdress,
+          operationStaffType: this.newOperation.operationStaffType,
+          operationID: this.newOperation.operationID
+        })
+        this.resetOperationFields()
       }
     },
-    // check if data of newOperation already is in operations
-    /*
-    operationIsDuplicate () {
-      let isDuplicate = false
-      for (operation of this.$data.operations) {
-        if (
-          this.$data.newOperation.operationName === operation.operationName ||
-          this.$data.newOperation.operationAdress === operation.operationAdress
-        ) {
-          isDuplicate = true
-        }
-      }
-      return isDuplicate
-    },
-    */
-    // handle saving of a new operation
-    submitOperation () {
-      this.newOperation.operationID = 'operation' + Date.now()
-      // Quitstore post via sparql_queries.js and QuitStoreAdapter.js
-      this.$store.dispatch('handleOperation', this.newOperation)
-      // add operation to operations array for table
-      this.operations.push({
-        operationName: this.newOperation.operationName,
-        operationAdress: this.newOperation.operationAdress,
-        operationStaffType: this.newOperation.operationStaffType,
-        operationID: this.newOperation.operationID
-      })
-      this.notifySuccess('Einsatz gespeichert')
+
+    resetOperationFields () {
       this.newOperation.operationName = ''
       this.newOperation.operationAdress = ''
       this.newOperation.operationStaffType = ''
       this.addingOperation = false
       this.operationID = ''
     },
+
     notifySuccess (message) {
       Notification({
         title: message,
