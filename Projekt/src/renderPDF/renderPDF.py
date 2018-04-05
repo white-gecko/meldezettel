@@ -157,7 +157,7 @@ def formDataStringToVariablesString(formDataDir):
     # Array of multiline string variable names, their maximum number of lines
     # and their maximum number of chars per line
     multiLineStrings = [
-        ["content", 10, 89],
+        ["content", 20, 89],
         ["annotations", 8, 35]]
 
     # Array of booleans where json variable name and latex variable name
