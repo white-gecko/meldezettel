@@ -260,6 +260,11 @@ export default {
 
     ...mapActions(['handleOperation', 'sortOperations']),
 
+    setStoredUserData () {
+      if (this.$store.state.user.sender !== '') {
+        this.userData = this.$store.state.user
+      }
+    },
     // method to sort operations array, not called
     sortOperations (storedOperations) {
       let sortedOperations =
