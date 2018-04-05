@@ -4,6 +4,9 @@ import io
 import json
 import re
 import sys
+import hashlib
+import subprocess
+import shutil
 
 
 # Inserts char into string at given position
@@ -86,11 +89,8 @@ def replaceLatexCharacters(str):
     return str
 
 
-# Parses variables and their values from json to latex and writes them to .tex
-def renderPDF(jsonFile):
-    # Opens json file and loads it to string
-    with open(jsonFile) as json_data:
-        d = json.load(json_data)
+# Translates formData.json to String that can be used in .tex
+def formDataStringToVariablesString(formDataDir):
 
     # Array of boolean variable names
     booleans = [
@@ -169,52 +169,96 @@ def renderPDF(jsonFile):
         ["stationS4", "stationSFour"],
         ["stationS6", "stationSSix"]]
 
-    VV = ""
+    variablesString = ""
 
     # Translating string variables from json to latex
     for [variableName, lineLength] in strings:
-        s = d[variableName]
+        s = formDataDir[variableName]
         s = removeUnwantedCharacters(s)
         s = trimString(s, lineLength)
         s = replaceLatexCharacters(s)
-        VV += "\\def \\" + variableName + "{" + s + "} "
+        variablesString += "\\def \\" + variableName + "{" + s + "} "
 
     # Translating multiline string variables from json to latex
     for [variableName, maxLines, lineLength] in multiLineStrings:
-        s = d[variableName]
+        s = formDataDir[variableName]
         s = removeUnwantedCharacters(s)
         s = adjustString(s, maxLines, lineLength)
         s = replaceLatexCharacters(s)
-        VV += "\\def \\" + variableName + "{" + s + "} "
+        variablesString += "\\def \\" + variableName + "{" + s + "} "
 
     # Translating boolean variables from json to latex
     for variableName in booleans:
-        if d[variableName]:
-            VV += "\\def \\" + variableName + "{\\checkedbox}"
+        if formDataDir[variableName]:
+            variablesString += "\\def \\" + variableName + "{\\checkedbox}"
         else:
-            VV += "\\def \\" + variableName + "{\\uncheckedbox}"
+            variablesString += "\\def \\" + variableName + "{\\uncheckedbox}"
 
     # Translating boolean variables with inconsistent names from json to latex
     for [jsonVariableName, latexVariableName] in boolInconsistentVariableName:
-        if d[jsonVariableName]:
-            VV += "\\def \\" + latexVariableName + "{\\checkedbox}"
+        if formDataDir[jsonVariableName]:
+            variablesString += "\\def \\" + latexVariableName + "{\\checkedbox}"
         else:
-            VV += "\\def \\" + latexVariableName + "{\\uncheckedbox}"
+            variablesString += "\\def \\" + latexVariableName + "{\\uncheckedbox}"
 
     # Special case where Json has one variable and latex template requires two
-    if d["outgoing"]:
-        VV += "\\def \\incoming{\\uncheckedbox}"
+    if formDataDir["outgoing"]:
+        variablesString += "\\def \\incoming{\\uncheckedbox}"
     else:
-        VV += "\\def \\incoming{\\checkedbox}"
+        variablesString += "\\def \\incoming{\\checkedbox}"
+
+    return variablesString
+
+
+# Parses variables and their values from json to latex and writes them to .tex
+def renderPDF(formDataString):
+    # Interpreting formDataString as Dir
+    formDataDir = json.loads(formDataString)
+
+    variablesString = formDataStringToVariablesString(formDataDir)
+
+    # Hashing formDataString to get unique name for working dir
+    m = hashlib.md5()
+    # m.update(formDataString.encode('ascii', 'UTF8'))
+    formDataStringHash = m.hexdigest()
+
+    # Changing to current working dir
+    os.chdir(os.path.dirname(__file__))
+
+    # Copy files to working dir
+    os.mkdir(formDataStringHash)
+    shutil.copy2("template.tex", os.path.join(formDataStringHash, "template.tex"))
+    shutil.copy2("template.aux", os.path.join(formDataStringHash, "template.aux"))
+    shutil.copy2("template.log", os.path.join(formDataStringHash, "template.log"))
+
+    # Changing to working dir
+    os.chdir(formDataStringHash)
 
     # Writing generated string to .tex
     with io.open("variables.tex", mode="w", encoding="UTF8") as fd:
-        fd.write(VV)
+        fd.write(variablesString)
 
-    # Compiling pdf
-    os.system("pdflatex VVtest.tex")
-    return
+    # Compiling pdf, via synchronous call
+    p = subprocess.check_call(['pdflatex', '-halt-on-error', 'template.tex'])
+
+    # Reading pdf as byteString
+    with open("template.pdf", "rb") as pdf:
+        pdfBytes = pdf.read()
+
+    # Removing working dir
+    os.chdir("../")
+    shutil.rmtree(formDataStringHash)
+
+    return pdfBytes
 
 
+"""
 if __name__ == "__main__":
-    renderPDF(sys.argv[1])
+    # Opens json file and loads it to dir
+    with open("formData.json") as json_data:
+        formDataDir = json.load(json_data)
+
+    formDataString = json.dumps(formDataDir)
+
+    renderPDF(formDataString)
+"""

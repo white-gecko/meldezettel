@@ -18,13 +18,13 @@ validate_time_tracking:
 pythonlinting_and_testing:
   stage: pythonlinting_and_testing
   image:
-    name: python:2.7
+    name: python:3.6
   script:
-    - cd ./Projekt/src/print_service
     - pip install pycodestyle
-    - pycodestyle printService.py
-    - pycodestyle printService.test.py
-    - python printService.test.py -v
+    - pycodestyle Projekt/
+    - cd ./Projekt/src/renderPDF
+    - for f in $(find Projekt -name '*.test.py'); do python3 $f -v; done
+
     
 jslinting_and_testing:
   stage: jslinting_and_testing
