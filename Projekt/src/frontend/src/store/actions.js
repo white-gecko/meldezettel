@@ -283,25 +283,6 @@ export const handleOperation = (context, newOperation) => {
 }
 
 /**
- * sorts operations array with bubblesort
- * @param context
- * @param {object} storedOperations */
-export const sortOperations = (context, storedOperations) => {
-  var op = storedOperations
-
-  for (var i = op.length - 1; i > 0; i--) {
-    for (var j = 0; j < i; j++) {
-      if (op[i].operationName < op[j].operationName) {
-        var temp = op[j]
-        op[j] = op[i]
-        op[i] = temp
-      }
-    }
-  }
-  return op
-}
-
-/**
  * Sends a formdata object to the pdf service and opens the response in a new window
  * @param {*} context - vuex store context
  * @param {*} formdata - formdata object

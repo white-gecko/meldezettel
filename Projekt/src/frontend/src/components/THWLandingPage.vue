@@ -248,8 +248,8 @@ export default {
     quitstore.getData(operationsQuery)
       .then((response) => {
         let data = parseResponse(response)
-        this.setStoredOperations(data)
-        // vm.setStoredOperations({'storedOperations': data})
+        this.sortOperations(data)
+        this.setStoredUserData()
       })
       .catch((error) => {
         alert(error)
@@ -258,18 +258,28 @@ export default {
 
   methods: {
 
-    ...mapActions(['handleOperation', 'sortOperations']),
+    ...mapActions(['handleOperation']),
 
+    // method to call stored userData from vuex
     setStoredUserData () {
       if (this.$store.state.user.sender !== '') {
         this.userData = this.$store.state.user
       }
     },
-    // method to sort operations array, not called
+    // method to sort operations array
     sortOperations (storedOperations) {
-      let sortedOperations =
-        this.$store.dispatch('sortOperations', storedOperations)
-      this.setStoredOperations(sortedOperations)
+      var op = storedOperations
+
+      for (var i = op.length - 1; i > 0; i--) {
+        for (var j = 0; j < i; j++) {
+          if (op[i].operationName < op[j].operationName) {
+            var temp = op[j]
+            op[j] = op[i]
+            op[i] = temp
+          }
+        }
+      }
+      this.setStoredOperations(op)
     },
 
     setStoredOperations (sortedOperations) {
