@@ -313,6 +313,8 @@ export default {
         this.newOperation.operationAdress === '' ||
         this.newOperation.operationStaffType === '') {
         alert('Bitte alle Einsatzdaten eingeben.')
+      } if (this.operationIsDuplicate(newOperation)) {
+        alert('Dieser Einsatzname ist bereits vergeben.')
       } else {
         // generate ID
         this.newOperation.operationID = 'operation' + Date.now()
@@ -324,6 +326,16 @@ export default {
         this.pushToOperationsArray()
         this.resetNewOperationFields()
       }
+    },
+
+    operationIsDuplicate (newOperation) {
+      let duplicate = false
+      this.operations.forEach(function (operation) {
+        if (operation.operationName === newOperation.operationName) {
+          duplicate = true
+        }
+      })
+      return duplicate
     },
 
     setUserOperation (operation) {
