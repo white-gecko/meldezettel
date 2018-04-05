@@ -17,7 +17,7 @@ module.exports = {
   testPathIgnorePatterns: [
     '<rootDir>/test/e2e',
     '<rootDir>/test/unit/specs/THWForm.spec.js',
-    '<rootDir>/test/unit/specs/sparql_queries.spec.js'
+    '<rootDir>/test/unit/specs/THWDashboard.spec.js'
   ],
   snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
   setupFiles: ['<rootDir>/test/unit/setup'],

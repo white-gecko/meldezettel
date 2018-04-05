@@ -191,7 +191,7 @@ export default {
   }
 
   /*
-  animations
+  animations:
   */
   @keyframes descBlendIn {
     0%  { width: 50px;
