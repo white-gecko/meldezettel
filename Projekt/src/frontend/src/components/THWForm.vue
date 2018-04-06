@@ -1217,6 +1217,12 @@ export default {
       let today = new Date()
       let hh = today.getHours()
       let mm = today.getMinutes()
+      if (hh < 10) {
+        hh = '0' + hh
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
       let time = hh + ':' + mm
 
       switch (this.formdata.ticketState) {
