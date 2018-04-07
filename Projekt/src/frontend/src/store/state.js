@@ -27,5 +27,6 @@ export default {
     position: '',
     identification: ''
   },
+  operationList: [],
   showLandingPage: true
 }

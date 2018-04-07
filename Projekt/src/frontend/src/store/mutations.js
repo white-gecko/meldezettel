@@ -21,3 +21,7 @@ export const setFilters = (state, newFilter) => {
 export const setDraft = (state, fromdata) => {
   state.draft = fromdata
 }
+
+export const setOperationList = (state, list) => {
+  state.operationList = list
+}

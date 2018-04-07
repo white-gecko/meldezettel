@@ -4,7 +4,10 @@
     <div class="
           dashboard
           hasShadowDashboardA">
-      <el-table :data="ticketList" style="width: 100%" max-height="500">
+      <el-table :data="ticketList"
+                style="width: 100%"
+                max-height="500"
+                border>
         <el-table-column width="80">
           <template slot-scope="scope">
             <router-link v-bind:to="{
@@ -319,9 +322,6 @@
 <script>
 import { Notification } from 'element-ui'
 import { mapActions } from 'vuex'
-import { quitstore } from '../api/QuitStoreAdapter.js'
-import queryHelper from '../sparql_help/sparql_queries.js'
-import { parseResponse } from '../sparql_help/sparql_response'
 
 export default {
   name: 'THWDashboard',
@@ -330,17 +330,8 @@ export default {
     next(vm => {
       vm.$store.dispatch('updateTicketListAction')
         .catch(error => alert(error))
-
-      let operationsQuery = queryHelper.operationsQuery()
-
-      quitstore.getData(operationsQuery)
-        .then((response) => {
-          let data = parseResponse(response)
-          vm.$data.operationList = data
-        })
-        .catch((error) => {
-          alert(error)
-        })
+      vm.$store.dispatch('getOperationsAction')
+        .catch(error => alert(error))
     })
   },
 
@@ -350,7 +341,6 @@ export default {
 
   data: () => {
     return {
-      operationList: [],
       isIncoming: false,
       isOutgoing: false
     }
@@ -362,6 +352,9 @@ export default {
     },
     filter () {
       return this.$store.state.filter
+    },
+    operationList () {
+      return this.$store.state.operationList
     }
   },
 
@@ -409,6 +402,8 @@ export default {
     */
     useFilters: function () {
       this.$store.dispatch('updateTicketListAction')
+        .catch(error => alert(error))
+      this.$store.dispatch('getOperationsAction')
         .catch(error => alert(error))
     },
     notifySuccess (message) {

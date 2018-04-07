@@ -200,9 +200,6 @@
 
 import { Notification } from 'element-ui'
 import { mapActions } from 'vuex'
-import { quitstore } from '../api/QuitStoreAdapter.js'
-import { parseResponse } from '../sparql_help/sparql_response.js'
-import sparql from '../sparql_help/sparql_queries.js'
 
 const roleOptions =
 ['Sichter', 'LdF', 'Fernmelder', 'SGL', 'Fachberater', 'Verbindungsstelle']
@@ -237,34 +234,26 @@ export default {
         operationID: ''
       },
 
-      // objects for operations, roles and positions
-      operations: [],
+      // objects for  roles and positions
       roles: roleOptions,
       positions: positionOptions
     }
   },
 
-  mounted () {
-    let operationsQuery = sparql.operationsQuery()
+  computed: {
+    operations () {
+      return this.$store.state.operationList
+    }
+  },
 
-    quitstore.getData(operationsQuery)
-      .then((response) => {
-        let data = parseResponse(response)
-        this.setStoredOperations(data)
-        // vm.setStoredOperations({'storedOperations': data})
-      })
-      .catch((error) => {
-        alert(error)
-      })
+  mounted () {
+    this.$store.dispatch('getOperationsAction')
   },
 
   methods: {
 
     ...mapActions(['handleOperation']),
 
-    setStoredOperations (storedOperations) {
-      this.$data.operations = storedOperations
-    },
     // checks if userData is typed in (not empty)
     validateUser (userData) {
       if (this.userData.identification === '' || this.userData.sender === '') {
@@ -277,9 +266,9 @@ export default {
     submitUser () {
       this.$store.commit('setUser', this.userData)
       this.$store.dispatch('setDefaultFilters')
+      this.$store.dispatch('updateTicketListAction')
       this.notifySuccess('Eingaben erfolgreich gespeichert')
       this.$store.commit('setShowLandingPage')
-      this.$router.push({ path: 'home' })
     },
     // resets inputs
     resetForm () {

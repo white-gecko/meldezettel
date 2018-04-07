@@ -130,6 +130,19 @@ export const updateFormDataAction = (context, formData) => {
   })
 }
 
+export const getOperationsAction = (context) => {
+  let operationsQuery = queryHelper.operationsQuery()
+
+  quitstore.getData(operationsQuery)
+    .then((response) => {
+      let data = parseResponse(response)
+      context.commit('setOperationList', data)
+    })
+    .catch((error) => {
+      alert(error)
+    })
+}
+
 export const setFilters = (context, newFilter) => {
   context.state.filter = newFilter
 }
@@ -265,7 +278,7 @@ export const setDefaultFilters = (context) => {
       }
   }
   defFilter['search'] = ''
-  if (typeof (context.state.user.operation.operationName) !== 'undefined') {
+  if (context.state.user.operation.operationName !== '') {
     defFilter['operation'] = context.state.user.operation.operationName
   } else {
     defFilter['operation'] = 'Alle'
