@@ -81,7 +81,7 @@ Die Installation erfolgt am einfachsten über die jeweiligen offiziellen Paketqu
 sudo apt-get install texlive texlive-lang-german texlive-doc-de texlive-latex-extra
 ```
 
-Desweiteren wird python(>=3.53) benötigt, welches für die meisten unix system vorinstalliert ist. Falls nicht ist auch hier die Installation über die offiziellen Paketquellen am einfachsten mit:
+Desweiteren wird python(>=3.53) benötigt, welches für die meisten unix Systeme vorinstalliert ist. Falls nicht ist auch hier die Installation über die offiziellen Paketquellen am einfachsten mit:
 ```bash
 sudo apt-get install python3
 ```
