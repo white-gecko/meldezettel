@@ -81,7 +81,7 @@
         <div class="
             landingPageButton
             hasShadowLandingPageD"
-             @click="resetForm()">
+             @click="resetUserData()">
           Felder leeren
         </div>
       </div>
@@ -167,7 +167,7 @@
             landingPageButton
             hasShadowLandingPageD"
              style="align-self: center"
-             @click="validateOperation()">
+             @click="submitOperation(newOperation)">
           Einsatz speichern
         </div>
 
@@ -224,8 +224,6 @@ export default {
       // booleans for the operation options to be shown or hidden
       addingOperation: false,
       choosingOperation: false,
-      // object for operation selection in table
-      currentRowObject: {},
       // new Operation object that binds to operation input
       newOperation: {
         operationName: '',
@@ -248,16 +246,46 @@ export default {
 
   mounted () {
     this.$store.dispatch('getOperationsAction')
+    this.sortOperations()
+    this.setStoredUserData()
   },
 
   methods: {
 
     ...mapActions(['handleOperation']),
 
+    // method to call stored userData from vuex
+    setStoredUserData () {
+      if (this.$store.state.user.sender !== '') {
+        this.userData = this.$store.state.user
+      }
+    },
+    // method to sort operations array
+    sortOperations () {
+      var op = this.operations
+
+      for (var i = op.length - 1; i > 0; i--) {
+        for (var j = 0; j < i; j++) {
+          if (op[i].operationName < op[j].operationName) {
+            var temp = op[j]
+            op[j] = op[i]
+            op[i] = temp
+          }
+        }
+      }
+      this.$store.commit('setOperationList',op)
+    },
+
     // checks if userData is typed in (not empty)
     validateUser (userData) {
-      if (this.userData.identification === '' || this.userData.sender === '') {
-        alert('Bitte Absender und Handzeichen eintragen.')
+      if (
+        this.userData.identification === '' ||
+        this.userData.sender === '' ||
+        (this.userData.role === 'SGL' && this.userData.position === '') ||
+        this.userData.operation.operationName === '') {
+        alert(
+          'Bitte Absender und Zeichen eintragen sowie einen Einsatz auswählen.'
+        )
       } else {
         this.submitUser()
       }
@@ -271,66 +299,81 @@ export default {
       this.$store.commit('setShowLandingPage')
     },
     // resets inputs
-    resetForm () {
-      this.$data.userData.sender = ''
-      this.$data.userData.role = 'SGL'
-      this.$data.userData.position = ''
-      this.$data.userData.identification = ''
+    resetUserData () {
+      this.userData.sender = ''
+      this.userData.role = 'SGL'
+      this.userData.position = ''
+      this.userData.identification = ''
+      this.userData.operation = {
+        operationName: '',
+        operationAdress: '',
+        operationStaffType: '',
+        operationID: ''
+      }
     },
     // handle selection of operation in operations table
     selectOperation (selectedOperation) {
-      this.currentRowObject = selectedOperation
-      this.userData.operation = this.currentRowObject
+      this.userData.operation = selectedOperation
       this.notifySuccess('Einsatz ausgewählt.')
       this.choosingOperation = false
     },
-    // check if operation data is filled in
-    validateOperation () {
+    // handle saving of a new operation
+    submitOperation (newOperation) {
       if (
         // test if input fields are empty
         this.newOperation.operationName === '' ||
         this.newOperation.operationAdress === '' ||
         this.newOperation.operationStaffType === '') {
-        alert('Bitte Einsatzdaten eingeben.')
+        alert('Bitte alle Einsatzdaten eingeben.')
+      } if (this.operationIsDuplicate(newOperation)) {
+        alert('Dieser Einsatzname ist bereits vergeben.')
       } else {
-        this.submitOperation()
-        this.selectOperation(this.newOperation)
+        // generate ID
+        this.newOperation.operationID = 'operation' + Date.now()
+        // set operation inside user
+        this.setUserOperation(newOperation)
+        // Quitstore post via sparql_queries.js and QuitStoreAdapter.js
+        this.$store.dispatch('handleOperation', this.newOperation)
+        // add operation to operations array for table
+        this.pushToOperationsArray()
+        this.resetNewOperationFields()
       }
     },
-    // check if data of newOperation already is in operations
-    /*
-    operationIsDuplicate () {
-      let isDuplicate = false
-      for (operation of this.$data.operations) {
-        if (
-          this.$data.newOperation.operationName === operation.operationName ||
-          this.$data.newOperation.operationAdress === operation.operationAdress
-        ) {
-          isDuplicate = true
+
+    operationIsDuplicate (newOperation) {
+      let duplicate = false
+      this.operations.forEach(function (operation) {
+        if (operation.operationName === newOperation.operationName) {
+          duplicate = true
         }
-      }
-      return isDuplicate
+      })
+      return duplicate
     },
-    */
-    // handle saving of a new operation
-    submitOperation () {
-      this.newOperation.operationID = 'operation' + Date.now()
-      // Quitstore post via sparql_queries.js and QuitStoreAdapter.js
-      this.$store.dispatch('handleOperation', this.newOperation)
-      // add operation to operations array for table
+
+    setUserOperation (operation) {
+      this.userData.operation.operationName = operation.operationName
+      this.userData.operation.operationAdress = operation.operationAdress
+      this.userData.operation.operationStaffType = operation.operationStaffType
+      this.userData.operation.operationID = this.newOperation.operationID
+    },
+
+    pushToOperationsArray () {
       this.operations.push({
         operationName: this.newOperation.operationName,
         operationAdress: this.newOperation.operationAdress,
         operationStaffType: this.newOperation.operationStaffType,
         operationID: this.newOperation.operationID
       })
-      this.notifySuccess('Einsatz gespeichert')
+    },
+
+    resetNewOperationFields () {
       this.newOperation.operationName = ''
       this.newOperation.operationAdress = ''
       this.newOperation.operationStaffType = ''
       this.addingOperation = false
       this.operationID = ''
     },
+
     notifySuccess (message) {
       Notification({
         title: message,
