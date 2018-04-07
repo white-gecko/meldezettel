@@ -287,14 +287,14 @@ export default {
     },
     // checks if userData is typed in (not empty)
     validateUser (userData) {
-      if (this.userData.identification === '' || this.userData.sender === '') {
-        alert('Bitte Absender und Handzeichen eintragen.')
-      }
-      if (this.userData.role === 'SGL' && this.userData.position === '') {
-        alert('Bitte eine SGL-Funktion auswählen.')
-      }
-      if (this.userData.operation.operationName === '') {
-        alert('Bitte einen Einsatz auswählen oder einen neuen Einsatz anlegen.')
+      if (
+        this.userData.identification === '' ||
+        this.userData.sender === '' ||
+        (this.userData.role === 'SGL' && this.userData.position === '') ||
+        this.userData.operation.operationName === '') {
+        alert(
+          'Bitte Absender und Zeichen eintragen sowie einen Einsatz auswählen.'
+        )
       } else {
         this.submitUser()
       }
