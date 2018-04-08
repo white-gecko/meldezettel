@@ -22,7 +22,7 @@ class S(CORSRequestHandler):
                 }
             )
             pdf = renderPDF(content.getvalue('data'))
-        except Error:
+        except Exception:
             self.send_response(400)
             self.end_headers()
             return
