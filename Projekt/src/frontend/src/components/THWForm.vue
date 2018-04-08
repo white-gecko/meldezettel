@@ -1706,23 +1706,49 @@ export default {
 
 <style>
   .form {
+    width: 100%;
     background-color: var(--formBlueColor);
-    overflow: visible;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
+    font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
     padding: 10px 0 20px 0;
   }
   .formWrapper {
     background-color: var(--semiLightNeutralColor);
     width: 80%;
-    overflow: visible;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
+    padding: 0 10px 20px 10px;
+    margin: 0 20% 20px 0;
+    border-top: 20px solid var(--secondaryTextColor);
+    font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
   }
   .sideMenuForm {
+    width: 20%;
     background-color: var(--semiLightNeutralColor);
+    padding: 0 0 20px 10px;
+    margin: 0 0 0 2%;
+    border-top: 20px solid var(--secondaryTextColor);
+    position: fixed;
+    left: 83%;
+    font: var(--bigTitleSize) var(--mainFont);
+    color: var(--primaryTextColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .checkboxLabel {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    cursor: pointer;
+  }
+
+  /* section-wrappers (middle wrapper) */
+  .topTopLeft {
+    width: 80%;
+    padding: 0 5px 5px 0;
+    margin: 0 0 0 0;
+  }
+  .topTopRight {
+>>>>>>> Stashed changes
     width: 20%;
     overflow: visible;
     font-family: var(--mainFont);

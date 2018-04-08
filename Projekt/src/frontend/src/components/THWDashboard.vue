@@ -52,267 +52,32 @@
     </div>
 
     <div class="
-          sideMenuDashboard
+          dashboardSideMenu
           hasShadowDashboardA
           flexContainerDashboardB">
 
-      <div class="
-            dashboardSection
-            hasShadowDashboardA
-            flexContainerDashboardB">
-        <input class="
-              dashboardInput
-              hasShadowDashboardA"
-               v-model='filter.search'
-               placeholder="Suche"/>
-      </div>
-
-      <div class="
-            dashboardSection
-            hasShadowDashboardA
-            flexContainerDashboardB">
-
-        Einsatz:
-
-        <select class="
-                dashboardSelect
-                hasShadowDashboardA"
-                v-model='filter.operation'>
-          <option class="dashboardOption"
-                  value='Alle'>
-            Alle
-          </option>
-          <option class="dashboardOption"
-                  v-for='operation in operationList'
-                  :key='operation.operationName'
-                  :value='operation.operationName'>
-            {{ operation.operationName }}
-          </option>
-        </select>
-
-        Filter-Optionen:
+      <div class="outerWrapper">
 
         <div class="
-            dashboardButton
-            hasShadowDashboardA"
-             style="margin: 10px 0 10px 0"
-             @click="showHideIncoming">
-          Eingang
-        </div>
-        <div class="flexContainerDashboardA"
-             style="flex-wrap: wrap; margin: 0 0 10px 0"
-             v-show="isIncoming">
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Erstellt
-              <input type="checkbox" v-model='filter.s11'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-edit-outline stateFilter in"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Zurückgeschickt
-              <input type="checkbox" v-model='filter.s12'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-circle-close stateFilter in"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Zu sichten
-              <input type="checkbox" v-model='filter.s13'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-tickets stateFilter in"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Druckfertig
-              <input type="checkbox" v-model='filter.s14'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-printer stateFilter in"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Archiviert
-              <input type="checkbox" v-model='filter.s15'/>
-              <div class="control_indicator"></div>
-            </label>
-            <div style="
-                  height: 20px;
-                  width: 20px;
-                  background-color: var(--darkNeutralColor);
-                  margin: 4px 5px 0 5px;"></div>
-          </div>
-
+              middleWrapper
+              dashboardSideMTopSection">
+          <div class="testSquare"></div>
         </div>
 
         <div class="
-            dashboardButton
-            hasShadowDashboardA"
-             style="margin-bottom: 10px"
-             @click="showHideOutgoing">
-          Ausgang
+              middleWrapper
+              dashboardSideMMidSection">
+          <div class="testSquare"></div>
         </div>
-        <div class="flexContainerDashboardA"
-             style="flex-wrap: wrap; margin: 0 0 10px 0"
-             v-show="isOutgoing">
 
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Zu sichten
-              <input type="checkbox" v-model='filter.s1'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-edit-outline stateFilter out"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Zurückgeschickt
-              <input type="checkbox" v-model='filter.s2'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-circle-close stateFilter out"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Gesichtet
-              <input type="checkbox" v-model='filter.s3'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-view stateFilter out"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Sendefertig
-              <input type="checkbox" v-model='filter.s4'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-service stateFilter out"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Versandt(LdF)
-              <input type="checkbox" v-model='filter.s5'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-circle-check-outline stateFilter out"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Versandt(Sichter)
-              <input type="checkbox" v-model='filter.s6'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-circle-check stateFilter out"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Zurück(Funker)
-              <input type="checkbox" v-model='filter.s7'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-circle-close-outline stateFilter out"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Druckfertig
-              <input type="checkbox" v-model='filter.s8'/>
-              <div class="control_indicator"></div>
-            </label>
-            <i class="el-icon-printer stateFilter out"
-               style="padding: 4px 5px 0 5px"/>
-          </div>
-
-          <div class="
-                dashboardCheckbox
-                flexContainerDashboardA">
-            <label class="control control-checkbox">
-              Archiviert
-              <input type="checkbox" v-model='filter.s9'/>
-              <div class="control_indicator"></div>
-            </label>
-            <div style="
-                  height: 20px;
-                  width: 20px;
-                  background-color: black;
-                  margin: 4px 5px 0 5px;"></div>
-          </div>
-
+        <div class="
+              middleWrapper
+              dashboardSideMBotSection">
+          <div class="testSquare"></div>
         </div>
 
       </div>
 
-      <div class="
-            dashboardSection
-            hasShadowDashboardA
-            flexContainerDashboardB"
-           style="margin: 0 0 0 0">
-        <div class="
-            dashboardButton
-            hasShadowDashboardA"
-             style="margin-bottom: 20px"
-             @click="changeFilters()">
-          Anwenden
-        </div>
-        <div class="
-            dashboardButton
-            hasShadowDashboardA"
-             @click="resetFilters()">
-          Zurücksetzen
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -501,33 +266,45 @@ export default {
   .dashboard {
     background-color: var(--semiLightNeutralColor);
     width: 80%;
-    overflow: visible;
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding: 0 10px 20px 10px;
+    margin: 0 20% 0 0;
+    border-top: 20px solid var(--secondaryTextColor);
     font-family: var(--mainFont);
     font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
   }
-  .sideMenuDashboard {
-    background-color: var(--darkNeutralColor);
+  .dashboardSideMenu {
+    background-color: var(--semiLightNeutralColor);
     width: 20%;
     font-family: var(--mainFont);
     font-size: var(--bigTitleSize);
     color: var(--primaryTextColor);
-    margin-left: 50px;
+    padding: 0 0 20px 10px;
+    margin: 0 0 0 3%;
+    border-top: 20px solid var(--secondaryTextColor);
+    position: fixed;
+    left: 83%;
     font-family: var(--mainFont);
     font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
   }
-  .dashboardSection {
-    width: 100%;
-    background-color: var(--semiLightNeutralColor);
-    padding: 20px 0 20px 0;
-    margin: 0 0 20px 0;
+  .dashboardSideMTopSection {
+    padding: 0 0 5px 0;
+    margin: 0 0 10px 0;
   }
+  .dashboardSideMMidSection {
+    padding: 0 0 5px 0;
+    margin: 0 0 10px 0;
+  }
+  .dashboardSideMBotSection {
+    padding: 0 0 5px 0;
+    margin: 0 0 10px 0;
+  }
+
+  /* custom input */
   .dashboardInput {
     height: 50px;
     width: 100%;
@@ -660,5 +437,11 @@ export default {
   .flexContainerDashboardB {
     display: flex;
     flex-direction: column;
+  }
+
+  .testSquare {
+    width: 100px;
+    height: 50px;
+    background-color: yellow;
   }
 </style>
