@@ -81,9 +81,9 @@ export default {
     --lightNeutralColor: white;
 
     /*shadow colors*/
-    --darkShadowColor: #666666;
-    --middleShadowColor: #999999;
-    --lightShadowColor: #cccccc;
+    --darkShadowColor: rgba( 0, 0, 0, 0.3);
+    --middleShadowColor: rgba( 0, 0, 0, 0.3);
+    --lightShadowColor: rgba( 0, 0, 0, 0.3);
 
     /*font-specific parameters*/
     /*font(s)*/
@@ -154,6 +154,9 @@ export default {
     color: var(--primaryTextColor);
     position: relative;
     flex-grow: 1;
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box

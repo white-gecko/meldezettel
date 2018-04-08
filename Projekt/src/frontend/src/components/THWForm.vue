@@ -36,7 +36,8 @@
 
                   <div class="
                         formCheckbox
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-left: 10px">
                     <label class="formControl formControl-checkbox">
                       Funk
                       <input type="checkbox"
@@ -84,7 +85,8 @@
 
                   <div class="
                         formCheckbox
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-right: 10px">
                     <label class="formControl formControl-checkbox">
                       Kurier/Melder
                       <input type="checkbox"
@@ -109,7 +111,8 @@
                   <label class="headerFormB">Aufnahmevermerk</label>
                   <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-left: 5px;">
                     <div class="inputSelectionHighlight"></div>
                     <label class="inputLabel"
                            for="primaryDate">
@@ -126,7 +129,8 @@
                   </div>
                   <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-left: 5px;">
                     <div class="inputSelectionHighlight"></div>
                     <label class="inputLabel"
                            for="primaryTime">
@@ -142,7 +146,8 @@
                   </div>
                   <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-left: 5px;">
                     <div class="inputSelectionHighlight"></div>
                     <label class="inputLabel"
                            for="primaryHdZ">
@@ -170,7 +175,8 @@
                       <label class="headerFormB">Annahmevermerk</label>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="margin-left: 5px;">
                         <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="secondaryDate">
@@ -186,7 +192,8 @@
                       </div>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="margin-left: 5px;">
                         <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="secondaryTime">
@@ -202,7 +209,8 @@
                       </div>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="margin-left: 5px;">
                         <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="secondaryHdZ">
@@ -221,7 +229,8 @@
                       <label class="headerFormB">Beförderungsvermerk</label>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="margin-left: 5px;">
                         <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="tertiaryDate">
@@ -238,7 +247,8 @@
                       </div>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="margin-left: 5px;">
                         <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="tertiaryTime">
@@ -255,7 +265,9 @@
                       </div>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="
+                            margin-left: 5px;">
                         <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="tertiaryHdZ">
@@ -291,8 +303,10 @@
                 <label class="headerFormA">Technisches Betriebsbuch</label>
                 <div class="
                         inputWrapper
-                        flexContainerFormA">
-                  <div class="inputSelectionHighlight"></div>
+                        flexContainerFormA"
+                     style="margin: 50px 0 42px 0; height: 48px">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
                          for="numberTB">
                     Nr.
@@ -395,7 +409,8 @@
 
                 <div class="
                         formCheckbox
-                        flexContainerFormA">
+                        flexContainerFormA"
+                     style="margin-left: 10px">
                   <label class="formControl formControl-checkbox">
                     Funk
                     <input type="checkbox"
@@ -443,7 +458,8 @@
 
                 <div class="
                         formCheckbox
-                        flexContainerFormA">
+                        flexContainerFormA"
+                     style="margin-right: 10px">
                   <label class="formControl formControl-checkbox">
                     Kurier/Melder
                     <input type="checkbox"
@@ -467,7 +483,8 @@
 
                   <div class="
                         formCheckbox
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-left: 10px">
                     <label class="formControl formControl-checkbox">
                       DURCHSAGE
                       <input type="checkbox"
@@ -479,7 +496,8 @@
 
                   <div class="
                         formCheckbox
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-right: 10px">
                     <label class="formControl formControl-checkbox">
                       Spruch
                       <input type="checkbox"
@@ -501,7 +519,8 @@
 
                   <div class="
                         formCheckbox
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-left: 10px">
                     <label class="formControl formControl-checkbox">
                       Sofort
                       <input type="checkbox"
@@ -513,7 +532,8 @@
 
                   <div class="
                         formCheckbox
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-right: 10px">
                     <label class="formControl formControl-checkbox">
                       Blitz
                       <input type="checkbox"
@@ -537,8 +557,10 @@
                 <div class="overlay" v-show="!rufnummer"></div>
                 <div class="
                         inputWrapper
-                        flexContainerFormA">
-                  <div class="inputSelectionHighlight"></div>
+                        flexContainerFormA"
+                     style="height: 48px">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
                          for="callNumber">
                     Ruf Nr.
@@ -559,8 +581,10 @@
                 <div class="overlay" v-show="!anschrift"></div>
                 <div class="
                         inputWrapper
-                        flexContainerFormA">
-                  <div class="inputSelectionHighlight"></div>
+                        flexContainerFormA"
+                     style="height: 48px">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
                          for="address">
                     Anschrift
@@ -616,11 +640,12 @@
                         flexContainerFormA">
                 <div class="inputSelectionHighlight"></div>
                 <textarea id="content"
+                          style="
+                            width: 100%;
+                            min-height: 100px;
+                            padding-top: 10px;"
                           placeholder="Inhalt"
-                          rows="5"
-                          class="
-                            inputWithLabel
-                            hasMinMaxD"
+                          class="inputWithLabel"
                           v-model="formdata.content"
                           :tabindex="other.tabIndexConf.content"/>
               </div>
@@ -665,8 +690,10 @@
                 <div class="overlay" v-show="!abfassungszeit"></div>
                 <div class="
                         inputWrapper
-                        flexContainerFormA">
-                  <div class="inputSelectionHighlight"></div>
+                        flexContainerFormA"
+                     style="height: 48px">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
                          for="createTime">
                     Abfassungszeit
@@ -687,8 +714,10 @@
                 <div class="overlay" v-show="!zeichen"></div>
                 <div class="
                         inputWrapper
-                        flexContainerFormA">
-                  <div class="inputSelectionHighlight"></div>
+                        flexContainerFormA"
+                     style="height: 48px">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
                          for="identification">
                     Zeichen
@@ -709,8 +738,10 @@
                 <div class="overlay" v-show="!funktion"></div>
                 <div class="
                         inputWrapper
-                        flexContainerFormA">
-                  <div class="inputSelectionHighlight"></div>
+                        flexContainerFormA"
+                     style="height: 48px">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
                          for="position">
                     Funktion
@@ -795,7 +826,7 @@
                   <div class="
                         formCheckbox
                         flexContainerFormA"
-                       style="margin-left: 0; width: 50%">
+                       style="margin-left: 0; width: 50%; height: 48px">
                     <label class="formControl formControl-checkbox">
                       Leiter
                       <input type="checkbox"
@@ -888,7 +919,7 @@
                         formCheckbox
                         flexContainerFormA"
                      style="
-                      border: 1px solid var(--darkNeutralColor);
+                      border: 4px solid var(--middleNeutralColor);
                       margin-left: 0;">
                   <label class="formControl formControl-checkbox"
                          style="
@@ -913,7 +944,7 @@
                         formCheckbox
                         flexContainerFormA"
                      style="
-                      border: 1px solid var(--darkNeutralColor);
+                      border: 4px solid var(--middleNeutralColor);
                       margin-left: 0;">
                   <label class="formControl formControl-checkbox"
                          style="
@@ -938,7 +969,7 @@
                         formCheckbox
                         flexContainerFormA"
                      style="
-                      border: 1px solid var(--darkNeutralColor);
+                      border: 4px solid var(--middleNeutralColor);
                       margin-left: 0;">
                   <label class="formControl formControl-checkbox"
                          style="
@@ -963,7 +994,7 @@
                         formCheckbox
                         flexContainerFormA"
                      style="
-                      border: 1px solid var(--darkNeutralColor);
+                      border: 4px solid var(--middleNeutralColor);
                       margin-left: 0;">
                   <label class="formControl formControl-checkbox"
                          style="
@@ -988,7 +1019,7 @@
                         formCheckbox
                         flexContainerFormA"
                      style="
-                      border: 1px solid var(--darkNeutralColor);
+                      border: 4px solid var(--middleNeutralColor);
                       margin-left: 0;">
                   <label class="formControl formControl-checkbox"
                          style="
@@ -1023,7 +1054,7 @@
                         formCheckbox
                         flexContainerFormA"
                      style="
-                      border: 1px solid var(--darkNeutralColor);
+                      border: 4px solid var(--middleNeutralColor);
                       margin-left: 0;">
                   <label class="formControl formControl-checkbox"
                          style="
@@ -1048,7 +1079,7 @@
                         formCheckbox
                         flexContainerFormA"
                      style="
-                      border: 1px solid var(--darkNeutralColor);
+                      border: 4px solid var(--middleNeutralColor);
                       margin-left: 0;">
                   <label class="formControl formControl-checkbox"
                          style="
@@ -1073,7 +1104,7 @@
                         formCheckbox
                         flexContainerFormA"
                      style="
-                      border: 1px solid var(--darkNeutralColor);
+                      border: 4px solid var(--middleNeutralColor);
                       margin-left: 0;">
                   <label class="formControl formControl-checkbox"
                          style="
@@ -1098,7 +1129,7 @@
                         formCheckbox
                         flexContainerFormA"
                      style="
-                      border: 1px solid var(--darkNeutralColor);
+                      border: 4px solid var(--middleNeutralColor);
                       margin-left: 0;">
                   <label class="formControl formControl-checkbox"
                          style="
@@ -1123,7 +1154,7 @@
                         formCheckbox
                         flexContainerFormA"
                      style="
-                      border: 1px solid var(--darkNeutralColor);
+                      border: 4px solid var(--middleNeutralColor);
                       margin-left: 0;">
                   <label class="formControl formControl-checkbox"
                          style="
@@ -1162,14 +1193,20 @@
                     inputVermerke
                     flexContainerFormB">
               <div class="overlay" v-show="!vermerke"></div>
-              <label class="headerFormA">Vermerke</label>
-              <textarea id="annotations"
-                        cols="35"
-                        class="
-                          inputWithLabel
-                          hasMinMaxI"
-                        v-model="formdata.annotations"
-                        :tabindex="other.tabIndexConf.annotations"/>
+              <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                <div class="inputSelectionHighlight"></div>
+                <textarea id="annotations"
+                          style="
+                            width: 100%;
+                            height: 100%;
+                            padding-top: 10px;"
+                          placeholder="Vermerke"
+                          class="inputWithLabel"
+                          v-model="formdata.annotations"
+                          :tabindex="other.tabIndexConf.annotations"/>
+              </div>
             </div>
 
           </div>
@@ -1187,48 +1224,64 @@
 
       <!-- Depending on the state, different buttons need to be shown -->
       <!-- Submit new ticket -->
-      <el-button @click="
-                 saveForm('accept');
-                 notifySuccess('Abgeschickt')"
-                 :tabindex="other.tabIndexConf.buttonSend"
-                 v-show="isNew">
+      <div class="
+            formPageButton
+            hasShadowFormA"
+           @click="
+          saveForm('accept');
+          notifySuccess('Abgeschickt')"
+           :tabindex="other.tabIndexConf.buttonSend"
+           v-show="isNew">
         Abschicken
-      </el-button>
+      </div>
 
       <!-- Send ticket to next station -->
-      <el-button @click="
-                 saveForm('accept');
-                 notifySuccess('Abgeschickt')"
-                 tabindex="6"
-                 v-show="sendable">
+      <div class="
+            formPageButton
+            hasShadowFormA"
+           @click="
+            saveForm('accept');
+            notifySuccess('Abgeschickt')"
+           tabindex="6"
+           v-show="sendable">
         Weitersenden
-      </el-button>
+      </div>
 
       <!-- Print ticket and archive -->
-      <el-button @click="
-                 printTicket();
-                 notifySuccess('Gedruckt')"
-                 tabindex="6"
-                 v-show="toBePrinted">
+      <div class="
+            formPageButton
+            hasShadowFormA"
+           @click="
+            printTicket();
+            notifySuccess('Gedruckt')"
+           tabindex="6"
+           v-show="toBePrinted">
         Drucken
-      </el-button>
+      </div>
 
       <!-- Reject ticket due to flaws -->
-      <el-button @click="
-                  saveForm('reject');
-                  notifySuccess('Zurückgeschickt')"
-                  v-show="rejectable">
+      <div class="
+            formPageButton
+            hasShadowFormA"
+           @click="
+            saveForm('reject');
+            notifySuccess('Zurückgeschickt')"
+           v-show="rejectable">
         Abweisen
-      </el-button>
+      </div>
 
       <!-- Reset all inputs (only while new) -->
-      <el-button @click="
-                  formReset();
-                  notifySuccess('Formular zurückgesetzt')"
-                  :tabindex="other.tabIndexConf.buttonReset"
-                  v-show="isNew">
+      <div class="
+            formPageButton
+            hasShadowFormA"
+           @click="
+            formReset();
+            notifySuccess('Formular zurückgesetzt')"
+           :tabindex="other.tabIndexConf.buttonReset"
+           v-show="isNew">
         Zurücksetzen
-      </el-button>
+      </div>
+
     </div>
   </div>
 </template>
@@ -1961,7 +2014,7 @@ export default {
   .formWrapper {
     width: 80%;
     background-color: var(--semiLightNeutralColor);
-    padding: 0 10px 0 10px;
+    padding: 0 10px 20px 10px;
     margin: 0 50px 20px 0;
     border-top: 20px solid var(--secondaryTextColor);
     font: var(--bigTitleSize) var(--mainFont);
@@ -1972,11 +2025,13 @@ export default {
   }
   .sideMenuForm {
     width: 20%;
+    height: 200px;
     background-color: var(--semiLightNeutralColor);
-    padding: 0 0 0 0;
+    padding: 0 10px 0 0;
     margin: 0 0 0 0;
     font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
+    position: sticky;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
@@ -2000,7 +2055,7 @@ export default {
   }
   .topBot {
     width: 100%;
-    padding: 0 0 0 0;
+    padding: 0 0 5px 0;
     margin: 0 0 0 0;
   }
   .midTop {
@@ -2015,130 +2070,130 @@ export default {
   }
   .midBot {
     width: 100%;
-    padding: 0 0 0 0;
+    padding: 0 0 5px 0;
     margin: 0 0 0 0;
   }
   .botLeft {
     width: 70%;
-    padding: 0 5px 0 0;
+    padding: 0 5px 5px 0;
     margin: 0 0 0 0;
   }
   .botRight {
     width: 30%;
-    padding: 0 0 0 0;
+    padding: 0 0 5px 0;
     margin: 0 0 0 0;
   }
 
   /* complex/elemnet-wrappers (inner wrapper) */
   /* top-section */
   .checkboxgroupMTTop {
-    height: 54px;
     width: 100%;
-    padding: 10px 0 0 0;
+    padding: 5px 0 0 0;
     margin: 0 0 5px 0;
   }
   .inputIncoming {
     width: 33%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputOutgoing {
     width: 67%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 15px 0 10px;
     margin: 0 0 0 0;
   }
   .inputTB {
+    height: 100%;
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 0 0 0;
   }
   .inputRGS {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 0 0 0;
   }
 
   /*mid-section*/
   .checkboxgroupMTMid {
     width: 100%;
-    padding: 10px 0 0 0;
+    padding: 5px 0 0 0;
     margin: 0 0 5px 0;
   }
   .checkboxgroupDS {
     width: 100%;
-    padding: 10px 0 0 0;
+    padding: 5px 0 0 0;
     margin: 0 5px 5px 0;
   }
   .checkboxgroupSB {
     width: 100%;
-    padding: 10px 0 0 0;
+    padding: 5px 0 0 0;
     margin: 0 0 5px 0;
   }
   .inputRufnr {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputAnschrift {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputGESP {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 0 0 0;
   }
   .inputInhalt {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 0 0 0;
   }
   .inputAbsender {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 0 5px 0;
   }
   .inputAbZeit {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputZeichen {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputFunktion {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 0 0 0;
   }
 
   /*bot-section*/
   .inputQuittung {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 0 5px 0;
   }
   .checkboxgroupTEL {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .checkboxgroupFachberater {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .checkboxgroupVerb {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 0 0 0;
   }
   .inputVermerke {
     width: 100%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 10px 0 10px;
     margin: 0 0 0 0;
   }
 
@@ -2150,15 +2205,41 @@ export default {
   }
   .headerFormB {
     padding: 0 0 0 0;
-    margin: 0 0 0 0;
+    margin: 0 0 0 5px;
     white-space: nowrap;
   }
 
-  /* custom-input */
+  /* custom button */
+  .formPageButton {
+    height: 48px;
+    width: 100%;
+    background-color: var(--semiLightNeutralColor);
+    padding: 9px 0 0 0;
+    margin: 0 0 30px 0;
+    position: relative;
+    right: 10px;
+    border-left: var(--formBlueColor);
+    border-left-style: solid;
+    border-left-width: 10px;
+    text-align: center;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .formPageButton:hover {
+    border-left: var(--mainColor);
+    border-left-style: solid;
+    border-left-width: 10px;
+    cursor: pointer;
+  }
+
+  /* custom input */
   .inputWrapper {
+    height: 100%;
     width: 100%;
     padding: 0 0 0 0;
     margin: 5px 0 0 0;
+    border: 4px solid var(--middleNeutralColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
@@ -2169,12 +2250,11 @@ export default {
   .inputLabel {
     height: 40px;
     width: 35%;
-    background-color: var(--darkNeutralColor);
+    background-color: var(--middleNeutralColor);
     padding: 5px 10px 0 10px;
     margin: 0 0 0 0;
     text-align: center;
     white-space: nowrap;
-    border: 1px solid var(--darkNeutralColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
@@ -2182,17 +2262,19 @@ export default {
   .inputWithLabel {
     width: 65%;
     height: 40px;
-    padding: 10px 0 10px 0;
+    padding: 0 0 0 10px;
     margin: 0 0 0 0;
     background-color: var(--semiLightNeutralColor);
-    padding-left: 10px;
-    border: 1px solid var(--darkNeutralColor);
+    border: 0 none;
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
   }
   .inputSelectionHighlight {
-    height: 40px;
+    height: auto;
     width: 10px;
     background-color: var(--formBlueColor);
   }
@@ -2200,7 +2282,8 @@ export default {
   /* custom checkbox */
   .formCheckbox {
     width: 100%;
-    margin: 5px 10px 0 10px;
+    margin: 5px 20px 0 20px;
+    border: 4px solid var(--middleNeutralColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
@@ -2209,7 +2292,7 @@ export default {
     width: 100%;
     height: 40px;
     padding: 5px 10px 0 50px;
-    border: 1px solid var(--darkNeutralColor);
+    background-color: var(--middleNeutralColor);
     text-align: center;
     display: block;
     position: relative;
@@ -2224,7 +2307,7 @@ export default {
     opacity: 0;
   }
   .formControl_indicator {
-    height: 38px;
+    height: 40px;
     width: 40px;
     background: var(--formBlueColor);
     position: absolute;
