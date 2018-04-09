@@ -88,7 +88,7 @@
             <label class="
                     dashboardLabel
                     hasShadowDashboardB">
-              Einsatz wählen:
+              Einsatz:
             </label>
 
             <div class="dashboardButtonWrapper">
@@ -120,7 +120,7 @@
             <label class="
                     dashboardLabel
                     hasShadowDashboardB">
-              Filter wählen:
+              Filter:
             </label>
 
             <div class="dashboardButtonWrapper">
@@ -587,11 +587,11 @@ export default {
     margin: 0 0 0 0;
   }
   .dashboardSideMMidTop {
-    padding: 55px 10px 0 10px;
+    padding: 45px 10px 0 10px;
     margin: 0 0 5px 0;
   }
   .dashboardSideMMidBot {
-    padding: 55px 10px 0 10px;
+    padding: 45px 10px 0 10px;
     margin: 0 0 0 0;
   }
   .dashboardSideMBotTop {
