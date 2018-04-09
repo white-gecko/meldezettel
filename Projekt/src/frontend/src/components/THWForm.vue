@@ -2038,7 +2038,7 @@ export default {
   .form {
     background-color: var(--formBlueColor);
     padding: 0 20px 20px 20px;
-    font: var(--bigTitleSize) var(--mainFont);
+    font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -2050,7 +2050,7 @@ export default {
     padding: 0 10px 20px 10px;
     margin: 0 0 20px 0;
     border-top: 20px solid var(--secondaryTextColor);
-    font: var(--bigTitleSize) var(--mainFont);
+    font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -2063,7 +2063,7 @@ export default {
     padding: 0 0 20px 10px;
     margin: 0 0 0 3%;
     border-top: 20px solid var(--secondaryTextColor);
-    font: var(--bigTitleSize) var(--mainFont);
+    font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     position: relative;
     -moz-box-sizing: border-box;
@@ -2253,7 +2253,7 @@ export default {
     padding: 0 0 0 0;
     border-left: 10px solid var(--formBlueColor);
     text-align: center;
-    font-size: var(--titleSize);
+    font: var(--titleSize) var(--mainFont);
     -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
@@ -2274,7 +2274,7 @@ export default {
     padding: 10px 40px 0 40px;
     margin: 0 10px 0 10px;
     background-color: var(--middleNeutralColor);
-    font-size: var(--titleSize);
+    font: var(--titleSize) var(--mainFont);
     text-align: center;
     cursor: pointer;
     -moz-box-sizing: border-box;
@@ -2302,7 +2302,7 @@ export default {
     background-color: var(--middleNeutralColor);
     padding: 5px 10px 0 10px;
     margin: 0 0 0 0;
-    overflow: visible;
+    font: var(--titleSize) var(--mainFont);
     overflow-wrap: break-word;
     text-align: center;
     -moz-box-sizing: border-box;
@@ -2316,6 +2316,7 @@ export default {
     margin: 0 0 0 0;
     background-color: var(--semiLightNeutralColor);
     border: 0 none;
+    font: var(--titleSize) var(--mainFont);
     -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
@@ -2345,6 +2346,7 @@ export default {
     padding: 5px 10px 0 50px;
     background-color: var(--middleNeutralColor);
     text-align: center;
+    font: var(--titleSize) var(--mainFont);
     display: block;
     position: relative;
     cursor: pointer;
@@ -2430,7 +2432,7 @@ export default {
   }
 
   .overlay {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.10);
     pointer-events: none;
     z-index: 1;
     width: 100%;

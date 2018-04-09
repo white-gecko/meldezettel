@@ -90,7 +90,7 @@ export default {
     --mainFont: Helvetica;
 
     /*font-sizes*/
-    --bigTitleSize: 100%;
+    --bigTitleSize: 110%;
     --titleSize: 100%;
     --smallTitleSize: 100%;
     --bodySize: 14px;
@@ -130,7 +130,7 @@ export default {
    */
   .outerWrapper {
     background-color: var(--darkNeutralColor);
-    font: var(--smallTitleSize) var(--mainFont);
+    font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     flex-grow: 1;
     -moz-box-sizing: border-box;
@@ -140,7 +140,7 @@ export default {
 
   .middleWrapper {
     background-color: var(--middleNeutralColor);
-    font: var(--smallTitleSize) var(--mainFont);
+    font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     flex-grow: 1;
     -moz-box-sizing: border-box;
@@ -150,7 +150,7 @@ export default {
 
   .innerWrapper {
     background-color: var(--semiLightNeutralColor);
-    font: var(--smallTitleSize) var(--mainFont);
+    font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     position: relative;
     flex-grow: 1;
