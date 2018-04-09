@@ -25,6 +25,7 @@ export const setDraft = (state, formdata) => {
 }
 
 export const setFormConfig = (state, ticketState) => {
+  console.log(ticketState)
   // set input visibility config
   let visibility = {}
   Object.entries(stateConfig.formLayoutConfig.inputVisibility)

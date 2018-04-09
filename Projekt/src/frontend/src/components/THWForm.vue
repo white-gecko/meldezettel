@@ -41,35 +41,35 @@
                     <input id="radioTop"
                            type="checkbox"
                            v-model="formdata.topRadio"
-                           :tabindex="other.tabIndexConf.topRadio"/>
+                           :tabindex="tabIndexConfig.topRadio"/>
                     Funk
                   </label>
                   <label>
                     <input id="phoneTop"
                            type="checkbox"
                            v-model="formdata.topPhone"
-                           :tabindex="other.tabIndexConf.topPhone"/>
+                           :tabindex="tabIndexConfig.topPhone"/>
                     Telefon
                   </label>
                   <label>
                     <input id="faxTop"
                            type="checkbox"
                            v-model="formdata.topFax"
-                           :tabindex="other.tabIndexConf.topFax"/>
+                           :tabindex="tabIndexConfig.topFax"/>
                     Telefax
                   </label>
                   <label>
                     <input id="DFUTop"
                            type="checkbox"
                            v-model="formdata.topDFU"
-                           :tabindex="other.tabIndexConf.topDFU"/>
+                           :tabindex="tabIndexConfig.topDFU"/>
                     DFÜ
                   </label>
                   <label>
                     <input id="courierTop"
                            type="checkbox"
                            v-model="formdata.topCourier"
-                           :tabindex="other.tabIndexConf.topCourier"/>
+                           :tabindex="tabIndexConfig.topCourier"/>
                     Kurier/Melder
                   </label>
                 </div>
@@ -98,7 +98,7 @@
                             hasMinMaxA"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryDate"
-                           :tabindex="other.tabIndexConf.incomingDate"/>
+                           :tabindex="tabIndexConfig.incomingDate"/>
                   </div>
                   <div class="
                         inputWrapper
@@ -113,7 +113,7 @@
                             hasMinMaxA"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryTime"
-                           :tabindex="other.tabIndexConf.incomingTime"/>
+                           :tabindex="tabIndexConfig.incomingTime"/>
                   </div>
                   <div class="
                         inputWrapper
@@ -128,7 +128,7 @@
                             hasMinMaxA"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryHdZ"
-                           :tabindex="other.tabIndexConf.incomingHdZ"/>
+                           :tabindex="tabIndexConfig.incomingHdZ"/>
                   </div>
                 </div>
 
@@ -155,7 +155,7 @@
                                 hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.secondaryDate"
-                               :tabindex="other.tabIndexConf.outboundAccDate"/>
+                               :tabindex="tabIndexConfig.outboundAccDate"/>
                       </div>
                       <div class="
                         inputWrapper
@@ -170,7 +170,7 @@
                                 hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.secondaryTime"
-                               :tabindex="other.tabIndexConf.outboundAccTime"/>
+                               :tabindex="tabIndexConfig.outboundAccTime"/>
                       </div>
                       <div class="
                         inputWrapper
@@ -185,7 +185,7 @@
                                 hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.secondaryHdZ"
-                               :tabindex="other.tabIndexConf.outboundAccHdZ"/>
+                               :tabindex="tabIndexConfig.outboundAccHdZ"/>
                       </div>
                     </div>
                     <div class="flexContainerFormB">
@@ -203,7 +203,7 @@
                                 hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.tertiaryDate"
-                               :tabindex="other.tabIndexConf.outboundTransDate"
+                               :tabindex="tabIndexConfig.outboundTransDate"
                         />
                       </div>
                       <div class="
@@ -219,7 +219,7 @@
                                 hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.tertiaryTime"
-                               :tabindex="other.tabIndexConf.outboundTransTime"
+                               :tabindex="tabIndexConfig.outboundTransTime"
                         />
                       </div>
                       <div class="
@@ -235,7 +235,7 @@
                                 hasMinMaxA"
                                :disabled="other.tempEingehend"
                                v-model="formdata.tertiaryHdZ"
-                               :tabindex="other.tabIndexConf.outboundTransHdZ"/>
+                               :tabindex="tabIndexConfig.outboundTransHdZ"/>
                       </div>
                     </div>
                   </div>
@@ -271,7 +271,7 @@
                           inputWithLabel
                           hasMinMaxA"
                          v-model="formdata.numberTB"
-                         :tabindex="other.tabIndexConf.lbNumber"/>
+                         :tabindex="tabIndexConfig.lbNumber"/>
                 </div>
                 <label style="margin: 30px 0 0 20px;">
                   <input id="checkboxEingehendTop"
@@ -279,7 +279,7 @@
                          type="checkbox"
                          v-model="other.tempEingehend"
                          :disabled="formdata.ticketState % 10 != 0"
-                         :tabindex="other.tabIndexConf.selectIncoming"/>
+                         :tabindex="tabIndexConfig.selectIncoming"/>
                   Eingehend
                 </label>
                 <label style="margin: 30px 0 0 20px;">
@@ -288,7 +288,7 @@
                          type="checkbox"
                          v-model="other.tempAusgehend"
                          :disabled="formdata.ticketState % 10 != 0"
-                         :tabindex="other.tabIndexConf.selectOutbound"/>
+                         :tabindex="tabIndexConfig.selectOutbound"/>
                   Ausgehend
                 </label>
               </div>
@@ -321,7 +321,7 @@
                         inputWithLabel
                         hasMinMaxB"
                        v-model="formdata.receiverName"
-                       :tabindex="other.tabIndexConf.receiverName"/>
+                       :tabindex="tabIndexConfig.receiverName"/>
               </div>
             </div>
 
@@ -353,35 +353,35 @@
                   <input id="radioMid"
                          type="checkbox"
                          v-model="formdata.midRadio"
-                         :tabindex="other.tabIndexConf.midRadio"/>
+                         :tabindex="tabIndexConfig.midRadio"/>
                   Funk
                 </label>
                 <label>
                   <input id="phoneMid"
                          type="checkbox"
                          v-model="formdata.midPhone"
-                         :tabindex="other.tabIndexConf.midPhone"/>
+                         :tabindex="tabIndexConfig.midPhone"/>
                   Telefon
                 </label>
                 <label>
                   <input id="faxMid"
                          type="checkbox"
                          v-model="formdata.midFax"
-                         :tabindex="other.tabIndexConf.midFax"/>
+                         :tabindex="tabIndexConfig.midFax"/>
                   Telefax
                 </label>
                 <label>
                   <input id="DFUMid"
                          type="checkbox"
                          v-model="formdata.midDFU"
-                         :tabindex="other.tabIndexConf.midDFU"/>
+                         :tabindex="tabIndexConfig.midDFU"/>
                   DFÜ
                 </label>
                 <label>
                   <input id="courierMid"
                          type="checkbox"
                          v-model="formdata.midCourier"
-                         :tabindex="other.tabIndexConf.midCourier"/>
+                         :tabindex="tabIndexConfig.midCourier"/>
                   Kurier/Melder
                 </label>
               </div>
@@ -399,14 +399,14 @@
                     <input id="callAnnouncement"
                            type="checkbox"
                            v-model="formdata.callAnnouncement"
-                           :tabindex="other.tabIndexConf.callAnnouncement"/>
+                           :tabindex="tabIndexConfig.callAnnouncement"/>
                     DURCHSAGE
                   </label>
                   <label>
                     <input id="callMessage"
                            type="checkbox"
                            v-model="formdata.callMessage"
-                           :tabindex="other.tabIndexConf.callMessage"/>
+                           :tabindex="tabIndexConfig.callMessage"/>
                     Spruch
                   </label>
                 </div>
@@ -422,14 +422,14 @@
                     <input id="priorityInstant"
                            type="checkbox"
                            v-model="formdata.priorityInstant"
-                           :tabindex="other.tabIndexConf.priorityInstant"/>
+                           :tabindex="tabIndexConfig.priorityInstant"/>
                     Sofort
                   </label>
                   <label>
                     <input id="priorityFlash"
                            type="checkbox"
                            v-model="formdata.priorityFlash"
-                           :tabindex="other.tabIndexConf.priorityFlash"/>
+                           :tabindex="tabIndexConfig.priorityFlash"/>
                     Blitz
                   </label>
                 </div>
@@ -456,7 +456,7 @@
                           inputWithLabel
                           hasMinMaxC"
                          v-model="formdata.callNumber"
-                         :tabindex="other.tabIndexConf.callNumber"/>
+                         :tabindex="tabIndexConfig.callNumber"/>
                 </div>
               </div>
 
@@ -477,7 +477,7 @@
                           inputWithLabel
                           hasMinMaxC"
                          v-model="formdata.address"
-                         :tabindex="other.tabIndexConf.address"/>
+                         :tabindex="tabIndexConfig.address"/>
                 </div>
               </div>
 
@@ -491,7 +491,7 @@
                   <input id="talkNote"
                          type="checkbox"
                          v-model="formdata.talkNote"
-                         :tabindex="other.tabIndexConf.conversationNote"/>
+                         :tabindex="tabIndexConfig.conversationNote"/>
                   GESPRÄCHSNOTIZ
                 </label>
               </div>
@@ -522,7 +522,7 @@
                             inputWithLabel
                             hasMinMaxD"
                           v-model="formdata.content"
-                          :tabindex="other.tabIndexConf.content"/>
+                          :tabindex="tabIndexConfig.content"/>
               </div>
             </div>
 
@@ -552,7 +552,7 @@
                         inputWithLabel
                         hasMinMaxE"
                        v-model="formdata.sender"
-                       :tabindex="other.tabIndexConf.sender"/>
+                       :tabindex="tabIndexConfig.sender"/>
               </div>
             </div>
 
@@ -575,7 +575,7 @@
                           inputWithLabel
                           hasMinMaxA"
                          v-model="formdata.createTime"
-                         :tabindex="other.tabIndexConf.timeCreate"/>
+                         :tabindex="tabIndexConfig.timeCreate"/>
                 </div>
               </div>
 
@@ -596,7 +596,7 @@
                           inputWithLabel
                           hasMinMaxF"
                          v-model="formdata.identification"
-                         :tabindex="other.tabIndexConf.identification"/>
+                         :tabindex="tabIndexConfig.identification"/>
                 </div>
               </div>
 
@@ -617,7 +617,7 @@
                           inputWithLabel
                           hasMinMaxF"
                          v-model="formdata.position"
-                         :tabindex="other.tabIndexConf.position"/>
+                         :tabindex="tabIndexConfig.position"/>
                 </div>
               </div>
 
@@ -660,7 +660,7 @@
                         inputWithLabel
                         hasMinMaxG"
                        v-model="formdata.docketTime"
-                       :tabindex="other.tabIndexConf.ackTime"/>
+                       :tabindex="tabIndexConfig.ackTime"/>
               </div>
               <div class="
                         inputWrapper
@@ -674,7 +674,7 @@
                         inputWithLabel
                         hasMinMaxG"
                        v-model="formdata.docketIdentification"
-                       :tabindex="other.tabIndexConf.ackIdentification"/>
+                       :tabindex="tabIndexConfig.ackIdentification"/>
               </div>
             </div>
 
@@ -693,7 +693,7 @@
                       <input id="stationLeader"
                              type="checkbox"
                              v-model="formdata.stationLeader"
-                             :tabindex="other.tabIndexConf.stationLeader"/>
+                             :tabindex="tabIndexConfig.stationLeader"/>
                       Leiter
                     </label>
                   </div>
@@ -702,35 +702,35 @@
                       <input id="stationS1"
                              type="checkbox"
                              v-model="formdata.stationS1"
-                             :tabindex="other.tabIndexConf.stationS1"/>
+                             :tabindex="tabIndexConfig.stationS1"/>
                       S1
                     </label>
                     <label class="checkboxLabel">
                       <input id="stationS2"
                              type="checkbox"
                              v-model="formdata.stationS2"
-                             :tabindex="other.tabIndexConf.stationS2"/>
+                             :tabindex="tabIndexConfig.stationS2"/>
                       S2
                     </label>
                     <label class="checkboxLabel">
                       <input id="stationS3"
                              type="checkbox"
                              v-model="formdata.stationS3"
-                             :tabindex="other.tabIndexConf.stationS3"/>
+                             :tabindex="tabIndexConfig.stationS3"/>
                       S3
                     </label>
                     <label class="checkboxLabel">
                       <input id="stationS4"
                              type="checkbox"
                              v-model="formdata.stationS4"
-                             :tabindex="other.tabIndexConf.stationS4"/>
+                             :tabindex="tabIndexConfig.stationS4"/>
                       S4
                     </label>
                     <label class="checkboxLabel">
                       <input id="stationS6"
                              type="checkbox"
                              v-model="formdata.stationS6"
-                             :tabindex="other.tabIndexConf.stationS6"/>
+                             :tabindex="tabIndexConfig.stationS6"/>
                       S5
                     </label>
                   </div>
@@ -750,13 +750,13 @@
                   <input id="advisorTickA"
                          type="checkbox"
                          v-model="formdata.advisorTickA"
-                         :tabindex="other.tabIndexConf.advisorTickA"/>
+                         :tabindex="tabIndexConfig.advisorTickA"/>
                   <input id="advisorA"
                          class="
                           inputWithLabel
                           hasMinMaxH"
                          v-model="formdata.advisorA"
-                         :tabindex="other.tabIndexConf.advisorA"/>
+                         :tabindex="tabIndexConfig.advisorA"/>
                 </div>
                 <div class="
                         inputWrapper
@@ -764,13 +764,13 @@
                   <input id="advisorTickB"
                          type="checkbox"
                          v-model="formdata.advisorTickB"
-                         :tabindex="other.tabIndexConf.advisorTickB"/>
+                         :tabindex="tabIndexConfig.advisorTickB"/>
                   <input id="advisorB"
                          class="
                           inputWithLabel
                           hasMinMaxH"
                          v-model="formdata.advisorB"
-                         :tabindex="other.tabIndexConf.advisorB"/>
+                         :tabindex="tabIndexConfig.advisorB"/>
                 </div>
                 <div class="
                         inputWrapper
@@ -778,13 +778,13 @@
                   <input id="advisorTickC"
                          type="checkbox"
                          v-model="formdata.advisorTickC"
-                         :tabindex="other.tabIndexConf.advisorTickC"/>
+                         :tabindex="tabIndexConfig.advisorTickC"/>
                   <input id="advisorC"
                          class="
                           inputWithLabel
                           hasMinMaxH"
                          v-model="formdata.advisorC"
-                         :tabindex="other.tabIndexConf.advisorC"/>
+                         :tabindex="tabIndexConfig.advisorC"/>
                 </div>
                 <div class="
                         inputWrapper
@@ -792,13 +792,13 @@
                   <input id="advisorTickD"
                          type="checkbox"
                          v-model="formdata.advisorTickD"
-                         :tabindex="other.tabIndexConf.advisorTickD"/>
+                         :tabindex="tabIndexConfig.advisorTickD"/>
                   <input id="advisorD"
                          class="
                           inputWithLabel
                           hasMinMaxH"
                          v-model="formdata.advisorD"
-                         :tabindex="other.tabIndexConf.advisorD"/>
+                         :tabindex="tabIndexConfig.advisorD"/>
                 </div>
                 <div class="
                         inputWrapper
@@ -806,13 +806,13 @@
                   <input id="advisorTickE"
                          type="checkbox"
                          v-model="formdata.advisorTickE"
-                         :tabindex="other.tabIndexConf.advisorTickE"/>
+                         :tabindex="tabIndexConfig.advisorTickE"/>
                   <input id="advisorE"
                          class="
                           inputWithLabel
                           hasMinMaxH"
                          v-model="formdata.advisorE"
-                         :tabindex="other.tabIndexConf.advisorE"/>
+                         :tabindex="tabIndexConfig.advisorE"/>
                 </div>
               </div>
 
@@ -829,13 +829,13 @@
                   <input id="connectionTickA"
                          type="checkbox"
                          v-model="formdata.connectionTickA"
-                         :tabindex="other.tabIndexConf.connectionTickA"/>
+                         :tabindex="tabIndexConfig.connectionTickA"/>
                   <input id="connectionA"
                          class="
                           inputWithLabel
                           hasMinMaxH"
                          v-model="formdata.connectionA"
-                         :tabindex="other.tabIndexConf.connectionA"/>
+                         :tabindex="tabIndexConfig.connectionA"/>
                 </div>
                 <div class="
                         inputWrapper
@@ -843,13 +843,13 @@
                   <input id="connectionTickB"
                          type="checkbox"
                          v-model="formdata.connectionTickB"
-                         :tabindex="other.tabIndexConf.connectionTickB"/>
+                         :tabindex="tabIndexConfig.connectionTickB"/>
                   <input id="connectionB"
                          class="
                           inputWithLabel
                           hasMinMaxH"
                          v-model="formdata.connectionB"
-                         :tabindex="other.tabIndexConf.connectionB"/>
+                         :tabindex="tabIndexConfig.connectionB"/>
                 </div>
                 <div class="
                         inputWrapper
@@ -857,13 +857,13 @@
                   <input id="connectionTickC"
                          type="checkbox"
                          v-model="formdata.connectionTickC"
-                         :tabindex="other.tabIndexConf.connectionTickC"/>
+                         :tabindex="tabIndexConfig.connectionTickC"/>
                   <input id="connectionC"
                          class="
                           inputWithLabel
                           hasMinMaxH"
                          v-model="formdata.connectionC"
-                         :tabindex="other.tabIndexConf.connectionC"/>
+                         :tabindex="tabIndexConfig.connectionC"/>
                 </div>
                 <div class="
                         inputWrapper
@@ -871,13 +871,13 @@
                   <input id="connectionTickD"
                          type="checkbox"
                          v-model="formdata.connectionTickD"
-                         :tabindex="other.tabIndexConf.connectionTickD"/>
+                         :tabindex="tabIndexConfig.connectionTickD"/>
                   <input id="connectionD"
                          class="
                           inputWithLabel
                           hasMinMaxH"
                          v-model="formdata.connectionD"
-                         :tabindex="other.tabIndexConf.connectionD"/>
+                         :tabindex="tabIndexConfig.connectionD"/>
                 </div>
                 <div class="
                         inputWrapper
@@ -885,13 +885,13 @@
                   <input id="connectionTickE"
                          type="checkbox"
                          v-model="formdata.connectionTickE"
-                         :tabindex="other.tabIndexConf.connectionTickE"/>
+                         :tabindex="tabIndexConfig.connectionTickE"/>
                   <input id="connectionE"
                          class="
                           inputWithLabel
                           hasMinMaxH"
                          v-model="formdata.connectionE"
-                         :tabindex="other.tabIndexConf.connectionE"/>
+                         :tabindex="tabIndexConfig.connectionE"/>
                 </div>
               </div>
 
@@ -919,7 +919,7 @@
                           inputWithLabel
                           hasMinMaxI"
                         v-model="formdata.annotations"
-                        :tabindex="other.tabIndexConf.annotations"/>
+                        :tabindex="tabIndexConfig.annotations"/>
             </div>
 
           </div>
@@ -940,7 +940,7 @@
       <el-button @click="
                  saveForm('accept');
                  notifySuccess('Abgeschickt')"
-                 :tabindex="other.tabIndexConf.buttonSend"
+                 :tabindex="tabIndexConfig.buttonSend"
                  v-show="isNew">
         Abschicken
       </el-button>
@@ -975,7 +975,7 @@
       <el-button @click="
                   formReset();
                   notifySuccess('Formular zurückgesetzt')"
-                  :tabindex="other.tabIndexConf.buttonReset"
+                  :tabindex="tabIndexConfig.buttonReset"
                   v-show="isNew">
         Zurücksetzen
       </el-button>
@@ -990,7 +990,6 @@ import ElHeader from 'element-ui/packages/header/src/main'
 import ElRow from 'element-ui/packages/row/src/row'
 import ElContainer from 'element-ui/packages/container/src/main'
 import ElMain from 'element-ui/packages/main/src/main'
-import config from '../config/tabOrder.config'
 
 export default {
   components: {
@@ -1082,14 +1081,11 @@ export default {
 
         ticketState: 0
       },
-
       other: {
         tempEingehend: false,
         tempAusgehend: true,
-        isEdit: false,
-        tabIndexConf: {}
+        isEdit: false
       },
-
       sent: false
     }
   },
@@ -1097,8 +1093,6 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.loadDocument(to.params.id)
-      vm.setTabIndexConf()
-      vm.setFormConfig(vm.formdata.ticketState)
     })
   },
 
@@ -1134,7 +1128,7 @@ export default {
       'loadFormDataAction',
       'getPDFAction'
     ]),
-    ...mapGetters(['getDraft', 'getUser']),
+    ...mapGetters(['getDraft', 'getUser', 'getFormConfig']),
 
     autoFillValues: function () {
       // import user from vuex
@@ -1266,6 +1260,7 @@ export default {
       this.setIncomingOutgoing()
       this.autoFillValues()
       this.$data.formdata.inOperation = this.getUser().operation.operationID
+      this.setFormConfig(this.$options.data().formdata.ticketState)
     },
 
     loadDraft: function () {
@@ -1273,6 +1268,7 @@ export default {
       this.setDefaultData(draft)
       this.setIncomingOutgoing()
       this.autoFillValues()
+      this.setFormConfig(draft.ticketState)
     },
 
     loadID: function (id) {
@@ -1282,24 +1278,12 @@ export default {
           this.setIncomingOutgoing()
           this.$data.other.isEdit = true
           this.autoFillValues()
+          this.setFormConfig(formdata.ticketState)
         })
         .catch((error) => {
           this.messageBoxError('', error.message)
             .then(this.$router.push({name: 'Home'}))
         })
-    },
-
-    /**
-     * Sets the the tabIndexConf Property
-     */
-    setTabIndexConf: function () {
-      const baseConf = config.tabOrder.base
-      const state = this.formdata.ticketState
-      const stateConf = config.tabOrder[state]
-      // create state-specific tabindex config
-      this.other.tabIndexConf = {}
-      const result = Object.assign({}, baseConf, stateConf)
-      this.other.tabIndexConf = result
     },
 
     loadDocument: function (id) {
@@ -1318,7 +1302,7 @@ export default {
         this.other.tempEingehend = false
       } else {
         this.other.tempAusgehend = false
-        this.other.tempEingehend = true
+        this.tempEingehend = true
       }
     },
 
@@ -1376,75 +1360,8 @@ export default {
     },
 
     mapState: function (sendAction) {
-      let currentState = this.formdata.ticketState
-      let newState = currentState
-      if (sendAction === 'reject') {
-        switch (currentState) {
-          case 1:
-            newState = 2
-            break
-          case 3:
-            newState = 2
-            break
-          case 5:
-            newState = 6
-            break
-          case 7:
-            newState = 6
-            break
-          case 11:
-            newState = 12
-            break
-          case 13:
-            newState = 12
-            break
-        }
-      } else if (sendAction === 'accept') {
-        switch (currentState) {
-          case 0:
-            newState = 1
-            break
-          case 1:
-            newState = 3
-            break
-          case 2:
-            newState = 1
-            break
-          case 3:
-            newState = 4
-            break
-          case 4:
-            newState = 5
-            break
-          case 5:
-            newState = 7
-            break
-          case 6:
-            newState = 5
-            break
-          case 7:
-            newState = 8
-            break
-          case 8:
-            newState = 9
-            break
-          case 10:
-            newState = 11
-            break
-          case 11:
-            newState = 13
-            break
-          case 12:
-            newState = 11
-            break
-          case 13:
-            newState = 14
-            break
-          case 14:
-            newState = 15
-            break
-        }
-      }
+      let newState = this.getFormConfig().stateMapping[sendAction]
+      console.log(newState)
       this.formdata.ticketState = newState
     },
 
@@ -1662,17 +1579,11 @@ export default {
 
     isNew: function () {
       return this.$store.state.formConfig.buttonVisible.isNew
-    }
+    },
     // End of visibility switches
     // =================================================
-  },
-  // watch for changes in the formdata object, trigger setTabIndexConf()
-  watch: {
-    formdata: {
-      handler: function (oldVal, newVal) {
-        this.setTabIndexConf()
-      },
-      deep: true
+    tabIndexConfig: function () {
+      return this.$store.state.formConfig.tabOrder
     }
   }
 }
