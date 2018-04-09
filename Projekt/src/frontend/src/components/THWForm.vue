@@ -307,7 +307,7 @@
                 <div class="
                         inputWrapper
                         flexContainerFormA"
-                     style="margin: 50px 0 42px 0; height: 48px">
+                     style="margin: 45px 0 45px 0; height: 48px">
                   <div class="inputSelectionHighlight"
                        style="height: 40px"></div>
                   <label class="inputLabel"
@@ -2022,6 +2022,7 @@ export default {
 
 <style>
   .form {
+    width: 100%;
     background-color: var(--formBlueColor);
     padding: 0 20px 20px 20px;
     font: var(--bigTitleSize) var(--mainFont);
@@ -2043,6 +2044,30 @@ export default {
     box-sizing: border-box
   }
   .sideMenuForm {
+    width: 20%;
+    background-color: var(--semiLightNeutralColor);
+    padding: 0 0 20px 10px;
+    margin: 0 0 0 2%;
+    border-top: 20px solid var(--secondaryTextColor);
+    font: var(--bigTitleSize) var(--mainFont);
+    color: var(--primaryTextColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .checkboxLabel {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    cursor: pointer;
+  }
+
+  /* section-wrappers (middle wrapper) */
+  .topTopLeft {
+    width: 80%;
+    padding: 0 5px 5px 0;
+    margin: 0 0 0 0;
+  }
+  .topTopRight {
     width: 20%;
     height: 200px;
     background-color: var(--semiLightNeutralColor);
@@ -2068,7 +2093,9 @@ export default {
     margin: 0 0 0 0;
   }
   .topTopRight {
+    height: 100%;
     width: 20%;
+    background-color: var(--middleNeutralColor);
     padding: 0 0 5px 0;
     margin: 0 0 0 0;
   }
