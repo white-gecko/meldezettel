@@ -39,8 +39,7 @@
     <div class="
           menuWrapper
           flexContainerHeaderC"
-         @mouseover="showDropDownMenu"
-         @mouseout="hideDropDownMenu">
+         @click="showLandingPage">
 
       <div class="
           roleLogoWrapper
@@ -59,19 +58,6 @@
               width: 215px;
               margin: 0 0 0 0;">
           {{this.user.role}} {{this.user.position}}
-        </div>
-      </div>
-
-      <div class="
-        headerDropDown
-        hasShadowHeaderB
-        flexContainerHeaderD"
-           v-show="headerDropDownCollapsed">
-        <div class="
-              headerMenuItem
-              hasShadowHeaderB"
-             @click="showLandingPage">
-          Nutzerdaten auswählen
         </div>
       </div>
 
@@ -190,31 +176,6 @@ export default {
   }
   .roleLogoWrapper {
     z-index: 10;
-    cursor: pointer;
-  }
-  .headerDropDown {
-    width: 285px;
-    background-color: var(--semiLightNeutralColor);
-    overflow: visible;
-    position: absolute;
-    margin: 0 0 0 10px;
-    left: 0;
-    z-index: 1;
-    border-left: 10px solid var(--formBlueColor);
-    animation: dropDownBlendIn 0.4s ease 0s 1 normal both;
-  }
-  .headerMenuItem {
-    height: 40px;
-    width: 265px;
-    background-color: var(--semiLightNeutralColor);
-    position: absolute;
-    margin: 0 0 20px 0;
-    padding: 20px 20px 0 0;
-    border-right: 10px solid var(--formBlueColor);
-    text-align: center;
-  }
-  .headerMenuItem:hover {
-    border-right: 10px solid var(--mainColor);
     cursor: pointer;
   }
 

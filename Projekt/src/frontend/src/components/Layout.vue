@@ -20,7 +20,7 @@
 
     <div class="
           flexContainerLayoutB"
-         style="z-index: 1">
+         style="z-index: 1; width: 100%">
         <THWMenu style="
                   width: 7%;
                   margin-top: 100px;"/>
@@ -135,7 +135,7 @@ export default {
     flex-grow: 1;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box
+    box-sizing: border-box;
   }
 
   .middleWrapper {
@@ -145,7 +145,7 @@ export default {
     flex-grow: 1;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box
+    box-sizing: border-box;
   }
 
   .innerWrapper {
@@ -159,7 +159,7 @@ export default {
     box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box
+    box-sizing: border-box;
   }
 
   /*CSS-reset:

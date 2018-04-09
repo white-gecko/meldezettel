@@ -307,7 +307,7 @@
                 <div class="
                         inputWrapper
                         flexContainerFormA"
-                     style="margin: 50px 0 42px 0; height: 48px">
+                     style="margin: 45px 0 45px 0; height: 48px">
                   <div class="inputSelectionHighlight"
                        style="height: 40px"></div>
                   <label class="inputLabel"
@@ -2036,6 +2036,7 @@ export default {
 
 <style>
   .form {
+    width: 100%;
     background-color: var(--formBlueColor);
     padding: 0 20px 20px 20px;
     font: var(--titleSize) var(--mainFont);
@@ -2046,7 +2047,7 @@ export default {
   }
   .formWrapper {
     width: 80%;
-    min-width: 960px;
+    min-width: 940px;
     background-color: var(--semiLightNeutralColor);
     padding: 0 10px 20px 10px;
     margin: 0 0 20px 0;
@@ -2062,11 +2063,10 @@ export default {
     max-height: 200px;
     background-color: var(--semiLightNeutralColor);
     padding: 0 0 20px 10px;
-    margin: 0 0 0 3%;
+    margin: 0 0 0 2%;
     border-top: 20px solid var(--secondaryTextColor);
-    font: var(--titleSize) var(--mainFont);
+    font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
-    position: relative;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
@@ -2084,7 +2084,9 @@ export default {
     margin: 0 0 0 0;
   }
   .topTopRight {
+    height: 100%;
     width: 20%;
+    background-color: var(--middleNeutralColor);
     padding: 0 0 5px 0;
     margin: 0 0 0 0;
   }
@@ -2165,17 +2167,17 @@ export default {
     margin: 0 0 5px 0;
   }
   .inputRufnr {
-    width: 100%;
+    width: 20%;
     padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputAnschrift {
-    width: 100%;
+    width: 60%;
     padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputGESP {
-    width: 100%;
+    width: 20%;
     padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
@@ -2335,7 +2337,7 @@ export default {
   /* custom checkbox */
   .formCheckbox {
     width: 100%;
-    margin: 0 1% 0 1%;
+    margin: 0 0.5% 0 0.5%;
     border: 4px solid var(--middleNeutralColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;

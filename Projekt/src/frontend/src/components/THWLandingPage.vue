@@ -15,7 +15,8 @@
       <el-radio-group class="
                       landingPageRoleSelect
                       hasShadowLandingPageB"
-                      v-model="userData.role">
+                      v-model="userData.role"
+                      @change="checkIfRoleIsNotSGL(userData.role)">
         <el-radio-button v-for="roleOption in roles"
                          :label="roleOption"
                          :key="roleOption">
@@ -236,13 +237,13 @@ export default {
       positions: positionOptions
     }
   },
-
+  // load operations from vuex at reentering landing page
   computed: {
     operations () {
       return this.$store.state.operationList
     }
   },
-
+  // get operations from Quitstore when building landing page
   mounted () {
     this.$store.dispatch('getOperationsAction')
       .then(() => {
@@ -258,7 +259,6 @@ export default {
         this.userData = this.$store.state.user
       }
     },
-
     // checks if userData is typed in (not empty)
     validateUser (userData) {
       // checks missing fields and generates a custom alert
@@ -309,6 +309,12 @@ export default {
         operationID: ''
       }
     },
+    // checks if operation is not SGL to unset position
+    checkIfRoleIsNotSGL (role) {
+      if (role !== 'SGL') {
+        this.userData.position = ''
+      }
+    },
     // handle selection of operation in operations table
     selectOperation (selectedOperation) {
       this.userData.operation = selectedOperation
@@ -339,13 +345,13 @@ export default {
     },
 
     operationIsDuplicate (newOperation) {
-      let duplicate = false
+      let isDuplicate = false
       this.operations.forEach(function (operation) {
         if (operation.operationName === newOperation.operationName) {
-          duplicate = true
+          isDuplicate = true
         }
       })
-      return duplicate
+      return isDuplicate
     },
 
     setUserOperation (operation) {
