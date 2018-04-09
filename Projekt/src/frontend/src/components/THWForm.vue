@@ -1236,7 +1236,7 @@
               <div class="formButton"
                    @click="
                     saveForm('accept');"
-                   :tabindex="other.tabIndexConf.buttonSend">
+                   :tabindex="tabIndexConfig.buttonSend">
                 <div class="formButtonLabel">
                   Abschicken
                 </div>
@@ -1282,7 +1282,7 @@
               <div class="formButton"
                    @click="
                     formReset();"
-                   :tabindex="other.tabIndexConf.buttonReset">
+                   :tabindex="tabIndexConfig.buttonReset">
                 <div class="formButtonLabel">
                   Zurücksetzen
                 </div>
