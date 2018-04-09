@@ -120,7 +120,7 @@
             <label class="
                     dashboardLabel
                     hasShadowDashboardB">
-              Filter:
+              Status:
             </label>
 
             <div class="dashboardButtonWrapper">
@@ -194,7 +194,7 @@
                 <div style="
                   height: 20px;
                   width: 20px;
-                  background-color: var(--darkNeutralColor);
+                  background-color: blue;
                   margin: 5px 5px 0 5px;"></div>
               </div>
             </div>
@@ -533,7 +533,7 @@ export default {
     color: var(--primaryTextColor);
   }
   .in{
-    color: var(--formBlueColor);
+    color: blue;
   }
   .warn{
     color:var(--formRedColor);
