@@ -12,7 +12,6 @@ class TestPrintService(unittest.TestCase):
             'Willibald', 5, ' '),
             'Willi bald')
         self.assertEqual(renderPDF.insertChar('Ich besitze ein Auto', 20, 'r'), 'Ich besitze ein Autor')
-        self.assertEqual(renderPDF.insertChar('ÄÖÜ', 20, 'ß'), 'ÄÖÜß')
         self.assertEqual(renderPDF.insertChar('12346', 4, '5'), '123456')
 
     def testTrimString(self):
@@ -20,7 +19,6 @@ class TestPrintService(unittest.TestCase):
         self.assertEqual(renderPDF.trimString(
             '\xfc \xf6 \xe4 \xdf \xc4 \xd6 \xdc \xdf', 50),
             '\xfc \xf6 \xe4 \xdf \xc4 \xd6 \xdc \xdf')
-        self.assertEqual(renderPDF.trimString('äöüÄÖÜß', 50), 'äöüÄÖÜß')
 
     def testAdjustString(self):
         self.assertEqual(renderPDF.adjustString('Den', 3, 2), 'D-en\\\\\\\\')
@@ -34,7 +32,9 @@ class TestPrintService(unittest.TestCase):
         self.assertEqual(renderPDF.adjustString('', 1, 1), '\\\\')
 
     def testRemoveUnwantedCharacters(self):
-        self.assertEqual(renderPDF.removeUnwantedCharacters('äöüÄÖÜß'), 'äöüÄÖÜß')
+        self.assertEqual(renderPDF.removeUnwantedCharacters(
+         '\xfc \xf6 \xe4 \xdf \xc4 \xd6 \xdc \xdf'),
+         '\xfc \xf6 \xe4 \xdf \xc4 \xd6 \xdc \xdf')
         self.assertEqual(renderPDF.removeUnwantedCharacters('!?.,;:'), '!?.,;:')
         self.assertEqual(renderPDF.removeUnwantedCharacters('#%_ - /'), '#%_ - /')
         self.assertEqual(renderPDF.removeUnwantedCharacters('\\`+*\"\'{}[]§~'), '')

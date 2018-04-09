@@ -1236,8 +1236,7 @@
                  v-show="isNew">
               <div class="formButton"
                    @click="
-                    saveForm('accept');
-                    notifySuccess('Abgeschickt')"
+                    saveForm('accept');"
                    :tabindex="other.tabIndexConf.buttonSend">
                 <div class="formButtonLabel">
                   Abschicken
@@ -1249,8 +1248,7 @@
                  v-show="sendable">
               <div class="formButton"
                    @click="
-                    saveForm('accept');
-                    notifySuccess('Abgeschickt')"
+                    saveForm('accept');"
                    tabindex="6">
                 <div class="formButtonLabel">
                   Weitersenden
@@ -1262,8 +1260,7 @@
                  v-show="toBePrinted">
               <div class="formButton"
                    @click="
-                    printTicket();
-                    notifySuccess('Gedruckt')"
+                    printTicket();"
                    tabindex="6">
                 <div class="formButtonLabel">
                   Drucken
@@ -1275,20 +1272,17 @@
                  v-show="rejectable">
               <div class="formButton"
                    @click="
-                    saveForm('reject');
-                    notifySuccess('Zurückgeschickt')">
+                    saveForm('reject');">
                 <div class="formButtonLabel">
                   Abweisen
                 </div>
               </div>
             </div>
 
-            <div class="formButtonWrapper"
-                 v-show="isNew">
+            <div class="formButtonWrapper">
               <div class="formButton"
                    @click="
-                    formReset();
-                    notifySuccess('Formular zurückgesetzt')"
+                    formReset();"
                    :tabindex="other.tabIndexConf.buttonReset">
                 <div class="formButtonLabel">
                   Zurücksetzen
@@ -1423,7 +1417,6 @@ export default {
   },
 
   beforeRouteUpdate (to, from, next) {
-    // @TODO Clicking new document after opening an other to fix
     this.other.isEdit = false
     if (from.params.id === undefined) {
       this.askSaveDraft()
@@ -1674,7 +1667,11 @@ export default {
         if (this.other.isEdit) {
           this.updateFormDataAction(this.$data.formdata)
             .then(() => {
-              this.notifySuccess('Abgeschickt')
+              if (action === 'accept') {
+                this.notifySuccess('Abgeschickt')
+              } else if (action === 'reject') {
+                this.notifySuccess('Zurückgeschickt')
+              }
               this.$router.push({name: 'Home'})
             })
             .catch(error => {
@@ -1779,6 +1776,7 @@ export default {
 
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
+      this.notifySuccess('Zurückgesetzt')
     },
 
     openPDF: function () {

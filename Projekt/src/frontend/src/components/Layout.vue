@@ -61,18 +61,11 @@ export default {
   :root {
     /*colors*/
     /*main colors*/
-    --mainColor: #3d6cb8;
-    --lightMainColor: #799bd2;
-    --formBlueColor: #9cb7e2;
-    --formGreenColor: #9ce2a4;
-    --formRedColor: #e29c9c;
-    --formYellowColor: #e2e29c;
-
-    /*secondary colors*/
-    --successColor: #67C23A;
-    --warningColor: #E6A23C;
-    --dangerColor: #F56C6C;
-    --infoColor: #909399;
+    --mainColor: #4071bf;
+    --formBlueColor: #85a8e0;
+    --formGreenColor: #75f075;
+    --formRedColor: #f07575;
+    --formYellowColor: #f0f075;
 
     /*neutral colors*/
     --darkNeutralColor: #DCDFE6;

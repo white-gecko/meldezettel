@@ -343,6 +343,7 @@ export default {
         .then(() => {
           this.notifySuccess('Eingaben erfolgreich gespeichert')
           this.$store.commit('setShowLandingPage')
+          this.$router.push({name: 'Home'})
         })
     },
     // resets inputs

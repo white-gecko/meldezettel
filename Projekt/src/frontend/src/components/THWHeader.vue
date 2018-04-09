@@ -95,7 +95,7 @@ export default {
       } else if (this.user.role === 'Fachberater') {
         return require('@/assets/fachberaterIcon.png')
       } else if (this.user.role === 'Verbindungsstelle') {
-        return require('@/assets/placeholderIcon.png') /* require('@/assets/verbindungsstelleIcon.png') */
+        return require('@/assets/verbStelleIcon.png')
       } else {
         return require('@/assets/placeholderIcon.png')
       }
