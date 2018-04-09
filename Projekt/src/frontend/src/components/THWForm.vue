@@ -1455,7 +1455,6 @@ export default {
   },
 
   computed: {
-
     // =================================================
     // Beginning of visibility switches
     //
