@@ -1552,143 +1552,116 @@ export default {
     // so the overlay may NOT be shown (and vice versa)
 
     checkboxGroupTop: function () {
-      return [10, 3, 5, 12, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.checkboxGroupTop
     },
 
     aufnahme: function () {
-      return [10, 12, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.aufnahme
     },
 
     annahmeBefoerderung: function () {
-      return [3, 5, 4, 6, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.annahmeBefoerderung
     },
 
     technischesBetriebsbuch: function () {
-      return [3, 5, 11, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility
+        .technischesBetriebsbuch
     },
 
     gegenstelle: function () {
-      return [10, 3, 5, 12, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.gegenstelle
     },
 
     checkboxgroupMiddle: function () {
-      return [0, 2, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.checkboxgroupMiddle
     },
 
     durchsageSpruch: function () {
-      return [14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.durchsageSpruch
     },
 
     sofortBlitz: function () {
-      return [1, 7, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.sofortBlitz
     },
 
     rufnummer: function () {
-      return [10, 0, 12, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.rufnummer
     },
 
     anschrift: function () {
-      return [10, 0, 2, 12, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.anschrift
     },
 
     gespraechsnotiz: function () {
-      return [10, 12, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.gespraechsnotiz
     },
 
     inhalt: function () {
-      return [10, 0, 2, 12, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.inhalt
     },
 
     absender: function () {
-      return [10, 0, 2, 12, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.absender
     },
 
     abfassungszeit: function () {
-      return [0, 2, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.abfassungszeit
     },
 
     zeichen: function () {
-      return [0, 2, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.zeichen
     },
 
     funktion: function () {
-      return [0, 2, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.funktion
     },
 
     quittung: function () {
-      return [1, 7, 13, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.quittung
     },
 
     tel: function () {
-      return [1, 7, 13, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.tel
     },
 
     vermerke: function () {
-      return [10, 0, 1, 7, 13, 3, 5, 11, 4, 6,
-        2, 12, 14, 8, 15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.inputVisibility.vermerke
     },
 
     // Color switches
 
     isGreen: function () {
-      return [1, 2, 3, 4, 5, 6, 7].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.background.isGreen
     },
 
     isBlue: function () {
-      return [10, 0, 13, 11, 12].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.background.isBlue
     },
 
     isYellow: function () {
-      return [14, 8].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.background.isYellow
     },
 
     isRed: function () {
-      return [15, 9].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.background.isRed
     },
 
     // Button switches
 
     toBePrinted: function () {
-      return [8, 9, 14, 15].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.buttonVisible.toBePrinted
     },
 
     rejectable: function () {
-      return [1, 7, 3, 5, 11, 13].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.buttonVisible.rejectable
     },
 
     sendable: function () {
-      return [1, 2, 3, 4, 5, 6, 7, 11, 12, 13].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.buttonVisible.sendable
     },
 
     isNew: function () {
-      return [0, 10].indexOf(
-        this.formdata.ticketState) !== -1
+      return this.$store.state.formConfig.buttonVisible.isNew
     }
     // End of visibility switches
     // =================================================
