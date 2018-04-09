@@ -4,7 +4,10 @@
     <div class="
           dashboard
           hasShadowDashboardA">
-      <el-table :data="ticketList" style="width: 100%" max-height="500">
+      <el-table :data="ticketList"
+                style="width: 100%"
+                max-height="500"
+                border>
         <el-table-column width="80">
           <template slot-scope="scope">
             <router-link v-bind:to="{
@@ -303,7 +306,7 @@
             dashboardButton
             hasShadowDashboardA"
              style="margin-bottom: 20px"
-             @click="changeFilters()">
+             @click="useFilters()">
           Anwenden
         </div>
         <div class="
@@ -318,10 +321,6 @@
 </template>
 <script>
 import { Notification } from 'element-ui'
-import { mapActions } from 'vuex'
-import { quitstore } from '../api/QuitStoreAdapter.js'
-import queryHelper from '../sparql_help/sparql_queries.js'
-import { parseResponse } from '../sparql_help/sparql_response'
 
 export default {
   name: 'THWDashboard',
@@ -330,17 +329,6 @@ export default {
     next(vm => {
       vm.$store.dispatch('updateTicketListAction')
         .catch(error => alert(error))
-
-      let operationsQuery = queryHelper.operationsQuery()
-
-      quitstore.getData(operationsQuery)
-        .then((response) => {
-          let data = parseResponse(response)
-          vm.$data.operationList = data
-        })
-        .catch((error) => {
-          alert(error)
-        })
     })
   },
 
@@ -350,7 +338,6 @@ export default {
 
   data: () => {
     return {
-      operationList: [],
       isIncoming: false,
       isOutgoing: false
     }
@@ -362,14 +349,13 @@ export default {
     },
     filter () {
       return this.$store.state.filter
+    },
+    operationList () {
+      return this.$store.state.operationList
     }
   },
 
   methods: {
-    ...mapActions['setFilters,setDefaultFilters'],
-    /*  function that changes filters in vuex store, then calls
-        a function that updates dashboard
-    */
     showHideIncoming: function () {
       if (this.isIncoming) {
         this.isIncoming = false
@@ -384,22 +370,11 @@ export default {
         this.isOutgoing = true
       }
     },
-
-    changeFilters: function () {
-      this.$store
-        .dispatch('setFilters', this.filter)
-        .then(() => {
-          this.useFilters()
-          this.notifySuccess('Filter angewandt')
-        })
-        .catch((error) => alert(error))
-    },
     resetFilters: function () {
       this.$store
         .dispatch('setDefaultFilters')
         .then(() => {
           this.useFilters()
-          this.notifySuccess('Filter angewandt')
         })
         .catch((error) => alert(error))
     },
@@ -409,6 +384,9 @@ export default {
     */
     useFilters: function () {
       this.$store.dispatch('updateTicketListAction')
+        .then(() => {
+          this.notifySuccess('Filter angewandt')
+        })
         .catch(error => alert(error))
     },
     notifySuccess (message) {
@@ -420,7 +398,7 @@ export default {
         showClose: false
       })
     },
-    //  formatter that returns the fitting icons for all different states
+    // formatter that returns the fitting icons for all different states
     formatState (row, column, cellValue) {
       switch (cellValue) {
         case 1:
