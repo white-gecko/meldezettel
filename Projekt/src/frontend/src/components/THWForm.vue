@@ -2046,6 +2046,7 @@ export default {
   }
   .formWrapper {
     width: 80%;
+    min-width: 960px;
     background-color: var(--semiLightNeutralColor);
     padding: 0 10px 20px 10px;
     margin: 0 0 20px 0;

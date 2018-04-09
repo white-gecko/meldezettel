@@ -124,7 +124,7 @@ export default {
     position: relative;
   }
   .menuLogo {
-    background-color: var(--darkNeutralColor);
+    background-color: var(--secondaryTextColor);
     position: relative;
     left: 10px;
     z-index: 11;
