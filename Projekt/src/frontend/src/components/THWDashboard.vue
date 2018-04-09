@@ -9,10 +9,10 @@
         <el-table :data="ticketList"
                   style="width: 100%"
                   border
-                  header-cell-style="
-                    font: var(--titleSize) var(--mainFont);
-                    color: var(--primaryTextColor);
-                    border-bottom: 20px solid var(--darkNeutralColor);">
+                  :header-cell-style="{
+                    'font': 'var(--titleSize) var(--mainFont)',
+                    'color': 'var(--primaryTextColor)',
+                    'border-bottom': '20px solid var(--darkNeutralColor)'}">
           <el-table-column min-width="6%">
             <template slot-scope="scope" width="100%">
               <router-link v-bind:to="{
