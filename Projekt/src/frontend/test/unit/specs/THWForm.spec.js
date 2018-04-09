@@ -2,20 +2,10 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import THWForm from '@/components/THWForm'
 import Vuex from 'vuex'
 import expect from 'expect'
-import VueRouter from 'vue-router'
 
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
-localVue.use(VueRouter)
-const router = new VueRouter({
-  routes: [
-    {
-      path: '/home',
-      name: 'Home'
-    }
-  ]
-})
 
 describe('THWForm', () => {
   let wrapper
@@ -33,24 +23,26 @@ describe('THWForm', () => {
     })
     wrapper = mount(THWForm, { 
       store,
-      localVue,
-      router
+      localVue
      })
   })
 
   it('saves new tickets to the db', () => {
+      wrapper.vm.saveForm = jest.fn()
       wrapper.find('#saveNewFormButton').trigger('click')
-      expect(actions.saveNewFormAction).toHaveBeenCalled()
+      expect(wrapper.vm.saveForm).toHaveBeenCalled()
   })
 
   it('sends tickets to the next station', () => {
+      wrapper.vm.saveForm = jest.fn()
       wrapper.find('#sendFormToNextPersonButton').trigger('click')
-      expect(actions.saveNewFormAction).toHaveBeenCalled()
+      expect(wrapper.vm.saveForm).toHaveBeenCalled()
   })
 
   it('allows to print a ticket', () => {
+      wrapper.vm.saveForm = jest.fn()
       wrapper.find('#printFormButton').trigger('click')
-      expect(actions.getPDFAction).toHaveBeenCalled()
+      expect(wrapper.vm.saveForm).toHaveBeenCalled()
   })
 
   it('allows to reject a ticket', () => {
