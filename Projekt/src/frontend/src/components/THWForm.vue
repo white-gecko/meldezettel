@@ -4,14 +4,17 @@
     <div class="
           formWrapper
           hasShadowFormA">
-      <el-form ref="form" :model="formdata"
-      :class="{
-        'is-blue': isBlue,
-        'is-green': isGreen,
-        'is-yellow': isYellow,
-        'is-red': isRed,
-        'form, flexContainerFormB': true
-        }">
+      <el-form class="
+                form
+                flexContainerFormB"
+               ref="form"
+               :model="formdata"
+               :class="{
+                'is-blue': isBlue,
+                'is-green': isGreen,
+                'is-yellow': isYellow,
+                'is-red': isRed
+                }">
 
         <!--top-section-->
         <div class="
@@ -2004,7 +2007,7 @@ export default {
 <style>
   .form {
     background-color: var(--formBlueColor);
-    overflow: visible;
+    padding: 0 20px 20px 20px;
     font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
     -moz-box-sizing: border-box;
@@ -2379,7 +2382,7 @@ export default {
   }
 
   .overlay {
-    /* background-color: rgba(0, 0, 0, 0.15); */
+    background-color: rgba(0, 0, 0, 0.15);
     pointer-events: none;
     z-index: 1;
     width: 100%;
@@ -2391,30 +2394,18 @@ export default {
 
   .is-green {
     background: var(--formGreenColor);
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border-left-color: var(--formGreenColor);
   }
 
   .is-blue {
     background: var(--formBlueColor);
-    margin: 0 0 0 0;
-    padding: 0 20px 20px 20px;
-    border-left-color: var(--formBlueColor);
   }
 
   .is-red {
     background: var(--formRedColor);
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border-left-color: var(--formRedColor);
   }
 
   .is-yellow {
     background: var(--formYellowColor);
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border-left-color: var(--formYellowColor);
   }
 
   /* element settings */
