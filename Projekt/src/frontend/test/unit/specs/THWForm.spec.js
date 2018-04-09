@@ -2,25 +2,32 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import THWForm from '@/components/THWForm'
 import Vuex from 'vuex'
 import expect from 'expect'
+import VueRouter from 'vue-router'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
+localVue.use(VueRouter)
+
+const router = new VueRouter()
 
 describe('THWForm', () => {
   let wrapper
   let store
-  let mutations
+  let actions
 
   beforeEach(() => {
-    mutations = {
-      saveTicket: jest.fn()
+    actions = {
+      saveForm: jest.fn(),
+      saveNewFormAction: jest.fn()
     }
     store = new Vuex.Store({
-      state: {}, mutations
+      state: {},
+      actions
     })
-    wrapper = mount(THWForm, { store, localVue })
+    wrapper = mount(THWForm, { store, localVue, router })
   })
 
+  /*
   it ('binds to hdzIncomingA', () => {
     expect(wrapper.vm.formdata.hdzIncomingA).toBe('')
   })
@@ -36,10 +43,10 @@ describe('THWForm', () => {
   it ('binds to message', () => {
     expect(wrapper.vm.formdata.message).toBe('')
   })
-  /*
-  it('pushes a new ticket to the store', () => {
-      wrapper.find('el-button').trigger('click')
-      expect(mutations.saveTicket).toHaveBeenCalled()
-    })
   */
+
+  it('pushes a new ticket to the store', () => {
+      wrapper.find('sendButtonNew').trigger('click')
+      expect(actions.saveForm).toHaveBeenCalled()
+    })
 })
