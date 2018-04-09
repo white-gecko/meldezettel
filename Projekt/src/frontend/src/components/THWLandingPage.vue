@@ -15,7 +15,8 @@
       <el-radio-group class="
                       landingPageRoleSelect
                       hasShadowLandingPageB"
-                      v-model="userData.role">
+                      v-model="userData.role"
+                      @change="checkIfRoleIsNotSGL(userData.role)">
         <el-radio-button v-for="roleOption in roles"
                          :label="roleOption"
                          :key="roleOption">
@@ -236,13 +237,13 @@ export default {
       positions: positionOptions
     }
   },
-
+  // load operations from vuex at reentering landing page
   computed: {
     operations () {
       return this.$store.state.operationList
     }
   },
-
+  // get operations from Quitstore when building landing page
   mounted () {
     this.$store.dispatch('getOperationsAction')
       .then(() => {
@@ -258,17 +259,29 @@ export default {
         this.userData = this.$store.state.user
       }
     },
-
     // checks if userData is typed in (not empty)
     validateUser (userData) {
+      // checks missing fields and generates a custom alert
       if (
         this.userData.identification === '' ||
         this.userData.sender === '' ||
         (this.userData.role === 'SGL' && this.userData.position === '') ||
-        this.userData.operation.operationName === '') {
-        alert(
-          'Bitte Absender und Zeichen eintragen sowie einen Einsatz auswählen.'
-        )
+        this.userData.operation.operationName === ''
+      ) {
+        let alertMessage = 'Bitte die eingegebenen Daten überprüfen. '
+        if (this.userData.identification === '') {
+          alertMessage += 'Das Handzeichen fehlt. '
+        }
+        if (this.userData.sender === '') {
+          alertMessage += 'Der Absender fehlt. '
+        }
+        if (this.userData.role === 'SGL' && this.userData.position === '') {
+          alertMessage += 'Die Rolle und/oder die Position fehlen. '
+        }
+        if (this.userData.operation.operationName === '') {
+          alertMessage += 'Es muss ein Einsatz ausgewählt sein. '
+        }
+        alert(alertMessage)
       } else {
         this.submitUser()
       }
@@ -297,6 +310,12 @@ export default {
         operationID: ''
       }
     },
+    // checks if operation is not SGL to unset position
+    checkIfRoleIsNotSGL (role) {
+      if (role !== 'SGL') {
+        this.userData.position = ''
+      }
+    },
     // handle selection of operation in operations table
     selectOperation (selectedOperation) {
       this.userData.operation = selectedOperation
@@ -311,7 +330,7 @@ export default {
         this.newOperation.operationAdress === '' ||
         this.newOperation.operationStaffType === '') {
         alert('Bitte alle Einsatzdaten eingeben.')
-      } if (this.operationIsDuplicate(newOperation)) {
+      } else if (this.operationIsDuplicate(newOperation)) {
         alert('Dieser Einsatzname ist bereits vergeben.')
       } else {
         // generate ID
@@ -327,13 +346,13 @@ export default {
     },
 
     operationIsDuplicate (newOperation) {
-      let duplicate = false
+      let isDuplicate = false
       this.operations.forEach(function (operation) {
         if (operation.operationName === newOperation.operationName) {
-          duplicate = true
+          isDuplicate = true
         }
       })
-      return duplicate
+      return isDuplicate
     },
 
     setUserOperation (operation) {
