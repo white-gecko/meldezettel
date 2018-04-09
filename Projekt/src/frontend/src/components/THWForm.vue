@@ -1234,7 +1234,8 @@
            @click="
           saveForm('accept');"
            :tabindex="other.tabIndexConf.buttonSend"
-           v-show="isNew">
+           v-show="isNew"
+           id="saveNewFormButton">
         Abschicken
       </div>
 
@@ -1245,7 +1246,8 @@
            @click="
             saveForm('accept');"
            tabindex="6"
-           v-show="sendable">
+           v-show="sendable"
+           id="sendFormToNextPersonButton">
         Weitersenden
       </div>
 
@@ -1256,7 +1258,8 @@
            @click="
             printTicket();"
            tabindex="6"
-           v-show="toBePrinted">
+           v-show="toBePrinted"
+           id="printFormButton">
         Drucken
       </div>
 
@@ -1266,7 +1269,8 @@
             hasShadowFormA"
            @click="
             saveForm('reject');"
-           v-show="rejectable">
+           v-show="rejectable"
+           id="rejectFormButton">
         Abweisen
       </div>
 
@@ -1277,7 +1281,8 @@
            @click="
             formReset();
             notifySuccess('Formular zurückgesetzt')"
-           :tabindex="other.tabIndexConf.buttonReset">
+           :tabindex="other.tabIndexConf.buttonReset"
+           id="resetFormButton">
         Zurücksetzen
       </div>
 
