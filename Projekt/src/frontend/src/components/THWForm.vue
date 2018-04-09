@@ -45,7 +45,7 @@
                       Funk
                       <input type="checkbox"
                              v-model="formdata.topRadio"
-                             :tabindex="tabIndexConf.topRadio"/>
+                             :tabindex="tabIndexConfig.topRadio"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -57,7 +57,7 @@
                       Telefon
                       <input type="checkbox"
                              v-model="formdata.topPhone"
-                             :tabindex="tabIndexConf.topPhone"/>
+                             :tabindex="tabIndexConfig.topPhone"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -69,7 +69,7 @@
                       Telefax
                       <input type="checkbox"
                              v-model="formdata.topFax"
-                             :tabindex="tabIndexConf.topFax"/>
+                             :tabindex="tabIndexConfig.topFax"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -81,7 +81,7 @@
                       DFÜ
                       <input type="checkbox"
                              v-model="formdata.topDFU"
-                             :tabindex="tabIndexConf.topDFU"/>
+                             :tabindex="tabIndexConfig.topDFU"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -94,7 +94,7 @@
                       Kurier/Melder
                       <input type="checkbox"
                              v-model="formdata.topCourier"
-                             :tabindex="tabIndexConf.topCourier"/>
+                             :tabindex="tabIndexConfig.topCourier"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -332,7 +332,7 @@
                            type="checkbox"
                            v-model="other.tempEingehend"
                            :disabled="formdata.ticketState % 10 != 0"
-                           :tabindex="tabIndexConf.selectIncoming"/>
+                           :tabindex="tabIndexConfig.selectIncoming"/>
                     <div class="formControl_indicator"></div>
                   </label>
                 </div>
@@ -348,7 +348,7 @@
                            type="checkbox"
                            v-model="other.tempAusgehend"
                            :disabled="formdata.ticketState % 10 != 0"
-                           :tabindex="tabIndexConf.selectOutbound"/>
+                           :tabindex="tabIndexConfig.selectOutbound"/>
                     <div class="formControl_indicator"></div>
                   </label>
                 </div>
@@ -417,7 +417,7 @@
                     Funk
                     <input type="checkbox"
                            v-model="formdata.midRadio"
-                           :tabindex="tabIndexConf.midRadio"/>
+                           :tabindex="tabIndexConfig.midRadio"/>
                     <div class="formControl_indicator"></div>
                   </label>
                 </div>
@@ -429,7 +429,7 @@
                     Telefon
                     <input type="checkbox"
                            v-model="formdata.midPhone"
-                           :tabindex="tabIndexConf.midPhone"/>
+                           :tabindex="tabIndexConfig.midPhone"/>
                     <div class="formControl_indicator"></div>
                   </label>
                 </div>
@@ -441,7 +441,7 @@
                     Telefax
                     <input type="checkbox"
                            v-model="formdata.midFax"
-                           :tabindex="other.tabIndexConf.midFax"/>
+                           :tabindex="tabIndexConfig.midFax"/>
                     <div class="formControl_indicator"></div>
                   </label>
                 </div>
@@ -453,7 +453,7 @@
                     DFÜ
                     <input type="checkbox"
                            v-model="formdata.midDFU"
-                           :tabindex="other.tabIndexConf.midDFU"/>
+                           :tabindex="tabIndexConfig.midDFU"/>
                     <div class="formControl_indicator"></div>
                   </label>
                 </div>
@@ -466,7 +466,7 @@
                     Kurier/Melder
                     <input type="checkbox"
                            v-model="formdata.midCourier"
-                           :tabindex="other.tabIndexConf.midCourier"/>
+                           :tabindex="tabIndexConfig.midCourier"/>
                     <div class="formControl_indicator"></div>
                   </label>
                 </div>
@@ -491,7 +491,7 @@
                       DURCHSAGE
                       <input type="checkbox"
                              v-model="formdata.callAnnouncement"
-                             :tabindex="tabIndexConf.callAnnouncement"/>
+                             :tabindex="tabIndexConfig.callAnnouncement"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -504,7 +504,7 @@
                       Spruch
                       <input type="checkbox"
                              v-model="formdata.callMessage"
-                             :tabindex="tabIndexConf.callMessage"/>
+                             :tabindex="tabIndexConfig.callMessage"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -527,7 +527,7 @@
                       Sofort
                       <input type="checkbox"
                              v-model="formdata.priorityInstant"
-                             :tabindex="tabIndexConf.priorityInstant"/>
+                             :tabindex="tabIndexConfig.priorityInstant"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -540,7 +540,7 @@
                       Blitz
                       <input type="checkbox"
                              v-model="formdata.priorityFlash"
-                             :tabindex="other.tabIndexConf.priorityFlash"/>
+                             :tabindex="tabIndexConfig.priorityFlash"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -616,7 +616,7 @@
                     <input id="talkNote"
                            type="checkbox"
                            v-model="formdata.talkNote"
-                           :tabindex="tabIndexConf.conversationNote"/>
+                           :tabindex="tabIndexConfig.conversationNote"/>
                     <div class="formControl_indicator"></div>
                   </label>
                 </div>
@@ -834,7 +834,7 @@
                       Leiter
                       <input type="checkbox"
                              v-model="formdata.stationLeader"
-                             :tabindex="tabIndexConf.stationLeader"/>
+                             :tabindex="tabIndexConfig.stationLeader"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -849,7 +849,7 @@
                         S1
                         <input type="checkbox"
                                v-model="formdata.stationS1"
-                               :tabindex="tabIndexConf.stationS1"/>
+                               :tabindex="tabIndexConfig.stationS1"/>
                         <div class="formControl_indicator"></div>
                       </label>
                     </div>
@@ -862,7 +862,7 @@
                         S2
                         <input type="checkbox"
                                v-model="formdata.stationS2"
-                               :tabindex="tabIndexConf.stationS2"/>
+                               :tabindex="tabIndexConfig.stationS2"/>
                         <div class="formControl_indicator"></div>
                       </label>
                     </div>
@@ -875,7 +875,7 @@
                         S3
                         <input type="checkbox"
                                v-model="formdata.stationS3"
-                               :tabindex="tabIndexConf.stationS3"/>
+                               :tabindex="tabIndexConfig.stationS3"/>
                         <div class="formControl_indicator"></div>
                       </label>
                     </div>
@@ -888,7 +888,7 @@
                         S4
                         <input type="checkbox"
                                v-model="formdata.stationS4"
-                               :tabindex="tabIndexConf.stationS4"/>
+                               :tabindex="tabIndexConfig.stationS4"/>
                         <div class="formControl_indicator"></div>
                       </label>
                     </div>
@@ -901,7 +901,7 @@
                         S6
                         <input type="checkbox"
                                v-model="formdata.stationS6"
-                               :tabindex="tabIndexConf.stationS6"/>
+                               :tabindex="tabIndexConfig.stationS6"/>
                         <div class="formControl_indicator"></div>
                       </label>
                     </div>
@@ -930,7 +930,7 @@
                           border-style: none;">
                     <input type="checkbox"
                            v-model="formdata.advisorTickA"
-                           :tabindex="tabIndexConf.advisorTickA"/>
+                           :tabindex="tabIndexConfig.advisorTickA"/>
                     <div class="formControl_indicator"
                          style="height: 40px"></div>
                   </label>
@@ -955,7 +955,7 @@
                           border-style: none;">
                     <input type="checkbox"
                            v-model="formdata.advisorTickB"
-                           :tabindex="tabIndexConf.advisorTickB"/>
+                           :tabindex="tabIndexConfig.advisorTickB"/>
                     <div class="formControl_indicator"
                          style="height: 40px"></div>
                   </label>
@@ -980,7 +980,7 @@
                           border-style: none;">
                     <input type="checkbox"
                            v-model="formdata.advisorTickC"
-                           :tabindex="tabIndexConf.advisorTickC"/>
+                           :tabindex="tabIndexConfig.advisorTickC"/>
                     <div class="formControl_indicator"
                          style="height: 40px"></div>
                   </label>
@@ -1005,7 +1005,7 @@
                           border-style: none;">
                     <input type="checkbox"
                            v-model="formdata.advisorTickD"
-                           :tabindex="tabIndexConf.advisorTickD"/>
+                           :tabindex="tabIndexConfig.advisorTickD"/>
                     <div class="formControl_indicator"
                          style="height: 40px"></div>
                   </label>
@@ -1030,7 +1030,7 @@
                           border-style: none;">
                     <input type="checkbox"
                            v-model="formdata.advisorTickE"
-                           :tabindex="tabIndexConf.advisorTickE"/>
+                           :tabindex="tabIndexConfig.advisorTickE"/>
                     <div class="formControl_indicator"
                          style="height: 40px"></div>
                   </label>
@@ -1065,7 +1065,7 @@
                           border-style: none;">
                     <input type="checkbox"
                            v-model="formdata.connectionTickA"
-                           :tabindex="tabIndexConf.connectionTickA"/>
+                           :tabindex="tabIndexConfig.connectionTickA"/>
                     <div class="formControl_indicator"
                          style="height: 40px"></div>
                   </label>
@@ -1090,7 +1090,7 @@
                           border-style: none;">
                     <input type="checkbox"
                            v-model="formdata.connectionTickB"
-                           :tabindex="tabIndexConf.connectionTickB"/>
+                           :tabindex="tabIndexConfig.connectionTickB"/>
                     <div class="formControl_indicator"
                          style="height: 40px"></div>
                   </label>
@@ -1115,7 +1115,7 @@
                           border-style: none;">
                     <input type="checkbox"
                            v-model="formdata.connectionTickC"
-                           :tabindex="tabIndexConf.connectionTickC"/>
+                           :tabindex="tabIndexConfig.connectionTickC"/>
                     <div class="formControl_indicator"
                          style="height: 40px"></div>
                   </label>
@@ -1140,7 +1140,7 @@
                           border-style: none;">
                     <input type="checkbox"
                            v-model="formdata.connectionTickD"
-                           :tabindex="tabIndexConf.connectionTickD"/>
+                           :tabindex="tabIndexConfig.connectionTickD"/>
                     <div class="formControl_indicator"
                          style="height: 40px"></div>
                   </label>
@@ -1165,7 +1165,7 @@
                           border-style: none;">
                     <input type="checkbox"
                            v-model="formdata.connectionTickE"
-                           :tabindex="tabIndexConf.connectionTickE"/>
+                           :tabindex="tabIndexConfig.connectionTickE"/>
                     <div class="formControl_indicator"
                          style="height: 40px"></div>
                   </label>
@@ -1208,7 +1208,7 @@
                           placeholder="Vermerke"
                           class="inputWithLabel"
                           v-model="formdata.annotations"
-                          :tabindex="tabIndexConf.annotations"/>
+                          :tabindex="tabIndexConfig.annotations"/>
               </div>
             </div>
 
@@ -1233,7 +1233,7 @@
            @click="
           saveForm('accept');
           notifySuccess('Abgeschickt')"
-           :tabindex="tabIndexConf.buttonSend"
+           :tabindex="tabIndexConfig.buttonSend"
            v-show="isNew">
         Abschicken
       </div>
@@ -1280,7 +1280,7 @@
            @click="
             formReset();
             notifySuccess('Formular zurückgesetzt')"
-           :tabindex="tabIndexConf.buttonReset"
+           :tabindex="tabIndexConfig.buttonReset"
            v-show="isNew">
         Zurücksetzen
       </div>
@@ -1391,8 +1391,7 @@ export default {
       other: {
         tempEingehend: false,
         tempAusgehend: true,
-        isEdit: false,
-        tabIndexConf: {}
+        isEdit: false
       },
 
       sent: false

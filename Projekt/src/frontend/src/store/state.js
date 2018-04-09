@@ -27,7 +27,7 @@ export default {
     identification: ''
   },
   operationList: [],
-  showLandingPage: true
+  showLandingPage: true,
   // default config, state = 0
   formConfig: {
     background: {

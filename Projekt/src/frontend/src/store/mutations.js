@@ -171,8 +171,6 @@ export const setDefaultFilters = (state) => {
     defFilter['operation'] = 'Alle'
   }
   state.filter = defFilter
-export const setDraft = (state, formdata) => {
-  state.draft = formdata
 }
 
 export const setFormConfig = (state, ticketState) => {
