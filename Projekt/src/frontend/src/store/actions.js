@@ -16,10 +16,11 @@ export const addFormData = (context, formData) => {
 }
 
 /**
+ * Action which writes a newly created document into QuitStore
  *
- * @param context
- * @param formData
- * @returns {*|Promise}
+ * @param context : connection to VueX store
+ * @param formData : object that will be inserted
+ * @returns {*|Promise} : Promise that can be handled externally
  */
 export const saveNewFormAction = (context, formData) => {
   let insertQuery = queryHelper.formdataToInsertQuery(formData)
@@ -27,9 +28,11 @@ export const saveNewFormAction = (context, formData) => {
   return quitstore.sendData(insertQuery)
 }
 
-/** Action which retrieves a SPARL SELECT query from SPARQL-Helper,
- *  sends it to QuitStore and modifies the received data to fit the
- *  layout of THWDashboard
+/**
+ * Action which retrieves a SPARL SELECT query from SPARQL-Helper,
+ * sends it to QuitStore and modifies the received data to fit the
+ * layout of THWDashboard
+ *
  * @param context : connection to VueX store
  */
 export const updateTicketListAction = (context) => {
@@ -71,10 +74,12 @@ export const updateTicketListAction = (context) => {
 }
 
 /**
+ * Action which retrieves all data regarding one created document,
+ * represented via an ID (suffix of URI)
  *
- * @param context
- * @param id
- * @returns {Promise<any>}
+ * @param context : connection to VueX store
+ * @param id : URI suffix,  pointing to object the data is received from
+ * @returns {Promise<any>} : Promise that can be handled externally
  */
 export const loadFormDataAction = (context, id) => {
   return new Promise((resolve, reject) => {
@@ -106,10 +111,13 @@ export const loadFormDataAction = (context, id) => {
 }
 
 /**
+ * Action that first retrieves all available data regarding one document
+ * then deletes all of this data from QuitStore and then writes all of the
+ * updated data into QuitStore
  *
- * @param context
- * @param formData
- * @returns {Promise<any>}
+ * @param context : connection to VueX store
+ * @param formData : updated document from THWForm.vue
+ * @returns {Promise<any>} : Promise that can be handled externally
  */
 export const updateFormDataAction = (context, formData) => {
   return new Promise((resolve, reject) => {
@@ -142,8 +150,9 @@ export const updateFormDataAction = (context, formData) => {
       })
   })
 }
-/** Action that draws all available operations from QuitStore, sorting them
- *  by name ascending, saving it in VueX store afterwards
+/**
+ * Action that draws all available operations from QuitStore, sorting them
+ * by name ascending, saving it in VueX store afterwards
  * @param context : connection to VueX store
  */
 export const getOperationsAction = (context) => {
@@ -151,172 +160,25 @@ export const getOperationsAction = (context) => {
   quitstore.getData(operationsQuery)
     .then((response) => {
       let op = parseResponse(response)
-      for (var i = op.length - 1; i > 0; i--) {
-        for (var j = 0; j < i; j++) {
+      for (let i = op.length - 1; i > 0; i--) {
+        for (let j = 0; j < i; j++) {
           if (op[i].operationName < op[j].operationName) {
-            var temp = op[j]
+            let temp = op[j]
             op[j] = op[i]
             op[i] = temp
           }
         }
       }
       context.commit('setOperationList', op)
-
-      console.log('test')
     })
     .catch((error) => {
       alert(error)
     })
 }
 
-export const setFilters = (context, newFilter) => {
-  context.state.filter = newFilter
-}
-
-/** Action that sets the Default Filters based on inputs in LandingPage
- *  like role and operation
- * @param context : connection to VueX store
- */
-export const setDefaultFilters = (context) => {
-  let role = context.state.user.role
-  let defFilter = {}
-  switch (role) {
-    case 'Sichter':
-      defFilter = {
-        s1: true,
-        s2: false,
-        s3: false,
-        s4: false,
-        s5: false,
-        s6: false,
-        s7: true,
-        s8: false,
-        s9: false,
-        s11: false,
-        s12: false,
-        s13: true,
-        s14: false,
-        s15: false
-      }
-      break
-    case 'LdF' :
-      defFilter = {
-        s1: false,
-        s2: false,
-        s3: true,
-        s4: false,
-        s5: true,
-        s6: false,
-        s7: false,
-        s8: false,
-        s9: false,
-        s11: true,
-        s12: false,
-        s13: false,
-        s14: false,
-        s15: false
-      }
-      break
-    case 'SGL' :
-      defFilter = {
-        s1: false,
-        s2: true,
-        s3: false,
-        s4: false,
-        s5: false,
-        s6: false,
-        s7: false,
-        s8: true,
-        s9: false,
-        s11: false,
-        s12: false,
-        s13: false,
-        s14: true,
-        s15: false
-      }
-      break
-    case 'Fernmelder' :
-      defFilter = {
-        s1: false,
-        s2: false,
-        s3: false,
-        s4: true,
-        s5: false,
-        s6: true,
-        s7: false,
-        s8: false,
-        s9: false,
-        s11: false,
-        s12: true,
-        s13: true,
-        s14: false,
-        s15: false
-      }
-      break
-    case 'Fachberater' :
-      defFilter = {
-        s1: false,
-        s2: false,
-        s3: false,
-        s4: false,
-        s5: false,
-        s6: false,
-        s7: false,
-        s8: true,
-        s9: false,
-        s11: false,
-        s12: false,
-        s13: false,
-        s14: true,
-        s15: false
-      }
-      break
-    case 'Verbindungsstelle' :
-      defFilter = {
-        s1: false,
-        s2: false,
-        s3: false,
-        s4: false,
-        s5: false,
-        s6: false,
-        s7: false,
-        s8: true,
-        s9: false,
-        s11: false,
-        s12: false,
-        s13: false,
-        s14: true,
-        s15: false
-      }
-      break
-    default :
-      defFilter = {
-        s1: false,
-        s2: false,
-        s3: false,
-        s4: false,
-        s5: false,
-        s6: false,
-        s7: false,
-        s8: false,
-        s9: false,
-        s11: false,
-        s12: false,
-        s13: false,
-        s14: false,
-        s15: false
-      }
-  }
-  defFilter['search'] = ''
-  if (context.state.user.operation.operationName !== '') {
-    defFilter['operation'] = context.state.user.operation.operationName
-  } else {
-    defFilter['operation'] = 'Alle'
-  }
-  context.commit('setFilters', defFilter)
-}
-
 /**
+ * Action which creates a new operation in QuitStore
+ *
  * @param context - vuex store context
  * @param {object} newOperation - current new operation to be stored */
 export const handleOperation = (context, newOperation) => {
@@ -327,6 +189,7 @@ export const handleOperation = (context, newOperation) => {
 
 /**
  * Sends a formdata object to the pdf service and opens the response in a new window
+ *
  * @param {*} context - vuex store context
  * @param {*} formdata - formdata object
  */

@@ -321,18 +321,13 @@
 </template>
 <script>
 import { Notification } from 'element-ui'
-import { mapActions } from 'vuex'
 
 export default {
   name: 'THWDashboard',
 
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.$store.dispatch('getOperationsAction')
-        .then(() => {
-          vm.$store.dispatch('updateTicketListAction')
-            .catch(error => alert(error))
-        })
+      vm.$store.dispatch('updateTicketListAction')
         .catch(error => alert(error))
     })
   },
@@ -361,10 +356,6 @@ export default {
   },
 
   methods: {
-    ...mapActions['setFilters,setDefaultFilters'],
-    /*  function that changes filters in vuex store, then calls
-        a function that updates dashboard
-    */
     showHideIncoming: function () {
       if (this.isIncoming) {
         this.isIncoming = false
@@ -379,22 +370,11 @@ export default {
         this.isOutgoing = true
       }
     },
-
-    changeFilters: function () {
-      this.$store
-        .dispatch('setFilters', this.filter)
-        .then(() => {
-          this.useFilters()
-          this.notifySuccess('Filter angewandt')
-        })
-        .catch((error) => alert(error))
-    },
     resetFilters: function () {
       this.$store
         .dispatch('setDefaultFilters')
         .then(() => {
           this.useFilters()
-          this.notifySuccess('Filter angewandt')
         })
         .catch((error) => alert(error))
     },
@@ -403,10 +383,9 @@ export default {
         works similar to beforeRouteEnter
     */
     useFilters: function () {
-      this.$store.dispatch('getOperationsAction')
+      this.$store.dispatch('updateTicketListAction')
         .then(() => {
-          this.$store.dispatch('updateTicketListAction')
-            .catch(error => alert(error))
+          this.notifySuccess('Filter angewandt')
         })
         .catch(error => alert(error))
     },
@@ -419,7 +398,7 @@ export default {
         showClose: false
       })
     },
-    //  formatter that returns the fitting icons for all different states
+    // formatter that returns the fitting icons for all different states
     formatState (row, column, cellValue) {
       switch (cellValue) {
         case 1:

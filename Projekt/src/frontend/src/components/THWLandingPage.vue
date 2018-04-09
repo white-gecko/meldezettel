@@ -247,7 +247,6 @@ export default {
   mounted () {
     this.$store.dispatch('getOperationsAction')
       .then(() => {
-        console.log('Hallo')
         this.setStoredUserData()
       })
   },
@@ -279,15 +278,12 @@ export default {
     },
     // stores userData in store/state.js (vuex)
     submitUser () {
-      console.log(JSON.stringify(this.userData))
       this.$store.commit('setUser', this.userData)
-      this.$store.dispatch('setDefaultFilters')
+      this.$store.commit('setDefaultFilters')
+      this.$store.dispatch('updateTicketListAction')
         .then(() => {
-          this.$store.dispatch('updateTicketListAction')
-            .then(() => {
-              this.notifySuccess('Eingaben erfolgreich gespeichert')
-              this.$store.commit('setShowLandingPage')
-            })
+          this.notifySuccess('Eingaben erfolgreich gespeichert')
+          this.$store.commit('setShowLandingPage')
         })
     },
     // resets inputs
@@ -305,7 +301,6 @@ export default {
     },
     // handle selection of operation in operations table
     selectOperation (selectedOperation) {
-      console.log(JSON.stringify(selectedOperation))
       this.userData.operation = selectedOperation
       this.notifySuccess('Einsatz ausgewählt.')
       this.choosingOperation = false
