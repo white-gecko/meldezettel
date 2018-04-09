@@ -199,7 +199,6 @@
 <script>
 
 import { Notification } from 'element-ui'
-import { mapActions } from 'vuex'
 
 const roleOptions =
 ['Sichter', 'LdF', 'Fernmelder', 'SGL', 'Fachberater', 'Verbindungsstelle']
@@ -252,8 +251,6 @@ export default {
   },
 
   methods: {
-
-    ...mapActions(['handleOperation']),
 
     // method to call stored userData from vuex
     setStoredUserData () {
