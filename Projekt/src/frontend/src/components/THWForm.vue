@@ -2319,7 +2319,7 @@ export default {
   }
 
   .overlay {
-    /* background-color: rgba(0, 0, 0, 0.10); */
+    background-color: rgba(0, 0, 0, 0.10);
     pointer-events: none;
     z-index: 1;
     width: 100%;
