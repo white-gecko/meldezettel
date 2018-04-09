@@ -11,7 +11,7 @@
                   max-height="500"
                   border
                   header-cell-style="
-                   color:black;
+                   color: var(--primaryTextColor);
                    background-color: var(--formBlueColor)">
           <el-table-column min-width="6%">
             <template slot-scope="scope" width="100%">
@@ -34,15 +34,15 @@
           <el-table-column prop="numberTB"
                            label="TB Nr."
                            align="center"
-                           min-width="6%"></el-table-column>
+                           min-width="6.5%"></el-table-column>
 
           <el-table-column prop="creator"
                            label="Verf."
-                           min-width="6%"></el-table-column>
+                           min-width="7%"></el-table-column>
 
           <el-table-column prop="docketIdentification"
                            label="Sichter"
-                           min-width="6%"></el-table-column>
+                           min-width="7%"></el-table-column>
 
           <el-table-column :formatter="formatDate"
                            prop="date"
@@ -54,16 +54,16 @@
                            prop="time"
                            label="Uhrzeit"
                            align="center"
-                           min-width="6%"></el-table-column>
+                           min-width="7%"></el-table-column>
 
           <el-table-column prop="receiverName"
                            label="Empfänger"
-                           min-width="20%"></el-table-column>
+                           min-width="18%"></el-table-column>
 
           <el-table-column :formatter="formatContent"
                            prop="content"
                            label="Kurzinhalt"
-                           min-width="35%"></el-table-column>
+                           min-width="33.5%"></el-table-column>
 
         </el-table>
       </div>
@@ -352,7 +352,7 @@
 
             <div class="dashboardButtonWrapper">
               <div class="dashboardButton"
-                   @click="changeFilters()">
+                   @click="useFilters()">
                 <div class="dashboardButtonLabel">
                   Anwenden
                 </div>
