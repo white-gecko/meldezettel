@@ -81,8 +81,8 @@ export default {
     --lightNeutralColor: white;
 
     /*shadow colors*/
-    --darkShadowColor: #666666;
-    --middleShadowColor: #999999;
+    --darkShadowColor: rgba( 0, 0, 0, 0.3);
+    --middleShadowColor: rgba( 0, 0, 0, 0.3);
     --lightShadowColor: rgba( 0, 0, 0, 0.3);
 
     /*font-specific parameters*/
@@ -90,9 +90,9 @@ export default {
     --mainFont: Helvetica;
 
     /*font-sizes*/
-    --bigTitleSize: 20px;
-    --titleSize: 18px;
-    --smallTitleSize: 16px;
+    --bigTitleSize: 100%;
+    --titleSize: 100%;
+    --smallTitleSize: 100%;
     --bodySize: 14px;
     --smallBodySize: 13px;
     --supplementaryTextSize: 12px;
@@ -102,6 +102,12 @@ export default {
     --regularTextColor: #606266;
     --secondaryTextColor: #909399;
     --placeholderTextColor: #C0C4CC;
+  }
+  /* border-size setting(s) for defining overflow behaviour */
+  .hasBorderSizeA {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
 
   /*
@@ -124,32 +130,27 @@ export default {
    */
   .outerWrapper {
     background-color: var(--darkNeutralColor);
-    font-family: var(--mainFont);
-    font-size: var(--smallTitleSize);
+    font: var(--smallTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
     flex-grow: 1;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box
-
+    box-sizing: border-box;
   }
 
   .middleWrapper {
     background-color: var(--middleNeutralColor);
-    font-family: var(--mainFont);
-    font-size: var(--smallTitleSize);
+    font: var(--smallTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
     flex-grow: 1;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box
-
+    box-sizing: border-box;
   }
 
   .innerWrapper {
     background-color: var(--semiLightNeutralColor);
-    font-family: var(--mainFont);
-    font-size: var(--smallTitleSize);
+    font: var(--smallTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
     position: relative;
     flex-grow: 1;
@@ -158,8 +159,7 @@ export default {
     box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box
-
+    box-sizing: border-box;
   }
 
   /*CSS-reset:

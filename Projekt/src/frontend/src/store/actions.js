@@ -16,10 +16,11 @@ export const addFormData = (context, formData) => {
 }
 
 /**
+ * Action which writes a newly created document into QuitStore
  *
- * @param context
- * @param formData
- * @returns {*|Promise}
+ * @param context : connection to VueX store
+ * @param formData : object that will be inserted
+ * @returns {*|Promise} : Promise that can be handled externally
  */
 export const saveNewFormAction = (context, formData) => {
   let insertQuery = queryHelper.formdataToInsertQuery(formData)
@@ -28,40 +29,62 @@ export const saveNewFormAction = (context, formData) => {
 }
 
 /**
+ * Action which retrieves a SPARL SELECT query from SPARQL-Helper,
+ * sends it to QuitStore and modifies the received data to fit the
+ * layout of THWDashboard
  *
- * @param context
+ * @param context : connection to VueX store
  */
 export const updateTicketListAction = (context) => {
-  let filters = context.state.filter
-  let getAllDataQuery = queryHelper.dashboardQuery(filters)
-  quitstore.getData(getAllDataQuery)
-    .then(response => {
-      let responseData = parseResponse(response)
-      let formatted = []
-      for (let i = 0; i < responseData.length; i++) {
-        let row = responseData[i]
-        if (responseData[i].ticketState < 10) {
-          row.creator = responseData[i].identification
-          row.date = responseData[i].tertiaryDate
-          row.time = responseData[i].tertiaryTime
-        } else {
-          row.creator = responseData[i].primaryHdZ
-          row.date = responseData[i].primaryDate
-          row.time = responseData[i].primaryTime
+  return new Promise((resolve, reject) => {
+    let filters = context.state.filter
+    let getAllDataQuery = queryHelper.dashboardQuery(filters)
+    quitstore.getData(getAllDataQuery)
+      .then(response => {
+        let responseData = parseResponse(response)
+        let formatted = []
+        // setting creator, date and time depending on if
+        // document is incoming or outgoing
+        for (let i = 0; i < responseData.length; i++) {
+          let row = responseData[i]
+          if (responseData[i].ticketState < 10) {
+            row.creator = responseData[i].identification
+            row.date = responseData[i].tertiaryDate
+            row.time = responseData[i].tertiaryTime
+          } else {
+            row.creator = responseData[i].primaryHdZ
+            row.date = responseData[i].primaryDate
+            row.time = responseData[i].primaryTime
+          }
+          formatted.push(row)
         }
-        formatted.push(row)
-      }
-      responseData = formatted
-      context.commit('setTicketList', responseData)
-    })
-    .catch(error => console.log(error))
+        // sorting documents ascending by creation date
+        for (var i = formatted.length - 1; i > 0; i--) {
+          for (var j = 0; j < i; j++) {
+            if (formatted[i].id.substr(-13, 13) >
+              formatted[j].id.substr(-13, 13)) {
+              var temp = formatted[j]
+              formatted[j] = formatted[i]
+              formatted[i] = temp
+            }
+          }
+        }
+        context.commit('setTicketList', formatted)
+        return resolve()
+      })
+      .catch(() => {
+        return reject(new Error('Fehler beim Laden der Dokumente'))
+      })
+  })
 }
 
 /**
+ * Action which retrieves all data regarding one created document,
+ * represented via an ID (suffix of URI)
  *
- * @param context
- * @param id
- * @returns {Promise<any>}
+ * @param context : connection to VueX store
+ * @param id : URI suffix,  pointing to object the data is received from
+ * @returns {Promise<any>} : Promise that can be handled externally
  */
 export const loadFormDataAction = (context, id) => {
   return new Promise((resolve, reject) => {
@@ -87,16 +110,19 @@ export const loadFormDataAction = (context, id) => {
       })
       .catch((error) => {
         console.error(error)
-        return reject(new Error('Fehler beim laden des Dokuments'))
+        return reject(new Error('Fehler beim Laden des Dokuments'))
       })
   })
 }
 
 /**
+ * Action that first retrieves all available data regarding one document
+ * then deletes all of this data from QuitStore and then writes all of the
+ * updated data into QuitStore
  *
- * @param context
- * @param formData
- * @returns {Promise<any>}
+ * @param context : connection to VueX store
+ * @param formData : updated document from THWForm.vue
+ * @returns {Promise<any>} : Promise that can be handled externally
  */
 export const updateFormDataAction = (context, formData) => {
   return new Promise((resolve, reject) => {
@@ -129,151 +155,38 @@ export const updateFormDataAction = (context, formData) => {
       })
   })
 }
-
-export const setFilters = (context, newFilter) => {
-  context.state.filter = newFilter
-}
-
-export const setDefaultFilters = (context) => {
-  let role = context.state.user.role
-  let defFilter = {}
-  switch (role) {
-    case 'Sichter':
-      defFilter = {
-        s1: true,
-        s2: false,
-        s3: false,
-        s4: false,
-        s5: false,
-        s6: false,
-        s7: true,
-        s8: false,
-        s9: false,
-        s11: false,
-        s12: false,
-        s13: true,
-        s14: false,
-        s15: false
-      }
-      break
-    case 'LdF' :
-      defFilter = {
-        s1: false,
-        s2: false,
-        s3: true,
-        s4: false,
-        s5: true,
-        s6: false,
-        s7: false,
-        s8: false,
-        s9: false,
-        s11: true,
-        s12: false,
-        s13: false,
-        s14: false,
-        s15: false
-      }
-      break
-    case 'SGL' :
-      defFilter = {
-        s1: false,
-        s2: true,
-        s3: false,
-        s4: false,
-        s5: false,
-        s6: false,
-        s7: false,
-        s8: true,
-        s9: false,
-        s11: false,
-        s12: false,
-        s13: false,
-        s14: true,
-        s15: false
-      }
-      break
-    case 'Fernmelder' :
-      defFilter = {
-        s1: false,
-        s2: false,
-        s3: false,
-        s4: true,
-        s5: false,
-        s6: true,
-        s7: false,
-        s8: false,
-        s9: false,
-        s11: false,
-        s12: true,
-        s13: true,
-        s14: false,
-        s15: false
-      }
-      break
-    case 'Fachberater' :
-      defFilter = {
-        s1: false,
-        s2: false,
-        s3: false,
-        s4: false,
-        s5: false,
-        s6: false,
-        s7: false,
-        s8: true,
-        s9: false,
-        s11: false,
-        s12: false,
-        s13: false,
-        s14: true,
-        s15: false
-      }
-      break
-    case 'Verbindungsstelle' :
-      defFilter = {
-        s1: false,
-        s2: false,
-        s3: false,
-        s4: false,
-        s5: false,
-        s6: false,
-        s7: false,
-        s8: true,
-        s9: false,
-        s11: false,
-        s12: false,
-        s13: false,
-        s14: true,
-        s15: false
-      }
-      break
-    default :
-      defFilter = {
-        s1: false,
-        s2: false,
-        s3: false,
-        s4: false,
-        s5: false,
-        s6: false,
-        s7: false,
-        s8: false,
-        s9: false,
-        s11: false,
-        s12: false,
-        s13: false,
-        s14: false,
-        s15: false
-      }
-  }
-  defFilter['search'] = ''
-  if (typeof (context.state.user.operation.operationName) !== 'undefined') {
-    defFilter['operation'] = context.state.user.operation.operationName
-  } else {
-    defFilter['operation'] = 'Alle'
-  }
-  context.commit('setFilters', defFilter)
+/**
+ * Action that draws all available operations from QuitStore, sorting them
+ * by name ascending, saving it in VueX store afterwards
+ * @param context : connection to VueX store
+ */
+export const getOperationsAction = (context) => {
+  return new Promise((resolve, reject) => {
+    let operationsQuery = queryHelper.operationsQuery()
+    quitstore.getData(operationsQuery)
+      .then((response) => {
+        let op = parseResponse(response)
+        for (let i = op.length - 1; i > 0; i--) {
+          for (let j = 0; j < i; j++) {
+            if (op[i].operationName < op[j].operationName) {
+              let temp = op[j]
+              op[j] = op[i]
+              op[i] = temp
+            }
+          }
+        }
+        context.commit('setOperationList', op)
+        return resolve('test')
+      })
+      .catch((error) => {
+        return reject(error)
+      })
+  })
 }
 
 /**
+ * Action which creates a new operation in QuitStore
+ *
  * @param context - vuex store context
  * @param {object} newOperation - current new operation to be stored */
 export const handleOperation = (context, newOperation) => {
@@ -284,6 +197,7 @@ export const handleOperation = (context, newOperation) => {
 
 /**
  * Sends a formdata object to the pdf service and opens the response in a new window
+ *
  * @param {*} context - vuex store context
  * @param {*} formdata - formdata object
  */
