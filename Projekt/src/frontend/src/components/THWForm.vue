@@ -295,7 +295,7 @@
             <!--sectionTDE-->
             <div class="
                   middleWrapper
-                  topTopRight" style="padding: 0 0 5px 0;">
+                  topTopRight">
 
               <!--input-complex ("Technisches Betriebsbuch")-->
               <div class="
@@ -307,7 +307,7 @@
                 <div class="
                         inputWrapper
                         flexContainerFormA"
-                     style="margin: 45px 0 42px 0; height: 48px">
+                     style="margin: 45px 0 45px 0; height: 48px">
                   <div class="inputSelectionHighlight"
                        style="height: 40px"></div>
                   <label class="inputLabel"
@@ -2093,7 +2093,9 @@ export default {
     margin: 0 0 0 0;
   }
   .topTopRight {
+    height: 100%;
     width: 20%;
+    background-color: var(--middleNeutralColor);
     padding: 0 0 5px 0;
     margin: 0 0 0 0;
   }
@@ -2146,7 +2148,7 @@ export default {
     margin: 0 0 0 0;
   }
   .inputTB {
-
+    height: 100%;
     width: 100%;
     padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
@@ -2423,7 +2425,7 @@ export default {
   }
 
   .overlay {
-    /* background-color: rgba(0, 0, 0, 0.15); */
+    background-color: rgba(0, 0, 0, 0.15);
     pointer-events: none;
     z-index: 1;
     width: 100%;
