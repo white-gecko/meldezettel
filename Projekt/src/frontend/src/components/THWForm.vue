@@ -1,34 +1,33 @@
 <template>
-  <div class="flexContainerFormA"
-       style="flex-wrap: nowrap">
+  <div class="flexContainerFormA">
     <!--main-form-->
     <div class="
           formWrapper
           hasShadowFormA">
-      <el-form ref="form" :model="formdata"
-      :class="{
-        'is-blue': isBlue,
-        'is-green': isGreen,
-        'is-yellow': isYellow,
-        'is-red': isRed,
-        'form, flexContainerFormB': true
-        }">
+      <el-form class="
+                form
+                flexContainerFormB"
+               ref="form"
+               :model="formdata"
+               :class="{
+                'is-blue': isBlue,
+                'is-green': isGreen,
+                'is-yellow': isYellow,
+                'is-red': isRed
+                }">
 
         <!--top-section-->
         <div class="
               outerWrapper
-              hasMarginFormA
-              hasPaddingFormA
-              flexContainerFormB"
-             style="padding-top: 5px">
+              hasMeasurmentsFormA
+              flexContainerFormB">
 
           <div class="flexContainerFormA">
 
             <!--sectionTABC-->
             <div class="
                   middleWrapper
-                  hasMarginFormB
-                  hasPaddingFormB
+                  topTopLeft
                   flexContainerFormB">
 
               <!--checkbox-group (message-type)-->
@@ -37,41 +36,69 @@
                     checkboxgroupMTTop">
                 <div class="overlay" v-show="!checkboxGroupTop"></div>
                 <div class="flexContainerFormC">
-                  <label>
-                    <input id="radioTop"
-                           type="checkbox"
-                           v-model="formdata.topRadio"
-                           :tabindex="other.tabIndexConf.topRadio"/>
-                    Funk
-                  </label>
-                  <label>
-                    <input id="phoneTop"
-                           type="checkbox"
-                           v-model="formdata.topPhone"
-                           :tabindex="other.tabIndexConf.topPhone"/>
-                    Telefon
-                  </label>
-                  <label>
-                    <input id="faxTop"
-                           type="checkbox"
-                           v-model="formdata.topFax"
-                           :tabindex="other.tabIndexConf.topFax"/>
-                    Telefax
-                  </label>
-                  <label>
-                    <input id="DFUTop"
-                           type="checkbox"
-                           v-model="formdata.topDFU"
-                           :tabindex="other.tabIndexConf.topDFU"/>
-                    DFÜ
-                  </label>
-                  <label>
-                    <input id="courierTop"
-                           type="checkbox"
-                           v-model="formdata.topCourier"
-                           :tabindex="other.tabIndexConf.topCourier"/>
-                    Kurier/Melder
-                  </label>
+
+                  <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                       style="margin-left: 10px">
+                    <label class="formControl formControl-checkbox">
+                      Funk
+                      <input type="checkbox"
+                             v-model="formdata.topRadio"
+                             :tabindex="other.tabIndexConf.topRadio"/>
+                      <div class="formControl_indicator"></div>
+                    </label>
+                  </div>
+
+                  <div class="
+                        formCheckbox
+                        flexContainerFormA">
+                    <label class="formControl formControl-checkbox">
+                      Telefon
+                      <input type="checkbox"
+                             v-model="formdata.topPhone"
+                             :tabindex="other.tabIndexConf.topPhone"/>
+                      <div class="formControl_indicator"></div>
+                    </label>
+                  </div>
+
+                  <div class="
+                        formCheckbox
+                        flexContainerFormA">
+                    <label class="formControl formControl-checkbox">
+                      Telefax
+                      <input type="checkbox"
+                             v-model="formdata.topFax"
+                             :tabindex="other.tabIndexConf.topFax"/>
+                      <div class="formControl_indicator"></div>
+                    </label>
+                  </div>
+
+                  <div class="
+                        formCheckbox
+                        flexContainerFormA">
+                    <label class="formControl formControl-checkbox">
+                      DFÜ
+                      <input type="checkbox"
+                             v-model="formdata.topDFU"
+                             :tabindex="other.tabIndexConf.topDFU"/>
+                      <div class="formControl_indicator"></div>
+                    </label>
+                  </div>
+
+                  <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                       style="margin-right: 10px">
+                    <label class="formControl formControl-checkbox">
+                      Kurier/Melder
+                      <input type="checkbox"
+                             v-model="formdata.topCourier"
+                             :tabindex="other.tabIndexConf.topCourier"/>
+                      <div class="formControl_indicator"></div>
+                    </label>
+                  </div>
+
                 </div>
               </div>
 
@@ -87,7 +114,9 @@
                   <label class="headerFormB">Aufnahmevermerk</label>
                   <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-left: 5px;">
+                    <div class="inputSelectionHighlight"></div>
                     <label class="inputLabel"
                            for="primaryDate">
                       Datum
@@ -96,13 +125,16 @@
                            class="
                             inputWithLabel
                             hasMinMaxA"
+                           type="text"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryDate"
                            :tabindex="other.tabIndexConf.incomingDate"/>
                   </div>
                   <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-left: 5px;">
+                    <div class="inputSelectionHighlight"></div>
                     <label class="inputLabel"
                            for="primaryTime">
                       Zeit
@@ -117,10 +149,12 @@
                   </div>
                   <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                       style="margin-left: 5px;">
+                    <div class="inputSelectionHighlight"></div>
                     <label class="inputLabel"
                            for="primaryHdZ">
-                      Hdz
+                      HdZ
                     </label>
                     <input id="primaryHdZ"
                            class="
@@ -139,12 +173,14 @@
                     flexContainerFormB">
                   <div class="overlay" v-show="!annahmeBefoerderung"></div>
                   <label class="headerFormA">Ausgehend</label>
-                  <div class="flexContainerFormA">
-                    <div class="flexContainerFormB">
+                  <div class="flexContainerFormC">
+                    <div class="flexContainerFormB" style="padding-right: 5px">
                       <label class="headerFormB">Annahmevermerk</label>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="margin-left: 5px;">
+                        <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="secondaryDate">
                           Datum
@@ -159,7 +195,9 @@
                       </div>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="margin-left: 5px;">
+                        <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="secondaryTime">
                           Zeit
@@ -174,25 +212,29 @@
                       </div>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="margin-left: 5px;">
+                        <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="secondaryHdZ">
-                          Hdz
+                          HdZ
                         </label>
                         <input id="secondaryHdZ"
                                class="
                                 inputWithLabel
                                 hasMinMaxA"
                                :disabled="other.tempEingehend"
-                               v-model="formdata.primaryHdZ"
+                               v-model="formdata.secondaryHdZ"
                                :tabindex="other.tabIndexConf.outboundAccHdZ"/>
                       </div>
                     </div>
-                    <div class="flexContainerFormB">
+                    <div class="flexContainerFormB" style="padding-left: 5px">
                       <label class="headerFormB">Beförderungsvermerk</label>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="margin-left: 5px;">
+                        <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="tertiaryDate">
                           Datum
@@ -208,7 +250,9 @@
                       </div>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="margin-left: 5px;">
+                        <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="tertiaryTime">
                           Zeit
@@ -224,10 +268,13 @@
                       </div>
                       <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                           style="
+                            margin-left: 5px;">
+                        <div class="inputSelectionHighlight"></div>
                         <label class="inputLabel"
                                for="tertiaryHdZ">
-                          Hdz
+                          HdZ
                         </label>
                         <input id="tertiaryHdZ"
                                class="
@@ -248,8 +295,7 @@
             <!--sectionTDE-->
             <div class="
                   middleWrapper
-                  hasMarginFormB
-                  hasPaddingFormB">
+                  topTopRight">
 
               <!--input-complex ("Technisches Betriebsbuch")-->
               <div class="
@@ -261,7 +307,9 @@
                 <div class="
                         inputWrapper
                         flexContainerFormA"
-                     style="margin: 30px 0 0 20px;">
+                     style="margin: 50px 0 42px 0; height: 48px">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
                          for="numberTB">
                     Nr.
@@ -273,22 +321,39 @@
                          v-model="formdata.numberTB"
                          :tabindex="other.tabIndexConf.lbNumber"/>
                 </div>
-                <label style="margin: 30px 0 0 20px;">
-                  <input id="checkboxEingehendTop"
-                         @change="checkIn()"
-                         type="checkbox"
-                         v-model="other.tempEingehend"
-                         :tabindex="other.tabIndexConf.selectIncoming"/>
-                  Eingehend
-                </label>
-                <label style="margin: 30px 0 0 20px;">
-                  <input id="checkboxAusgehendTop"
-                         @change="checkOut();"
-                         type="checkbox"
-                         v-model="other.tempAusgehend"
-                         :tabindex="other.tabIndexConf.selectOutbound"/>
-                  Ausgehend
-                </label>
+
+                <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                     style="margin-left: 0">
+                  <label class="formControl formControl-checkbox">
+                    Eingehend
+                    <input id="checkboxEingehendTop"
+                           @change="checkIn()"
+                           type="checkbox"
+                           v-model="other.tempEingehend"
+                           :disabled="formdata.ticketState % 10 != 0"
+                           :tabindex="other.tabIndexConf.selectIncoming"/>
+                    <div class="formControl_indicator"></div>
+                  </label>
+                </div>
+
+                <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                     style="margin-left: 0">
+                  <label class="formControl formControl-checkbox">
+                    Ausgehend
+                    <input id="checkboxAusgehendTop"
+                           @change="checkOut();"
+                           type="checkbox"
+                           v-model="other.tempAusgehend"
+                           :disabled="formdata.ticketState % 10 != 0"
+                           :tabindex="other.tabIndexConf.selectOutbound"/>
+                    <div class="formControl_indicator"></div>
+                  </label>
+                </div>
+
               </div>
 
             </div>
@@ -298,8 +363,7 @@
           <!--sectionTF-->
           <div class="
                 middleWrapper
-                hasMarginFormB
-                hasPaddingFormB">
+                topBot">
 
             <!--input-complex ("Rufname Gegenstelle/Spruchkopf") -->
             <div class="
@@ -309,9 +373,9 @@
               <div class="
                         inputWrapper
                         flexContainerFormA">
+                <div class="inputSelectionHighlight"></div>
                 <label class="inputLabel"
-                       for="receiverName"
-                       style="min-width: 270px">
+                       for="receiverName">
                   Rufname der Gegenstelle/Spruchkopf
                 </label>
                 <input id="receiverName"
@@ -330,58 +394,84 @@
         <!--mid-section-->
         <div class="
               outerWrapper
-              hasMarginFormA
-              hasPaddingFormA
+              hasMeasurmentsFormA
               flexContainerFormB">
 
           <!--sectionMABCDEF-->
           <div class="
                 middleWrapper
-                hasMarginFormB
-                hasPaddingFormB
+                midTop
                 flexContainerFormB">
 
-            <!--checkboxgroup (message-type)-->
+            <!--checkbox-group (message-type)-->
             <div class="
                     innerWrapper
                     checkboxgroupMTMid">
               <div class="overlay" v-show="!checkboxgroupMiddle"></div>
               <div class="flexContainerFormC">
-                <label>
-                  <input id="radioMid"
-                         type="checkbox"
-                         v-model="formdata.midRadio"
-                         :tabindex="other.tabIndexConf.midRadio"/>
-                  Funk
-                </label>
-                <label>
-                  <input id="phoneMid"
-                         type="checkbox"
-                         v-model="formdata.midPhone"
-                         :tabindex="other.tabIndexConf.midPhone"/>
-                  Telefon
-                </label>
-                <label>
-                  <input id="faxMid"
-                         type="checkbox"
-                         v-model="formdata.midFax"
-                         :tabindex="other.tabIndexConf.midFax"/>
-                  Telefax
-                </label>
-                <label>
-                  <input id="DFUMid"
-                         type="checkbox"
-                         v-model="formdata.midDFU"
-                         :tabindex="other.tabIndexConf.midDFU"/>
-                  DFÜ
-                </label>
-                <label>
-                  <input id="courierMid"
-                         type="checkbox"
-                         v-model="formdata.midCourier"
-                         :tabindex="other.tabIndexConf.midCourier"/>
-                  Kurier/Melder
-                </label>
+
+                <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                     style="margin-left: 10px">
+                  <label class="formControl formControl-checkbox">
+                    Funk
+                    <input type="checkbox"
+                           v-model="formdata.midRadio"
+                           :tabindex="other.tabIndexConf.midRadio"/>
+                    <div class="formControl_indicator"></div>
+                  </label>
+                </div>
+
+                <div class="
+                        formCheckbox
+                        flexContainerFormA">
+                  <label class="formControl formControl-checkbox">
+                    Telefon
+                    <input type="checkbox"
+                           v-model="formdata.midPhone"
+                           :tabindex="other.tabIndexConf.midPhone"/>
+                    <div class="formControl_indicator"></div>
+                  </label>
+                </div>
+
+                <div class="
+                        formCheckbox
+                        flexContainerFormA">
+                  <label class="formControl formControl-checkbox">
+                    Telefax
+                    <input type="checkbox"
+                           v-model="formdata.midFax"
+                           :tabindex="other.tabIndexConf.midFax"/>
+                    <div class="formControl_indicator"></div>
+                  </label>
+                </div>
+
+                <div class="
+                        formCheckbox
+                        flexContainerFormA">
+                  <label class="formControl formControl-checkbox">
+                    DFÜ
+                    <input type="checkbox"
+                           v-model="formdata.midDFU"
+                           :tabindex="other.tabIndexConf.midDFU"/>
+                    <div class="formControl_indicator"></div>
+                  </label>
+                </div>
+
+                <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                     style="margin-right: 10px">
+                  <label class="formControl formControl-checkbox">
+                    Kurier/Melder
+                    <input type="checkbox"
+                           v-model="formdata.midCourier"
+                           :tabindex="other.tabIndexConf.midCourier"/>
+                    <div class="formControl_indicator"></div>
+                  </label>
+                </div>
+
               </div>
             </div>
 
@@ -393,20 +483,33 @@
                     checkboxgroupDS">
                 <div class="overlay" v-show="!durchsageSpruch"></div>
                 <div class="flexContainerFormC">
-                  <label>
-                    <input id="callAnnouncement"
-                           type="checkbox"
-                           v-model="formdata.callAnnouncement"
-                           :tabindex="other.tabIndexConf.callAnnouncement"/>
-                    DURCHSAGE
-                  </label>
-                  <label>
-                    <input id="callMessage"
-                           type="checkbox"
-                           v-model="formdata.callMessage"
-                           :tabindex="other.tabIndexConf.callMessage"/>
-                    Spruch
-                  </label>
+
+                  <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                       style="margin-left: 10px">
+                    <label class="formControl formControl-checkbox">
+                      DURCHSAGE
+                      <input type="checkbox"
+                             v-model="formdata.callAnnouncement"
+                             :tabindex="other.tabIndexConf.callAnnouncement"/>
+                      <div class="formControl_indicator"></div>
+                    </label>
+                  </div>
+
+                  <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                       style="margin-right: 10px">
+                    <label class="formControl formControl-checkbox">
+                      Spruch
+                      <input type="checkbox"
+                             v-model="formdata.callMessage"
+                             :tabindex="other.tabIndexConf.callMessage"/>
+                      <div class="formControl_indicator"></div>
+                    </label>
+                  </div>
+
                 </div>
               </div>
 
@@ -416,20 +519,33 @@
                     checkboxgroupSB">
                 <div class="overlay" v-show="!sofortBlitz"></div>
                 <div class="flexContainerFormC">
-                  <label>
-                    <input id="priorityInstant"
-                           type="checkbox"
-                           v-model="formdata.priorityInstant"
-                           :tabindex="other.tabIndexConf.priorityInstant"/>
-                    Sofort
-                  </label>
-                  <label>
-                    <input id="priorityFlash"
-                           type="checkbox"
-                           v-model="formdata.priorityFlash"
-                           :tabindex="other.tabIndexConf.priorityFlash"/>
-                    Blitz
-                  </label>
+
+                  <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                       style="margin-left: 10px">
+                    <label class="formControl formControl-checkbox">
+                      Sofort
+                      <input type="checkbox"
+                             v-model="formdata.priorityInstant"
+                             :tabindex="other.tabIndexConf.priorityInstant"/>
+                      <div class="formControl_indicator"></div>
+                    </label>
+                  </div>
+
+                  <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                       style="margin-right: 10px">
+                    <label class="formControl formControl-checkbox">
+                      Blitz
+                      <input type="checkbox"
+                             v-model="formdata.priorityFlash"
+                             :tabindex="other.tabIndexConf.priorityFlash"/>
+                      <div class="formControl_indicator"></div>
+                    </label>
+                  </div>
+
                 </div>
               </div>
 
@@ -444,7 +560,10 @@
                 <div class="overlay" v-show="!rufnummer"></div>
                 <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                     style="height: 48px">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
                          for="callNumber">
                     Ruf Nr.
@@ -465,7 +584,10 @@
                 <div class="overlay" v-show="!anschrift"></div>
                 <div class="
                         inputWrapper
-                        flexContainerFormA">
+                        flexContainerFormA"
+                     style="height: 48px">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
                          for="address">
                     Anschrift
@@ -485,13 +607,21 @@
                     inputGESP">
                 <div class="overlay"
                      v-show="!gespraechsnotiz"></div>
-                <label>
-                  <input id="talkNote"
-                         type="checkbox"
-                         v-model="formdata.talkNote"
-                         :tabindex="other.tabIndexConf.conversationNote"/>
-                  GESPRÄCHSNOTIZ
-                </label>
+
+                <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                     style="margin-left: 0">
+                  <label class="formControl formControl-checkbox">
+                    GESPRÄCHSNOTIZ
+                    <input id="talkNote"
+                           type="checkbox"
+                           v-model="formdata.talkNote"
+                           :tabindex="other.tabIndexConf.conversationNote"/>
+                    <div class="formControl_indicator"></div>
+                  </label>
+                </div>
+
               </div>
 
             </div>
@@ -501,8 +631,7 @@
           <!--sectionMG-->
           <div class="
                 middleWrapper
-                hasMarginFormB
-                hasPaddingFormB">
+                midMid">
 
             <!--input-complex ("Inhalt")-->
             <div class="
@@ -511,14 +640,15 @@
               <div class="overlay" v-show="!inhalt"></div>
               <div class="
                         inputWrapper
-                        flexContainerFormA"
-                   style="height: auto">
+                        flexContainerFormA">
+                <div class="inputSelectionHighlight"></div>
                 <textarea id="content"
+                          style="
+                            width: 100%;
+                            min-height: 100px;
+                            padding-top: 10px;"
                           placeholder="Inhalt"
-                          rows="5"
-                          class="
-                            inputWithLabel
-                            hasMinMaxD"
+                          class="inputWithLabel"
                           v-model="formdata.content"
                           :tabindex="other.tabIndexConf.content"/>
               </div>
@@ -529,8 +659,7 @@
           <!--sectionMHIJK-->
           <div class="
                 middleWrapper
-                hasMarginFormB
-                hasPaddingFormB">
+                midBot">
 
             <!--input-complex ("Absender")-->
             <div class="
@@ -540,6 +669,7 @@
               <div class="
                         inputWrapper
                         flexContainerFormA">
+                <div class="inputSelectionHighlight"></div>
                 <label class="inputLabel"
                        for="sender">
                   Absender
@@ -564,7 +694,12 @@
                 <div class="
                         inputWrapper
                         flexContainerFormA">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
+                         style="
+                          width: 55%;
+                          min-width: 140px;"
                          for="createTime">
                     Abfassungszeit
                   </label>
@@ -572,6 +707,7 @@
                          class="
                           inputWithLabel
                           hasMinMaxA"
+                         style="width: 45%"
                          v-model="formdata.createTime"
                          :tabindex="other.tabIndexConf.timeCreate"/>
                 </div>
@@ -585,6 +721,8 @@
                 <div class="
                         inputWrapper
                         flexContainerFormA">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
                          for="identification">
                     Zeichen
@@ -606,6 +744,8 @@
                 <div class="
                         inputWrapper
                         flexContainerFormA">
+                  <div class="inputSelectionHighlight"
+                       style="height: 40px"></div>
                   <label class="inputLabel"
                          for="position">
                     Funktion
@@ -628,15 +768,13 @@
         <!--bot-section-->
         <div class="
               outerWrapper
-              hasMarginFormA
-              hasPaddingFormA
+              hasMeasurmentsFormA
               flexContainerFormA">
 
           <!--sectionBABCD-->
           <div class="
                 middleWrapper
-                hasMarginFormB
-                hasPaddingFormB
+                botLeft
                 flexContainerFormB">
 
             <!--input-complex ("Quittung")-->
@@ -649,6 +787,7 @@
               <div class="
                         inputWrapper
                         flexContainerFormA">
+                <div class="inputSelectionHighlight"></div>
                 <label class="inputLabel"
                        for="docketTime">
                   Zeit
@@ -663,6 +802,7 @@
               <div class="
                         inputWrapper
                         flexContainerFormA">
+                <div class="inputSelectionHighlight"></div>
                 <label class="inputLabel"
                        for="position">
                   Zeichen
@@ -686,51 +826,87 @@
                 <div class="overlay" v-show="!tel"></div>
                 <label class="headerFormA">TEL/EL/EAL/UEAL</label>
                 <div class="flexContainerFormA">
-                  <div class="flexContainerFormB">
-                    <label class="checkboxLabel">
-                      <input id="stationLeader"
-                             type="checkbox"
+
+                  <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                       style="margin-left: 0; width: 50%; height: 48px">
+                    <label class="formControl formControl-checkbox">
+                      Leiter
+                      <input type="checkbox"
                              v-model="formdata.stationLeader"
                              :tabindex="other.tabIndexConf.stationLeader"/>
-                      Leiter
+                      <div class="formControl_indicator"></div>
                     </label>
                   </div>
-                  <div class="flexContainerFormB">
-                    <label class="checkboxLabel">
-                      <input id="stationS1"
-                             type="checkbox"
-                             v-model="formdata.stationS1"
-                             :tabindex="other.tabIndexConf.stationS1"/>
-                      S1
-                    </label>
-                    <label class="checkboxLabel">
-                      <input id="stationS2"
-                             type="checkbox"
-                             v-model="formdata.stationS2"
-                             :tabindex="other.tabIndexConf.stationS2"/>
-                      S2
-                    </label>
-                    <label class="checkboxLabel">
-                      <input id="stationS3"
-                             type="checkbox"
-                             v-model="formdata.stationS3"
-                             :tabindex="other.tabIndexConf.stationS3"/>
-                      S3
-                    </label>
-                    <label class="checkboxLabel">
-                      <input id="stationS4"
-                             type="checkbox"
-                             v-model="formdata.stationS4"
-                             :tabindex="other.tabIndexConf.stationS4"/>
-                      S4
-                    </label>
-                    <label class="checkboxLabel">
-                      <input id="stationS6"
-                             type="checkbox"
-                             v-model="formdata.stationS6"
-                             :tabindex="other.tabIndexConf.stationS6"/>
-                      S5
-                    </label>
+
+                  <div class="flexContainerFormB" style="width: 50%">
+
+                    <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                         style="margin-left: 0;">
+                      <label class="formControl formControl-checkbox">
+                        S1
+                        <input type="checkbox"
+                               v-model="formdata.stationS1"
+                               :tabindex="other.tabIndexConf.stationS1"/>
+                        <div class="formControl_indicator"></div>
+                      </label>
+                    </div>
+
+                    <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                         style="margin-left: 0;">
+                      <label class="formControl formControl-checkbox">
+                        S2
+                        <input type="checkbox"
+                               v-model="formdata.stationS2"
+                               :tabindex="other.tabIndexConf.stationS2"/>
+                        <div class="formControl_indicator"></div>
+                      </label>
+                    </div>
+
+                    <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                         style="margin-left: 0;">
+                      <label class="formControl formControl-checkbox">
+                        S3
+                        <input type="checkbox"
+                               v-model="formdata.stationS3"
+                               :tabindex="other.tabIndexConf.stationS3"/>
+                        <div class="formControl_indicator"></div>
+                      </label>
+                    </div>
+
+                    <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                         style="margin-left: 0;">
+                      <label class="formControl formControl-checkbox">
+                        S4
+                        <input type="checkbox"
+                               v-model="formdata.stationS4"
+                               :tabindex="other.tabIndexConf.stationS4"/>
+                        <div class="formControl_indicator"></div>
+                      </label>
+                    </div>
+
+                    <div class="
+                        formCheckbox
+                        flexContainerFormA"
+                         style="margin-left: 0;">
+                      <label class="formControl formControl-checkbox">
+                        S6
+                        <input type="checkbox"
+                               v-model="formdata.stationS6"
+                               :tabindex="other.tabIndexConf.stationS6"/>
+                        <div class="formControl_indicator"></div>
+                      </label>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -742,76 +918,132 @@
                     flexContainerFormB">
                 <div class="overlay" v-show="!tel"></div>
                 <label class="headerFormA">Fachberater</label>
+
                 <div class="
-                        inputWrapper
-                        flexContainerFormA">
-                  <input id="advisorTickA"
-                         type="checkbox"
-                         v-model="formdata.advisorTickA"
-                         :tabindex="other.tabIndexConf.advisorTickA"/>
-                  <input id="advisorA"
-                         class="
-                          inputWithLabel
-                          hasMinMaxH"
+                        formCheckbox
+                        flexContainerFormA"
+                     style="
+                      border: 4px solid var(--middleNeutralColor);
+                      margin-left: 0;">
+                  <label class="formControl formControl-checkbox"
+                         style="
+                          padding: 0 0 0 0;
+                          border-style: none;">
+                    <input type="checkbox"
+                           v-model="formdata.advisorTickA"
+                           :tabindex="other.tabIndexConf.advisorTickA"/>
+                    <div class="formControl_indicator"
+                         style="height: 40px"></div>
+                  </label>
+                  <input class="inputWithLabel"
+                         style="
+                         padding: 0 0 0 50px;
+                          width: 100%;
+                          border-style: none;"
                          v-model="formdata.advisorA"
                          :tabindex="other.tabIndexConf.advisorA"/>
                 </div>
+
                 <div class="
-                        inputWrapper
-                        flexContainerFormA">
-                  <input id="advisorTickB"
-                         type="checkbox"
-                         v-model="formdata.advisorTickB"
-                         :tabindex="other.tabIndexConf.advisorTickB"/>
-                  <input id="advisorB"
-                         class="
-                          inputWithLabel
-                          hasMinMaxH"
+                        formCheckbox
+                        flexContainerFormA"
+                     style="
+                      border: 4px solid var(--middleNeutralColor);
+                      margin-left: 0;">
+                  <label class="formControl formControl-checkbox"
+                         style="
+                          padding: 0 0 0 0;
+                          border-style: none;">
+                    <input type="checkbox"
+                           v-model="formdata.advisorTickB"
+                           :tabindex="other.tabIndexConf.advisorTickB"/>
+                    <div class="formControl_indicator"
+                         style="height: 40px"></div>
+                  </label>
+                  <input class="inputWithLabel"
+                         style="
+                         padding: 0 0 0 50px;
+                          width: 100%;
+                          border-style: none;"
                          v-model="formdata.advisorB"
                          :tabindex="other.tabIndexConf.advisorB"/>
                 </div>
+
                 <div class="
-                        inputWrapper
-                        flexContainerFormA">
-                  <input id="advisorTickC"
-                         type="checkbox"
-                         v-model="formdata.advisorTickC"
-                         :tabindex="other.tabIndexConf.advisorTickC"/>
-                  <input id="advisorC"
-                         class="
-                          inputWithLabel
-                          hasMinMaxH"
+                        formCheckbox
+                        flexContainerFormA"
+                     style="
+                      border: 4px solid var(--middleNeutralColor);
+                      margin-left: 0;">
+                  <label class="formControl formControl-checkbox"
+                         style="
+                          padding: 0 0 0 0;
+                          border-style: none;">
+                    <input type="checkbox"
+                           v-model="formdata.advisorTickC"
+                           :tabindex="other.tabIndexConf.advisorTickC"/>
+                    <div class="formControl_indicator"
+                         style="height: 40px"></div>
+                  </label>
+                  <input class="inputWithLabel"
+                         style="
+                         padding: 0 0 0 50px;
+                          width: 100%;
+                          border-style: none;"
                          v-model="formdata.advisorC"
                          :tabindex="other.tabIndexConf.advisorC"/>
                 </div>
+
                 <div class="
-                        inputWrapper
-                        flexContainerFormA">
-                  <input id="advisorTickD"
-                         type="checkbox"
-                         v-model="formdata.advisorTickD"
-                         :tabindex="other.tabIndexConf.advisorTickD"/>
-                  <input id="advisorD"
-                         class="
-                          inputWithLabel
-                          hasMinMaxH"
+                        formCheckbox
+                        flexContainerFormA"
+                     style="
+                      border: 4px solid var(--middleNeutralColor);
+                      margin-left: 0;">
+                  <label class="formControl formControl-checkbox"
+                         style="
+                          padding: 0 0 0 0;
+                          border-style: none;">
+                    <input type="checkbox"
+                           v-model="formdata.advisorTickD"
+                           :tabindex="other.tabIndexConf.advisorTickD"/>
+                    <div class="formControl_indicator"
+                         style="height: 40px"></div>
+                  </label>
+                  <input class="inputWithLabel"
+                         style="
+                         padding: 0 0 0 50px;
+                          width: 100%;
+                          border-style: none;"
                          v-model="formdata.advisorD"
                          :tabindex="other.tabIndexConf.advisorD"/>
                 </div>
+
                 <div class="
-                        inputWrapper
-                        flexContainerFormA">
-                  <input id="advisorTickE"
-                         type="checkbox"
-                         v-model="formdata.advisorTickE"
-                         :tabindex="other.tabIndexConf.advisorTickE"/>
-                  <input id="advisorE"
-                         class="
-                          inputWithLabel
-                          hasMinMaxH"
+                        formCheckbox
+                        flexContainerFormA"
+                     style="
+                      border: 4px solid var(--middleNeutralColor);
+                      margin-left: 0;">
+                  <label class="formControl formControl-checkbox"
+                         style="
+                          padding: 0 0 0 0;
+                          border-style: none;">
+                    <input type="checkbox"
+                           v-model="formdata.advisorTickE"
+                           :tabindex="other.tabIndexConf.advisorTickE"/>
+                    <div class="formControl_indicator"
+                         style="height: 40px"></div>
+                  </label>
+                  <input class="inputWithLabel"
+                         style="
+                         padding: 0 0 0 50px;
+                          width: 100%;
+                          border-style: none;"
                          v-model="formdata.advisorE"
                          :tabindex="other.tabIndexConf.advisorE"/>
                 </div>
+
               </div>
 
               <!--input-complex ("Verb. stellen")-->
@@ -821,76 +1053,132 @@
                     flexContainerFormB">
                 <div class="overlay" v-show="!tel"></div>
                 <label class="headerFormA">Verb. stellen</label>
+
                 <div class="
-                        inputWrapper
-                        flexContainerFormA">
-                  <input id="connectionTickA"
-                         type="checkbox"
-                         v-model="formdata.connectionTickA"
-                         :tabindex="other.tabIndexConf.connectionTickA"/>
-                  <input id="connectionA"
-                         class="
-                          inputWithLabel
-                          hasMinMaxH"
+                        formCheckbox
+                        flexContainerFormA"
+                     style="
+                      border: 4px solid var(--middleNeutralColor);
+                      margin-left: 0;">
+                  <label class="formControl formControl-checkbox"
+                         style="
+                          padding: 0 0 0 0;
+                          border-style: none;">
+                    <input type="checkbox"
+                           v-model="formdata.connectionTickA"
+                           :tabindex="other.tabIndexConf.connectionTickA"/>
+                    <div class="formControl_indicator"
+                         style="height: 40px"></div>
+                  </label>
+                  <input class="inputWithLabel"
+                         style="
+                         padding: 0 0 0 50px;
+                          width: 100%;
+                          border-style: none;"
                          v-model="formdata.connectionA"
                          :tabindex="other.tabIndexConf.connectionA"/>
                 </div>
+
                 <div class="
-                        inputWrapper
-                        flexContainerFormA">
-                  <input id="connectionTickB"
-                         type="checkbox"
-                         v-model="formdata.connectionTickB"
-                         :tabindex="other.tabIndexConf.connectionTickB"/>
-                  <input id="connectionB"
-                         class="
-                          inputWithLabel
-                          hasMinMaxH"
+                        formCheckbox
+                        flexContainerFormA"
+                     style="
+                      border: 4px solid var(--middleNeutralColor);
+                      margin-left: 0;">
+                  <label class="formControl formControl-checkbox"
+                         style="
+                          padding: 0 0 0 0;
+                          border-style: none;">
+                    <input type="checkbox"
+                           v-model="formdata.connectionTickB"
+                           :tabindex="other.tabIndexConf.connectionTickB"/>
+                    <div class="formControl_indicator"
+                         style="height: 40px"></div>
+                  </label>
+                  <input class="inputWithLabel"
+                         style="
+                         padding: 0 0 0 50px;
+                          width: 100%;
+                          border-style: none;"
                          v-model="formdata.connectionB"
                          :tabindex="other.tabIndexConf.connectionB"/>
                 </div>
+
                 <div class="
-                        inputWrapper
-                        flexContainerFormA">
-                  <input id="connectionTickC"
-                         type="checkbox"
-                         v-model="formdata.connectionTickC"
-                         :tabindex="other.tabIndexConf.connectionTickC"/>
-                  <input id="connectionC"
-                         class="
-                          inputWithLabel
-                          hasMinMaxH"
+                        formCheckbox
+                        flexContainerFormA"
+                     style="
+                      border: 4px solid var(--middleNeutralColor);
+                      margin-left: 0;">
+                  <label class="formControl formControl-checkbox"
+                         style="
+                          padding: 0 0 0 0;
+                          border-style: none;">
+                    <input type="checkbox"
+                           v-model="formdata.connectionTickC"
+                           :tabindex="other.tabIndexConf.connectionTickC"/>
+                    <div class="formControl_indicator"
+                         style="height: 40px"></div>
+                  </label>
+                  <input class="inputWithLabel"
+                         style="
+                         padding: 0 0 0 50px;
+                          width: 100%;
+                          border-style: none;"
                          v-model="formdata.connectionC"
                          :tabindex="other.tabIndexConf.connectionC"/>
                 </div>
+
                 <div class="
-                        inputWrapper
-                        flexContainerFormA">
-                  <input id="connectionTickD"
-                         type="checkbox"
-                         v-model="formdata.connectionTickD"
-                         :tabindex="other.tabIndexConf.connectionTickD"/>
-                  <input id="connectionD"
-                         class="
-                          inputWithLabel
-                          hasMinMaxH"
+                        formCheckbox
+                        flexContainerFormA"
+                     style="
+                      border: 4px solid var(--middleNeutralColor);
+                      margin-left: 0;">
+                  <label class="formControl formControl-checkbox"
+                         style="
+                          padding: 0 0 0 0;
+                          border-style: none;">
+                    <input type="checkbox"
+                           v-model="formdata.connectionTickD"
+                           :tabindex="other.tabIndexConf.connectionTickD"/>
+                    <div class="formControl_indicator"
+                         style="height: 40px"></div>
+                  </label>
+                  <input class="inputWithLabel"
+                         style="
+                         padding: 0 0 0 50px;
+                          width: 100%;
+                          border-style: none;"
                          v-model="formdata.connectionD"
                          :tabindex="other.tabIndexConf.connectionD"/>
                 </div>
+
                 <div class="
-                        inputWrapper
-                        flexContainerFormA">
-                  <input id="connectionTickE"
-                         type="checkbox"
-                         v-model="formdata.connectionTickE"
-                         :tabindex="other.tabIndexConf.connectionTickE"/>
-                  <input id="connectionE"
-                         class="
-                          inputWithLabel
-                          hasMinMaxH"
+                        formCheckbox
+                        flexContainerFormA"
+                     style="
+                      border: 4px solid var(--middleNeutralColor);
+                      margin-left: 0;">
+                  <label class="formControl formControl-checkbox"
+                         style="
+                          padding: 0 0 0 0;
+                          border-style: none;">
+                    <input type="checkbox"
+                           v-model="formdata.connectionTickE"
+                           :tabindex="other.tabIndexConf.connectionTickE"/>
+                    <div class="formControl_indicator"
+                         style="height: 40px"></div>
+                  </label>
+                  <input class="inputWithLabel"
+                         style="
+                         padding: 0 0 0 50px;
+                          width: 100%;
+                          border-style: none;"
                          v-model="formdata.connectionE"
                          :tabindex="other.tabIndexConf.connectionE"/>
                 </div>
+
               </div>
 
             </div>
@@ -900,8 +1188,7 @@
           <!--sectionBEFG-->
           <div class="
                 middleWrapper
-                hasMarginFormB
-                hasPaddingFormB
+                botRight
                 flexContainerFormB">
 
             <!--input-complex ("Vermerke")-->
@@ -910,14 +1197,20 @@
                     inputVermerke
                     flexContainerFormB">
               <div class="overlay" v-show="!vermerke"></div>
-              <label class="headerFormA">Vermerke</label>
-              <textarea id="annotations"
-                        cols="35"
-                        class="
-                          inputWithLabel
-                          hasMinMaxI"
-                        v-model="formdata.annotations"
-                        :tabindex="other.tabIndexConf.annotations"/>
+              <div class="
+                        inputWrapper
+                        flexContainerFormA">
+                <div class="inputSelectionHighlight"></div>
+                <textarea id="annotations"
+                          style="
+                            width: 100%;
+                            height: 100%;
+                            padding-top: 10px;"
+                          placeholder="Vermerke"
+                          class="inputWithLabel"
+                          v-model="formdata.annotations"
+                          :tabindex="other.tabIndexConf.annotations"/>
+              </div>
             </div>
 
           </div>
@@ -935,70 +1228,64 @@
 
       <!-- Depending on the state, different buttons need to be shown -->
       <!-- Submit new ticket -->
-      <el-button @click="
-                 saveForm();
-                 notifySuccess('Abgeschickt')"
-                 :tabindex="other.tabIndexConf.buttonSend"
-                 v-show="isNew">
+      <div class="
+            formPageButton
+            hasShadowFormA"
+           @click="
+          saveForm('accept');
+          notifySuccess('Abgeschickt')"
+           :tabindex="other.tabIndexConf.buttonSend"
+           v-show="isNew">
         Abschicken
-      </el-button>
+      </div>
 
       <!-- Send ticket to next station -->
-      <el-button @click="
-                 saveForm();
-                 notifySuccess('Abgeschickt')"
-                 tabindex="6"
-                 v-show="sendable">
+      <div class="
+            formPageButton
+            hasShadowFormA"
+           @click="
+            saveForm('accept');
+            notifySuccess('Abgeschickt')"
+           tabindex="6"
+           v-show="sendable">
         Weitersenden
-      </el-button>
+      </div>
 
       <!-- Print ticket and archive -->
-      <el-button @click="
-                 printTicket();
-                 notifySuccess('Gedruckt')"
-                 tabindex="6"
-                 v-show="toBePrinted">
+      <div class="
+            formPageButton
+            hasShadowFormA"
+           @click="
+            printTicket();
+            notifySuccess('Gedruckt')"
+           tabindex="6"
+           v-show="toBePrinted">
         Drucken
-      </el-button>
-
-      <!-- Reset all inputs (only while new) -->
-      <el-button @click="
-                  formReset();
-                  notifySuccess('Formular zurückgesetzt')"
-                  :tabindex="other.tabIndexConf.buttonReset"
-                  v-show="isNew">
-        Zurücksetzen
-      </el-button>
+      </div>
 
       <!-- Reject ticket due to flaws -->
-      <el-button @click="
-                  rejectTicket();
-                  notifySuccess('Zurückgeschickt')"
-                  v-show="rejectable">
+      <div class="
+            formPageButton
+            hasShadowFormA"
+           @click="
+            saveForm('reject');
+            notifySuccess('Zurückgeschickt')"
+           v-show="rejectable">
         Abweisen
-      </el-button>
+      </div>
 
-      <!-- Just for development -->
-      <label for="stateselect"> Select ticket state: </label>
-      <select v-model.number="formdata.ticketState" id="stateselect">
-        <option>0</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
-        <option>13</option>
-        <option>14</option>
-        <option>15</option>
-      </select>
-      <!-- ----------------- -->
+      <!-- Reset all inputs (only while new) -->
+      <div class="
+            formPageButton
+            hasShadowFormA"
+           @click="
+            formReset();
+            notifySuccess('Formular zurückgesetzt')"
+           :tabindex="other.tabIndexConf.buttonReset"
+           v-show="isNew">
+        Zurücksetzen
+      </div>
+
     </div>
   </div>
 </template>
@@ -1027,13 +1314,13 @@ export default {
         documentID: '',
         inOperation: '',
 
-        topRadio: true,
+        topRadio: false,
         topPhone: false,
         topFax: false,
         topDFU: false,
         topCourier: false,
         numberTB: '',
-        outgoing: false,
+        outgoing: true,
         receiverName: '',
 
         primaryDate: '',
@@ -1045,7 +1332,7 @@ export default {
         tertiaryDate: '',
         tertiaryTime: '',
         tertiaryHdZ: '',
-        midRadio: true,
+        midRadio: false,
         midPhone: false,
         midFax: false,
         midDFU: false,
@@ -1104,8 +1391,8 @@ export default {
       },
 
       other: {
-        tempEingehend: true,
-        tempAusgehend: false,
+        tempEingehend: false,
+        tempAusgehend: true,
         isEdit: false,
         tabIndexConf: {}
       },
@@ -1122,6 +1409,8 @@ export default {
   },
 
   beforeRouteUpdate (to, from, next) {
+    // @TODO Clicking new document after opening an other to fix
+    this.other.isEdit = false
     if (from.params.id === undefined) {
       this.askSaveDraft()
         .then(() => {
@@ -1148,25 +1437,159 @@ export default {
     ...mapActions([
       'saveNewFormAction',
       'updateFormDataAction',
-      'loadFormDataAction'
+      'loadFormDataAction',
+      'getPDFAction'
     ]),
     ...mapGetters(['getDraft', 'getUser']),
+
+    autoFillValues: function () {
+      // import user from vuex
+      let user = this.$store.state.user
+      // generate date
+      let today = new Date()
+      let dd = today.getDate()
+      let mm = today.getMonth() + 1 // January is 0!
+      let yyyy = today.getFullYear()
+      if (dd < 10) {
+        dd = '0' + dd
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      let date = dd + '.' + mm + '.' + yyyy
+
+      switch (this.formdata.ticketState) {
+        case 13:
+          if (this.formdata.docketIdentification === '') {
+            this.formdata.docketIdentification = user.identification
+          }
+          break
+        case 7:
+          if (this.formdata.docketIdentification === '') {
+            this.formdata.docketIdentification = user.identification
+          }
+          break
+        case 10:
+          if (this.formdata.primaryDate === '') {
+            this.formdata.primaryDate = date
+          }
+          if (this.formdata.primaryHdZ === '') {
+            this.formdata.primaryHdZ = user.identification
+          }
+          this.formdata.topRadio = true
+          this.formdata.midRadio = false
+          this.formdata.sender = ''
+          this.formdata.position = ''
+          this.formdata.identification = ''
+          break
+        case 3:
+          if (this.formdata.secondaryDate === '') {
+            this.formdata.secondaryDate = date
+          }
+          if (this.formdata.secondaryHdZ === '') {
+            this.formdata.secondaryHdZ = user.identification
+          }
+          break
+        case 4:
+          if (this.formdata.tertiaryDate === '') {
+            this.formdata.tertiaryDate = date
+          }
+          if (this.formdata.tertiaryHdZ === '') {
+            this.formdata.tertiaryHdZ = user.identification
+          }
+          break
+        case 0:
+          if (this.formdata.sender === '') {
+            this.formdata.sender = user.sender
+          }
+          if (this.formdata.identification === '') {
+            this.formdata.identification = user.identification
+          }
+          if (this.formdata.position === '') {
+            if (user.role === 'SGL') {
+              this.formdata.position = user.position
+            } else {
+              this.formdata.position = user.role
+            }
+          }
+          this.formdata.midRadio = true
+          this.formdata.topRadio = false
+          this.formdata.primaryDate = ''
+          this.formdata.primaryHdZ = ''
+          break
+      }
+    },
+
+    autoFillTime: function () {
+      let today = new Date()
+      // generate time
+      let hh = today.getHours()
+      let mm = today.getMinutes()
+      if (hh < 10) {
+        hh = '0' + hh
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      let time = hh + ':' + mm
+
+      switch (this.formdata.ticketState) {
+        case 7:
+          if (this.formdata.docketTime === '') {
+            this.formdata.docketTime = time
+          }
+          break
+        case 13:
+          if (this.formdata.docketTime === '') {
+            this.formdata.docketTime = time
+          }
+          break
+        case 10:
+          if (this.formdata.primaryTime === '') {
+            this.formdata.primaryTime = time
+          }
+          break
+        case 3:
+          if (this.formdata.secondaryTime === '') {
+            this.formdata.secondaryTime = time
+          }
+          break
+        case 4:
+          if (this.formdata.tertiaryTime === '') {
+            this.formdata.tertiaryTime = time
+          }
+          break
+        case 0:
+          if (this.formdata.createTime === '') {
+            this.formdata.createTime = time
+          }
+          break
+      }
+    },
 
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
       this.$data.formdata.inOperation = this.getUser().operation.operationId
+      this.checkIfUserIsFernmelder()
+      this.setIncomingOutgoing()
+      this.autoFillValues()
+      this.$data.formdata.inOperation = this.getUser().operation.operationID
     },
 
     loadDraft: function () {
       let draft = this.getDraft() || this.$options.data().formdata
       this.setDefaultData(draft)
+      this.setIncomingOutgoing()
+      this.autoFillValues()
     },
 
     loadID: function (id) {
       this.loadFormDataAction(id)
         .then((formdata) => {
           this.setDefaultData(formdata)
+          this.setIncomingOutgoing()
           this.$data.other.isEdit = true
+          this.autoFillValues()
         })
         .catch((error) => {
           this.messageBoxError('', error.message)
@@ -1188,9 +1611,30 @@ export default {
     },
 
     loadDocument: function (id) {
-      if (id === undefined) this.loadDefault()
-      else if (id === 'draft') this.loadDraft()
-      else this.loadID(id)
+      if (id === undefined) {
+        this.loadDefault()
+      } else if (id === 'draft') {
+        this.loadDraft()
+      } else {
+        this.loadID(id)
+      }
+    },
+    // checks if user is Fernmelder to set Eingehend as default value
+    checkIfUserIsFernmelder: function () {
+      if (this.$store.state.user.role === 'Fernmelder') {
+        this.other.tempEingehend = true
+        this.checkIn()
+      }
+    },
+
+    setIncomingOutgoing: function () {
+      if (this.formdata.outgoing) {
+        this.other.tempAusgehend = true
+        this.other.tempEingehend = false
+      } else {
+        this.other.tempAusgehend = false
+        this.other.tempEingehend = true
+      }
     },
 
     askSaveDraft: function () {
@@ -1208,9 +1652,11 @@ export default {
       })
     },
 
-    saveForm: function () {
+    saveForm: function (action) {
       if (this.sent === false) {
         this.sent = true
+        this.autoFillTime()
+        this.mapState(action)
         if (this.other.isEdit) {
           this.updateFormDataAction(this.$data.formdata)
             .then(() => {
@@ -1240,22 +1686,90 @@ export default {
     },
 
     printTicket: function () {
-      // TODO
-      // Call print helper and increment state
+      this.openPDF()
+      this.saveForm('accept')
     },
 
-    rejectTicket: function () {
-      // TODO
-      // Decrement state
-    },
-
-    sendTicket: function () {
-      // TODO
-      // Increment state
+    mapState: function (sendAction) {
+      let currentState = this.formdata.ticketState
+      let newState = currentState
+      if (sendAction === 'reject') {
+        switch (currentState) {
+          case 1:
+            newState = 2
+            break
+          case 3:
+            newState = 2
+            break
+          case 5:
+            newState = 6
+            break
+          case 7:
+            newState = 6
+            break
+          case 11:
+            newState = 12
+            break
+          case 13:
+            newState = 12
+            break
+        }
+      } else if (sendAction === 'accept') {
+        switch (currentState) {
+          case 0:
+            newState = 1
+            break
+          case 1:
+            newState = 3
+            break
+          case 2:
+            newState = 1
+            break
+          case 3:
+            newState = 4
+            break
+          case 4:
+            newState = 5
+            break
+          case 5:
+            newState = 7
+            break
+          case 6:
+            newState = 5
+            break
+          case 7:
+            newState = 8
+            break
+          case 8:
+            newState = 9
+            break
+          case 10:
+            newState = 11
+            break
+          case 11:
+            newState = 13
+            break
+          case 12:
+            newState = 11
+            break
+          case 13:
+            newState = 14
+            break
+          case 14:
+            newState = 15
+            break
+        }
+      }
+      this.formdata.ticketState = newState
     },
 
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
+    },
+
+    openPDF: function () {
+      this.getPDFAction(this.formdata)
+        .catch((error) => this.notifyError('', error.message))
     },
 
     setDefaultData: function (value) {
@@ -1315,14 +1829,26 @@ export default {
       if (this.other.tempEingehend) {
         this.other.tempAusgehend = false
         this.formdata.outgoing = false
+        this.formdata.ticketState = 10
+      } else {
+        this.other.tempAusgehend = true
+        this.formdata.outgoing = true
+        this.formdata.ticketState = 0
       }
+      this.autoFillValues()
     },
 
     checkOut () {
       if (this.other.tempAusgehend) {
         this.other.tempEingehend = false
         this.formdata.outgoing = true
+        this.formdata.ticketState = 0
+      } else {
+        this.other.tempEingehend = true
+        this.formdata.outgoing = false
+        this.formdata.ticketState = 10
       }
+      this.autoFillValues()
     }
   },
 
@@ -1461,7 +1987,7 @@ export default {
     // Button switches
 
     toBePrinted: function () {
-      return [8, 14].indexOf(
+      return [8, 9, 14, 15].indexOf(
         this.formdata.ticketState) !== -1
     },
 
@@ -1497,239 +2023,354 @@ export default {
 <style>
   .form {
     background-color: var(--formBlueColor);
-    overflow: visible;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
+    padding: 0 20px 20px 20px;
+    font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
-    padding: 10px 0 20px 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
   .formWrapper {
-    background-color: var(--semiLightNeutralColor);
     width: 80%;
-    overflow: visible;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
+    background-color: var(--semiLightNeutralColor);
+    padding: 0 10px 20px 10px;
+    margin: 0 50px 20px 0;
+    border-top: 20px solid var(--secondaryTextColor);
+    font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
   .sideMenuForm {
-    background-color: var(--semiLightNeutralColor);
     width: 20%;
-    overflow: visible;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
+    height: 200px;
+    background-color: var(--semiLightNeutralColor);
+    padding: 0 10px 0 0;
+    margin: 0 0 0 0;
+    font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
-    padding: 50px 0 20px 0;
-    margin-left: 40px;
-  }
-  .inputWrapper {
-    margin: 0 10px 0 20px;
-    height: 40px;
-  }
-  .inputLabel {
-    background-color: var(--darkNeutralColor);
-    white-space: nowrap;
-    min-width: 60px;
-    padding: 10px 10px 0 10px;
+    position: sticky;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
   .checkboxLabel {
-    padding: 10px 15px 14px 10px;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
     cursor: pointer;
   }
-  .inputWithLabel {
-    background-color: var(--semiLightNeutralColor);
-    padding-left: 10px;
-    border: var(--darkNeutralColor);
-    border-style: solid;
-    border-width:2px;
+
+  /* section-wrappers (middle wrapper) */
+  .topTopLeft {
+    width: 80%;
+    padding: 0 5px 5px 0;
+    margin: 0 0 0 0;
   }
-  .headerFormA {
-    padding: 10px 0 10px 10px;
-    white-space: nowrap;
+  .topTopRight {
+    width: 20%;
+    padding: 0 0 5px 0;
+    margin: 0 0 0 0;
   }
-  .headerFormB {
-    padding: 0 0 10px 20px;
+  .topBot {
+    width: 100%;
+    padding: 0 0 5px 0;
+    margin: 0 0 0 0;
+  }
+  .midTop {
+    width: 100%;
+    padding: 0 0 5px 0;
+    margin: 0 0 0 0;
+  }
+  .midMid {
+    width: 100%;
+    padding: 0 0 5px 0;
+    margin: 0 0 0 0;
+  }
+  .midBot {
+    width: 100%;
+    padding: 0 0 5px 0;
+    margin: 0 0 0 0;
+  }
+  .botLeft {
+    width: 70%;
+    padding: 0 5px 5px 0;
+    margin: 0 0 0 0;
+  }
+  .botRight {
+    width: 30%;
+    padding: 0 0 5px 0;
+    margin: 0 0 0 0;
   }
 
-  /*top-section*/
+  /* complex/elemnet-wrappers (inner wrapper) */
+  /* top-section */
   .checkboxgroupMTTop {
-    margin: 0 5px 5px 5px;
-    padding: 10px 0 10px 0;
-    max-width: 787.85px;
+    width: 100%;
+    padding: 10px 0 0 0;
+    margin: 0 0 5px 0;
   }
   .inputIncoming {
-    margin: 0 5px 5px 5px;
-    padding: 0 0 0 0;
-    max-width: 260.93px;
+    width: 33%;
+    padding: 10px 10px 0 10px;
+    margin: 0 5px 0 0;
   }
   .inputOutgoing {
-    margin: 0 5px 5px 0;
-    padding: 0 0 0 0;
-    max-width: 521.9px;
+    width: 67%;
+    padding: 10px 15px 0 10px;
+    margin: 0 0 0 0;
   }
   .inputTB {
-    margin: 0 5px 5px 0;
-    padding: 0 0 0 0;
-    height: 223px;
-    max-width: 256.367px;
+    height: 100%;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 0 0 0;
   }
   .inputRGS {
-    margin: 0 5px 5px 5px;
-    padding: 0 0 0 0;
-    max-width: 1049.22px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 0 0 0;
   }
 
   /*mid-section*/
   .checkboxgroupMTMid {
-    margin: 0 5px 5px 5px;
-    padding: 10px 0 10px 0;
-    max-width: 1049.22px;
+    width: 100%;
+    padding: 10px 0 0 0;
+    margin: 0 0 5px 0;
   }
   .checkboxgroupDS {
-    margin: 0 5px 5px 5px;
-    padding: 5px 0 10px 0;
-    max-width: 563.1px;
+    width: 100%;
+    padding: 10px 0 0 0;
+    margin: 0 5px 5px 0;
   }
   .checkboxgroupSB {
-    margin: 0 5px 5px 0;
-    padding: 5px 0 10px 0;
-    max-width: 481.177px;
+    width: 100%;
+    padding: 10px 0 0 0;
+    margin: 0 0 5px 0;
   }
   .inputRufnr {
-    margin: 0 5px 5px 5px;
-    padding: 0 0 0 0;
-    max-width: 355.733px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 5px 0 0;
   }
   .inputAnschrift {
-    margin: 0 5px 5px 0;
-    padding: 0 0 0 0;
-    max-width: 397.75px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 5px 0 0;
   }
   .inputGESP {
-    margin: 0 5px 5px 0;
-    padding: 10px 0 0 35px;
-    max-width: 285.733px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 0 0 0;
   }
   .inputInhalt {
-    margin: 0 5px 5px 5px;
-    padding: 0 0 0 0;
-    max-width: 1049.22px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 0 0 0;
   }
   .inputAbsender {
-    margin: 0 5px 5px 5px;
-    padding: 0 0 0 0;
-    max-width: 1049.22px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 0 5px 0;
   }
   .inputAbZeit {
-    margin: 0 5px 5px 5px;
-    padding: 0 0 0 0;
-    max-width: 376.783px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 5px 0 0;
   }
   .inputZeichen {
-    margin: 0 5px 5px 0;
-    padding: 0 0 0 0;
-    max-width: 330.75px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 5px 0 0;
   }
   .inputFunktion {
-    margin: 0 5px 5px 0;
-    padding: 0 0 0 0;
-    max-width: 331.683px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 0 0 0;
   }
 
   /*bot-section*/
   .inputQuittung {
-    margin: 0 5px 5px 5px;
-    padding: 0 0 0 0;
-    max-width: 716.383px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 0 5px 0;
   }
   .checkboxgroupTEL {
-    margin: 0 5px 5px 5px;
-    padding: 0 15px 0 0;
-    max-width: 161px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 5px 0 0;
   }
   .checkboxgroupFachberater {
-    margin: 0 5px 5px 0;
-    padding: 0 0 0 0;
-    max-width: 272.683px;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 5px 0 0;
   }
   .checkboxgroupVerb {
-    margin: 0 5px 5px 0;
-    padding: 0 0 0 0;
-    max-width: 272.7px;
-  }
-  .inputVermerke {
-    margin: 0 5px 5px 0;
-    padding: 0 20px 0 0;
-    max-width: 327.833px;
-  }
-
-  /*
-  space:
-    different settings for spacing
-   */
-  .hasMarginFormA {
-    margin: 0 20px 0px 20px;
-  }
-  .hasPaddingFormA {
-    padding: 0 10px 10px 10px;
-  }
-
-  .hasMarginFormB {
+    width: 100%;
+    padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
-  .hasPaddingFormB {
-    padding:  0 0 0 0;
+  .inputVermerke {
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    margin: 0 0 0 0;
   }
 
-  /*
-  border-settings:
-    different border styles
-  */
+  /* custom-header(s) */
+  .headerFormA {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+  }
+  .headerFormB {
+    padding: 0 0 0 0;
+    margin: 0 0 0 5px;
+  }
 
-  /*
-  min-max-settings:
-  */
-  .hasMinMaxA {
-    min-width: 50px;
-    width: 55%;
+  /* custom button */
+  .formPageButton {
+    height: 48px;
+    width: 100%;
+    background-color: var(--semiLightNeutralColor);
+    padding: 9px 0 0 0;
+    margin: 0 0 30px 0;
+    position: relative;
+    right: 10px;
+    border-left: var(--formBlueColor);
+    border-left-style: solid;
+    border-left-width: 10px;
+    text-align: center;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
-  .hasMinMaxB {
-    min-width: 50px;
-    width: 69.3%;
+  .formPageButton:hover {
+    border-left: var(--mainColor);
+    border-left-style: solid;
+    border-left-width: 10px;
+    cursor: pointer;
   }
-  .hasMinMaxC {
-    min-width: 50px;
-    width: 72%;
-  }
-  .hasMinMaxD {
-    min-width: 50px;
-    width: 97.6%;
-  }
-  .hasMinMaxE {
-    min-width: 50px;
-    width: 89%;
-  }
-  .hasMinMaxF {
-    min-width: 50px;
-    width: 65.5%;
-  }
-  .hasMinMaxG {
-    min-width: 50px;
-    width: 84.5%;
-  }
-  .hasMinMaxH {
-    min-width: 50px;
-    width: 83%;
-  }
-  .hasMinMaxI {
-    min-width: 50px;
-    width: 90%;
-    margin-left: 20px;
+
+  /* custom input */
+  .inputWrapper {
     height: 100%;
+    width: 100%;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    border: 4px solid var(--middleNeutralColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .inputWrapper:hover div {
+    background-color: var(--mainColor);
+  }
+  .inputLabel {
+    height: 40px;
+    width: 40%;
+    background-color: var(--middleNeutralColor);
+    padding: 5px 10px 0 10px;
+    margin: 0 0 0 0;
+    overflow: visible;
+    overflow-wrap: break-word;
+    text-align: center;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .inputWithLabel {
+    width: 60%;
+    height: 40px;
+    padding: 0 0 0 10px;
+    margin: 0 0 0 0;
+    background-color: var(--semiLightNeutralColor);
+    border: 0 none;
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .inputSelectionHighlight {
+    height: auto;
+    min-width: 10px;
+    width: 10px;
+    background-color: var(--formBlueColor);
+  }
+
+  /* custom checkbox */
+  .formCheckbox {
+    width: 100%;
+    margin: 0 1% 0 1%;
+    border: 4px solid var(--middleNeutralColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .formControl {
+    width: 100%;
+    height: 40px;
+    padding: 5px 10px 0 50px;
+    background-color: var(--middleNeutralColor);
+    text-align: center;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .formControl input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  .formControl_indicator {
+    height: 40px;
+    width: 40px;
+    background: var(--formBlueColor);
+    position: absolute;
+    top: 0;
+    left: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .formCheckbox:hover div {
+    background-color: var(--mainColor);
+  }
+  .formControl input:checked ~ .formControl_indicator {
+    background: var(--mainColor);
+  }
+  .formControl_indicator:after {
+    box-sizing: unset;
+    content: '';
+    position: absolute;
+    display: none;
+  }
+  .formControl input:checked ~ .formControl_indicator:after {
+    display: block;
+  }
+  .formControl-checkbox .formControl_indicator:after {
+    left: 13px;
+    top: 4px;
+    width: 10px;
+    height: 20px;
+    border: solid var(--semiLightNeutralColor);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+
+  /* basic measurements for elemnts that don't have general wrapper classes */
+  .hasMeasurmentsFormA {
+    width: 100%;
+    padding: 0 0 10px 0;
+    margin: 0 0 0 0;
   }
 
   /*
- shadow-settings:
- different shadow settings
+  shadow-settings:
+    different shadow settings
   */
   .hasShadowFormA {
     box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
@@ -1738,14 +2379,13 @@ export default {
     box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
   }
 
-/*
+  /*
   flex-settings:
     different settings for the flex attribute
   */
   .flexContainerFormA {
     display: flex;
     flex-direction: row;
-    align-content: stretch;
   }
   .flexContainerFormB {
     display: flex;
@@ -1757,12 +2397,6 @@ export default {
     justify-content: space-evenly;
   }
 
-  .testSquare {
-    background-color: yellow;
-    width: 100px;
-    height: 50px;
-    margin: 10px;
-  }
   .overlay {
     background-color: rgba(0, 0, 0, 0.15);
     pointer-events: none;
@@ -1776,24 +2410,21 @@ export default {
 
   .is-green {
     background: var(--formGreenColor);
-    border-left-color: var(--formGreenColor);
   }
 
   .is-blue {
     background: var(--formBlueColor);
-    border-left-color: var(--formBlueColor);
   }
 
   .is-red {
     background: var(--formRedColor);
-    border-left-color: var(--formRedColor);
   }
 
   .is-yellow {
     background: var(--formYellowColor);
-    border-left-color: var(--formYellowColor);
   }
 
+  /* element settings */
   input {
     margin: 0;
     padding: 0;

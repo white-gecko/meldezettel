@@ -78,7 +78,7 @@
         <div class="
               headerMenuItem
               hasShadowHeaderB"
-             @click="goTo('Role')">
+             @click="showLandingPage">
           Nutzerdaten auswählen
         </div>
       </div>
@@ -91,8 +91,6 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'THWHeader',
 
@@ -103,9 +101,9 @@ export default {
   },
 
   computed: {
-    ...mapGetters({
-      user: 'getUser'
-    }),
+    user () {
+      return this.$store.state.user
+    },
 
     selectIcon: function () {
       if (this.user.role === 'Sichter') {
@@ -138,6 +136,9 @@ export default {
     },
     printStuff: function () {
       console.log('SUCCESS!')
+    },
+    showLandingPage: function () {
+      this.$store.commit('resetShowLandingPage')
     }
   }
 }

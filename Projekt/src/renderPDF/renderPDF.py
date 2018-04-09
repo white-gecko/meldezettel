@@ -4,6 +4,9 @@ import io
 import json
 import re
 import sys
+import hashlib
+import subprocess
+import shutil
 
 
 # Inserts char into string at given position
@@ -86,11 +89,8 @@ def replaceLatexCharacters(str):
     return str
 
 
-# Parses variables and their values from json to latex and writes them to .tex
-def renderPDF(jsonFile):
-    # Opens json file and loads it to string
-    with open(jsonFile) as json_data:
-        d = json.load(json_data)
+# Translates formData.json to String that can be used in .tex
+def formDataStringToVariablesString(formDataDir):
 
     # Array of boolean variable names
     booleans = [
@@ -157,7 +157,7 @@ def renderPDF(jsonFile):
     # Array of multiline string variable names, their maximum number of lines
     # and their maximum number of chars per line
     multiLineStrings = [
-        ["content", 10, 89],
+        ["content", 20, 89],
         ["annotations", 8, 35]]
 
     # Array of booleans where json variable name and latex variable name
@@ -169,52 +169,107 @@ def renderPDF(jsonFile):
         ["stationS4", "stationSFour"],
         ["stationS6", "stationSSix"]]
 
-    VV = ""
+    variablesString = ""
 
     # Translating string variables from json to latex
     for [variableName, lineLength] in strings:
-        s = d[variableName]
+        s = formDataDir[variableName]
         s = removeUnwantedCharacters(s)
         s = trimString(s, lineLength)
         s = replaceLatexCharacters(s)
-        VV += "\\def \\" + variableName + "{" + s + "} "
+        variablesString += "\\def \\" + variableName + "{" + s + "} "
 
     # Translating multiline string variables from json to latex
     for [variableName, maxLines, lineLength] in multiLineStrings:
-        s = d[variableName]
+        s = formDataDir[variableName]
         s = removeUnwantedCharacters(s)
         s = adjustString(s, maxLines, lineLength)
         s = replaceLatexCharacters(s)
-        VV += "\\def \\" + variableName + "{" + s + "} "
+        variablesString += "\\def \\" + variableName + "{" + s + "} "
 
     # Translating boolean variables from json to latex
     for variableName in booleans:
-        if d[variableName]:
-            VV += "\\def \\" + variableName + "{\\checkedbox}"
+        if formDataDir[variableName]:
+            variablesString += "\\def \\" + variableName + "{\\checkedbox}"
         else:
-            VV += "\\def \\" + variableName + "{\\uncheckedbox}"
+            variablesString += "\\def \\" + variableName + "{\\uncheckedbox}"
 
     # Translating boolean variables with inconsistent names from json to latex
     for [jsonVariableName, latexVariableName] in boolInconsistentVariableName:
-        if d[jsonVariableName]:
-            VV += "\\def \\" + latexVariableName + "{\\checkedbox}"
+        if formDataDir[jsonVariableName]:
+            variablesString += "\\def \\" + latexVariableName + "{\\checkedbox}"
         else:
-            VV += "\\def \\" + latexVariableName + "{\\uncheckedbox}"
+            variablesString += "\\def \\" + latexVariableName + "{\\uncheckedbox}"
 
     # Special case where Json has one variable and latex template requires two
-    if d["outgoing"]:
-        VV += "\\def \\incoming{\\uncheckedbox}"
+    if formDataDir["outgoing"]:
+        variablesString += "\\def \\incoming{\\uncheckedbox}"
     else:
-        VV += "\\def \\incoming{\\checkedbox}"
+        variablesString += "\\def \\incoming{\\checkedbox}"
+
+    return variablesString
+
+
+# Parses variables and their values from json to latex and writes them to .tex
+def renderPDF(formDataString):
+    # Interpreting formDataString as Dir
+    formDataDir = json.loads(formDataString)
+
+    # Check if .aux tex compiler side file exists, and creates it if it doesnt
+    # usually the case if script has never bin run before
+    # having aux file ready greatly reduces compile time from ~20s to ~3s on pi3b
+    if not os.path.exists("template.aux"):
+        p = subprocess.check_call(['pdflatex', '-halt-on-error', 'template.tex'])
+
+    variablesString = formDataStringToVariablesString(formDataDir)
+
+    # Hashing formDataString to get unique name for working dir
+    m = hashlib.md5(formDataString.encode('utf-8'))
+    formDataStringHash = m.hexdigest()
+
+    # Get dir this file is in
+    currentDir = os.path.dirname(os.path.realpath(__file__))
+
+    # Check if working dir exists, if not create working dir
+    workingDir = os.path.join(currentDir, formDataStringHash)
+    if not os.path.exists(workingDir):
+        os.mkdir(workingDir)
+
+    # Copy necessary files to working dir
+    shutil.copy2(
+        os.path.join(currentDir, "template.tex"),
+        os.path.join(workingDir, "template.tex"))
+    shutil.copy2(
+        os.path.join(currentDir, "template.aux"),
+        os.path.join(workingDir, "template.aux"))
 
     # Writing generated string to .tex
-    with io.open("variables.tex", mode="w", encoding="UTF8") as fd:
-        fd.write(VV)
+    variablesPath = os.path.join(workingDir, "variables.tex")
+    with io.open(variablesPath, mode="w", encoding="UTF8") as fd:
+        fd.write(variablesString)
 
-    # Compiling pdf
-    os.system("pdflatex VVtest.tex")
-    return
+    # Compiling pdf, via synchronous call
+    outputDirArg = '-output-directory=' + workingDir
+    p = subprocess.check_call(['pdflatex', '-halt-on-error', outputDirArg, "template.tex"])
+
+    # Reading pdf as byteString
+    templatePDFPath = os.path.join(workingDir, "template.pdf")
+    with open(templatePDFPath, "rb") as pdf:
+        pdfBytes = pdf.read()
+
+    # Removing working dir
+    shutil.rmtree(workingDir)
+
+    return pdfBytes
 
 
+"""
 if __name__ == "__main__":
-    renderPDF(sys.argv[1])
+    # Opens json file and loads it to dir
+    with open("formData.json") as json_data:
+        formDataDir = json.load(json_data)
+
+    formDataString = json.dumps(formDataDir)
+
+    print(renderPDF(formDataString))
+"""
