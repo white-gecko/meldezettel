@@ -300,16 +300,15 @@ export default {
         }
         if (this.userData.sender === '') {
           alertMessage += 'Der Absender fehlt. '
-        } 
+        }
         if (this.userData.role === 'SGL' && this.userData.position === '') {
           alertMessage += 'Die Rolle und/oder die Position fehlen. '
         }
         if (this.userData.operation.operationName === '') {
           alertMessage += 'Es muss ein Einsatz ausgewählt sein. '
-        } 
+        }
         alert(alertMessage)
-      }
-      else {
+      } else {
         this.submitUser()
       }
     },
@@ -348,7 +347,7 @@ export default {
         this.newOperation.operationAdress === '' ||
         this.newOperation.operationStaffType === '') {
         alert('Bitte alle Einsatzdaten eingeben.')
-      } if (this.operationIsDuplicate(newOperation)) {
+      } else if (this.operationIsDuplicate(newOperation)) {
         alert('Dieser Einsatzname ist bereits vergeben.')
       } else {
         // generate ID
