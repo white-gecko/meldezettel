@@ -3,6 +3,7 @@ export const setTicketList = (state, newList) => {
 }
 
 export const setUser = (state, userData) => {
+  console.log(JSON.stringify(userData))
   state.user = userData
 }
 

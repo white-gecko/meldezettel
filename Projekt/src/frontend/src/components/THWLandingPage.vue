@@ -246,8 +246,10 @@ export default {
 
   mounted () {
     this.$store.dispatch('getOperationsAction')
-    this.sortOperations()
-    this.setStoredUserData()
+      .then(() => {
+        console.log('Hallo')
+        this.setStoredUserData()
+      })
   },
 
   methods: {
@@ -259,21 +261,6 @@ export default {
       if (this.$store.state.user.sender !== '') {
         this.userData = this.$store.state.user
       }
-    },
-    // method to sort operations array
-    sortOperations () {
-      var op = this.operations
-
-      for (var i = op.length - 1; i > 0; i--) {
-        for (var j = 0; j < i; j++) {
-          if (op[i].operationName < op[j].operationName) {
-            var temp = op[j]
-            op[j] = op[i]
-            op[i] = temp
-          }
-        }
-      }
-      this.$store.commit('setOperationList',op)
     },
 
     // checks if userData is typed in (not empty)
@@ -292,11 +279,16 @@ export default {
     },
     // stores userData in store/state.js (vuex)
     submitUser () {
+      console.log(JSON.stringify(this.userData))
       this.$store.commit('setUser', this.userData)
       this.$store.dispatch('setDefaultFilters')
-      this.$store.dispatch('updateTicketListAction')
-      this.notifySuccess('Eingaben erfolgreich gespeichert')
-      this.$store.commit('setShowLandingPage')
+        .then(() => {
+          this.$store.dispatch('updateTicketListAction')
+            .then(() => {
+              this.notifySuccess('Eingaben erfolgreich gespeichert')
+              this.$store.commit('setShowLandingPage')
+            })
+        })
     },
     // resets inputs
     resetUserData () {
@@ -313,6 +305,7 @@ export default {
     },
     // handle selection of operation in operations table
     selectOperation (selectedOperation) {
+      console.log(JSON.stringify(selectedOperation))
       this.userData.operation = selectedOperation
       this.notifySuccess('Einsatz ausgewählt.')
       this.choosingOperation = false

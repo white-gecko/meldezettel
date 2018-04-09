@@ -27,9 +27,10 @@ export const saveNewFormAction = (context, formData) => {
   return quitstore.sendData(insertQuery)
 }
 
-/**
- *
- * @param context
+/** Action which retrieves a SPARL SELECT query from SPARQL-Helper,
+ *  sends it to QuitStore and modifies the received data to fit the
+ *  layout of THWDashboard
+ * @param context : connection to VueX store
  */
 export const updateTicketListAction = (context) => {
   let filters = context.state.filter
@@ -38,6 +39,8 @@ export const updateTicketListAction = (context) => {
     .then(response => {
       let responseData = parseResponse(response)
       let formatted = []
+      // setting creator, date and time depending on if
+      // document is incoming or outgoing
       for (let i = 0; i < responseData.length; i++) {
         let row = responseData[i]
         if (responseData[i].ticketState < 10) {
@@ -51,8 +54,18 @@ export const updateTicketListAction = (context) => {
         }
         formatted.push(row)
       }
-      responseData = formatted
-      context.commit('setTicketList', responseData)
+      // sorting documents ascending by creation date
+      for (var i = formatted.length - 1; i > 0; i--) {
+        for (var j = 0; j < i; j++) {
+          if (formatted[i].id.substr(-13, 13) >
+            formatted[j].id.substr(-13, 13)) {
+            var temp = formatted[j]
+            formatted[j] = formatted[i]
+            formatted[i] = temp
+          }
+        }
+      }
+      context.commit('setTicketList', formatted)
     })
     .catch(error => console.log(error))
 }
@@ -129,14 +142,27 @@ export const updateFormDataAction = (context, formData) => {
       })
   })
 }
-
+/** Action that draws all available operations from QuitStore, sorting them
+ *  by name ascending, saving it in VueX store afterwards
+ * @param context : connection to VueX store
+ */
 export const getOperationsAction = (context) => {
   let operationsQuery = queryHelper.operationsQuery()
-
   quitstore.getData(operationsQuery)
     .then((response) => {
-      let data = parseResponse(response)
-      context.commit('setOperationList', data)
+      let op = parseResponse(response)
+      for (var i = op.length - 1; i > 0; i--) {
+        for (var j = 0; j < i; j++) {
+          if (op[i].operationName < op[j].operationName) {
+            var temp = op[j]
+            op[j] = op[i]
+            op[i] = temp
+          }
+        }
+      }
+      context.commit('setOperationList', op)
+
+      console.log('test')
     })
     .catch((error) => {
       alert(error)
@@ -147,6 +173,10 @@ export const setFilters = (context, newFilter) => {
   context.state.filter = newFilter
 }
 
+/** Action that sets the Default Filters based on inputs in LandingPage
+ *  like role and operation
+ * @param context : connection to VueX store
+ */
 export const setDefaultFilters = (context) => {
   let role = context.state.user.role
   let defFilter = {}

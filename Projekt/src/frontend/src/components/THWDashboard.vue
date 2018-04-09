@@ -306,7 +306,7 @@
             dashboardButton
             hasShadowDashboardA"
              style="margin-bottom: 20px"
-             @click="changeFilters()">
+             @click="useFilters()">
           Anwenden
         </div>
         <div class="
@@ -328,9 +328,11 @@ export default {
 
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.$store.dispatch('updateTicketListAction')
-        .catch(error => alert(error))
       vm.$store.dispatch('getOperationsAction')
+        .then(() => {
+          vm.$store.dispatch('updateTicketListAction')
+            .catch(error => alert(error))
+        })
         .catch(error => alert(error))
     })
   },
@@ -401,9 +403,11 @@ export default {
         works similar to beforeRouteEnter
     */
     useFilters: function () {
-      this.$store.dispatch('updateTicketListAction')
-        .catch(error => alert(error))
       this.$store.dispatch('getOperationsAction')
+        .then(() => {
+          this.$store.dispatch('updateTicketListAction')
+            .catch(error => alert(error))
+        })
         .catch(error => alert(error))
     },
     notifySuccess (message) {
