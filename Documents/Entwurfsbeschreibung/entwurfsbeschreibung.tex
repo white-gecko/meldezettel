@@ -1,3 +1,4 @@
+% !TeX spellcheck = en_US
 \documentclass[a4paper,11pt,oneside, titlepage]{article}
 \usepackage[a4paper]{geometry} 
 \geometry{a4paper,left=20mm, right=25mm, top=20mm, bottom=30mm} 
@@ -15,7 +16,7 @@
 \include{glossar}
 
 \lhead{\today}
-\rhead{Verantwortlicher: Elena Heier }
+\rhead{Verantwortlicher: Marc Wahsner }
 \chead{Gruppe: na17b}
 \title{Entwurfsbeschreibung\\Nachrichtenkommunikation für das THW}
 \author{na17b}
@@ -56,7 +57,7 @@ Der Quelltext der Anwendung ist serviceorientiert aufgebaut. Hierzu werden Conta
 		\end{itemize}
 		\item Benötigte Programme zur Entwicklung:
 		\begin{itemize}
-			\item Das Linting erfolgt mittels \href{https://pypi.python.org/pypi/pycodestyle}{pycodestyle}, welches über \href{https://pypi.python.org/pypi/pip}{pip} installiert werden kann.
+			\item Das Linting erfolgt mittels \href{https://pypi.python.org/pypi/pycodestyle}{pycodestyle} , welches über \href{https://pypi.python.org/pypi/pip}{pip} installiert werden kann.
 		\end{itemize}
 	\end{itemize}
 	\item frontend
@@ -70,7 +71,7 @@ Der Quelltext der Anwendung ist serviceorientiert aufgebaut. Hierzu werden Conta
 \section{Struktur- und Entwurfsprinzipien einzelner Pakete}
 Es gibt drei weitgehend selbständige Services, welche über HTTP miteinander kommunizieren.
 \subsection{Frontend}
-Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-Framework. Als Erweiterungen kommen \gls{Vuex}, sowie \gls{vue-router} zum Einsatz. Die Verwaltung des Quelltextes sowie das kompilieren geschieht via \gls{webpack}. Zur Vereinfachung wird auf die Bibliothek von \gls{Element-UI} zurückgegriffen. Der Quelltext des Frontends befindet sich im Ordner \verb+src/frontend+. In diesem Ordner befinden sich neben einem weiteren Ordner \verb+src+ die von \gls{webpack} benötigten Dateien und Ordner; diese werden im Folgenden nicht weiter beschrieben und sind weitgehend Standard. Der Ordner \verb+src+ unterteilt sich weiter in folgende Struktur:
+Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-Framework. Als Erweiterungen kommen \gls{Vuex}, sowie \gls{vue-router} zum Einsatz. Die Verwaltung des Quelltextes sowie das Kompilieren geschieht via \gls{webpack}. Zur Vereinfachung wird auf die Bibliothek von \gls{Element-UI} zurückgegriffen. Der Quelltext des Frontends befindet sich im Ordner \verb+src/frontend+. In diesem Ordner befinden sich neben einem weiteren Ordner \verb+src+ die von \gls{webpack} benötigten Dateien und Ordner; diese werden im Folgenden nicht weiter beschrieben und sind weitgehend Standard. Der Ordner \verb+src+ unterteilt sich weiter in folgende Struktur:
 \newline
 
     \dirtree{%
@@ -121,16 +122,16 @@ Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-
 \end{minipage}
 
 \subsection{Printserver}
-Der Printserver ist in Python geschrieben, der Quellcode befindet sich unter \verb|src/renderPDF/| und beeinhaltet folgend Dateien:
+Der Printserver ist in Python geschrieben, der Quellcode befindet sich unter \verb|src/renderPDF/| und beinhaltet folgende Dateien:
 \dirtree{%
 	.1 src/renderPDF/ .
-	.2 renderPDF.py - Erhält das Form-Data-Objekt als String und generiert daraus ein PDF, mittels Latex.
+	.2 renderPDF.py - Erhält das Form-Data-Objekt als String und generiert daraus mittels Latex ein PDF.
 	.2 server.py - Kommunikation zwischen der App auf dem Client und dem renderPDF-Script auf dem Server.
-	.2 template.tex - Latex-Vorlage zum generieren der PDF.
+	.2 template.tex - Latex-Vorlage zum Generieren der PDF.
 	.2 Zahlreiche Testdateien.
 }
 \subsection{Quitstore}
-Als Backend wird der Quitstore verwendet, näheres dazu im Bereich Datenmodell.
+Als Backend wird Quitstore verwendet, Näheres dazu im Bereich Datenmodell.
 \section{Datenmodell}
 Als Datenmodell wird \gls{RDF} verwendet. Die Eingaben aus der UI werden über eine \gls{SPARQL}-Schnittstelle im \gls{Quitstore} in Tripel-Form gespeichert.  Der Quitstore wird über \verb+Projekt/quitstore.sh+ lokal gestartet. Jedem Dokument wird eine ID, bestehend aus einer sechsstelligen Zufallszahl, zur Identifizierung zugeordnet. Der Quitstore stellt die Daten auf Anfrage als \gls{JSON}-Response zur Verfügung. \\ Bei Aufrufen der Übersichtsseite werden alle für die Übersicht wichtigen Daten aus dem QuitStore über eine SPARQL Select Query ausgelesen und angezeigt. Wird ein Dokument geöffnet, werden, ebenfalls über eine Select Query, alle für dieses Formular gespeicherten Informationen ausgelesen um angezeigt werden zu können. Ebenfalls können nun Einsätze angelegt werden, die im Quitstore gespeichert werden, wodurch es möglich ist jedem Dokument den aktuellen Einsatz zuzuordnen.
 
