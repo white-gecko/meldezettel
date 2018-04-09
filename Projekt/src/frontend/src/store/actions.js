@@ -36,41 +36,46 @@ export const saveNewFormAction = (context, formData) => {
  * @param context : connection to VueX store
  */
 export const updateTicketListAction = (context) => {
-  let filters = context.state.filter
-  let getAllDataQuery = queryHelper.dashboardQuery(filters)
-  quitstore.getData(getAllDataQuery)
-    .then(response => {
-      let responseData = parseResponse(response)
-      let formatted = []
-      // setting creator, date and time depending on if
-      // document is incoming or outgoing
-      for (let i = 0; i < responseData.length; i++) {
-        let row = responseData[i]
-        if (responseData[i].ticketState < 10) {
-          row.creator = responseData[i].identification
-          row.date = responseData[i].tertiaryDate
-          row.time = responseData[i].tertiaryTime
-        } else {
-          row.creator = responseData[i].primaryHdZ
-          row.date = responseData[i].primaryDate
-          row.time = responseData[i].primaryTime
+  return new Promise((resolve, reject) => {
+    let filters = context.state.filter
+    let getAllDataQuery = queryHelper.dashboardQuery(filters)
+    quitstore.getData(getAllDataQuery)
+      .then(response => {
+        let responseData = parseResponse(response)
+        let formatted = []
+        // setting creator, date and time depending on if
+        // document is incoming or outgoing
+        for (let i = 0; i < responseData.length; i++) {
+          let row = responseData[i]
+          if (responseData[i].ticketState < 10) {
+            row.creator = responseData[i].identification
+            row.date = responseData[i].tertiaryDate
+            row.time = responseData[i].tertiaryTime
+          } else {
+            row.creator = responseData[i].primaryHdZ
+            row.date = responseData[i].primaryDate
+            row.time = responseData[i].primaryTime
+          }
+          formatted.push(row)
         }
-        formatted.push(row)
-      }
-      // sorting documents ascending by creation date
-      for (var i = formatted.length - 1; i > 0; i--) {
-        for (var j = 0; j < i; j++) {
-          if (formatted[i].id.substr(-13, 13) >
-            formatted[j].id.substr(-13, 13)) {
-            var temp = formatted[j]
-            formatted[j] = formatted[i]
-            formatted[i] = temp
+        // sorting documents ascending by creation date
+        for (var i = formatted.length - 1; i > 0; i--) {
+          for (var j = 0; j < i; j++) {
+            if (formatted[i].id.substr(-13, 13) >
+              formatted[j].id.substr(-13, 13)) {
+              var temp = formatted[j]
+              formatted[j] = formatted[i]
+              formatted[i] = temp
+            }
           }
         }
-      }
-      context.commit('setTicketList', formatted)
-    })
-    .catch(error => console.log(error))
+        context.commit('setTicketList', formatted)
+        return resolve()
+      })
+      .catch(() => {
+        return reject(new Error('Fehler beim Laden der Dokumente'))
+      })
+  })
 }
 
 /**
@@ -105,7 +110,7 @@ export const loadFormDataAction = (context, id) => {
       })
       .catch((error) => {
         console.error(error)
-        return reject(new Error('Fehler beim laden des Dokuments'))
+        return reject(new Error('Fehler beim Laden des Dokuments'))
       })
   })
 }
@@ -156,24 +161,27 @@ export const updateFormDataAction = (context, formData) => {
  * @param context : connection to VueX store
  */
 export const getOperationsAction = (context) => {
-  let operationsQuery = queryHelper.operationsQuery()
-  quitstore.getData(operationsQuery)
-    .then((response) => {
-      let op = parseResponse(response)
-      for (let i = op.length - 1; i > 0; i--) {
-        for (let j = 0; j < i; j++) {
-          if (op[i].operationName < op[j].operationName) {
-            let temp = op[j]
-            op[j] = op[i]
-            op[i] = temp
+  return new Promise((resolve, reject) => {
+    let operationsQuery = queryHelper.operationsQuery()
+    quitstore.getData(operationsQuery)
+      .then((response) => {
+        let op = parseResponse(response)
+        for (let i = op.length - 1; i > 0; i--) {
+          for (let j = 0; j < i; j++) {
+            if (op[i].operationName < op[j].operationName) {
+              let temp = op[j]
+              op[j] = op[i]
+              op[i] = temp
+            }
           }
         }
-      }
-      context.commit('setOperationList', op)
-    })
-    .catch((error) => {
-      alert(error)
-    })
+        context.commit('setOperationList', op)
+        return resolve('test')
+      })
+      .catch((error) => {
+        return reject(error)
+      })
+  })
 }
 
 /**

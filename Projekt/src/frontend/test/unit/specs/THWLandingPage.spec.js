@@ -2,24 +2,19 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import THWLandingPage from '@/components/THWLandingPage'
 import Vuex from 'vuex'
 import expect from 'expect'
+import store from '../../../src/store/index.js'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('THWLandingPage', () => {
   let wrapper
-  let store
   let mutations
 
   beforeEach(() => {
     mutations = {
       setUser: jest.fn()
     }
-
-    store = new Vuex.Store({
-      state: {},
-      mutations
-    })
 
     wrapper = mount(THWLandingPage, { store, localVue })
   })
