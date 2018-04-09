@@ -1232,8 +1232,7 @@
             formPageButton
             hasShadowFormA"
            @click="
-          saveForm('accept');
-          notifySuccess('Abgeschickt')"
+          saveForm('accept');"
            :tabindex="other.tabIndexConf.buttonSend"
            v-show="isNew">
         Abschicken
@@ -1244,8 +1243,7 @@
             formPageButton
             hasShadowFormA"
            @click="
-            saveForm('accept');
-            notifySuccess('Abgeschickt')"
+            saveForm('accept');"
            tabindex="6"
            v-show="sendable">
         Weitersenden
@@ -1256,8 +1254,7 @@
             formPageButton
             hasShadowFormA"
            @click="
-            printTicket();
-            notifySuccess('Gedruckt')"
+            printTicket();"
            tabindex="6"
            v-show="toBePrinted">
         Drucken
@@ -1268,8 +1265,7 @@
             formPageButton
             hasShadowFormA"
            @click="
-            saveForm('reject');
-            notifySuccess('Zurückgeschickt')"
+            saveForm('reject');"
            v-show="rejectable">
         Abweisen
       </div>
@@ -1281,8 +1277,7 @@
            @click="
             formReset();
             notifySuccess('Formular zurückgesetzt')"
-           :tabindex="other.tabIndexConf.buttonReset"
-           v-show="isNew">
+           :tabindex="other.tabIndexConf.buttonReset">
         Zurücksetzen
       </div>
 
@@ -1660,7 +1655,11 @@ export default {
         if (this.other.isEdit) {
           this.updateFormDataAction(this.$data.formdata)
             .then(() => {
-              this.notifySuccess('Abgeschickt')
+              if (action === 'accept') {
+                this.notifySuccess('Abgeschickt')
+              } else if (action === 'reject') {
+                this.notifySuccess('Zurückgeschickt')
+              }
               this.$router.push({name: 'Home'})
             })
             .catch(error => {
