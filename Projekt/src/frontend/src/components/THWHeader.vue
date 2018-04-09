@@ -21,7 +21,6 @@
 
       <div class="headerWrapper"
            style="
-            border-right: 10px solid var(--mainColor);
             min-width: 215px;
             margin: 0 0 0 0;">
         Nachrichtenkom. für das THW
@@ -139,46 +138,42 @@ export default {
 
 <style>
   .header {
-    background-color: var(--semiLightNeutralColor);
-    height: 5%;
+    background-color: var(--middleNeutralColor);
+    height: 50px;
     width: 100%;
-    border-top: 10px solid var(--secondaryTextColor);
-    border-bottom: 10px solid var(--formBlueColor);
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--regularTextColor);
+    border-bottom: 10px solid var(--mainColor);
+    font: bold var(--bigTitleSize) var(--mainFont);
+    color: var(--semiLightNeutralColor);
     overflow: visible;
-    padding-top: 0%;
     position: fixed;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
   }
   .headerWrapper {
-    height: 50%;
+    height: 50px;
     min-width: 150px;
-    background-color: var(--semiLightNeutralColor);
-    border-bottom: 10px solid var(--mainColor);
-    padding: 7px 10px 3px 10px;
+    background-color: var(--secondaryTextColor);
+    border-bottom: 10px solid var(--formBlueColor);
+    padding: 5px 10px 0px 10px;
     margin: 0 1% 0 1%;
     text-align: center;
     white-space: nowrap;
     z-index: 1;
+
     -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
   }
   .logoHeader {
-    background-color: var(--darkNeutralColor);
+    background-color: var(--secondaryTextColor);
     height: 50px;
     width: 60px;
-    border-bottom: 10px solid var(--mainColor);
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
+    border-bottom: 10px solid var(--formBlueColor);
   }
   .THWlogoWrapper {
     margin-left: 10%;
@@ -196,9 +191,6 @@ export default {
   .roleLogoWrapper {
     z-index: 10;
     cursor: pointer;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
   }
   .headerDropDown {
     width: 285px;
@@ -258,7 +250,7 @@ export default {
     box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
   }
   .hasShadowHeaderB {
-    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
+    box-shadow: 0px 10px 20px -6px var(--lightShadowColor);
   }
 
   /*
