@@ -124,7 +124,7 @@ export default {
 
 <style>
   .header {
-    background-color: var(--middleNeutralColor);
+    background-color: var(--semiLightNeutralColor);
     height: 50px;
     width: 100%;
     border-bottom: 10px solid var(--mainColor);
