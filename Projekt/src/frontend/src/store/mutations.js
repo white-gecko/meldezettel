@@ -19,16 +19,18 @@ export const setFilters = (state, newFilter) => {
   state.filter = newFilter
 }
 
-export const setDraft = (state, fromdata) => {
-  state.draft = fromdata
+export const setDraft = (state, formdata) => {
+  state.draft = formdata
 }
 
 export const setOperationList = (state, list) => {
   state.operationList = list
 }
 
-/** Mutation that sets the Default Filters based on inputs in LandingPage
- *  like role and operation
+/**
+ * Mutation that sets the Default Filters based on inputs in LandingPage
+ * like role and operation
+ *
  * @param context : connection to VueX store
  */
 export const setDefaultFilters = (state) => {
