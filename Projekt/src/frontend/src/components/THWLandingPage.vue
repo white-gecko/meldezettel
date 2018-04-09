@@ -294,18 +294,18 @@ export default {
         (this.userData.role === 'SGL' && this.userData.position === '') ||
         this.userData.operation.operationName === ''
       ) {
-        let alertMessage = 'Bitte die eingegebenen Daten überprüfen.'
+        let alertMessage = 'Bitte die eingegebenen Daten überprüfen. '
         if (this.userData.identification === '') {
-          alertMessage += 'Das Handzeichen fehlt.'
+          alertMessage += 'Das Handzeichen fehlt. '
         }
         if (this.userData.sender === '') {
-          alertMessage += 'Der Absender fehlt.'
+          alertMessage += 'Der Absender fehlt. '
         } 
         if (this.userData.role === 'SGL' && this.userData.position === '') {
-          alertMessage += 'Die Rolle und/oder die Position fehlen.'
+          alertMessage += 'Die Rolle und/oder die Position fehlen. '
         }
         if (this.userData.operation.operationName === '') {
-          alertMessage += 'Es muss ein Einsatz ausgewählt sein.'
+          alertMessage += 'Es muss ein Einsatz ausgewählt sein. '
         } 
         alert(alertMessage)
       }
