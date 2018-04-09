@@ -47,17 +47,4 @@ describe('THWLandingPage', () => {
       operationID: ''
     })
   })
-  it('sets stored operations', () => {
-    expect(setStoredOperations(THWLandingPage, {
-      operationName: 'Frederike',
-      operationAdress: 'THW EAL Tübingen',
-      operationStaffType: 'FgrFuK',
-      operationID: '1337'
-    })).toBe({
-      operationName: "Frederike",
-      operationAdress: "THW EAL Tübingen",
-      operationStaffType: "FgrFuK",
-      operationID: "1337"
-    })
-  })
 })
