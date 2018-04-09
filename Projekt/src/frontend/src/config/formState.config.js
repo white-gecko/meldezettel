@@ -5,5 +5,5 @@ import tabOrder from './tabOrder.config.js'
 export default {
   stateMappingConfig,
   formLayoutConfig,
-  tabOrder,
+  tabOrder
 }
