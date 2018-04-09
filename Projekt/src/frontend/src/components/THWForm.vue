@@ -45,7 +45,7 @@
                       Funk
                       <input type="checkbox"
                              v-model="formdata.topRadio"
-                             :tabindex="other.tabIndexConf.topRadio"/>
+                             :tabindex="tabIndexConfig.topRadio"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -1232,7 +1232,7 @@
             hasShadowFormA"
            @click="
           saveForm('accept');"
-           :tabindex="tabIndexConf.buttonSend"
+           :tabindex="tabIndexConfig.buttonSend"
            v-show="isNew">
         Abschicken
       </div>
@@ -1276,7 +1276,7 @@
            @click="
             formReset();
             notifySuccess('Formular zurückgesetzt')"
-           :tabindex="tabIndexConf.buttonReset">
+           :tabindex="tabIndexConfig.buttonReset">
         Zurücksetzen
       </div>
 
