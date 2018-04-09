@@ -1225,65 +1225,79 @@
           sideMenuForm
           hasShadowFormA
           flexContainerFormB">
+      <div class="outerWrapper"
+           style="padding: 0 20px 10px 20px;">
+        <div class="middleWrapper"
+             style="padding: 0 0 5px 0">
+          <div class="innerWrapper"
+               style="padding: 10px 10px 0 10px">
 
-      <!-- Depending on the state, different buttons need to be shown -->
-      <!-- Submit new ticket -->
-      <div class="
-            formPageButton
-            hasShadowFormA"
-           @click="
-          saveForm('accept');
-          notifySuccess('Abgeschickt')"
-           :tabindex="other.tabIndexConf.buttonSend"
-           v-show="isNew">
-        Abschicken
-      </div>
+            <div class="formButtonWrapper"
+                 v-show="isNew">
+              <div class="formButton"
+                   @click="
+                    saveForm('accept');
+                    notifySuccess('Abgeschickt')"
+                   :tabindex="other.tabIndexConf.buttonSend">
+                <div class="formButtonLabel">
+                  Abschicken
+                </div>
+              </div>
+            </div>
 
-      <!-- Send ticket to next station -->
-      <div class="
-            formPageButton
-            hasShadowFormA"
-           @click="
-            saveForm('accept');
-            notifySuccess('Abgeschickt')"
-           tabindex="6"
-           v-show="sendable">
-        Weitersenden
-      </div>
+            <div class="formButtonWrapper"
+                 v-show="sendable">
+              <div class="formButton"
+                   @click="
+                    saveForm('accept');
+                    notifySuccess('Abgeschickt')"
+                   tabindex="6">
+                <div class="formButtonLabel">
+                  Weitersenden
+                </div>
+              </div>
+            </div>
 
-      <!-- Print ticket and archive -->
-      <div class="
-            formPageButton
-            hasShadowFormA"
-           @click="
-            printTicket();
-            notifySuccess('Gedruckt')"
-           tabindex="6"
-           v-show="toBePrinted">
-        Drucken
-      </div>
+            <div class="formButtonWrapper"
+                 v-show="toBePrinted">
+              <div class="formButton"
+                   @click="
+                    printTicket();
+                    notifySuccess('Gedruckt')"
+                   tabindex="6">
+                <div class="formButtonLabel">
+                  Drucken
+                </div>
+              </div>
+            </div>
 
-      <!-- Reject ticket due to flaws -->
-      <div class="
-            formPageButton
-            hasShadowFormA"
-           @click="
-            saveForm('reject');
-            notifySuccess('Zurückgeschickt')"
-           v-show="rejectable">
-        Abweisen
-      </div>
+            <div class="formButtonWrapper"
+                 v-show="rejectable">
+              <div class="formButton"
+                   @click="
+                    saveForm('reject');
+                    notifySuccess('Zurückgeschickt')">
+                <div class="formButtonLabel">
+                  Abweisen
+                </div>
+              </div>
+            </div>
 
-      <!-- Reset all inputs (only while new) -->
-      <div class="
-            formPageButton
-            hasShadowFormA"
-           @click="
-            formReset();
-            notifySuccess('Formular zurückgesetzt')"
-           :tabindex="other.tabIndexConf.buttonReset"
-           v-show="isNew">
-        Zurücksetzen
+            <div class="formButtonWrapper"
+                 v-show="isNew">
+              <div class="formButton"
+                   @click="
+                    formReset();
+                    notifySuccess('Formular zurückgesetzt')"
+                   :tabindex="other.tabIndexConf.buttonReset">
+                <div class="formButtonLabel">
+                  Zurücksetzen
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
 
     </div>
@@ -2034,7 +2048,7 @@ export default {
     width: 80%;
     background-color: var(--semiLightNeutralColor);
     padding: 0 10px 20px 10px;
-    margin: 0 50px 20px 0;
+    margin: 0 0 20px 0;
     border-top: 20px solid var(--secondaryTextColor);
     font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
@@ -2044,13 +2058,14 @@ export default {
   }
   .sideMenuForm {
     width: 20%;
-    height: 200px;
+    max-height: 200px;
     background-color: var(--semiLightNeutralColor);
-    padding: 0 10px 0 0;
-    margin: 0 0 0 0;
+    padding: 0 0 20px 10px;
+    margin: 0 0 0 3%;
+    border-top: 20px solid var(--secondaryTextColor);
     font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
-    position: sticky;
+    position: relative;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
@@ -2227,27 +2242,44 @@ export default {
   }
 
   /* custom button */
-  .formPageButton {
-    height: 48px;
+  .formButtonWrapper {
+    margin: 5px 0 0 0;
+    border: 4px solid var(--middleNeutralColor);
+  }
+  .formButton {
+    height: 50px;
     width: 100%;
     background-color: var(--semiLightNeutralColor);
-    padding: 9px 0 0 0;
-    margin: 0 0 30px 0;
-    position: relative;
-    right: 10px;
-    border-left: var(--formBlueColor);
-    border-left-style: solid;
-    border-left-width: 10px;
+    padding: 0 0 0 0;
+    border-left: 10px solid var(--formBlueColor);
     text-align: center;
+    font-size: var(--titleSize);
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .formButton:hover {
+    border-left: 10px solid var(--mainColor);
+    cursor: pointer;
+  }
+  .formButtonLabel {
+    height: 40px;
+    width: 100%;
+    padding: 10px 40px 0 40px;
+    margin: 0 10px 0 10px;
+    background-color: var(--middleNeutralColor);
+    font-size: var(--titleSize);
+    text-align: center;
+    cursor: pointer;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
-  }
-  .formPageButton:hover {
-    border-left: var(--mainColor);
-    border-left-style: solid;
-    border-left-width: 10px;
-    cursor: pointer;
   }
 
   /* custom input */
