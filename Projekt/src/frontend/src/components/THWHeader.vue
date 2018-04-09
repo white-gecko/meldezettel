@@ -15,13 +15,11 @@
           flexContainerHeaderA
           flexChildHeaderB">
         <img src="@/assets/placeholderIcon.png"
-             height="70"
-             width="70">
+             height="50"
+             width="50">
       </div>
 
-      <div class="
-            headerWrapper
-            hasShadowHeaderB"
+      <div class="headerWrapper"
            style="
             min-width: 215px;
             margin: 0 0 0 0;">
@@ -30,23 +28,18 @@
 
     </div>
 
-    <div class="
-          headerWrapper
-          hasShadowHeaderB">
+    <div class="headerWrapper">
       {{this.user.operation.operationName}}
     </div>
 
-    <div class="
-          headerWrapper
-          hasShadowHeaderB">
+    <div class="headerWrapper">
       {{this.user.identification}}
     </div>
 
     <div class="
           menuWrapper
           flexContainerHeaderC"
-         @mouseover="showDropDownMenu"
-         @mouseout="hideDropDownMenu">
+         @click="showLandingPage">
 
       <div class="
           roleLogoWrapper
@@ -56,30 +49,15 @@
           hasShadowHeaderB
           flexContainerHeaderA">
           <img :src="selectIcon"
-               height="70"
-               width="70">
+               height="50"
+               width="50">
         </div>
 
-        <div class="
-            headerWrapper
-            hasShadowHeaderB"
+        <div class="headerWrapper"
              style="
               width: 215px;
               margin: 0 0 0 0;">
-          {{this.user.role}}
-        </div>
-      </div>
-
-      <div class="
-        headerDropDown
-        hasShadowHeaderB
-        flexContainerHeaderD"
-           v-show="headerDropDownCollapsed">
-        <div class="
-              headerMenuItem
-              hasShadowHeaderB"
-             @click="showLandingPage">
-          Nutzerdaten auswählen
+          {{this.user.role}} {{this.user.position}}
         </div>
       </div>
 
@@ -117,7 +95,7 @@ export default {
       } else if (this.user.role === 'Fachberater') {
         return require('@/assets/fachberaterIcon.png')
       } else if (this.user.role === 'Verbindungsstelle') {
-        return require('@/assets/placeholderIcon.png') /* require('@/assets/verbindungsstelleIcon.png') */
+        return require('@/assets/verbStelleIcon.png')
       } else {
         return require('@/assets/placeholderIcon.png')
       }
@@ -149,79 +127,55 @@ export default {
     background-color: var(--semiLightNeutralColor);
     height: 50px;
     width: 100%;
-    border-radius: 0px 0px 0px 0px;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--regularTextColor);
+    border-bottom: 10px solid var(--mainColor);
+    font: bold var(--bigTitleSize) var(--mainFont);
+    color: var(--semiLightNeutralColor);
     overflow: visible;
-    padding-top: 0%;
     position: fixed;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
   .headerWrapper {
-    height: 40px;
+    height: 50px;
     min-width: 150px;
-    background-color: var(--semiLightNeutralColor);
-    border-bottom: var(--mainColor);
-    border-bottom-style: solid;
-    border-bottom-width: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    margin-left: 1%;
-    margin-right: 1%;
+    background-color: var(--secondaryTextColor);
+    border-bottom: 10px solid var(--formBlueColor);
+    padding: 5px 10px 0px 10px;
+    margin: 0 1% 0 1%;
     text-align: center;
     white-space: nowrap;
+    z-index: 1;
+
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
   .logoHeader {
-    background-color: var(--darkNeutralColor);
-    height: 70px;
-    width: 80px;
-    border-bottom: var(--mainColor);
-    border-bottom-style: solid;
-    border-bottom-width: 10px;
+    background-color: var(--secondaryTextColor);
+    height: 50px;
+    width: 60px;
+    border-bottom: 10px solid var(--formBlueColor);
   }
   .THWlogoWrapper {
     margin-left: 10%;
     margin-right: 10%;
+    z-index: 10;
   }
   .menuWrapper {
     position: relative;
     margin-left: 1%;
     margin-right: 10%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
   .roleLogoWrapper {
-    z-index: 2;
-    cursor: pointer;
-  }
-  .headerDropDown {
-    width: 285px;
-    background-color: var(--semiLightNeutralColor);
-    overflow: visible;
-    position: absolute;
-    margin: 0 0 0 10px;
-    left: 0;
-    z-index: 1;
-    border-left: var(--formBlueColor);
-    border-left-style: solid;
-    border-left-width: 10px;
-    animation: dropDownBlendIn 0.4s ease 0s 1 normal both;
-  }
-  .headerMenuItem {
-    height: 40px;
-    width: 265px;
-    background-color: var(--semiLightNeutralColor);
-    position: absolute;
-    margin: 0 0 20px 0;
-    padding: 20px 20px 0 0;
-    border-right: var(--formBlueColor);
-    border-right-style: solid;
-    border-right-width: 10px;
-    text-align: center;
-  }
-  .headerMenuItem:hover {
-    border-right: var(--mainColor);
-    border-right-style: solid;
-    border-right-width: 10px;
+    z-index: 10;
     cursor: pointer;
   }
 
@@ -257,7 +211,7 @@ export default {
     box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
   }
   .hasShadowHeaderB {
-    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
+    box-shadow: 0px 10px 20px -6px var(--lightShadowColor);
   }
 
   /*

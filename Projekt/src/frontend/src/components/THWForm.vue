@@ -1224,60 +1224,73 @@
           sideMenuForm
           hasShadowFormA
           flexContainerFormB">
+      <div class="outerWrapper"
+           style="padding: 0 20px 10px 20px;">
+        <div class="middleWrapper"
+             style="padding: 0 0 5px 0">
+          <div class="innerWrapper"
+               style="padding: 10px 10px 0 10px">
 
-      <!-- Depending on the state, different buttons need to be shown -->
-      <!-- Submit new ticket -->
-      <div class="
-            formPageButton
-            hasShadowFormA"
-           @click="
-          saveForm('accept');"
-           :tabindex="tabIndexConfig.buttonSend"
-           v-show="isNew">
-        Abschicken
-      </div>
+            <div class="formButtonWrapper"
+                 v-show="isNew">
+              <div class="formButton"
+                   @click="
+                    saveForm('accept');"
+                   :tabindex="tabIndexConfig.buttonSend">
+                <div class="formButtonLabel">
+                  Abschicken
+                </div>
+              </div>
+            </div>
 
-      <!-- Send ticket to next station -->
-      <div class="
-            formPageButton
-            hasShadowFormA"
-           @click="
-            saveForm('accept');"
-           tabindex="6"
-           v-show="sendable">
-        Weitersenden
-      </div>
+            <div class="formButtonWrapper"
+                 v-show="sendable">
+              <div class="formButton"
+                   @click="
+                    saveForm('accept');"
+                   tabindex="6">
+                <div class="formButtonLabel">
+                  Weitersenden
+                </div>
+              </div>
+            </div>
 
-      <!-- Print ticket and archive -->
-      <div class="
-            formPageButton
-            hasShadowFormA"
-           @click="
-            printTicket();"
-           tabindex="6"
-           v-show="toBePrinted">
-        Drucken
-      </div>
+            <div class="formButtonWrapper"
+                 v-show="toBePrinted">
+              <div class="formButton"
+                   @click="
+                    printTicket();"
+                   tabindex="6">
+                <div class="formButtonLabel">
+                  Drucken
+                </div>
+              </div>
+            </div>
 
-      <!-- Reject ticket due to flaws -->
-      <div class="
-            formPageButton
-            hasShadowFormA"
-           @click="
-            saveForm('reject');"
-           v-show="rejectable">
-        Abweisen
-      </div>
+            <div class="formButtonWrapper"
+                 v-show="rejectable">
+              <div class="formButton"
+                   @click="
+                    saveForm('reject');">
+                <div class="formButtonLabel">
+                  Abweisen
+                </div>
+              </div>
+            </div>
 
-      <!-- Reset all inputs (only while new) -->
-      <div class="
-            formPageButton
-            hasShadowFormA"
-           @click="
-            formReset();
-            notifySuccess('Formular zurückgesetzt')"
-           :tabindex="tabIndexConfig.buttonReset">
-        Zurücksetzen
+            <div class="formButtonWrapper">
+              <div class="formButton"
+                   @click="
+                    formReset();"
+                   :tabindex="tabIndexConfig.buttonReset">
+                <div class="formButtonLabel">
+                  Zurücksetzen
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
 
     </div>
@@ -1400,7 +1413,6 @@ export default {
   },
 
   beforeRouteUpdate (to, from, next) {
-    // @TODO Clicking new document after opening an other to fix
     this.other.isEdit = false
     if (from.params.id === undefined) {
       this.askSaveDraft()
@@ -1682,6 +1694,7 @@ export default {
 
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
+      this.notifySuccess('Zurückgesetzt')
     },
 
     openPDF: function () {
@@ -1910,7 +1923,7 @@ export default {
     width: 100%;
     background-color: var(--formBlueColor);
     padding: 0 20px 20px 20px;
-    font: var(--bigTitleSize) var(--mainFont);
+    font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -1918,11 +1931,12 @@ export default {
   }
   .formWrapper {
     width: 80%;
+    min-width: 940px;
     background-color: var(--semiLightNeutralColor);
     padding: 0 10px 20px 10px;
-    margin: 0 50px 20px 0;
+    margin: 0 0 20px 0;
     border-top: 20px solid var(--secondaryTextColor);
-    font: var(--bigTitleSize) var(--mainFont);
+    font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -1930,37 +1944,13 @@ export default {
   }
   .sideMenuForm {
     width: 20%;
+    max-height: 200px;
     background-color: var(--semiLightNeutralColor);
     padding: 0 0 20px 10px;
     margin: 0 0 0 2%;
     border-top: 20px solid var(--secondaryTextColor);
     font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-  }
-  .checkboxLabel {
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
-    cursor: pointer;
-  }
-
-  /* section-wrappers (middle wrapper) */
-  .topTopLeft {
-    width: 80%;
-    padding: 0 5px 5px 0;
-    margin: 0 0 0 0;
-  }
-  .topTopRight {
-    width: 20%;
-    height: 200px;
-    background-color: var(--semiLightNeutralColor);
-    padding: 0 10px 0 0;
-    margin: 0 0 0 0;
-    font: var(--bigTitleSize) var(--mainFont);
-    color: var(--primaryTextColor);
-    position: sticky;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
@@ -2061,17 +2051,17 @@ export default {
     margin: 0 0 5px 0;
   }
   .inputRufnr {
-    width: 100%;
+    width: 20%;
     padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputAnschrift {
-    width: 100%;
+    width: 60%;
     padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputGESP {
-    width: 100%;
+    width: 20%;
     padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
@@ -2139,27 +2129,44 @@ export default {
   }
 
   /* custom button */
-  .formPageButton {
-    height: 48px;
+  .formButtonWrapper {
+    margin: 5px 0 0 0;
+    border: 4px solid var(--middleNeutralColor);
+  }
+  .formButton {
+    height: 50px;
     width: 100%;
     background-color: var(--semiLightNeutralColor);
-    padding: 9px 0 0 0;
-    margin: 0 0 30px 0;
-    position: relative;
-    right: 10px;
-    border-left: var(--formBlueColor);
-    border-left-style: solid;
-    border-left-width: 10px;
+    padding: 0 0 0 0;
+    border-left: 10px solid var(--formBlueColor);
     text-align: center;
+    font: var(--titleSize) var(--mainFont);
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .formButton:hover {
+    border-left: 10px solid var(--mainColor);
+    cursor: pointer;
+  }
+  .formButtonLabel {
+    height: 40px;
+    width: 100%;
+    padding: 10px 40px 0 40px;
+    margin: 0 10px 0 10px;
+    background-color: var(--middleNeutralColor);
+    font: var(--titleSize) var(--mainFont);
+    text-align: center;
+    cursor: pointer;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
-  }
-  .formPageButton:hover {
-    border-left: var(--mainColor);
-    border-left-style: solid;
-    border-left-width: 10px;
-    cursor: pointer;
   }
 
   /* custom input */
@@ -2182,7 +2189,7 @@ export default {
     background-color: var(--middleNeutralColor);
     padding: 5px 10px 0 10px;
     margin: 0 0 0 0;
-    overflow: visible;
+    font: var(--titleSize) var(--mainFont);
     overflow-wrap: break-word;
     text-align: center;
     -moz-box-sizing: border-box;
@@ -2196,6 +2203,7 @@ export default {
     margin: 0 0 0 0;
     background-color: var(--semiLightNeutralColor);
     border: 0 none;
+    font: var(--titleSize) var(--mainFont);
     -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
@@ -2213,7 +2221,7 @@ export default {
   /* custom checkbox */
   .formCheckbox {
     width: 100%;
-    margin: 0 1% 0 1%;
+    margin: 0 0.5% 0 0.5%;
     border: 4px solid var(--middleNeutralColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -2225,6 +2233,7 @@ export default {
     padding: 5px 10px 0 50px;
     background-color: var(--middleNeutralColor);
     text-align: center;
+    font: var(--titleSize) var(--mainFont);
     display: block;
     position: relative;
     cursor: pointer;
@@ -2310,7 +2319,7 @@ export default {
   }
 
   .overlay {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.10);
     pointer-events: none;
     z-index: 1;
     width: 100%;

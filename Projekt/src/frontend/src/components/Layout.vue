@@ -61,18 +61,11 @@ export default {
   :root {
     /*colors*/
     /*main colors*/
-    --mainColor: #3d6cb8;
-    --lightMainColor: #799bd2;
-    --formBlueColor: #9cb7e2;
-    --formGreenColor: #9ce2a4;
-    --formRedColor: #e29c9c;
-    --formYellowColor: #e2e29c;
-
-    /*secondary colors*/
-    --successColor: #67C23A;
-    --warningColor: #E6A23C;
-    --dangerColor: #F56C6C;
-    --infoColor: #909399;
+    --mainColor: #4071bf;
+    --formBlueColor: #85a8e0;
+    --formGreenColor: #75f075;
+    --formRedColor: #f07575;
+    --formYellowColor: #f0f075;
 
     /*neutral colors*/
     --darkNeutralColor: #DCDFE6;
@@ -90,7 +83,7 @@ export default {
     --mainFont: Helvetica;
 
     /*font-sizes*/
-    --bigTitleSize: 100%;
+    --bigTitleSize: 110%;
     --titleSize: 100%;
     --smallTitleSize: 100%;
     --bodySize: 14px;
@@ -130,7 +123,7 @@ export default {
    */
   .outerWrapper {
     background-color: var(--darkNeutralColor);
-    font: var(--smallTitleSize) var(--mainFont);
+    font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     flex-grow: 1;
     -moz-box-sizing: border-box;
@@ -140,7 +133,7 @@ export default {
 
   .middleWrapper {
     background-color: var(--middleNeutralColor);
-    font: var(--smallTitleSize) var(--mainFont);
+    font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     flex-grow: 1;
     -moz-box-sizing: border-box;
@@ -150,7 +143,7 @@ export default {
 
   .innerWrapper {
     background-color: var(--semiLightNeutralColor);
-    font: var(--smallTitleSize) var(--mainFont);
+    font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     position: relative;
     flex-grow: 1;
