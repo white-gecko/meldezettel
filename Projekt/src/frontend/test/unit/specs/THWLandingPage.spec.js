@@ -3,16 +3,9 @@ import THWLandingPage from '@/components/THWLandingPage'
 import Vuex from 'vuex'
 import expect from 'expect'
 import store from '../../../src/store/index.js'
-import Vue from 'vue'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
-
-function setStoredOperations (Component, storedOperation) {
-  const Constructor = Vue.extend(Component)
-  const vm = new Constructor({ propsData: storedOperation }).$mount()
-  return vm.$el.textContent
-}
 
 describe('THWLandingPage', () => {
   let wrapper
