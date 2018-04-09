@@ -15,7 +15,8 @@
       <el-radio-group class="
                       landingPageRoleSelect
                       hasShadowLandingPageB"
-                      v-model="userData.role">
+                      v-model="userData.role"
+                      @change="checkIfRoleIsNotSGL(userData.role)">
         <el-radio-button v-for="roleOption in roles"
                          :label="roleOption"
                          :key="roleOption">
@@ -199,10 +200,6 @@
 <script>
 
 import { Notification } from 'element-ui'
-import { mapActions } from 'vuex'
-import { quitstore } from '../api/QuitStoreAdapter.js'
-import { parseResponse } from '../sparql_help/sparql_response.js'
-import sparql from '../sparql_help/sparql_queries.js'
 
 const roleOptions =
 ['Sichter', 'LdF', 'Fernmelder', 'SGL', 'Fachberater', 'Verbindungsstelle']
@@ -235,30 +232,26 @@ export default {
         operationID: ''
       },
 
-      // objects for operations, roles and positions
-      operations: [],
+      // objects for  roles and positions
       roles: roleOptions,
       positions: positionOptions
     }
   },
-
+  // load operations from vuex at reentering landing page
+  computed: {
+    operations () {
+      return this.$store.state.operationList
+    }
+  },
+  // get operations from Quitstore when building landing page
   mounted () {
-    let operationsQuery = sparql.operationsQuery()
-
-    quitstore.getData(operationsQuery)
-      .then((response) => {
-        let data = parseResponse(response)
-        this.sortOperations(data)
+    this.$store.dispatch('getOperationsAction')
+      .then(() => {
         this.setStoredUserData()
-      })
-      .catch((error) => {
-        alert(error)
       })
   },
 
   methods: {
-
-    ...mapActions(['handleOperation']),
 
     // method to call stored userData from vuex
     setStoredUserData () {
@@ -266,35 +259,29 @@ export default {
         this.userData = this.$store.state.user
       }
     },
-    // method to sort operations array
-    sortOperations (storedOperations) {
-      var op = storedOperations
-
-      for (var i = op.length - 1; i > 0; i--) {
-        for (var j = 0; j < i; j++) {
-          if (op[i].operationName < op[j].operationName) {
-            var temp = op[j]
-            op[j] = op[i]
-            op[i] = temp
-          }
-        }
-      }
-      this.setStoredOperations(op)
-    },
-
-    setStoredOperations (sortedOperations) {
-      this.operations = sortedOperations
-    },
     // checks if userData is typed in (not empty)
     validateUser (userData) {
+      // checks missing fields and generates a custom alert
       if (
         this.userData.identification === '' ||
         this.userData.sender === '' ||
         (this.userData.role === 'SGL' && this.userData.position === '') ||
-        this.userData.operation.operationName === '') {
-        alert(
-          'Bitte Absender und Zeichen eintragen sowie einen Einsatz auswählen.'
-        )
+        this.userData.operation.operationName === ''
+      ) {
+        let alertMessage = 'Bitte die eingegebenen Daten überprüfen. '
+        if (this.userData.identification === '') {
+          alertMessage += 'Das Handzeichen fehlt. '
+        }
+        if (this.userData.sender === '') {
+          alertMessage += 'Der Absender fehlt. '
+        }
+        if (this.userData.role === 'SGL' && this.userData.position === '') {
+          alertMessage += 'Die Rolle und/oder die Position fehlen. '
+        }
+        if (this.userData.operation.operationName === '') {
+          alertMessage += 'Es muss ein Einsatz ausgewählt sein. '
+        }
+        alert(alertMessage)
       } else {
         this.submitUser()
       }
@@ -302,10 +289,12 @@ export default {
     // stores userData in store/state.js (vuex)
     submitUser () {
       this.$store.commit('setUser', this.userData)
-      this.$store.dispatch('setDefaultFilters')
-      this.notifySuccess('Eingaben erfolgreich gespeichert')
-      this.$store.commit('setShowLandingPage')
-      this.$router.push({ path: 'home' })
+      this.$store.commit('setDefaultFilters')
+      this.$store.dispatch('updateTicketListAction')
+        .then(() => {
+          this.notifySuccess('Eingaben erfolgreich gespeichert')
+          this.$store.commit('setShowLandingPage')
+        })
     },
     // resets inputs
     resetUserData () {
@@ -318,6 +307,12 @@ export default {
         operationAdress: '',
         operationStaffType: '',
         operationID: ''
+      }
+    },
+    // checks if operation is not SGL to unset position
+    checkIfRoleIsNotSGL (role) {
+      if (role !== 'SGL') {
+        this.userData.position = ''
       }
     },
     // handle selection of operation in operations table
@@ -334,7 +329,7 @@ export default {
         this.newOperation.operationAdress === '' ||
         this.newOperation.operationStaffType === '') {
         alert('Bitte alle Einsatzdaten eingeben.')
-      } if (this.operationIsDuplicate(newOperation)) {
+      } else if (this.operationIsDuplicate(newOperation)) {
         alert('Dieser Einsatzname ist bereits vergeben.')
       } else {
         // generate ID
@@ -350,13 +345,13 @@ export default {
     },
 
     operationIsDuplicate (newOperation) {
-      let duplicate = false
+      let isDuplicate = false
       this.operations.forEach(function (operation) {
         if (operation.operationName === newOperation.operationName) {
-          duplicate = true
+          isDuplicate = true
         }
       })
-      return duplicate
+      return isDuplicate
     },
 
     setUserOperation (operation) {

@@ -1,5 +1,7 @@
 export default{
-  /** function which creates a SPARQL Insert query based on given doc object
+  /**
+   * function which creates a SPARQL Insert query based on given doc object
+   *
    * @param doc formdata object that got edited or created in THWForm.vue
    * @return string SPARQL query that inserts data of formdata object into
    *           QuitStore
@@ -49,7 +51,9 @@ PREFIX : <http://www.na17b.org/thw/>
     return query
   },
 
-  /** function which creates a SPARQL delete query based on given doc object
+  /**
+   * function which creates a SPARQL delete query based on given doc object
+   *
    * @param doc old formdata object that got updated in THWForm.vue
    * @return string SPARQL query that deletes data of formdata object from
    *           QuitStore
@@ -93,7 +97,10 @@ PREFIX : <http://www.na17b.org/thw/>
     return query
   },
 
-  /** Creates a query to query for dashboard specific data
+  /**
+   * Creates a query to query for dashboard specific data
+   *
+   *  @param filter: filter object which the received data shall be based opon
    *  @return query string to query for dashboard specific data
    */
   dashboardQuery: function (filter) {
@@ -247,6 +254,7 @@ thw:docketIdentification ?docketIdentification`
 
   /**
    * Creates a query to retrieve a specified document
+   *
    * @param {String} id Id to be queried for
    * @return string query string to retrieve all triples of a given document id
    */
@@ -285,6 +293,12 @@ thw:docketIdentification ?docketIdentification`
 
     return query
   },
+  /**
+   * function which creates a SPARQL query to retrieve all operations from
+   * QuitStore with the regarding data
+   *
+   * @returns {string}
+   */
   operationsQuery: function () {
     // Similar to dashboardQuery
     return `

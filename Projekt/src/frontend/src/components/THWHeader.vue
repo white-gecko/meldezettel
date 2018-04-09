@@ -91,8 +91,6 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'THWHeader',
 
@@ -103,9 +101,9 @@ export default {
   },
 
   computed: {
-    ...mapGetters({
-      user: 'getUser'
-    }),
+    user () {
+      return this.$store.state.user
+    },
 
     selectIcon: function () {
       if (this.user.role === 'Sichter') {
