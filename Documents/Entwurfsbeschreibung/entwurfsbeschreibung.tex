@@ -1,3 +1,4 @@
+% !TeX spellcheck = de_DE
 \documentclass[a4paper,11pt,oneside, titlepage]{article}
 \usepackage[a4paper]{geometry} 
 \geometry{a4paper,left=20mm, right=25mm, top=20mm, bottom=30mm} 
@@ -15,7 +16,7 @@
 \include{glossar}
 
 \lhead{\today}
-\rhead{Verantwortlicher: Elena Heier }
+\rhead{Verantwortlicher: Marc Wahsner }
 \chead{Gruppe: na17b}
 \title{Entwurfsbeschreibung\\Nachrichtenkommunikation für das THW}
 \author{na17b}
@@ -36,31 +37,41 @@
 \section{Allgemeines}
 Die Anwendung soll den gegebenen Nachrichtenfluss in einer Notfallzentrale des THW nachbilden.
 \section{Produktübersicht}
-Die Anwendung führt zunächst auf eine Landing Page,die nach Einsatz, Rolle, Name und Zeichen des Users fragt. Durch einen Klick auf Speichern gelangt man in die eigentliche UI. Im oberen Bereich befindet sich eine Kopfleiste, die einen Platzhalter für ein Logo, "Nachrichtenkom. für das THW", den Einsatznamen, Handzeichen, Rollenzeichen und -bezeichnung anzeigt. Über den Komplex Rollenzeichen und -bezeichnung besteht die Möglichkeit auf die Option des Nutzerwechsels zugreifen zu können, die der Lading Page entspricht. Am linken Bildrand befindet sich ein Menü, welches den Wechsel zwischen Übersicht, Erstellung eines Formulars,sowie einem Entwurf ermöglicht. Die Übersichtsseite vermittelt einen schnellen Überblick über alle hinterlegten Vordrucke, eingeschränkt auf Status, Technische Betriebsbuchnummer, Verfasser, Sichter, Datum, Uhrzeit, Empfänger und eine gekürzte Version des Inhalts. In der ersten Spalte befindet sich ein Button, über den der Vordruck zur genaueren Ansicht ausgewählt werden kann. Über der Formularübersicht befindet sich eine Leiste Filter, die durch Klick ausgeklappt werden kann. Dort können Filter so gewählt werden, dass jedes beliebige Formular einsehbar ist. Es kann nach Zeichenketten im Dokument, Kürzel des Sichters und der Betriebsbuchnummer gesucht werden. Die Formularmaske bildet den Vierfachvordruck realitätsnah nach. Je nach Status in dem sich die Nachricht befindet wird entweder ein blauer, grüner, roter oder gelber Rand angezeigt. Die Felder, die nicht zum ausfüllen vorhergesehen sind, sind ausgegraut, trotzdem jedoch beschreibbar. Ebenfalls vom Status der Nachricht sind die Buttons am rechten Rand. Stets ist ein Button zum leeren des Formulars existieren, wobei nur eigene Eingaben gelöscht werden. Es besteht die Möglichkeit einen Entwurf zuspeichern, wenn man die Formularseite ohne weiterschicken verlassen will. Es findet derzeit auch noch keine Überprüfung der Daten hinsichtlich Konsistenz und Vollständigkeit statt. 
+Die Anwendung führt zunächst auf eine Landing Page,die nach Einsatz, Rolle, Name und Zeichen des Users fragt. Durch einen Klick auf Speichern gelangt man in die eigentliche UI. Im oberen Bereich befindet sich eine Kopfleiste, die einen Platzhalter für ein Logo, "Nachrichtenkom. für das THW", den Einsatznamen, Handzeichen, Rollenzeichen und -bezeichnung anzeigt. Über den Komplex Rollenzeichen und -bezeichnung besteht die Möglichkeit auf die Option des Nutzerwechsels zugreifen zu können, die der Landing Page entspricht. Am linken Bildrand befindet sich ein Menü, welches den Wechsel zwischen Übersicht, Erstellung eines Formulars,sowie einem Entwurf ermöglicht. Die Übersichtsseite vermittelt einen schnellen Überblick über alle hinterlegten Vordrucke, eingeschränkt auf Status, Technische Betriebsbuchnummer, Verfasser, Sichter, Datum, Uhrzeit, Empfänger und eine gekürzte Version des Inhalts. In der ersten Spalte befindet sich ein Button, über den der Vordruck zur genaueren Ansicht ausgewählt werden kann. Über der Formularübersicht befindet sich eine Leiste Filter, die durch Klick ausgeklappt werden kann. Dort können Filter so gewählt werden, dass jedes beliebige Formular einsehbar ist. Es kann nach Zeichenketten im Dokument, Kürzel des Sichters und der Betriebsbuchnummer gesucht werden. Die Formularmaske bildet den Vierfachvordruck realitätsnah nach. Je nach Status in dem sich die Nachricht befindet wird entweder ein blauer, grüner, roter oder gelber Rand angezeigt. Die Felder, welche nicht zum ausfüllen vorhergesehen sind, werden ausgegraut, trotzdem jedoch beschreibbar. Ebenfalls vom Status der Nachricht sind die Buttons am rechten Rand. Stets ist ein Button zum leeren des Formulars existieren, wobei nur eigene Eingaben gelöscht werden. Es besteht die Möglichkeit einen Entwurf zu speichern, wenn man die Formularseite ohne Weiterschicken verlassen will. Es findet derzeit auch noch keine Überprüfung der Daten hinsichtlich Konsistenz und Vollständigkeit statt. 
 
 \section{Grundsätzliche Struktur}
 Der Quelltext der Anwendung ist serviceorientiert aufgebaut. Hierzu werden Container verwendet welche die jeweiligen Services kapseln. Zwingende Voraussetzung in der Entwicklungsumgebung ist: 
 \begin{itemize}
-	\item Docker
+	\item Quitstore
 	\begin{itemize}
-		\item Bevor die Anwendung ausgeführt werden kann müssen auf dem ausführenden Computer (Host) die folgenden Programme installiert sein:
+		\item Benötigte Programme zur Entwicklung/Ausführung:
 		\begin{itemize}
-			\item \href{https://www.docker.com/get-docker}{docker}
-			\item \href{https://docs.docker.com/compose/}{docker-compose} 
+			\item Als Backend wird der Quitstore verwendet, welcher in einem \href{https://www.docker.com/get-docker}{Docker}-Container läuft
 		\end{itemize}
-		\item Die Anwendung ist auf zwei Docker-Container verteilt:
-		\begin{itemize}
-			\item Server-
-			Container der das Frontend und Controller-Logik implementiert
-			\item Daten-Container der den SPARQL-Endpoint implementiert
-		\end{itemize}
-		
 	\end{itemize}	
+	\item Printserver
+	\begin{itemize}
+		\item Benötigte Programme zur Ausführung:
+		\begin{itemize}
+			\item Der Printserver besteht aus zwei \href{https://docs.python.org/3/}{Python3}-Scripten, welche mit \href{https://www.latex-project.org/help/documentation/}{\LaTeX} eine PDF generieren
+		\end{itemize}
+		\item Benötigte Programme zur Entwicklung:
+		\begin{itemize}
+			\item Das Linting erfolgt mittels \href{https://pypi.python.org/pypi/pycodestyle}{pycodestyle} , welches über \href{https://pypi.python.org/pypi/pip}{pip} installiert werden kann.
+		\end{itemize}
+	\end{itemize}
+	\item frontend
+	\begin{itemize}
+		\item Benötigte Programme zur Ausführung und Entwicklung:
+		\begin{itemize}
+			\item Mittels \href{https://docs.npmjs.com/}{npm} können alle anderen benötigten Pakete installiert werden
+		\end{itemize}
+	\end{itemize}
 \end{itemize}
 \section{Struktur- und Entwurfsprinzipien einzelner Pakete}
-
-  \subsection*{Frontend}
-Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-Framework. Als Erweiterungen kommen \gls{Vuex}, sowie \gls{vue-router} zum Einsatz. Die Verwaltung des Quelltextes sowie das kompilieren geschieht via \gls{webpack}. Zur Vereinfachung wird auf die Bibliothek von \gls{Element-UI} zurückgegriffen. Der Quelltext des Frontends befindet sich im Ordner \verb+src/frontend+. In diesem Ordner befinden sich neben einem weiteren Ordner \verb+src+ die von \gls{webpack} benötigten Dateien und Ordner; diese werden im Folgenden nicht weiter beschrieben und sind weitgehend Standard. Der Ordner \verb+src+ unterteilt sich weiter in folgende Struktur:
+Es gibt drei weitgehend selbständige Services, welche über HTTP miteinander kommunizieren.
+\subsection{Frontend}
+Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-Framework. Als Erweiterungen kommen \gls{Vuex}, sowie \gls{vue-router} zum Einsatz. Die Verwaltung des Quelltextes sowie das Kompilieren geschieht via \gls{webpack}. Zur Vereinfachung wird auf die Bibliothek von \gls{Element-UI} zurückgegriffen. Der Quelltext des Frontends befindet sich im Ordner \verb+src/frontend+. In diesem Ordner befinden sich neben einem weiteren Ordner \verb+src+ die von \gls{webpack} benötigten Dateien und Ordner; diese werden im Folgenden nicht weiter beschrieben und sind weitgehend Standard. Der Ordner \verb+src+ unterteilt sich weiter in folgende Struktur:
 \newline
 
     \dirtree{%
@@ -110,10 +121,19 @@ Das Frontend ist in \gls{Javascript} geschrieben und verwendet das \gls{Vue.js}-
 }	
 \end{minipage}
 
-  \newpage
-
+\subsection{Printserver}
+Der Printserver ist in Python geschrieben, der Quellcode befindet sich unter \verb|src/renderPDF/| und beinhaltet folgende Dateien:
+\dirtree{%
+	.1 src/renderPDF/ .
+	.2 renderPDF.py - Erhält das Form-Data-Objekt als String und generiert daraus mittels Latex ein PDF.
+	.2 server.py - Kommunikation zwischen der App auf dem Client und dem renderPDF-Script auf dem Server.
+	.2 template.tex - Latex-Vorlage zum Generieren der PDF.
+	.2 Zahlreiche Testdateien.
+}
+\subsection{Quitstore}
+Als Backend wird Quitstore verwendet, Näheres dazu im Bereich Datenmodell.
 \section{Datenmodell}
-Als Datenmodell wird \gls{RDF} verwendet. Die Eingaben aus der UI werden über eine \gls{SPARQL}-Schnittstelle im \gls{Quitstore} in Tripel-Form gespeichert.  Der Quitstore wird über \verb+Projekt/quitstore.sh+ lokal gestartet. Jedem Dokument wird eine ID, bestehend aus einer sechsstelligen Zufallszahl, zur Identifizierung zugeordnet. Der Quitstore stellt die Daten auf Anfrage als \gls{JSON}-Response zur Verfügung. \\ Bei Aufrufen der Übersichtsseite werden alle für die Übersicht wichtigen Daten aus dem QuitStore über eine SPARQL Select Query ausgelesen und angezeigt. Wird ein Dokument geöffnet, werden, ebenfalls über eine Select Query, alle für dieses Formular gespeicherten Informationen ausgelesen um angezeigt werden zu können. Ebenfalls können nun Einsätze angelegt werden, die im Quitstore gespeichert werden, wodurch es möglich ist jedem Dokument den aktuellen Einsatz zuzuordnen.
+Als Datenmodell wird \gls{RDF} verwendet. Die Eingaben aus der UI werden über eine \gls{SPARQL}-Schnittstelle im \gls{Quitstore} in Tripel-Form gespeichert.  Der Quitstore wird über \verb+Projekt/quitstore.sh+ lokal gestartet. Jedem Dokument wird eine ID, bestehend aus einer sechs stelligen Zufallszahl, zur Identifizierung zugeordnet. Der Quitstore stellt die Daten auf Anfrage als \gls{JSON}-Response zur Verfügung. \\ Bei Aufrufen der Übersichtsseite werden alle für die Übersicht wichtigen Daten aus dem QuitStore über eine SPARQL Select Query ausgelesen und angezeigt. Wird ein Dokument geöffnet, werden, ebenfalls über eine Select Query, alle für dieses Formular gespeicherten Informationen ausgelesen um angezeigt werden zu können. Ebenfalls können nun Einsätze angelegt werden, die im Quitstore gespeichert werden, wodurch es möglich ist jedem Dokument den aktuellen Einsatz zuzuordnen.
 
 \newpage
 \printglossaries
