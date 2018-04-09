@@ -73,7 +73,7 @@ def adjustString(string, maxLines, lineLength):
 # Makes use of regex.substitution to remove all characters,
 # which are not specified in regex below
 def removeUnwantedCharacters(s):
-    s = re.sub(u'[^A-Za-z0-9()$&#_ % .:,;!?=äöüÄÖÜß \/ \-]', '', s)
+    s = re.sub(u'[^A-Za-z0-9()$&#_ % .:,;!?= \xfc \xf6 \xe4 \xdf \xc4 \xd6 \xdc \xdf \/ \-]', '', s)
     return s
 
 
