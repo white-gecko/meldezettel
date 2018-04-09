@@ -1,0 +1,85 @@
+\documentclass[a4paper,11pt,oneside, titlepage]{article}
+\usepackage[a4paper]{geometry} 
+\geometry{a4paper,left=20mm, right=25mm, top=20mm, bottom=30mm} 
+\usepackage[ngerman]{babel}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{dirtree}
+
+\pagestyle{fancy}
+
+\lhead{\today}
+\chead{Gruppe: na17b}
+\title{Handbuch für die Software: Nachrichtenkommunikation für das THW}
+\author{na17b}
+\date{}
+
+\begin{document}
+	\maketitle
+	\pagenumbering{gobble}
+	\tableofcontents
+	
+	\newpage
+	\pagenumbering{arabic}
+	
+	\section{Landing Page}
+	Lädt man die Anwendung neu so befindet man sich auf der Landing Page. Auf dieser werden sämtliche notwendige Login Daten erfragt.
+	
+	\subsection{Rollenauswahl}
+	Bei dieser werden verschiedene Rollen aufgelistet. Zu jeder wird der Absendername und das Handzeichen erfragt, wobei bei der Rolle Sachgebietsleiter (SGL) noch das dazugehörige Sachgebiet angegeben werden muss.
+	\newline
+	Mithilfe von \glqq{}Felder leeren\grqq{} können alle Eingaben und Wahlen zurückgesetzt werden inklusive des ggf. bereits ausgewählten Einsatzes.
+	
+	\subsection{Einsätze}
+	Unter der Rollenauswahl befindet sich die Auswahl des Einsatzes.
+	Muss ein neuer Einsatz angelegt werden, so ist das über den Button \glqq{}Einsatz erstellen\grqq{} möglich. Es klappen sich Eingabefelder für die benötigten Daten auf, die sich aus Einsatznamen, Einsatzadresse und der Art des Stabes zusammensetzten. Nach vollständigen Ausfüllen muss auf den Button \glqq{} Einsatz speichern \grqq{} geklickt werden, woraufhin er automatisch als aktueller Einsatz ausgewählt wird. Des weiteren ist der erstellte Einsatz jetzt unter \glqq{} Einsatz auswählen \grqq zufinden.
+	\newline
+	\newline
+	Klickt man auf den Button \glqq{}Einsatz auswählen\grqq{} so klappt sich eine Tabelle bereits vorhandener Einsätze auf mit den dazu gehörigen Daten: Name, Adresse und Art des Stabes. Mit einem Klick auf den gesuchten Einsatz, wählt man diesen aus.
+	
+	\section{Übersicht}
+	Ist man eingeloggt so sieht man eine Übersichtsseite. Diese ist unterteilt in Header, zwei Sidebars und einer Mittelsektion.
+	Der Header zeigt von links nach rechts einen Platzhalter für ein Logo und den Schriftzug \glqq{} Nachrichtenkom. für das THW\grqq{}, den aktuellen Einsatz, das auf der Landing Page eingetragene Hanzeichen, ein rollenspezifisches Symbol und zu guter letzt die Rollenbezeichnung an. 
+	Befindet man sich über den Rollensymbol und -bezeichnung Komplex so eröffnet sich durch einen Klick auf genau diesen, die Funktion den Nutzer wechseln zu können. Dies wird durch die Veränderung des Cursors angezeigt.
+		
+	\section{Formularübersicht}
+	Loggt man sich erstmals ein so wird man direkt auf die Formularübersicht weitergeleitet. Dort werden standardmäßig Formulare angezeigt, die zu bearbeiten sind, gefiltert nach der besetzten Rolle.
+	Pro Formular wird eine Zeile mit den dazugehörigen Status, der Technischen Betriebsbuchnummer, Verfasser, Sichterkürzel, Datum, Uhrzeit, Empfänger und Kurzinhalt angezeigt. Zum Auswählen eines Formulares klickt man einfach auf das entsprechende. So wird das bis dorthin ausgefüllte angezeigt und kann bearbeitet werden.
+	\newline
+	\newline
+	In der rechten Sidebar stehen Filteroptionen zur Verfügung. So befindet sich ganz oben ein Eingabefeld in dem nach beliebigen Zeichenfolgen für den Inhalt, der Technische Betriebsbuchnummer und eine Gegenstelle gesucht werden kann. Will man nach Sichter oder Verfasser suchen, so muss das vollständige und richtige Handzeichen eingegeben werden. Ebenfalls kann nach angelegten Einsätzen gefiltert werden, wobei standardmäßig nur Formulare des aktuellen angezeigt werden.
+	\newline
+	Weitere Filteroptionen sind unter \glqq{}Status \grqq{} in eingehende (\glqq{}Eingang\grqq{}) und ausgehende (\glqq{}Ausgang\grqq{}) untergliedert. Abbildung 1 und 2 dienen zur Veranschaulichung welche Rolle, welche Status standardmäßig sieht. 
+
+	\begin{figure}[htpb]
+
+	\centering
+	\includegraphics[width=0.8\linewidth]{HBausgang.png}
+	\caption{}
+
+	\end{figure}
+	\newpage	
+	\begin{figure}[htpb]
+		\centering
+		\includegraphics[width=0.8\linewidth]{HBeingang.png}
+		\caption{}
+	\end{figure}
+	
+	\section{Neues Formular}
+	Um ein neues Formular auszufüllen muss in der linken Sidebar auf den zweiten Button von oben geklickt werden. Daraufhin öffnet sich ein neues unausgefülltes. Es sind die weiß hinterlegten Felder im Normalfall auszufüllen. Es ist nicht vorgesehen die ausgegrauten Bereiche auszufüllen,jedoch für Sonderfälle möglich.
+	\newline
+	In der rechten Sidebar befinden sich die Button \glqq{}Abschicken\grqq{} und \glqq{}Zurücksetzen\grqq{}.
+	Mithilfe des Zurücksetzen-Buttons wird das komplette Formular geleert. Sobald das Formular nach besten Gewissen ausgefüllt ist, kann durch \glqq{} Abschicken \grqq{} die Nachricht an den LdF versandt werden.
+	\newline
+	Wird die Seite ohne Absenden des Formulares verlassen, wird gefragt ob das Formular als Entwurf gespeichert werden solle.
+	
+	\section{Entwurf}
+	Wird diese Seite aufgerufen, so ist hier ein nicht versendetes Formular zufinden. In der rechten Sidebar stehen alle Optionen zur Verfügung, die beim erstmaligen öffnen des Formulares auch vorhanden waren, sodass der Nachrichtenfluss gewährleistetist.
+	\newline
+	Zu beachten ist, dass hier stets nur ein Entwurf gespeichert werden kann. 
+	
+\end{document}
