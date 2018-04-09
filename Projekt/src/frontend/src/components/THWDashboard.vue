@@ -109,6 +109,11 @@
 
           </div>
 
+        </div>
+        <div class="
+              middleWrapper
+              dashboardSideMMidSection">
+
           <div class="
                 innerWrapper
                 dashboardSideMMidBot">
@@ -541,7 +546,7 @@ export default {
   }
   .dashboard {
     background-color: var(--semiLightNeutralColor);
-    width: 80%;
+    width: 75%;
     padding: 0 10px 20px 10px;
     margin: 0 0 0 0;
     border-top: 20px solid var(--secondaryTextColor);
@@ -551,12 +556,12 @@ export default {
   }
   .dashboardSideMenu {
     background-color: var(--semiLightNeutralColor);
-    width: 15%;
+    width: 20%;
     padding: 0 0 20px 10px;
     margin: 0 0 0 2%;
     border-top: 20px solid var(--secondaryTextColor);
     position: absolute;
-    left: 83%;
+    left: 78%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
