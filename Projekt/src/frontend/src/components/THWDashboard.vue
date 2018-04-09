@@ -7,9 +7,12 @@
       <el-table :data="ticketList"
                 style="width: 100%"
                 max-height="500"
-                border>
-        <el-table-column width="80">
-          <template slot-scope="scope">
+                border
+                header-cell-style="
+                   color:black;
+                   background-color: var(--formBlueColor)">
+        <el-table-column min-width="6%">
+          <template slot-scope="scope" width="100%">
             <router-link v-bind:to="{
           name:'Create',
           params:{id: ticketList[scope.$index]['id'] }}"
@@ -23,33 +26,42 @@
         <el-table-column :formatter="formatState"
                          label="Status"
                          prop="ticketState"
-                         align="center"></el-table-column>
+                         align="center"
+                         min-width="6%"></el-table-column>
 
         <el-table-column prop="numberTB"
-                         label="TB Nummer"
-                         align="center"></el-table-column>
+                         label="TB Nr."
+                         align="center"
+                         min-width="6%"></el-table-column>
 
         <el-table-column prop="creator"
-                         label="Verfasser"></el-table-column>
+                         label="Verf."
+                         min-width="6%"></el-table-column>
 
         <el-table-column prop="docketIdentification"
-                         label="Sichter"></el-table-column>
+                         label="Sichter"
+                         min-width="6%"></el-table-column>
 
         <el-table-column :formatter="formatDate"
                          prop="date"
                          label="Datum"
-                         align="center"></el-table-column>
+                         align="center"
+                         min-width="9%"></el-table-column>
 
         <el-table-column :formatter="formatTime"
                          prop="time"
                          label="Uhrzeit"
-                         align="center"></el-table-column>
+                         align="center"
+                         min-width="6%"></el-table-column>
 
         <el-table-column prop="receiverName"
-                         label="Empfänger"></el-table-column>
+                         label="Empfänger"
+                         min-width="20%"></el-table-column>
+
         <el-table-column :formatter="formatContent"
                          prop="content"
-                         label="Kurzinhalt"></el-table-column>
+                         label="Kurzinhalt"
+                         min-width="35%"></el-table-column>
 
       </el-table>
     </div>
