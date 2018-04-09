@@ -1754,6 +1754,7 @@ export default {
         this.formdata.ticketState = 0
       }
       this.autoFillValues()
+      this.setFormConfig(this.formdata.ticketState)
     },
 
     checkOut () {
@@ -1767,6 +1768,7 @@ export default {
         this.formdata.ticketState = 10
       }
       this.autoFillValues()
+      this.setFormConfig(this.formdata.ticketState)
     }
   },
 

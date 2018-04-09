@@ -32,7 +32,7 @@ export const setOperationList = (state, list) => {
  * Mutation that sets the Default Filters based on inputs in LandingPage
  * like role and operation
  *
- * @param context : connection to VueX store
+ * @param state : connection to VueX store
  */
 export const setDefaultFilters = (state) => {
   let role = state.user.role
@@ -174,7 +174,6 @@ export const setDefaultFilters = (state) => {
 }
 
 export const setFormConfig = (state, ticketState) => {
-  console.log(ticketState)
   // set input visibility config
   let visibility = {}
   Object.entries(stateConfig.formLayoutConfig.inputVisibility)

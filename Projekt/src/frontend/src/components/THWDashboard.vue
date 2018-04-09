@@ -338,7 +338,7 @@
 
             <div class="dashboardButtonWrapper">
               <div class="dashboardButton"
-                   @click="changeFilters()">
+                   @click="useFilters()">
                 <div class="dashboardButtonLabel">
                   Anwenden
                 </div>
