@@ -31,7 +31,6 @@ describe('THWLandingPage', () => {
   it('binds to position', () => {
     expect(wrapper.vm.userData.position).toBe('')
   })
-
   it('binds to operation', () => {
     expect(wrapper.vm.userData.operation).toEqual({
       operationName: '',
