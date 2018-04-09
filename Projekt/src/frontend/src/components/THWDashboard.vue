@@ -4,51 +4,54 @@
     <div class="
           dashboard
           hasShadowDashboardA">
-      <el-table :data="ticketList" style="width: 100%" max-height="500">
-        <el-table-column width="80">
-          <template slot-scope="scope">
-            <router-link v-bind:to="{
+      <div class="outerWrapper"
+           style="padding: 0 20px 10px 20px; height: 100%">
+        <el-table :data="ticketList"
+                  style="width: 100%; height: 100%">
+          <el-table-column width="80">
+            <template slot-scope="scope">
+              <router-link v-bind:to="{
           name:'Create',
           params:{id: ticketList[scope.$index]['id'] }}"
-                         tag="el-button">
-              <i class="el-icon-zoom-in"></i>
-            </router-link>
-          </template>
-        </el-table-column>
+                           tag="el-button">
+                <i class="el-icon-zoom-in"></i>
+              </router-link>
+            </template>
+          </el-table-column>
 
-        <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
-        <el-table-column :formatter="formatState"
-                         label="Status"
-                         prop="ticketState"
-                         align="center"></el-table-column>
+          <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
+          <el-table-column :formatter="formatState"
+                           label="Status"
+                           prop="ticketState"
+                           align="center"></el-table-column>
 
-        <el-table-column prop="numberTB"
-                         label="TB Nummer"
-                         align="center"></el-table-column>
+          <el-table-column prop="numberTB"
+                           label="TB Nummer"
+                           align="center"></el-table-column>
 
-        <el-table-column prop="creator"
-                         label="Verfasser"></el-table-column>
+          <el-table-column prop="creator"
+                           label="Verfasser"></el-table-column>
 
-        <el-table-column prop="docketIdentification"
-                         label="Sichter"></el-table-column>
+          <el-table-column prop="docketIdentification"
+                           label="Sichter"></el-table-column>
 
-        <el-table-column :formatter="formatDate"
-                         prop="date"
-                         label="Datum"
-                         align="center"></el-table-column>
+          <el-table-column :formatter="formatDate"
+                           prop="date"
+                           label="Datum"
+                           align="center"></el-table-column>
 
-        <el-table-column :formatter="formatTime"
-                         prop="time"
-                         label="Uhrzeit"
-                         align="center"></el-table-column>
+          <el-table-column :formatter="formatTime"
+                           prop="time"
+                           label="Uhrzeit"
+                           align="center"></el-table-column>
 
-        <el-table-column prop="receiverName"
-                         label="Empfänger"></el-table-column>
-        <el-table-column :formatter="formatContent"
-                         prop="content"
-                         label="Kurzinhalt"></el-table-column>
-
-      </el-table>
+          <el-table-column prop="receiverName"
+                           label="Empfänger"></el-table-column>
+          <el-table-column :formatter="formatContent"
+                           prop="content"
+                           label="Kurzinhalt"></el-table-column>
+        </el-table>
+      </div>
     </div>
 
     <div class="
@@ -56,24 +59,297 @@
           hasShadowDashboardA
           flexContainerDashboardB">
 
-      <div class="outerWrapper">
+      <div class="outerWrapper"
+           style="padding: 0 0 0 20px">
 
         <div class="
               middleWrapper
               dashboardSideMTopSection">
-          <div class="testSquare"></div>
+
+          <div class="
+                innerWrapper
+                dashboardSideMTopTop">
+            <div style="border: 4px solid var(--middleNeutralColor);">
+              <input class="dashboardInput"
+                     v-model='filter.search'
+                     placeholder="Suche"/>
+            </div>
+          </div>
+
         </div>
 
         <div class="
               middleWrapper
               dashboardSideMMidSection">
-          <div class="testSquare"></div>
+
+          <div class="
+                innerWrapper
+                dashboardSideMMidTop">
+            <label class="
+                    dashboardLabel
+                    hasShadowDashboardB">
+              Einsatz wählen:
+            </label>
+
+            <div class="dashboardButtonWrapper">
+              <select class="dashboardSelect"
+                      v-model='filter.operation'>
+                <option class="dashboardOption"
+                        value='Alle'>
+                  Alle
+                </option>
+                <option class="dashboardOption"
+                        v-for='operation in operationList'
+                        :key='operation.operationName'
+                        :value='operation.operationName'>
+                  {{ operation.operationName }}
+                </option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="
+                innerWrapper
+                dashboardSideMMidBot">
+            <label class="
+                    dashboardLabel
+                    hasShadowDashboardB">
+              Filter wählen:
+            </label>
+
+            <div class="dashboardButtonWrapper">
+              <div class="dashboardButton"
+                   @click="showHideIncoming">
+                <div class="dashboardButtonLabel">
+                  Eingang
+                </div>
+              </div>
+            </div>
+            <div class="flexContainerDashboardA"
+                 style="flex-wrap: wrap; margin: 0 0 10px 0"
+                 v-show="isIncoming">
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Erstellt
+                  <input type="checkbox" v-model='filter.s11'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-edit-outline stateFilter in"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Zurückgeschickt
+                  <input type="checkbox" v-model='filter.s12'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-circle-close stateFilter in"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Zu sichten
+                  <input type="checkbox" v-model='filter.s13'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-tickets stateFilter in"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Druckfertig
+                  <input type="checkbox" v-model='filter.s14'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-printer stateFilter in"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Archiviert
+                  <input type="checkbox" v-model='filter.s15'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <div style="
+                  height: 20px;
+                  width: 20px;
+                  background-color: var(--darkNeutralColor);
+                  margin: 5px 5px 0 5px;"></div>
+              </div>
+            </div>
+
+            <div class="dashboardButtonWrapper">
+              <div class="dashboardButton"
+                   @click="showHideOutgoing">
+                <div class="dashboardButtonLabel">
+                  Ausgang
+                </div>
+              </div>
+            </div>
+            <div class="flexContainerDashboardA"
+                 style="flex-wrap: wrap; margin: 0 0 10px 0"
+                 v-show="isOutgoing">
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Zu sichten
+                  <input type="checkbox" v-model='filter.s1'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-edit-outline stateFilter out"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Zurückgeschickt
+                  <input type="checkbox" v-model='filter.s2'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-circle-close stateFilter out"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Gesichtet
+                  <input type="checkbox" v-model='filter.s3'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-view stateFilter out"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Sendefertig
+                  <input type="checkbox" v-model='filter.s4'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-service stateFilter out"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Versandt(LdF)
+                  <input type="checkbox" v-model='filter.s5'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-circle-check-outline stateFilter out"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Versandt(Sichter)
+                  <input type="checkbox" v-model='filter.s6'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-circle-check stateFilter out"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Zurück(Funker)
+                  <input type="checkbox" v-model='filter.s7'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-circle-close-outline stateFilter out"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Druckfertig
+                  <input type="checkbox" v-model='filter.s8'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <i class="el-icon-printer stateFilter out"
+                   style="padding: 4px 5px 0 5px"/>
+              </div>
+
+              <div class="
+                dashboardCheckbox
+                flexContainerDashboardA">
+                <label class="control control-checkbox">
+                  Archiviert
+                  <input type="checkbox" v-model='filter.s9'/>
+                  <div class="control_indicator"></div>
+                </label>
+                <div style="
+                  height: 20px;
+                  width: 20px;
+                  background-color: black;
+                  margin: 4px 5px 0 5px;"></div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
         <div class="
               middleWrapper
               dashboardSideMBotSection">
-          <div class="testSquare"></div>
+
+          <div class="
+                innerWrapper
+                dashboardSideMBotTop">
+
+            <div class="dashboardButtonWrapper">
+              <div class="dashboardButton"
+                   @click="changeFilters()">
+                <div class="dashboardButtonLabel">
+                  Anwenden
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboardButtonWrapper">
+              <div class="dashboardButton"
+                   @click="resetFilters()">
+                <div class="dashboardButtonLabel">
+                  Zurücksetzen
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
       </div>
@@ -249,13 +525,13 @@ export default {
     margin-right: 10px;
   }
   .out{
-    color: black;
+    color: var(--primaryTextColor);
   }
   .in{
-    color: blue;
+    color: var(--formBlueColor);
   }
   .warn{
-    color:red;
+    color:var(--formRedColor);
   }
   .stateFilter{
     font-size: 21px;
@@ -266,31 +542,27 @@ export default {
   .dashboard {
     background-color: var(--semiLightNeutralColor);
     width: 80%;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--primaryTextColor);
     padding: 0 10px 20px 10px;
-    margin: 0 20% 0 0;
+    margin: 0 0 0 0;
     border-top: 20px solid var(--secondaryTextColor);
-    font-family: var(--mainFont);
-    font-size: var(--smallTitleSize);
-    color: var(--primaryTextColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
   .dashboardSideMenu {
     background-color: var(--semiLightNeutralColor);
-    width: 20%;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--primaryTextColor);
+    width: 15%;
     padding: 0 0 20px 10px;
-    margin: 0 0 0 3%;
+    margin: 0 0 0 2%;
     border-top: 20px solid var(--secondaryTextColor);
-    position: fixed;
+    position: absolute;
     left: 83%;
-    font-family: var(--mainFont);
-    font-size: var(--smallTitleSize);
-    color: var(--primaryTextColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
+
+  /* sections */
   .dashboardSideMTopSection {
     padding: 0 0 5px 0;
     margin: 0 0 10px 0;
@@ -304,6 +576,24 @@ export default {
     margin: 0 0 10px 0;
   }
 
+  /* elements */
+  .dashboardSideMTopTop {
+    padding: 10px 10px 0 10px;
+    margin: 0 0 0 0;
+  }
+  .dashboardSideMMidTop {
+    padding: 55px 10px 0 10px;
+    margin: 0 0 5px 0;
+  }
+  .dashboardSideMMidBot {
+    padding: 55px 10px 0 10px;
+    margin: 0 0 0 0;
+  }
+  .dashboardSideMBotTop {
+    padding: 10px 10px 0 10px;
+    margin: 0 0 0 0;
+  }
+
   /* custom input */
   .dashboardInput {
     height: 50px;
@@ -311,15 +601,18 @@ export default {
     background-color: var(--semiLightNeutralColor);
     margin: 0 0 0 0;
     padding: 0 0 0 10px;
-    position: relative;
-    right: 10px;
     border-style: none;
-    border-left: var(--formBlueColor);
-    border-left-style: solid;
-    border-left-width: 10px;
+    border-left: 10px solid var(--formBlueColor);
+    font-size: var(--titleSize);
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box
+    box-sizing: border-box;
+  }
+  .dashboardInput:hover {
+    border-left: 10px solid var(--mainColor);
   }
   .dashboardSelect {
     -webkit-appearance: none;
@@ -328,67 +621,121 @@ export default {
     height: 50px;
     width: 100%;
     background-color: var(--semiLightNeutralColor);
-    margin: 10px 0 30px 0;
-    padding: 0 0 0 10px;
-    position: relative;
-    right: 10px;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
     cursor: pointer;
+    font-size: var(--titleSize);
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
     border-style: none;
-    border-left: var(--formBlueColor);
-    border-left-style: solid;
-    border-left-width: 10px;
+    border-left: 10px solid var(--formBlueColor);
     text-align: center;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
+  }
+  .dashboardSelect:hover {
+    border-left: 10px solid var(--mainColor);
+  }
+
+  /* custom label*/
+  .dashboardLabel {
+    height: 30px;
+    width: auto;
+    padding: 5px 10px 0 10px;
+    background-color: var(--middleNeutralColor);
+    font-size: var(--titleSize);
+    position: absolute;
+    top: 0;
+    left: 10px;
+  }
+
+  /* custom button */
+  .dashboardButtonWrapper {
+    margin: 5px 0 0 0;
+    border: 4px solid var(--middleNeutralColor);
   }
   .dashboardButton {
     height: 50px;
     width: 100%;
     background-color: var(--semiLightNeutralColor);
-    padding: 15px 20px 0 0;
-    margin: 0 0 10px 0;
-    position: relative;
-    right: 10px;
-    border-left: var(--formBlueColor);
-    border-left-style: solid;
-    border-left-width: 10px;
+    padding: 0 0 0 0;
+    border-left: 10px solid var(--formBlueColor);
     text-align: center;
+    font-size: var(--titleSize);
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .dashboardButton:hover {
+    border-left: 10px solid var(--mainColor);
+    cursor: pointer;
+  }
+  .dashboardButtonLabel {
+    height: 40px;
+    width: 100%;
+    padding: 10px 40px 0 40px;
+    margin: 0 10px 0 10px;
+    background-color: var(--middleNeutralColor);
+    font-size: var(--titleSize);
+    text-align: center;
+    cursor: pointer;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
   }
-  .dashboardButton:hover {
-    border-left: var(--mainColor);
-    border-left-style: solid;
-    border-left-width: 10px;
-    cursor: pointer;
-  }
+
   /* checkbox */
   .dashboardCheckbox {
-    margin: 5px 0 0 10px;
-    border: 1px solid var(--darkNeutralColor);
+    width: 100%;
+    margin: 5px 10px 0 10px;
+    border: 4px solid var(--middleNeutralColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
+  .dashboardCheckbox:hover div {
+    background-color: var(--mainColor);
+  }
+
   .control {
-    height: 20px;
+    width: 100%;
+    height: 30px;
+    padding: 5px 10px 0 30px;
+    background-color: var(--middleNeutralColor);
+    text-align: center;
     display: block;
     position: relative;
-    padding: 5px 0 0 40px;
-    margin-bottom: 5px;
     cursor: pointer;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+
   }
   .control input {
     position: absolute;
     z-index: -1;
     opacity: 0;
+
   }
   .control_indicator {
+    height: 30px;
+    width: 30px;
+    background: var(--formBlueColor);
     position: absolute;
     top: 0;
     left: 0;
-    height: 30px;
-    width: 30px;
-    background: var(--darkNeutralColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+
   }
   .control-radio .control_indicator {
     border-radius: undefined%;
@@ -401,18 +748,20 @@ export default {
     content: '';
     position: absolute;
     display: none;
+
   }
   .control input:checked ~ .control_indicator:after {
     display: block;
   }
   .control-checkbox .control_indicator:after {
     left: 10px;
-    top: 3px;
+    top: 4px;
     width: 7px;
-    height: 16px;
-    border: solid #ffffff;
-    border-width: 0 2px 2px 0;
+    height: 15px;
+    border: solid var(--semiLightNeutralColor);
+    border-width: 0 3px 3px 0;
     transform: rotate(45deg);
+
   }
 
   /*
@@ -423,7 +772,12 @@ export default {
     box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
   }
   .hasShadowDashboardB {
-    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
+    box-shadow: 0px 5px 10px -6px var(--lightShadowColor);
+  }
+  .hasShadowDashboardC {
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
   }
 
   /*
@@ -440,7 +794,7 @@ export default {
   }
 
   .testSquare {
-    width: 100px;
+    width: 50px;
     height: 50px;
     background-color: yellow;
   }

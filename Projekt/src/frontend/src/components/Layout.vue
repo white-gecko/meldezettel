@@ -20,13 +20,13 @@
 
     <div class="
           flexContainerLayoutB"
-         style="z-index: 1">
+         style="z-index: 1; width: 100%">
         <THWMenu style="
-                  width: 10%;
+                  width: 7%;
                   margin-top: 100px;"/>
        <router-view style="
-                      width: 78%;
-                      margin-left: 50px;
+                      width: 90%;
+                      margin-left: 3%;
                       margin-top: 100px;"/>
 
     </div>
@@ -83,7 +83,7 @@ export default {
     /*shadow colors*/
     --darkShadowColor: #666666;
     --middleShadowColor: #999999;
-    --lightShadowColor: #cccccc;
+    --lightShadowColor: rgba( 0, 0, 0, 0.3);
 
     /*font-specific parameters*/
     /*font(s)*/
@@ -128,6 +128,10 @@ export default {
     font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
     flex-grow: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+
   }
 
   .middleWrapper {
@@ -136,6 +140,10 @@ export default {
     font-size: var(--smallTitleSize);
     color: var(--primaryTextColor);
     flex-grow: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+
   }
 
   .innerWrapper {
@@ -145,6 +153,13 @@ export default {
     color: var(--primaryTextColor);
     position: relative;
     flex-grow: 1;
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+
   }
 
   /*CSS-reset:
