@@ -1215,6 +1215,7 @@ export default {
 
     autoFillTime: function () {
       let today = new Date()
+      // generate time
       let hh = today.getHours()
       let mm = today.getMinutes()
       if (hh < 10) {
@@ -1262,6 +1263,7 @@ export default {
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
       this.$data.formdata.inOperation = this.getUser().operation.operationId
+      this.checkIfUserIsFernmelder()
       this.setIncomingOutgoing()
       this.autoFillValues()
       this.$data.formdata.inOperation = this.getUser().operation.operationID
@@ -1308,6 +1310,13 @@ export default {
         this.loadDraft()
       } else {
         this.loadID(id)
+      }
+    },
+    // checks if user is Fernmelder to set Eingehend as default value
+    checkIfUserIsFernmelder: function () {
+      if (this.$store.state.user.role === 'Fernmelder') {
+        this.other.tempEingehend = true
+        this.checkIn()
       }
     },
 
