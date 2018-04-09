@@ -90,9 +90,9 @@ export default {
     --mainFont: Helvetica;
 
     /*font-sizes*/
-    --bigTitleSize: 20px;
-    --titleSize: 18px;
-    --smallTitleSize: 16px;
+    --bigTitleSize: 100%;
+    --titleSize: 100%;
+    --smallTitleSize: 100%;
     --bodySize: 14px;
     --smallBodySize: 13px;
     --supplementaryTextSize: 12px;

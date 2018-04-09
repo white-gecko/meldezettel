@@ -693,11 +693,13 @@
                 <div class="overlay" v-show="!abfassungszeit"></div>
                 <div class="
                         inputWrapper
-                        flexContainerFormA"
-                     style="height: 48px">
+                        flexContainerFormA">
                   <div class="inputSelectionHighlight"
                        style="height: 40px"></div>
                   <label class="inputLabel"
+                         style="
+                          width: 55%;
+                          min-width: 140px;"
                          for="createTime">
                     Abfassungszeit
                   </label>
@@ -705,6 +707,7 @@
                          class="
                           inputWithLabel
                           hasMinMaxA"
+                         style="width: 45%"
                          v-model="formdata.createTime"
                          :tabindex="other.tabIndexConf.timeCreate"/>
                 </div>
@@ -717,8 +720,7 @@
                 <div class="overlay" v-show="!zeichen"></div>
                 <div class="
                         inputWrapper
-                        flexContainerFormA"
-                     style="height: 48px">
+                        flexContainerFormA">
                   <div class="inputSelectionHighlight"
                        style="height: 40px"></div>
                   <label class="inputLabel"
@@ -741,8 +743,7 @@
                 <div class="overlay" v-show="!funktion"></div>
                 <div class="
                         inputWrapper
-                        flexContainerFormA"
-                     style="height: 48px">
+                        flexContainerFormA">
                   <div class="inputSelectionHighlight"
                        style="height: 40px"></div>
                   <label class="inputLabel"
@@ -2091,112 +2092,112 @@ export default {
   /* top-section */
   .checkboxgroupMTTop {
     width: 100%;
-    padding: 5px 0 0 0;
+    padding: 10px 0 0 0;
     margin: 0 0 5px 0;
   }
   .inputIncoming {
     width: 33%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputOutgoing {
     width: 67%;
-    padding: 5px 15px 0 10px;
+    padding: 10px 15px 0 10px;
     margin: 0 0 0 0;
   }
   .inputTB {
     height: 100%;
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
   .inputRGS {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
 
   /*mid-section*/
   .checkboxgroupMTMid {
     width: 100%;
-    padding: 5px 0 0 0;
+    padding: 10px 0 0 0;
     margin: 0 0 5px 0;
   }
   .checkboxgroupDS {
     width: 100%;
-    padding: 5px 0 0 0;
+    padding: 10px 0 0 0;
     margin: 0 5px 5px 0;
   }
   .checkboxgroupSB {
     width: 100%;
-    padding: 5px 0 0 0;
+    padding: 10px 0 0 0;
     margin: 0 0 5px 0;
   }
   .inputRufnr {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputAnschrift {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputGESP {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
   .inputInhalt {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
   .inputAbsender {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 0 5px 0;
   }
   .inputAbZeit {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputZeichen {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputFunktion {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
 
   /*bot-section*/
   .inputQuittung {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 0 5px 0;
   }
   .checkboxgroupTEL {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .checkboxgroupFachberater {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .checkboxgroupVerb {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
   .inputVermerke {
     width: 100%;
-    padding: 5px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
 
@@ -2204,12 +2205,10 @@ export default {
   .headerFormA {
     padding: 0 0 0 0;
     margin: 0 0 0 0;
-    white-space: nowrap;
   }
   .headerFormB {
     padding: 0 0 0 0;
     margin: 0 0 0 5px;
-    white-space: nowrap;
   }
 
   /* custom button */
@@ -2241,7 +2240,7 @@ export default {
     height: 100%;
     width: 100%;
     padding: 0 0 0 0;
-    margin: 5px 0 0 0;
+    margin: 0 0 0 0;
     border: 4px solid var(--middleNeutralColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -2252,18 +2251,19 @@ export default {
   }
   .inputLabel {
     height: 40px;
-    width: 35%;
+    width: 40%;
     background-color: var(--middleNeutralColor);
     padding: 5px 10px 0 10px;
     margin: 0 0 0 0;
+    overflow: visible;
+    overflow-wrap: break-word;
     text-align: center;
-    white-space: nowrap;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
   }
   .inputWithLabel {
-    width: 65%;
+    width: 60%;
     height: 40px;
     padding: 0 0 0 10px;
     margin: 0 0 0 0;
@@ -2278,6 +2278,7 @@ export default {
   }
   .inputSelectionHighlight {
     height: auto;
+    min-width: 10px;
     width: 10px;
     background-color: var(--formBlueColor);
   }
@@ -2285,7 +2286,7 @@ export default {
   /* custom checkbox */
   .formCheckbox {
     width: 100%;
-    margin: 5px 20px 0 20px;
+    margin: 0 1% 0 1%;
     border: 4px solid var(--middleNeutralColor);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
