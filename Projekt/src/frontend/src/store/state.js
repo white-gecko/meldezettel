@@ -27,5 +27,6 @@ export default {
     position: '',
     identification: ''
   },
-  showLandingPage: true
+  showLandingPage: true,
+  formConfig: {}
 }
