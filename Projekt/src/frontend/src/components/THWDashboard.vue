@@ -328,21 +328,6 @@
 
         </div>
 
-      </div>
-
-      <div class="
-            dashboardSection
-            hasShadowDashboardA
-            flexContainerDashboardB"
-           style="margin: 0 0 0 0">
-        <div class="
-            dashboardButton
-            hasShadowDashboardA"
-             style="margin-bottom: 20px"
-             @click="useFilters()">
-          Anwenden
-        </div>
-
         <div class="
               middleWrapper
               dashboardSideMBotSection">
@@ -376,6 +361,7 @@
       </div>
 
     </div>
+
   </div>
 </template>
 <script>
@@ -524,7 +510,7 @@ export default {
     color: var(--primaryTextColor);
   }
   .in{
-    color: blue;
+    color: var(--formBlueColor);
   }
   .warn{
     color:var(--formRedColor);
@@ -541,6 +527,7 @@ export default {
     padding: 0 10px 20px 10px;
     margin: 0 0 0 0;
     border-top: 20px solid var(--secondaryTextColor);
+    font-size: var(--titleSize);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
@@ -553,6 +540,7 @@ export default {
     border-top: 20px solid var(--secondaryTextColor);
     position: absolute;
     left: 78%;
+    font-size: var(--titleSize);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
