@@ -45,7 +45,7 @@
                       Funk
                       <input type="checkbox"
                              v-model="formdata.topRadio"
-                             :tabindex="tabIndexConfig.topRadio"/>
+                             :tabindex="other.tabIndexConf.topRadio"/>
                       <div class="formControl_indicator"></div>
                     </label>
                   </div>
@@ -1231,9 +1231,8 @@
             formPageButton
             hasShadowFormA"
            @click="
-          saveForm('accept');
-          notifySuccess('Abgeschickt')"
-           :tabindex="tabIndexConfig.buttonSend"
+          saveForm('accept');"
+           :tabindex="tabIndexConf.buttonSend"
            v-show="isNew">
         Abschicken
       </div>
@@ -1243,8 +1242,7 @@
             formPageButton
             hasShadowFormA"
            @click="
-            saveForm('accept');
-            notifySuccess('Abgeschickt')"
+            saveForm('accept');"
            tabindex="6"
            v-show="sendable">
         Weitersenden
@@ -1255,8 +1253,7 @@
             formPageButton
             hasShadowFormA"
            @click="
-            printTicket();
-            notifySuccess('Gedruckt')"
+            printTicket();"
            tabindex="6"
            v-show="toBePrinted">
         Drucken
@@ -1267,8 +1264,7 @@
             formPageButton
             hasShadowFormA"
            @click="
-            saveForm('reject');
-            notifySuccess('Zurückgeschickt')"
+            saveForm('reject');"
            v-show="rejectable">
         Abweisen
       </div>
@@ -1280,8 +1276,7 @@
            @click="
             formReset();
             notifySuccess('Formular zurückgesetzt')"
-           :tabindex="tabIndexConfig.buttonReset"
-           v-show="isNew">
+           :tabindex="tabIndexConf.buttonReset">
         Zurücksetzen
       </div>
 
@@ -1646,7 +1641,11 @@ export default {
         if (this.other.isEdit) {
           this.updateFormDataAction(this.$data.formdata)
             .then(() => {
-              this.notifySuccess('Abgeschickt')
+              if (action === 'accept') {
+                this.notifySuccess('Abgeschickt')
+              } else if (action === 'reject') {
+                this.notifySuccess('Zurückgeschickt')
+              }
               this.$router.push({name: 'Home'})
             })
             .catch(error => {

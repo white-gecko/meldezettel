@@ -73,7 +73,7 @@ def adjustString(string, maxLines, lineLength):
 # Makes use of regex.substitution to remove all characters,
 # which are not specified in regex below
 def removeUnwantedCharacters(s):
-    s = re.sub(u'[^A-Za-z0-9()$&#_ % .:,;!?=äöüÄÖÜß \/ \-]', '', s)
+    s = re.sub(u'[^A-Za-z0-9()$&#_ % .:,;!?= \xfc \xf6 \xe4 \xdf \xc4 \xd6 \xdc \xdf \/ \-]', '', s)
     return s
 
 
@@ -157,7 +157,7 @@ def formDataStringToVariablesString(formDataDir):
     # Array of multiline string variable names, their maximum number of lines
     # and their maximum number of chars per line
     multiLineStrings = [
-        ["content", 20, 89],
+        ["content", 30, 89],
         ["annotations", 8, 35]]
 
     # Array of booleans where json variable name and latex variable name

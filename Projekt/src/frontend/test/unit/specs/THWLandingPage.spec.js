@@ -19,14 +19,16 @@ describe('THWLandingPage', () => {
     wrapper = mount(THWLandingPage, { store, localVue })
   })
 
-  it('binds to Hdz', () => {
-    expect(wrapper.vm.userData.position).toBe('')
-  })
-
   it('binds to name', () => {
     expect(wrapper.vm.userData.sender).toBe('')
   })
   it('binds to Hdz', () => {
+    expect(wrapper.vm.userData.identification).toBe('')
+  })
+  it('binds to role', () => {
+    expect(wrapper.vm.userData.role).toBe('SGL')
+  })
+  it('binds to position', () => {
     expect(wrapper.vm.userData.position).toBe('')
   })
   it('binds to operation', () => {
