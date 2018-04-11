@@ -5,14 +5,14 @@
           dashboard
           hasShadowDashboardA">
       <div class="outerWrapper"
-           style="padding: 0 20px 10px 20px; height: 100%">
+           style="padding: 0 20px 10px 20px;">
         <el-table :data="ticketList"
                   style="width: 100%"
-                  max-height="500"
                   border
-                  header-cell-style="
-                   color: var(--primaryTextColor);
-                   background-color: var(--formBlueColor)">
+                  :header-cell-style="{
+                    'font': 'var(--titleSize) var(--mainFont)',
+                    'color': 'var(--primaryTextColor)',
+                    'border-bottom': '20px solid var(--darkNeutralColor)'}">
           <el-table-column min-width="6%">
             <template slot-scope="scope" width="100%">
               <router-link v-bind:to="{
@@ -209,7 +209,7 @@
                 <div style="
                   height: 20px;
                   width: 20px;
-                  background-color: blue;
+                  background-color: var(--formBlueColor);
                   margin: 5px 5px 0 5px;"></div>
               </div>
             </div>
@@ -333,7 +333,7 @@
                 <div style="
                   height: 20px;
                   width: 20px;
-                  background-color: black;
+                  background-color: var(--formGreenColor);
                   margin: 4px 5px 0 5px;"></div>
               </div>
             </div>
@@ -521,7 +521,7 @@ export default {
     margin-right: 10px;
   }
   .out{
-    color: var(--primaryTextColor);
+    color: var(--formGreenColor);
   }
   .in{
     color: var(--formBlueColor);
@@ -538,6 +538,7 @@ export default {
   .dashboard {
     background-color: var(--semiLightNeutralColor);
     width: 75%;
+    height: auto;
     padding: 0 10px 20px 10px;
     margin: 0 0 0 0;
     border-top: 20px solid var(--secondaryTextColor);

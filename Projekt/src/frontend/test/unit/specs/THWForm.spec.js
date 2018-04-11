@@ -3,6 +3,7 @@ import THWForm from '@/components/THWForm'
 import Vuex from 'vuex'
 import expect from 'expect'
 import VueRouter from 'vue-router'
+import state from '@/store/state'
 
 
 const localVue = createLocalVue()
@@ -28,7 +29,7 @@ describe('THWForm', () => {
       getPDFAction: jest.fn()
     }
     store = new Vuex.Store({
-      state: {},
+      state,
       actions
     })
     wrapper = mount(THWForm, { 
@@ -36,16 +37,18 @@ describe('THWForm', () => {
       localVue,
       router
      })
+     wrapper.vm.saveForm = jest.fn();
+      wrapper.vm.formReset = jest.fn()
   })
 
   it('saves new tickets to the db', () => {
       wrapper.find('#saveNewFormButton').trigger('click')
-      expect(actions.saveNewFormAction).toHaveBeenCalled()
+      expect(wrapper.vm.saveForm).toHaveBeenCalled()
   })
 
   it('sends tickets to the next station', () => {
       wrapper.find('#sendFormToNextPersonButton').trigger('click')
-      expect(actions.saveNewFormAction).toHaveBeenCalled()
+      expect(wrapper.vm.saveForm).toHaveBeenCalled()
   })
 
   it('allows to print a ticket', () => {
@@ -54,13 +57,11 @@ describe('THWForm', () => {
   })
 
   it('allows to reject a ticket', () => {
-      wrapper.vm.saveForm = jest.fn()
       wrapper.find('#rejectFormButton').trigger('click')
       expect(wrapper.vm.saveForm).toHaveBeenCalledWith('reject')
   })
 
-  it('saves new tickets to the db', () => {
-      wrapper.vm.formReset = jest.fn()
+  it('resets the form when pressing the reset button', () => {
       wrapper.find('#resetFormButton').trigger('click')
       expect(wrapper.vm.formReset).toHaveBeenCalled()
   })
