@@ -172,7 +172,8 @@
                style="
                 margin: 5px 0 0 0;">
             <div class="LPButton"
-                 @click="submitOperation(newOperation)">
+                 @click="submitOperation(newOperation)"
+                 id="saveOperationButton">
               <div class="LPButtonLabel">
                 Einsatz speichern
               </div>
@@ -223,7 +224,8 @@
 
           <div class="LPButtonWrapper">
             <div class="dashboardButton"
-                 @click="validateUser('userData')">
+                 @click="validateUser('userData')"
+                 id="validateUserButton">
               <div class="LPButtonLabel">
                 Eingaben speichern
               </div>
@@ -232,7 +234,8 @@
 
           <div class="LPButtonWrapper">
             <div class="LPButton"
-                 @click="resetUserData()">
+                 @click="resetUserData()"
+                 id="resetUserInputButton">
               <div class="LPButtonLabel">
                 Felder leeren
               </div>

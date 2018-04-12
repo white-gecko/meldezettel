@@ -3,20 +3,43 @@ import THWLandingPage from '@/components/THWLandingPage'
 import Vuex from 'vuex'
 import expect from 'expect'
 import store from '../../../src/store/index.js'
+import VueRouter from 'vue-router'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
+localVue.use(VueRouter)
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/home',
+      name: 'Home'
+    }
+  ]
+})
 
 describe('THWLandingPage', () => {
   let wrapper
-  let mutations
 
   beforeEach(() => {
-    mutations = {
-      setUser: jest.fn()
-    }
-
     wrapper = mount(THWLandingPage, { store, localVue })
+  })
+
+  it('saves new operations to Quitstore', () => {
+    wrapper.vm.submitOperation = jest.fn()
+    wrapper.find('#saveOperationButton').trigger('click')
+    expect(wrapper.vm.submitOperation).toHaveBeenCalled()
+  })
+
+  it('validates input data', () => {
+    wrapper.vm.validateUser = jest.fn()
+    wrapper.find('#validateUserButton').trigger('click')
+    expect(wrapper.vm.validateUser).toHaveBeenCalled()
+  })
+
+  it('resets input fields', () => {
+    wrapper.vm.resetUserData = jest.fn()
+    wrapper.find('#resetUserInputButton').trigger('click')
+    expect(wrapper.vm.resetUserData).toHaveBeenCalled()
   })
 
   it('binds to name', () => {
