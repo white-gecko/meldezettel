@@ -20,7 +20,7 @@ pythonlinting_and_testing:
   image:
     name: python:3.6
   script:
-    - pip install pycodestyle
+    - pip install -I pycodestyle==2.3.1
     - pycodestyle Projekt/
     - cd ./Projekt/src/renderPDF
     - for f in $(find Projekt -name '*.test.py'); do python3 $f -v; done
