@@ -1236,7 +1236,8 @@
               <div class="formButton"
                    @click="
                     saveForm('accept');"
-                   :tabindex="tabIndexConfig.buttonSend">
+                   :tabindex="tabIndexConfig.buttonSend"
+                   id="saveNewFormButton">
                 <div class="formButtonLabel">
                   Abschicken
                 </div>
@@ -1248,7 +1249,8 @@
               <div class="formButton"
                    @click="
                     saveForm('accept');"
-                   tabindex="6">
+                   tabindex="6"
+                   id="sendFormToNextPersonButton">
                 <div class="formButtonLabel">
                   Weitersenden
                 </div>
@@ -1260,7 +1262,8 @@
               <div class="formButton"
                    @click="
                     printTicket();"
-                   tabindex="6">
+                   tabindex="6"
+                   id="printFormButton">
                 <div class="formButtonLabel">
                   Drucken
                 </div>
@@ -1271,7 +1274,8 @@
                  v-show="rejectable">
               <div class="formButton"
                    @click="
-                    saveForm('reject');">
+                    saveForm('reject');"
+                    id="rejectFormButton">
                 <div class="formButtonLabel">
                   Abweisen
                 </div>
@@ -1282,7 +1286,8 @@
               <div class="formButton"
                    @click="
                     formReset();"
-                   :tabindex="tabIndexConfig.buttonReset">
+                   :tabindex="tabIndexConfig.buttonReset"
+                   id="resetFormButton">
                 <div class="formButtonLabel">
                   Zurücksetzen
                 </div>
@@ -1300,18 +1305,8 @@
 <script>
 import { MessageBox, Notification } from 'element-ui'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
-import ElHeader from 'element-ui/packages/header/src/main'
-import ElRow from 'element-ui/packages/row/src/row'
-import ElContainer from 'element-ui/packages/container/src/main'
-import ElMain from 'element-ui/packages/main/src/main'
 
 export default {
-  components: {
-    ElMain,
-    ElContainer,
-    ElRow,
-    ElHeader
-  },
   name: 'THWForm',
 
   data: () => {
