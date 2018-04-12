@@ -7,22 +7,13 @@
       <div class="outerWrapper"
            style="padding: 0 20px 10px 20px;">
         <el-table :data="ticketList"
+                  @current-change="selectDocument"
                   style="width: 100%"
                   border
                   :header-cell-style="{
                     'font': 'var(--titleSize) var(--mainFont)',
                     'color': 'var(--primaryTextColor)',
                     'border-bottom': '20px solid var(--darkNeutralColor)'}">
-          <el-table-column min-width="6%">
-            <template slot-scope="scope" width="100%">
-              <router-link v-bind:to="{
-          name:'Create',
-          params:{id: ticketList[scope.$index]['id'] }}"
-                           tag="el-button">
-                <i class="el-icon-zoom-in"></i>
-              </router-link>
-            </template>
-          </el-table-column>
 
           <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
           <el-table-column :formatter="formatState"
@@ -415,6 +406,10 @@ export default {
   },
 
   methods: {
+    selectDocument: function (currentRow) {
+      this.$router.push({name: 'Create', params: {id: currentRow.id}})
+    },
+
     showHideIncoming: function () {
       if (this.isIncoming) {
         this.isIncoming = false
