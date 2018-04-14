@@ -27,8 +27,6 @@ export default {
     identification: ''
   },
   operationList: [],
-  // boolean to indicate if userData has been entered
-  userDataIsStored: (this.user.operation !== ''),
   showLandingPage: true,
   // default config, state = 0
   formConfig: {
