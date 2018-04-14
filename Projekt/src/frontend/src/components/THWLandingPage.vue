@@ -242,6 +242,18 @@
             </div>
           </div>
 
+          <div
+            class="LPButtonWrapper"
+            v-if="showCancelButton">
+            <div class="LPButton"
+                 @click="hideLandingPage()"
+                 id="resetUserInputButton">
+              <div class="LPButtonLabel">
+                Abbrechen
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -276,6 +288,7 @@ export default {
       // booleans for the operation options to be shown or hidden
       addingOperation: false,
       choosingOperation: false,
+      showCancelButton: false,
       // new Operation object that binds to operation input
       newOperation: {
         operationName: '',
@@ -304,12 +317,16 @@ export default {
   },
 
   methods: {
-
     // method to call stored userData from vuex
     setStoredUserData () {
       if (this.$store.state.user.sender !== '') {
         this.userData = this.$store.state.user
+        // if there is userData, cancel Button will be displayed
       }
+    },
+    // method to hide landing page
+    hideLandingPage () {
+      this.$store.commit('setShowLandingPage')
     },
     // checks if userData is typed in (not empty)
     validateUser (userData) {
@@ -347,6 +364,7 @@ export default {
           this.notifySuccess('Eingaben erfolgreich gespeichert')
           this.$store.commit('setShowLandingPage')
           this.$router.push({name: 'Home'})
+          this.showCancelButton = true
         })
     },
     // resets inputs
