@@ -124,7 +124,7 @@ export default {
     position: relative;
   }
   .menuLogo {
-    background-color: var(--darkNeutralColor);
+    background-color: var(--secondaryTextColor);
     position: relative;
     left: 10px;
     z-index: 11;
@@ -146,7 +146,7 @@ export default {
     font-size: var(--titleSize);
     color: var(--primaryTextColor);
     text-align: right;
-    animation: descBlendIn 0.3s ease 0.1s 1 normal backwards;
+    animation: descBlendIn 0.1s ease 0.1s 1 normal backwards;
   }
 
   /*

@@ -4,194 +4,259 @@
   <div class="
         landingPage
         hasShadowLandingPageA
-        flexContainerFormB">
+        flexContainerLPB">
+    <div class="outerWrapper"
+         style="padding: 0 20px 20px 20px;">
+      <div class="middleWrapper"
+           style="
+            padding: 0 0 5px 0;
+            margin: 0 0 10px 0;">
 
-    <div class="
-      topSection
-      hasShadowLandingPageC
-      flexContainerFormB">
-
-      <!--role-selector-->
-      <el-radio-group class="
-                      landingPageRoleSelect
-                      hasShadowLandingPageB"
-                      v-model="userData.role">
-        <el-radio-button v-for="roleOption in roles"
-                         :label="roleOption"
-                         :key="roleOption">
-          {{ roleOption }}
-        </el-radio-button>
-      </el-radio-group>
-
-      <!--sub-role-selector for SGL-->
-      <el-radio-group class="
-                      landingPageSubRoleSelect
-                      hasShadowLandingPageB"
-                      v-model="userData.position"
-                      v-if="userData.role === 'SGL'"
-                      size="medium">
-        <el-radio-button
-          v-for="positionOption in positions"
-          :label="positionOption"
-          :key="positionOption">
-          {{ positionOption }}
-        </el-radio-button>
-      </el-radio-group>
-
-      <div class="flexContainerFormA"
-           style="margin-top: 40px">
-        <div class="
-            landingPageInput
-            hasShadowLandingPageB
-            flexContainerFormC"
-             style="position: relative; right: 2.5px;">
-          <label class="landingPageInputLabel">
-            Absender
-          </label>
-          <input class="landingPageInputField"
-                 v-model="userData.sender"/>
-        </div>
-        <div class="
-            landingPageInput
-            hasShadowLandingPageB
-            flexContainerFormC"
-             style="position: relative; right: 15px;">
-          <label class="landingPageInputLabel">
-            Handzeichen
-          </label>
-          <input class="landingPageInputField"
-                 v-model="userData.identification"/>
-        </div>
-      </div>
-
-      <div class="
-          landingPageSelectedOperation
-          hasShadowLandingPageB"
-           v-if="userData.operation.operationName != ''">
-        Ausgewählter Einsatz: {{ userData.operation.operationName }}
-      </div>
-
-      <div class="flexContainerFormA" >
-        <div class="
-            landingPageButton
-            hasShadowLandingPageD"
-             @click="validateUser('userData')">
-          Eingaben speichern
-        </div>
-        <div class="
-            landingPageButton
-            hasShadowLandingPageD"
-             @click="resetUserData()">
-          Felder leeren
-        </div>
-      </div>
-
-    </div>
-
-    <div class="
-          botSection
-          hasShadowLandingPageC">
-      <div class="
-            operationContent
-            hasShadowLandingPageB">
-        <el-table
-          v-show="choosingOperation"
-          :data="operations"
-          border
-          @current-change="selectOperation"
-          size="medium">
-          <el-table-column
-            prop="operationName"
-            label="Einsatz-Name">
-          </el-table-column>
-          <el-table-column
-            prop="operationAdress"
-            label="Einsatz-Adresse">
-          </el-table-column>
-          <el-table-column
-            prop="operationStaffType"
-            label="Art des Stabes">
-          </el-table-column>
-        </el-table>
-      </div>
-
-      <div class="
-            operationContent
-            hasShadowLandingPageB
-            flexContainerFormB"
-           v-show="addingOperation">
-        <div class="
-            landingPageInput
-            hasShadowLandingPageB
-            flexContainerFormC"
+        <div class="innerWrapper"
              style="
-              width: 94.2%;
-              margin: 20px 10px 20px 20px;">
-          <label class="landingPageInputLabel">
-            Einsatzname
-          </label>
-          <input class="landingPageInputField"
-                 style="width: 100%;"
-                 v-model="newOperation.operationName"/>
+              padding: 10px 10px 0 10px;
+              margin: 0 0 5px 0;">
+          <!--role-selector-->
+          <el-radio-group class="landingPageRoleSelect"
+                          v-model="userData.role"
+                          @change="checkIfRoleIsNotSGL(userData.role)">
+            <el-radio-button v-for="roleOption in roles"
+                             :label="roleOption"
+                             :key="roleOption">
+              {{ roleOption }}
+            </el-radio-button>
+          </el-radio-group>
+
+          <!--sub-role-selector for SGL-->
+          <el-radio-group class="landingPageSubRoleSelect"
+                          v-model="userData.position"
+                          v-if="userData.role === 'SGL'"
+                          size="medium">
+            <el-radio-button
+              v-for="positionOption in positions"
+              :label="positionOption"
+              :key="positionOption">
+              {{ positionOption }}
+            </el-radio-button>
+          </el-radio-group>
         </div>
-        <div class="
-            landingPageInput
-            hasShadowLandingPageB
-            flexContainerFormC"
+
+        <div class="innerWrapper"
              style="
-              width: 94.2%;
-              margin: 0 20px 20px 20px;">
-          <label class="landingPageInputLabel">
-            Einsatzadresse
-          </label>
-          <input class="landingPageInputField"
-                 style="width: 100%;"
-                 v-model="newOperation.operationAdress"/>
+              padding: 10px 10px 0 10px;
+              margin: 0 0 5px 0;">
+          <div class="flexContainerLPA">
+
+            <div class="
+              LPInputWrapper
+              flexContainerLPA">
+              <div class="LPInputSelectionHighlight"></div>
+              <label class="LPInputLabel">
+                Absender
+              </label>
+              <input class="LPInputWithLabel"
+                     v-model="userData.sender"/>
+            </div>
+
+            <div class="
+              LPInputWrapper
+              flexContainerLPA"
+                 style="margin: 0 0 0 10px;">
+              <div class="LPInputSelectionHighlight"></div>
+              <label class="LPInputLabel">
+                Handzeichen
+              </label>
+              <input class="LPInputWithLabel"
+                     v-model="userData.identification"/>
+            </div>
+
+          </div>
         </div>
-        <div class="
-            landingPageInput
-            hasShadowLandingPageB
-            flexContainerFormC"
+
+        <div class="innerWrapper"
              style="
-              width: 94.2%;
-              margin: 0 20px 20px 20px;">
-          <label class="landingPageInputLabel">
-            Art des Stabes
-          </label>
-          <input class="landingPageInputField"
-                 style="width: 100%;"
-                 v-model="newOperation.operationStaffType"/>
+              padding: 10px 10px 0 10px;
+              margin: 0 0 5px 0;"
+             v-if="userData.operation.operationName != ''">
+
+          <div class="
+              LPInputWrapper
+              flexContainerLPA">
+            <div class="LPInputSelectionHighlight"></div>
+            <label class="LPInputLabel">
+              Ausgewählter Einsatz:
+            </label>
+            <div class="LPInputWithLabel"
+                 style="
+                  padding: 10px 0 0 0;
+                  text-align: center;">
+              {{ userData.operation.operationName }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="middleWrapper"
+           style="
+            padding: 0 0 5px 0;
+            margin: 0 0 10px 0;">
+
+        <div class="innerWrapper"
+             style="
+              padding: 10px 10px 0 10px;
+              margin: 0 0 5px 0;"
+             v-show="choosingOperation">
+          <el-table
+            style="border: 4px solid var(--middleNeutralColor);"
+            :data="operations"
+            border
+            @current-change="selectOperation"
+            size="medium">
+            <el-table-column
+              prop="operationName"
+              label="Einsatz-Name">
+            </el-table-column>
+            <el-table-column
+              prop="operationAdress"
+              label="Einsatz-Adresse">
+            </el-table-column>
+            <el-table-column
+              prop="operationStaffType"
+              label="Art des Stabes">
+            </el-table-column>
+          </el-table>
+        </div>
+
+        <div class="innerWrapper"
+             style="
+              padding: 10px 10px 0 10px;
+              margin: 0 0 5px 0;"
+             v-show="addingOperation">
+
+          <div class="
+              LPInputWrapper
+              flexContainerLPA">
+            <div class="LPInputSelectionHighlight"></div>
+            <label class="LPInputLabel">
+              Einsatzname
+            </label>
+            <input class="LPInputWithLabel"
+                   v-model="newOperation.operationName"/>
+          </div>
+
+          <div class="
+              LPInputWrapper
+              flexContainerLPA"
+               style="margin: 5px 0 0 0;">
+            <div class="LPInputSelectionHighlight"></div>
+            <label class="LPInputLabel">
+              Einsatzadresse
+            </label>
+            <input class="LPInputWithLabel"
+                   v-model="newOperation.operationAdress"/>
+          </div>
+
+          <div class="
+              LPInputWrapper
+              flexContainerLPA"
+               style="margin: 5px 0 0 0;">
+            <div class="LPInputSelectionHighlight"></div>
+            <label class="LPInputLabel">
+              Art des Stabes
+            </label>
+            <input class="LPInputWithLabel"
+                   v-model="newOperation.operationStaffType"/>
+          </div>
+
+          <div class="LPButtonWrapper"
+               style="
+                margin: 5px 0 0 0;">
+            <div class="LPButton"
+                 @click="submitOperation(newOperation)"
+                 id="saveOperationButton">
+              <div class="LPButtonLabel">
+                Einsatz speichern
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="
-            landingPageButton
-            hasShadowLandingPageD"
-             style="align-self: center"
-             @click="submitOperation(newOperation)">
-          Einsatz speichern
+              innerWrapper
+              flexContainerLPA"
+             style="
+              padding: 10px 10px 0 10px;">
+
+          <div class="LPButtonWrapper">
+            <div class="LPButton"
+                 @click="
+                  addingOperation = !addingOperation;
+                  choosingOperation = false">
+              <div class="LPButtonLabel">
+                Einsatz erstellen
+              </div>
+            </div>
+          </div>
+
+          <div class="LPButtonWrapper">
+            <div class="LPButton"
+                 @click="
+                  choosingOperation = !choosingOperation;
+                  addingOperation = false">
+              <div class="LPButtonLabel">
+                Einsatz auswählen
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
+      <div class="middleWrapper"
+           style="padding: 0 0 5px 0;">
 
-      <div class="flexContainerFormA" >
         <div class="
-            landingPageButton
-            hasShadowLandingPageD"
-             @click="
-              addingOperation = !addingOperation;
-              choosingOperation = false">
-          Einsatz erstellen
+              innerWrapper
+              flexContainerLPA"
+             style="
+              padding: 10px 10px 0 10px;">
+
+          <div class="LPButtonWrapper">
+            <div class="dashboardButton"
+                 @click="validateUser('userData')"
+                 id="validateUserButton">
+              <div class="LPButtonLabel" style="white-space: nowrap">
+                Eingaben speichern
+              </div>
+            </div>
+          </div>
+
+          <div class="LPButtonWrapper">
+            <div class="LPButton"
+                 @click="resetUserData()"
+                 id="resetUserInputButton">
+              <div class="LPButtonLabel" style="white-space: nowrap">
+                Felder leeren
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="LPButtonWrapper"
+            v-if="showCancelButton">
+            <div class="LPButton"
+                 @click="hideLandingPage()"
+                 id="resetUserInputButton">
+              <div class="LPButtonLabel">
+                Abbrechen
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="
-            landingPageButton
-            hasShadowLandingPageD"
-             @click="
-              choosingOperation = !choosingOperation;
-              addingOperation = false">
-          Einsatz auswählen
-        </div>
+
       </div>
-
     </div>
   </div>
 </template>
@@ -223,6 +288,7 @@ export default {
       // booleans for the operation options to be shown or hidden
       addingOperation: false,
       choosingOperation: false,
+      showCancelButton: false,
       // new Operation object that binds to operation input
       newOperation: {
         operationName: '',
@@ -236,13 +302,13 @@ export default {
       positions: positionOptions
     }
   },
-
+  // load operations from vuex at reentering landing page
   computed: {
     operations () {
       return this.$store.state.operationList
     }
   },
-
+  // get operations from Quitstore when building landing page
   mounted () {
     this.$store.dispatch('getOperationsAction')
       .then(() => {
@@ -251,24 +317,40 @@ export default {
   },
 
   methods: {
-
     // method to call stored userData from vuex
     setStoredUserData () {
       if (this.$store.state.user.sender !== '') {
         this.userData = this.$store.state.user
+        // if there is userData, cancel Button will be displayed
       }
     },
-
+    // method to hide landing page
+    hideLandingPage () {
+      this.$store.commit('setShowLandingPage')
+    },
     // checks if userData is typed in (not empty)
     validateUser (userData) {
+      // checks missing fields and generates a custom alert
       if (
         this.userData.identification === '' ||
         this.userData.sender === '' ||
         (this.userData.role === 'SGL' && this.userData.position === '') ||
-        this.userData.operation.operationName === '') {
-        alert(
-          'Bitte Absender und Zeichen eintragen sowie einen Einsatz auswählen.'
-        )
+        this.userData.operation.operationName === ''
+      ) {
+        let alertMessage = 'Bitte die eingegebenen Daten überprüfen. '
+        if (this.userData.identification === '') {
+          alertMessage += 'Das Handzeichen fehlt. '
+        }
+        if (this.userData.sender === '') {
+          alertMessage += 'Der Absender fehlt. '
+        }
+        if (this.userData.role === 'SGL' && this.userData.position === '') {
+          alertMessage += 'Die Rolle und/oder die Position fehlen. '
+        }
+        if (this.userData.operation.operationName === '') {
+          alertMessage += 'Es muss ein Einsatz ausgewählt sein. '
+        }
+        alert(alertMessage)
       } else {
         this.submitUser()
       }
@@ -281,6 +363,8 @@ export default {
         .then(() => {
           this.notifySuccess('Eingaben erfolgreich gespeichert')
           this.$store.commit('setShowLandingPage')
+          this.$router.push({name: 'Home'})
+          this.showCancelButton = true
         })
     },
     // resets inputs
@@ -294,6 +378,12 @@ export default {
         operationAdress: '',
         operationStaffType: '',
         operationID: ''
+      }
+    },
+    // checks if operation is not SGL to unset position
+    checkIfRoleIsNotSGL (role) {
+      if (role !== 'SGL') {
+        this.userData.position = ''
       }
     },
     // handle selection of operation in operations table
@@ -310,7 +400,7 @@ export default {
         this.newOperation.operationAdress === '' ||
         this.newOperation.operationStaffType === '') {
         alert('Bitte alle Einsatzdaten eingeben.')
-      } if (this.operationIsDuplicate(newOperation)) {
+      } else if (this.operationIsDuplicate(newOperation)) {
         alert('Dieser Einsatzname ist bereits vergeben.')
       } else {
         // generate ID
@@ -326,13 +416,13 @@ export default {
     },
 
     operationIsDuplicate (newOperation) {
-      let duplicate = false
+      let isDuplicate = false
       this.operations.forEach(function (operation) {
         if (operation.operationName === newOperation.operationName) {
-          duplicate = true
+          isDuplicate = true
         }
       })
-      return duplicate
+      return isDuplicate
     },
 
     setUserOperation (operation) {
@@ -373,34 +463,20 @@ export default {
 </script>
 <style>
   .landingPage {
-    background-color: var(--darkNeutralColor);
-    padding: 20px 20px 20px 20px;
-    width: 715px;
-  }
-  .topSection {
-    width: 700px;
-    padding: 40px 0 0 14px;
     background-color: var(--semiLightNeutralColor);
-    font-family: var(--mainFont);
-    font-size: var(--smallTitleSize);
+    border-top: 20px solid var(--secondaryTextColor);
+    padding: 0 10px 20px 10px;
+    width: 760px;
+    font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
-    overflow: visible;
-  }
-  .botSection {
-    width: 700px;
-    padding: 0 0 0 14px;
-    margin: 40px 0 0 0;
-    background-color: var(--semiLightNeutralColor);
-    font-family: var(--mainFont);
-    font-size: var(--smallTitleSize);
-    color: var(--primaryTextColor);
-    overflow: visible;
   }
   .landingPageRoleSelect {
     width: 86%;
     margin: 0 5px 0 40px;
     display: flex;
     justify-content: center;
+    font: var(--bigTitleSize) var(--mainFont);
+    color: var(--primaryTextColor);
   }
   .landingPageSubRoleSelect {
     width: 40%;
@@ -408,25 +484,58 @@ export default {
     display: flex;
     justify-content: center;
   }
-  .landingPageInput {
-    height: 35px;
-    width: 290px;
-    margin: 0 0 40px 0;
+
+  /* custom input */
+  .LPInputWrapper {
+    height: 100%;
+    width: 100%;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    border: 4px solid var(--middleNeutralColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
-  .landingPageInputLabel {
-    background-color: var(--darkNeutralColor);
-    white-space: nowrap;
-    min-width: 100px;
-    padding: 5px 10px 0 10px;
+  .LPInputWrapper:hover .LPInputSelectionHighlight {
+    background-color: var(--mainColor);
   }
-  .landingPageInputField {
+  .LPInputLabel {
+    height: 50px;
+    width: 40%;
+    background-color: var(--middleNeutralColor);
+    padding: 10px 10px 0 10px;
+    margin: 0 0 0 0;
+    font: var(--bigTitleSize) var(--mainFont);
+    color: var(--primaryTextColor);
+    overflow-wrap: break-word;
+    text-align: center;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .LPInputWithLabel {
+    width: 60%;
+    height: 50px;
+    padding: 0 0 0 10px;
+    margin: 0 0 0 0;
     background-color: var(--semiLightNeutralColor);
-    width: 157px;
-    padding-left: 10px;
-    border: var(--darkNeutralColor);
-    border-style: solid;
-    border-width:2px;
+    border: 0 none;
+    font: var(--bigTitleSize) var(--mainFont);
+    color: var(--primaryTextColor);
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
   }
+  .LPInputSelectionHighlight {
+    height: auto;
+    min-width: 10px;
+    width: 10px;
+    background-color: var(--formBlueColor);
+  }
+
   .landingPageSelectedOperation {
     height: 35px;
     width: 93%;
@@ -435,29 +544,123 @@ export default {
     margin: 0 5px 40px 25px;
     text-align: center  ;
   }
-  .landingPageButton {
-    height: 35px;
-    width: 30%;
-    background-color: var(--semiLightNeutralColor);
-    padding: 5px 0 0 0;
-    border-bottom: var(--formBlueColor);
-    border-bottom-style: solid;
-    border-bottom-width: 10px;
-    position: relative;
-    top: 10px;
-    text-align: center;
+
+  /* custom button */
+  .LPButtonWrapper {
+    width: 300px;
+    border: 4px solid var(--middleNeutralColor);
   }
-  .landingPageButton:hover {
-    border-bottom: var(--mainColor);
-    border-bottom-style: solid;
-    border-bottom-width: 10px;
+  .LPButton {
+    height: 50px;
+    width: 100%;
+    background-color: var(--semiLightNeutralColor);
+    padding: 0 0 0 0;
+    border-left: 10px solid var(--formBlueColor);
+    text-align: center;
+    font: var(--bigTitleSize) var(--mainFont);
+    color: var(--primaryTextColor);
+    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .LPButton:hover {
+    border-left: 10px solid var(--mainColor);
     cursor: pointer;
   }
+  .LPButtonLabel {
+    height: 40px;
+    width: 100%;
+    padding: 5px 40px 0 40px;
+    margin: 0 10px 0 10px;
+    background-color: var(--middleNeutralColor);
+    font: var(--bigTitleSize) var(--mainFont);
+    color: var(--primaryTextColor);
+    text-align: center;
+    cursor: pointer;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+
   .operationContent {
     width: 95%;
     margin: 10px 0 40px 10px;
     display: flex;
     justify-content: center;
+  }
+
+  /* custom checkbox */
+  .dashboardCheckbox {
+    width: 100%;
+    margin: 5px 10px 0 10px;
+    border: 4px solid var(--middleNeutralColor);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .dashboardCheckbox:hover div {
+    background-color: var(--mainColor);
+  }
+  .control {
+    width: 100%;
+    height: 30px;
+    padding: 5px 10px 0 30px;
+    background-color: var(--middleNeutralColor);
+    text-align: center;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .control input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  .control_indicator {
+    height: 30px;
+    width: 30px;
+    background: var(--formBlueColor);
+    position: absolute;
+    top: 0;
+    left: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .control-radio .control_indicator {
+    border-radius: undefined%;
+  }
+  .control input:checked ~ .control_indicator {
+    background: var(--mainColor);
+  }
+  .control_indicator:after {
+    box-sizing: unset;
+    content: '';
+    position: absolute;
+    display: none;
+
+  }
+  .control input:checked ~ .control_indicator:after {
+    display: block;
+  }
+  .control-checkbox .control_indicator:after {
+    left: 10px;
+    top: 4px;
+    width: 7px;
+    height: 15px;
+    border: solid var(--semiLightNeutralColor);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+
   }
 
   /*
@@ -482,17 +685,17 @@ export default {
   flex-settings:
     different settings for the flex attribute
   */
-  .flexContainerFormA {
+  .flexContainerLPA {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
   }
-  .flexContainerFormB {
+  .flexContainerLPB {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  .flexContainerFormC {
+  .flexContainerLPC {
     display: flex;
     flex-direction: row;
   }
