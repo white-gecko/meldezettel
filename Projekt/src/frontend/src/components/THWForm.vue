@@ -1689,6 +1689,7 @@ export default {
 
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
+      this.autoFillValues()
       this.notifySuccess('Zurückgesetzt')
     },
 
