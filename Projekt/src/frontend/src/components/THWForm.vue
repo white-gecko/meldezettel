@@ -1753,6 +1753,7 @@ export default {
 
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
+      this.placeholders = this.$options.data().placeholders
       this.notifySuccess('Zurückgesetzt')
     },
 
