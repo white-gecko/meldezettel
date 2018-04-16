@@ -226,7 +226,7 @@
             <div class="dashboardButton"
                  @click="validateUser('userData')"
                  id="validateUserButton">
-              <div class="LPButtonLabel">
+              <div class="LPButtonLabel" style="white-space: nowrap">
                 Eingaben speichern
               </div>
             </div>
@@ -236,7 +236,7 @@
             <div class="LPButton"
                  @click="resetUserData()"
                  id="resetUserInputButton">
-              <div class="LPButtonLabel">
+              <div class="LPButtonLabel" style="white-space: nowrap">
                 Felder leeren
               </div>
             </div>
@@ -466,7 +466,7 @@ export default {
     background-color: var(--semiLightNeutralColor);
     border-top: 20px solid var(--secondaryTextColor);
     padding: 0 10px 20px 10px;
-    width: 715px;
+    width: 760px;
     font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
   }
