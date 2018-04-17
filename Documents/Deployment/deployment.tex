@@ -1,0 +1,188 @@
+% !TeX spellcheck = de_DE
+\documentclass[a4paper,11pt,oneside, titlepage]{article}
+\usepackage[a4paper]{geometry} 
+\geometry{a4paper,left=20mm, right=25mm, top=20mm, bottom=30mm} 
+\usepackage[ngerman]{babel}
+\usepackage{hyperref}
+\usepackage[toc]{glossaries}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{dirtree}
+\usepackage[]{listings} 
+
+\pagestyle{fancy}
+
+\lhead{\today}
+\rhead{Verantwortlicher: Anja Sieke }
+\chead{Gruppe: na17b}
+\title{Installationsanleitung für Server}
+\author{na17b}
+\date{}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=bash,                 % the language of the code
+  morekeywords={*,...,sudo,node,npm,apt},            % if you want to add more keywords to the set
+  numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\begin{document}
+
+  \maketitle
+
+  \tableofcontents
+
+  \section{Hinweise}
+
+    Das Repository sollte direkt vom Server aus geklont werden, auf dem später
+    die Software laufen soll. Auch wenn der Quelltext für die Webseite prinzipiell
+    überall kompiliert und übertragen werden kann, so befinden sich im Repository jedoch
+    einige Skripte, welche direkt auf dem Webserver ausgeführt werden müssen und ansonsten
+    also ohnehin kopiert werden müssten. Dazu muss jedoch \verb+nodejs+ installiert sein.
+
+    \begin{lstlisting}
+      sudo apt install nodejs \end{lstlisting}
+
+  \section{Vorbereitung des Servers}
+
+    Die Software besteht serverseitig aus mehreren Komponenten. Dies ist zum
+    einen der Webserver, welcher den Quelltext der Webanwendung zur Verfügung stellt,
+    sowie ein Printservice, welcher übermittelte Daten in eine PDF-Datei umwandelt
+    und zum Download anbietet, und zu guter Letzt der QuitStore, welcher die von den
+    Anwendern eingegebenen Daten abspeichert.
+
+    \subsection{Webserver}
+
+      Damit Clients auf die Anwendung zugreifen können, muss diese von einem Webserver
+      angeboten werden. Hierzu gibt es mehrere Möglichkeiten.
+
+        \subsubsection{Apache}
+
+          Dieser kann in allen gängigen Linux-Distributionen aus den offiziellen Paketquellen
+          installiert werden. Unter Ubuntu/Debian/Raspbian geschieht dies zum Beispiel
+          folgendermaßen.
+
+          \begin{lstlisting}
+            sudo apt install apache2 \end{lstlisting}
+
+				\subsubsection{Via Node-Skript}
+
+          Sollte obiges keine Option sein, befindet sich im Ordner \verb+frontend/src+ ein Skript
+          namens \verb+server.js+.
+
+          Dieses bindet im Normalfall auf Port 8080 und wird via \verb+nodejs+ ausgeführt. Dies geschieht
+          jedoch erst, nachdem der Quelltext kompiliert wurde.
+
+          \begin{lstlisting}
+            node server.js \end{lstlisting}
+
+      \subsection{Printservice}
+
+        Der Printservice verwendet Python3, um ein tex-Template auszufüllen und dieses anschließend
+        zu kompilieren. Die dafür notwendigen Pakete lassen sich wie folgt installieren.
+
+        \begin{lstlisting}
+          sudo apt install texlive texlive-lang-german texlive-doc-de \
+            texlive-latex-extra python3 \end{lstlisting}
+
+        Um diesen zu starten, genügen folgende Befehle von der Wurzel des Repositories aus.
+
+        \begin{lstlisting}
+          cd Projekt/src/renderPDF
+          python3 server.py \end{lstlisting}
+
+      \subsection{QuitStore}
+
+        Für die Installation und das Starten des QuitStores via Docker liegt ein Skript bereit,
+        dieses muss lediglich ausgeführt werden.
+
+        \begin{lstlisting}
+          cd Projekt
+          chmod +x quitstore.sh
+          ./quitstore.sh \end{lstlisting}
+
+        Alternativ dazu wurde auch ein npm-Skript angelgt, welches den QuitStore bei Bedarf installiert
+        und startet.
+
+        \begin{lstlisting}
+          cd Projekt/src/frontend
+          npm run quit \end{lstlisting}
+
+  \section{Erstellen des Quelltextes}
+
+    Nachdem nun alle Dienste laufen, fehlt noch der eigentliche Quelltext der Webapp. Zur Steigerung
+    der Performance muss dieser nach der Konfiguration kompiliert werden und durchläuft dabei mehrere Optimierungsphasen.
+
+    \subsection{Konfiguration}
+
+      Die folgenden Schritte beziehen sich auf \verb+Projekt/src/frontend+ als Wurzelverzeichnis.
+
+      Zunächst muss der Pfad angepasst werden, unter dem die Anwendung später zu erreichen sein wird.
+      Soll sie zum Beispiel unter der URL \verb+my.domain.de/thw+ erreichbar sein, so lautet der Pfad
+      \verb+/thw+. In den meisten Fällen wird dies jedoch schlicht \verb+/+ sein. Die Option hierfür befindet
+      sich in \verb+config/index.js+ und lautet \verb+assetsPublicPath+ im Unterpunkt \verb+build+ und sollte
+      sich im Bereich um Zeile 53 befinden.
+
+      Als zweites muss der Anwendung der Name des Servers mitgeteilt werden, auf dem Printservice und QuitStore laufen.
+      Die Option hierfür befindet sich in den Dateien \verb+PrintServiceAdapter.js+ sowie \verb+QuitStoreAdapter.js+ im
+      Unterordner \verb+src/api+ und heißt in beiden Fällen \verb+url+.
+
+      Zum Schluss befinden sich im Ordner \verb+src/config+ noch einige Konfigurationsdateien, welche das Verhalten
+      der Anwendung und damit das Nutzererlebnis beeinflussen. Diese können nach Belieben angepasst werden, sind aber
+      bereits mit sinnvollen Standardwerten belegt.
+
+    \subsection{Kompilieren}
+
+      Nachdem die Konfiguration abgeschlossen ist, müssen noch die Abhängigkeiten des Quelltextes heruntergeladen werden.
+      Dies vermeidet lästige Downloads von externen Webseiten beim Aufruf der Anwendung, welche das Laden stark verzögern
+      oder sogar unmöglich machen können.
+
+      \begin{lstlisting}
+        cd Projekt/src/frontend
+        npm install \end{lstlisting}
+
+      Dieser Vorgang dauert je nach Internetverbindung mehrere Minuten, da etwa 300MB an Paketen heruntergeladen werden müssen.
+      Anschließend kann der Quelltext kompiliert werden.
+
+      \begin{lstlisting}
+        npm run build \end{lstlisting}
+
+      Die fertigen Dateien befinden sich nun im Ordner \verb+Projekt/src/frontend/dist+.
+
+    \subsection{Bereitstellen des Quelltexts}
+
+      Wurde als Webserver Apache gewählt, so genügt es, den \textbf{Inhalt} des Ordners \verb+dist+, also
+      die Datei \verb+index.html+ sowie den Ordner \verb+static+ zu kopieren. Diese landen nun
+      beispielsweise direkt im Wurzelverzeichnis von Apache, unter Debian und Derivaten also in \verb+/var/www/html+.
+
+      Wurde kein Webserver installiert, so muss die Datei \verb+server.js+ auf den Server ausgeführt werden. Zu beachten ist 
+      dann aber, dass die Anwendung nicht unter Port 80 erreicht werden kann, sondern stets Port 8080 in die 
+      Adressleiste des Browsers mit eingegeben werden muss.
+
+\end{document}

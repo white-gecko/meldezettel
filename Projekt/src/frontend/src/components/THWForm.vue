@@ -1290,7 +1290,8 @@
             <div class="formButtonWrapper">
               <div class="formButton"
                    @click="
-                    formReset();"
+                    formReset();
+                    notifySuccess('Zurückgesetzt');"
                    :tabindex="tabIndexConfig.buttonReset"
                    id="resetFormButton">
                 <div class="formButtonLabel">
@@ -1754,7 +1755,6 @@ export default {
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
       this.placeholders = this.$options.data().placeholders
-      this.notifySuccess('Zurückgesetzt')
     },
 
     openPDF: function () {
