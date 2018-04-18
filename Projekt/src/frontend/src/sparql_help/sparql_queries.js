@@ -122,7 +122,19 @@ thw:tertiaryDate ?tertiaryDate;
 thw:tertiaryTime ?tertiaryTime;
 thw:numberTB ?numberTB;
 thw:identification ?identification;
-thw:docketIdentification ?docketIdentification`
+thw:docketIdentification ?docketIdentification;
+thw:secondaryHdZ ?secondaryHdZ;
+thw:tertiaryHdZ ?tertiaryHdZ;
+thw:advisorA ?advisorA;
+thw:advisorB ?advisorB;
+thw:advisorC ?advisorC;
+thw:advisorD ?advisorD;
+thw:advisorE ?advisorE;
+thw:connectionA ?connectionA;
+thw:connectionB ?connectionB;
+thw:connectionC ?connectionC;
+thw:connectionD ?connectionD;
+thw:connectionE ?connectionE`
 
     if (filter.operation !== 'Alle') {
       query += `; thw:inOperation ?operation.` +
@@ -136,8 +148,27 @@ thw:docketIdentification ?docketIdentification`
       search += `regex(?content, "` + trimmed + `") || ` +
                 `regex(?numberTB, "` + trimmed + `") || ` +
                 `regex(?receiverName, "` + trimmed + `") ||` +
-                `?primaryHdZ = "` + trimmed + `" || ` +
-                `?identification = "` + trimmed + `"`
+                `regex(?sender, "` + trimmed + `")`
+    }
+
+    let name = ''
+    let trimmedID = filter.identification.trim()
+    if (trimmedID !== '') {
+      name += `?primaryHdZ = "` + trimmedID + `" || ` +
+              `?secondaryHdZ = "` + trimmedID + `" || ` +
+              `?tertiaryHdZ = "` + trimmedID + `" || ` +
+              `?identification = "` + trimmedID + `" || ` +
+              `?docketIdentification = "` + trimmedID + `" || ` +
+              `?advisorA = "` + trimmedID + `" || ` +
+              `?advisorB = "` + trimmedID + `" || ` +
+              `?advisorC = "` + trimmedID + `" || ` +
+              `?advisorD = "` + trimmedID + `" || ` +
+              `?advisorE = "` + trimmedID + `" || ` +
+              `?connectionA = "` + trimmedID + `" || ` +
+              `?connectionB = "` + trimmedID + `" || ` +
+              `?connectionC = "` + trimmedID + `" || ` +
+              `?connectionD = "` + trimmedID + `" || ` +
+              `?connectionE = "` + trimmedID + `"`
     }
 
     let check = false
@@ -238,7 +269,20 @@ thw:docketIdentification ?docketIdentification`
     }
 
     let queryFilter = ''
-    if (search !== '' && states !== '') {
+    if (search !== '' && states !== '' && name !== '') {
+      search = `(` + search + `)`
+      states = `(` + states + `)`
+      name = `(` + name + `)`
+      queryFilter = ` FILTER(` + search + ` && ` + states + ` && ` + name + `)`
+    } else if (search !== '' && name !== '') {
+      search = `(` + search + `)`
+      name = `(` + name + `)`
+      queryFilter = ` FILTER(` + search + ` && ` + name + `)`
+    } else if (name !== '' && states !== '') {
+      name = `(` + name + `)`
+      states = `(` + states + `)`
+      queryFilter = ` FILTER(` + name + ` && ` + states + `)`
+    } else if (search !== '' && states !== '') {
       search = `(` + search + `)`
       states = `(` + states + `)`
       queryFilter = ` FILTER(` + search + ` && ` + states + `)`
@@ -246,6 +290,8 @@ thw:docketIdentification ?docketIdentification`
       queryFilter = ` FILTER(` + states + `)`
     } else if (search !== '') {
       queryFilter = ` FILTER(` + search + `)`
+    } else if (name !== '') {
+      queryFilter = ` FILTER(` + name + `)`
     }
 
     query += queryFilter + '}'

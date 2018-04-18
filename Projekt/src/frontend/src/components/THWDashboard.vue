@@ -82,6 +82,16 @@
             </div>
           </div>
 
+          <div class="
+                innerWrapper
+                dashboardSideMTopTop">
+            <div style="border: 4px solid var(--middleNeutralColor);">
+              <input class="dashboardInput"
+                     v-model='filter.identification'
+                     placeholder="Kürzel"/>
+            </div>
+          </div>
+
         </div>
 
         <div class="
