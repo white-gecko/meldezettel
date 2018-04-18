@@ -1632,12 +1632,12 @@ export default {
 
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
-      this.$data.formdata.inOperation = this.getUser().operation.operationId
-      this.checkIfUserIsFernmelder()
-      this.setIncomingOutgoing()
-      this.autoFillValues()
+      if (!this.checkIfUserIsFernmelder()) {
+        this.setIncomingOutgoing()
+        this.autoFillValues()
+        this.setFormConfig(this.$options.data().formdata.ticketState)
+      }
       this.$data.formdata.inOperation = this.getUser().operation.operationID
-      this.setFormConfig(this.$options.data().formdata.ticketState)
     },
 
     loadDraft: function () {
@@ -1677,7 +1677,9 @@ export default {
       if (this.$store.state.user.role === 'Fernmelder') {
         this.other.tempEingehend = true
         this.checkIn()
+        return true
       }
+      return false
     },
 
     setIncomingOutgoing: function () {
