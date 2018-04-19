@@ -226,7 +226,7 @@
             <div class="dashboardButton"
                  @click="validateUser('userData')"
                  id="validateUserButton">
-              <div class="LPButtonLabel">
+              <div class="LPButtonLabel" style="white-space: nowrap">
                 Eingaben speichern
               </div>
             </div>
@@ -236,8 +236,20 @@
             <div class="LPButton"
                  @click="resetUserData()"
                  id="resetUserInputButton">
-              <div class="LPButtonLabel">
+              <div class="LPButtonLabel" style="white-space: nowrap">
                 Felder leeren
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="LPButtonWrapper"
+            v-if="showCancelButton">
+            <div class="LPButton"
+                 @click="hideLandingPage()"
+                 id="resetUserInputButton">
+              <div class="LPButtonLabel">
+                Abbrechen
               </div>
             </div>
           </div>
@@ -276,6 +288,7 @@ export default {
       // booleans for the operation options to be shown or hidden
       addingOperation: false,
       choosingOperation: false,
+      showCancelButton: false,
       // new Operation object that binds to operation input
       newOperation: {
         operationName: '',
@@ -304,12 +317,16 @@ export default {
   },
 
   methods: {
-
     // method to call stored userData from vuex
     setStoredUserData () {
       if (this.$store.state.user.sender !== '') {
         this.userData = this.$store.state.user
+        // if there is userData, cancel Button will be displayed
       }
+    },
+    // method to hide landing page
+    hideLandingPage () {
+      this.$store.commit('setShowLandingPage')
     },
     // checks if userData is typed in (not empty)
     validateUser (userData) {
@@ -347,6 +364,7 @@ export default {
           this.notifySuccess('Eingaben erfolgreich gespeichert')
           this.$store.commit('setShowLandingPage')
           this.$router.push({name: 'Home'})
+          this.showCancelButton = true
         })
     },
     // resets inputs
@@ -448,7 +466,7 @@ export default {
     background-color: var(--semiLightNeutralColor);
     border-top: 20px solid var(--secondaryTextColor);
     padding: 0 10px 20px 10px;
-    width: 715px;
+    width: 760px;
     font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
   }
