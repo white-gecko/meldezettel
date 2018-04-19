@@ -1754,6 +1754,7 @@ export default {
 
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
+      this.autoFillValues()
       this.placeholders = this.$options.data().placeholders
     },
 
