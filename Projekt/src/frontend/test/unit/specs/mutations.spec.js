@@ -1,5 +1,4 @@
 import expect from 'expect'
-import Vuex from 'vuex'
 import store from '@/store/index.js'
 
 describe('mutations', () => {
@@ -15,7 +14,7 @@ describe('mutations', () => {
   })
 
   it('sets the current user', () => {
-  
+
     let testUser = {
       operation: {},
       role: 'Betatester',
@@ -30,14 +29,14 @@ describe('mutations', () => {
   })
 
   it('it hides the Landing Page ', () => {
-    
+
     store.commit('setShowLandingPage')
     expect(store.state.showLandingPage).toBeFalsy()
 
   })
 
   it('it shows the Landing Page ', () => {
-    
+
     store.commit('resetShowLandingPage')
     expect(store.state.showLandingPage).toBeTruthy()
 
@@ -48,36 +47,36 @@ describe('mutations', () => {
     let testFilter = {
       'search': 'test',
       'operation': 'testOp'
-    } 
+    }
 
     store.commit('setFilters', testFilter)
     expect(store.state.filter).toEqual(testFilter);
   })
 
   it('sets the draft', () => {
-    
+
     let testFormdata = [
         'this', 'is', 'a', 'dummy'
     ]
 
     store.commit('setDraft', testFormdata)
-    expect(store.state.draft).toEqual(testFormdata)  
+    expect(store.state.draft).toEqual(testFormdata)
   })
 
   it ('sets the operation list', () => {
-  
+
     let testList = [
         'this', 'is', 'a', 'dummy'
     ]
-    
+
     store.commit('setOperationList', testList)
     expect(store.state.operationList).toEqual(testList)
 
   })
 
   it ('sets the default filters', () => {
-  
-    let sichterUser = { 
+
+    let sichterUser = {
       'role': 'Sichter',
       'operation': {
         'operationName': 'testOper'
@@ -102,8 +101,8 @@ describe('mutations', () => {
         search: '',
         operation: sichterUser.operation.operationName
     }
-  
-    let ldfUser = { 
+
+    let ldfUser = {
       'role': 'LdF',
       'operation': {
         'operationName': 'testOper'
@@ -128,8 +127,8 @@ describe('mutations', () => {
         search: '',
         operation: ldfUser.operation.operationName
     }
-  
-    let sglUser = { 
+
+    let sglUser = {
       'role': 'SGL',
       'operation': {
         'operationName': 'testOper'
@@ -154,8 +153,8 @@ describe('mutations', () => {
         search: '',
         operation: sglUser.operation.operationName
     }
-  
-    let fmUser = { 
+
+    let fmUser = {
       'role': 'Fernmelder',
       'operation': {
         'operationName': 'testOper'
@@ -180,8 +179,8 @@ describe('mutations', () => {
         search: '',
         operation: fmUser.operation.operationName
     }
-  
-    let fbUser = { 
+
+    let fbUser = {
       'role': 'Fachberater',
       'operation': {
         'operationName': 'testOper'
@@ -206,8 +205,8 @@ describe('mutations', () => {
         search: '',
         operation: fbUser.operation.operationName
     }
-  
-    let vbUser = { 
+
+    let vbUser = {
       'role': 'Verbindungsstelle',
       'operation': {
         'operationName': 'testOper'
@@ -232,8 +231,8 @@ describe('mutations', () => {
         search: '',
         operation: vbUser.operation.operationName
     }
-  
-    let dUser = { 
+
+    let dUser = {
       'role': '',
       'operation': {
         'operationName': ''
@@ -258,7 +257,7 @@ describe('mutations', () => {
         search: '',
         operation: 'Alle'
     }
-  
+
     // Testing all different filters
 
     store.commit('setUser', sichterUser)
@@ -291,13 +290,13 @@ describe('mutations', () => {
   })
 
   it('sets the form configuration', () => {
-  
+
     store.commit('setFormConfig', 's0')
     expect(store.state.formConfig.tabOrder).toBeDefined()
     expect(store.state.formConfig.inputVisibility).toBeDefined()
     expect(store.state.formConfig.background).toBeDefined()
     expect(store.state.formConfig.buttonVisible).toBeDefined()
     expect(store.state.formConfig.stateMapping).toBeDefined()
-  
+
   })
 })
