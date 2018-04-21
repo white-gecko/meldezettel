@@ -435,12 +435,8 @@ export default {
       }
     },
     resetFilters: function () {
-      this.$store
-        .dispatch('setDefaultFilters')
-        .then(() => {
-          this.useFilters()
-        })
-        .catch((error) => alert(error))
+      this.$store.commit('setDefaultFilters')
+      this.useFilters()
     },
     /*  function that updates the displayed documents on dashboard
         after filters got changed,

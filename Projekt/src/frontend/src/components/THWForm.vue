@@ -143,6 +143,7 @@
                            class="
                             inputWithLabel
                             hasMinMaxA"
+                           :placeholder="placeholders.primaryTime"
                            :disabled="other.tempAusgehend"
                            v-model="formdata.primaryTime"
                            :tabindex="tabIndexConfig.incomingTime"/>
@@ -206,6 +207,7 @@
                                class="
                                 inputWithLabel
                                 hasMinMaxA"
+                               :placeholder="placeholders.secondaryTime"
                                :disabled="other.tempEingehend"
                                v-model="formdata.secondaryTime"
                                :tabindex="tabIndexConfig.outboundAccTime"/>
@@ -261,6 +263,7 @@
                                class="
                                 inputWithLabel
                                 hasMinMaxA"
+                               :placeholder="placeholders.tertiaryTime"
                                :disabled="other.tempEingehend"
                                v-model="formdata.tertiaryTime"
                                :tabindex="tabIndexConfig.outboundTransTime"
@@ -707,6 +710,7 @@
                           inputWithLabel
                           hasMinMaxA"
                          style="width: 45%"
+                         :placeholder="placeholders.createTime"
                          v-model="formdata.createTime"
                          :tabindex="tabIndexConfig.timeCreate"/>
                 </div>
@@ -795,6 +799,7 @@
                        class="
                         inputWithLabel
                         hasMinMaxG"
+                       :placeholder="placeholders.docketTime"
                        v-model="formdata.docketTime"
                        :tabindex="tabIndexConfig.ackTime"/>
               </div>
@@ -1285,7 +1290,8 @@
             <div class="formButtonWrapper">
               <div class="formButton"
                    @click="
-                    formReset();"
+                    formReset();
+                    notifySuccess('Zurückgesetzt');"
                    :tabindex="tabIndexConfig.buttonReset"
                    id="resetFormButton">
                 <div class="formButtonLabel">
@@ -1397,6 +1403,14 @@ export default {
         isEdit: false
       },
 
+      placeholders: {
+        primaryTime: '',
+        secondaryTime: '',
+        tertiaryTime: '',
+        docketTime: '',
+        createTime: ''
+      },
+
       sent: false
     }
   },
@@ -1428,6 +1442,14 @@ export default {
     } else {
       next()
     }
+  },
+
+  mounted () {
+    this.interval = setInterval(this.updateTimePlaceholders, 500)
+  },
+
+  beforeDestroy () {
+    clearInterval(this.interval)
   },
 
   methods: {
@@ -1523,13 +1545,17 @@ export default {
       // generate time
       let hh = today.getHours()
       let mm = today.getMinutes()
+      let ss = today.getSeconds()
       if (hh < 10) {
         hh = '0' + hh
       }
       if (mm < 10) {
         mm = '0' + mm
       }
-      let time = hh + ':' + mm
+      if (ss < 10) {
+        ss = '0' + ss
+      }
+      let time = hh + ':' + mm + ':' + ss
 
       switch (this.formdata.ticketState) {
         case 7:
@@ -1565,14 +1591,53 @@ export default {
       }
     },
 
+    updateTimePlaceholders: function () {
+      let today = new Date()
+      // generate time
+      let hh = today.getHours()
+      let mm = today.getMinutes()
+      let ss = today.getSeconds()
+      if (hh < 10) {
+        hh = '0' + hh
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      if (ss < 10) {
+        ss = '0' + ss
+      }
+      let time = hh + ':' + mm + ':' + ss
+
+      switch (this.formdata.ticketState) {
+        case 7:
+          this.placeholders.docketTime = time
+          break
+        case 13:
+          this.placeholders.docketTime = time
+          break
+        case 10:
+          this.placeholders.primaryTime = time
+          break
+        case 3:
+          this.placeholders.secondaryTime = time
+          break
+        case 4:
+          this.placeholders.tertiaryTime = time
+          break
+        case 0:
+          this.placeholders.createTime = time
+          break
+      }
+    },
+
     loadDefault: function () {
       this.setDefaultData(this.$options.data().formdata)
-      this.$data.formdata.inOperation = this.getUser().operation.operationId
-      this.checkIfUserIsFernmelder()
-      this.setIncomingOutgoing()
-      this.autoFillValues()
+      if (!this.checkIfUserIsFernmelder()) {
+        this.setIncomingOutgoing()
+        this.autoFillValues()
+        this.setFormConfig(this.$options.data().formdata.ticketState)
+      }
       this.$data.formdata.inOperation = this.getUser().operation.operationID
-      this.setFormConfig(this.$options.data().formdata.ticketState)
     },
 
     loadDraft: function () {
@@ -1612,7 +1677,9 @@ export default {
       if (this.$store.state.user.role === 'Fernmelder') {
         this.other.tempEingehend = true
         this.checkIn()
+        return true
       }
+      return false
     },
 
     setIncomingOutgoing: function () {
@@ -1689,7 +1756,8 @@ export default {
 
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
-      this.notifySuccess('Zurückgesetzt')
+      this.autoFillValues()
+      this.placeholders = this.$options.data().placeholders
     },
 
     openPDF: function () {
@@ -1762,6 +1830,7 @@ export default {
       }
       this.autoFillValues()
       this.setFormConfig(this.formdata.ticketState)
+      this.placeholders = this.$options.data().placeholders
     },
 
     checkOut () {
@@ -1776,6 +1845,7 @@ export default {
       }
       this.autoFillValues()
       this.setFormConfig(this.formdata.ticketState)
+      this.placeholders = this.$options.data().placeholders
     }
   },
 
