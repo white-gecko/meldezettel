@@ -2,6 +2,7 @@ export default {
   ticketlist: [],
   filter: {
     search: '',
+    identification: '',
     operation: 'Alle',
     s1: false,
     s2: false,

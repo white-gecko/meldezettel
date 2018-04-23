@@ -99,6 +99,7 @@ describe('mutations', () => {
         s14: false,
         s15: false,
         search: '',
+	identification: '',
         operation: sichterUser.operation.operationName
     }
 
@@ -125,6 +126,7 @@ describe('mutations', () => {
         s14: false,
         s15: false,
         search: '',
+	identification: '',
         operation: ldfUser.operation.operationName
     }
 
@@ -151,6 +153,7 @@ describe('mutations', () => {
         s14: true,
         s15: false,
         search: '',
+	identification: '',
         operation: sglUser.operation.operationName
     }
 
@@ -177,6 +180,7 @@ describe('mutations', () => {
         s14: false,
         s15: false,
         search: '',
+	identification: '',
         operation: fmUser.operation.operationName
     }
 
@@ -203,6 +207,7 @@ describe('mutations', () => {
         s14: true,
         s15: false,
         search: '',
+	identification: '',
         operation: fbUser.operation.operationName
     }
 
@@ -229,6 +234,7 @@ describe('mutations', () => {
         s14: true,
         s15: false,
         search: '',
+	identification: '',
         operation: vbUser.operation.operationName
     }
 
@@ -255,6 +261,7 @@ describe('mutations', () => {
         s14: false,
         s15: false,
         search: '',
+	identification: '',
         operation: 'Alle'
     }
 

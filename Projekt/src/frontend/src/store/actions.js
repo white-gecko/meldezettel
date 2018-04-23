@@ -73,7 +73,8 @@ export const updateTicketListAction = (context) => {
         return resolve()
       })
       .catch(() => {
-        return reject(new Error('Fehler beim Laden der Dokumente'))
+        return reject(new Error('Fehler beim Laden der Dokumente. ' +
+          ' Versuchen Sie es mit kürzeren Filtern!'))
       })
   })
 }

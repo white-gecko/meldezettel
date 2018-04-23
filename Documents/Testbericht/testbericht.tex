@@ -17,7 +17,7 @@
 
 \lhead{\today}
 \chead{Gruppe: na17b}
-\rhead{Verantwortlicher: Marc Wahsner}
+\rhead{Verantwortlicher: Elena Heier}
 \title{Testbericht\\Nachrichtenkommunikation für das THW}
 \author{na17b}
 \date{}
@@ -34,20 +34,21 @@
 \newpage
 
 \section{Allgemeines}
-Die Tests für dieses Softwareprojekt sind eng an das Qualitätssicherungskonzept geknüpft und sollen das Funktionieren des Codes gewährleisten. Das Vorprojekt führt ausschließlich Komponententests durch, da die Kommunikation zwischen Komponenten nur indirekt über den Store erfolgt. Der Zugriff auf den Store wurde gemocked. Als Testframework wird \gls{Jest} zusammen mit \gls{vue-test-utils} verwendet.
+Die Tests für dieses Softwareprojekt sind eng an das Qualitätssicherungskonzept geknüpft und sollen das Funktionieren des Codes gewährleisten. Im Projekt werden ausschließlich Komponententests durchgeführt, da die Kommunikation zwischen Komponenten nur indirekt über den Store erfolgt. Der Zugriff auf den Store wurde gemocked. Als Testframework wird \gls{Jest} zusammen mit \gls{vue-test-utils} verwendet.
 \section{Tests}
 \subsection{Komponententests}
 Komponententests befinden sich jeweils im gleichen Ordner wie die zu testende Komponente.
 \subsection{GUI-Tests}
-Die Testspezifikationen befinden sich vom frontend-Verzeichnis aus gesehen in \verb+test/unit/specs+.
-Dort liegt für jede Komponente eine eigene Datei, welche die geforderten Eigenschaften und Funktionen
-einer Komponente beschreibt. Es genügt, im Ordner frontend den Befehl \verb+npm run unit+ auszuführen; daraufhin werden alle Test-Suites automatisch abgearbeitet. Eine beispielhafte Ausgabe ist in folgender Abbildung zu sehen.
+Die Testspezifikationen befinden sich vom frontend-Verzeichnis ausgesehen in \verb+test/unit/specs+.
+Dort liegt für jede Komponente eine eigene Datei, welche die geforderten Eigenschaften und Funktionen einer Komponente beschreibt. Es genügt, im Ordner frontend den Befehl \verb+npm run unit+ auszuführen; daraufhin werden alle Test-Suites automatisch abgearbeitet. Eine beispielhafte Ausgabe ist in folgender Abbildung zu sehen.
+\newline
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.8\linewidth]{test}
 \caption{Ausgabe des Befehls npm run unit}
 \label{fig:npmtest}
 \end{figure}
+\newpage
 Die Tests umfassen das Prüfen von Anwesenheit bestimmter Variablen und html-Elemente, sowie die Rückgabewerte einiger Funktionen und das Parsen von sparql-Rückgaben.
 Die Ergebnisse sind in folgender Tabelle aufgelistet.
 \begin{table}[htpb]
@@ -56,12 +57,12 @@ Die Ergebnisse sind in folgender Tabelle aufgelistet.
 \begin{tabular}{c | c | c}
 Komponente & Anzahl Tests & Bestanden \\
 \hline
-THWDashboard & 4 & ja \\
 THWMenu & 3 & ja \\
-THWLandingPage & 2 & ja\\
+THWLandingPage & 4 & ja\\
 sparql\_response & 1 & ja\\
-sparql\_queries & 3 & ja\\
+sparql\_queries & 6 & ja\\
 \end{tabular}
+
 \caption{Testergebnisse der momentanen Frontend-Komponenten}
 \end{table}
 Die Tests für THWForm werden derzeit nicht ausgeführt, weil es zu Komplikationen mit Jest kam, welche noch nicht behoben werden konnten.
