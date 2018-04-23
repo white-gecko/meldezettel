@@ -95,19 +95,8 @@ export default {
     buttonReset: 2
   },
   0: {
-    midRadio: 1,
-    midPhone: 1,
-    midFax: 1,
-    midDFU: 1,
-    midCourier: 1,
-    callNumber: 1,
     address: 1,
-    content: 1,
-    sender: 1,
-    timeCreate: 1,
-    identification: 1,
-    position: 1,
-    annotations: 1
+    content: 1
   },
   1: {
     priorityFlash: 1,
@@ -157,31 +146,10 @@ export default {
     annotations: 1
   },
   3: {
-    topRadio: 1,
-    topPhone: 1,
-    topFax: 1,
-    topDFU: 1,
-    topCourier: 1,
-    outboundAccDate: 1,
-    outboundAccTime: 1,
-    outboundAccHdZ: 1,
-    outboundTransDate: 1,
-    outboundTransTime: 1,
-    outboundTransHdZ: 1,
     lbNumber: 1,
-    selectOutbound: 1,
-    selectIncoming: 1,
-    receiverName: 1,
-    annotations: 1
+    receiverName: 1
   },
   4: {
-    outboundAccDate: 1,
-    outboundAccTime: 1,
-    outboundAccHdZ: 1,
-    outboundTransDate: 1,
-    outboundTransTime: 1,
-    outboundTransHdZ: 1,
-    annotations: 1
   },
   5: {
     topRadio: 1,
@@ -377,19 +345,7 @@ export default {
     annotations: 1
   },
   10: {
-    topRadio: 1,
-    topPhone: 1,
-    topFax: 1,
-    topDFU: 1,
-    topCourier: 1,
-    annotations: 1,
     receiverName: 1,
-    incomingDate: 1,
-    incomingTime: 1,
-    incomingHdZ: 1,
-    callNumber: 1,
-    address: 1,
-    conversationNote: 1,
     content: 1,
     sender: 1
   },
