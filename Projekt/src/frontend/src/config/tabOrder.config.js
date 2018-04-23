@@ -377,19 +377,7 @@ export default {
     annotations: 1
   },
   10: {
-    topRadio: 1,
-    topPhone: 1,
-    topFax: 1,
-    topDFU: 1,
-    topCourier: 1,
-    annotations: 1,
     receiverName: 1,
-    incomingDate: 1,
-    incomingTime: 1,
-    incomingHdZ: 1,
-    callNumber: 1,
-    address: 1,
-    conversationNote: 1,
     content: 1,
     sender: 1
   },
