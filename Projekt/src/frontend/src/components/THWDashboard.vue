@@ -16,11 +16,44 @@
                     'border-bottom': '20px solid var(--darkNeutralColor)'}">
 
           <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
-          <el-table-column :formatter="formatState"
-                           label="Status"
-                           prop="ticketState"
+          <el-table-column label="Status"
                            align="center"
-                           min-width="6%"></el-table-column>
+                           prop="ticketState"
+                           min-width="6%">
+            <template slot-scope="scope">
+              <div>
+                <i v-if="scope.row.ticketState === 1"
+                   class='el-icon-edit-outline out stateTable'/>
+                <i v-else-if="scope.row.ticketState === 2"
+                   class='el-icon-circle-close out stateTable'/>
+                <i v-else-if="scope.row.ticketState === 3"
+                   class='el-icon-view out stateTable'/>
+                <i v-else-if="scope.row.ticketState === 4"
+                   class='el-icon-service out stateTable'/>
+                <i v-else-if="scope.row.ticketState === 5"
+                   class='el-icon-circle-check-outline out stateTable'/>
+                <i v-else-if="scope.row.ticketState === 6"
+                   class='el-icon-circle-close-outline out stateTable'/>
+                <i v-else-if="scope.row.ticketState === 7"
+                   class='el-icon-circle-check out stateTable'/>
+                <i v-else-if="scope.row.ticketState === 8"
+                   class='el-icon-printer out stateTable'/>
+                <i v-else-if="scope.row.ticketState === 9"
+                   class='out stateTable'>&#9632;</i>
+                <i v-else-if="scope.row.ticketState === 11"
+                   class='el-icon-edit-outline in stateTable'/>
+                <i v-else-if="scope.row.ticketState === 12"
+                   class='el-icon-circle-close in stateTable'/>
+                <i v-else-if="scope.row.ticketState === 13"
+                   class='el-icon-tickets in stateTable'/>
+                <i v-else-if="scope.row.ticketState === 14"
+                   class='el-icon-printer in stateTable'/>
+                <i v-else-if="scope.row.ticketState === 15"
+                   class='in stateTable'>&#9632;</i>
+                <i v-else class='el-icon-warning warn stateTable'/>
+              </div>
+            </template>
+          </el-table-column>
 
           <el-table-column prop="numberTB"
                            label="TB Nr."
@@ -457,43 +490,6 @@ export default {
         offset: 120,
         showClose: false
       })
-    },
-    // formatter that returns the fitting icons for all different states
-    formatState (row, column, cellValue) {
-      switch (cellValue) {
-        case 1:
-          return <i class='el-icon-edit-outline out stateTable'></i>
-        case 2:
-          return <i class='el-icon-circle-close out stateTable'></i>
-        case 3:
-          return <i class='el-icon-view out stateTable'></i>
-        case 4:
-          return <i class='el-icon-service out stateTable'></i>
-        case 5:
-          return <i class='el-icon-circle-check-outline out stateTable'></i>
-        case 6:
-          return <i class='el-icon-circle-close-outline out stateTable'></i>
-        case 7:
-          return <i class='el-icon-circle-check out stateTable'></i>
-        case 8:
-          return <i class='el-icon-printer out stateTable'></i>
-        case 9:
-          return <span class='out stateTable'>&#9632;</span>
-        case 11:
-          return <i class='el-icon-edit-outline in stateTable'></i>
-        case 12:
-          return <i class='el-icon-circle-close in stateTable'></i>
-        case 13:
-          return <i class='el-icon-tickets in stateTable'></i>
-        case 14:
-          return <i class='el-icon-printer in stateTable'></i>
-        case 15:
-          return <span class='in stateTable'>&#9632;</span>
-        default:
-          // if this is reached, that means that there is an issue
-          // in the whole state process => a warning is shown
-          return <i class='el-icon-warning warn stateTable'></i>
-      }
     },
     formatDate (row, column, cellValue) {
       // return (new Date(cellValue)).toLocaleDateString()
