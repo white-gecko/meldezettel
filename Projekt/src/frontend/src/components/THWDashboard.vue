@@ -108,7 +108,7 @@
           <div class="
                 innerWrapper
                 dashboardSideMTopTop">
-            <div style="border: 4px solid var(--middleNeutralColor);">
+            <div class="dashboardInputWrapper">
               <input class="dashboardInput"
                      v-model='filter.search'
                      placeholder="Suche"/>
@@ -118,7 +118,7 @@
           <div class="
                 innerWrapper
                 dashboardSideMTopTop">
-            <div style="border: 4px solid var(--middleNeutralColor);">
+            <div class="dashboardInputWrapper">
               <input class="dashboardInput"
                      v-model='filter.identification'
                      placeholder="Kürzel"/>
@@ -593,6 +593,12 @@ export default {
   }
 
   /* custom input */
+  .dashboardInputWrapper {
+    border: 4px solid var(--middleNeutralColor);
+  }
+  .dashboardInputWrapper:hover {
+    border: 4px solid var(--mainColor);
+  }
   .dashboardInput {
     height: 50px;
     width: 100%;
@@ -654,6 +660,9 @@ export default {
     margin: 5px 0 0 0;
     border: 4px solid var(--middleNeutralColor);
   }
+  .dashboardButtonWrapper:hover {
+    border: 4px solid var(--mainColor);
+  }
   .dashboardButton {
     height: 50px;
     width: 100%;
@@ -698,6 +707,9 @@ export default {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
+  }
+  .dashboardCheckbox:hover {
+    border: 4px solid var(--mainColor);
   }
   .dashboardCheckbox:hover div {
     background-color: var(--mainColor);
