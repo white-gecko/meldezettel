@@ -23,12 +23,6 @@ const strToBool = function (string) {
 const parseLiteral = function (obj, prefix) {
   prefix = prefix || xsd
 
-  let type = obj['type']
-  if (type !== 'literal' && type !== 'typed-literal') {
-    console.error('object is not a literal')
-    return
-  }
-
   let datatypeRaw = obj['datatype']
   let value = obj['value']
 
@@ -42,6 +36,7 @@ const parseLiteral = function (obj, prefix) {
       case 'string': return value
       default:
         console.error('unsupported datatype')
+        return
     }
   } else {
     return value
@@ -56,10 +51,6 @@ const parseLiteral = function (obj, prefix) {
  */
 const parseUri = function (obj, prefixes) {
   let type = obj['type']
-  if (type !== 'uri') {
-    console.error('object is not a uri')
-    return
-  }
 
   let value = obj['value']
   let longestMatch = ''
