@@ -105,7 +105,7 @@ export const setDefaultFilters = (state) => {
         s9: false,
         s11: false,
         s12: true,
-        s13: true,
+        s13: false,
         s14: false,
         s15: false
       }

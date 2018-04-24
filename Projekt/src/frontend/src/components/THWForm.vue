@@ -1767,6 +1767,12 @@ export default {
 
     formReset: function () {
       this.formdata = JSON.parse(JSON.stringify(this.default))
+      if (this.formdata.ticketState % 10 === 0) {
+        this.$data.formdata.inOperation = this.getUser().operation.operationID
+        if (this.checkIfUserIsFernmelder()) {
+          this.formdata.ticketState = 10
+        }
+      }
       this.autoFillValues()
       this.placeholders = this.$options.data().placeholders
     },
