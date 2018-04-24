@@ -388,6 +388,7 @@
             <div class="dashboardButtonWrapper">
               <div class="dashboardButton"
                    id="useFilterButton"
+                   @keyup.enter="useFilters()"
                    @click="useFilters()">
                 <div class="dashboardButtonLabel">
                   Anwenden
@@ -398,6 +399,7 @@
             <div class="dashboardButtonWrapper">
               <div class="dashboardButton"
                    id="resetFilterButton"
+                   @keyup.enter="resetFilters()"
                    @click="resetFilters()">
                 <div class="dashboardButtonLabel">
                   Zurücksetzen

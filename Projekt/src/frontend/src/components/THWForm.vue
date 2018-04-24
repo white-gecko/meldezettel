@@ -1239,6 +1239,8 @@
             <div class="formButtonWrapper"
                  v-show="isNew">
               <div class="formButton"
+                   @keyup.enter="
+                    saveForm('accept');"
                    @click="
                     saveForm('accept');"
                    :tabindex="tabIndexConfig.buttonSend"
@@ -1252,6 +1254,8 @@
             <div class="formButtonWrapper"
                  v-show="sendable">
               <div class="formButton"
+                   @keyup.enter="
+                    saveForm('accept');"
                    @click="
                     saveForm('accept');"
                    tabindex="6"
@@ -1265,6 +1269,8 @@
             <div class="formButtonWrapper"
                  v-show="toBePrinted">
               <div class="formButton"
+                   @keyup.enter="
+                    printTicket();"
                    @click="
                     printTicket();"
                    tabindex="6"
@@ -1278,6 +1284,8 @@
             <div class="formButtonWrapper"
                  v-show="rejectable">
               <div class="formButton"
+                   @keyup.enter="
+                    saveForm('reject');"
                    @click="
                     saveForm('reject');"
                     id="rejectFormButton">
@@ -1289,6 +1297,9 @@
 
             <div class="formButtonWrapper">
               <div class="formButton"
+                   @keyup.enter="
+                    formReset();
+                    notifySuccess('Zurückgesetzt');"
                    @click="
                     formReset();
                     notifySuccess('Zurückgesetzt');"
