@@ -7,7 +7,8 @@
       <div class="outerWrapper"
            style="padding: 0 20px 10px 20px;">
         <el-table :data="ticketList"
-                  @current-change="selectDocument"
+                  id="ticketListTable"
+                  @current-change="selectDocument()"
                   style="width: 100%"
                   border
                   :header-cell-style="{
@@ -68,14 +69,12 @@
                            label="Sichter"
                            min-width="7%"></el-table-column>
 
-          <el-table-column :formatter="formatDate"
-                           prop="date"
+          <el-table-column prop="date"
                            label="Datum"
                            align="center"
                            min-width="9%"></el-table-column>
 
-          <el-table-column :formatter="formatTime"
-                           prop="time"
+          <el-table-column prop="time"
                            label="Uhrzeit"
                            align="center"
                            min-width="7%"></el-table-column>
@@ -174,7 +173,8 @@
 
             <div class="dashboardButtonWrapper">
               <div class="dashboardButton"
-                   @click="showHideIncoming">
+                   id="incomingMenu"
+                   @click="showHideIncoming()">
                 <div class="dashboardButtonLabel">
                   Eingang
                 </div>
@@ -250,7 +250,8 @@
 
             <div class="dashboardButtonWrapper">
               <div class="dashboardButton"
-                   @click="showHideOutgoing">
+                   id="outgoingMenu"
+                   @click="showHideOutgoing()">
                 <div class="dashboardButtonLabel">
                   Ausgang
                 </div>
@@ -325,7 +326,7 @@
                 flexContainerDashboardA">
                 <label class="control control-checkbox">
                   Versandt(Sichter)
-                  <input type="checkbox" v-model='filter.s6'/>
+                  <input type="checkbox" v-model='filter.s7'/>
                   <div class="control_indicator"></div>
                 </label>
                 <i class="el-icon-circle-check stateFilter out"
@@ -337,7 +338,7 @@
                 flexContainerDashboardA">
                 <label class="control control-checkbox">
                   Zurück(Funker)
-                  <input type="checkbox" v-model='filter.s7'/>
+                  <input type="checkbox" v-model='filter.s6'/>
                   <div class="control_indicator"></div>
                 </label>
                 <i class="el-icon-circle-close-outline stateFilter out"
@@ -386,6 +387,7 @@
 
             <div class="dashboardButtonWrapper">
               <div class="dashboardButton"
+                   id="useFilterButton"
                    @click="useFilters()">
                 <div class="dashboardButtonLabel">
                   Anwenden
@@ -395,6 +397,7 @@
 
             <div class="dashboardButtonWrapper">
               <div class="dashboardButton"
+                   id="resetFilterButton"
                    @click="resetFilters()">
                 <div class="dashboardButtonLabel">
                   Zurücksetzen
@@ -490,14 +493,6 @@ export default {
         offset: 120,
         showClose: false
       })
-    },
-    formatDate (row, column, cellValue) {
-      // return (new Date(cellValue)).toLocaleDateString()
-      return cellValue
-    },
-    formatTime (row, column, cellValue) {
-      // return (new Date(cellValue)).toLocaleTimeString()
-      return cellValue
     },
     formatContent (row, column, cellValue) {
       return String(cellValue).length > 80
