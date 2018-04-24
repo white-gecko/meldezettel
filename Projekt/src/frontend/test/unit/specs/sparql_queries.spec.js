@@ -24,7 +24,7 @@ let filter2 = {
   search: '',
   identification: 'fr',
   operation: 'na17b',
-  s1: false,
+  s1: true,
   s2: true,
   s3: true,
   s4: true,
@@ -291,7 +291,7 @@ WHERE {
 :connectionB ?cB;
 :connectionC ?cC;
 :connectionD ?cD;
-:connectionE ?cE; :inOperation ?operation. ?operation :operationName "na17b". FILTER((?primaryHdZ="fr"||?sH="fr"||?tH="fr"||?identification="fr"||?docketIdentification="fr"||?aA="fr"||?aB="fr"||?aC="fr"||?aD="fr"||?aE="fr"||?cA="fr"||?cB="fr"||?cC="fr"||?cD="fr"||?cE="fr")&&( ?ticketState=2|| ?ticketState=3|| ?ticketState=4|| ?ticketState=5|| ?ticketState=6|| ?ticketState=8|| ?ticketState=9|| ?ticketState=11|| ?ticketState=12|| ?ticketState=14 || ?ticketState=15))}`
+:connectionE ?cE; :inOperation ?operation. ?operation :operationName "na17b". FILTER((?primaryHdZ="fr"||?sH="fr"||?tH="fr"||?identification="fr"||?docketIdentification="fr"||?aA="fr"||?aB="fr"||?aC="fr"||?aD="fr"||?aE="fr"||?cA="fr"||?cB="fr"||?cC="fr"||?cD="fr"||?cE="fr")&&( ?ticketState=1|| ?ticketState=2|| ?ticketState=3|| ?ticketState=4|| ?ticketState=5|| ?ticketState=6|| ?ticketState=8|| ?ticketState=9|| ?ticketState=11|| ?ticketState=12|| ?ticketState=14 || ?ticketState=15))}`
   )
 
   expect(sparql.dashboardQuery(filter3)).toBe(`
