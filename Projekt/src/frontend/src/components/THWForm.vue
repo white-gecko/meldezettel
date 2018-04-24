@@ -2276,6 +2276,9 @@ export default {
     -webkit-box-sizing: border-box;
     box-sizing: border-box
   }
+  .inputWithLabel:focus {
+    background-color: var(--formHighlightColor)
+  }
   .inputSelectionHighlight {
     height: auto;
     min-width: 10px;
