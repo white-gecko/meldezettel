@@ -24,7 +24,7 @@ test('sparql response parsed correctly', () => {
 
   let test = parseResponse({data: {'results':{'bindings': bindings}}})
 
-  for (let i = 0; i < test.length-1; i++) {
+  for (let i = 0; i < test.length; i++) {
     expect(test[i].s).toBe(s[i])
     expect(test[i].p).toBe(p[i])
     expect(test[i].o).toBe(expected[i])
