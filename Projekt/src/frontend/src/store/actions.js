@@ -60,9 +60,9 @@ export const updateTicketListAction = (context) => {
         context.commit('setTicketList', formatted)
         return resolve(formatted)
       })
-      .catch((error) => {
-        return reject(new Error('Fehler beim Laden der Dokumente.\n' +
-          'Fehlermeldung: ' + error))
+      .catch(() => {
+        return reject(new Error('Fehler beim Laden der Dokumente. ' +
+          ' Versuchen Sie es mit kürzeren Filtern!'))
       })
   })
 }

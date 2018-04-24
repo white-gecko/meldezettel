@@ -165,6 +165,7 @@ export const setDefaultFilters = (state) => {
       }
   }
   defFilter['search'] = ''
+  defFilter['identification'] = ''
   if (state.user.operation.operationName !== '') {
     defFilter['operation'] = state.user.operation.operationName
   } else {

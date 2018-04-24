@@ -73,8 +73,7 @@ PREFIX : <http://www.na17b.org/thw/>
     query += 'DELETE DATA {GRAPH : {'
 
     query += uri + ' rdf:type :document'
-
-    if (doc.inOperation !== '' && doc.inOperation !== undefined) {
+    if (doc.inOperation !== '' && typeof (doc.inOperation) !== 'undefined') {
       query += '; :inOperation id:' + doc.inOperation
     }
     delete doc.inOperation
@@ -105,147 +104,194 @@ PREFIX : <http://www.na17b.org/thw/>
    */
   dashboardQuery: function (filter) {
     let query = `
-PREFIX thw: <http://www.na17b.org/thw/>
+PREFIX : <http://www.na17b.org/thw/>
 PREFIX id: <http://www.na17b.org/thw/resource/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 SELECT *
-FROM thw:
+FROM :
 WHERE {
-?id rdf:type  thw:document;
-thw:ticketState ?ticketState;
-thw:receiverName ?receiverName;
-thw:content ?content;
-thw:primaryDate ?primaryDate;
-thw:primaryTime ?primaryTime;
-thw:primaryHdZ ?primaryHdZ;
-thw:tertiaryDate ?tertiaryDate;
-thw:tertiaryTime ?tertiaryTime;
-thw:numberTB ?numberTB;
-thw:identification ?identification;
-thw:docketIdentification ?docketIdentification`
+?id rdf:type :document;
+:ticketState ?ticketState;
+:receiverName ?receiverName;
+:content ?content;
+:primaryDate ?primaryDate;
+:primaryTime ?primaryTime;
+:primaryHdZ ?primaryHdZ;
+:tertiaryDate ?tertiaryDate;
+:tertiaryTime ?tertiaryTime;
+:numberTB ?numberTB;
+:identification ?identification;
+:docketIdentification ?docketIdentification;
+:sender ?s;
+:secondaryHdZ ?sH;
+:tertiaryHdZ ?tH;
+:advisorA ?aA;
+:advisorB ?aB;
+:advisorC ?aC;
+:advisorD ?aD;
+:advisorE ?aE;
+:connectionA ?cA;
+:connectionB ?cB;
+:connectionC ?cC;
+:connectionD ?cD;
+:connectionE ?cE`
 
     if (filter.operation !== 'Alle') {
-      query += `; thw:inOperation ?operation.` +
-                ` ?operation thw:operationName "` + filter.operation + `"`
+      query += `; :inOperation ?operation.` +
+                ` ?operation :operationName "` + filter.operation + `"`
     }
     query += '.'
 
     let search = ''
     let trimmed = filter.search.trim()
     if (trimmed !== '') {
-      search += `regex(?content, "` + trimmed + `") || ` +
-                `regex(?numberTB, "` + trimmed + `") || ` +
-                `regex(?receiverName, "` + trimmed + `") ||` +
-                `?primaryHdZ = "` + trimmed + `" || ` +
-                `?identification = "` + trimmed + `"`
+      search += `regex(?content,"` + trimmed + `")||` +
+                `regex(?numberTB,"` + trimmed + `")||` +
+                `regex(?receiverName,"` + trimmed + `")||` +
+                `regex(?s,"` + trimmed + `")`
+    }
+
+    let name = ''
+    let trimmedID = filter.identification.trim()
+    if (trimmedID !== '') {
+      name += `?primaryHdZ="` + trimmedID + `"||` +
+              `?sH="` + trimmedID + `"||` +
+              `?tH="` + trimmedID + `"||` +
+              `?identification="` + trimmedID + `"||` +
+              `?docketIdentification="` + trimmedID + `"||` +
+              `?aA="` + trimmedID + `"||` +
+              `?aB="` + trimmedID + `"||` +
+              `?aC="` + trimmedID + `"||` +
+              `?aD="` + trimmedID + `"||` +
+              `?aE="` + trimmedID + `"||` +
+              `?cA="` + trimmedID + `"||` +
+              `?cB="` + trimmedID + `"||` +
+              `?cC="` + trimmedID + `"||` +
+              `?cD="` + trimmedID + `"||` +
+              `?cE="` + trimmedID + `"`
     }
 
     let check = false
     let states = ''
     if (filter.s1) {
-      states += ` ?ticketState = 1`
+      states += ` ?ticketState=1`
       check = true
     }
     if (filter.s2) {
       if (check) {
-        states += ` ||`
+        states += `||`
       }
-      states += ` ?ticketState = 2`
+      states += ` ?ticketState=2`
       check = true
     }
     if (filter.s3) {
       if (check) {
-        states += ` ||`
+        states += `||`
       }
-      states += ` ?ticketState = 3`
+      states += ` ?ticketState=3`
       check = true
     }
     if (filter.s4) {
       if (check) {
-        states += ` ||`
+        states += `||`
       }
-      states += ` ?ticketState = 4`
+      states += ` ?ticketState=4`
       check = true
     }
     if (filter.s5) {
       if (check) {
-        states += ` ||`
+        states += `||`
       }
-      states += ` ?ticketState = 5`
+      states += ` ?ticketState=5`
       check = true
     }
     if (filter.s6) {
       if (check) {
-        states += ` ||`
+        states += `||`
       }
-      states += ` ?ticketState = 6`
+      states += ` ?ticketState=6`
       check = true
     }
     if (filter.s7) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?ticketState = 7`
+      states += ` ?ticketState=7`
       check = true
     }
     if (filter.s8) {
       if (check) {
-        states += ` ||`
+        states += `||`
       }
-      states += ` ?ticketState = 8`
+      states += ` ?ticketState=8`
       check = true
     }
     if (filter.s9) {
       if (check) {
-        states += ` ||`
+        states += `||`
       }
-      states += ` ?ticketState = 9`
+      states += ` ?ticketState=9`
       check = true
     }
     if (filter.s11) {
       if (check) {
-        states += ` ||`
+        states += `||`
       }
-      states += ` ?ticketState = 11`
+      states += ` ?ticketState=11`
       check = true
     }
     if (filter.s12) {
       if (check) {
-        states += ` ||`
+        states += `||`
       }
-      states += ` ?ticketState = 12`
+      states += ` ?ticketState=12`
       check = true
     }
     if (filter.s13) {
       if (check) {
-        states += ` ||`
+        states += `||`
       }
-      states += ` ?ticketState = 13`
+      states += ` ?ticketState=13`
       check = true
     }
     if (filter.s14) {
       if (check) {
-        states += ` ||`
+        states += `||`
       }
-      states += ` ?ticketState = 14`
+      states += ` ?ticketState=14`
       check = true
     }
     if (filter.s15) {
       if (check) {
         states += ` ||`
       }
-      states += ` ?ticketState = 15`
+      states += ` ?ticketState=15`
     }
 
     let queryFilter = ''
-    if (search !== '' && states !== '') {
+    if (search !== '' && states !== '' && name !== '') {
       search = `(` + search + `)`
       states = `(` + states + `)`
-      queryFilter = ` FILTER(` + search + ` && ` + states + `)`
+      name = `(` + name + `)`
+      queryFilter = ` FILTER(` + search + `&&` + states + `&&` + name + `)`
+    } else if (search !== '' && name !== '') {
+      search = `(` + search + `)`
+      name = `(` + name + `)`
+      queryFilter = ` FILTER(` + search + `&&` + name + `)`
+    } else if (name !== '' && states !== '') {
+      name = `(` + name + `)`
+      states = `(` + states + `)`
+      queryFilter = ` FILTER(` + name + `&&` + states + `)`
+    } else if (search !== '' && states !== '') {
+      search = `(` + search + `)`
+      states = `(` + states + `)`
+      queryFilter = ` FILTER(` + search + `&&` + states + `)`
     } else if (states !== '') {
       queryFilter = ` FILTER(` + states + `)`
     } else if (search !== '') {
       queryFilter = ` FILTER(` + search + `)`
+    } else if (name !== '') {
+      queryFilter = ` FILTER(` + name + `)`
     }
 
     query += queryFilter + '}'
