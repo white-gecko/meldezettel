@@ -36,7 +36,7 @@ const parseLiteral = function (obj, prefix) {
       case 'string': return value
       default:
         console.error('unsupported datatype')
-        return
+        return undefined
     }
   } else {
     return value
@@ -50,8 +50,6 @@ const parseLiteral = function (obj, prefix) {
  * @return returns the uri without prefix
  */
 const parseUri = function (obj, prefixes) {
-  let type = obj['type']
-
   let value = obj['value']
   let longestMatch = ''
   for (let prefix of prefixes) {
