@@ -59,6 +59,102 @@ let filter3 = {
   s14: false,
   s15: false
 }
+let filter4 = {
+  search: 'abc',
+  identification: 'ab',
+  operation: 'Alle',
+  s1: true,
+  s2: false,
+  s3: false,
+  s4: false,
+  s5: false,
+  s6: false,
+  s7: true,
+  s8: false,
+  s9: false,
+  s11: false,
+  s12: false,
+  s13: true,
+  s14: false,
+  s15: false
+}
+let filter5 = {
+  search: 'abc',
+  identification: 'ab',
+  operation: 'Alle',
+  s1: false,
+  s2: false,
+  s3: false,
+  s4: false,
+  s5: false,
+  s6: false,
+  s7: false,
+  s8: false,
+  s9: false,
+  s11: false,
+  s12: false,
+  s13: false,
+  s14: false,
+  s15: false
+}
+let filter6 = {
+  search: 'abc',
+  identification: '',
+  operation: 'Alle',
+  s1: false,
+  s2: false,
+  s3: false,
+  s4: false,
+  s5: false,
+  s6: false,
+  s7: false,
+  s8: false,
+  s9: false,
+  s11: false,
+  s12: false,
+  s13: false,
+  s14: false,
+  s15: false
+}
+let filter7 = {
+  search: '',
+  identification: 'ab',
+  operation: 'Alle',
+  s1: false,
+  s2: false,
+  s3: false,
+  s4: false,
+  s5: false,
+  s6: false,
+  s7: false,
+  s8: false,
+  s9: false,
+  s11: false,
+  s12: false,
+  s13: false,
+  s14: false,
+  s15: false
+}
+
+let filter8 = {
+  search: '',
+  identification: '',
+  operation: 'Alle',
+  s1: true,
+  s2: false,
+  s3: false,
+  s4: false,
+  s5: false,
+  s6: false,
+  s7: true,
+  s8: false,
+  s9: false,
+  s11: false,
+  s12: false,
+  s13: true,
+  s14: false,
+  s15: false
+}
 
 let id1 = 123456
 let id2 = 'ab1371'
@@ -230,6 +326,171 @@ WHERE {
 :connectionC ?cC;
 :connectionD ?cD;
 :connectionE ?cE; :inOperation ?operation. ?operation :operationName "".}`
+  )
+  expect(sparql.dashboardQuery(filter4)).toBe(`
+PREFIX : <http://www.na17b.org/thw/>
+PREFIX id: <http://www.na17b.org/thw/resource/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT *
+FROM :
+WHERE {
+?id rdf:type :document;
+:ticketState ?ticketState;
+:receiverName ?receiverName;
+:content ?content;
+:primaryDate ?primaryDate;
+:primaryTime ?primaryTime;
+:primaryHdZ ?primaryHdZ;
+:tertiaryDate ?tertiaryDate;
+:tertiaryTime ?tertiaryTime;
+:numberTB ?numberTB;
+:identification ?identification;
+:docketIdentification ?docketIdentification;
+:sender ?s;
+:secondaryHdZ ?sH;
+:tertiaryHdZ ?tH;
+:advisorA ?aA;
+:advisorB ?aB;
+:advisorC ?aC;
+:advisorD ?aD;
+:advisorE ?aE;
+:connectionA ?cA;
+:connectionB ?cB;
+:connectionC ?cC;
+:connectionD ?cD;
+:connectionE ?cE. FILTER((regex(?content,"abc")||regex(?numberTB,"abc")||regex(?receiverName,"abc")||regex(?s,"abc"))&&( ?ticketState=1 || ?ticketState=7|| ?ticketState=13)&&(?primaryHdZ="ab"||?sH="ab"||?tH="ab"||?identification="ab"||?docketIdentification="ab"||?aA="ab"||?aB="ab"||?aC="ab"||?aD="ab"||?aE="ab"||?cA="ab"||?cB="ab"||?cC="ab"||?cD="ab"||?cE="ab"))}`
+  )
+  expect(sparql.dashboardQuery(filter5)).toBe(`
+PREFIX : <http://www.na17b.org/thw/>
+PREFIX id: <http://www.na17b.org/thw/resource/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT *
+FROM :
+WHERE {
+?id rdf:type :document;
+:ticketState ?ticketState;
+:receiverName ?receiverName;
+:content ?content;
+:primaryDate ?primaryDate;
+:primaryTime ?primaryTime;
+:primaryHdZ ?primaryHdZ;
+:tertiaryDate ?tertiaryDate;
+:tertiaryTime ?tertiaryTime;
+:numberTB ?numberTB;
+:identification ?identification;
+:docketIdentification ?docketIdentification;
+:sender ?s;
+:secondaryHdZ ?sH;
+:tertiaryHdZ ?tH;
+:advisorA ?aA;
+:advisorB ?aB;
+:advisorC ?aC;
+:advisorD ?aD;
+:advisorE ?aE;
+:connectionA ?cA;
+:connectionB ?cB;
+:connectionC ?cC;
+:connectionD ?cD;
+:connectionE ?cE. FILTER((regex(?content,"abc")||regex(?numberTB,"abc")||regex(?receiverName,"abc")||regex(?s,"abc"))&&(?primaryHdZ="ab"||?sH="ab"||?tH="ab"||?identification="ab"||?docketIdentification="ab"||?aA="ab"||?aB="ab"||?aC="ab"||?aD="ab"||?aE="ab"||?cA="ab"||?cB="ab"||?cC="ab"||?cD="ab"||?cE="ab"))}`
+  )
+  expect(sparql.dashboardQuery(filter6)).toBe(`
+PREFIX : <http://www.na17b.org/thw/>
+PREFIX id: <http://www.na17b.org/thw/resource/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT *
+FROM :
+WHERE {
+?id rdf:type :document;
+:ticketState ?ticketState;
+:receiverName ?receiverName;
+:content ?content;
+:primaryDate ?primaryDate;
+:primaryTime ?primaryTime;
+:primaryHdZ ?primaryHdZ;
+:tertiaryDate ?tertiaryDate;
+:tertiaryTime ?tertiaryTime;
+:numberTB ?numberTB;
+:identification ?identification;
+:docketIdentification ?docketIdentification;
+:sender ?s;
+:secondaryHdZ ?sH;
+:tertiaryHdZ ?tH;
+:advisorA ?aA;
+:advisorB ?aB;
+:advisorC ?aC;
+:advisorD ?aD;
+:advisorE ?aE;
+:connectionA ?cA;
+:connectionB ?cB;
+:connectionC ?cC;
+:connectionD ?cD;
+:connectionE ?cE. FILTER(regex(?content,"abc")||regex(?numberTB,"abc")||regex(?receiverName,"abc")||regex(?s,"abc"))}`
+  )
+  expect(sparql.dashboardQuery(filter7)).toBe(`
+PREFIX : <http://www.na17b.org/thw/>
+PREFIX id: <http://www.na17b.org/thw/resource/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT *
+FROM :
+WHERE {
+?id rdf:type :document;
+:ticketState ?ticketState;
+:receiverName ?receiverName;
+:content ?content;
+:primaryDate ?primaryDate;
+:primaryTime ?primaryTime;
+:primaryHdZ ?primaryHdZ;
+:tertiaryDate ?tertiaryDate;
+:tertiaryTime ?tertiaryTime;
+:numberTB ?numberTB;
+:identification ?identification;
+:docketIdentification ?docketIdentification;
+:sender ?s;
+:secondaryHdZ ?sH;
+:tertiaryHdZ ?tH;
+:advisorA ?aA;
+:advisorB ?aB;
+:advisorC ?aC;
+:advisorD ?aD;
+:advisorE ?aE;
+:connectionA ?cA;
+:connectionB ?cB;
+:connectionC ?cC;
+:connectionD ?cD;
+:connectionE ?cE. FILTER(?primaryHdZ="ab"||?sH="ab"||?tH="ab"||?identification="ab"||?docketIdentification="ab"||?aA="ab"||?aB="ab"||?aC="ab"||?aD="ab"||?aE="ab"||?cA="ab"||?cB="ab"||?cC="ab"||?cD="ab"||?cE="ab")}`
+  )
+  expect(sparql.dashboardQuery(filter8)).toBe(`
+PREFIX : <http://www.na17b.org/thw/>
+PREFIX id: <http://www.na17b.org/thw/resource/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT *
+FROM :
+WHERE {
+?id rdf:type :document;
+:ticketState ?ticketState;
+:receiverName ?receiverName;
+:content ?content;
+:primaryDate ?primaryDate;
+:primaryTime ?primaryTime;
+:primaryHdZ ?primaryHdZ;
+:tertiaryDate ?tertiaryDate;
+:tertiaryTime ?tertiaryTime;
+:numberTB ?numberTB;
+:identification ?identification;
+:docketIdentification ?docketIdentification;
+:sender ?s;
+:secondaryHdZ ?sH;
+:tertiaryHdZ ?tH;
+:advisorA ?aA;
+:advisorB ?aB;
+:advisorC ?aC;
+:advisorD ?aD;
+:advisorE ?aE;
+:connectionA ?cA;
+:connectionB ?cB;
+:connectionC ?cC;
+:connectionD ?cD;
+:connectionE ?cE. FILTER( ?ticketState=1 || ?ticketState=7|| ?ticketState=13)}`
   )
 })
 
