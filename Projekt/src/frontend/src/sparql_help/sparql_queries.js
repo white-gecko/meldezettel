@@ -73,8 +73,7 @@ PREFIX : <http://www.na17b.org/thw/>
     query += 'DELETE DATA {GRAPH : {'
 
     query += uri + ' rdf:type :document'
-
-    if (doc.inOperation !== '' && doc.inOperation !== undefined) {
+    if (doc.inOperation !== '' && typeof (doc.inOperation) !== 'undefined') {
       query += '; :inOperation id:' + doc.inOperation
     }
     delete doc.inOperation
