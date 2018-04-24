@@ -83,12 +83,12 @@ export default {
     --mainFont: Helvetica;
 
     /*font-sizes*/
-    --bigTitleSize: 1vw;
-    --titleSize: 1vw;
-    --smallTitleSize: 1vw;
-    --bodySize: 1vw;
-    --smallBodySize: 1vw;
-    --supplementaryTextSize: 1vw;
+    --bigTitleSize: 1vmax;
+    --titleSize: 1vmax;
+    --smallTitleSize: 1vmax;
+    --bodySize: 1vmax;
+    --smallBodySize: 1vmax;
+    --supplementaryTextSize: 1vmax;
 
     /*font-colors*/
     --primaryTextColor: #303133;
