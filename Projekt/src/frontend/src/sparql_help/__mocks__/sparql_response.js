@@ -1,3 +1,3 @@
-export const parseResponse = function (obj) {
-  return []
+export const parseResponse = function (response) {
+  return JSON.parse(response)
 }

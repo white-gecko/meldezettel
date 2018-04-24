@@ -1,8 +1,7 @@
 'use strict'
-// use mocked QuitStoreAdapter to avoid real network requests
-import {getPDFAction} from '../../../src/store/actions'
 
 jest.mock('@/api/QuitStoreAdapter')
+jest.mock('@/api/PrintServiceAdapter')
 // use mocked SPARQL-Query helper to decouple testing functionality
 jest.mock('@/sparql_help/sparql_queries')
 jest.mock('@/sparql_help/sparql_response')
@@ -82,34 +81,53 @@ describe('actions', () => {
       ticketState: 2
     }
 
-    store.dispatch('saveNewFormAction', formDataStub)
+    return store.dispatch('saveNewFormAction', formDataStub)
       .then(data => {
         expect(data).toEqual('SUCCESS')
       })
   })
 
   it('updates the ticket list', () => {
-    store.dispatch('updateTicketListAction')
+    return store.dispatch('updateTicketListAction')
+      .then((ticketList) => {
+        expect(store.state.ticketlist).toEqual(ticketList)
+      })
   })
 
   it('loads the form data', () => {
-    store.dispatch('loadFormDataAction')
+    return store.dispatch('loadFormDataAction', 13)
+      .then(formData => {
+        expect(formData).toEqual({"documentID": 13, "name1": "val1", "name2": "val2", "name3": "val3"})
+      })
   })
 
   it('updates the form data', () => {
-    store.dispatch('updateFormDataAction')
+    let formDataMock = {documentID: 13}
+    return store.dispatch('updateFormDataAction', formDataMock)
+      .then((response) => {
+        expect(response).toBe('SUCCESS')
+      })
   })
 
   it('get the operations', () => {
-    store.dispatch('getOperationsAction')
+    return store.dispatch('getOperationsAction')
+      .then((result) => {
+        expect(store.state.operationList).toEqual(result)
+      })
   })
 
   it('adds new operation', () => {
-    store.dispatch('handleOperation')
+    return store.dispatch('handleOperation', 'operation')
+      .then((response) => {
+        expect(response).toBe('SUCCESS')
+      })
   })
 
-  it('retrieves PDF', () => {
-    store.dispatch('getPDFAction')
+  it('getPDFAction throws an error when sending fails', () => {
+    let formDataMock = {mock: 'FLAWED'}
+    expect(() => {
+      store.dispatch('getPDFAction', formDataMock).toThrow()
+    })
   })
 })
 

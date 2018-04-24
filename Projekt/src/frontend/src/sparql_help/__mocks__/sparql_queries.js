@@ -1,28 +1,26 @@
 export default{
 
   formdataToInsertQuery: function (doc) {
-    return 'insert formdata query'
+    return 'insert_formdata_query'
   },
 
   formdataToDeleteQuery: function (doc) {
-    return 'delete formdata query'
+    return 'delete_formdata_query'
   },
-
 
   dashboardQuery: function (filter) {
-    return 'dashboard query'
+    return 'dashboard_query'
   },
 
-
   formQuery: function (id) {
-    return 'form query'
+    return 'form_query'
   },
 
   operationsQuery: function () {
-    return 'operations query'
+    return 'operations_query'
   },
 
   operationToInsertQuery: function (newOperation) {
-    return 'new operation query'
+    return 'new_operation_query'
   }
 }

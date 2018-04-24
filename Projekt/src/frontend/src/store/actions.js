@@ -58,10 +58,11 @@ export const updateTicketListAction = (context) => {
           }
         }
         context.commit('setTicketList', formatted)
-        return resolve()
+        return resolve(formatted)
       })
-      .catch(() => {
-        return reject(new Error('Fehler beim Laden der Dokumente'))
+      .catch((error) => {
+        return reject(new Error('Fehler beim Laden der Dokumente.\n' +
+          'Fehlermeldung: ' + error))
       })
   })
 }
@@ -124,8 +125,8 @@ export const updateFormDataAction = (context, formData) => {
             let insertNewDataQuery = queryHelper.formdataToInsertQuery(formData)
             quitstore.sendData(insertNewDataQuery)
 
-              .then(() => {
-                return resolve()
+              .then((response) => {
+                return resolve(response)
               })
               // Catch errors that were thrown when trying to send new data
               .catch(error => {
@@ -164,7 +165,7 @@ export const getOperationsAction = (context) => {
           }
         }
         context.commit('setOperationList', op)
-        return resolve('test')
+        return resolve(op)
       })
       .catch((error) => {
         return reject(error)
@@ -201,8 +202,8 @@ export const getPDFAction = (context, formdata) => {
         return resolve()
       })
       .catch((error) => {
-        console.error(error)
-        return reject(new Error('Fehler beim Anfordern der PDF'))
+        return reject(new Error('Fehler beim Anfordern der PDF\n' +
+          error))
       })
   })
 }
