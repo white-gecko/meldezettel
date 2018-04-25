@@ -42,12 +42,12 @@ describe('THWDashboard', () => {
     wrapper.find('#resetFilterButton').trigger('click')
     expect(wrapper.vm.resetFilters).toHaveBeenCalled()
   })
-
+/*
   it('Opens a document', () => {
     wrapper.find('#ticketListTable').trigger('current-change')
     expect(wrapper.vm.selectDocument).toHaveBeenCalled()
   })
-
+*/
   it('Triggers outgoing menu correctly', () => {
     wrapper.find('#outgoingMenu').trigger('click')
     expect(wrapper.vm.showHideOutgoing).toHaveBeenCalled()
