@@ -14,13 +14,13 @@
                 top: 0">
       <THWLandingPage/>
     </el-dialog>
-    <div style="z-index: 2">
+    <div style="z-index: 2; min-width: 1024px;">
       <THWHeader/>
     </div>
 
     <div class="
           flexContainerLayoutB"
-         style="z-index: 1; width: 100%">
+         style="z-index: 1; width: 100%; min-width: 1024px;">
         <THWMenu style="
                   width: 7%;
                   margin-top: 100px;"/>
@@ -84,12 +84,12 @@ export default {
     --mainFont: Helvetica;
 
     /*font-sizes*/
-    --bigTitleSize: 110%;
-    --titleSize: 100%;
-    --smallTitleSize: 100%;
-    --bodySize: 14px;
-    --smallBodySize: 13px;
-    --supplementaryTextSize: 12px;
+    --bigTitleSize: 1vmax;
+    --titleSize: 1vmax;
+    --smallTitleSize: 1vmax;
+    --bodySize: 1vmax;
+    --smallBodySize: 1vmax;
+    --supplementaryTextSize: 1vmax;
 
     /*font-colors*/
     --primaryTextColor: #303133;

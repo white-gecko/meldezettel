@@ -2013,7 +2013,6 @@ export default {
   }
   .formWrapper {
     width: 80%;
-    min-width: 940px;
     background-color: var(--semiLightNeutralColor);
     padding: 0 10px 20px 10px;
     margin: 0 0 20px 0;
@@ -2026,7 +2025,7 @@ export default {
   }
   .sideMenuForm {
     width: 20%;
-    max-height: 200px;
+    max-height: 250px;
     background-color: var(--semiLightNeutralColor);
     padding: 0 0 20px 10px;
     margin: 0 0 0 2%;
@@ -2133,17 +2132,17 @@ export default {
     margin: 0 0 5px 0;
   }
   .inputRufnr {
-    width: 20%;
+    width: 25%;
     padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputAnschrift {
-    width: 60%;
+    width: 50%;
     padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputGESP {
-    width: 20%;
+    width: 25%;
     padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
@@ -2158,17 +2157,17 @@ export default {
     margin: 0 0 5px 0;
   }
   .inputAbZeit {
-    width: 100%;
+    width: 40%;
     padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputZeichen {
-    width: 100%;
+    width: 30%;
     padding: 10px 10px 0 10px;
     margin: 0 5px 0 0;
   }
   .inputFunktion {
-    width: 100%;
+    width: 30%;
     padding: 10px 10px 0 10px;
     margin: 0 0 0 0;
   }
@@ -2258,6 +2257,7 @@ export default {
     padding: 0 0 0 0;
     margin: 0 0 0 0;
     border: 4px solid var(--middleNeutralColor);
+    overflow: hidden;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
