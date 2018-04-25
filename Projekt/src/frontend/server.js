@@ -27,7 +27,7 @@ let port = process.env.PORT || 8080
 app.listen(port)
 
 console.log('Server started. Reachable under:\n')
-if (ipAddrList.length > 1) {
+if (ipAddrList.length < 1) {
   console.log(
     'Server is up and running. Direct your browser to your machines ' +
     'IP-Address on Port ' + port)

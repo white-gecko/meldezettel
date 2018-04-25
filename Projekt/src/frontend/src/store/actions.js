@@ -4,18 +4,6 @@ import queryHelper from '../sparql_help/sparql_queries'
 import { parseResponse } from '../sparql_help/sparql_response'
 
 /**
- * Action used to perform an async POST request to the QuitStore
- * containing the current form data
- *
- * @param context - vuex store context
- * @param {object} formData - current form data object */
-export const addFormData = (context, formData) => {
-  let insertQuery = queryHelper.formdataToInsertQuery(formData)
-
-  return quitstore.sendData(insertQuery)
-}
-
-/**
  * Action which writes a newly created document into QuitStore
  *
  * @param context : connection to VueX store
@@ -29,7 +17,7 @@ export const saveNewFormAction = (context, formData) => {
 }
 
 /**
- * Action which retrieves a SPARL SELECT query from SPARQL-Helper,
+ * Action which retrieves a SPARQL SELECT query from SPARQL-Helper,
  * sends it to QuitStore and modifies the received data to fit the
  * layout of THWDashboard
  *
@@ -59,18 +47,18 @@ export const updateTicketListAction = (context) => {
           formatted.push(row)
         }
         // sorting documents ascending by creation date
-        for (var i = formatted.length - 1; i > 0; i--) {
-          for (var j = 0; j < i; j++) {
+        for (let i = formatted.length - 1; i > 0; i--) {
+          for (let j = 0; j < i; j++) {
             if (formatted[i].id.substr(-13, 13) >
               formatted[j].id.substr(-13, 13)) {
-              var temp = formatted[j]
+              let temp = formatted[j]
               formatted[j] = formatted[i]
               formatted[i] = temp
             }
           }
         }
         context.commit('setTicketList', formatted)
-        return resolve()
+        return resolve(formatted)
       })
       .catch(() => {
         return reject(new Error('Fehler beim Laden der Dokumente. ' +
@@ -137,8 +125,8 @@ export const updateFormDataAction = (context, formData) => {
             let insertNewDataQuery = queryHelper.formdataToInsertQuery(formData)
             quitstore.sendData(insertNewDataQuery)
 
-              .then(() => {
-                return resolve()
+              .then((response) => {
+                return resolve(response)
               })
               // Catch errors that were thrown when trying to send new data
               .catch(error => {
@@ -177,7 +165,7 @@ export const getOperationsAction = (context) => {
           }
         }
         context.commit('setOperationList', op)
-        return resolve('test')
+        return resolve(op)
       })
       .catch((error) => {
         return reject(error)
@@ -214,8 +202,8 @@ export const getPDFAction = (context, formdata) => {
         return resolve()
       })
       .catch((error) => {
-        console.error(error)
-        return reject(new Error('Fehler beim Anfordern der PDF'))
+        return reject(new Error('Fehler beim Anfordern der PDF\n' +
+          error))
       })
   })
 }
