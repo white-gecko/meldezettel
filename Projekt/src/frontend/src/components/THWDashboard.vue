@@ -7,8 +7,7 @@
       <div class="outerWrapper"
            style="padding: 0 20px 10px 20px;">
         <el-table :data="ticketList"
-                  id="ticketListTable"
-                  @current-change="selectDocument()"
+                  @current-change="selectDocument"
                   style="width: 100%"
                   border
                   :header-cell-style="{
