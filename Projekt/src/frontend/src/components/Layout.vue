@@ -66,6 +66,7 @@ export default {
     --formGreenColor: #75f075;
     --formRedColor: #f07575;
     --formYellowColor: #f0f075;
+    --formHighlightColor: #e9ffaf;
 
     /*neutral colors*/
     --darkNeutralColor: #DCDFE6;
