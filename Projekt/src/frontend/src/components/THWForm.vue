@@ -2214,6 +2214,9 @@ export default {
     margin: 5px 0 0 0;
     border: 4px solid var(--middleNeutralColor);
   }
+  .formButtonWrapper:hover {
+    border: 4px solid var(--mainColor);
+  }
   .formButton {
     height: 50px;
     width: 100%;
@@ -2265,6 +2268,9 @@ export default {
   .inputWrapper:hover div {
     background-color: var(--mainColor);
   }
+  .inputWrapper:hover {
+    border: 4px solid var(--mainColor);
+  }
   .inputLabel {
     height: 40px;
     width: 40%;
@@ -2311,6 +2317,9 @@ export default {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
+  }
+  .formCheckbox:hover {
+    border: 4px solid var(--mainColor);
   }
   .formControl {
     width: 100%;

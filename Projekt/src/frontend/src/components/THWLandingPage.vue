@@ -496,6 +496,9 @@ export default {
     -webkit-box-sizing: border-box;
     box-sizing: border-box
   }
+  .LPInputWrapper:hover {
+    border: 4px solid var(--mainColor);
+  }
   .LPInputWrapper:hover .LPInputSelectionHighlight {
     background-color: var(--mainColor);
   }
@@ -549,6 +552,9 @@ export default {
   .LPButtonWrapper {
     width: 300px;
     border: 4px solid var(--middleNeutralColor);
+  }
+  .LPButtonWrapper:hover {
+    border: 4px solid var(--mainColor);
   }
   .LPButton {
     height: 50px;
