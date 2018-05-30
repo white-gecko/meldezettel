@@ -1,4 +1,4 @@
-# Digitaler Vierfachvordruck für das THW
+# Digitaler Vierfachvordruck für Meldezettel in einer Führungsstelle
 ## Einrichten der Entwicklungsumgebung - Docker
 
 Das Projekt setzt voraus, dass Docker installiert ist. Installationsanleitung auf der [Dockerseite](https://docs.docker.com/engine/installation/).
@@ -20,7 +20,7 @@ Alternativ besteht bei der Installion die Möglichkeit keinen Autostart zu wähl
 docker run -p 8080:80 thw-frontend-dev
 ```
 
-Beim installieren werden die benötigten Javascript-Module automatisch heruntergeladen (etwa 250MB). 
+Beim installieren werden die benötigten Javascript-Module automatisch heruntergeladen (etwa 250MB).
 Dies geschieht im Hintergrund und kann ein paar Minuten dauern.
 Zusätzlich muss der Quitstore gestartet werden (siehe Abschnitt 'Quitstore')
 
@@ -94,6 +94,17 @@ python3 server.py
 
 
 ## Wichtig
-
+thw
 Auf gar keinen Fall darf der Ordner src/frontend/node_modules in das Repository gepusht werden. Dieser ist aber bereits in der .gitignore hinterlegt,
 sodass man sich darüber keine Gedanken machen muss.
+
+
+## Lizenz
+
+Copyright (C) 2018 Softwaretechnik Projektgruppe NA17b (http://pcai042.informatik.uni-leipzig.de/~na17b/jekyll/team/)
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses. Please see LICENSE for further information.
