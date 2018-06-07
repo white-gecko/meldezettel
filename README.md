@@ -101,7 +101,7 @@ sodass man sich darüber keine Gedanken machen muss.
 
 ## Lizenz
 
-Copyright (C) 2018 Softwaretechnik Projektgruppe NA17b (http://pcai042.informatik.uni-leipzig.de/~na17b/jekyll/team/)
+Copyright (C) 2018 Lucas Schons, Franz Ruge, Marc Wahsner, Elena Heier, Johannes Pfau, Anja Sieke, Max Schrodt, Lukas Gehrke
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
