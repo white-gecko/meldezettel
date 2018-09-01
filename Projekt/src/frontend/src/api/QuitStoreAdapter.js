@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Parser, Generator } from 'sparqljs'
 
 /**
  * The quitstore object implements methods that allow for
@@ -13,8 +14,13 @@ export const quitstore = {
    * @returns Promise
    */
   getData: function (sparqlQuery) {
+    var parser = new Parser()
+    var parsedQuery = parser.parse(sparqlQuery)
+    var generator = new Generator()
+    var generatedQuery = generator.stringify(parsedQuery)
+
     return axios.get(this.url, {
-      params: { query: sparqlQuery },
+      params: { query: generatedQuery },
       headers: { Accept: 'application/sparql-results+json' }
     })
   },
@@ -24,10 +30,15 @@ export const quitstore = {
    * @returns Promise
    */
   sendData: function (sparqlQuery) {
+    var parser = new Parser()
+    var parsedQuery = parser.parse(sparqlQuery)
+    var generator = new Generator()
+    var generatedQuery = generator.stringify(parsedQuery)
+
     return axios.request({
       method: 'post',
       url: this.url,
-      data: sparqlQuery,
+      data: generatedQuery,
       headers: { 'Content-Type': 'application/sparql-update' }
     })
   }

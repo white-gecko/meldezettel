@@ -21,6 +21,7 @@
     "express": "latest",
     "npm": "^5.8.0",
     "serve-static": "latest",
+    "sparqljs": "^2.1.0",
     "vue": "^2.5.2",
     "vuex": "^3.0.1"
   },
