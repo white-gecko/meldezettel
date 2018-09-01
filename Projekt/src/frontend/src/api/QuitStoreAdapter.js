@@ -19,9 +19,13 @@ export const quitstore = {
     var generator = new Generator()
     var generatedQuery = generator.stringify(parsedQuery)
 
-    return axios.get(this.url, {
-      params: { query: generatedQuery },
-      headers: { Accept: 'application/sparql-results+json' }
+    return axios.request({
+      method: 'post',
+      url: this.url,
+      data: generatedQuery,
+      headers: {
+        'Content-Type': 'application/sparql-query',
+        'Accept': 'application/sparql-results+json' }
     })
   },
   /**
