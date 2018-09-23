@@ -308,6 +308,7 @@ WHERE {
     return `
       PREFIX thw: <http://www.na17b.org/thw/>
       PREFIX id: <http://www.na17b.org/thw/resource/>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
       SELECT ?p ?o FROM thw: WHERE{
         id:` + id + ` ?p ?o
