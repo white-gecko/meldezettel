@@ -19,6 +19,7 @@ import { Header,
   MenuItem,
   Table,
   TableColumn,
+  Tag,
   Button,
   Form,
   FormItem,
@@ -53,6 +54,7 @@ Vue.use(Menu)
 Vue.use(MenuItem)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Tag)
 Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)

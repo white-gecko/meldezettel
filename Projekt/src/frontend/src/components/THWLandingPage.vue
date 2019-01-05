@@ -1,263 +1,106 @@
 <!-- this component will be our landing page -->
 <!-- landing page will demand Rolle, Name, Hdz, Funktion -->
 <template>
-  <div class="
-        landingPage
-        hasShadowLandingPageA
-        flexContainerLPB">
-    <div class="outerWrapper"
-         style="padding: 0 20px 20px 20px;">
-      <div class="middleWrapper"
-           style="
-            padding: 0 0 5px 0;
-            margin: 0 0 10px 0;">
+  <div>
+    <el-row>
+      <!--role-selector-->
+      <el-radio-group size="small" v-model="userData.role"
+        @change="checkIfRoleIsNotSGL(userData.role)">
+        <el-radio-button v-for="roleOption in roles" :label="roleOption"
+          :key="roleOption">
+          {{ roleOption }}
+        </el-radio-button>
+      </el-radio-group>
+    </el-row>
 
-        <div class="innerWrapper"
-             style="
-              padding: 10px 10px 0 10px;
-              margin: 0 0 5px 0;">
-          <!--role-selector-->
-          <el-radio-group class="landingPageRoleSelect"
-                          v-model="userData.role"
-                          @change="checkIfRoleIsNotSGL(userData.role)">
-            <el-radio-button v-for="roleOption in roles"
-                             :label="roleOption"
-                             :key="roleOption">
-              {{ roleOption }}
-            </el-radio-button>
-          </el-radio-group>
+    <el-row>
+      <!--sub-role-selector for SGL-->
+      <el-radio-group size="small" v-model="userData.position"
+        v-if="userData.role === 'SGL'">
+        <el-radio-button v-for="positionOption in positions"
+          :label="positionOption" :key="positionOption">
+          {{ positionOption }}
+        </el-radio-button>
+      </el-radio-group>
+    </el-row>
 
-          <!--sub-role-selector for SGL-->
-          <el-radio-group class="landingPageSubRoleSelect"
-                          v-model="userData.position"
-                          v-if="userData.role === 'SGL'"
-                          size="medium">
-            <el-radio-button
-              v-for="positionOption in positions"
-              :label="positionOption"
-              :key="positionOption">
-              {{ positionOption }}
-            </el-radio-button>
-          </el-radio-group>
-        </div>
+    <el-row>
+      <el-col :span="12">
+        <label for="senderInput" class="input-label">Absender</label>
+        <el-input id="senderInput" v-model="userData.sender"/>
+      </el-col>
 
-        <div class="innerWrapper"
-             style="
-              padding: 10px 10px 0 10px;
-              margin: 0 0 5px 0;">
-          <div class="flexContainerLPA">
+      <el-col :span="12">
+        <label for="userIdentifactionInput" class="input-label">
+          Handzeichen
+        </label>
+        <el-input id="userIdentifactionInput"
+          v-model="userData.identification"/>
+      </el-col>
+    </el-row>
 
-            <div class="
-              LPInputWrapper
-              flexContainerLPA">
-              <div class="LPInputSelectionHighlight"></div>
-              <label class="LPInputLabel">
-                Absender
-              </label>
-              <input class="LPInputWithLabel"
-                     v-model="userData.sender"/>
-            </div>
+    <el-row>
+      <label>Ausgewählter Einsatz:</label>
+      <el-tag v-if="userData.operation.operationName">{{ userData.operation.operationName }}</el-tag>
+      <el-tag v-if="!userData.operation.operationName" type="info">unbestimmt</el-tag>
 
-            <div class="
-              LPInputWrapper
-              flexContainerLPA"
-                 style="margin: 0 0 0 10px;">
-              <div class="LPInputSelectionHighlight"></div>
-              <label class="LPInputLabel">
-                Handzeichen
-              </label>
-              <input class="LPInputWithLabel"
-                     v-model="userData.identification"/>
-            </div>
+      <el-table  v-show="choosingOperation" :data="operations" border
+        @current-change="selectOperation" size="medium">
+        <el-table-column prop="operationName" label="Einsatz-Name">
+        </el-table-column>
+        <el-table-column prop="operationAdress" label="Einsatz-Adresse">
+        </el-table-column>
+        <el-table-column prop="operationStaffType" label="Art des Stabes">
+        </el-table-column>
+      </el-table>
 
-          </div>
-        </div>
+      <div v-show="addingOperation">
+        <label for="newOpName" class="input-label"> Einsatzname </label>
+        <el-input id="newOpName" v-model="newOperation.operationName"/>
 
-        <div class="innerWrapper"
-             style="
-              padding: 10px 10px 0 10px;
-              margin: 0 0 5px 0;"
-             v-if="userData.operation.operationName != ''">
+        <label for="newOpAddress" class="input-label">Einsatzadresse</label>
+        <el-input id="newOpAddress" v-model="newOperation.operationAdress"/>
 
-          <div class="
-              LPInputWrapper
-              flexContainerLPA">
-            <div class="LPInputSelectionHighlight"></div>
-            <label class="LPInputLabel">
-              Ausgewählter Einsatz:
-            </label>
-            <div class="LPInputWithLabel"
-                 style="
-                  padding: 10px 0 0 0;
-                  text-align: center;">
-              {{ userData.operation.operationName }}
-            </div>
-          </div>
+        <label for="newOpStaffType" class="input-label">Art des Stabes</label>
+        <el-input id="newOpStaffType"
+          v-model="newOperation.operationStaffType"/>
 
-        </div>
+        <el-button @click="submitOperation(newOperation)" size="small"
+          id="saveOperationButton">
+          Einsatz speichern
+        </el-button>
       </div>
-      <div class="middleWrapper"
-           style="
-            padding: 0 0 5px 0;
-            margin: 0 0 10px 0;">
+    </el-row>
 
-        <div class="innerWrapper"
-             style="
-              padding: 10px 10px 0 10px;
-              margin: 0 0 5px 0;"
-             v-show="choosingOperation">
-          <el-table
-            style="border: 4px solid var(--middleNeutralColor);"
-            :data="operations"
-            border
-            @current-change="selectOperation"
-            size="medium">
-            <el-table-column
-              prop="operationName"
-              label="Einsatz-Name">
-            </el-table-column>
-            <el-table-column
-              prop="operationAdress"
-              label="Einsatz-Adresse">
-            </el-table-column>
-            <el-table-column
-              prop="operationStaffType"
-              label="Art des Stabes">
-            </el-table-column>
-          </el-table>
-        </div>
+    <el-row>
+      <el-button size="small"
+        @click="addingOperation = !addingOperation;
+          choosingOperation = false">
+        Einsatz erstellen
+      </el-button>
 
-        <div class="innerWrapper"
-             style="
-              padding: 10px 10px 0 10px;
-              margin: 0 0 5px 0;"
-             v-show="addingOperation">
+      <el-button size="small"
+        @click="choosingOperation = !choosingOperation;
+          addingOperation = false">
+        Einsatz auswählen
+      </el-button>
+    </el-row>
 
-          <div class="
-              LPInputWrapper
-              flexContainerLPA">
-            <div class="LPInputSelectionHighlight"></div>
-            <label class="LPInputLabel">
-              Einsatzname
-            </label>
-            <input class="LPInputWithLabel"
-                   v-model="newOperation.operationName"/>
-          </div>
+    <span slot="footer" class="dialog-footer">
+      <el-button size="small" @click="resetUserData()"
+        id="resetUserInputButton">
+        Felder leeren
+      </el-button>
 
-          <div class="
-              LPInputWrapper
-              flexContainerLPA"
-               style="margin: 5px 0 0 0;">
-            <div class="LPInputSelectionHighlight"></div>
-            <label class="LPInputLabel">
-              Einsatzadresse
-            </label>
-            <input class="LPInputWithLabel"
-                   v-model="newOperation.operationAdress"/>
-          </div>
-
-          <div class="
-              LPInputWrapper
-              flexContainerLPA"
-               style="margin: 5px 0 0 0;">
-            <div class="LPInputSelectionHighlight"></div>
-            <label class="LPInputLabel">
-              Art des Stabes
-            </label>
-            <input class="LPInputWithLabel"
-                   v-model="newOperation.operationStaffType"/>
-          </div>
-
-          <div class="LPButtonWrapper"
-               style="
-                margin: 5px 0 0 0;">
-            <div class="LPButton"
-                 @click="submitOperation(newOperation)"
-                 id="saveOperationButton">
-              <div class="LPButtonLabel">
-                Einsatz speichern
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="
-              innerWrapper
-              flexContainerLPA"
-             style="
-              padding: 10px 10px 0 10px;">
-
-          <div class="LPButtonWrapper">
-            <div class="LPButton"
-                 @click="
-                  addingOperation = !addingOperation;
-                  choosingOperation = false">
-              <div class="LPButtonLabel">
-                Einsatz erstellen
-              </div>
-            </div>
-          </div>
-
-          <div class="LPButtonWrapper">
-            <div class="LPButton"
-                 @click="
-                  choosingOperation = !choosingOperation;
-                  addingOperation = false">
-              <div class="LPButtonLabel">
-                Einsatz auswählen
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-      <div class="middleWrapper"
-           style="padding: 0 0 5px 0;">
-
-        <div class="
-              innerWrapper
-              flexContainerLPA"
-             style="
-              padding: 10px 10px 0 10px;">
-
-          <div class="LPButtonWrapper">
-            <div class="dashboardButton"
-                 @click="validateUser('userData')"
-                 id="validateUserButton">
-              <div class="LPButtonLabel" style="white-space: nowrap">
-                Eingaben speichern
-              </div>
-            </div>
-          </div>
-
-          <div class="LPButtonWrapper">
-            <div class="LPButton"
-                 @click="resetUserData()"
-                 id="resetUserInputButton">
-              <div class="LPButtonLabel" style="white-space: nowrap">
-                Felder leeren
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="LPButtonWrapper"
-            v-if="showCancelButton">
-            <div class="LPButton"
-                 @click="hideLandingPage()"
-                 id="resetUserInputButton">
-              <div class="LPButtonLabel">
-                Abbrechen
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
+      <el-button size="small" v-if="showCancelButton" @click="hideLandingPage()"
+        id="resetUserInputButton">
+        Abbrechen
+      </el-button>
+      <el-button type="primary" @click="validateUser('userData')"
+        id="validateUserButton">
+        Eingaben speichern
+      </el-button>
+    </span>
   </div>
 </template>
 
@@ -280,7 +123,7 @@ export default {
           operationStaffType: '',
           operationID: ''
         },
-        role: 'SGL',
+        role: 'Fernmelder',
         position: '',
         sender: '',
         identification: ''
@@ -462,247 +305,8 @@ export default {
 }
 </script>
 <style>
-  .landingPage {
-    background-color: var(--semiLightNeutralColor);
-    border-top: 20px solid var(--secondaryTextColor);
-    padding: 0 10px 20px 10px;
-    width: 760px;
-    font: var(--bigTitleSize) var(--mainFont);
-    color: var(--primaryTextColor);
-  }
-  .landingPageRoleSelect {
-    width: 86%;
-    margin: 0 5px 0 40px;
-    display: flex;
-    justify-content: center;
-    font: var(--bigTitleSize) var(--mainFont);
-    color: var(--primaryTextColor);
-  }
-  .landingPageSubRoleSelect {
-    width: 40%;
-    margin: 10px 5px 0 42px;
-    display: flex;
-    justify-content: center;
-  }
-
-  /* custom input */
-  .LPInputWrapper {
-    height: 100%;
-    width: 100%;
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
-    border: 4px solid var(--middleNeutralColor);
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-  }
-  .LPInputWrapper:hover {
-    border: 4px solid var(--mainColor);
-  }
-  .LPInputWrapper:hover .LPInputSelectionHighlight {
-    background-color: var(--mainColor);
-  }
-  .LPInputLabel {
-    height: 50px;
-    width: 40%;
-    background-color: var(--middleNeutralColor);
-    padding: 10px 10px 0 10px;
-    margin: 0 0 0 0;
-    font: var(--bigTitleSize) var(--mainFont);
-    color: var(--primaryTextColor);
-    overflow-wrap: break-word;
-    text-align: center;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-  }
-  .LPInputWithLabel {
-    width: 60%;
-    height: 50px;
-    padding: 0 0 0 10px;
-    margin: 0 0 0 0;
-    background-color: var(--semiLightNeutralColor);
-    border: 0 none;
-    font: var(--bigTitleSize) var(--mainFont);
-    color: var(--primaryTextColor);
-    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
-    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
-    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-  }
-  .LPInputSelectionHighlight {
-    height: auto;
-    min-width: 10px;
-    width: 10px;
-    background-color: var(--formBlueColor);
-  }
-
-  .landingPageSelectedOperation {
-    height: 35px;
-    width: 93%;
-    background-color: var(--semiLightNeutralColor);
-    padding: 5px 0 0 0;
-    margin: 0 5px 40px 25px;
-    text-align: center  ;
-  }
-
-  /* custom button */
-  .LPButtonWrapper {
-    width: 300px;
-    border: 4px solid var(--middleNeutralColor);
-  }
-  .LPButtonWrapper:hover {
-    border: 4px solid var(--mainColor);
-  }
-  .LPButton {
-    height: 50px;
-    width: 100%;
-    background-color: var(--semiLightNeutralColor);
-    padding: 0 0 0 0;
-    border-left: 10px solid var(--formBlueColor);
-    text-align: center;
-    font: var(--bigTitleSize) var(--mainFont);
-    color: var(--primaryTextColor);
-    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
-    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
-    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-  }
-  .LPButton:hover {
-    border-left: 10px solid var(--mainColor);
-    cursor: pointer;
-  }
-  .LPButtonLabel {
-    height: 40px;
-    width: 100%;
-    padding: 5px 40px 0 40px;
-    margin: 0 10px 0 10px;
-    background-color: var(--middleNeutralColor);
-    font: var(--bigTitleSize) var(--mainFont);
-    color: var(--primaryTextColor);
-    text-align: center;
-    cursor: pointer;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-  }
-
-  .operationContent {
-    width: 95%;
-    margin: 10px 0 40px 10px;
-    display: flex;
-    justify-content: center;
-  }
-
-  /* custom checkbox */
-  .dashboardCheckbox {
-    width: 100%;
-    margin: 5px 10px 0 10px;
-    border: 4px solid var(--middleNeutralColor);
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-  }
-  .dashboardCheckbox:hover div {
-    background-color: var(--mainColor);
-  }
-  .control {
-    width: 100%;
-    height: 30px;
-    padding: 5px 10px 0 30px;
-    background-color: var(--middleNeutralColor);
-    text-align: center;
-    display: block;
-    position: relative;
-    cursor: pointer;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-  }
-  .control input {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-  }
-  .control_indicator {
-    height: 30px;
-    width: 30px;
-    background: var(--formBlueColor);
-    position: absolute;
-    top: 0;
-    left: 0;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-  }
-  .control-radio .control_indicator {
-    border-radius: undefined%;
-  }
-  .control input:checked ~ .control_indicator {
-    background: var(--mainColor);
-  }
-  .control_indicator:after {
-    box-sizing: unset;
-    content: '';
-    position: absolute;
-    display: none;
-
-  }
-  .control input:checked ~ .control_indicator:after {
-    display: block;
-  }
-  .control-checkbox .control_indicator:after {
-    left: 10px;
-    top: 4px;
-    width: 7px;
-    height: 15px;
-    border: solid var(--semiLightNeutralColor);
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-
-  }
-
-  /*
-  shadow-settings:
-  different shadow settings
-   */
-  .hasShadowLandingPageA {
-    box-shadow: 0px 5px 10px 0px var(--darkShadowColor);
-  }
-  .hasShadowLandingPageB {
-    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
-  }
-  .hasShadowLandingPageC {
-    box-shadow: 0px 5px 10px 0px var(--middleShadowColor);
-  }
-  .hasShadowLandingPageD {
-    box-shadow: 0px -6px 8px 0px var(--lightShadowColor),
-      0px 5px 10px -1px var(--middleShadowColor);
-  }
-
-  /*
-  flex-settings:
-    different settings for the flex attribute
-  */
-  .flexContainerLPA {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-  .flexContainerLPB {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .flexContainerLPC {
-    display: flex;
-    flex-direction: row;
+  .input-label {
+    display: inline-block;
+    width: 130px;
   }
 </style>

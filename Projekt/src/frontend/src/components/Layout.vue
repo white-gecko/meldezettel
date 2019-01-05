@@ -1,36 +1,30 @@
 <template>
-  <div class="flexContainerLayoutA">
+  <div>
     <el-dialog :visible="showLandingPage"
                :show-close="false"
                :close-on-click-modal="false"
-               :lock-scroll="false"
-               top="5vh"
-               style="
-                width: 0;
-                height: 0;
-                overflow: visible;
-                position: absolute;
-                left: 25%;
-                top: 0">
+               :lock-scroll="true" >
       <THWLandingPage/>
     </el-dialog>
-    <div style="z-index: 2; min-width: 1024px;">
-      <THWHeader/>
-    </div>
+    <div class="flexContainerLayoutA">
+      <div style="z-index: 2; min-width: 1024px;">
+        <THWHeader/>
+      </div>
 
-    <div class="
-          flexContainerLayoutB"
-         style="z-index: 1; width: 100%; min-width: 1024px;">
-        <THWMenu style="
-                  width: 7%;
-                  margin-top: 100px;"/>
-       <router-view style="
-                      width: 90%;
-                      margin-left: 3%;
-                      margin-top: 100px;"/>
+      <div class="
+            flexContainerLayoutB"
+           style="z-index: 1; width: 100%; min-width: 1024px;">
+          <THWMenu style="
+                    width: 7%;
+                    margin-top: 100px;"/>
+         <router-view style="
+                        width: 90%;
+                        margin-left: 3%;
+                        margin-top: 100px;"/>
 
-    </div>
+      </div>
 
+  </div>
   </div>
 </template>
 
@@ -188,6 +182,8 @@ export default {
   }
   body {
     line-height: 1;
+    font: var(--bigTitleSize) var(--mainFont);
+    color: var(--primaryTextColor);
   }
   ol, ul {
     list-style: none;
