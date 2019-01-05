@@ -1,82 +1,35 @@
 <template>
-
-  <div class="
-        header
-        hasShadowHeaderA
-        flexContainerHeaderA">
-
-    <div class="
-          THWlogoWrapper
-          flexContainerHeaderB">
-
-      <div class="
-          logoHeader
-          hasShadowHeaderB
-          flexContainerHeaderA
-          flexChildHeaderB">
-        <img src="@/assets/placeholderIcon.png"
-             height="50"
-             width="50">
-      </div>
-
-      <div class="headerWrapper"
-           style="
-            min-width: 215px;
-            margin: 0 0 0 0;">
-        Nachrichtenkom. für das THW
-      </div>
-
-    </div>
-
-    <div class="headerWrapper">
-      {{this.user.operation.operationName}}
-    </div>
-
-    <div class="headerWrapper">
-      {{this.user.identification}}
-    </div>
-
-    <div class="
-          menuWrapper
-          flexContainerHeaderC"
-         @click="showLandingPage">
-
-      <div class="
-          roleLogoWrapper
-          flexContainerHeaderB">
-        <div class="
-          logoHeader
-          hasShadowHeaderB
-          flexContainerHeaderA">
-          <img :src="selectIcon"
-               height="50"
-               width="50">
-        </div>
-
-        <div class="headerWrapper"
-             style="
-              width: 215px;
-              margin: 0 0 0 0;">
-          {{this.user.role}} {{this.user.position}}
-        </div>
-      </div>
-
-    </div>
-
+  <div>
+    <el-row class="header" justify="center" type="flex">
+      <el-col :span="3" class="headerCol">
+        <img src="@/assets/placeholderIcon.png" class="logoHeader" />
+        Meldezettel
+      </el-col>
+      <el-col :span="4" class="headerCol">
+        Einsatz:
+        <el-tag>{{this.user.operation.operationName}}</el-tag>
+      </el-col>
+      <el-col :span="3" class="headerCol">
+        Handzeichen:
+        <el-tag>{{this.user.identification}}</el-tag>
+      </el-col>
+      <el-col :span="3" class="headerCol">
+        <img :src="selectIcon" class="logoHeader" />
+        <el-tag>{{this.user.role}} {{this.user.position}}</el-tag>
+      </el-col>
+      <el-col :span="2">
+        <el-button @click="showLandingPage" class="clickWrapper headerCol"
+          icon="el-icon-setting" type="info" plain>
+        </el-button>
+      </el-col>
+    </el-row>
   </div>
-
 </template>
 
 <script>
 
 export default {
   name: 'THWHeader',
-
-  data: () => {
-    return {
-      headerDropDownCollapsed: false
-    }
-  },
 
   computed: {
     user () {
@@ -101,20 +54,7 @@ export default {
       }
     }
   },
-
   methods: {
-    goTo: function (path, params) {
-      this.$router.push({name: path, params: params})
-    },
-    showDropDownMenu: function () {
-      this.headerDropDownCollapsed = true
-    },
-    hideDropDownMenu: function () {
-      this.headerDropDownCollapsed = false
-    },
-    printStuff: function () {
-      console.log('SUCCESS!')
-    },
     showLandingPage: function () {
       this.$store.commit('resetShowLandingPage')
     }
@@ -125,105 +65,22 @@ export default {
 <style>
   .header {
     background-color: var(--semiLightNeutralColor);
-    height: 50px;
-    width: 100%;
-    border-bottom: 10px solid var(--mainColor);
-    font: bold var(--bigTitleSize) var(--mainFont);
-    color: var(--semiLightNeutralColor);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-bottom: 5px solid var(--mainColor);
     overflow: visible;
-    position: fixed;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
   }
-  .headerWrapper {
-    height: 50px;
-    min-width: 150px;
-    background-color: var(--secondaryTextColor);
-    border-bottom: 10px solid var(--formBlueColor);
-    padding: 5px 10px 0px 10px;
-    margin: 0 1% 0 1%;
-    text-align: center;
-    white-space: nowrap;
-    z-index: 1;
-
-    -webkit-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
-    -moz-box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
-    box-shadow: inset 5px 5px 10px -5px var(--lightShadowColor);
-
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
+  .clickWrapper {
+    cursor: pointer;
   }
   .logoHeader {
     background-color: var(--secondaryTextColor);
-    height: 50px;
-    width: 60px;
-    border-bottom: 10px solid var(--formBlueColor);
+    height: 40px;
+    width: 40px;
   }
-  .THWlogoWrapper {
-    margin-left: 10%;
-    margin-right: 10%;
-    z-index: 10;
-  }
-  .menuWrapper {
-    position: relative;
-    margin-left: 1%;
-    margin-right: 10%;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-  }
-  .roleLogoWrapper {
-    z-index: 10;
-    cursor: pointer;
-  }
-
-  /*
-  flex-settings:
-    different settings for the flex attribute
-  */
-  .flexContainerHeaderA{
+  .headerCol {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-  .flexContainerHeaderB{
-    display: flex;
-    flex-direction: row;
-  }
-  .flexContainerHeaderC{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-  .flexContainerHeaderD{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
-  /*
-  shadow-settings:
-    different shadow settings
-  */
-  .hasShadowHeaderA {
-    box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
-  }
-  .hasShadowHeaderB {
-    box-shadow: 0px 10px 20px -6px var(--lightShadowColor);
-  }
-
-  /*
-  animations:
-  */
-  @keyframes dropDownBlendIn {
-    0% {
-      height: 50px;
-    }
-
-    100% {
-      height: 180px;
-    }
+    align-items: center;
+    justify-content:center
   }
 </style>

@@ -6,25 +6,19 @@
                :lock-scroll="true" >
       <THWLandingPage/>
     </el-dialog>
-    <div class="flexContainerLayoutA">
-      <div style="z-index: 2; min-width: 1024px;">
+    <el-container>
+      <el-header>
         <THWHeader/>
-      </div>
-
-      <div class="
-            flexContainerLayoutB"
-           style="z-index: 1; width: 100%; min-width: 1024px;">
-          <THWMenu style="
-                    width: 7%;
-                    margin-top: 100px;"/>
-         <router-view style="
-                        width: 90%;
-                        margin-left: 3%;
-                        margin-top: 100px;"/>
-
-      </div>
-
-  </div>
+      </el-header>
+      <el-container>
+        <el-aside width="100px">
+          <THWMenu/>
+        </el-aside>
+        <el-main>
+          <router-view/>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
