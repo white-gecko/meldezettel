@@ -41,8 +41,12 @@
 
     <el-row>
       <label>Ausgewählter Einsatz:</label>
-      <el-tag v-if="userData.operation.operationName">{{ userData.operation.operationName }}</el-tag>
-      <el-tag v-if="!userData.operation.operationName" type="info">unbestimmt</el-tag>
+      <el-tag v-if="userData.operation.operationName">
+        {{ userData.operation.operationName }}
+      </el-tag>
+      <el-tag v-if="!userData.operation.operationName" type="info">
+        unbestimmt
+      </el-tag>
 
       <el-table  v-show="choosingOperation" :data="operations" border
         @current-change="selectOperation" size="medium">
