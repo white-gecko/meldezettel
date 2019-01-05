@@ -1,9 +1,6 @@
 <template>
-  <div class="flexContainerFormA">
-    <!--main-form-->
-    <div class="
-          formWrapper
-          hasShadowFormA">
+  <el-container>
+    <el-main>
       <el-form class="
                 form
                 flexContainerFormB"
@@ -17,10 +14,6 @@
                 }">
 
         <!--top-section-->
-        <div class="
-              outerWrapper
-              hasMeasurmentsFormA
-              flexContainerFormB">
 
           <div class="flexContainerFormA">
 
@@ -1222,7 +1215,8 @@
         </div>
 
       </el-form>
-    </div>
+    </el-main>
+    <el-aside width="200px">
 
     <!-- side-menu -->
     <div class="
@@ -1315,8 +1309,8 @@
         </div>
       </div>
 
-    </div>
-  </div>
+    </el-aside>
+  </el-container>
 </template>
 
 <script>
@@ -2004,7 +1998,7 @@ export default {
   .form {
     width: 100%;
     background-color: var(--formBlueColor);
-    padding: 0 20px 20px 20px;
+    padding: 0 5px 5px 5px;
     font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     -moz-box-sizing: border-box;
@@ -2014,9 +2008,9 @@ export default {
   .formWrapper {
     width: 80%;
     background-color: var(--semiLightNeutralColor);
-    padding: 0 10px 20px 10px;
-    margin: 0 0 20px 0;
-    border-top: 20px solid var(--secondaryTextColor);
+    padding: 0 5px 5px 5px;
+    margin: 0 0 5px 0;
+    border-top: 5px solid var(--secondaryTextColor);
     font: var(--titleSize) var(--mainFont);
     color: var(--primaryTextColor);
     -moz-box-sizing: border-box;
@@ -2027,9 +2021,9 @@ export default {
     width: 20%;
     max-height: 250px;
     background-color: var(--semiLightNeutralColor);
-    padding: 0 0 20px 10px;
+    padding: 0 0 5px 2px;
     margin: 0 0 0 2%;
-    border-top: 20px solid var(--secondaryTextColor);
+    border-top: 5px solid var(--secondaryTextColor);
     font: var(--bigTitleSize) var(--mainFont);
     color: var(--primaryTextColor);
     -moz-box-sizing: border-box;
@@ -2052,37 +2046,37 @@ export default {
     height: 100%;
     width: 20%;
     background-color: var(--middleNeutralColor);
-    padding: 0 0 5px 0;
+    padding: 0 0 2px 0;
     margin: 0 0 0 0;
   }
   .topBot {
     width: 100%;
-    padding: 0 0 5px 0;
+    padding: 0 0 2px 0;
     margin: 0 0 0 0;
   }
   .midTop {
     width: 100%;
-    padding: 0 0 5px 0;
+    padding: 0 0 2px 0;
     margin: 0 0 0 0;
   }
   .midMid {
     width: 100%;
-    padding: 0 0 5px 0;
+    padding: 0 0 2px 0;
     margin: 0 0 0 0;
   }
   .midBot {
     width: 100%;
-    padding: 0 0 5px 0;
+    padding: 0 0 2px 0;
     margin: 0 0 0 0;
   }
   .botLeft {
     width: 70%;
-    padding: 0 5px 5px 0;
+    padding: 0 2px 2px 0;
     margin: 0 0 0 0;
   }
   .botRight {
     width: 30%;
-    padding: 0 0 5px 0;
+    padding: 0 0 2px 0;
     margin: 0 0 0 0;
   }
 
@@ -2090,113 +2084,75 @@ export default {
   /* top-section */
   .checkboxgroupMTTop {
     width: 100%;
-    padding: 10px 0 0 0;
-    margin: 0 0 5px 0;
+    padding: 5px 0 0 0;
+    margin: 0 0 2px 0;
   }
   .inputIncoming {
     width: 33%;
-    padding: 10px 10px 0 10px;
+    padding: 5px 5px 0 5px;
     margin: 0 5px 0 0;
   }
   .inputOutgoing {
     width: 67%;
-    padding: 10px 15px 0 10px;
-    margin: 0 0 0 0;
   }
   .inputTB {
     height: 100%;
     width: 100%;
-    padding: 10px 10px 0 10px;
-    margin: 0 0 0 0;
   }
   .inputRGS {
     width: 100%;
-    padding: 10px 10px 0 10px;
-    margin: 0 0 0 0;
   }
 
   /*mid-section*/
   .checkboxgroupMTMid {
     width: 100%;
-    padding: 10px 0 0 0;
-    margin: 0 0 5px 0;
   }
   .checkboxgroupDS {
     width: 100%;
-    padding: 10px 0 0 0;
-    margin: 0 5px 5px 0;
   }
   .checkboxgroupSB {
     width: 100%;
-    padding: 10px 0 0 0;
-    margin: 0 0 5px 0;
   }
   .inputRufnr {
     width: 25%;
-    padding: 10px 10px 0 10px;
-    margin: 0 5px 0 0;
   }
   .inputAnschrift {
     width: 50%;
-    padding: 10px 10px 0 10px;
-    margin: 0 5px 0 0;
   }
   .inputGESP {
     width: 25%;
-    padding: 10px 10px 0 10px;
-    margin: 0 0 0 0;
   }
   .inputInhalt {
     width: 100%;
-    padding: 10px 10px 0 10px;
-    margin: 0 0 0 0;
   }
   .inputAbsender {
     width: 100%;
-    padding: 10px 10px 0 10px;
-    margin: 0 0 5px 0;
   }
   .inputAbZeit {
     width: 40%;
-    padding: 10px 10px 0 10px;
-    margin: 0 5px 0 0;
   }
   .inputZeichen {
     width: 30%;
-    padding: 10px 10px 0 10px;
-    margin: 0 5px 0 0;
   }
   .inputFunktion {
     width: 30%;
-    padding: 10px 10px 0 10px;
-    margin: 0 0 0 0;
   }
 
   /*bot-section*/
   .inputQuittung {
     width: 100%;
-    padding: 10px 10px 0 10px;
-    margin: 0 0 5px 0;
   }
   .checkboxgroupTEL {
     width: 100%;
-    padding: 10px 10px 0 10px;
-    margin: 0 5px 0 0;
   }
   .checkboxgroupFachberater {
     width: 100%;
-    padding: 10px 10px 0 10px;
-    margin: 0 5px 0 0;
   }
   .checkboxgroupVerb {
     width: 100%;
-    padding: 10px 10px 0 10px;
-    margin: 0 0 0 0;
   }
   .inputVermerke {
     width: 100%;
-    padding: 10px 10px 0 10px;
-    margin: 0 0 0 0;
   }
 
   /* custom-header(s) */
