@@ -1,70 +1,46 @@
 <template>
-  <div class="
-        menu
-        hasShadowMenuA
-        flexContainerMenuA"
-       index="home">
+  <el-row index="home" class="menu" justify="center" type="flex">
 
-    <div class="
-          menuItem
-          flexContainerMenuB">
-      <div class="
-            menuLogo
-            hasShadowMenuA"
-           @click="goTo('Home')"
-           @mouseover="showOverviewDesc"
-           @mouseout="hideOverviewDesc">
+    <el-col :span="3">
+    <div class="menuItem">
+      <div class="menuLogo" @click="goTo('Home')" >
         <img src="@/assets/homeIcon.png"
-             height="70"
-             width="70">
+             height="40"
+             width="40">
       </div>
-      <div class="menuDesc"
-           v-show="overviewDesc">
+      <div>
         Übersicht
       </div>
     </div>
+    </el-col>
 
-    <div class="
-          menuItem
-          flexContainerMenuB"
-         index="create">
-      <div class="
-            menuLogo
-            hasShadowMenuA"
-           @click="goTo('Create')"
-           @mouseover="showNewFormDesc"
-           @mouseout="hideNewFormDesc">
+    <el-col :span="3">
+    <div class="menuItem" index="create">
+      <div class="menuLogo" @click="goTo('Create')" >
         <img src="@/assets/formIcon.png"
-             height="70"
-             width="70">
+             height="40"
+             width="40">
       </div>
-      <div class="menuDesc"
-           v-show="newFormDesc">
+      <div>
         Neues Formular
       </div>
     </div>
+    </el-col>
 
-    <div class="
-          menuItem
-          flexContainerMenuB"
-         index="draft">
-      <div class="
-            menuLogo
-            hasShadowMenuA"
-           @click="goTo('Create', {id: 'draft'})"
-           @mouseover="showDraftDesc"
-           @mouseout="hideDraftDesc">
+    <el-col :span="3">
+    <div class="menuItem" index="draft">
+      <div class="menuLogo" @click="goTo('Create', {id: 'draft'})" >
         <img src="@/assets/draftIcon.png"
-             height="70"
-             width="70">
+             height="40"
+             width="40">
       </div>
-      <div class="menuDesc"
-           v-show="draftDesc">
+      <div>
         Entwurf öffnen
       </div>
     </div>
+    </el-col>
 
-  </div>
+  </el-row>
 </template>
 
 <script>
@@ -77,9 +53,6 @@ export default {
     return {
       isCollapsed: false,
       activeLink: null,
-      overviewDesc: false,
-      newFormDesc: false,
-      draftDesc: false
     }
   },
 
@@ -87,24 +60,6 @@ export default {
     goTo: function (path, params) {
       this.$router.push({name: path, params: params})
     },
-    showOverviewDesc: function () {
-      this.overviewDesc = true
-    },
-    hideOverviewDesc: function () {
-      this.overviewDesc = false
-    },
-    showNewFormDesc: function () {
-      this.newFormDesc = true
-    },
-    hideNewFormDesc: function () {
-      this.newFormDesc = false
-    },
-    showDraftDesc: function () {
-      this.draftDesc = true
-    },
-    hideDraftDesc: function () {
-      this.draftDesc = false
-    }
   }
 }
 
@@ -112,43 +67,19 @@ export default {
 
 <style>
   .menu {
-    height: 320px;
     background-color: var(--semiLightNeutralColor);
-    padding-bottom: 40px;
     overflow: visible;
-    font-family: var(--mainFont);
-    font-size: var(--bigTitleSize);
-    color: var(--primaryTextColor);
+    margin-bottom: 5px;
   }
   .menuItem {
-    position: relative;
+    display: inline-block;
   }
   .menuLogo {
     background-color: var(--secondaryTextColor);
-    position: relative;
-    left: 10px;
-    z-index: 11;
     border-right: var(--formBlueColor);
     border-right-style: solid;
     border-right-width: 10px;
   }
-  .menuDesc {
-    height: 40px;
-    width: 220px;
-    background-color: var(--semiLightNeutralColor);
-    padding: 20px 20px 0 0;
-    border-right: var(--mainColor);
-    border-right-style: solid;
-    border-right-width: 10px;
-    position: absolute;
-    z-index: 10;
-    font-family: var(--mainFont);
-    font-size: var(--titleSize);
-    color: var(--primaryTextColor);
-    text-align: right;
-    animation: descBlendIn 0.1s ease 0.1s 1 normal backwards;
-  }
-
   /*
   hover-settings:
     settings for elements, when they are hovered over
@@ -157,62 +88,7 @@ export default {
     cursor: pointer;
   }
   .menuLogo:hover {
-    border-right-style: none;
-    left: 0;
-  }
-
-  /*
-  shadow-settings:
-  different shadow settings
-   */
-  .hasShadowMenuA {
-    box-shadow: 0px 5px 10px 0px var(--lightShadowColor);
-  }
-  .hasShadowMenuB {
-    box-shadow: 0px 10px 20px 1px var(--lightShadowColor);
-  }
-
-  /*
-  flex-settings:
-    different settings for the flex attribute
-  */
-  .flexContainerMenuA {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-end;
-  }
-  .flexContainerMenuB {
-    display: flex;
-    flex-direction: row;
-  }
-  .flexChildMenuA {
-    align-self: center;
-  }
-
-  /*
-  animations:
-  */
-  @keyframes descBlendIn {
-    0%  { width: 50px;
-          height: 50px;
-          background-color: var(--semiLightNeutralColor);
-          font-size: 0;}
-    40% { width: 50px;
-          height: 40px;
-          background-color: var(--semiLightNeutralColor);
-          font-size: 0;}
-    46% { width: 60px;
-          height: 40px;
-          background-color: var(--semiLightNeutralColor);
-          font-size: 0;}
-    47% { width: 61.7px;
-          height: 40px;
-          background-color: var(--semiLightNeutralColor);
-          font-size: var(--titleSize);}
-    100%  { width: 220px;
-            height: 40px;
-            background-color: var(--semiLightNeutralColor);}
+    border-right-color: var(--mainColor);
   }
 
 </style>

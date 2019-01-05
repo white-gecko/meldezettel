@@ -10,13 +10,11 @@
       <el-header>
         <THWHeader/>
       </el-header>
+      <el-header>
+        <THWMenu/>
+      </el-header>
       <el-container>
-        <el-aside width="100px">
-          <THWMenu/>
-        </el-aside>
-        <el-main>
-          <router-view/>
-        </el-main>
+        <router-view/>
       </el-container>
     </el-container>
   </div>

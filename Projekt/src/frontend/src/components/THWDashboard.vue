@@ -1,100 +1,89 @@
 <template>
-  <div class="flexContainerDashboardA">
+  <el-container>
+    <el-main>
+      <el-table :data="ticketList"
+                @current-change="selectDocument"
+                border
+                :header-cell-style="{
+                  'font': 'var(--titleSize) var(--mainFont)',
+                  'color': 'var(--primaryTextColor)',
+                  'border-bottom': '20px solid var(--darkNeutralColor)'}">
 
-    <div class="
-          dashboard
-          hasShadowDashboardA">
-      <div class="outerWrapper"
-           style="padding: 0 20px 10px 20px;">
-        <el-table :data="ticketList"
-                  @current-change="selectDocument"
-                  style="width: 100%"
-                  border
-                  :header-cell-style="{
-                    'font': 'var(--titleSize) var(--mainFont)',
-                    'color': 'var(--primaryTextColor)',
-                    'border-bottom': '20px solid var(--darkNeutralColor)'}">
+        <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
+        <el-table-column label="Status"
+                         align="center"
+                         prop="ticketState"
+                         min-width="6%">
+          <template slot-scope="scope">
+            <div>
+              <i v-if="scope.row.ticketState === 1"
+                 class='el-icon-edit-outline out stateTable'/>
+              <i v-else-if="scope.row.ticketState === 2"
+                 class='el-icon-circle-close out stateTable'/>
+              <i v-else-if="scope.row.ticketState === 3"
+                 class='el-icon-view out stateTable'/>
+              <i v-else-if="scope.row.ticketState === 4"
+                 class='el-icon-service out stateTable'/>
+              <i v-else-if="scope.row.ticketState === 5"
+                 class='el-icon-circle-check-outline out stateTable'/>
+              <i v-else-if="scope.row.ticketState === 6"
+                 class='el-icon-circle-close-outline out stateTable'/>
+              <i v-else-if="scope.row.ticketState === 7"
+                 class='el-icon-circle-check out stateTable'/>
+              <i v-else-if="scope.row.ticketState === 8"
+                 class='el-icon-printer out stateTable'/>
+              <i v-else-if="scope.row.ticketState === 9"
+                 class='out stateTable'>&#9632;</i>
+              <i v-else-if="scope.row.ticketState === 11"
+                 class='el-icon-edit-outline in stateTable'/>
+              <i v-else-if="scope.row.ticketState === 12"
+                 class='el-icon-circle-close in stateTable'/>
+              <i v-else-if="scope.row.ticketState === 13"
+                 class='el-icon-tickets in stateTable'/>
+              <i v-else-if="scope.row.ticketState === 14"
+                 class='el-icon-printer in stateTable'/>
+              <i v-else-if="scope.row.ticketState === 15"
+                 class='in stateTable'>&#9632;</i>
+              <i v-else class='el-icon-warning warn stateTable'/>
+            </div>
+          </template>
+        </el-table-column>
 
-          <!-- Festlegen der zu verwendenden Werte aus dem VVD -->
-          <el-table-column label="Status"
-                           align="center"
-                           prop="ticketState"
-                           min-width="6%">
-            <template slot-scope="scope">
-              <div>
-                <i v-if="scope.row.ticketState === 1"
-                   class='el-icon-edit-outline out stateTable'/>
-                <i v-else-if="scope.row.ticketState === 2"
-                   class='el-icon-circle-close out stateTable'/>
-                <i v-else-if="scope.row.ticketState === 3"
-                   class='el-icon-view out stateTable'/>
-                <i v-else-if="scope.row.ticketState === 4"
-                   class='el-icon-service out stateTable'/>
-                <i v-else-if="scope.row.ticketState === 5"
-                   class='el-icon-circle-check-outline out stateTable'/>
-                <i v-else-if="scope.row.ticketState === 6"
-                   class='el-icon-circle-close-outline out stateTable'/>
-                <i v-else-if="scope.row.ticketState === 7"
-                   class='el-icon-circle-check out stateTable'/>
-                <i v-else-if="scope.row.ticketState === 8"
-                   class='el-icon-printer out stateTable'/>
-                <i v-else-if="scope.row.ticketState === 9"
-                   class='out stateTable'>&#9632;</i>
-                <i v-else-if="scope.row.ticketState === 11"
-                   class='el-icon-edit-outline in stateTable'/>
-                <i v-else-if="scope.row.ticketState === 12"
-                   class='el-icon-circle-close in stateTable'/>
-                <i v-else-if="scope.row.ticketState === 13"
-                   class='el-icon-tickets in stateTable'/>
-                <i v-else-if="scope.row.ticketState === 14"
-                   class='el-icon-printer in stateTable'/>
-                <i v-else-if="scope.row.ticketState === 15"
-                   class='in stateTable'>&#9632;</i>
-                <i v-else class='el-icon-warning warn stateTable'/>
-              </div>
-            </template>
-          </el-table-column>
+        <el-table-column prop="numberTB"
+                         label="TB Nr."
+                         align="center"
+                         min-width="6.5%"></el-table-column>
 
-          <el-table-column prop="numberTB"
-                           label="TB Nr."
-                           align="center"
-                           min-width="6.5%"></el-table-column>
+        <el-table-column prop="creator"
+                         label="Verf."
+                         min-width="7%"></el-table-column>
 
-          <el-table-column prop="creator"
-                           label="Verf."
-                           min-width="7%"></el-table-column>
+        <el-table-column prop="docketIdentification"
+                         label="Sichter"
+                         min-width="7%"></el-table-column>
 
-          <el-table-column prop="docketIdentification"
-                           label="Sichter"
-                           min-width="7%"></el-table-column>
+        <el-table-column prop="date"
+                         label="Datum"
+                         align="center"
+                         min-width="9%"></el-table-column>
 
-          <el-table-column prop="date"
-                           label="Datum"
-                           align="center"
-                           min-width="9%"></el-table-column>
+        <el-table-column prop="time"
+                         label="Uhrzeit"
+                         align="center"
+                         min-width="7%"></el-table-column>
 
-          <el-table-column prop="time"
-                           label="Uhrzeit"
-                           align="center"
-                           min-width="7%"></el-table-column>
+        <el-table-column prop="receiverName"
+                         label="Empfänger"
+                         min-width="18%"></el-table-column>
 
-          <el-table-column prop="receiverName"
-                           label="Empfänger"
-                           min-width="18%"></el-table-column>
+        <el-table-column :formatter="formatContent"
+                         prop="content"
+                         label="Kurzinhalt"
+                         min-width="33.5%"></el-table-column>
+      </el-table>
+    </el-main>
 
-          <el-table-column :formatter="formatContent"
-                           prop="content"
-                           label="Kurzinhalt"
-                           min-width="33.5%"></el-table-column>
-
-        </el-table>
-      </div>
-    </div>
-
-    <div class="
-          dashboardSideMenu
-          hasShadowDashboardA
-          flexContainerDashboardB">
+    <el-aside width="200px">
 
       <div class="outerWrapper"
            style="padding: 0 0 0 20px">
@@ -412,9 +401,9 @@
 
       </div>
 
-    </div>
+    </el-aside>
 
-  </div>
+  </el-container>
 </template>
 <script>
 import { Notification } from 'element-ui'
