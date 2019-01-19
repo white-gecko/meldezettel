@@ -83,7 +83,7 @@
       </el-table>
     </el-main>
 
-    <el-aside width="200px">
+    <el-aside width="10rem">
 
       <div class="outerWrapper"
            style="padding: 0 0 0 20px">
@@ -396,13 +396,9 @@
             </div>
 
           </div>
-
         </div>
-
       </div>
-
     </el-aside>
-
   </el-container>
 </template>
 <script>

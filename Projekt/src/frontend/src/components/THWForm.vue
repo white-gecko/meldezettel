@@ -1,9 +1,7 @@
 <template>
-  <div class="flexContainerFormA">
+  <el-container>
     <!--main-form-->
-    <div class="
-          formWrapper
-          hasShadowFormA">
+    <el-main>
       <el-form class="
                 form
                 flexContainerFormB"
@@ -1216,107 +1214,61 @@
                           :tabindex="tabIndexConfig.annotations"/>
               </div>
             </div>
-
           </div>
 
         </div>
 
       </el-form>
-    </div>
+    </el-main>
 
     <!-- side-menu -->
-    <div class="
-          sideMenuForm
-          hasShadowFormA
-          flexContainerFormB">
-      <div class="outerWrapper"
-           style="padding: 0 20px 10px 20px;">
-        <div class="middleWrapper"
-             style="padding: 0 0 5px 0">
-          <div class="innerWrapper"
-               style="padding: 10px 10px 0 10px">
+    <el-aside width="10rem">
+      <el-row v-show="isNew">
+        <el-button @keyup.enter="saveForm('accept');"
+          @click="saveForm('accept');"
+          :tabindex="tabIndexConfig.buttonSend"
+          id="saveNewFormButton">
+          Abschicken
+        </el-button>
+      </el-row>
 
-            <div class="formButtonWrapper"
-                 v-show="isNew">
-              <div class="formButton"
-                   @keyup.enter="
-                    saveForm('accept');"
-                   @click="
-                    saveForm('accept');"
-                   :tabindex="tabIndexConfig.buttonSend"
-                   id="saveNewFormButton">
-                <div class="formButtonLabel">
-                  Abschicken
-                </div>
-              </div>
-            </div>
+      <el-row v-show="sendable">
+        <el-button @keyup.enter="saveForm('accept');"
+            @click="saveForm('accept');"
+            tabindex="6"
+            id="sendFormToNextPersonButton">
+            Weitersenden
+        </el-button>
+      </el-row>
 
-            <div class="formButtonWrapper"
-                 v-show="sendable">
-              <div class="formButton"
-                   @keyup.enter="
-                    saveForm('accept');"
-                   @click="
-                    saveForm('accept');"
-                   tabindex="6"
-                   id="sendFormToNextPersonButton">
-                <div class="formButtonLabel">
-                  Weitersenden
-                </div>
-              </div>
-            </div>
+      <el-row v-show="toBePrinted">
+        <el-button @keyup.enter="printTicket();"
+             @click="printTicket();"
+             tabindex="6"
+             id="printFormButton">
+            Drucken
+        </el-button>
+      </el-row>
 
-            <div class="formButtonWrapper"
-                 v-show="toBePrinted">
-              <div class="formButton"
-                   @keyup.enter="
-                    printTicket();"
-                   @click="
-                    printTicket();"
-                   tabindex="6"
-                   id="printFormButton">
-                <div class="formButtonLabel">
-                  Drucken
-                </div>
-              </div>
-            </div>
+      <el-row v-show="rejectable">
+        <el-button @keyup.enter="saveForm('reject');"
+             @click="saveForm('reject');"
+              id="rejectFormButton">
+            Abweisen
+        </el-button>
+      </el-row>
 
-            <div class="formButtonWrapper"
-                 v-show="rejectable">
-              <div class="formButton"
-                   @keyup.enter="
-                    saveForm('reject');"
-                   @click="
-                    saveForm('reject');"
-                    id="rejectFormButton">
-                <div class="formButtonLabel">
-                  Abweisen
-                </div>
-              </div>
-            </div>
+      <el-row>
+        <el-button @keyup.enter="formReset(); notifySuccess('Zurückgesetzt');"
+          @click="formReset(); notifySuccess('Zurückgesetzt');"
+          :tabindex="tabIndexConfig.buttonReset"
+          id="resetFormButton">
+            Zurücksetzen
+        </el-button>
+      </el-row>
 
-            <div class="formButtonWrapper">
-              <div class="formButton"
-                   @keyup.enter="
-                    formReset();
-                    notifySuccess('Zurückgesetzt');"
-                   @click="
-                    formReset();
-                    notifySuccess('Zurückgesetzt');"
-                   :tabindex="tabIndexConfig.buttonReset"
-                   id="resetFormButton">
-                <div class="formButtonLabel">
-                  Zurücksetzen
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+    </el-aside>
+  </el-container>
 </template>
 
 <script>

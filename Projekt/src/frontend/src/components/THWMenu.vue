@@ -46,20 +46,11 @@
 <script>
 
 export default {
-
   name: 'THWMenu',
-
-  data: () => {
-    return {
-      isCollapsed: false,
-      activeLink: null,
-    }
-  },
-
   methods: {
     goTo: function (path, params) {
       this.$router.push({name: path, params: params})
-    },
+    }
   }
 }
 
