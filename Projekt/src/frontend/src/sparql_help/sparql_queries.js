@@ -97,6 +97,79 @@ PREFIX : <http://www.na17b.org/thw/>
   },
 
   /**
+   * function which creates a SPARQL delete and insert query based on given doc object
+   *
+   * @param olddoc old formdata object that got updated in THWForm.vue
+   * @param newdoc new formdata object containing the update in THWForm.vue
+   * @return string SPARQL query that deletes data of formdata object from
+   *         QuitStore
+   */
+  formdataToUpdateQuery: function (olddoc, newdoc) {
+    // default prefixes + graph prefixes
+    let query = `
+      PREFIX id: <http://www.na17b.org/thw/resource/>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX : <http://www.na17b.org/thw/>
+      `
+
+    let uri = 'id:' + olddoc.documentID
+    delete olddoc.documentID
+
+    // base for sparql delete queries
+    query += 'DELETE DATA {GRAPH : {'
+
+    query += uri + ' rdf:type :document'
+    if (olddoc.inOperation !== '' &&
+      typeof (olddoc.inOperation) !== 'undefined') {
+      query += '; :inOperation id:' + olddoc.inOperation
+    }
+    delete olddoc.inOperation
+
+    for (let key in olddoc) {
+      let value = olddoc[key]
+
+      query += ';:' + key + ' '
+      if (typeof value === 'string') {
+        query += '"""' + value + '"""'
+      } else if (typeof value === 'object') {
+        let date = new Date(value)
+        query += date.getTime()
+      } else {
+        query += value
+      }
+    }
+    query += '.}};'
+
+    // INSERT part
+    // base for sparql insert queries
+    query += 'INSERT DATA {GRAPH : {'
+
+    query += uri + ' rdf:type :document'
+
+    if (newdoc.inOperation !== '' && newdoc.inOperation !== undefined) {
+      query += '; :inOperation id:' + newdoc.inOperation
+    }
+    delete newdoc.inOperation
+
+    for (let key in newdoc) {
+      let value = newdoc[key]
+
+      query += ';:' + key + ' '
+      if (typeof value === 'string') {
+        query += '"""' + value + '"""'
+      } else if (typeof value === 'object') {
+        let date = new Date(value)
+        query += date.getTime()
+      } else {
+        query += value
+      }
+    }
+    query += '.}}'
+
+    return query
+  },
+
+  /**
    * Creates a query to query for dashboard specific data
    *
    *  @param filter: filter object which the received data shall be based opon

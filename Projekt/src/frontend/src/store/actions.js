@@ -118,23 +118,14 @@ export const updateFormDataAction = (context, formData) => {
     loadFormDataAction(null, formData.documentID)
 
       .then(oldFormData => {
-        let deleteOldDataQuery = queryHelper.formdataToDeleteQuery(oldFormData)
-        quitstore.sendData(deleteOldDataQuery)
-
-          .then(() => {
-            let insertNewDataQuery = queryHelper.formdataToInsertQuery(formData)
-            quitstore.sendData(insertNewDataQuery)
-
-              .then((response) => {
-                return resolve(response)
-              })
-              // Catch errors that were thrown when trying to send new data
-              .catch(error => {
-                return reject(new Error(error))
-              })
-            // Catch errors that were thrown when trying to send delete query
+        let updateQuery = queryHelper.formdataToUpdateQuery(
+          oldFormData, formData)
+        quitstore.sendData(updateQuery)
+          .then((response) => {
+            return resolve(response)
+          // Catch errors that were thrown when trying to send delete query
           }).catch(error => {
-            console.log('Unable to delete data. Error Msg:\n' + error)
+            console.log('Unable to update data. Error Msg:\n' + error)
             return reject(new Error(error))
           })
         // Catch errors that were thrown when trying to get old form data
